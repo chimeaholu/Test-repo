@@ -1,0 +1,13 @@
+{
+  "name": "agrodomain-staging-e2e",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "playwright:e2e:staging": "playwright test",
+    "playwright:e2e:staging:desktop": "playwright test --project=desktop-critical",
+    "playwright:e2e:staging:mobile": "playwright test --project=mobile-critical"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.54.2"
+  }
+}

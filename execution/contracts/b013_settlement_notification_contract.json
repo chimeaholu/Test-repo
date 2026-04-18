@@ -1,0 +1,38 @@
+{
+  "bead_id": "B-013",
+  "name": "Settlement Notification and Fallback",
+  "version": "1.0.0",
+  "status": "draft",
+  "scope": {
+    "primary_channel": "whatsapp",
+    "fallback_channel": "sms",
+    "focus": [
+      "settlement_status_mapping",
+      "channel_aware_notification",
+      "critical_event_fallback",
+      "interaction_state_coverage"
+    ]
+  },
+  "settlement_status": {
+    "supported_statuses": [
+      "funding_pending",
+      "funded",
+      "released",
+      "reversed",
+      "disputed"
+    ],
+    "primary_event_type": "settlement_update"
+  },
+  "fallback_policy": {
+    "trigger_conditions": [
+      "delivery_failed",
+      "session_window_expired",
+      "network_degraded"
+    ],
+    "fallback_behavior": {
+      "delivery_failed": "sms",
+      "session_window_expired": "sms",
+      "network_degraded": "sms_retry_prompt"
+    }
+  }
+}

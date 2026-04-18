@@ -1,0 +1,7 @@
+.staging/
+node_modules/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+execution/reviews/staging-e2e-evidence/
+execution/reviews/*-staging-e2e-evidence/

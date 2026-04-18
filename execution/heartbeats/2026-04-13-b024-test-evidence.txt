@@ -1,0 +1,18 @@
+B-024 exact-SHA isolated test evidence
+SHA: e05614bbaf71e3e42c24b3bb900e53b3b5b8173c
+Commit timestamp: 2026-04-13T08:49:09+00:00
+Subject: B-024 add quality evidence attachments
+Isolation method: git -C /mnt/vault archive e05614bbaf71e3e42c24b3bb900e53b3b5b8173c MWH/Projects/Agrodomain | tar -x -C <tmpdir>
+Working directory inside archive: MWH/Projects/Agrodomain
+Command:
+PYTHONPATH=src pytest -q tests/test_quality_evidence_attachments.py tests/test_quality_evidence_attachments_contract_stub.py tests/test_traceability_event_chain.py tests/test_listings.py tests/test_package_exports.py
+
+STDOUT
+..................                                                       [100%]
+18 passed in 0.61s
+
+STDERR
+/home/node/.local/lib/python3.11/site-packages/pytest_asyncio/plugin.py:207: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))

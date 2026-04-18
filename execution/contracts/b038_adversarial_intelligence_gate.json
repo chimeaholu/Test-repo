@@ -1,0 +1,35 @@
+{
+  "bead_id": "B-038",
+  "name": "Adversarial Intelligence Gate",
+  "version": "1.0.0",
+  "status": "draft",
+  "gate": {
+    "required_checklist_items": [
+      "planner_gate",
+      "verifier_audit",
+      "memory_revalidation",
+      "router_escalation",
+      "eval_benchmark",
+      "traceability"
+    ]
+  },
+  "traceability": {
+    "required_ids": [
+      "AIJ-001",
+      "AIJ-002",
+      "AIJ-003",
+      "AIJ-004",
+      "AIJ-005",
+      "AIJ-006",
+      "IDI-001",
+      "IDI-002",
+      "IDI-003",
+      "IDI-004",
+      "IDI-005"
+    ]
+  },
+  "eval_thresholds": {
+    "minimum_average_score": 0.85,
+    "minimum_fixture_count": 2
+  }
+}

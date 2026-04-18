@@ -1,0 +1,87 @@
+{
+  "bead_id": "B-044",
+  "title": "Low-End Android Performance Budget Harness",
+  "scope": {
+    "matrix_ids": [
+      "ARM-001",
+      "ARM-002",
+      "ARM-003",
+      "ARM-004"
+    ],
+    "focus": [
+      "low_ram_android",
+      "unstable_3g",
+      "background_resume",
+      "payload_budget_pressure",
+      "conflict_resolution_latency"
+    ]
+  },
+  "fixtures": {
+    "ARM-001": {
+      "device_profile": "low_ram_android_2gb",
+      "network_profile": "unstable_3g",
+      "background_profile": "intermittent_background",
+      "budget": {
+        "max_p95_latency_ms": 2200,
+        "max_payload_bytes": 240,
+        "min_replay_success_rate": 0.99,
+        "max_duplicate_commits": 0,
+        "max_data_loss_count": 0
+      }
+    },
+    "ARM-002": {
+      "device_profile": "mid_tier_android_4gb",
+      "network_profile": "unstable_3g",
+      "background_profile": "suspended_resume",
+      "budget": {
+        "max_p95_latency_ms": 2400,
+        "max_payload_bytes": 240,
+        "min_replay_success_rate": 1.0,
+        "max_duplicate_commits": 0,
+        "max_data_loss_count": 0
+      }
+    },
+    "ARM-003": {
+      "device_profile": "low_end_android_cpu_pressure",
+      "network_profile": "packet_loss",
+      "background_profile": "intermittent_background",
+      "budget": {
+        "max_p95_latency_ms": 2600,
+        "max_payload_bytes": 240,
+        "min_replay_success_rate": 0.98,
+        "max_duplicate_commits": 0,
+        "max_data_loss_count": 0
+      }
+    },
+    "ARM-004": {
+      "device_profile": "signal_transition_android_cohort",
+      "network_profile": "signal_transitions",
+      "background_profile": "intermittent_background",
+      "budget": {
+        "max_p95_latency_ms": 2500,
+        "max_payload_bytes": 240,
+        "min_replay_success_rate": 0.98,
+        "max_duplicate_commits": 0,
+        "max_data_loss_count": 0,
+        "max_conflict_resolution_ms": 1800
+      }
+    }
+  },
+  "test_obligations": {
+    "journeys": [
+      "ARJ-001",
+      "ARJ-002",
+      "ARJ-003",
+      "ARJ-004",
+      "ARJ-005",
+      "ARJ-006"
+    ],
+    "data_checks": [
+      "ARDI-001",
+      "ARDI-002",
+      "ARDI-003",
+      "ARDI-004",
+      "ARDI-005"
+    ]
+  }
+}

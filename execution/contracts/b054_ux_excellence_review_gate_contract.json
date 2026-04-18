@@ -1,0 +1,48 @@
+{
+  "bead_id": "B-054",
+  "scope": {
+    "focus": [
+      "world_class_ux_gate",
+      "pre_build_signoff",
+      "pre_release_signoff",
+      "generic_pattern_blocking",
+      "conversion_threshold_enforcement"
+    ]
+  },
+  "dependencies": [
+    "B-050",
+    "B-051",
+    "B-052",
+    "B-053"
+  ],
+  "gate": {
+    "pre_build_checklist": [
+      "visual_language",
+      "interaction_patterns",
+      "accessibility_baseline",
+      "trust_pattern_checklist"
+    ],
+    "pre_release_checklist": [
+      "usability_heuristics",
+      "conversion_metrics",
+      "low_end_android",
+      "generic_pattern_audit"
+    ]
+  },
+  "required_conversion_metrics": [
+    "onboarding_completion",
+    "offer_to_settlement_completion",
+    "advisory_follow_through",
+    "dispute_resolution_completion"
+  ],
+  "generic_fail_findings": [
+    "template_like_layout",
+    "generic_placeholder_copy",
+    "missing_trust_cues"
+  ],
+  "test_obligations": {
+    "unit": "checklist completeness and blocker classification checks",
+    "journey": "UXG-001",
+    "data_check": "UXDI-005"
+  }
+}
