@@ -1270,7 +1270,9 @@ def main() -> None:
     import uvicorn
 
     host = os.getenv("AGRODOMAIN_STAGING_HOST", "127.0.0.1")
-    port = int(os.getenv("AGRODOMAIN_STAGING_PORT", "8000"))
+    # Railway routes traffic to the process bound on PORT.
+    # Keep AGRODOMAIN_STAGING_PORT as a local/testing fallback.
+    port = int(os.getenv("PORT", os.getenv("AGRODOMAIN_STAGING_PORT", "8000")))
     uvicorn.run("agro_v2.staging_runtime:app", host=host, port=port, reload=False)
 
 
