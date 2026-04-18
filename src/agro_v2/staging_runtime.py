@@ -987,6 +987,10 @@ def create_app() -> FastAPI:
         _verify_header(request)
         return verify_check(load(), check_name)
 
+    @app.get("/")
+    async def root() -> RedirectResponse:
+        return RedirectResponse(url="/signin", status_code=307)
+
     @app.get("/signin")
     async def signin(role: str = "farmer") -> HTMLResponse:
         state = load()
