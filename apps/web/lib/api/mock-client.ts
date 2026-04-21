@@ -1917,19 +1917,6 @@ export const agroApiClient = {
     return responseEnvelope({ items }, traceId);
   },
 
-  async getAuditEvents(
-    requestId: string,
-    _idempotencyKey: string,
-    traceId: string,
-  ): Promise<ResponseEnvelope<{ items: Array<{ event_id: number; request_id: string; created_at: string }> }>> {
-    return requestJson<{ items: Array<{ event_id: number; request_id: string; created_at: string }> }>(
-      `/api/v1/audit/events?request_id=${encodeURIComponent(requestId)}`,
-      { method: "GET" },
-      traceId,
-      true,
-    );
-  },
-
   async fundEscrow(
     input: { escrow_id: string; partner_outcome: string; note?: string },
     traceId: string,
