@@ -24,7 +24,8 @@ export type ContractDomain =
   | "marketplace"
   | "negotiation"
   | "climate"
-  | "traceability";
+  | "traceability"
+  | "escrow";
 
 export type ContractKind = "request" | "response" | "event" | "dto" | "catalog";
 
