@@ -82,7 +82,7 @@ export default function ConflictPage() {
             items={[
               { label: "Status", value: item.state ?? "conflicted" },
               { label: "Intent", value: item.intent },
-              { label: "Created", value: item.envelope.metadata.emitted_at },
+              { label: "Created", value: item.created_at },
             ]}
           />
           <div className="inline-actions" style={{ marginTop: "1rem" }}>
