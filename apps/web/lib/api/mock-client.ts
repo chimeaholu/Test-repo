@@ -1831,6 +1831,278 @@ export const agroApiClient = {
     );
   },
 
+  async getWalletSummary(traceId: string): Promise<ResponseEnvelope<{
+    schema_version: string;
+    actor_id: string;
+    country_code: string;
+    total_balance: number;
+    available_balance: number;
+    held_balance: number;
+    currency: string;
+    balance_version: number;
+    updated_at: string;
+  }>> {
+    const workspace = await this.getWalletWorkspace(traceId);
+    const b = workspace.data.wallet.balance;
+    return responseEnvelope(
+      {
+        schema_version: schemaVersion as typeof schemaVersion,
+        actor_id: workspace.data.actor_id,
+        country_code: workspace.data.country_code,
+        total_balance: b.total_balance,
+        available_balance: b.available_balance,
+        held_balance: b.held_balance,
+        currency: workspace.data.wallet.currency,
+        balance_version: b.balance_version,
+        updated_at: b.updated_at ?? nowIso(),
+      },
+      traceId,
+    );
+  },
+
+  async listWalletTransactions(traceId: string): Promise<ResponseEnvelope<{
+    items: Array<{
+      schema_version: string;
+      entry_id: string;
+      actor_id: string;
+      escrow_id: string | null;
+      direction: string;
+      amount: number;
+      currency: string;
+      reason: string;
+      entry_sequence: number;
+      balance_version: number;
+      resulting_available_balance: number;
+      resulting_held_balance: number;
+      created_at: string;
+    }>;
+  }>> {
+    const workspace = await this.getWalletWorkspace(traceId);
+    let runningAvailable = workspace.data.wallet.balance.available_balance;
+    let runningHeld = workspace.data.wallet.balance.held_balance;
+    const items = workspace.data.wallet.entries.map((entry, index) => {
+      if (entry.direction === "credit") {
+        runningAvailable += entry.amount;
+      } else {
+        runningAvailable -= entry.amount;
+      }
+      return {
+        schema_version: schemaVersion as typeof schemaVersion,
+        entry_id: entry.entry_id,
+        actor_id: workspace.data.actor_id,
+        escrow_id: entry.escrow_id,
+        direction: entry.direction,
+        amount: entry.amount,
+        currency: workspace.data.wallet.currency,
+        reason: entry.reason,
+        entry_sequence: index + 1,
+        balance_version: index + 1,
+        resulting_available_balance: runningAvailable,
+        resulting_held_balance: runningHeld,
+        created_at: entry.created_at ?? nowIso(),
+      };
+    });
+    return responseEnvelope({ items }, traceId);
+  },
+
+  async listEscrows(traceId: string): Promise<ResponseEnvelope<{
+    items: Array<{
+      schema_version: string;
+      escrow_id: string;
+      thread_id: string;
+      listing_id: string;
+      buyer_actor_id: string;
+      seller_actor_id: string;
+      country_code: string;
+      amount: number;
+      currency: string;
+      state: string;
+      partner_reason_code: string | null;
+      timeline: Array<{
+        entry_id: string;
+        request_id: string;
+        idempotency_key: string;
+        actor_id: string;
+        transition: string;
+        state: string;
+        note: string | null;
+        notification: Record<string, unknown> | null;
+        created_at: string;
+      }>;
+      created_at: string;
+      updated_at: string;
+    }>;
+  }>> {
+    const workspace = await this.getWalletWorkspace(traceId);
+    const items = workspace.data.escrow.escrows.map((escrow) => ({
+      schema_version: schemaVersion as typeof schemaVersion,
+      escrow_id: escrow.escrow_id,
+      thread_id: escrow.thread_id,
+      listing_id: escrow.listing_id,
+      buyer_actor_id: escrow.buyer_actor_id,
+      seller_actor_id: escrow.seller_actor_id,
+      country_code: workspace.data.country_code,
+      amount: escrow.amount,
+      currency: escrow.currency,
+      state: escrow.state,
+      partner_reason_code: escrow.partner_reason_code,
+      timeline: escrow.timeline.map((entry) => ({
+        entry_id: entry.escrow_id + "-" + entry.created_at,
+        request_id: entry.request_id,
+        idempotency_key: entry.request_id,
+        actor_id: entry.actor_id,
+        transition: entry.transition,
+        state: entry.state,
+        note: entry.note,
+        notification: entry.notification ?? null,
+        created_at: entry.created_at ?? nowIso(),
+      })),
+      created_at: escrow.created_at ?? nowIso(),
+      updated_at: escrow.updated_at ?? nowIso(),
+    }));
+    return responseEnvelope({ items }, traceId);
+  },
+
+  async getAuditEvents(
+    requestId: string,
+    _idempotencyKey: string,
+    traceId: string,
+  ): Promise<ResponseEnvelope<{ items: Array<{ event_id: number; request_id: string; created_at: string }> }>> {
+    return requestJson<{ items: Array<{ event_id: number; request_id: string; created_at: string }> }>(
+      `/api/v1/audit/events?request_id=${encodeURIComponent(requestId)}`,
+      { method: "GET" },
+      traceId,
+      true,
+    );
+  },
+
+  async fundEscrow(
+    input: { escrow_id: string; partner_outcome: string; note?: string },
+    traceId: string,
+    actorId: string,
+    countryCode: string,
+  ): Promise<ResponseEnvelope<{
+    request_id: string;
+    idempotency_key: string;
+    replayed: boolean;
+    escrow_transition: { notification_count: number };
+    escrow: { escrow_id: string };
+  }>> {
+    return this._sendEscrowCommand("settlement.escrow.fund", input, traceId, actorId, countryCode);
+  },
+
+  async releaseEscrow(
+    input: { escrow_id: string; note?: string },
+    traceId: string,
+    actorId: string,
+    countryCode: string,
+  ): Promise<ResponseEnvelope<{
+    request_id: string;
+    idempotency_key: string;
+    replayed: boolean;
+    escrow_transition: { notification_count: number };
+    escrow: { escrow_id: string };
+  }>> {
+    return this._sendEscrowCommand("settlement.escrow.release", input, traceId, actorId, countryCode);
+  },
+
+  async reverseEscrow(
+    input: { escrow_id: string; reversal_reason: string; note?: string },
+    traceId: string,
+    actorId: string,
+    countryCode: string,
+  ): Promise<ResponseEnvelope<{
+    request_id: string;
+    idempotency_key: string;
+    replayed: boolean;
+    escrow_transition: { notification_count: number };
+    escrow: { escrow_id: string };
+  }>> {
+    return this._sendEscrowCommand("settlement.escrow.reverse", input, traceId, actorId, countryCode);
+  },
+
+  async disputeEscrow(
+    input: { escrow_id: string; note: string },
+    traceId: string,
+    actorId: string,
+    countryCode: string,
+  ): Promise<ResponseEnvelope<{
+    request_id: string;
+    idempotency_key: string;
+    replayed: boolean;
+    escrow_transition: { notification_count: number };
+    escrow: { escrow_id: string };
+  }>> {
+    return this._sendEscrowCommand("settlement.escrow.dispute_open", input, traceId, actorId, countryCode);
+  },
+
+  async _sendEscrowCommand(
+    commandName: string,
+    input: Record<string, unknown>,
+    traceId: string,
+    actorId: string,
+    countryCode: string,
+  ): Promise<ResponseEnvelope<{
+    request_id: string;
+    idempotency_key: string;
+    replayed: boolean;
+    escrow_transition: { notification_count: number };
+    escrow: { escrow_id: string };
+  }>> {
+    const requestId = crypto.randomUUID();
+    const idempotencyKey = crypto.randomUUID();
+    const response = await requestJson<{
+      status: string;
+      request_id: string;
+      idempotency_key: string;
+      result: {
+        escrow: { escrow_id: string };
+        escrow_transition: { notification_count: number };
+      };
+      audit_event_id: number;
+      replayed: boolean;
+    }>(
+      "/api/v1/workflow/commands",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          metadata: {
+            request_id: requestId,
+            idempotency_key: idempotencyKey,
+            actor_id: actorId,
+            country_code: countryCode,
+            channel: "pwa",
+            schema_version: schemaVersion as typeof schemaVersion,
+            correlation_id: traceId,
+            occurred_at: nowIso(),
+            traceability: {
+              journey_ids: ["CJ-004"],
+              data_check_ids: ["DI-003"],
+            },
+          },
+          command: {
+            name: commandName,
+            aggregate_ref: String(input.escrow_id),
+            mutation_scope: "settlement.escrow",
+            payload: input,
+          },
+        }),
+      },
+      traceId,
+      true,
+    );
+    return responseEnvelope(
+      {
+        request_id: response.data.request_id,
+        idempotency_key: response.data.idempotency_key,
+        replayed: response.data.replayed,
+        escrow_transition: response.data.result.escrow_transition,
+        escrow: response.data.result.escrow,
+      },
+      traceId,
+    );
+  },
+
   async sendNegotiationCommand(
     params: {
       actorId: string;
