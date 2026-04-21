@@ -1,0 +1,38 @@
+R5 verification summary
+Timestamp: 2026-04-20T09:14:35Z
+Execution base: /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7
+Baseline ref: cd254ff7c2658cdf2d7ced07d8bcc2bb3dfea729
+
+Command:
+corepack pnpm --filter @agrodomain/web test
+Result:
+PASS
+Evidence:
+- Session output captured during execution: 16 files passed, 40 tests passed.
+
+Command:
+AGRO_E2E_API_PORT=8015 PLAYWRIGHT_WEB_PORT=3015 PLAYWRIGHT_ARTIFACT_DIR=execution/reviews/2026-04-20T09-30-00Z-r5-ux-hardening corepack pnpm test:e2e -- tests/e2e/r5-ux-hardening.spec.ts
+Result:
+FAIL
+Evidence:
+- execution/reviews/2026-04-20T09-30-00Z-r5-ux-hardening/results.json
+- execution/reviews/2026-04-20T09-30-00Z-r5-ux-hardening/test-results/r5-ux-hardening-R5-UX-hard-d4d19--actions-reachable-at-320px-desktop-critical/error-context.md
+- execution/reviews/2026-04-20T09-30-00Z-r5-ux-hardening/test-results/r5-ux-hardening-R5-UX-hard-e43b4--critical-operator-surfaces-desktop-critical/error-context.md
+- execution/reviews/2026-04-20T09-30-00Z-r5-ux-hardening/test-results/r5-ux-hardening-R5-UX-hard-d4d19--actions-reachable-at-320px-mobile-critical/test-failed-1.png
+- execution/reviews/2026-04-20T09-30-00Z-r5-ux-hardening/test-results/r5-ux-hardening-R5-UX-hard-e43b4--critical-operator-surfaces-mobile-critical/test-failed-1.png
+
+Command:
+AGRO_E2E_API_PORT=8016 PLAYWRIGHT_WEB_PORT=3016 PLAYWRIGHT_ARTIFACT_DIR=execution/reviews/2026-04-20T09-45-00Z-r5-ux-hardening-rerun corepack pnpm test:e2e -- tests/e2e/r5-ux-hardening.spec.ts
+Result:
+FAIL / ABORTED
+Evidence:
+- Next dev server emitted MODULE_NOT_FOUND for .next/server/vendor-chunks/next@15.5.15... during _not-found compilation.
+- Rerun could not be used as PASS evidence.
+
+Command:
+grep -RIn "\bN[0-9]\b|\bW-[0-9][0-9][0-9]\b|Wave [0-9]" apps/web --exclude-dir=node_modules --exclude-dir=.next --include=*.tsx --include=*.ts
+Result:
+PASS
+Evidence:
+- execution/reviews/2026-04-20T10-00-00Z-r5-ux-hardening-blocker/source-copy-scan.log
+- Exit status 1 from grep indicates no matches remained in source.

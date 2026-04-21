@@ -1,0 +1,14 @@
+
+> @agrodomain/contracts@0.0.0 test /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/contracts
+> vitest run
+
+
+ RUN  v3.2.4 /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/contracts
+
+ ✓ tests/contracts.test.ts (21 tests) 87ms
+
+ Test Files  1 passed (1)
+      Tests  21 passed (21)
+   Start at  03:09:43
+   Duration  2.60s (transform 1.03s, setup 0ms, collect 1.37s, tests 87ms, environment 0ms, prepare 322ms)
+

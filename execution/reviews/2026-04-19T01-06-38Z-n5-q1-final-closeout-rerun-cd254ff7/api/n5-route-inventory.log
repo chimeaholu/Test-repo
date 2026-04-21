@@ -1,0 +1,3 @@
+/api/v1/traceability/consignments/{consignment_id}
+/api/v1/traceability/consignments/{consignment_id}/timeline
+/api/v1/workflow/commands

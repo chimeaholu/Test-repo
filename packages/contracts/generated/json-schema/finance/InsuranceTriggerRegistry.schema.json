@@ -1,0 +1,192 @@
+{
+  "$ref": "#/definitions/InsuranceTriggerRegistry",
+  "definitions": {
+    "InsuranceTriggerRegistry": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "actor_role": {
+          "enum": [
+            "farmer",
+            "buyer",
+            "cooperative",
+            "advisor",
+            "finance",
+            "finance_ops",
+            "admin"
+          ],
+          "type": "string"
+        },
+        "climate_signal": {
+          "enum": [
+            "rainfall_mm",
+            "temperature_c",
+            "soil_moisture_pct",
+            "anomaly_score"
+          ],
+          "type": "string"
+        },
+        "comparator": {
+          "enum": [
+            "gte",
+            "lte"
+          ],
+          "type": "string"
+        },
+        "country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "type": "string"
+        },
+        "evaluation_window_hours": {
+          "exclusiveMinimum": true,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "partner_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "partner_reference_id": {
+          "maxLength": 128,
+          "nullable": true,
+          "type": "string"
+        },
+        "payout_amount": {
+          "exclusiveMinimum": true,
+          "minimum": 0,
+          "type": "number"
+        },
+        "payout_currency": {
+          "pattern": "^[A-Z]{3}$",
+          "type": "string"
+        },
+        "policy_context": {
+          "additionalProperties": false,
+          "properties": {
+            "matched_rule": {
+              "minLength": 1,
+              "nullable": true,
+              "type": "string"
+            },
+            "policy_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "policy_version": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "requires_hitl": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "policy_id",
+            "policy_version",
+            "matched_rule",
+            "requires_hitl"
+          ],
+          "type": "object"
+        },
+        "product_code": {
+          "maxLength": 64,
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "threshold_source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "threshold_source_reference": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          },
+          "type": "object"
+        },
+        "threshold_source_type": {
+          "maxLength": 64,
+          "minLength": 1,
+          "type": "string"
+        },
+        "threshold_unit": {
+          "maxLength": 32,
+          "minLength": 1,
+          "type": "string"
+        },
+        "threshold_value": {
+          "type": "number"
+        },
+        "trigger_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "updated_at": {
+          "$ref": "#/definitions/InsuranceTriggerRegistry/properties/created_at"
+        }
+      },
+      "required": [
+        "schema_version",
+        "trigger_id",
+        "actor_id",
+        "actor_role",
+        "country_code",
+        "partner_id",
+        "partner_reference_id",
+        "product_code",
+        "climate_signal",
+        "comparator",
+        "threshold_value",
+        "threshold_unit",
+        "evaluation_window_hours",
+        "threshold_source_id",
+        "threshold_source_type",
+        "threshold_source_reference",
+        "payout_amount",
+        "payout_currency",
+        "policy_context",
+        "created_at",
+        "updated_at"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Insurance trigger registry DTO preserving threshold source metadata and payout setup.",
+  "x-agrodomain-contract": {
+    "id": "finance.insurance_trigger_registry",
+    "domain": "finance",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "EP-008",
+      "DI-006"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+    ]
+  }
+}

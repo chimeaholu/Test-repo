@@ -1,0 +1,224 @@
+
+> agrodomain@0.0.0 test:e2e /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7
+> playwright test tests/e2e/n5-finance-traceability.spec.ts
+
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+[2m[WebServer] [22mINFO:     Started server process [441969]
+[2m[WebServer] [22mINFO:     Waiting for application startup.
+[2m[WebServer] [22mINFO:     Application startup complete.
+[2m[WebServer] [22mINFO:     Uvicorn running on http://127.0.0.1:8011 (Press CTRL+C to quit)
+[2m[WebServer] [22m{"correlation_id": "3534423d-f2aa-4c5d-96c3-54b4f15334ed", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "3534423d-f2aa-4c5d-96c3-54b4f15334ed", "timestamp": "2026-04-18T23:30:48.709259+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:42196 - "GET /readyz HTTP/1.1" 200 OK
+[2m[WebServer] [22m(node:441977) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:441989) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:442010) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m   ▲ Next.js 15.5.15
+[2m[WebServer] [22m   - Local:        http://127.0.0.1:3011
+[2m[WebServer] [22m   - Network:      http://127.0.0.1:3011
+[2m[WebServer] [22m
+[2m[WebServer] [22m ✓ Starting...
+[2m[WebServer] [22m ✓ Ready in 3.3s
+[2m[WebServer] [22m ○ Compiling /signin ...
+[2m[WebServer] [22m ✓ Compiled /signin in 11.4s (692 modules)
+[2m[WebServer] [22m GET /signin 200 in 12646ms
+
+Running 4 tests using 2 workers
+
+(node:442030) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:442029) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:442030) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:442029) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m{"correlation_id": "a3ea4047-56ba-49a1-a6fa-9022786ab7b2", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "a3ea4047-56ba-49a1-a6fa-9022786ab7b2", "timestamp": "2026-04-18T23:31:11.297239+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40500 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "aa78b613-e00f-42db-97b5-7b2e2116deb2", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "aa78b613-e00f-42db-97b5-7b2e2116deb2", "timestamp": "2026-04-18T23:31:11.363746+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40500 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "7a0fdb0a-2959-4f37-bf9d-8e19f4005f5f", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "7a0fdb0a-2959-4f37-bf9d-8e19f4005f5f", "timestamp": "2026-04-18T23:31:11.397758+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40502 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "8272ebc7-84f7-426b-aef9-1178541a23ff", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "8272ebc7-84f7-426b-aef9-1178541a23ff", "timestamp": "2026-04-18T23:31:11.463091+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40502 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /signin 200 in 379ms
+[2m[WebServer] [22m GET /signin 200 in 560ms
+[2m[WebServer] [22m ○ Compiling /app/finance/queue ...
+[2m[WebServer] [22m ✓ Compiled /app/finance/queue in 2.6s (697 modules)
+[2m[WebServer] [22m{"correlation_id": "a461941e-7340-4b2a-8f27-b662e8e35d65", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "a461941e-7340-4b2a-8f27-b662e8e35d65", "timestamp": "2026-04-18T23:31:15.198618+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40510 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-q1hggp", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-q1hggp", "timestamp": "2026-04-18T23:31:15.221934+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40516 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "b50fdcf1-22da-4998-ace9-1850a3c068c8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "b50fdcf1-22da-4998-ace9-1850a3c068c8", "timestamp": "2026-04-18T23:31:15.555863+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40526 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-z0ubp5", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-z0ubp5", "timestamp": "2026-04-18T23:31:15.586828+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40542 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/finance/queue 200 in 3599ms
+[2m[WebServer] [22m GET /app/finance/queue 200 in 4009ms
+[2m[WebServer] [22m{"correlation_id": "ecddbf21-0787-4128-a90e-03209ca48465", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "ecddbf21-0787-4128-a90e-03209ca48465", "timestamp": "2026-04-18T23:31:17.464021+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40542 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-p9l3lq", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-p9l3lq", "timestamp": "2026-04-18T23:31:17.501641+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40526 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "f01cf0a5-1c16-4b11-9404-b10fef41775f", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "f01cf0a5-1c16-4b11-9404-b10fef41775f", "timestamp": "2026-04-18T23:31:17.554717+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40516 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-95xcbu", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-95xcbu", "timestamp": "2026-04-18T23:31:17.574341+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40510 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "2e5144bd-b08d-4250-b8fe-a8b1aa06b6cd", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "2e5144bd-b08d-4250-b8fe-a8b1aa06b6cd", "timestamp": "2026-04-18T23:31:18.430391+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40526 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-sutva4", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "finance.queue.metric", "timestamp": "2026-04-18T23:31:18.528825+00:00"}
+[2m[WebServer] [22m{"correlation_id": "6d02601a-39f4-4f18-8515-b7cdb99f2e5b", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "6d02601a-39f4-4f18-8515-b7cdb99f2e5b", "timestamp": "2026-04-18T23:31:18.625439+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40510 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-sutva4", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "command.metric", "timestamp": "2026-04-18T23:31:18.850240+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-sutva4", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-pp-finance-queue-sutva4", "timestamp": "2026-04-18T23:31:18.860445+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40542 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "47c8ae25-d11c-4a68-bf56-c5187abb38b8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "47c8ae25-d11c-4a68-bf56-c5187abb38b8", "timestamp": "2026-04-18T23:31:18.904478+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40542 - "OPTIONS /api/v1/audit/events?request_id=ee12ddf3-67bd-4616-8c29-93d8ac26e519&idempotency_key=10149b49-38bf-45c2-9982-1e177defb882 HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-sutva4", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-pp-finance-queue-sutva4", "timestamp": "2026-04-18T23:31:18.927606+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-vzz633", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "finance.queue.metric", "timestamp": "2026-04-18T23:31:18.933243+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40526 - "GET /api/v1/audit/events?request_id=ee12ddf3-67bd-4616-8c29-93d8ac26e519&idempotency_key=10149b49-38bf-45c2-9982-1e177defb882 HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-vzz633", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "command.metric", "timestamp": "2026-04-18T23:31:19.191295+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-vzz633", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-pp-finance-queue-vzz633", "timestamp": "2026-04-18T23:31:19.194634+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40516 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "66d442fb-221f-4648-8ea7-38094b67751c", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "66d442fb-221f-4648-8ea7-38094b67751c", "timestamp": "2026-04-18T23:31:19.211924+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40516 - "OPTIONS /api/v1/audit/events?request_id=c477651b-e019-468c-9e20-ae989c42efa0&idempotency_key=3999aff7-ca2b-43c8-8496-1eb21f7c49a6 HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-vzz633", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-pp-finance-queue-vzz633", "timestamp": "2026-04-18T23:31:19.230620+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40510 - "GET /api/v1/audit/events?request_id=c477651b-e019-468c-9e20-ae989c42efa0&idempotency_key=3999aff7-ca2b-43c8-8496-1eb21f7c49a6 HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "d49a9266-2195-47b8-933c-ce836c993734", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "d49a9266-2195-47b8-933c-ce836c993734", "timestamp": "2026-04-18T23:31:19.404534+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40526 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-sutva4", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "finance.queue.metric", "timestamp": "2026-04-18T23:31:19.470234+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-sutva4", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "finance.decision.metric", "timestamp": "2026-04-18T23:31:19.472364+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-sutva4", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "command.metric", "timestamp": "2026-04-18T23:31:19.558024+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-sutva4", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-pp-finance-queue-sutva4", "timestamp": "2026-04-18T23:31:19.559610+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40542 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "08d1d036-c93d-406a-8b3b-445ef32d819b", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "08d1d036-c93d-406a-8b3b-445ef32d819b", "timestamp": "2026-04-18T23:31:19.573492+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40542 - "OPTIONS /api/v1/audit/events?request_id=58722972-6f53-4231-8eed-153a1cd84190&idempotency_key=d1cd3e47-d97f-4e59-bbbe-45af1b8816b9 HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-sutva4", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-pp-finance-queue-sutva4", "timestamp": "2026-04-18T23:31:19.596570+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40526 - "GET /api/v1/audit/events?request_id=58722972-6f53-4231-8eed-153a1cd84190&idempotency_key=d1cd3e47-d97f-4e59-bbbe-45af1b8816b9 HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "4d95faae-4ef0-420a-90e9-53331cf68f0d", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "4d95faae-4ef0-420a-90e9-53331cf68f0d", "timestamp": "2026-04-18T23:31:19.785595+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40510 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-vzz633", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "finance.queue.metric", "timestamp": "2026-04-18T23:31:19.837863+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-vzz633", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "finance.decision.metric", "timestamp": "2026-04-18T23:31:19.843263+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-vzz633", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "command.metric", "timestamp": "2026-04-18T23:31:19.873679+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-vzz633", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-pp-finance-queue-vzz633", "timestamp": "2026-04-18T23:31:19.876659+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40516 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "7a03cf94-7031-4b0f-88f3-b1ab6b8c7f7b", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "7a03cf94-7031-4b0f-88f3-b1ab6b8c7f7b", "timestamp": "2026-04-18T23:31:19.903473+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40516 - "OPTIONS /api/v1/audit/events?request_id=bc24c34d-4dd1-4cc1-9854-0098fcaff8ff&idempotency_key=3d8c9337-c19d-4ab3-906e-047fb5bf6c70 HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-vzz633", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-pp-finance-queue-vzz633", "timestamp": "2026-04-18T23:31:19.928431+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40510 - "GET /api/v1/audit/events?request_id=bc24c34d-4dd1-4cc1-9854-0098fcaff8ff&idempotency_key=3d8c9337-c19d-4ab3-906e-047fb5bf6c70 HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "70591f46-76dc-4656-939c-421efbb1d6f9", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "70591f46-76dc-4656-939c-421efbb1d6f9", "timestamp": "2026-04-18T23:31:20.052980+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40526 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-sutva4", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "insurance.trigger.metric", "timestamp": "2026-04-18T23:31:20.129955+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-sutva4", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "command.metric", "timestamp": "2026-04-18T23:31:20.165661+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-sutva4", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-pp-finance-queue-sutva4", "timestamp": "2026-04-18T23:31:20.167814+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40542 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "12d0323a-5945-4b1f-b806-268f170024f4", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "12d0323a-5945-4b1f-b806-268f170024f4", "timestamp": "2026-04-18T23:31:20.197079+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40510 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-vzz633", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "insurance.trigger.metric", "timestamp": "2026-04-18T23:31:20.235483+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-vzz633", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "command.metric", "timestamp": "2026-04-18T23:31:20.261748+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace-pp-finance-queue-vzz633", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-pp-finance-queue-vzz633", "timestamp": "2026-04-18T23:31:20.271387+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:40516 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+  ✓  2 [desktop-critical] › tests/e2e/n5-finance-traceability.spec.ts:214:7 › N5 finance and traceability tranche checks › CJ-004/CJ-008 finance HITL queue and decision actions are live (9.8s)
+[2m[WebServer] [22m{"correlation_id": "277f957b-d666-4659-928a-3487955eaf81", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "277f957b-d666-4659-928a-3487955eaf81", "timestamp": "2026-04-18T23:31:21.120007+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53844 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "29adec64-f477-49d7-be89-46e521b7122d", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "29adec64-f477-49d7-be89-46e521b7122d", "timestamp": "2026-04-18T23:31:21.183174+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53844 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "9dcc70cf-99c7-44e5-85bf-269c9f3a5c8c", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "command.metric", "timestamp": "2026-04-18T23:31:21.238111+00:00"}
+[2m[WebServer] [22m{"correlation_id": "9dcc70cf-99c7-44e5-85bf-269c9f3a5c8c", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "9dcc70cf-99c7-44e5-85bf-269c9f3a5c8c", "timestamp": "2026-04-18T23:31:21.239296+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53844 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "65906610-0ff0-4156-bb6f-16b3d87215e0", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "traceability.event.metric", "timestamp": "2026-04-18T23:31:21.281668+00:00"}
+[2m[WebServer] [22m{"correlation_id": "65906610-0ff0-4156-bb6f-16b3d87215e0", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "command.metric", "timestamp": "2026-04-18T23:31:21.352660+00:00"}
+[2m[WebServer] [22m{"correlation_id": "65906610-0ff0-4156-bb6f-16b3d87215e0", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "65906610-0ff0-4156-bb6f-16b3d87215e0", "timestamp": "2026-04-18T23:31:21.361864+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53844 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+  ✓  1 [mobile-critical] › tests/e2e/n5-finance-traceability.spec.ts:214:7 › N5 finance and traceability tranche checks › CJ-004/CJ-008 finance HITL queue and decision actions are live (10.3s)
+[2m[WebServer] [22m{"correlation_id": "07aaa9dd-04a4-4b6a-9ffd-0b70f868b3fa", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "traceability.event.metric", "timestamp": "2026-04-18T23:31:21.444086+00:00"}
+[2m[WebServer] [22m{"correlation_id": "07aaa9dd-04a4-4b6a-9ffd-0b70f868b3fa", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "command.metric", "timestamp": "2026-04-18T23:31:21.496448+00:00"}
+[2m[WebServer] [22m{"correlation_id": "07aaa9dd-04a4-4b6a-9ffd-0b70f868b3fa", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "07aaa9dd-04a4-4b6a-9ffd-0b70f868b3fa", "timestamp": "2026-04-18T23:31:21.499339+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53844 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "b61605ff-f790-437a-9cd4-dc73717e8651", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "b61605ff-f790-437a-9cd4-dc73717e8651", "timestamp": "2026-04-18T23:31:21.595979+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53858 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "2556d69f-f442-4745-a3fc-d8e328938a7e", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "2556d69f-f442-4745-a3fc-d8e328938a7e", "timestamp": "2026-04-18T23:31:21.637064+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53858 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "55f57209-2861-4f8c-a8fb-22b90f377e2b", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "command.metric", "timestamp": "2026-04-18T23:31:21.700346+00:00"}
+[2m[WebServer] [22m{"correlation_id": "55f57209-2861-4f8c-a8fb-22b90f377e2b", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "55f57209-2861-4f8c-a8fb-22b90f377e2b", "timestamp": "2026-04-18T23:31:21.702127+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53858 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "0c133d31-7c01-4f54-a350-891a03f69a06", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "traceability.event.metric", "timestamp": "2026-04-18T23:31:21.743502+00:00"}
+[2m[WebServer] [22m GET /signin 200 in 226ms
+[2m[WebServer] [22m{"correlation_id": "0c133d31-7c01-4f54-a350-891a03f69a06", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "command.metric", "timestamp": "2026-04-18T23:31:21.781206+00:00"}
+[2m[WebServer] [22m{"correlation_id": "0c133d31-7c01-4f54-a350-891a03f69a06", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "0c133d31-7c01-4f54-a350-891a03f69a06", "timestamp": "2026-04-18T23:31:21.793862+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53858 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "0627c542-956b-43ee-af08-8a57e0f8ad30", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "traceability.event.metric", "timestamp": "2026-04-18T23:31:21.909507+00:00"}
+[2m[WebServer] [22m{"correlation_id": "0627c542-956b-43ee-af08-8a57e0f8ad30", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "command.metric", "timestamp": "2026-04-18T23:31:21.959872+00:00"}
+[2m[WebServer] [22m{"correlation_id": "0627c542-956b-43ee-af08-8a57e0f8ad30", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "0627c542-956b-43ee-af08-8a57e0f8ad30", "timestamp": "2026-04-18T23:31:21.964234+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53858 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m ○ Compiling /app/traceability/[consignmentId] ...
+[2m[WebServer] [22m ✓ Compiled /app/traceability/[consignmentId] in 1691ms (707 modules)
+[2m[WebServer] [22m{"correlation_id": "2f6378e6-30b1-42c8-be1d-5e350bc7e9a7", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "2f6378e6-30b1-42c8-be1d-5e350bc7e9a7", "timestamp": "2026-04-18T23:31:24.199296+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53866 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-3qamxj", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-3qamxj", "timestamp": "2026-04-18T23:31:24.232373+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53878 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /signin 200 in 2453ms
+[2m[WebServer] [22m(node:442203) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m{"correlation_id": "68c04d16-a0c5-4005-b73a-b0b1c2d90962", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "68c04d16-a0c5-4005-b73a-b0b1c2d90962", "timestamp": "2026-04-18T23:31:25.957920+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53890 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-01ipp9", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-01ipp9", "timestamp": "2026-04-18T23:31:25.981224+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53898 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/traceability/consignment-b24faaf7c339 200 in 4235ms
+[2m[WebServer] [22m GET /app/traceability/consignment-db8dd4eb7c29 200 in 1671ms
+[2m[WebServer] [22m{"correlation_id": "0a9479c9-09ac-4b6f-a82a-a120d75fbb97", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "0a9479c9-09ac-4b6f-a82a-a120d75fbb97", "timestamp": "2026-04-18T23:31:27.920899+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53898 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-776pi0", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-776pi0", "timestamp": "2026-04-18T23:31:27.960327+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53890 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "b24f43d4-9b22-4b28-992a-9f1770acba2e", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "b24f43d4-9b22-4b28-992a-9f1770acba2e", "timestamp": "2026-04-18T23:31:28.038868+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53878 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-vwpwqv", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-vwpwqv", "timestamp": "2026-04-18T23:31:28.072731+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53866 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "b2b387fc-c0e6-4072-87a5-7b9ff122b12c", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "b2b387fc-c0e6-4072-87a5-7b9ff122b12c", "timestamp": "2026-04-18T23:31:28.084017+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53890 - "OPTIONS /api/v1/traceability/consignments/consignment-db8dd4eb7c29 HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "47b25739-52d1-4fff-a178-8d5d44747c05", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "47b25739-52d1-4fff-a178-8d5d44747c05", "timestamp": "2026-04-18T23:31:28.095873+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53890 - "OPTIONS /api/v1/traceability/consignments/consignment-db8dd4eb7c29 HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-ent-db8dd4eb7c29-ybe5f7", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-ent-db8dd4eb7c29-ybe5f7", "timestamp": "2026-04-18T23:31:28.125580+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53898 - "GET /api/v1/traceability/consignments/consignment-db8dd4eb7c29 HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-ent-db8dd4eb7c29-ybe5f7", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-ent-db8dd4eb7c29-ybe5f7", "timestamp": "2026-04-18T23:31:28.134993+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53906 - "GET /api/v1/traceability/consignments/consignment-db8dd4eb7c29 HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "92a9f0c1-77a6-46aa-ab19-06e5e99a4369", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "92a9f0c1-77a6-46aa-ab19-06e5e99a4369", "timestamp": "2026-04-18T23:31:28.202463+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53866 - "OPTIONS /api/v1/traceability/consignments/consignment-b24faaf7c339 HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "798a03dc-bde2-4a09-b60e-61cb73223d03", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "798a03dc-bde2-4a09-b60e-61cb73223d03", "timestamp": "2026-04-18T23:31:28.227261+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53878 - "OPTIONS /api/v1/traceability/consignments/consignment-b24faaf7c339 HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-ent-b24faaf7c339-i40rm5", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-ent-b24faaf7c339-i40rm5", "timestamp": "2026-04-18T23:31:28.251371+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53908 - "GET /api/v1/traceability/consignments/consignment-b24faaf7c339 HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-ent-b24faaf7c339-i40rm5", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-ent-b24faaf7c339-i40rm5", "timestamp": "2026-04-18T23:31:28.254426+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:53866 - "GET /api/v1/traceability/consignments/consignment-b24faaf7c339 HTTP/1.1" 200 OK
+  ✓  3 [desktop-critical] › tests/e2e/n5-finance-traceability.spec.ts:237:7 › N5 finance and traceability tranche checks › CJ-007 traceability timeline renders ordered events and explicit evidence state (8.5s)
+  ✓  4 [mobile-critical] › tests/e2e/n5-finance-traceability.spec.ts:237:7 › N5 finance and traceability tranche checks › CJ-007 traceability timeline renders ordered events and explicit evidence state (8.3s)
+
+  4 passed (45.2s)

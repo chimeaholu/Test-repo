@@ -1,0 +1,315 @@
+{
+  "config": {
+    "configFile": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/playwright.config.ts",
+    "rootDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T04-22-22Z-r4-web-route-completion/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-critical",
+        "name": "desktop-critical",
+        "testDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T04-22-22Z-r4-web-route-completion/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-critical",
+        "name": "mobile-critical",
+        "testDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "execution/reviews/2026-04-20T04-22-22Z-r4-web-route-completion/results.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "execution/reviews/2026-04-20T04-22-22Z-r4-web-route-completion/html-report",
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "r4-route-completion.spec.ts",
+      "file": "r4-route-completion.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "R4 route completion proof",
+          "file": "r4-route-completion.spec.ts",
+          "line": 168,
+          "column": 6,
+          "specs": [
+            {
+              "title": "admin analytics and cooperative dispatch routes are live and navigable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 21435,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T04:33:41.401Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "681faf878db3be069551-7a6ad3b21a3c42f79344",
+              "file": "r4-route-completion.spec.ts",
+              "line": 171,
+              "column": 7
+            },
+            {
+              "title": "wallet and notifications routes surface live escrow state after accepted negotiation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 20146,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T04:34:03.147Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "681faf878db3be069551-f917faba9d17c8bb1cd4",
+              "file": "r4-route-completion.spec.ts",
+              "line": 196,
+              "column": 7
+            },
+            {
+              "title": "server-authoritative home posture redirects after consent revoke",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8320,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T04:34:23.348Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "681faf878db3be069551-a7b37f5b7ed4de489f29",
+              "file": "r4-route-completion.spec.ts",
+              "line": 301,
+              "column": 7
+            },
+            {
+              "title": "admin analytics and cooperative dispatch routes are live and navigable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 12797,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T04:34:33.341Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "681faf878db3be069551-24191cf65141e9b4e5f6",
+              "file": "r4-route-completion.spec.ts",
+              "line": 171,
+              "column": 7
+            },
+            {
+              "title": "wallet and notifications routes surface live escrow state after accepted negotiation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 12714,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T04:34:46.380Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "681faf878db3be069551-5c3e4aef2c937ddc1174",
+              "file": "r4-route-completion.spec.ts",
+              "line": 196,
+              "column": 7
+            },
+            {
+              "title": "server-authoritative home posture redirects after consent revoke",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8651,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T04:34:59.140Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "681faf878db3be069551-0eb02b918c857e0f7ec8",
+              "file": "r4-route-completion.spec.ts",
+              "line": 301,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-20T04:33:08.752Z",
+    "duration": 119385.578,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

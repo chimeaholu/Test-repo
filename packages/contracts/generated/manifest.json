@@ -1,0 +1,1279 @@
+{
+  "contracts": [
+    {
+      "domain": "envelope",
+      "id": "envelope.request",
+      "kind": "request",
+      "name": "RequestEnvelope",
+      "schema_path": "generated/json-schema/envelope/RequestEnvelope.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "legacy/staging-runtime/src/agro_v2/tool_contracts.py"
+      ],
+      "traceability": [
+        "AIJ-002",
+        "IDI-003"
+      ]
+    },
+    {
+      "domain": "envelope",
+      "id": "envelope.response",
+      "kind": "response",
+      "name": "ResponseEnvelope",
+      "schema_path": "generated/json-schema/envelope/ResponseEnvelope.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "legacy/staging-runtime/src/agro_v2/tool_contracts.py"
+      ],
+      "traceability": [
+        "AIJ-002",
+        "IDI-003"
+      ]
+    },
+    {
+      "domain": "envelope",
+      "id": "envelope.event",
+      "kind": "event",
+      "name": "EventEnvelope",
+      "schema_path": "generated/json-schema/envelope/EventEnvelope.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "legacy/staging-runtime/src/agro_v2/tool_contracts.py"
+      ],
+      "traceability": [
+        "AIJ-002",
+        "IDI-003"
+      ]
+    },
+    {
+      "domain": "errors",
+      "id": "errors.reason_catalog",
+      "kind": "catalog",
+      "name": "ReasonCatalog",
+      "schema_path": "generated/json-schema/errors/ReasonCatalog.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "legacy/staging-runtime/src/agro_v2/tool_contracts.py"
+      ],
+      "traceability": [
+        "AIJ-002",
+        "IDI-003"
+      ]
+    },
+    {
+      "domain": "identity",
+      "id": "identity.country_pack",
+      "kind": "dto",
+      "name": "CountryPack",
+      "schema_path": "generated/json-schema/identity/CountryPack.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b002_identity_consent_contract.json",
+        "legacy/staging-runtime/src/agro_v2/country_pack.py"
+      ],
+      "traceability": [
+        "CJ-001",
+        "EP-007",
+        "DI-004"
+      ]
+    },
+    {
+      "domain": "identity",
+      "id": "identity.membership",
+      "kind": "dto",
+      "name": "Membership",
+      "schema_path": "generated/json-schema/identity/Membership.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "legacy/staging-runtime/src/agro_v2/identity_consent.py"
+      ],
+      "traceability": [
+        "CJ-001",
+        "EP-007"
+      ]
+    },
+    {
+      "domain": "identity",
+      "id": "identity.consent_capture",
+      "kind": "dto",
+      "name": "ConsentCapture",
+      "schema_path": "generated/json-schema/identity/ConsentCapture.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b002_identity_consent_contract.json",
+        "legacy/staging-runtime/src/agro_v2/identity_consent.py"
+      ],
+      "traceability": [
+        "CJ-001",
+        "EP-007",
+        "DI-004"
+      ]
+    },
+    {
+      "domain": "identity",
+      "id": "identity.consent_record",
+      "kind": "dto",
+      "name": "ConsentRecord",
+      "schema_path": "generated/json-schema/identity/ConsentRecord.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b002_identity_consent_contract.json",
+        "legacy/staging-runtime/src/agro_v2/identity_consent.py"
+      ],
+      "traceability": [
+        "CJ-001",
+        "EP-007",
+        "DI-004"
+      ]
+    },
+    {
+      "domain": "identity",
+      "id": "identity.consent_gate",
+      "kind": "dto",
+      "name": "ConsentGateDecision",
+      "schema_path": "generated/json-schema/identity/ConsentGateDecision.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "legacy/staging-runtime/src/agro_v2/policy_guardrails.py"
+      ],
+      "traceability": [
+        "EP-007",
+        "DI-004"
+      ]
+    },
+    {
+      "domain": "config",
+      "id": "config.country_pack_runtime",
+      "kind": "dto",
+      "name": "CountryPackRuntime",
+      "schema_path": "generated/json-schema/config/CountryPackRuntime.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "execution/contracts/b002_identity_consent_contract.json"
+      ],
+      "traceability": [
+        "CJ-001",
+        "EP-007",
+        "DI-004"
+      ]
+    },
+    {
+      "domain": "config",
+      "id": "config.feature_flag",
+      "kind": "dto",
+      "name": "FeatureFlag",
+      "schema_path": "generated/json-schema/config/FeatureFlag.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+      ],
+      "traceability": [
+        "EP-005",
+        "EP-007",
+        "DI-004"
+      ]
+    },
+    {
+      "domain": "config",
+      "id": "config.rollout_policy",
+      "kind": "dto",
+      "name": "RolloutPolicy",
+      "schema_path": "generated/json-schema/config/RolloutPolicy.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+      ],
+      "traceability": [
+        "EP-005",
+        "EP-007",
+        "DI-003",
+        "DI-004"
+      ]
+    },
+    {
+      "domain": "config",
+      "id": "config.environment_profile",
+      "kind": "dto",
+      "name": "EnvironmentProfile",
+      "schema_path": "generated/json-schema/config/EnvironmentProfile.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+      ],
+      "traceability": [
+        "EP-007",
+        "DI-004"
+      ]
+    },
+    {
+      "domain": "workflow",
+      "id": "workflow.instance",
+      "kind": "dto",
+      "name": "WorkflowInstance",
+      "schema_path": "generated/json-schema/workflow/WorkflowInstance.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+      ],
+      "traceability": [
+        "CJ-001",
+        "EP-007"
+      ]
+    },
+    {
+      "domain": "workflow",
+      "id": "workflow.step",
+      "kind": "dto",
+      "name": "WorkflowStep",
+      "schema_path": "generated/json-schema/workflow/WorkflowStep.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+      ],
+      "traceability": [
+        "CJ-001",
+        "EP-007"
+      ]
+    },
+    {
+      "domain": "workflow",
+      "id": "workflow.policy_decision",
+      "kind": "dto",
+      "name": "PolicyDecision",
+      "schema_path": "generated/json-schema/workflow/PolicyDecision.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b002_identity_consent_contract.json",
+        "legacy/staging-runtime/src/agro_v2/policy_guardrails.py"
+      ],
+      "traceability": [
+        "CJ-001",
+        "EP-007",
+        "DI-004"
+      ]
+    },
+    {
+      "domain": "analytics",
+      "id": "analytics.admin_analytics_provenance",
+      "kind": "dto",
+      "name": "AdminAnalyticsProvenance",
+      "schema_path": "generated/json-schema/analytics/AdminAnalyticsProvenance.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "execution/contracts/b025_enterprise_analytics_mart_contract.json"
+      ],
+      "traceability": [
+        "PF-004",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "analytics",
+      "id": "analytics.admin_service_level_summary",
+      "kind": "dto",
+      "name": "AdminServiceLevelSummary",
+      "schema_path": "generated/json-schema/analytics/AdminServiceLevelSummary.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "execution/contracts/b025_enterprise_analytics_mart_contract.json"
+      ],
+      "traceability": [
+        "PF-001",
+        "PF-004",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "analytics",
+      "id": "analytics.admin_analytics_snapshot",
+      "kind": "dto",
+      "name": "AdminAnalyticsSnapshot",
+      "schema_path": "generated/json-schema/analytics/AdminAnalyticsSnapshot.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "execution/contracts/b025_enterprise_analytics_mart_contract.json"
+      ],
+      "traceability": [
+        "PF-001",
+        "PF-004",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "advisory",
+      "id": "advisory.advisory_request_input",
+      "kind": "dto",
+      "name": "AdvisoryRequestInput",
+      "schema_path": "generated/json-schema/advisory/AdvisoryRequestInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md",
+        "v2-planning/AGRO-V2-PRD.md"
+      ],
+      "traceability": [
+        "CJ-005",
+        "DI-005"
+      ]
+    },
+    {
+      "domain": "advisory",
+      "id": "advisory.advisory_citation",
+      "kind": "dto",
+      "name": "AdvisoryCitation",
+      "schema_path": "generated/json-schema/advisory/AdvisoryCitation.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md"
+      ],
+      "traceability": [
+        "CJ-005",
+        "DI-005"
+      ]
+    },
+    {
+      "domain": "advisory",
+      "id": "advisory.reviewer_decision",
+      "kind": "dto",
+      "name": "ReviewerDecision",
+      "schema_path": "generated/json-schema/advisory/ReviewerDecision.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md"
+      ],
+      "traceability": [
+        "CJ-005",
+        "EP-006",
+        "DI-005"
+      ]
+    },
+    {
+      "domain": "advisory",
+      "id": "advisory.advisory_response",
+      "kind": "dto",
+      "name": "AdvisoryResponse",
+      "schema_path": "generated/json-schema/advisory/AdvisoryResponse.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md",
+        "v2-planning/AGRO-V2-TEST-PLAN.md"
+      ],
+      "traceability": [
+        "CJ-005",
+        "RJ-003",
+        "DI-005"
+      ]
+    },
+    {
+      "domain": "advisory",
+      "id": "advisory.advisory_conversation_collection",
+      "kind": "dto",
+      "name": "AdvisoryConversationCollection",
+      "schema_path": "generated/json-schema/advisory/AdvisoryConversationCollection.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md"
+      ],
+      "traceability": [
+        "CJ-005",
+        "RJ-003",
+        "DI-005"
+      ]
+    },
+    {
+      "domain": "advisory",
+      "id": "advisory.reviewer_decision_input",
+      "kind": "dto",
+      "name": "ReviewerDecisionInput",
+      "schema_path": "generated/json-schema/advisory/ReviewerDecisionInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md"
+      ],
+      "traceability": [
+        "CJ-005",
+        "EP-006",
+        "DI-005"
+      ]
+    },
+    {
+      "domain": "finance",
+      "id": "finance.finance_partner_request_input",
+      "kind": "dto",
+      "name": "FinancePartnerRequestInput",
+      "schema_path": "generated/json-schema/finance/FinancePartnerRequestInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "finance",
+      "id": "finance.finance_decision_input",
+      "kind": "dto",
+      "name": "FinanceDecisionInput",
+      "schema_path": "generated/json-schema/finance/FinanceDecisionInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "CJ-008",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "finance",
+      "id": "finance.insurance_trigger_evaluation_input",
+      "kind": "dto",
+      "name": "InsuranceTriggerEvaluationInput",
+      "schema_path": "generated/json-schema/finance/InsuranceTriggerEvaluationInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+      ],
+      "traceability": [
+        "EP-008",
+        "DI-006"
+      ]
+    },
+    {
+      "domain": "finance",
+      "id": "finance.finance_partner_request",
+      "kind": "dto",
+      "name": "FinancePartnerRequest",
+      "schema_path": "generated/json-schema/finance/FinancePartnerRequest.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "finance",
+      "id": "finance.finance_decision",
+      "kind": "dto",
+      "name": "FinanceDecision",
+      "schema_path": "generated/json-schema/finance/FinanceDecision.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "CJ-008",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "finance",
+      "id": "finance.finance_review_queue_item",
+      "kind": "dto",
+      "name": "FinanceReviewQueueItem",
+      "schema_path": "generated/json-schema/finance/FinanceReviewQueueItem.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+      ],
+      "traceability": [
+        "CJ-008",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "finance",
+      "id": "finance.finance_review_detail",
+      "kind": "dto",
+      "name": "FinanceReviewDetail",
+      "schema_path": "generated/json-schema/finance/FinanceReviewDetail.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+      ],
+      "traceability": [
+        "CJ-008",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "finance",
+      "id": "finance.finance_approval_action",
+      "kind": "dto",
+      "name": "FinanceApprovalAction",
+      "schema_path": "generated/json-schema/finance/FinanceApprovalAction.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+      ],
+      "traceability": [
+        "CJ-008",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "finance",
+      "id": "finance.insurance_trigger_registry",
+      "kind": "dto",
+      "name": "InsuranceTriggerRegistry",
+      "schema_path": "generated/json-schema/finance/InsuranceTriggerRegistry.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+      ],
+      "traceability": [
+        "EP-008",
+        "DI-006"
+      ]
+    },
+    {
+      "domain": "finance",
+      "id": "finance.insurance_trigger_evaluation",
+      "kind": "dto",
+      "name": "InsuranceTriggerEvaluation",
+      "schema_path": "generated/json-schema/finance/InsuranceTriggerEvaluation.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+      ],
+      "traceability": [
+        "EP-008",
+        "DI-006"
+      ]
+    },
+    {
+      "domain": "finance",
+      "id": "finance.insurance_payout_event",
+      "kind": "dto",
+      "name": "InsurancePayoutEvent",
+      "schema_path": "generated/json-schema/finance/InsurancePayoutEvent.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "EP-008",
+        "DI-006"
+      ]
+    },
+    {
+      "domain": "traceability",
+      "id": "traceability.consignment_create_input",
+      "kind": "dto",
+      "name": "ConsignmentCreateInput",
+      "schema_path": "generated/json-schema/traceability/ConsignmentCreateInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+      ],
+      "traceability": [
+        "CJ-007",
+        "DI-006"
+      ]
+    },
+    {
+      "domain": "traceability",
+      "id": "traceability.consignment",
+      "kind": "dto",
+      "name": "Consignment",
+      "schema_path": "generated/json-schema/traceability/Consignment.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+      ],
+      "traceability": [
+        "CJ-007",
+        "DI-006"
+      ]
+    },
+    {
+      "domain": "traceability",
+      "id": "traceability.traceability_event_append_input",
+      "kind": "dto",
+      "name": "TraceabilityEventAppendInput",
+      "schema_path": "generated/json-schema/traceability/TraceabilityEventAppendInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+      ],
+      "traceability": [
+        "CJ-007",
+        "DI-006"
+      ]
+    },
+    {
+      "domain": "traceability",
+      "id": "traceability.traceability_event",
+      "kind": "dto",
+      "name": "TraceabilityEvent",
+      "schema_path": "generated/json-schema/traceability/TraceabilityEvent.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+      ],
+      "traceability": [
+        "CJ-007",
+        "DI-006"
+      ]
+    },
+    {
+      "domain": "traceability",
+      "id": "traceability.traceability_timeline_read",
+      "kind": "dto",
+      "name": "TraceabilityTimelineRead",
+      "schema_path": "generated/json-schema/traceability/TraceabilityTimelineRead.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+      ],
+      "traceability": [
+        "CJ-007",
+        "DI-006"
+      ]
+    },
+    {
+      "domain": "traceability",
+      "id": "traceability.evidence_attachment",
+      "kind": "dto",
+      "name": "EvidenceAttachment",
+      "schema_path": "generated/json-schema/traceability/EvidenceAttachment.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+      ],
+      "traceability": [
+        "CJ-007",
+        "DI-006"
+      ]
+    },
+    {
+      "domain": "channels",
+      "id": "channels.ussd_session",
+      "kind": "dto",
+      "name": "UssdSession",
+      "schema_path": "generated/json-schema/channels/UssdSession.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b004_ussd_adapter_contract.json",
+        "legacy/staging-runtime/src/agro_v2/ussd_adapter.py"
+      ],
+      "traceability": [
+        "EP-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "channels",
+      "id": "channels.whatsapp_command",
+      "kind": "dto",
+      "name": "WhatsAppCommand",
+      "schema_path": "generated/json-schema/channels/WhatsAppCommand.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b005_whatsapp_adapter_contract.json",
+        "legacy/staging-runtime/src/agro_v2/whatsapp_adapter.py"
+      ],
+      "traceability": [
+        "EP-003",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "channels",
+      "id": "channels.offline_queue_command",
+      "kind": "dto",
+      "name": "OfflineQueueCommand",
+      "schema_path": "generated/json-schema/channels/OfflineQueueCommand.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b006_pwa_offline_queue_contract.json",
+        "legacy/staging-runtime/src/agro_v2/offline_queue.py",
+        "legacy/staging-runtime/src/agro_v2/offline_action_queue.py"
+      ],
+      "traceability": [
+        "EP-002",
+        "RJ-001",
+        "RJ-002",
+        "DI-001",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "channels",
+      "id": "channels.offline_queue_result",
+      "kind": "dto",
+      "name": "OfflineQueueResult",
+      "schema_path": "generated/json-schema/channels/OfflineQueueResult.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b006_pwa_offline_queue_contract.json",
+        "legacy/staging-runtime/src/agro_v2/offline_queue.py",
+        "legacy/staging-runtime/src/agro_v2/offline_action_queue.py"
+      ],
+      "traceability": [
+        "EP-002",
+        "RJ-001",
+        "RJ-002",
+        "DI-001",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "channels",
+      "id": "channels.translator_command",
+      "kind": "dto",
+      "name": "TranslatorCommand",
+      "schema_path": "generated/json-schema/channels/TranslatorCommand.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+      ],
+      "traceability": [
+        "EP-002",
+        "EP-003"
+      ]
+    },
+    {
+      "domain": "notifications",
+      "id": "notifications.attempt",
+      "kind": "dto",
+      "name": "NotificationAttempt",
+      "schema_path": "generated/json-schema/notifications/NotificationAttempt.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b013_settlement_notification_contract.json",
+        "legacy/staging-runtime/src/agro_v2/notification_broker.py",
+        "legacy/staging-runtime/src/agro_v2/settlement_notifications.py"
+      ],
+      "traceability": [
+        "EP-003",
+        "RJ-001",
+        "RJ-002",
+        "DI-001",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "notifications",
+      "id": "notifications.result",
+      "kind": "dto",
+      "name": "NotificationResult",
+      "schema_path": "generated/json-schema/notifications/NotificationResult.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b013_settlement_notification_contract.json",
+        "legacy/staging-runtime/src/agro_v2/notification_broker.py",
+        "legacy/staging-runtime/src/agro_v2/settlement_notifications.py"
+      ],
+      "traceability": [
+        "EP-003",
+        "DI-001",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.listing_create_input",
+      "kind": "dto",
+      "name": "ListingCreateInput",
+      "schema_path": "generated/json-schema/marketplace/ListingCreateInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "legacy/staging-runtime/src/agro_v2/listings.py",
+        "legacy/staging-runtime/src/agro_v2/frontend_listing_wizard.py"
+      ],
+      "traceability": [
+        "CJ-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.listing_update_input",
+      "kind": "dto",
+      "name": "ListingUpdateInput",
+      "schema_path": "generated/json-schema/marketplace/ListingUpdateInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-002",
+        "RJ-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.listing_publish_input",
+      "kind": "dto",
+      "name": "ListingPublishInput",
+      "schema_path": "generated/json-schema/marketplace/ListingPublishInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-002",
+        "CJ-003",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.listing_unpublish_input",
+      "kind": "dto",
+      "name": "ListingUnpublishInput",
+      "schema_path": "generated/json-schema/marketplace/ListingUnpublishInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.listing_record",
+      "kind": "dto",
+      "name": "ListingRecord",
+      "schema_path": "generated/json-schema/marketplace/ListingRecord.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "legacy/staging-runtime/src/agro_v2/listings.py"
+      ],
+      "traceability": [
+        "CJ-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.listing_revision_summary",
+      "kind": "dto",
+      "name": "ListingRevisionSummary",
+      "schema_path": "generated/json-schema/marketplace/ListingRevisionSummary.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.listing_collection",
+      "kind": "dto",
+      "name": "ListingCollection",
+      "schema_path": "generated/json-schema/marketplace/ListingCollection.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+      ],
+      "traceability": [
+        "CJ-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.create_listing_result",
+      "kind": "dto",
+      "name": "CreateListingResult",
+      "schema_path": "generated/json-schema/marketplace/CreateListingResult.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+      ],
+      "traceability": [
+        "CJ-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.update_listing_result",
+      "kind": "dto",
+      "name": "UpdateListingResult",
+      "schema_path": "generated/json-schema/marketplace/UpdateListingResult.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+      ],
+      "traceability": [
+        "RJ-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.publish_listing_result",
+      "kind": "dto",
+      "name": "PublishListingResult",
+      "schema_path": "generated/json-schema/marketplace/PublishListingResult.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-002",
+        "CJ-003",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.unpublish_listing_result",
+      "kind": "dto",
+      "name": "UnpublishListingResult",
+      "schema_path": "generated/json-schema/marketplace/UnpublishListingResult.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "negotiation",
+      "id": "negotiation.negotiation_create_input",
+      "kind": "dto",
+      "name": "NegotiationCreateInput",
+      "schema_path": "generated/json-schema/negotiation/NegotiationCreateInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-003",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "negotiation",
+      "id": "negotiation.negotiation_counter_input",
+      "kind": "dto",
+      "name": "NegotiationCounterInput",
+      "schema_path": "generated/json-schema/negotiation/NegotiationCounterInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-003",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "negotiation",
+      "id": "negotiation.negotiation_confirmation_request_input",
+      "kind": "dto",
+      "name": "NegotiationConfirmationRequestInput",
+      "schema_path": "generated/json-schema/negotiation/NegotiationConfirmationRequestInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-003",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "negotiation",
+      "id": "negotiation.negotiation_confirmation_approve_input",
+      "kind": "dto",
+      "name": "NegotiationConfirmationApproveInput",
+      "schema_path": "generated/json-schema/negotiation/NegotiationConfirmationApproveInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-003",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "negotiation",
+      "id": "negotiation.negotiation_confirmation_reject_input",
+      "kind": "dto",
+      "name": "NegotiationConfirmationRejectInput",
+      "schema_path": "generated/json-schema/negotiation/NegotiationConfirmationRejectInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-003",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "negotiation",
+      "id": "negotiation.negotiation_thread_read",
+      "kind": "dto",
+      "name": "NegotiationThreadRead",
+      "schema_path": "generated/json-schema/negotiation/NegotiationThreadRead.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-003",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "negotiation",
+      "id": "negotiation.negotiation_thread_collection",
+      "kind": "dto",
+      "name": "NegotiationThreadCollection",
+      "schema_path": "generated/json-schema/negotiation/NegotiationThreadCollection.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-003",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "climate",
+      "id": "climate.climate_alert",
+      "kind": "dto",
+      "name": "ClimateAlert",
+      "schema_path": "generated/json-schema/climate/ClimateAlert.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md"
+      ],
+      "traceability": [
+        "CJ-006",
+        "DI-006"
+      ]
+    },
+    {
+      "domain": "climate",
+      "id": "climate.climate_alert_acknowledgement",
+      "kind": "dto",
+      "name": "ClimateAlertAcknowledgement",
+      "schema_path": "generated/json-schema/climate/ClimateAlertAcknowledgement.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md"
+      ],
+      "traceability": [
+        "CJ-006",
+        "DI-006"
+      ]
+    },
+    {
+      "domain": "climate",
+      "id": "climate.climate_degraded_mode",
+      "kind": "dto",
+      "name": "ClimateDegradedMode",
+      "schema_path": "generated/json-schema/climate/ClimateDegradedMode.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md"
+      ],
+      "traceability": [
+        "EP-008",
+        "DI-006"
+      ]
+    },
+    {
+      "domain": "climate",
+      "id": "climate.mrv_evidence_record",
+      "kind": "dto",
+      "name": "MrvEvidenceRecord",
+      "schema_path": "generated/json-schema/climate/MrvEvidenceRecord.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md"
+      ],
+      "traceability": [
+        "CJ-006",
+        "EP-008",
+        "DI-006"
+      ]
+    },
+    {
+      "domain": "observability",
+      "id": "observability.rollout_control_input",
+      "kind": "dto",
+      "name": "RolloutControlInput",
+      "schema_path": "generated/json-schema/observability/RolloutControlInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "execution/contracts/b026_partner_api_gateway_contract.json"
+      ],
+      "traceability": [
+        "EP-005",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "observability",
+      "id": "observability.rollout_status",
+      "kind": "dto",
+      "name": "RolloutStatus",
+      "schema_path": "generated/json-schema/observability/RolloutStatus.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "execution/contracts/b026_partner_api_gateway_contract.json"
+      ],
+      "traceability": [
+        "EP-005",
+        "PF-004",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "observability",
+      "id": "observability.rollout_status_collection",
+      "kind": "dto",
+      "name": "RolloutStatusCollection",
+      "schema_path": "generated/json-schema/observability/RolloutStatusCollection.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+      ],
+      "traceability": [
+        "EP-005",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "observability",
+      "id": "observability.telemetry_observation_input",
+      "kind": "dto",
+      "name": "TelemetryObservationInput",
+      "schema_path": "generated/json-schema/observability/TelemetryObservationInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "execution/contracts/b027_observability_contract.json"
+      ],
+      "traceability": [
+        "PF-001",
+        "PF-004",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "observability",
+      "id": "observability.telemetry_observation_record",
+      "kind": "dto",
+      "name": "TelemetryObservationRecord",
+      "schema_path": "generated/json-schema/observability/TelemetryObservationRecord.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "execution/contracts/b027_observability_contract.json"
+      ],
+      "traceability": [
+        "PF-001",
+        "PF-004",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "observability",
+      "id": "observability.slo_evaluation",
+      "kind": "dto",
+      "name": "SloEvaluation",
+      "schema_path": "generated/json-schema/observability/SloEvaluation.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "execution/contracts/b027_observability_contract.json"
+      ],
+      "traceability": [
+        "PF-001",
+        "PF-004",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "observability",
+      "id": "observability.slo_evaluation_collection",
+      "kind": "dto",
+      "name": "SloEvaluationCollection",
+      "schema_path": "generated/json-schema/observability/SloEvaluationCollection.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+      ],
+      "traceability": [
+        "PF-001",
+        "PF-004",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "observability",
+      "id": "observability.release_readiness_status",
+      "kind": "dto",
+      "name": "ReleaseReadinessStatus",
+      "schema_path": "generated/json-schema/observability/ReleaseReadinessStatus.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "execution/contracts/b027_observability_contract.json"
+      ],
+      "traceability": [
+        "PF-001",
+        "PF-004",
+        "EP-005",
+        "DI-002",
+        "DI-003"
+      ]
+    }
+  ],
+  "generated_at": "deterministic"
+}

@@ -1,0 +1,4 @@
+
+> @agrodomain/contracts@0.0.0 generate /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/contracts
+> tsx scripts/generate-artifacts.ts
+

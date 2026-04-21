@@ -1,0 +1,22 @@
+# R6 Gate Refresh Artifact Index
+
+- Final report: `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/r6-gate-refresh-report.md`
+- Phase A report: `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-a/phase-a-harness-report.md`
+- Phase B report: `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-b/phase-b-gates-report.md`
+- Phase C report: `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-c/phase-c-gates-report.md`
+- Typecheck log: `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-b/typecheck/repo-typecheck.log`
+- API package tests: `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-b/api/api-tests.log`
+- Web package tests: `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-b/web/web-tests.log`
+- Worker tests: `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-b/worker/worker-tests.log`
+- Contracts tests: `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-b/contracts/contracts-tests.log`
+- Config tests: `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-b/config/config-tests.log`
+- Admin negative-path API: `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-c/api/n6-negative-path-api.log`
+- API regression: `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-c/regression/api-regression-n1-n5.log`
+- Playwright matrix log: `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-c/playwright/playwright-full-matrix.log`
+- Playwright failure contexts: `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-c/playwright/full-matrix/test-results/**/error-context.md`
+- Rollback drill evidence: `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-c/rollback/rollback-drill-evidence.log`
+- Latest observed R5 retry during run: `execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/vitest-focused.log`
+- Heartbeats:
+  - `execution/heartbeats/2026-04-20T11-47-24Z-r6-phase-a-heartbeat.md`
+  - `execution/heartbeats/2026-04-20T11-55-45Z-r6-phase-b-heartbeat.md`
+  - `execution/heartbeats/2026-04-20T12-02-00Z-r6-phase-c-heartbeat.md`

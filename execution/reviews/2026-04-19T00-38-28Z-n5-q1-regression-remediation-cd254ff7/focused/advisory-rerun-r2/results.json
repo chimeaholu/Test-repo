@@ -1,0 +1,317 @@
+{
+  "config": {
+    "configFile": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/playwright.config.ts",
+    "rootDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-19T00-38-28Z-n5-q1-regression-remediation-cd254ff7/focused/advisory-rerun-r2/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-critical",
+        "name": "desktop-critical",
+        "testDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-19T00-38-28Z-n5-q1-regression-remediation-cd254ff7/focused/advisory-rerun-r2/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-critical",
+        "name": "mobile-critical",
+        "testDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "execution/reviews/2026-04-19T00-38-28Z-n5-q1-regression-remediation-cd254ff7/focused/advisory-rerun-r2/results.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "execution/reviews/2026-04-19T00-38-28Z-n5-q1-regression-remediation-cd254ff7/focused/advisory-rerun-r2/html-report",
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "advisory-climate-gate.spec.ts",
+      "file": "advisory-climate-gate.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "N4 advisory and climate tranche diagnostics",
+          "file": "advisory-climate-gate.spec.ts",
+          "line": 68,
+          "column": 6,
+          "specs": [
+            {
+              "title": "CJ-005 EP-006 RJ-003 DI-005 advisory route shows citations, confidence, and reviewer state",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 30263,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Grounded guidance with reviewer state' })\nExpected: visible\nTimeout: 20000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 20000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Grounded guidance with reviewer state' })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Grounded guidance with reviewer state' })\nExpected: visible\nTimeout: 20000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 20000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Grounded guidance with reviewer state' })\u001b[22m\n\n    at openAdvisorRequestsWithRecovery (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:65:25)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:80:5",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts",
+                          "column": 25,
+                          "line": 65
+                        },
+                        "snippet": "  63 |     }\n  64 |   }\n> 65 |   await expect(heading).toBeVisible({ timeout: 20_000 });\n     |                         ^\n  66 | }\n  67 |\n  68 | test.describe(\"N4 advisory and climate tranche diagnostics\", () => {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts",
+                            "column": 25,
+                            "line": 65
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Grounded guidance with reviewer state' })\nExpected: visible\nTimeout: 20000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 20000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Grounded guidance with reviewer state' })\u001b[22m\n\n\n  63 |     }\n  64 |   }\n> 65 |   await expect(heading).toBeVisible({ timeout: 20_000 });\n     |                         ^\n  66 | }\n  67 |\n  68 | test.describe(\"N4 advisory and climate tranche diagnostics\", () => {\n    at openAdvisorRequestsWithRecovery (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:65:25)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:80:5"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-19T00:48:28.058Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-19T00-38-28Z-n5-q1-regression-remediation-cd254ff7/focused/advisory-rerun-r2/test-results/advisory-climate-gate-N4-a-fcd24-nfidence-and-reviewer-state-desktop-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-19T00-38-28Z-n5-q1-regression-remediation-cd254ff7/focused/advisory-rerun-r2/test-results/advisory-climate-gate-N4-a-fcd24-nfidence-and-reviewer-state-desktop-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts",
+                        "column": 25,
+                        "line": 65
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fbc827509024e8d96707-7b7588eef9cf158b3358",
+              "file": "advisory-climate-gate.spec.ts",
+              "line": 69,
+              "column": 7
+            },
+            {
+              "title": "CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10457,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-19T00:49:00.130Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fbc827509024e8d96707-ec369bb7759c8f10b313",
+              "file": "advisory-climate-gate.spec.ts",
+              "line": 95,
+              "column": 7
+            },
+            {
+              "title": "CJ-005 EP-006 RJ-003 DI-005 advisory route shows citations, confidence, and reviewer state",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 25947,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Grounded guidance with reviewer state' })\nExpected: visible\nTimeout: 20000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 20000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Grounded guidance with reviewer state' })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Grounded guidance with reviewer state' })\nExpected: visible\nTimeout: 20000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 20000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Grounded guidance with reviewer state' })\u001b[22m\n\n    at openAdvisorRequestsWithRecovery (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:65:25)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:80:5",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts",
+                          "column": 25,
+                          "line": 65
+                        },
+                        "snippet": "  63 |     }\n  64 |   }\n> 65 |   await expect(heading).toBeVisible({ timeout: 20_000 });\n     |                         ^\n  66 | }\n  67 |\n  68 | test.describe(\"N4 advisory and climate tranche diagnostics\", () => {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts",
+                            "column": 25,
+                            "line": 65
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Grounded guidance with reviewer state' })\nExpected: visible\nTimeout: 20000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 20000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Grounded guidance with reviewer state' })\u001b[22m\n\n\n  63 |     }\n  64 |   }\n> 65 |   await expect(heading).toBeVisible({ timeout: 20_000 });\n     |                         ^\n  66 | }\n  67 |\n  68 | test.describe(\"N4 advisory and climate tranche diagnostics\", () => {\n    at openAdvisorRequestsWithRecovery (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:65:25)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:80:5"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-19T00:49:12.250Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-19T00-38-28Z-n5-q1-regression-remediation-cd254ff7/focused/advisory-rerun-r2/test-results/advisory-climate-gate-N4-a-fcd24-nfidence-and-reviewer-state-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-19T00-38-28Z-n5-q1-regression-remediation-cd254ff7/focused/advisory-rerun-r2/test-results/advisory-climate-gate-N4-a-fcd24-nfidence-and-reviewer-state-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts",
+                        "column": 25,
+                        "line": 65
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fbc827509024e8d96707-a210afcd80cdc8cbc1da",
+              "file": "advisory-climate-gate.spec.ts",
+              "line": 69,
+              "column": 7
+            },
+            {
+              "title": "CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 12118,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-19T00:49:39.859Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fbc827509024e8d96707-0a868615bd9f576d1082",
+              "file": "advisory-climate-gate.spec.ts",
+              "line": 95,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-19T00:48:04.734Z",
+    "duration": 107628.039,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

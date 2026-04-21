@@ -1,0 +1,132 @@
+
+> agrodomain@0.0.0 test /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7
+> corepack pnpm -r --filter @agrodomain/api --filter @agrodomain/worker --filter @agrodomain/web --filter @agrodomain/contracts --filter @agrodomain/config run test
+
+Scope: 5 of 6 workspace projects
+apps/api test$ python3 ./scripts/quality_gate.py test
+apps/worker test$ python3 -m pytest tests -q
+packages/contracts test$ vitest run
+apps/api test: [api:contracts] validating canonical contract artifacts
+apps/api test: [api:contracts] passed
+apps/api test: [api:test:migrations] starting: /usr/bin/python3 -m pytest -q tests/integration/test_migrations_and_seed.py
+packages/contracts test:  RUN  v3.2.4 /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/contracts
+packages/contracts test:  ✓ tests/contracts.test.ts (24 tests) 68ms
+packages/contracts test:  Test Files  1 passed (1)
+packages/contracts test:       Tests  24 passed (24)
+packages/contracts test:    Start at  14:24:24
+packages/contracts test:    Duration  1.68s (transform 705ms, setup 0ms, collect 877ms, tests 68ms, environment 0ms, prepare 248ms)
+packages/contracts test: Done
+apps/worker test: .                                                                        [100%]
+apps/worker test: 1 passed in 4.43s
+apps/worker test: Done
+apps/api test: ..                                                                       [100%]
+apps/api test: =============================== warnings summary ===============================
+apps/api test: ../../../../../../../../home/node/.local/lib/python3.11/site-packages/_pytest/config/__init__.py:1474
+apps/api test:   /home/node/.local/lib/python3.11/site-packages/_pytest/config/__init__.py:1474: PytestConfigWarning: Unknown config option: asyncio_default_fixture_loop_scope
+apps/api test:   
+apps/api test:     self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+apps/api test: tests/integration/test_migrations_and_seed.py::test_clean_migration_cycle_creates_expected_tables
+apps/api test: tests/integration/test_migrations_and_seed.py::test_seed_replay_is_idempotent
+apps/api test:   /home/node/.local/lib/python3.11/site-packages/alembic/config.py:612: DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces, commas, and colons for prepend_sys_path.  Consider adding path_separator=os to Alembic config.
+apps/api test:     util.warn_deprecated(
+apps/api test: -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+apps/api test: 2 passed, 3 warnings in 2.89s
+apps/api test: [api:test:migrations] passed
+apps/api test: [api:test] starting: /usr/bin/python3 -m pytest -q tests
+apps/api test: .................................................................        [100%]
+apps/api test: =============================== warnings summary ===============================
+apps/api test: ../../../../../../../../home/node/.local/lib/python3.11/site-packages/_pytest/config/__init__.py:1474
+apps/api test:   /home/node/.local/lib/python3.11/site-packages/_pytest/config/__init__.py:1474: PytestConfigWarning: Unknown config option: asyncio_default_fixture_loop_scope
+apps/api test:   
+apps/api test:     self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+apps/api test: tests/integration/test_advisory_routes_runtime.py: 2 warnings
+apps/api test: tests/integration/test_app_boot.py: 2 warnings
+apps/api test: tests/integration/test_climate_runtime_integration.py: 2 warnings
+apps/api test: tests/integration/test_command_route.py: 3 warnings
+apps/api test: tests/integration/test_finance_insurance_runtime.py: 2 warnings
+apps/api test: tests/integration/test_migrations_and_seed.py: 2 warnings
+apps/api test: tests/integration/test_n4_advisory_climate_gate.py: 3 warnings
+apps/api test: tests/integration/test_n6_admin_observability_reliability.py: 11 warnings
+apps/api test: tests/integration/test_traceability_runtime_integration.py: 2 warnings
+apps/api test: tests/integration/test_vertical_slice.py: 9 warnings
+apps/api test: tests/unit/test_advisory_runtime.py: 2 warnings
+apps/api test: tests/unit/test_climate_runtime.py: 3 warnings
+apps/api test: tests/unit/test_command_bus.py: 5 warnings
+apps/api test: tests/unit/test_models_and_repositories.py: 12 warnings
+apps/api test:   /home/node/.local/lib/python3.11/site-packages/alembic/config.py:612: DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces, commas, and colons for prepend_sys_path.  Consider adding path_separator=os to Alembic config.
+apps/api test:     util.warn_deprecated(
+apps/api test: -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+apps/api test: 65 passed, 61 warnings in 98.06s (0:01:38)
+apps/api test: [api:test] passed
+apps/api test: Done
+packages/config test$ node --test tests/index.test.mjs
+packages/config test: TAP version 13
+packages/config test: # Subtest: resolves a typed runtime config bundle for shared consumers
+packages/config test: ok 1 - resolves a typed runtime config bundle for shared consumers
+packages/config test:   ---
+packages/config test:   duration_ms: 3.433767
+packages/config test:   type: 'test'
+packages/config test:   ...
+packages/config test: # Subtest: derives handoff channels from country-pack support instead of hardcoded UI defaults
+packages/config test: ok 2 - derives handoff channels from country-pack support instead of hardcoded UI defaults
+packages/config test:   ---
+packages/config test:   duration_ms: 0.494381
+packages/config test:   type: 'test'
+packages/config test:   ...
+packages/config test: # Subtest: evaluates conditional feature flags against rollout policy
+packages/config test: ok 3 - evaluates conditional feature flags against rollout policy
+packages/config test:   ---
+packages/config test:   duration_ms: 0.639658
+packages/config test:   type: 'test'
+packages/config test:   ...
+packages/config test: # Subtest: preserves environment-wide schema and admin policy
+packages/config test: ok 4 - preserves environment-wide schema and admin policy
+packages/config test:   ---
+packages/config test:   duration_ms: 0.252963
+packages/config test:   type: 'test'
+packages/config test:   ...
+packages/config test: 1..4
+packages/config test: # tests 4
+packages/config test: # suites 0
+packages/config test: # pass 4
+packages/config test: # fail 0
+packages/config test: # cancelled 0
+packages/config test: # skipped 0
+packages/config test: # todo 0
+packages/config test: # duration_ms 151.02228
+packages/config test: Done
+apps/web test$ corepack pnpm --filter @agrodomain/contracts build && corepack pnpm --filter @agrodomain/config build && corepack pnpm run guard:contracts && vitest run
+apps/web test: > @agrodomain/contracts@0.0.0 build /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/contracts
+apps/web test: > tsc -p tsconfig.json
+apps/web test: > @agrodomain/config@0.0.0 build /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/config
+apps/web test: > node --eval "import('./src/index.js')"
+apps/web test: > @agrodomain/web@0.0.0 guard:contracts /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web
+apps/web test: > node ./scripts/verify-contract-boundary.mjs
+apps/web test: Contract boundary verified.
+apps/web test:  RUN  v3.2.4 /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web
+apps/web test:  ✓ features/listings/listing-slice.test.tsx (4 tests) 1003ms
+apps/web test:    ✓ listing surfaces > renders buyer discovery from buyer-safe published listings only  633ms
+apps/web test:  ✓ features/negotiation/negotiation-inbox.test.tsx (4 tests) 1343ms
+apps/web test:    ✓ negotiation inbox > submits a buyer offer and renders audit/idempotency evidence  854ms
+apps/web test:  ✓ features/finance/finance-review-console.test.tsx (1 test) 692ms
+apps/web test:    ✓ finance review console > submits queue items and records partner decisions with telemetry  681ms
+apps/web test:  ✓ features/advisory/conversation-workspace.test.tsx (1 test) 421ms
+apps/web test:    ✓ advisory conversation workspace > renders reviewer state, locale fallback, and citation drawer  417ms
+apps/web test:  ✓ features/traceability/traceability-workspace.test.tsx (2 tests) 417ms
+apps/web test:  ✓ features/climate/climate-dashboard.test.tsx (1 test) 361ms
+apps/web test:    ✓ climate dashboard > renders degraded-mode detail and acknowledges alerts  354ms
+apps/web test:  ✓ lib/api/mock-client.test.ts (2 tests) 19ms
+apps/web test:  ✓ features/listings/schema.test.ts (3 tests) 10ms
+apps/web test:  ✓ features/finance/model.test.ts (3 tests) 37ms
+apps/web test:  ✓ features/identity/schema.test.ts (3 tests) 9ms
+apps/web test:  ✓ features/traceability/model.test.ts (3 tests) 8ms
+apps/web test:  ✓ lib/offline/reducer.test.ts (3 tests) 6ms
+apps/web test:  ✓ features/climate/model.test.ts (2 tests) 6ms
+apps/web test:  ✓ features/negotiation/thread-state.test.ts (3 tests) 7ms
+apps/web test:  ✓ features/advisory/model.test.ts (2 tests) 13ms
+apps/web test:  ✓ features/shell/model.test.ts (3 tests) 7ms
+apps/web test:  Test Files  16 passed (16)
+apps/web test:       Tests  40 passed (40)
+apps/web test:    Start at  14:26:26
+apps/web test:    Duration  15.54s (transform 2.30s, setup 4.37s, collect 7.22s, tests 4.36s, environment 17.79s, prepare 3.86s)
+apps/web test: Done

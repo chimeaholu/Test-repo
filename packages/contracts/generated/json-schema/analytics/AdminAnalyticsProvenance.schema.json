@@ -1,0 +1,82 @@
+{
+  "$ref": "#/definitions/AdminAnalyticsProvenance",
+  "definitions": {
+    "AdminAnalyticsProvenance": {
+      "additionalProperties": false,
+      "properties": {
+        "citation_id": {
+          "maxLength": 96,
+          "minLength": 1,
+          "type": "string"
+        },
+        "coverage_state": {
+          "enum": [
+            "current",
+            "degraded",
+            "empty"
+          ],
+          "type": "string"
+        },
+        "entity_type": {
+          "maxLength": 64,
+          "minLength": 2,
+          "type": "string"
+        },
+        "last_recorded_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "nullable": true,
+          "type": "string"
+        },
+        "note": {
+          "maxLength": 240,
+          "minLength": 3,
+          "nullable": true,
+          "type": "string"
+        },
+        "record_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "source_service": {
+          "enum": [
+            "admin_control_plane",
+            "marketplace",
+            "advisory",
+            "finance",
+            "traceability",
+            "climate",
+            "rollout_control"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "citation_id",
+        "source_service",
+        "entity_type",
+        "record_count",
+        "last_recorded_at",
+        "coverage_state",
+        "note"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Operator-safe provenance citation for admin analytics mart rollups, including entity coverage and freshness state.",
+  "x-agrodomain-contract": {
+    "id": "analytics.admin_analytics_provenance",
+    "domain": "analytics",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "PF-004",
+      "DI-002"
+    ],
+    "source_artifacts": [
+      "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+      "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+      "execution/contracts/b025_enterprise_analytics_mart_contract.json"
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+# R6 Harness Validation + Preflight
+Timestamp: 2026-04-20T09:00:52Z
+Repo: /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7
+
+## Toolchain
+v22.22.1
+10.11.0
+Python 3.11.2
+Version 1.59.1
+
+## Workspace
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+
+## Package filters
+agrodomain@0.0.0 /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7 (PRIVATE)
+
+@agrodomain/api@0.0.0 /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/api (PRIVATE)
+
+@agrodomain/web@0.0.0 /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web (PRIVATE)
+
+@agrodomain/worker@0.0.0 /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/worker (PRIVATE)
+
+@agrodomain/config@0.0.0 /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/config (PRIVATE)
+
+@agrodomain/contracts@0.0.0 /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/contracts (PRIVATE)
+
+## Test inventory
+apps/api/tests/contract/test_control_plane_contract_integrity.py
+apps/api/tests/integration/test_advisory_routes_runtime.py
+apps/api/tests/integration/test_app_boot.py
+apps/api/tests/integration/test_climate_runtime_integration.py
+apps/api/tests/integration/test_command_route.py
+apps/api/tests/integration/test_finance_insurance_runtime.py
+apps/api/tests/integration/test_migrations_and_seed.py
+apps/api/tests/integration/test_n4_advisory_climate_gate.py
+apps/api/tests/integration/test_n6_admin_observability_reliability.py
+apps/api/tests/integration/test_traceability_runtime_integration.py
+apps/api/tests/integration/test_vertical_slice.py
+apps/api/tests/unit/test_advisory_runtime.py
+apps/api/tests/unit/test_climate_runtime.py
+apps/api/tests/unit/test_command_bus.py
+apps/api/tests/unit/test_models_and_repositories.py
+apps/api/tests/unit/test_system.py
+apps/web/features/advisory/conversation-workspace.test.tsx
+apps/web/features/advisory/model.test.ts
+apps/web/features/climate/climate-dashboard.test.tsx
+apps/web/features/climate/model.test.ts
+apps/web/features/finance/finance-review-console.test.tsx
+apps/web/features/finance/model.test.ts
+apps/web/features/identity/schema.test.ts
+apps/web/features/listings/listing-slice.test.tsx
+apps/web/features/listings/schema.test.ts
+apps/web/features/negotiation/negotiation-inbox.test.tsx
+apps/web/features/negotiation/thread-state.test.ts
+apps/web/features/shell/model.test.ts
+apps/web/features/traceability/model.test.ts
+apps/web/features/traceability/traceability-workspace.test.tsx
+apps/web/lib/api/mock-client.test.ts
+apps/web/lib/offline/reducer.test.ts
+apps/web/scripts/verify-contract-boundary.mjs
+apps/worker/tests/test_runtime.py
+packages/config/tests/index.test.mjs
+packages/contracts/tests/contracts.test.ts
+tests/e2e/advisory-climate-gate.spec.ts
+tests/e2e/auth-consent.spec.ts
+tests/e2e/buyer-discovery.spec.ts
+tests/e2e/marketplace.spec.ts
+tests/e2e/n5-finance-traceability.spec.ts
+tests/e2e/n6-admin-observability.spec.ts
+tests/e2e/negotiation.spec.ts
+tests/e2e/r4-route-completion.spec.ts
+tests/e2e/recovery.spec.ts
+
+## Playwright projects
+[
+  "desktop-critical",
+  "mobile-critical"
+]
+(node:78600) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/playwright.config.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)

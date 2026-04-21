@@ -1,0 +1,462 @@
+[2m[WebServer] [22mINFO:     127.0.0.1:44418 - "GET /readyz HTTP/1.1" 200 OK
+[2m[WebServer] [22m   ▲ Next.js 15.5.15
+[2m[WebServer] [22m   - Local:        http://127.0.0.1:3134
+[2m[WebServer] [22m   - Network:      http://127.0.0.1:3134
+[2m[WebServer] [22m
+[2m[WebServer] [22m ✓ Starting...
+[2m[WebServer] [22m ✓ Ready in 3s
+[2m[WebServer] [22m ○ Compiling /signin ...
+[2m[WebServer] [22m ✓ Compiled /signin in 9.9s (692 modules)
+[2m[WebServer] [22m GET /signin 200 in 10931ms
+
+Running 8 tests using 1 worker
+
+[2m[WebServer] [22m GET /signin 200 in 177ms
+[2m[WebServer] [22mINFO:     127.0.0.1:56558 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:56564 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m ○ Compiling /onboarding/consent ...
+[2m[WebServer] [22m ✓ Compiled /onboarding/consent in 1192ms (685 modules)
+[2m[WebServer] [22m GET /onboarding/consent 200 in 1527ms
+[2m[WebServer] [22mINFO:     127.0.0.1:56564 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:56558 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m ○ Compiling /app/[role] ...
+[2m[WebServer] [22m ✓ Compiled /app/[role] in 1089ms (711 modules)
+[2m[WebServer] [22m GET /app/advisor 200 in 2579ms
+[2m[WebServer] [22m GET /app/advisor 200 in 545ms
+[2m[WebServer] [22m GET /app/advisor 200 in 280ms
+[2m[WebServer] [22mINFO:     127.0.0.1:39654 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:39664 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m ○ Compiling /app/advisor/requests ...
+[2m[WebServer] [22m ✓ Compiled /app/advisor/requests in 1043ms (721 modules)
+[2m[WebServer] [22m GET /app/advisor/requests 200 in 1732ms
+[2m[WebServer] [22mINFO:     127.0.0.1:39664 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:39654 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:39654 - "OPTIONS /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:39664 - "OPTIONS /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:39664 - "OPTIONS /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60194 - "GET /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:39654 - "GET /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60204 - "GET /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+  ✓  1 [desktop-critical] › tests/e2e/advisory-climate-gate.spec.ts:63:7 › N4 advisory and climate tranche diagnostics › CJ-005 EP-006 RJ-003 DI-005 advisory route shows citations, confidence, and reviewer state (16.7s)
+[2m[WebServer] [22m GET /signin 200 in 212ms
+[2m[WebServer] [22mINFO:     127.0.0.1:60212 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60228 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /onboarding/consent 200 in 104ms
+[2m[WebServer] [22mINFO:     127.0.0.1:60228 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60212 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/farmer 200 in 153ms
+[2m[WebServer] [22m GET /app/farmer 200 in 137ms
+[2m[WebServer] [22m ○ Compiling /app/climate/alerts ...
+[2m[WebServer] [22m ✓ Compiled /app/climate/alerts in 1148ms (731 modules)
+[2m[WebServer] [22m GET /app/climate/alerts 200 in 1703ms
+[2m[WebServer] [22mINFO:     127.0.0.1:60212 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60228 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60228 - "OPTIONS /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60212 - "OPTIONS /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49128 - "OPTIONS /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49136 - "OPTIONS /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49140 - "OPTIONS /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49152 - "OPTIONS /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60212 - "GET /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49128 - "GET /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60228 - "GET /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49136 - "GET /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49152 - "GET /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49140 - "GET /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60212 - "OPTIONS /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60228 - "OPTIONS /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49128 - "OPTIONS /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49140 - "GET /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49128 - "GET /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60228 - "GET /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+  ✓  2 [desktop-critical] › tests/e2e/advisory-climate-gate.spec.ts:89:7 › N4 advisory and climate tranche diagnostics › CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence (10.1s)
+[2m[WebServer] [22mINFO:     127.0.0.1:49160 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49160 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49160 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49160 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49160 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /signin 200 in 168ms
+[2m[WebServer] [22m GET /app/buyer 200 in 267ms
+[2m[WebServer] [22mINFO:     127.0.0.1:49166 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49182 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m ○ Compiling /app/market/listings ...
+[2m[WebServer] [22m ✓ Compiled /app/market/listings in 1916ms (741 modules)
+[2m[WebServer] [22m GET /app/market/listings 200 in 2347ms
+[2m[WebServer] [22mINFO:     127.0.0.1:49182 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49166 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49166 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49166 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49182 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49182 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60376 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49166 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22m ○ Compiling /app/market/negotiations ...
+[2m[WebServer] [22m ✓ Compiled /app/market/negotiations in 1347ms (751 modules)
+[2m[WebServer] [22m GET /app/market/negotiations 200 in 1747ms
+[2m[WebServer] [22mINFO:     127.0.0.1:49166 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60376 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60376 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49182 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60376 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49166 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49182 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60380 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22m ○ Compiling /app/market/listings/[listingId] ...
+[2m[WebServer] [22m ✓ Compiled /app/market/listings/[listingId] in 944ms (756 modules)
+[2m[WebServer] [22m GET /app/market/listings/listing-b5e54711303d 200 in 2512ms
+[2m[WebServer] [22mINFO:     127.0.0.1:60380 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49182 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49182 - "OPTIONS /api/v1/marketplace/listings/listing-b5e54711303d HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49166 - "OPTIONS /api/v1/marketplace/listings/listing-b5e54711303d HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49182 - "GET /api/v1/marketplace/listings/listing-b5e54711303d HTTP/1.1" 404 Not Found
+[2m[WebServer] [22mINFO:     127.0.0.1:60380 - "GET /api/v1/marketplace/listings/listing-b5e54711303d HTTP/1.1" 404 Not Found
+[2m[WebServer] [22mINFO:     127.0.0.1:60380 - "OPTIONS /api/v1/marketplace/listings/listing-b5e54711303d HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:49182 - "GET /api/v1/marketplace/listings/listing-b5e54711303d HTTP/1.1" 404 Not Found
+  ✓  3 [desktop-critical] › tests/e2e/buyer-discovery.spec.ts:145:7 › Buyer discovery and scoped read behavior › buyer reaches the discovery shell and cannot read another actor's listing detail (15.9s)
+[2m[WebServer] [22mINFO:     127.0.0.1:60390 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60390 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60390 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:60390 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /signin 200 in 158ms
+[2m[WebServer] [22m GET /app/farmer 200 in 307ms
+[2m[WebServer] [22mINFO:     127.0.0.1:51708 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/market/listings 200 in 149ms
+[2m[WebServer] [22m GET /app/farmer 200 in 235ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 278ms
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51708 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51708 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51720 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51726 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51708 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51708 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51708 - "OPTIONS /api/v1/audit/events?request_id=b1b7d856-1583-4463-8d8e-4abbee3a0eec&idempotency_key=83ee28c1-7f32-4617-8eee-6a6752a6f5b0 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/audit/events?request_id=b1b7d856-1583-4463-8d8e-4abbee3a0eec&idempotency_key=83ee28c1-7f32-4617-8eee-6a6752a6f5b0 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51708 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51732 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /signin 200 in 165ms
+[2m[WebServer] [22m GET /app/buyer 200 in 248ms
+[2m[WebServer] [22mINFO:     127.0.0.1:51708 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/market/negotiations?listingId=listing-e10558384c7a 200 in 181ms
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51708 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51708 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51708 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "OPTIONS /api/v1/audit/events?request_id=3f24068a-d9de-4711-8b5d-23d205addde5&idempotency_key=f885c50b-b7d9-48a1-aecd-56cb87a7d2f2 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/audit/events?request_id=3f24068a-d9de-4711-8b5d-23d205addde5&idempotency_key=f885c50b-b7d9-48a1-aecd-56cb87a7d2f2 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "OPTIONS /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "GET /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53804 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /signin 200 in 159ms
+[2m[WebServer] [22m GET /app/farmer 200 in 226ms
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/market/negotiations 200 in 132ms
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53816 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53816 - "OPTIONS /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "GET /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "GET /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "OPTIONS /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "OPTIONS /api/v1/audit/events?request_id=0007309b-42bf-4493-9c9f-3cf48f62f08c&idempotency_key=87291481-8114-40ed-a69a-6629400232f7 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/audit/events?request_id=0007309b-42bf-4493-9c9f-3cf48f62f08c&idempotency_key=87291481-8114-40ed-a69a-6629400232f7 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "OPTIONS /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /signin 200 in 187ms
+[2m[WebServer] [22m GET /app/buyer 200 in 373ms
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/market/negotiations 200 in 111ms
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51734 - "OPTIONS /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53816 - "GET /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/audit/events?request_id=2df8800e-5e25-4562-8710-758a72ed350e&idempotency_key=259c3d0c-360b-49b4-8314-c329f0c77655 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/audit/events?request_id=2df8800e-5e25-4562-8710-758a72ed350e&idempotency_key=259c3d0c-360b-49b4-8314-c329f0c77655 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /signin 200 in 156ms
+[2m[WebServer] [22m GET /app/farmer 200 in 281ms
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/market/listings 200 in 169ms
+[2m[WebServer] [22m GET /app/farmer 200 in 166ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 278ms
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:34138 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:34138 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:34138 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/audit/events?request_id=ef188a71-2ecd-46bb-8cf2-e1fe9b3abb66&idempotency_key=30cc3a1b-d7ce-42cd-b2f9-ccc5081dee70 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:34138 - "GET /api/v1/audit/events?request_id=ef188a71-2ecd-46bb-8cf2-e1fe9b3abb66&idempotency_key=30cc3a1b-d7ce-42cd-b2f9-ccc5081dee70 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:34138 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:34150 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /signin 200 in 126ms
+[2m[WebServer] [22m GET /app/buyer 200 in 419ms
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:34138 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/market/negotiations?listingId=listing-a15ee54b1c7d 200 in 156ms
+[2m[WebServer] [22mINFO:     127.0.0.1:34138 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:34138 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:34138 - "OPTIONS /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "OPTIONS /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "OPTIONS /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/marketplace/negotiations/thread-f0aec5b38d75 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "OPTIONS /api/v1/audit/events?request_id=4c10d378-c6bf-47a0-9706-6e9074406d2c&idempotency_key=9565d0b9-eda5-4a8a-806f-743cabce78c1 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/audit/events?request_id=4c10d378-c6bf-47a0-9706-6e9074406d2c&idempotency_key=9565d0b9-eda5-4a8a-806f-743cabce78c1 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "OPTIONS /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "GET /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:34150 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /signin 200 in 120ms
+[2m[WebServer] [22m GET /app/farmer 200 in 260ms
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/market/negotiations 200 in 127ms
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "OPTIONS /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:34138 - "GET /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "GET /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "GET /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/audit/events?request_id=16f5c69c-576f-45f6-be08-7ee1daf013bf&idempotency_key=8b8b27d7-d57c-43fd-a62b-ab795d99ba2f HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "GET /api/v1/audit/events?request_id=16f5c69c-576f-45f6-be08-7ee1daf013bf&idempotency_key=8b8b27d7-d57c-43fd-a62b-ab795d99ba2f HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "GET /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /signin 200 in 116ms
+[2m[WebServer] [22m GET /app/buyer 200 in 264ms
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/market/negotiations 200 in 143ms
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:34138 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:34138 - "OPTIONS /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "OPTIONS /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:34138 - "GET /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/audit/events?request_id=f2288f77-dba9-4f6a-be5d-09cfd8c4b129&idempotency_key=f953cb3c-e5fc-4d3c-9552-8c3572e4405f HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/audit/events?request_id=f2288f77-dba9-4f6a-be5d-09cfd8c4b129&idempotency_key=f953cb3c-e5fc-4d3c-9552-8c3572e4405f HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51982 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51982 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /signin 200 in 178ms
+[2m[WebServer] [22m GET /app/buyer 200 in 259ms
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/market/negotiations?threadId=thread-d61d841f2900 200 in 137ms
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:34138 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:34138 - "OPTIONS /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "OPTIONS /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51710 - "OPTIONS /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59048 - "GET /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 404 Not Found
+[2m[WebServer] [22mINFO:     127.0.0.1:34138 - "GET /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 404 Not Found
+[2m[WebServer] [22mINFO:     127.0.0.1:53830 - "GET /api/v1/marketplace/negotiations/thread-d61d841f2900 HTTP/1.1" 404 Not Found
+  ✓  4 [desktop-critical] › tests/e2e/negotiation.spec.ts:252:7 › Negotiation inbox and thread proof › pending confirmation approve/reject paths lock terminal state and outsider thread access is blocked (45.7s)
+[2m[WebServer] [22m GET /signin 200 in 186ms
+[2m[WebServer] [22mINFO:     127.0.0.1:51984 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51994 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /onboarding/consent 200 in 83ms
+[2m[WebServer] [22mINFO:     127.0.0.1:51994 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51984 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/advisor 200 in 126ms
+[2m[WebServer] [22m GET /app/advisor 200 in 183ms
+[2m[WebServer] [22m GET /app/advisor 200 in 375ms
+[2m[WebServer] [22mINFO:     127.0.0.1:51984 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51994 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/advisor/requests 200 in 272ms
+[2m[WebServer] [22mINFO:     127.0.0.1:51994 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51984 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51984 - "OPTIONS /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51984 - "OPTIONS /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51994 - "GET /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:57874 - "GET /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:57874 - "OPTIONS /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:51994 - "GET /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+  ✓  5 [mobile-critical] › tests/e2e/advisory-climate-gate.spec.ts:63:7 › N4 advisory and climate tranche diagnostics › CJ-005 EP-006 RJ-003 DI-005 advisory route shows citations, confidence, and reviewer state (10.4s)
+[2m[WebServer] [22m GET /signin 200 in 313ms
+[2m[WebServer] [22mINFO:     127.0.0.1:57888 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:57892 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /onboarding/consent 200 in 55ms
+[2m[WebServer] [22mINFO:     127.0.0.1:57892 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:57888 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/farmer 200 in 153ms
+[2m[WebServer] [22m GET /app/farmer 200 in 154ms
+[2m[WebServer] [22m GET /app/climate/alerts 200 in 325ms
+[2m[WebServer] [22mINFO:     127.0.0.1:57888 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:57892 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:57892 - "OPTIONS /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:57888 - "OPTIONS /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59284 - "OPTIONS /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:57892 - "OPTIONS /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59288 - "OPTIONS /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59300 - "OPTIONS /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:57888 - "GET /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59286 - "GET /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59284 - "GET /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:57888 - "OPTIONS /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59284 - "OPTIONS /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59286 - "OPTIONS /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59300 - "GET /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:57892 - "GET /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59288 - "GET /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59284 - "GET /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59286 - "GET /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:57888 - "GET /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+  ✓  6 [mobile-critical] › tests/e2e/advisory-climate-gate.spec.ts:89:7 › N4 advisory and climate tranche diagnostics › CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence (7.6s)
+[2m[WebServer] [22mINFO:     127.0.0.1:59310 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59310 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59310 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59310 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59310 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /signin 200 in 166ms
+[2m[WebServer] [22m GET /app/buyer 200 in 195ms
+[2m[WebServer] [22mINFO:     127.0.0.1:59320 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59334 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/market/listings 200 in 230ms
+[2m[WebServer] [22mINFO:     127.0.0.1:59334 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59320 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59320 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59334 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59320 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59340 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59340 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59320 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/market/negotiations 200 in 169ms
+[2m[WebServer] [22mINFO:     127.0.0.1:59320 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59340 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59340 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59334 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59320 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59340 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59340 - "OPTIONS /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59320 - "GET /api/v1/marketplace/negotiations HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/market/listings/listing-dde086e7a27d 200 in 189ms
+[2m[WebServer] [22mINFO:     127.0.0.1:59320 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59340 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59340 - "OPTIONS /api/v1/marketplace/listings/listing-dde086e7a27d HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59340 - "OPTIONS /api/v1/marketplace/listings/listing-dde086e7a27d HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59334 - "GET /api/v1/marketplace/listings/listing-dde086e7a27d HTTP/1.1" 404 Not Found
+[2m[WebServer] [22mINFO:     127.0.0.1:59320 - "GET /api/v1/marketplace/listings/listing-dde086e7a27d HTTP/1.1" 404 Not Found
+[2m[WebServer] [22mINFO:     127.0.0.1:59320 - "OPTIONS /api/v1/marketplace/listings/listing-dde086e7a27d HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:59334 - "GET /api/v1/marketplace/listings/listing-dde086e7a27d HTTP/1.1" 404 Not Found
+  ✓  7 [mobile-critical] › tests/e2e/buyer-discovery.spec.ts:145:7 › Buyer discovery and scoped read behavior › buyer reaches the discovery shell and cannot read another actor's listing detail (10.5s)
+[2m[WebServer] [22mINFO:     127.0.0.1:41714 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:41714 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:41714 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:41714 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /signin 200 in 130ms
+[2m[WebServer] [22m GET /app/farmer 200 in 286ms
+[2m[WebServer] [22mINFO:     127.0.0.1:41718 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:41732 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/market/listings 200 in 136ms
+[2m[WebServer] [22m GET /app/farmer 200 in 178ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 178ms
+[2m[WebServer] [22mINFO:     127.0.0.1:41732 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:41718 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:41718 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:41718 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:41732 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:34170 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:41732 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:34170 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK

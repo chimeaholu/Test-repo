@@ -1,0 +1,594 @@
+{
+  "timestamp": "2026-04-20T23:22:33.820673+00:00",
+  "results": {
+    "canary": [
+      {
+        "path": "/healthz",
+        "status_code": 200,
+        "final_url": "https://web-staging-29cd.up.railway.app/healthz",
+        "ok": true,
+        "title_hint": "{\"ok\":true,\"schema_version\":\"staging-runtime.v1\",\"seeded\":false,\"profile\":\"e2e-critical\",\"state_path\":\"/app/.staging/run"
+      },
+      {
+        "path": "/signin",
+        "status_code": 200,
+        "final_url": "https://web-staging-29cd.up.railway.app/signin",
+        "ok": true,
+        "title_hint": "<!doctype html> <html lang=\"en\"> <head>   <meta charset=\"utf-8\" />   <meta name=\"viewport\" content=\"width=device-width, "
+      },
+      {
+        "path": "/app/onboarding/consent",
+        "status_code": 307,
+        "final_url": "https://web-staging-29cd.up.railway.app/app/onboarding/consent",
+        "ok": true,
+        "title_hint": "{\"detail\":\"signin required\"}"
+      },
+      {
+        "path": "/app/home",
+        "status_code": 307,
+        "final_url": "https://web-staging-29cd.up.railway.app/app/home",
+        "ok": true,
+        "title_hint": "{\"detail\":\"signin required\"}"
+      },
+      {
+        "path": "/app/market/listings",
+        "status_code": 404,
+        "final_url": "https://web-staging-29cd.up.railway.app/app/market/listings",
+        "ok": true,
+        "title_hint": "{\"detail\":\"Not Found\"}"
+      },
+      {
+        "path": "/app/market/negotiations",
+        "status_code": 404,
+        "final_url": "https://web-staging-29cd.up.railway.app/app/market/negotiations",
+        "ok": true,
+        "title_hint": "{\"detail\":\"Not Found\"}"
+      },
+      {
+        "path": "/app/traceability",
+        "status_code": 307,
+        "final_url": "https://web-staging-29cd.up.railway.app/app/traceability",
+        "ok": true,
+        "title_hint": "{\"detail\":\"signin required\"}"
+      },
+      {
+        "path": "/app/wallet",
+        "status_code": 307,
+        "final_url": "https://web-staging-29cd.up.railway.app/app/wallet",
+        "ok": true,
+        "title_hint": "{\"detail\":\"signin required\"}"
+      },
+      {
+        "path": "/app/admin/analytics",
+        "status_code": 307,
+        "final_url": "https://web-staging-29cd.up.railway.app/app/admin/analytics",
+        "ok": true,
+        "title_hint": "{\"detail\":\"signin required\"}"
+      },
+      {
+        "path": "/app/finance/queue",
+        "status_code": 307,
+        "final_url": "https://web-staging-29cd.up.railway.app/app/finance/queue",
+        "ok": true,
+        "title_hint": "{\"detail\":\"signin required\"}"
+      },
+      {
+        "path": "/api/e2e/seed",
+        "method": "POST",
+        "status_code": 200,
+        "ok": true,
+        "payload": {
+          "profile": "e2e-critical",
+          "applied": true,
+          "idempotent": false,
+          "seed_fingerprint": "c7e25ad35b0d28ae3608d137ebbbe2092709b70d6cab8130bfb9b6b3c7a515a9",
+          "state_path": "/app/.staging/runtime-state.json",
+          "seeded_ids": {
+            "users": [
+              "admin-001",
+              "advisor-001",
+              "buyer-001",
+              "farmer-001",
+              "finance-001"
+            ],
+            "listings": [
+              "listing-001",
+              "listing-draft-001"
+            ],
+            "negotiation": "negotiation-001",
+            "escrow": "escrow-001",
+            "advisory": "advisory-001",
+            "finance": "finance-case-001",
+            "traceability": "consignment-001"
+          }
+        }
+      },
+      {
+        "path": "/api/e2e/state/checks",
+        "method": "GET",
+        "status_code": 200,
+        "ok": true,
+        "payload": {
+          "auth-onboarding": {
+            "check": "auth-onboarding",
+            "passed": false,
+            "details": {
+              "consent_accepted": false,
+              "current_home_route": null
+            }
+          },
+          "listing-publish": {
+            "check": "listing-publish",
+            "passed": false,
+            "details": {
+              "commodity_code": "cocoa",
+              "created_at": "2026-04-13T18:00:00+00:00",
+              "currency": "GHS",
+              "listing_id": "listing-draft-001",
+              "metadata": {
+                "journey_ids": [
+                  "FJ-E01",
+                  "FJ-C02"
+                ],
+                "seed_namespace": "e2e-critical"
+              },
+              "price_minor": 420000,
+              "quantity_kg": 700,
+              "seller_id": "farmer-001",
+              "status": "draft",
+              "updated_at": "2026-04-13T18:00:00+00:00",
+              "version": 1
+            }
+          },
+          "negotiation-approval": {
+            "check": "negotiation-approval",
+            "passed": false,
+            "details": {
+              "approved_at": null,
+              "buyer_id": "buyer-001",
+              "confirmation_requested": false,
+              "currency": "GHS",
+              "current_amount_minor": 470000,
+              "listing_id": "listing-001",
+              "offers": [
+                {
+                  "actor_id": "buyer-001",
+                  "amount_minor": 450000,
+                  "created_at": "2026-04-13T18:00:00Z",
+                  "note": "opening offer",
+                  "round_number": 1
+                },
+                {
+                  "actor_id": "farmer-001",
+                  "amount_minor": 470000,
+                  "created_at": "2026-04-13T18:00:00Z",
+                  "note": "counter",
+                  "round_number": 2
+                }
+              ],
+              "seller_id": "farmer-001",
+              "state": "open",
+              "thread_id": "negotiation-001"
+            }
+          },
+          "escrow-release": {
+            "check": "escrow-release",
+            "passed": false,
+            "details": {
+              "amount_minor": 470000,
+              "buyer_wallet_id": "wallet-buyer-001",
+              "currency": "GHS",
+              "escrow_id": "escrow-001",
+              "escrow_wallet_id": "escrow:escrow-001",
+              "events": [],
+              "funding_status": "none",
+              "ledger_balances": {
+                "escrow:escrow-001:GHS": 0,
+                "wallet-buyer-001:GHS": 900000,
+                "wallet-seller-001:GHS": 100000
+              },
+              "released_at": null,
+              "seller_wallet_id": "wallet-seller-001",
+              "state": "not_created"
+            }
+          },
+          "advisory-citations": {
+            "check": "advisory-citations",
+            "passed": false,
+            "details": {
+              "attached_source_ids": [],
+              "citations": [
+                {
+                  "citation_id": "cite-001",
+                  "excerpt": "Flood mitigation steps for maize farmers during heavy rain events.",
+                  "published_at": "2026-04-06",
+                  "publisher": "Climate Desk",
+                  "rank": 1,
+                  "relevance_score": 3.1,
+                  "render_label": "[1] Flood mitigation crop action guide (Climate Desk)",
+                  "retrieved_at": "2026-04-13T18:00:00Z",
+                  "source_id": "source-003",
+                  "title": "Flood mitigation crop action guide",
+                  "url": "https://example.invalid/source-003"
+                },
+                {
+                  "citation_id": "cite-002",
+                  "excerpt": "Maize disease prevention guidance with rainfall and soil notes.",
+                  "published_at": "2026-04-01",
+                  "publisher": "Agro Research Ghana",
+                  "rank": 2,
+                  "relevance_score": 2.1,
+                  "render_label": "[2] Maize disease prevention bulletin (Agro Research Ghana)",
+                  "retrieved_at": "2026-04-13T18:00:00Z",
+                  "source_id": "source-001",
+                  "title": "Maize disease prevention bulletin",
+                  "url": "https://example.invalid/source-001"
+                },
+                {
+                  "citation_id": "cite-003",
+                  "excerpt": "Recovery checklist for soil moisture stress during flowering season.",
+                  "published_at": "2026-04-04",
+                  "publisher": "Regional Extension Office",
+                  "rank": 3,
+                  "relevance_score": 2.1,
+                  "render_label": "[3] Soil moisture recovery checklist (Regional Extension Office)",
+                  "retrieved_at": "2026-04-13T18:00:00Z",
+                  "source_id": "source-002",
+                  "title": "Soil moisture recovery checklist",
+                  "url": "https://example.invalid/source-002"
+                }
+              ],
+              "country_code": "GH",
+              "query": "maize heavy rain soil stress",
+              "request_id": "advisory-001",
+              "status": "pending_attachment"
+            }
+          },
+          "climate-ack": {
+            "check": "climate-ack",
+            "passed": false,
+            "details": {
+              "acknowledged": false,
+              "acknowledged_at": null,
+              "alert_id": "alert:farm-001:maize_flowering_flood_critical:2026-04-13T18:00:00Z",
+              "alert_type": "flood_watch",
+              "country_code": "GH",
+              "farm_id": "farm-001",
+              "metric_name": "rainfall_24h_mm",
+              "observed_value": 96.0,
+              "precedence": 100,
+              "provenance_key": "weather:meteo:rain-001",
+              "reason": "maize_flowering_flood_critical:heavy_rain",
+              "severity": "critical",
+              "source_signal_id": "climate:meteo:rain-001",
+              "threshold_value": 90.0
+            }
+          },
+          "finance-hitl": {
+            "check": "finance-hitl",
+            "passed": false,
+            "details": {
+              "finance": {
+                "approval_state": "pending",
+                "case_id": "finance-case-001",
+                "decision_at": null,
+                "partner_decision": {
+                  "data_check_id": "DI-003",
+                  "decision_type": "credit",
+                  "metadata": {
+                    "country_code": "GH",
+                    "currency": "GHS",
+                    "journey": "CJ-004",
+                    "risk_score": 0.5
+                  },
+                  "outcome": "manual_review",
+                  "partner_id": "apollo-credit",
+                  "partner_reference_id": "apollo-credit:credit:finance-case-001",
+                  "product_code": "seasonal-input-loan",
+                  "rationale_summary": "partner review required due to amount or risk threshold",
+                  "request_id": "finance-case-001",
+                  "requires_hitl": true,
+                  "responsibility_boundary": {
+                    "dispute_path": "partner-tier1 -> platform-support -> ombuds",
+                    "liability_owner": "licensed_partner",
+                    "partner_responsibilities": [
+                      "underwrite regulated product",
+                      "retain approval liability",
+                      "own dispute adjudication"
+                    ],
+                    "platform_responsibilities": [
+                      "collect consent",
+                      "normalize request envelope",
+                      "surface audit-safe status"
+                    ]
+                  }
+                },
+                "review_started_at": null
+              },
+              "insurance": {
+                "candidate_event": {
+                  "country_code": "GH",
+                  "data_check_id": "DI-006",
+                  "event_id": "payout:insurance-trigger-001:climate:chirps:soil-001",
+                  "evidence_reference_ids": [
+                    "mrv:record-001",
+                    "policy:threshold-001"
+                  ],
+                  "farm_id": "farm-001",
+                  "metric_name": "soil_moisture_ratio",
+                  "observed_value": 0.18,
+                  "partner_reference_id": "apollo-credit:insurance:insurance-trigger-001",
+                  "payout_amount_minor": 300000,
+                  "payout_currency": "GHS",
+                  "product_code": "dryness-cover",
+                  "source_reference": "chirps.v1:soil_moisture",
+                  "source_signal_id": "climate:chirps:soil-001",
+                  "threshold_value": 0.2,
+                  "trigger_id": "insurance-trigger-001"
+                },
+                "emitted": false,
+                "emitted_at": null,
+                "trigger_id": "insurance-trigger-001"
+              }
+            }
+          },
+          "traceability-dispatch": {
+            "check": "traceability-dispatch",
+            "passed": false,
+            "details": {
+              "consignment_id": "consignment-001",
+              "events": [
+                {
+                  "actor_id": "coop-001",
+                  "consignment_id": "consignment-001",
+                  "data_check_id": "DI-006",
+                  "event_hash": "76db59ca0e7b4066a3f18439b90cb06d8d09f744af210308b51f0b16ab97de74",
+                  "event_id": "consignment-001:1",
+                  "event_type": "listed",
+                  "evidence_reference_ids": [
+                    "listing:published"
+                  ],
+                  "listing_id": "listing-001",
+                  "location_code": "GH-ASH",
+                  "occurred_at": "2026-04-13T18:00:00Z",
+                  "payload": {
+                    "commodity_code": "maize",
+                    "quantity_kg": 1200
+                  },
+                  "previous_event_hash": null,
+                  "sequence": 1
+                },
+                {
+                  "actor_id": "advisor-001",
+                  "consignment_id": "consignment-001",
+                  "data_check_id": "DI-006",
+                  "event_hash": "838a4d020dbfce4307ca7354451b1ec096ade5b12d2ecc6b99a1c8e1c29bc7ec",
+                  "event_id": "consignment-001:2",
+                  "event_type": "quality_checked",
+                  "evidence_reference_ids": [
+                    "evidence-001"
+                  ],
+                  "listing_id": "listing-001",
+                  "location_code": "GH-ASH",
+                  "occurred_at": "2026-04-13T18:05:00Z",
+                  "payload": {
+                    "grade": "A"
+                  },
+                  "previous_event_hash": "76db59ca0e7b4066a3f18439b90cb06d8d09f744af210308b51f0b16ab97de74",
+                  "sequence": 2
+                }
+              ],
+              "evidence": {
+                "evidence-001": {
+                  "checksum": "sha256:evidence-001",
+                  "preview_url": "https://example.invalid/evidence-001"
+                },
+                "evidence-002": {
+                  "checksum": "sha256:evidence-002",
+                  "preview_url": "https://example.invalid/evidence-002"
+                }
+              }
+            }
+          },
+          "admin-analytics": {
+            "check": "admin-analytics",
+            "passed": false,
+            "details": {
+              "analytics_row": {
+                "anonymized_subject_key": "4f3ef16d3b36ed4f",
+                "citation_count": 3,
+                "citation_source_ids": [
+                  "source-003",
+                  "source-001",
+                  "source-002"
+                ],
+                "climate_signal_count": 3,
+                "commodity_code": "maize",
+                "country_code": "GH",
+                "custody_stage": "quality_checked",
+                "data_check_id": "DI-003",
+                "high_risk_signal_count": 3,
+                "listing_status": "published",
+                "metric_value": {
+                  "evidence_attachment_refs": 2,
+                  "high_risk_signal_ratio": 1.0,
+                  "published_price_minor": 500000,
+                  "published_quantity_kg": 1200
+                },
+                "price_band": "growth",
+                "quantity_band": "medium",
+                "region": "west_africa",
+                "schema_version": "enterprise-analytics.v1",
+                "traceability_event_count": 2
+              },
+              "counters": {
+                "advisory_updates": 0,
+                "climate_acknowledgements": 0,
+                "consent_events": 0,
+                "escrow_releases": 0,
+                "finance_decisions": 0,
+                "listing_publications": 0,
+                "negotiation_approvals": 0,
+                "traceability_updates": 0
+              },
+              "observability_alerts": [
+                {
+                  "breached": false,
+                  "channel": "api",
+                  "country_code": "GH",
+                  "data_check_id": "DI-002",
+                  "metadata": {
+                    "journeys": [
+                      "PF-001",
+                      "PF-004"
+                    ],
+                    "status_counts": {
+                      "error": 0,
+                      "ok_or_degraded": 3
+                    }
+                  },
+                  "operation": "admin.analytics.load",
+                  "p95_latency_ms": 820,
+                  "sample_size": 3,
+                  "severity": "low",
+                  "slo_id": "slo-admin-analytics",
+                  "success_rate": 1.0
+                }
+              ]
+            }
+          },
+          "full-critical": {
+            "check": "full-critical",
+            "passed": false,
+            "details": {
+              "auth-onboarding": false,
+              "listing-publish": false,
+              "negotiation-approval": false,
+              "escrow-release": false,
+              "advisory-citations": false,
+              "climate-ack": false,
+              "finance-hitl": false,
+              "traceability-dispatch": false,
+              "admin-analytics": false
+            }
+          },
+          "passed": false
+        }
+      },
+      {
+        "path": "/api/e2e/state/checks/full-critical",
+        "method": "GET",
+        "status_code": 200,
+        "ok": true,
+        "payload": {
+          "check": "full-critical",
+          "passed": false,
+          "details": {
+            "auth-onboarding": false,
+            "listing-publish": false,
+            "negotiation-approval": false,
+            "escrow-release": false,
+            "advisory-citations": false,
+            "climate-ack": false,
+            "finance-hitl": false,
+            "traceability-dispatch": false,
+            "admin-analytics": false
+          }
+        }
+      }
+    ],
+    "production": [
+      {
+        "path": "/healthz",
+        "status_code": 200,
+        "final_url": "https://web-prod-n6-production.up.railway.app/healthz",
+        "ok": true,
+        "title_hint": "{\"status\":\"ok\",\"service\":\"apps/web\"}"
+      },
+      {
+        "path": "/signin",
+        "status_code": 200,
+        "final_url": "https://web-prod-n6-production.up.railway.app/signin",
+        "ok": true,
+        "title_hint": "<!DOCTYPE html><!--BeD7YuXmXYr1CPwtGGRuy--><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"w"
+      },
+      {
+        "path": "/app/onboarding/consent",
+        "status_code": 404,
+        "final_url": "https://web-prod-n6-production.up.railway.app/app/onboarding/consent",
+        "ok": true,
+        "title_hint": "<!DOCTYPE html><!--BeD7YuXmXYr1CPwtGGRuy--><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"w"
+      },
+      {
+        "path": "/app/home",
+        "status_code": 200,
+        "final_url": "https://web-prod-n6-production.up.railway.app/app/home",
+        "ok": true,
+        "title_hint": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-s"
+      },
+      {
+        "path": "/app/market/listings",
+        "status_code": 200,
+        "final_url": "https://web-prod-n6-production.up.railway.app/app/market/listings",
+        "ok": true,
+        "title_hint": "<!DOCTYPE html><!--BeD7YuXmXYr1CPwtGGRuy--><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"w"
+      },
+      {
+        "path": "/app/market/negotiations",
+        "status_code": 200,
+        "final_url": "https://web-prod-n6-production.up.railway.app/app/market/negotiations",
+        "ok": true,
+        "title_hint": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-s"
+      },
+      {
+        "path": "/app/traceability",
+        "status_code": 200,
+        "final_url": "https://web-prod-n6-production.up.railway.app/app/traceability",
+        "ok": true,
+        "title_hint": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-s"
+      },
+      {
+        "path": "/app/wallet",
+        "status_code": 200,
+        "final_url": "https://web-prod-n6-production.up.railway.app/app/wallet",
+        "ok": true,
+        "title_hint": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-s"
+      },
+      {
+        "path": "/app/admin/analytics",
+        "status_code": 200,
+        "final_url": "https://web-prod-n6-production.up.railway.app/app/admin/analytics",
+        "ok": true,
+        "title_hint": "<!DOCTYPE html><!--BeD7YuXmXYr1CPwtGGRuy--><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"w"
+      },
+      {
+        "path": "/app/finance/queue",
+        "status_code": 200,
+        "final_url": "https://web-prod-n6-production.up.railway.app/app/finance/queue",
+        "ok": true,
+        "title_hint": "<!DOCTYPE html><!--BeD7YuXmXYr1CPwtGGRuy--><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"w"
+      },
+      {
+        "path": "/api/e2e/seed",
+        "method": "POST",
+        "status_code": 404,
+        "ok": true,
+        "payload": "<!DOCTYPE html><!--BeD7YuXmXYr1CPwtGGRuy--><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/css/1aaf6da46588c914.css\" data-precedence=\"next\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/_next/static/chunks/webpack-141ec262353df7b4.js\"/><script src=\"/_next/static/chunks/09c3fec"
+      },
+      {
+        "path": "/api/e2e/state/checks",
+        "method": "GET",
+        "status_code": 404,
+        "ok": true,
+        "payload": "<!DOCTYPE html><!--BeD7YuXmXYr1CPwtGGRuy--><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/css/1aaf6da46588c914.css\" data-precedence=\"next\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/_next/static/chunks/webpack-141ec262353df7b4.js\"/><script src=\"/_next/static/chunks/09c3fec"
+      },
+      {
+        "path": "/api/e2e/state/checks/full-critical",
+        "method": "GET",
+        "status_code": 404,
+        "ok": true,
+        "payload": "<!DOCTYPE html><!--BeD7YuXmXYr1CPwtGGRuy--><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/css/1aaf6da46588c914.css\" data-precedence=\"next\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/_next/static/chunks/webpack-141ec262353df7b4.js\"/><script src=\"/_next/static/chunks/09c3fec"
+      }
+    ]
+  }
+}

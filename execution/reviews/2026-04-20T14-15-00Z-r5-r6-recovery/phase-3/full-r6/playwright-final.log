@@ -1,0 +1,1601 @@
+
+> agrodomain@0.0.0 test:e2e /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7
+> playwright test
+
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0013 -> 0014, control plane runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0013 -> 0014, control plane runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0014 -> 0015_worker_runtime_activation, worker runtime activation
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0014 -> 0015_worker_runtime_activation, worker runtime activation
+[2m[WebServer] [22mINFO:     Started server process [117565]
+[2m[WebServer] [22mINFO:     Waiting for application startup.
+[2m[WebServer] [22mINFO:     Application startup complete.
+[2m[WebServer] [22mINFO:     Uvicorn running on http://127.0.0.1:8210 (Press CTRL+C to quit)
+[2m[WebServer] [22m{"correlation_id": "6e597bf0-4d4e-441b-a8b2-bb1b7df79726", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "6e597bf0-4d4e-441b-a8b2-bb1b7df79726", "timestamp": "2026-04-20T14:47:50.081886+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:34546 - "GET /readyz HTTP/1.1" 200 OK
+[2m[WebServer] [22m(node:117614) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:117626) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:117659) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m   ▲ Next.js 15.5.15
+[2m[WebServer] [22m   - Local:        http://127.0.0.1:3210
+[2m[WebServer] [22m   - Network:      http://127.0.0.1:3210
+[2m[WebServer] [22m
+[2m[WebServer] [22m ✓ Starting...
+[2m[WebServer] [22mAttention: Next.js now collects completely anonymous telemetry regarding usage.
+[2m[WebServer] [22mThis information is used to shape Next.js' roadmap and prioritize features.
+[2m[WebServer] [22mYou can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+[2m[WebServer] [22mhttps://nextjs.org/telemetry
+[2m[WebServer] [22m
+[2m[WebServer] [22m ✓ Ready in 3.9s
+[2m[WebServer] [22m ○ Compiling /signin ...
+[2m[WebServer] [22m ✓ Compiled /signin in 17.4s (702 modules)
+[2m[WebServer] [22m GET /signin 200 in 18773ms
+
+Running 40 tests using 1 worker
+
+(node:117806) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:117806) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 255ms
+[2m[WebServer] [22m{"correlation_id": "baee5829-c981-4bbc-a22c-1b12c420f1ff", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "baee5829-c981-4bbc-a22c-1b12c420f1ff", "timestamp": "2026-04-20T14:48:22.236822+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46412 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--signin-utd2z5", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--signin-utd2z5", "timestamp": "2026-04-20T14:48:22.311119+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46424 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m ○ Compiling /onboarding/consent ...
+[2m[WebServer] [22m ✓ Compiled /onboarding/consent in 3.9s (695 modules)
+[2m[WebServer] [22m GET /onboarding/consent 200 in 4332ms
+[2m[WebServer] [22m{"correlation_id": "a57e0928-b441-495d-b85a-5f81bb786dae", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "a57e0928-b441-495d-b85a-5f81bb786dae", "timestamp": "2026-04-20T14:48:27.864130+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46426 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-qvusxs", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-qvusxs", "timestamp": "2026-04-20T14:48:27.914053+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46428 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m ○ Compiling /app/[role] ...
+[2m[WebServer] [22m ✓ Compiled /app/[role] in 1367ms (724 modules)
+[2m[WebServer] [22m(node:117886) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/advisor 200 in 2921ms
+[2m[WebServer] [22m{"correlation_id": "c7d98d03-641a-4f03-975f-838018556af4", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "c7d98d03-641a-4f03-975f-838018556af4", "timestamp": "2026-04-20T14:48:31.136353+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46428 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "82c92ea4-70e8-4aae-b85b-9e47b22a1439", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "82c92ea4-70e8-4aae-b85b-9e47b22a1439", "timestamp": "2026-04-20T14:48:31.151579+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46428 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-qvusxs", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-qvusxs", "timestamp": "2026-04-20T14:48:31.161237+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46426 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-qvusxs", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-qvusxs", "timestamp": "2026-04-20T14:48:31.175696+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60504 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "9e77577b-3572-41f1-ae3f-a3e8f2ede32a", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "9e77577b-3572-41f1-ae3f-a3e8f2ede32a", "timestamp": "2026-04-20T14:48:31.228065+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60504 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-advisor-ybk9fx", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-advisor-ybk9fx", "timestamp": "2026-04-20T14:48:31.244135+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46426 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/advisor 200 in 518ms
+[2m[WebServer] [22m(node:117894) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/advisor 200 in 368ms
+[2m[WebServer] [22m{"correlation_id": "2462e747-61d9-486c-af58-b603eb4cc7ca", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "2462e747-61d9-486c-af58-b603eb4cc7ca", "timestamp": "2026-04-20T14:48:34.084247+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46426 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-2dhd7b", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-2dhd7b", "timestamp": "2026-04-20T14:48:34.101660+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60504 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "3b962bac-05a0-4204-9e0f-79e2feee4b84", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "3b962bac-05a0-4204-9e0f-79e2feee4b84", "timestamp": "2026-04-20T14:48:34.161963+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60504 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "76ace90e-59ef-40be-ac8e-a1996d4ae21c", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "76ace90e-59ef-40be-ac8e-a1996d4ae21c", "timestamp": "2026-04-20T14:48:34.168572+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60504 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-advisor-1imq5q", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-advisor-1imq5q", "timestamp": "2026-04-20T14:48:34.175379+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46426 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-advisor-1imq5q", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-advisor-1imq5q", "timestamp": "2026-04-20T14:48:34.184615+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46428 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m ○ Compiling /app/advisor/requests ...
+[2m[WebServer] [22m ✓ Compiled /app/advisor/requests in 1270ms (734 modules)
+[2m[WebServer] [22m GET /app/advisor/requests 200 in 2265ms
+[2m[WebServer] [22m{"correlation_id": "86a52814-29cf-4319-833f-7bb6b36c1a9d", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "86a52814-29cf-4319-833f-7bb6b36c1a9d", "timestamp": "2026-04-20T14:48:38.404628+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46428 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-dyszwm", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-dyszwm", "timestamp": "2026-04-20T14:48:38.452058+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46426 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "73674d8c-46fe-459a-801d-4a3e0776aee5", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "73674d8c-46fe-459a-801d-4a3e0776aee5", "timestamp": "2026-04-20T14:48:38.474762+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46426 - "OPTIONS /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "6f7d72a4-0b70-478f-98a6-76c84d25862b", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "6f7d72a4-0b70-478f-98a6-76c84d25862b", "timestamp": "2026-04-20T14:48:38.491782+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46426 - "OPTIONS /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "83d3dc62-abe2-4c29-a047-8a01d87bfcbd", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "83d3dc62-abe2-4c29-a047-8a01d87bfcbd", "timestamp": "2026-04-20T14:48:38.556317+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46426 - "OPTIONS /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-advisor-requests-clukt2", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-advisor-requests-clukt2", "timestamp": "2026-04-20T14:48:38.580733+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46428 - "GET /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-advisor-requests-clukt2", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-advisor-requests-clukt2", "timestamp": "2026-04-20T14:48:38.589978+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60504 - "GET /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-advisor-requests-clukt2", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-advisor-requests-clukt2", "timestamp": "2026-04-20T14:48:38.602931+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60506 - "GET /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+  ✓   1 [desktop-critical] › tests/e2e/advisory-climate-gate.spec.ts:63:7 › N4 advisory and climate tranche diagnostics › CJ-005 EP-006 RJ-003 DI-005 advisory route shows citations, confidence, and reviewer state (22.2s)
+[2m[WebServer] [22m GET /signin 200 in 285ms
+[2m[WebServer] [22m{"correlation_id": "35f133c4-9d3c-4bcc-8b68-3a186dc465c7", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "35f133c4-9d3c-4bcc-8b68-3a186dc465c7", "timestamp": "2026-04-20T14:48:43.902184+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:37038 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--signin-feorjq", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--signin-feorjq", "timestamp": "2026-04-20T14:48:43.964506+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:37048 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /onboarding/consent 200 in 126ms
+[2m[WebServer] [22m{"correlation_id": "e93da491-ea97-4d41-8cdb-c7619e121d4f", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "e93da491-ea97-4d41-8cdb-c7619e121d4f", "timestamp": "2026-04-20T14:48:44.889547+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:37048 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-r2xox1", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-r2xox1", "timestamp": "2026-04-20T14:48:44.938780+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:37038 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/farmer 200 in 306ms
+[2m[WebServer] [22m{"correlation_id": "bca6ee07-f809-4d4f-96f0-9514f70c0ff6", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "bca6ee07-f809-4d4f-96f0-9514f70c0ff6", "timestamp": "2026-04-20T14:48:45.643500+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:37038 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:37048 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "0b218701-f371-4cac-9536-1c365bcf51d5", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "0b218701-f371-4cac-9536-1c365bcf51d5", "timestamp": "2026-04-20T14:48:45.656395+00:00"}
+[2m[WebServer] [22m{"correlation_id": "8b51f6d9-c6b3-4726-9294-c7e3b0a1b749", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "8b51f6d9-c6b3-4726-9294-c7e3b0a1b749", "timestamp": "2026-04-20T14:48:45.686171+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:37048 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-r2xox1", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-r2xox1", "timestamp": "2026-04-20T14:48:45.719720+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:37038 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-r2xox1", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-r2xox1", "timestamp": "2026-04-20T14:48:45.729521+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:37058 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-farmer-63xkih", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-farmer-63xkih", "timestamp": "2026-04-20T14:48:45.735303+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:37068 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/farmer 200 in 180ms
+[2m[WebServer] [22m(node:117931) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m ○ Compiling /app/climate/alerts ...
+[2m[WebServer] [22m ✓ Compiled /app/climate/alerts in 2.6s (744 modules)
+[2m[WebServer] [22m{"correlation_id": "7248acfe-86a6-464f-8d58-2a92779d8462", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "7248acfe-86a6-464f-8d58-2a92779d8462", "timestamp": "2026-04-20T14:48:49.695337+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:37068 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-7c9fea", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-7c9fea", "timestamp": "2026-04-20T14:48:49.734467+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:37058 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "877206d1-bfb3-4576-abfc-c79e275becc3", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "877206d1-bfb3-4576-abfc-c79e275becc3", "timestamp": "2026-04-20T14:48:49.867647+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:37058 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "92c9b3f2-291d-49e7-bcb0-809290362b5c", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "92c9b3f2-291d-49e7-bcb0-809290362b5c", "timestamp": "2026-04-20T14:48:49.893587+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:37058 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-farmer-xj0krw", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-farmer-xj0krw", "timestamp": "2026-04-20T14:48:49.917954+00:00"}
+[2m[WebServer] [22m GET /app/climate/alerts 200 in 3639ms
+[2m[WebServer] [22m{"correlation_id": "trace--app-farmer-xj0krw", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-farmer-xj0krw", "timestamp": "2026-04-20T14:48:49.944685+00:00"}
+[2m[WebServer] [22m GET /signin 200 in 165ms
+  ✘   2 [desktop-critical] › tests/e2e/advisory-climate-gate.spec.ts:89:7 › N4 advisory and climate tranche diagnostics › CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence (31.5s)
+[2m[WebServer] [22m ✓ Compiled in 12.8s (744 modules)
+(node:118031) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:118031) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 603ms
+[2m[WebServer] [22m GET /signin 200 in 382ms
+[2m[WebServer] [22m{"correlation_id": "08da8515-30b6-483c-a9cc-e9c297d82cd0", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "08da8515-30b6-483c-a9cc-e9c297d82cd0", "timestamp": "2026-04-20T14:49:24.890477+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35826 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--signin-9bliyx", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--signin-9bliyx", "timestamp": "2026-04-20T14:49:25.003744+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35828 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /onboarding/consent 200 in 220ms
+[2m[WebServer] [22m{"correlation_id": "755cf91a-ad60-4ec7-8344-059f5be075e8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "755cf91a-ad60-4ec7-8344-059f5be075e8", "timestamp": "2026-04-20T14:49:27.759138+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35828 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-l648uy", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-l648uy", "timestamp": "2026-04-20T14:49:28.009824+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35826 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/farmer 200 in 461ms
+[2m[WebServer] [22m{"correlation_id": "76a72fa0-fe9c-4db6-8bdb-fa182f636c63", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "76a72fa0-fe9c-4db6-8bdb-fa182f636c63", "timestamp": "2026-04-20T14:49:29.557954+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35826 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "184aa200-8ec6-4456-8ebf-a13a8f003d12", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "184aa200-8ec6-4456-8ebf-a13a8f003d12", "timestamp": "2026-04-20T14:49:29.625291+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35826 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-l648uy", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-l648uy", "timestamp": "2026-04-20T14:49:29.649340+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-l648uy", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-l648uy", "timestamp": "2026-04-20T14:49:29.650660+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:59260 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35828 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "6081eb50-b865-4951-a99c-4ffa79e5b2a5", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "6081eb50-b865-4951-a99c-4ffa79e5b2a5", "timestamp": "2026-04-20T14:49:29.757517+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35828 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-farmer-opccdr", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-farmer-opccdr", "timestamp": "2026-04-20T14:49:29.826294+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:59260 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m(node:118266) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 [desktop-critical] › tests/e2e/auth-consent.spec.ts:6:7 › Auth and consent › sign-in validates identity fields and grants consent (15.7s)
+[2m[WebServer] [22m ⨯ Failed to generate static paths for /app/[role]:
+[2m[WebServer] [22mTypeError: __webpack_modules__[moduleId] is not a function
+[2m[WebServer] [22m    at __webpack_exec__ (.next/server/app/app/[role]/page.js:695:39)
+[2m[WebServer] [22m    at <unknown> (.next/server/app/app/[role]/page.js:696:223) {
+[2m[WebServer] [22m  type: [32m'TypeError'[39m
+[2m[WebServer] [22m}
+[2m[WebServer] [22m ○ Compiling /app/market/listings ...
+[2m[WebServer] [22m ✓ Compiled /app/market/listings in 2.5s (754 modules)
+[2m[WebServer] [22m GET /app/market/listings 200 in 3392ms
+[2m[WebServer] [22m GET /signin 200 in 211ms
+[2m[WebServer] [22m{"correlation_id": "b5c8116b-4a9f-462a-a8f4-ab7e09562038", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "b5c8116b-4a9f-462a-a8f4-ab7e09562038", "timestamp": "2026-04-20T14:49:39.563402+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:56780 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--signin-o5medt", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--signin-o5medt", "timestamp": "2026-04-20T14:49:39.609806+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:56790 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /onboarding/consent 200 in 169ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 516ms
+[2m[WebServer] [22m{"correlation_id": "4407fa03-ae86-4fab-a73c-4218cab35613", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "4407fa03-ae86-4fab-a73c-4218cab35613", "timestamp": "2026-04-20T14:49:44.331746+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:56790 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-twi3sd", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-twi3sd", "timestamp": "2026-04-20T14:49:44.394263+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:56780 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "27bf725b-826c-481a-bd34-d61fb07052b2", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "27bf725b-826c-481a-bd34-d61fb07052b2", "timestamp": "2026-04-20T14:49:44.514520+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:56780 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "489c6529-602a-4d6d-804b-441dfd4612ab", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "489c6529-602a-4d6d-804b-441dfd4612ab", "timestamp": "2026-04-20T14:49:44.570862+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:56780 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--market-listings-4s3b22", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--market-listings-4s3b22", "timestamp": "2026-04-20T14:49:44.702648+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:56790 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--market-listings-4s3b22", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--market-listings-4s3b22", "timestamp": "2026-04-20T14:49:44.716720+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:56798 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "921a517c-725c-4921-943d-ff2936c748f9", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "921a517c-725c-4921-943d-ff2936c748f9", "timestamp": "2026-04-20T14:49:44.838769+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:56798 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--market-listings-4s3b22", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--market-listings-4s3b22", "timestamp": "2026-04-20T14:49:44.943156+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:56790 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /onboarding/consent 200 in 458ms
+[2m[WebServer] [22m GET /onboarding/consent 200 in 397ms
+  ✓   4 [desktop-critical] › tests/e2e/auth-consent.spec.ts:50:7 › Auth and consent › protected routes redirect to sign-in first and consent second (14.5s)
+[2m[WebServer] [22m{"correlation_id": "f623b79a-db19-438a-931d-d24e8b003a6e", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "f623b79a-db19-438a-931d-d24e8b003a6e", "timestamp": "2026-04-20T14:49:46.995439+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:56814 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "3d77d303-ce2d-49ce-b618-84bc3382e191", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "3d77d303-ce2d-49ce-b618-84bc3382e191", "timestamp": "2026-04-20T14:49:47.038905+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:56814 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "592e055e-c2e3-4e43-b4d4-12b8bd877364", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "command.metric", "timestamp": "2026-04-20T14:49:47.094659+00:00"}
+[2m[WebServer] [22m{"correlation_id": "592e055e-c2e3-4e43-b4d4-12b8bd877364", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "592e055e-c2e3-4e43-b4d4-12b8bd877364", "timestamp": "2026-04-20T14:49:47.096535+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:56814 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "43ae2353-e72c-486f-986f-4dcd1cdfabdf", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "43ae2353-e72c-486f-986f-4dcd1cdfabdf", "timestamp": "2026-04-20T14:49:47.127688+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:56814 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "8fa66442-6713-416e-b71d-bf13e4d7e603", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "8fa66442-6713-416e-b71d-bf13e4d7e603", "timestamp": "2026-04-20T14:49:47.161052+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:56814 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /signin 200 in 148ms
+[2m[WebServer] [22m(node:118594) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+[2m[WebServer] [22m    at __webpack_exec__ (.next/server/app/app/[role]/page.js:695:39)
+[2m[WebServer] [22m    at <unknown> (.next/server/app/app/[role]/page.js:696:223) {
+[2m[WebServer] [22m  type: [32m'TypeError'[39m,
+[2m[WebServer] [22m  page: [32m'/app/buyer'[39m
+[2m[WebServer] [22m}
+[2m[WebServer] [22m{"correlation_id": "3fe533cf-1054-44f7-83cf-048a4a58f7bc", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "3fe533cf-1054-44f7-83cf-048a4a58f7bc", "timestamp": "2026-04-20T14:49:49.180400+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:33738 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-qymag0", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-qymag0", "timestamp": "2026-04-20T14:49:49.222909+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:33752 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m ○ Compiling /_error ...
+[2m[WebServer] [22m ✓ Compiled /_error in 20.6s (1093 modules)
+[2m[WebServer] [22m GET /app/buyer 500 in 27742ms
+[2m[WebServer] [22m GET /signin 200 in 23867ms
+  ✘   5 [desktop-critical] › tests/e2e/buyer-discovery.spec.ts:145:7 › Buyer discovery and scoped read behavior › buyer reaches the discovery shell and cannot read another actor's listing detail (38.9s)
+(node:118615) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:118615) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 1225ms
+[2m[WebServer] [22m{"correlation_id": "191591b8-586e-4f42-a997-fc2c9239176f", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "191591b8-586e-4f42-a997-fc2c9239176f", "timestamp": "2026-04-20T14:50:34.856101+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:51722 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--signin-z9zge1", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--signin-z9zge1", "timestamp": "2026-04-20T14:50:34.977526+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:51728 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /onboarding/consent 200 in 378ms
+[2m[WebServer] [22m{"correlation_id": "06dcdc0f-0d1b-4f84-a25c-21e966c8df52", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "06dcdc0f-0d1b-4f84-a25c-21e966c8df52", "timestamp": "2026-04-20T14:50:36.801515+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:51728 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-jrhjua", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-jrhjua", "timestamp": "2026-04-20T14:50:36.867597+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:51722 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m(node:118686) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/farmer 200 in 3179ms
+[2m[WebServer] [22m{"correlation_id": "e920eff8-ed99-4403-b1e8-831febfb83a9", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "e920eff8-ed99-4403-b1e8-831febfb83a9", "timestamp": "2026-04-20T14:50:40.620965+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:51722 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "e9338003-dcb9-4dc6-8269-70160ae8fbb5", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "e9338003-dcb9-4dc6-8269-70160ae8fbb5", "timestamp": "2026-04-20T14:50:40.644866+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:51722 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-jrhjua", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-jrhjua", "timestamp": "2026-04-20T14:50:40.679516+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:51728 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-jrhjua", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-jrhjua", "timestamp": "2026-04-20T14:50:40.699479+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52712 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "672c9f51-ccd2-4e0f-b8b4-56803eb95ab3", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "672c9f51-ccd2-4e0f-b8b4-56803eb95ab3", "timestamp": "2026-04-20T14:50:40.731516+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52712 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-farmer-s1cm3n", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-farmer-s1cm3n", "timestamp": "2026-04-20T14:50:40.802078+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:51728 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/farmer 200 in 645ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 858ms
+[2m[WebServer] [22m(node:118697) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/farmer 200 in 996ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 792ms
+[2m[WebServer] [22m{"correlation_id": "41be2b01-0a90-41de-b8e4-102151a7fa9c", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "41be2b01-0a90-41de-b8e4-102151a7fa9c", "timestamp": "2026-04-20T14:50:46.386920+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52714 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-adn2em", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-adn2em", "timestamp": "2026-04-20T14:50:46.443870+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52726 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "238b6718-8e82-4727-82a1-ccca19e73c5b", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "238b6718-8e82-4727-82a1-ccca19e73c5b", "timestamp": "2026-04-20T14:50:46.552437+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52726 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "3df8c274-d7fe-40a6-8038-5c5f92ad05ff", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "3df8c274-d7fe-40a6-8038-5c5f92ad05ff", "timestamp": "2026-04-20T14:50:46.594793+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52726 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--market-listings-k3xdf8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--market-listings-k3xdf8", "timestamp": "2026-04-20T14:50:46.625272+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52714 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--market-listings-k3xdf8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--market-listings-k3xdf8", "timestamp": "2026-04-20T14:50:46.638548+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52738 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "de95e6c8-7201-4a80-99a7-344b9d58108d", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "de95e6c8-7201-4a80-99a7-344b9d58108d", "timestamp": "2026-04-20T14:50:46.805601+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52738 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--market-listings-k3xdf8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--market-listings-k3xdf8", "timestamp": "2026-04-20T14:50:46.851835+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52714 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "0cb9a3bb-8c4a-429b-830e-8213eb62fc3e", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "0cb9a3bb-8c4a-429b-830e-8213eb62fc3e", "timestamp": "2026-04-20T14:50:48.179713+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52714 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--market-listings-k3xdf8", "level": "INFO", "logger": "agrodomain.api.telemetry", "message": "command.metric", "timestamp": "2026-04-20T14:50:48.260999+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace--market-listings-k3xdf8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--market-listings-k3xdf8", "timestamp": "2026-04-20T14:50:48.263741+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52738 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "d258e722-5cab-416e-8c52-78688470564f", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "d258e722-5cab-416e-8c52-78688470564f", "timestamp": "2026-04-20T14:50:48.286520+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52738 - "OPTIONS /api/v1/audit/events?request_id=3909e45b-5d2b-4e48-92d0-821b76d51f4a&idempotency_key=104906d1-0d81-45ba-b06a-6ac0e801fad3 HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--market-listings-k3xdf8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--market-listings-k3xdf8", "timestamp": "2026-04-20T14:50:48.306306+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52714 - "GET /api/v1/audit/events?request_id=3909e45b-5d2b-4e48-92d0-821b76d51f4a&idempotency_key=104906d1-0d81-45ba-b06a-6ac0e801fad3 HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "dc6819dd-cba5-47cf-bf36-075c0461adc1", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "dc6819dd-cba5-47cf-bf36-075c0461adc1", "timestamp": "2026-04-20T14:50:48.322054+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52714 - "OPTIONS /api/v1/marketplace/listings HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--market-listings-k3xdf8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--market-listings-k3xdf8", "timestamp": "2026-04-20T14:50:48.338784+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52738 - "GET /api/v1/marketplace/listings HTTP/1.1" 200 OK
+ ELIFECYCLE  Command failed.
+[2m[WebServer] [22m ○ Compiling /app/market/listings/[listingId] ...
+[2m[WebServer] [22m[Error: ENOENT: no such file or directory, stat '/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web/.next/cache/webpack/server-development/2.pack.gz'] {
+[2m[WebServer] [22m  errno: [33m-2[39m,
+[2m[WebServer] [22m  code: [32m'ENOENT'[39m,
+[2m[WebServer] [22m  syscall: [32m'stat'[39m,
+[2m[WebServer] [22m  path: [32m'/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web/.next/cache/webpack/server-development/2.pack.gz'[39m
+[2m[WebServer] [22m}
+[2m[WebServer] [22m ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web/.next/cache/webpack/server-development/2.pack.gz'] {
+[2m[WebServer] [22m  errno: [33m-2[39m,
+[2m[WebServer] [22m  code: [32m'ENOENT'[39m,
+[2m[WebServer] [22m  syscall: [32m'stat'[39m,
+[2m[WebServer] [22m  path: [32m'/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web/.next/cache/webpack/server-development/2.pack.gz'[39m
+[2m[WebServer] [22m}
+[2m[WebServer] [22m ⨯ unhandledRejection:  [Error: ENOENT: no such file or directory, stat '/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web/.next/cache/webpack/server-development/2.pack.gz'] {
+[2m[WebServer] [22m  errno: [33m-2[39m,
+[2m[WebServer] [22m  code: [32m'ENOENT'[39m,
+[2m[WebServer] [22m  syscall: [32m'stat'[39m,
+[2m[WebServer] [22m  path: [32m'/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web/.next/cache/webpack/server-development/2.pack.gz'[39m
+[2m[WebServer] [22m}
+[2m[WebServer] [22m<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat '/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web/.next/cache/webpack/server-development/2.pack.gz'
+  ✘   6 [desktop-critical] › tests/e2e/marketplace.spec.ts:6:7 › Marketplace create and read › farmer creates a listing and reads it back from detail (1.7m)
+(node:118887) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:118887) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   7 [desktop-critical] › tests/e2e/marketplace.spec.ts:33:7 › Marketplace create and read › farmer edits a listing and sees optimistic reconciliation evidence (1.7m)
+(node:119216) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:119216) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m{"correlation_id": "d25c469e-fe47-41d5-9450-3132b688651f", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "d25c469e-fe47-41d5-9450-3132b688651f", "timestamp": "2026-04-20T15:02:03.383951+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:59094 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "e9d45e3e-c528-4b5a-98f8-4ab72145cfd1", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "e9d45e3e-c528-4b5a-98f8-4ab72145cfd1", "timestamp": "2026-04-20T15:02:03.568104+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:59094 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     Shutting down
+[2m[WebServer] [22mINFO:     Waiting for application shutdown.
+[2m[WebServer] [22mINFO:     Application shutdown complete.
+[2m[WebServer] [22mINFO:     Finished server process [117565]
+[2m[WebServer] [22m[?25h[2m[WebServer] [22m
+  ✘   8 [desktop-critical] › tests/e2e/n5-finance-traceability.spec.ts:214:7 › N5 finance and traceability tranche checks › CJ-004/CJ-008 finance HITL queue and decision actions are live (33.4s)
+(node:119354) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:119354) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   9 [desktop-critical] › tests/e2e/n5-finance-traceability.spec.ts:237:7 › N5 finance and traceability tranche checks › CJ-007 traceability timeline renders ordered events and explicit evidence state (806ms)
+(node:119479) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:119479) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  10 [desktop-critical] › tests/e2e/n6-admin-observability.spec.ts:6:7 › N6 admin observability and rollout tranche diagnostics › PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence (403ms)
+(node:119558) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:119558) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  11 [desktop-critical] › tests/e2e/n6-admin-observability.spec.ts:24:7 › N6 admin observability and rollout tranche diagnostics › EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture (532ms)
+(node:119649) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:119649) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  12 [desktop-critical] › tests/e2e/negotiation.spec.ts:252:7 › Negotiation inbox and thread proof › pending confirmation approve/reject paths lock terminal state and outsider thread access is blocked (443ms)
+(node:119734) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:119734) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  13 [desktop-critical] › tests/e2e/r4-route-completion.spec.ts:171:7 › R4 route completion proof › admin analytics and cooperative dispatch routes are live and navigable (449ms)
+(node:119807) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:119807) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  14 [desktop-critical] › tests/e2e/r4-route-completion.spec.ts:196:7 › R4 route completion proof › wallet and notifications routes surface live escrow state after accepted negotiation (470ms)
+(node:119876) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:119876) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  15 [desktop-critical] › tests/e2e/r4-route-completion.spec.ts:301:7 › R4 route completion proof › server-authoritative home posture redirects after consent revoke (447ms)
+(node:119950) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:119950) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  16 [desktop-critical] › tests/e2e/r5-ux-hardening.spec.ts:303:7 › R5 UX hardening proof › captures public, onboarding, and role-home routes (440ms)
+(node:120059) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:120059) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  17 [desktop-critical] › tests/e2e/r5-ux-hardening.spec.ts:337:7 › R5 UX hardening proof › captures seeded marketplace, wallet, notifications, and traceability flows (370ms)
+(node:120148) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:120148) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  18 [desktop-critical] › tests/e2e/r5-ux-hardening.spec.ts:461:7 › R5 UX hardening proof › captures operations, advisory, climate, finance, and admin routes (443ms)
+(node:120227) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:120227) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  19 [desktop-critical] › tests/e2e/recovery.spec.ts:14:7 › Consent recovery and offline retry › consent revoke blocks protected routes until restored (371ms)
+(node:120306) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:120306) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  20 [desktop-critical] › tests/e2e/recovery.spec.ts:56:7 › Consent recovery and offline retry › offline seam exposes connectivity, retry, and dismiss controls (619ms)
+(node:120385) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:120385) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  21 [mobile-critical] › tests/e2e/advisory-climate-gate.spec.ts:63:7 › N4 advisory and climate tranche diagnostics › CJ-005 EP-006 RJ-003 DI-005 advisory route shows citations, confidence, and reviewer state (726ms)
+(node:120462) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:120462) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  22 [mobile-critical] › tests/e2e/advisory-climate-gate.spec.ts:89:7 › N4 advisory and climate tranche diagnostics › CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence (580ms)
+(node:120539) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:120539) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  23 [mobile-critical] › tests/e2e/auth-consent.spec.ts:6:7 › Auth and consent › sign-in validates identity fields and grants consent (548ms)
+(node:120616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:120616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  24 [mobile-critical] › tests/e2e/auth-consent.spec.ts:50:7 › Auth and consent › protected routes redirect to sign-in first and consent second (709ms)
+(node:120694) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:120694) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  25 [mobile-critical] › tests/e2e/buyer-discovery.spec.ts:145:7 › Buyer discovery and scoped read behavior › buyer reaches the discovery shell and cannot read another actor's listing detail (480ms)
+(node:120763) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:120763) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  26 [mobile-critical] › tests/e2e/marketplace.spec.ts:6:7 › Marketplace create and read › farmer creates a listing and reads it back from detail (665ms)
+(node:120906) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:120906) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  27 [mobile-critical] › tests/e2e/marketplace.spec.ts:33:7 › Marketplace create and read › farmer edits a listing and sees optimistic reconciliation evidence (834ms)
+(node:120986) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:120986) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  28 [mobile-critical] › tests/e2e/n5-finance-traceability.spec.ts:214:7 › N5 finance and traceability tranche checks › CJ-004/CJ-008 finance HITL queue and decision actions are live (1.1s)
+(node:121056) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:121056) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  29 [mobile-critical] › tests/e2e/n5-finance-traceability.spec.ts:237:7 › N5 finance and traceability tranche checks › CJ-007 traceability timeline renders ordered events and explicit evidence state (663ms)
+(node:121125) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:121125) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  30 [mobile-critical] › tests/e2e/n6-admin-observability.spec.ts:6:7 › N6 admin observability and rollout tranche diagnostics › PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence (604ms)
+(node:121225) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:121225) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  31 [mobile-critical] › tests/e2e/n6-admin-observability.spec.ts:24:7 › N6 admin observability and rollout tranche diagnostics › EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture (658ms)
+(node:121313) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:121313) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  32 [mobile-critical] › tests/e2e/negotiation.spec.ts:252:7 › Negotiation inbox and thread proof › pending confirmation approve/reject paths lock terminal state and outsider thread access is blocked (548ms)
+(node:121383) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:121383) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  33 [mobile-critical] › tests/e2e/r4-route-completion.spec.ts:171:7 › R4 route completion proof › admin analytics and cooperative dispatch routes are live and navigable (457ms)
+(node:121453) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:121453) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  34 [mobile-critical] › tests/e2e/r4-route-completion.spec.ts:196:7 › R4 route completion proof › wallet and notifications routes surface live escrow state after accepted negotiation (372ms)
+(node:121526) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:121526) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  35 [mobile-critical] › tests/e2e/r4-route-completion.spec.ts:301:7 › R4 route completion proof › server-authoritative home posture redirects after consent revoke (768ms)
+(node:121608) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:121608) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  36 [mobile-critical] › tests/e2e/r5-ux-hardening.spec.ts:303:7 › R5 UX hardening proof › captures public, onboarding, and role-home routes (706ms)
+(node:121685) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:121685) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  37 [mobile-critical] › tests/e2e/r5-ux-hardening.spec.ts:337:7 › R5 UX hardening proof › captures seeded marketplace, wallet, notifications, and traceability flows (552ms)
+(node:121762) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:121762) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  38 [mobile-critical] › tests/e2e/r5-ux-hardening.spec.ts:461:7 › R5 UX hardening proof › captures operations, advisory, climate, finance, and admin routes (573ms)
+(node:121841) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:121841) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  39 [mobile-critical] › tests/e2e/recovery.spec.ts:14:7 › Consent recovery and offline retry › consent revoke blocks protected routes until restored (521ms)
+(node:121921) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:121921) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  40 [mobile-critical] › tests/e2e/recovery.spec.ts:56:7 › Consent recovery and offline retry › offline seam exposes connectivity, retry, and dismiss controls (701ms)
+
+
+  1) [desktop-critical] › tests/e2e/advisory-climate-gate.spec.ts:89:7 › N4 advisory and climate tranche diagnostics › CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('heading', { name: 'Live alert triage with visible degraded-mode posture' })
+    Expected: visible
+    Timeout: 20000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 20000ms[22m
+    [2m  - waiting for getByRole('heading', { name: 'Live alert triage with visible degraded-mode posture' })[22m
+
+
+      101 |     await expect(
+      102 |       page.getByRole("heading", { name: "Live alert triage with visible degraded-mode posture" }),
+    > 103 |     ).toBeVisible({ timeout: 20_000 });
+          |       ^
+      104 |     await expect(
+      105 |       page.getByText(
+      106 |         "Alert severity, acknowledgement state, source posture, and MRV assumptions stay visible together so operators do not over-read partial data.",
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:103:7
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/advisory-climate-gate-N4-a-2743d-wledgement-and-MRV-evidence-desktop-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/advisory-climate-gate-N4-a-2743d-wledgement-and-MRV-evidence-desktop-critical/error-context.md
+
+  2) [desktop-critical] › tests/e2e/buyer-discovery.spec.ts:145:7 › Buyer discovery and scoped read behavior › buyer reaches the discovery shell and cannot read another actor's listing detail 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('heading', { name: 'Review supply quickly, inspect proof, and move offers without losing context.' })
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+    [2m  - waiting for getByRole('heading', { name: 'Review supply quickly, inspect proof, and move offers without losing context.' })[22m
+
+
+      177 |         name: "Review supply quickly, inspect proof, and move offers without losing context.",
+      178 |       }),
+    > 179 |     ).toBeVisible();
+          |       ^
+      180 |
+      181 |     await gotoPath(page, "/app/market/listings");
+      182 |     await expect(
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/buyer-discovery.spec.ts:179:7
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/buyer-discovery-Buyer-disc-f7e10-ther-actor-s-listing-detail-desktop-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/buyer-discovery-Buyer-disc-f7e10-ther-actor-s-listing-detail-desktop-critical/error-context.md
+
+  3) [desktop-critical] › tests/e2e/marketplace.spec.ts:6:7 › Marketplace create and read › farmer creates a listing and reads it back from detail 
+
+    [31mTest timeout of 90000ms exceeded.[39m
+
+    Error: page.waitForTimeout: Test timeout of 90000ms exceeded.
+
+       at helpers.ts:282
+
+      280 |         throw error;
+      281 |       }
+    > 282 |       await page.waitForTimeout(500);
+          |                  ^
+      283 |     }
+      284 |   }
+      285 | }
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:282:18)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/marketplace.spec.ts:25:5
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/marketplace-Marketplace-cr-4d170-d-reads-it-back-from-detail-desktop-critical/error-context.md
+
+  4) [desktop-critical] › tests/e2e/marketplace.spec.ts:33:7 › Marketplace create and read › farmer edits a listing and sees optimistic reconciliation evidence 
+
+    [31mTest timeout of 90000ms exceeded.[39m
+
+    Error: page.waitForTimeout: Test timeout of 90000ms exceeded.
+
+       at helpers.ts:282
+
+      280 |         throw error;
+      281 |       }
+    > 282 |       await page.waitForTimeout(500);
+          |                  ^
+      283 |     }
+      284 |   }
+      285 | }
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:282:18)
+        at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:5)
+        at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:3)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/marketplace.spec.ts:38:5
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/marketplace-Marketplace-cr-5c669-tic-reconciliation-evidence-desktop-critical/error-context.md
+
+  5) [desktop-critical] › tests/e2e/n5-finance-traceability.spec.ts:214:7 › N5 finance and traceability tranche checks › CJ-004/CJ-008 finance HITL queue and decision actions are live 
+
+    Error: page.goto: net::ERR_EMPTY_RESPONSE at http://127.0.0.1:3210/signin
+    Call log:
+    [2m  - navigating to "http://127.0.0.1:3210/signin", waiting until "commit"[22m
+
+
+       at helpers.ts:257
+
+      255 |   for (let attempt = 0; attempt < 3; attempt += 1) {
+      256 |     try {
+    > 257 |       await page.goto(path, { waitUntil: "commit", timeout: 120_000 });
+          |                  ^
+      258 |       const redirectedToSignIn = /\/signin(\?.*)?$/.test(page.url());
+      259 |       const wantsProtectedRoute = path === "/app" || path.startsWith("/app/");
+      260 |       if (redirectedToSignIn && wantsProtectedRoute) {
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)
+        at primeSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:68:17)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:221:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/n5-finance-traceability-N5-bf26b-d-decision-actions-are-live-desktop-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/n5-finance-traceability-N5-bf26b-d-decision-actions-are-live-desktop-critical/error-context.md
+
+  6) [desktop-critical] › tests/e2e/n5-finance-traceability.spec.ts:237:7 › N5 finance and traceability tranche checks › CJ-007 traceability timeline renders ordered events and explicit evidence state 
+
+    Error: apiRequestContext.post: connect ECONNREFUSED 127.0.0.1:8210
+    Call log:
+    [2m  - → POST http://127.0.0.1:8210/api/v1/identity/session[22m
+    [2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7727.15 Safari/537.36[22m
+    [2m    - accept: */*[22m
+    [2m    - accept-encoding: gzip,deflate,br[22m
+    [2m    - X-Correlation-ID: ab67345e-c958-41d7-8077-eb40e2be716d[22m
+    [2m    - X-Request-ID: ab67345e-c958-41d7-8077-eb40e2be716d[22m
+    [2m    - content-type: application/json[22m
+    [2m    - content-length: 110[22m
+
+
+      27 | ): Promise<SessionSeed> {
+      28 |   const signInRequestId = crypto.randomUUID();
+    > 29 |   const signInResponse = await request.post(`${apiBaseUrl}/api/v1/identity/session`, {
+         |                                        ^
+      30 |     data: {
+      31 |       display_name: input.displayName,
+      32 |       email: input.email,
+        at createAuthenticatedSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:29:40)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:238:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/n5-finance-traceability-N5-a33b0-and-explicit-evidence-state-desktop-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/n5-finance-traceability-N5-a33b0-and-explicit-evidence-state-desktop-critical/error-context.md
+
+  7) [desktop-critical] › tests/e2e/n6-admin-observability.spec.ts:6:7 › N6 admin observability and rollout tranche diagnostics › PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3210/signin
+    Call log:
+    [2m  - navigating to "http://127.0.0.1:3210/signin", waiting until "commit"[22m
+
+
+       at helpers.ts:257
+
+      255 |   for (let attempt = 0; attempt < 3; attempt += 1) {
+      256 |     try {
+    > 257 |       await page.goto(path, { waitUntil: "commit", timeout: 120_000 });
+          |                  ^
+      258 |       const redirectedToSignIn = /\/signin(\?.*)?$/.test(page.url());
+      259 |       const wantsProtectedRoute = path === "/app" || path.startsWith("/app/");
+      260 |       if (redirectedToSignIn && wantsProtectedRoute) {
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)
+        at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)
+        at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:10:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/n6-admin-observability-N6--c45d3-and-degraded-state-evidence-desktop-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/n6-admin-observability-N6--c45d3-and-degraded-state-evidence-desktop-critical/error-context.md
+
+  8) [desktop-critical] › tests/e2e/n6-admin-observability.spec.ts:24:7 › N6 admin observability and rollout tranche diagnostics › EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3210/signin
+    Call log:
+    [2m  - navigating to "http://127.0.0.1:3210/signin", waiting until "commit"[22m
+
+
+       at helpers.ts:257
+
+      255 |   for (let attempt = 0; attempt < 3; attempt += 1) {
+      256 |     try {
+    > 257 |       await page.goto(path, { waitUntil: "commit", timeout: 120_000 });
+          |                  ^
+      258 |       const redirectedToSignIn = /\/signin(\?.*)?$/.test(page.url());
+      259 |       const wantsProtectedRoute = path === "/app" || path.startsWith("/app/");
+      260 |       if (redirectedToSignIn && wantsProtectedRoute) {
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)
+        at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)
+        at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:28:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/n6-admin-observability-N6--1ccc0-ope-chips-and-audit-posture-desktop-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/n6-admin-observability-N6--1ccc0-ope-chips-and-audit-posture-desktop-critical/error-context.md
+
+  9) [desktop-critical] › tests/e2e/negotiation.spec.ts:252:7 › Negotiation inbox and thread proof › pending confirmation approve/reject paths lock terminal state and outsider thread access is blocked 
+
+    Error: apiRequestContext.post: connect ECONNREFUSED 127.0.0.1:8210
+    Call log:
+    [2m  - → POST http://127.0.0.1:8210/api/v1/identity/session[22m
+    [2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7727.15 Safari/537.36[22m
+    [2m    - accept: */*[22m
+    [2m    - accept-encoding: gzip,deflate,br[22m
+    [2m    - X-Correlation-ID: 16f4e44d-e9b0-4a6e-930d-69e7d0507f97[22m
+    [2m    - X-Request-ID: 16f4e44d-e9b0-4a6e-930d-69e7d0507f97[22m
+    [2m    - content-type: application/json[22m
+    [2m    - content-length: 120[22m
+
+
+      35 | ): Promise<SessionSeed> {
+      36 |   const signInRequestId = crypto.randomUUID();
+    > 37 |   const signInResponse = await request.post(`${API_BASE_URL}/api/v1/identity/session`, {
+         |                                        ^
+      38 |     data: {
+      39 |       display_name: input.displayName,
+      40 |       email: input.email,
+        at createAuthenticatedSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/negotiation.spec.ts:37:40)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/negotiation.spec.ts:259:33
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/negotiation-Negotiation-in-fff71-er-thread-access-is-blocked-desktop-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/negotiation-Negotiation-in-fff71-er-thread-access-is-blocked-desktop-critical/error-context.md
+
+  10) [desktop-critical] › tests/e2e/r4-route-completion.spec.ts:171:7 › R4 route completion proof › admin analytics and cooperative dispatch routes are live and navigable 
+
+    Error: apiRequestContext.post: connect ECONNREFUSED 127.0.0.1:8210
+    Call log:
+    [2m  - → POST http://127.0.0.1:8210/api/v1/identity/session[22m
+    [2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7727.15 Safari/537.36[22m
+    [2m    - accept: */*[22m
+    [2m    - accept-encoding: gzip,deflate,br[22m
+    [2m    - X-Correlation-ID: 89c0b9e5-b406-43e5-b761-b9fbc9b21b67[22m
+    [2m    - X-Request-ID: 89c0b9e5-b406-43e5-b761-b9fbc9b21b67[22m
+    [2m    - content-type: application/json[22m
+    [2m    - content-length: 107[22m
+
+
+      34 | ): Promise<SessionSeed> {
+      35 |   const signInRequestId = crypto.randomUUID();
+    > 36 |   const signInResponse = await request.post(`${API_BASE_URL}/api/v1/identity/session`, {
+         |                                        ^
+      37 |     data: {
+      38 |       display_name: input.displayName,
+      39 |       email: input.email,
+        at createAuthenticatedSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:36:40)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:172:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r4-route-completion-R4-rou-2ec5d-utes-are-live-and-navigable-desktop-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r4-route-completion-R4-rou-2ec5d-utes-are-live-and-navigable-desktop-critical/error-context.md
+
+  11) [desktop-critical] › tests/e2e/r4-route-completion.spec.ts:196:7 › R4 route completion proof › wallet and notifications routes surface live escrow state after accepted negotiation 
+
+    Error: apiRequestContext.post: connect ECONNREFUSED 127.0.0.1:8210
+    Call log:
+    [2m  - → POST http://127.0.0.1:8210/api/v1/identity/session[22m
+    [2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7727.15 Safari/537.36[22m
+    [2m    - accept: */*[22m
+    [2m    - accept-encoding: gzip,deflate,br[22m
+    [2m    - X-Correlation-ID: 6cbfb850-5cac-41be-94d9-583d5181af8b[22m
+    [2m    - X-Request-ID: 6cbfb850-5cac-41be-94d9-583d5181af8b[22m
+    [2m    - content-type: application/json[22m
+    [2m    - content-length: 110[22m
+
+
+      34 | ): Promise<SessionSeed> {
+      35 |   const signInRequestId = crypto.randomUUID();
+    > 36 |   const signInResponse = await request.post(`${API_BASE_URL}/api/v1/identity/session`, {
+         |                                        ^
+      37 |     data: {
+      38 |       display_name: input.displayName,
+      39 |       email: input.email,
+        at createAuthenticatedSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:36:40)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:198:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r4-route-completion-R4-rou-8939e--after-accepted-negotiation-desktop-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r4-route-completion-R4-rou-8939e--after-accepted-negotiation-desktop-critical/error-context.md
+
+  12) [desktop-critical] › tests/e2e/r4-route-completion.spec.ts:301:7 › R4 route completion proof › server-authoritative home posture redirects after consent revoke 
+
+    Error: apiRequestContext.post: connect ECONNREFUSED 127.0.0.1:8210
+    Call log:
+    [2m  - → POST http://127.0.0.1:8210/api/v1/identity/session[22m
+    [2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7727.15 Safari/537.36[22m
+    [2m    - accept: */*[22m
+    [2m    - accept-encoding: gzip,deflate,br[22m
+    [2m    - X-Correlation-ID: fcd2421c-111a-4463-8962-715eba35431e[22m
+    [2m    - X-Request-ID: fcd2421c-111a-4463-8962-715eba35431e[22m
+    [2m    - content-type: application/json[22m
+    [2m    - content-length: 119[22m
+
+
+      34 | ): Promise<SessionSeed> {
+      35 |   const signInRequestId = crypto.randomUUID();
+    > 36 |   const signInResponse = await request.post(`${API_BASE_URL}/api/v1/identity/session`, {
+         |                                        ^
+      37 |     data: {
+      38 |       display_name: input.displayName,
+      39 |       email: input.email,
+        at createAuthenticatedSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:36:40)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:302:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r4-route-completion-R4-rou-c4b4a-irects-after-consent-revoke-desktop-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r4-route-completion-R4-rou-c4b4a-irects-after-consent-revoke-desktop-critical/error-context.md
+
+  13) [desktop-critical] › tests/e2e/r5-ux-hardening.spec.ts:303:7 › R5 UX hardening proof › captures public, onboarding, and role-home routes 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3210/
+    Call log:
+    [2m  - navigating to "http://127.0.0.1:3210/", waiting until "commit"[22m
+
+
+       at helpers.ts:257
+
+      255 |   for (let attempt = 0; attempt < 3; attempt += 1) {
+      256 |     try {
+    > 257 |       await page.goto(path, { waitUntil: "commit", timeout: 120_000 });
+          |                  ^
+      258 |       const redirectedToSignIn = /\/signin(\?.*)?$/.test(page.url());
+      259 |       const wantsProtectedRoute = path === "/app" || path.startsWith("/app/");
+      260 |       if (redirectedToSignIn && wantsProtectedRoute) {
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:306:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r5-ux-hardening-R5-UX-hard-88d73-arding-and-role-home-routes-desktop-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r5-ux-hardening-R5-UX-hard-88d73-arding-and-role-home-routes-desktop-critical/error-context.md
+
+  14) [desktop-critical] › tests/e2e/r5-ux-hardening.spec.ts:337:7 › R5 UX hardening proof › captures seeded marketplace, wallet, notifications, and traceability flows 
+
+    Error: apiRequestContext.post: connect ECONNREFUSED 127.0.0.1:8210
+    Call log:
+    [2m  - → POST http://127.0.0.1:8210/api/v1/identity/session[22m
+    [2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7727.15 Safari/537.36[22m
+    [2m    - accept: */*[22m
+    [2m    - accept-encoding: gzip,deflate,br[22m
+    [2m    - X-Correlation-ID: fceebe17-b57f-47ce-a9f8-5d377af7645c[22m
+    [2m    - X-Request-ID: fceebe17-b57f-47ce-a9f8-5d377af7645c[22m
+    [2m    - content-type: application/json[22m
+    [2m    - content-length: 110[22m
+
+
+      82 | ): Promise<SessionSeed> {
+      83 |   const signInRequestId = crypto.randomUUID();
+    > 84 |   const signInResponse = await request.post(`${API_BASE_URL}/api/v1/identity/session`, {
+         |                                        ^
+      85 |     data: {
+      86 |       display_name: input.displayName,
+      87 |       email: input.email,
+        at createAuthenticatedSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:84:40)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:339:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r5-ux-hardening-R5-UX-hard-12dc2-ions-and-traceability-flows-desktop-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r5-ux-hardening-R5-UX-hard-12dc2-ions-and-traceability-flows-desktop-critical/error-context.md
+
+  15) [desktop-critical] › tests/e2e/r5-ux-hardening.spec.ts:461:7 › R5 UX hardening proof › captures operations, advisory, climate, finance, and admin routes 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3210/signin
+    Call log:
+    [2m  - navigating to "http://127.0.0.1:3210/signin", waiting until "commit"[22m
+
+
+       at helpers.ts:257
+
+      255 |   for (let attempt = 0; attempt < 3; attempt += 1) {
+      256 |     try {
+    > 257 |       await page.goto(path, { waitUntil: "commit", timeout: 120_000 });
+          |                  ^
+      258 |       const redirectedToSignIn = /\/signin(\?.*)?$/.test(page.url());
+      259 |       const wantsProtectedRoute = path === "/app" || path.startsWith("/app/");
+      260 |       if (redirectedToSignIn && wantsProtectedRoute) {
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)
+        at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)
+        at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:464:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r5-ux-hardening-R5-UX-hard-b209b-te-finance-and-admin-routes-desktop-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r5-ux-hardening-R5-UX-hard-b209b-te-finance-and-admin-routes-desktop-critical/error-context.md
+
+  16) [desktop-critical] › tests/e2e/recovery.spec.ts:14:7 › Consent recovery and offline retry › consent revoke blocks protected routes until restored 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3210/signin
+    Call log:
+    [2m  - navigating to "http://127.0.0.1:3210/signin", waiting until "commit"[22m
+
+
+       at helpers.ts:257
+
+      255 |   for (let attempt = 0; attempt < 3; attempt += 1) {
+      256 |     try {
+    > 257 |       await page.goto(path, { waitUntil: "commit", timeout: 120_000 });
+          |                  ^
+      258 |       const redirectedToSignIn = /\/signin(\?.*)?$/.test(page.url());
+      259 |       const wantsProtectedRoute = path === "/app" || path.startsWith("/app/");
+      260 |       if (redirectedToSignIn && wantsProtectedRoute) {
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)
+        at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)
+        at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/recovery.spec.ts:18:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/recovery-Consent-recovery--b3bf1-ected-routes-until-restored-desktop-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/recovery-Consent-recovery--b3bf1-ected-routes-until-restored-desktop-critical/error-context.md
+
+  17) [desktop-critical] › tests/e2e/recovery.spec.ts:56:7 › Consent recovery and offline retry › offline seam exposes connectivity, retry, and dismiss controls 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3210/signin
+    Call log:
+    [2m  - navigating to "http://127.0.0.1:3210/signin", waiting until "commit"[22m
+
+
+       at helpers.ts:257
+
+      255 |   for (let attempt = 0; attempt < 3; attempt += 1) {
+      256 |     try {
+    > 257 |       await page.goto(path, { waitUntil: "commit", timeout: 120_000 });
+          |                  ^
+      258 |       const redirectedToSignIn = /\/signin(\?.*)?$/.test(page.url());
+      259 |       const wantsProtectedRoute = path === "/app" || path.startsWith("/app/");
+      260 |       if (redirectedToSignIn && wantsProtectedRoute) {
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)
+        at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)
+        at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/recovery.spec.ts:57:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/recovery-Consent-recovery--16e1a--retry-and-dismiss-controls-desktop-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/recovery-Consent-recovery--16e1a--retry-and-dismiss-controls-desktop-critical/error-context.md
+
+  18) [mobile-critical] › tests/e2e/advisory-climate-gate.spec.ts:63:7 › N4 advisory and climate tranche diagnostics › CJ-005 EP-006 RJ-003 DI-005 advisory route shows citations, confidence, and reviewer state 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3210/signin
+    Call log:
+    [2m  - navigating to "http://127.0.0.1:3210/signin", waiting until "commit"[22m
+
+
+       at helpers.ts:257
+
+      255 |   for (let attempt = 0; attempt < 3; attempt += 1) {
+      256 |     try {
+    > 257 |       await page.goto(path, { waitUntil: "commit", timeout: 120_000 });
+          |                  ^
+      258 |       const redirectedToSignIn = /\/signin(\?.*)?$/.test(page.url());
+      259 |       const wantsProtectedRoute = path === "/app" || path.startsWith("/app/");
+      260 |       if (redirectedToSignIn && wantsProtectedRoute) {
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)
+        at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)
+        at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:93:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/advisory-climate-gate-N4-a-fcd24-nfidence-and-reviewer-state-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/advisory-climate-gate-N4-a-fcd24-nfidence-and-reviewer-state-mobile-critical/error-context.md
+
+  19) [mobile-critical] › tests/e2e/advisory-climate-gate.spec.ts:89:7 › N4 advisory and climate tranche diagnostics › CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3210/signin
+    Call log:
+    [2m  - navigating to "http://127.0.0.1:3210/signin", waiting until "commit"[22m
+
+
+       at helpers.ts:257
+
+      255 |   for (let attempt = 0; attempt < 3; attempt += 1) {
+      256 |     try {
+    > 257 |       await page.goto(path, { waitUntil: "commit", timeout: 120_000 });
+          |                  ^
+      258 |       const redirectedToSignIn = /\/signin(\?.*)?$/.test(page.url());
+      259 |       const wantsProtectedRoute = path === "/app" || path.startsWith("/app/");
+      260 |       if (redirectedToSignIn && wantsProtectedRoute) {
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)
+        at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)
+        at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:119:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/advisory-climate-gate-N4-a-2743d-wledgement-and-MRV-evidence-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/advisory-climate-gate-N4-a-2743d-wledgement-and-MRV-evidence-mobile-critical/error-context.md
+
+  20) [mobile-critical] › tests/e2e/auth-consent.spec.ts:6:7 › Auth and consent › sign-in validates identity fields and grants consent 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3210/signin
+    Call log:
+    [2m  - navigating to "http://127.0.0.1:3210/signin", waiting until "commit"[22m
+
+
+       at helpers.ts:257
+
+      255 |   for (let attempt = 0; attempt < 3; attempt += 1) {
+      256 |     try {
+    > 257 |       await page.goto(path, { waitUntil: "commit", timeout: 120_000 });
+          |                  ^
+      258 |       const redirectedToSignIn = /\/signin(\?.*)?$/.test(page.url());
+      259 |       const wantsProtectedRoute = path === "/app" || path.startsWith("/app/");
+      260 |       if (redirectedToSignIn && wantsProtectedRoute) {
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/auth-consent.spec.ts:13:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/auth-consent-Auth-and-cons-638c7-y-fields-and-grants-consent-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/auth-consent-Auth-and-cons-638c7-y-fields-and-grants-consent-mobile-critical/error-context.md
+
+  21) [mobile-critical] › tests/e2e/auth-consent.spec.ts:50:7 › Auth and consent › protected routes redirect to sign-in first and consent second 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3210/app/market/listings
+    Call log:
+    [2m  - navigating to "http://127.0.0.1:3210/app/market/listings", waiting until "commit"[22m
+
+
+       at helpers.ts:257
+
+      255 |   for (let attempt = 0; attempt < 3; attempt += 1) {
+      256 |     try {
+    > 257 |       await page.goto(path, { waitUntil: "commit", timeout: 120_000 });
+          |                  ^
+      258 |       const redirectedToSignIn = /\/signin(\?.*)?$/.test(page.url());
+      259 |       const wantsProtectedRoute = path === "/app" || path.startsWith("/app/");
+      260 |       if (redirectedToSignIn && wantsProtectedRoute) {
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/auth-consent.spec.ts:55:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/auth-consent-Auth-and-cons-203cb-in-first-and-consent-second-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/auth-consent-Auth-and-cons-203cb-in-first-and-consent-second-mobile-critical/error-context.md
+
+  22) [mobile-critical] › tests/e2e/buyer-discovery.spec.ts:145:7 › Buyer discovery and scoped read behavior › buyer reaches the discovery shell and cannot read another actor's listing detail 
+
+    Error: apiRequestContext.post: connect ECONNREFUSED 127.0.0.1:8210
+    Call log:
+    [2m  - → POST http://127.0.0.1:8210/api/v1/identity/session[22m
+    [2m    - user-agent: Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7727.15 Mobile Safari/537.36[22m
+    [2m    - accept: */*[22m
+    [2m    - accept-encoding: gzip,deflate,br[22m
+    [2m    - X-Correlation-ID: a486b921-714a-4323-89ea-5c966a7e2247[22m
+    [2m    - X-Request-ID: a486b921-714a-4323-89ea-5c966a7e2247[22m
+    [2m    - content-type: application/json[22m
+    [2m    - content-length: 108[22m
+
+
+      30 | ): Promise<SessionSeed> {
+      31 |   const signInRequestId = crypto.randomUUID();
+    > 32 |   const signInResponse = await request.post(`${apiBaseUrl}/api/v1/identity/session`, {
+         |                                        ^
+      33 |     data: {
+      34 |       display_name: input.displayName,
+      35 |       email: input.email,
+        at createAuthenticatedSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/buyer-discovery.spec.ts:32:40)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/buyer-discovery.spec.ts:150:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/buyer-discovery-Buyer-disc-f7e10-ther-actor-s-listing-detail-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/buyer-discovery-Buyer-disc-f7e10-ther-actor-s-listing-detail-mobile-critical/error-context.md
+
+  23) [mobile-critical] › tests/e2e/marketplace.spec.ts:6:7 › Marketplace create and read › farmer creates a listing and reads it back from detail 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3210/signin
+    Call log:
+    [2m  - navigating to "http://127.0.0.1:3210/signin", waiting until "commit"[22m
+
+
+       at helpers.ts:257
+
+      255 |   for (let attempt = 0; attempt < 3; attempt += 1) {
+      256 |     try {
+    > 257 |       await page.goto(path, { waitUntil: "commit", timeout: 120_000 });
+          |                  ^
+      258 |       const redirectedToSignIn = /\/signin(\?.*)?$/.test(page.url());
+      259 |       const wantsProtectedRoute = path === "/app" || path.startsWith("/app/");
+      260 |       if (redirectedToSignIn && wantsProtectedRoute) {
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)
+        at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)
+        at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/marketplace.spec.ts:9:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/marketplace-Marketplace-cr-4d170-d-reads-it-back-from-detail-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/marketplace-Marketplace-cr-4d170-d-reads-it-back-from-detail-mobile-critical/error-context.md
+
+  24) [mobile-critical] › tests/e2e/marketplace.spec.ts:33:7 › Marketplace create and read › farmer edits a listing and sees optimistic reconciliation evidence 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3210/signin
+    Call log:
+    [2m  - navigating to "http://127.0.0.1:3210/signin", waiting until "commit"[22m
+
+
+       at helpers.ts:257
+
+      255 |   for (let attempt = 0; attempt < 3; attempt += 1) {
+      256 |     try {
+    > 257 |       await page.goto(path, { waitUntil: "commit", timeout: 120_000 });
+          |                  ^
+      258 |       const redirectedToSignIn = /\/signin(\?.*)?$/.test(page.url());
+      259 |       const wantsProtectedRoute = path === "/app" || path.startsWith("/app/");
+      260 |       if (redirectedToSignIn && wantsProtectedRoute) {
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)
+        at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)
+        at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/marketplace.spec.ts:38:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/marketplace-Marketplace-cr-5c669-tic-reconciliation-evidence-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/marketplace-Marketplace-cr-5c669-tic-reconciliation-evidence-mobile-critical/error-context.md
+
+  25) [mobile-critical] › tests/e2e/n5-finance-traceability.spec.ts:214:7 › N5 finance and traceability tranche checks › CJ-004/CJ-008 finance HITL queue and decision actions are live 
+
+    Error: apiRequestContext.post: connect ECONNREFUSED 127.0.0.1:8210
+    Call log:
+    [2m  - → POST http://127.0.0.1:8210/api/v1/identity/session[22m
+    [2m    - user-agent: Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7727.15 Mobile Safari/537.36[22m
+    [2m    - accept: */*[22m
+    [2m    - accept-encoding: gzip,deflate,br[22m
+    [2m    - X-Correlation-ID: cec47082-c563-452b-bb0c-a90fd66a3e49[22m
+    [2m    - X-Request-ID: cec47082-c563-452b-bb0c-a90fd66a3e49[22m
+    [2m    - content-type: application/json[22m
+    [2m    - content-length: 113[22m
+
+
+      27 | ): Promise<SessionSeed> {
+      28 |   const signInRequestId = crypto.randomUUID();
+    > 29 |   const signInResponse = await request.post(`${apiBaseUrl}/api/v1/identity/session`, {
+         |                                        ^
+      30 |     data: {
+      31 |       display_name: input.displayName,
+      32 |       email: input.email,
+        at createAuthenticatedSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:29:40)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:215:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/n5-finance-traceability-N5-bf26b-d-decision-actions-are-live-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/n5-finance-traceability-N5-bf26b-d-decision-actions-are-live-mobile-critical/error-context.md
+
+  26) [mobile-critical] › tests/e2e/n5-finance-traceability.spec.ts:237:7 › N5 finance and traceability tranche checks › CJ-007 traceability timeline renders ordered events and explicit evidence state 
+
+    Error: apiRequestContext.post: connect ECONNREFUSED 127.0.0.1:8210
+    Call log:
+    [2m  - → POST http://127.0.0.1:8210/api/v1/identity/session[22m
+    [2m    - user-agent: Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7727.15 Mobile Safari/537.36[22m
+    [2m    - accept: */*[22m
+    [2m    - accept-encoding: gzip,deflate,br[22m
+    [2m    - X-Correlation-ID: 12dc4a62-aee4-484c-80e0-70440b042bcc[22m
+    [2m    - X-Request-ID: 12dc4a62-aee4-484c-80e0-70440b042bcc[22m
+    [2m    - content-type: application/json[22m
+    [2m    - content-length: 110[22m
+
+
+      27 | ): Promise<SessionSeed> {
+      28 |   const signInRequestId = crypto.randomUUID();
+    > 29 |   const signInResponse = await request.post(`${apiBaseUrl}/api/v1/identity/session`, {
+         |                                        ^
+      30 |     data: {
+      31 |       display_name: input.displayName,
+      32 |       email: input.email,
+        at createAuthenticatedSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:29:40)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:238:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/n5-finance-traceability-N5-a33b0-and-explicit-evidence-state-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/n5-finance-traceability-N5-a33b0-and-explicit-evidence-state-mobile-critical/error-context.md
+
+  27) [mobile-critical] › tests/e2e/n6-admin-observability.spec.ts:6:7 › N6 admin observability and rollout tranche diagnostics › PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3210/signin
+    Call log:
+    [2m  - navigating to "http://127.0.0.1:3210/signin", waiting until "commit"[22m
+
+
+       at helpers.ts:257
+
+      255 |   for (let attempt = 0; attempt < 3; attempt += 1) {
+      256 |     try {
+    > 257 |       await page.goto(path, { waitUntil: "commit", timeout: 120_000 });
+          |                  ^
+      258 |       const redirectedToSignIn = /\/signin(\?.*)?$/.test(page.url());
+      259 |       const wantsProtectedRoute = path === "/app" || path.startsWith("/app/");
+      260 |       if (redirectedToSignIn && wantsProtectedRoute) {
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)
+        at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)
+        at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:10:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/n6-admin-observability-N6--c45d3-and-degraded-state-evidence-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/n6-admin-observability-N6--c45d3-and-degraded-state-evidence-mobile-critical/error-context.md
+
+  28) [mobile-critical] › tests/e2e/n6-admin-observability.spec.ts:24:7 › N6 admin observability and rollout tranche diagnostics › EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3210/signin
+    Call log:
+    [2m  - navigating to "http://127.0.0.1:3210/signin", waiting until "commit"[22m
+
+
+       at helpers.ts:257
+
+      255 |   for (let attempt = 0; attempt < 3; attempt += 1) {
+      256 |     try {
+    > 257 |       await page.goto(path, { waitUntil: "commit", timeout: 120_000 });
+          |                  ^
+      258 |       const redirectedToSignIn = /\/signin(\?.*)?$/.test(page.url());
+      259 |       const wantsProtectedRoute = path === "/app" || path.startsWith("/app/");
+      260 |       if (redirectedToSignIn && wantsProtectedRoute) {
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)
+        at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)
+        at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:28:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/n6-admin-observability-N6--1ccc0-ope-chips-and-audit-posture-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/n6-admin-observability-N6--1ccc0-ope-chips-and-audit-posture-mobile-critical/error-context.md
+
+  29) [mobile-critical] › tests/e2e/negotiation.spec.ts:252:7 › Negotiation inbox and thread proof › pending confirmation approve/reject paths lock terminal state and outsider thread access is blocked 
+
+    Error: apiRequestContext.post: connect ECONNREFUSED 127.0.0.1:8210
+    Call log:
+    [2m  - → POST http://127.0.0.1:8210/api/v1/identity/session[22m
+    [2m    - user-agent: Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7727.15 Mobile Safari/537.36[22m
+    [2m    - accept: */*[22m
+    [2m    - accept-encoding: gzip,deflate,br[22m
+    [2m    - X-Correlation-ID: 1bc6c0b7-82c4-4d35-987e-c3fa0af88118[22m
+    [2m    - X-Request-ID: 1bc6c0b7-82c4-4d35-987e-c3fa0af88118[22m
+    [2m    - content-type: application/json[22m
+    [2m    - content-length: 120[22m
+
+
+      35 | ): Promise<SessionSeed> {
+      36 |   const signInRequestId = crypto.randomUUID();
+    > 37 |   const signInResponse = await request.post(`${API_BASE_URL}/api/v1/identity/session`, {
+         |                                        ^
+      38 |     data: {
+      39 |       display_name: input.displayName,
+      40 |       email: input.email,
+        at createAuthenticatedSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/negotiation.spec.ts:37:40)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/negotiation.spec.ts:259:33
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/negotiation-Negotiation-in-fff71-er-thread-access-is-blocked-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/negotiation-Negotiation-in-fff71-er-thread-access-is-blocked-mobile-critical/error-context.md
+
+  30) [mobile-critical] › tests/e2e/r4-route-completion.spec.ts:171:7 › R4 route completion proof › admin analytics and cooperative dispatch routes are live and navigable 
+
+    Error: apiRequestContext.post: connect ECONNREFUSED 127.0.0.1:8210
+    Call log:
+    [2m  - → POST http://127.0.0.1:8210/api/v1/identity/session[22m
+    [2m    - user-agent: Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7727.15 Mobile Safari/537.36[22m
+    [2m    - accept: */*[22m
+    [2m    - accept-encoding: gzip,deflate,br[22m
+    [2m    - X-Correlation-ID: 17eab5a3-85db-463e-8fd8-5454ff5df3f0[22m
+    [2m    - X-Request-ID: 17eab5a3-85db-463e-8fd8-5454ff5df3f0[22m
+    [2m    - content-type: application/json[22m
+    [2m    - content-length: 107[22m
+
+
+      34 | ): Promise<SessionSeed> {
+      35 |   const signInRequestId = crypto.randomUUID();
+    > 36 |   const signInResponse = await request.post(`${API_BASE_URL}/api/v1/identity/session`, {
+         |                                        ^
+      37 |     data: {
+      38 |       display_name: input.displayName,
+      39 |       email: input.email,
+        at createAuthenticatedSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:36:40)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:172:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r4-route-completion-R4-rou-2ec5d-utes-are-live-and-navigable-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r4-route-completion-R4-rou-2ec5d-utes-are-live-and-navigable-mobile-critical/error-context.md
+
+  31) [mobile-critical] › tests/e2e/r4-route-completion.spec.ts:196:7 › R4 route completion proof › wallet and notifications routes surface live escrow state after accepted negotiation 
+
+    Error: apiRequestContext.post: connect ECONNREFUSED 127.0.0.1:8210
+    Call log:
+    [2m  - → POST http://127.0.0.1:8210/api/v1/identity/session[22m
+    [2m    - user-agent: Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7727.15 Mobile Safari/537.36[22m
+    [2m    - accept: */*[22m
+    [2m    - accept-encoding: gzip,deflate,br[22m
+    [2m    - X-Correlation-ID: 9398d124-247f-4989-bb50-ab7a023570bf[22m
+    [2m    - X-Request-ID: 9398d124-247f-4989-bb50-ab7a023570bf[22m
+    [2m    - content-type: application/json[22m
+    [2m    - content-length: 110[22m
+
+
+      34 | ): Promise<SessionSeed> {
+      35 |   const signInRequestId = crypto.randomUUID();
+    > 36 |   const signInResponse = await request.post(`${API_BASE_URL}/api/v1/identity/session`, {
+         |                                        ^
+      37 |     data: {
+      38 |       display_name: input.displayName,
+      39 |       email: input.email,
+        at createAuthenticatedSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:36:40)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:198:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r4-route-completion-R4-rou-8939e--after-accepted-negotiation-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r4-route-completion-R4-rou-8939e--after-accepted-negotiation-mobile-critical/error-context.md
+
+  32) [mobile-critical] › tests/e2e/r4-route-completion.spec.ts:301:7 › R4 route completion proof › server-authoritative home posture redirects after consent revoke 
+
+    Error: apiRequestContext.post: connect ECONNREFUSED 127.0.0.1:8210
+    Call log:
+    [2m  - → POST http://127.0.0.1:8210/api/v1/identity/session[22m
+    [2m    - user-agent: Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7727.15 Mobile Safari/537.36[22m
+    [2m    - accept: */*[22m
+    [2m    - accept-encoding: gzip,deflate,br[22m
+    [2m    - X-Correlation-ID: 6ec4368b-a57e-4b54-801b-5f23af3025e1[22m
+    [2m    - X-Request-ID: 6ec4368b-a57e-4b54-801b-5f23af3025e1[22m
+    [2m    - content-type: application/json[22m
+    [2m    - content-length: 119[22m
+
+
+      34 | ): Promise<SessionSeed> {
+      35 |   const signInRequestId = crypto.randomUUID();
+    > 36 |   const signInResponse = await request.post(`${API_BASE_URL}/api/v1/identity/session`, {
+         |                                        ^
+      37 |     data: {
+      38 |       display_name: input.displayName,
+      39 |       email: input.email,
+        at createAuthenticatedSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:36:40)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:302:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r4-route-completion-R4-rou-c4b4a-irects-after-consent-revoke-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r4-route-completion-R4-rou-c4b4a-irects-after-consent-revoke-mobile-critical/error-context.md
+
+  33) [mobile-critical] › tests/e2e/r5-ux-hardening.spec.ts:303:7 › R5 UX hardening proof › captures public, onboarding, and role-home routes 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3210/
+    Call log:
+    [2m  - navigating to "http://127.0.0.1:3210/", waiting until "commit"[22m
+
+
+       at helpers.ts:257
+
+      255 |   for (let attempt = 0; attempt < 3; attempt += 1) {
+      256 |     try {
+    > 257 |       await page.goto(path, { waitUntil: "commit", timeout: 120_000 });
+          |                  ^
+      258 |       const redirectedToSignIn = /\/signin(\?.*)?$/.test(page.url());
+      259 |       const wantsProtectedRoute = path === "/app" || path.startsWith("/app/");
+      260 |       if (redirectedToSignIn && wantsProtectedRoute) {
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:306:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r5-ux-hardening-R5-UX-hard-88d73-arding-and-role-home-routes-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r5-ux-hardening-R5-UX-hard-88d73-arding-and-role-home-routes-mobile-critical/error-context.md
+
+  34) [mobile-critical] › tests/e2e/r5-ux-hardening.spec.ts:337:7 › R5 UX hardening proof › captures seeded marketplace, wallet, notifications, and traceability flows 
+
+    Error: apiRequestContext.post: connect ECONNREFUSED 127.0.0.1:8210
+    Call log:
+    [2m  - → POST http://127.0.0.1:8210/api/v1/identity/session[22m
+    [2m    - user-agent: Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7727.15 Mobile Safari/537.36[22m
+    [2m    - accept: */*[22m
+    [2m    - accept-encoding: gzip,deflate,br[22m
+    [2m    - X-Correlation-ID: 9337677f-bbf7-48ac-a678-b2541b727839[22m
+    [2m    - X-Request-ID: 9337677f-bbf7-48ac-a678-b2541b727839[22m
+    [2m    - content-type: application/json[22m
+    [2m    - content-length: 110[22m
+
+
+      82 | ): Promise<SessionSeed> {
+      83 |   const signInRequestId = crypto.randomUUID();
+    > 84 |   const signInResponse = await request.post(`${API_BASE_URL}/api/v1/identity/session`, {
+         |                                        ^
+      85 |     data: {
+      86 |       display_name: input.displayName,
+      87 |       email: input.email,
+        at createAuthenticatedSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:84:40)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:339:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r5-ux-hardening-R5-UX-hard-12dc2-ions-and-traceability-flows-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r5-ux-hardening-R5-UX-hard-12dc2-ions-and-traceability-flows-mobile-critical/error-context.md
+
+  35) [mobile-critical] › tests/e2e/r5-ux-hardening.spec.ts:461:7 › R5 UX hardening proof › captures operations, advisory, climate, finance, and admin routes 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3210/signin
+    Call log:
+    [2m  - navigating to "http://127.0.0.1:3210/signin", waiting until "commit"[22m
+
+
+       at helpers.ts:257
+
+      255 |   for (let attempt = 0; attempt < 3; attempt += 1) {
+      256 |     try {
+    > 257 |       await page.goto(path, { waitUntil: "commit", timeout: 120_000 });
+          |                  ^
+      258 |       const redirectedToSignIn = /\/signin(\?.*)?$/.test(page.url());
+      259 |       const wantsProtectedRoute = path === "/app" || path.startsWith("/app/");
+      260 |       if (redirectedToSignIn && wantsProtectedRoute) {
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)
+        at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)
+        at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:464:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r5-ux-hardening-R5-UX-hard-b209b-te-finance-and-admin-routes-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/r5-ux-hardening-R5-UX-hard-b209b-te-finance-and-admin-routes-mobile-critical/error-context.md
+
+  36) [mobile-critical] › tests/e2e/recovery.spec.ts:14:7 › Consent recovery and offline retry › consent revoke blocks protected routes until restored 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3210/signin
+    Call log:
+    [2m  - navigating to "http://127.0.0.1:3210/signin", waiting until "commit"[22m
+
+
+       at helpers.ts:257
+
+      255 |   for (let attempt = 0; attempt < 3; attempt += 1) {
+      256 |     try {
+    > 257 |       await page.goto(path, { waitUntil: "commit", timeout: 120_000 });
+          |                  ^
+      258 |       const redirectedToSignIn = /\/signin(\?.*)?$/.test(page.url());
+      259 |       const wantsProtectedRoute = path === "/app" || path.startsWith("/app/");
+      260 |       if (redirectedToSignIn && wantsProtectedRoute) {
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)
+        at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)
+        at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/recovery.spec.ts:18:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/recovery-Consent-recovery--b3bf1-ected-routes-until-restored-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/recovery-Consent-recovery--b3bf1-ected-routes-until-restored-mobile-critical/error-context.md
+
+  37) [mobile-critical] › tests/e2e/recovery.spec.ts:56:7 › Consent recovery and offline retry › offline seam exposes connectivity, retry, and dismiss controls 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3210/signin
+    Call log:
+    [2m  - navigating to "http://127.0.0.1:3210/signin", waiting until "commit"[22m
+
+
+       at helpers.ts:257
+
+      255 |   for (let attempt = 0; attempt < 3; attempt += 1) {
+      256 |     try {
+    > 257 |       await page.goto(path, { waitUntil: "commit", timeout: 120_000 });
+          |                  ^
+      258 |       const redirectedToSignIn = /\/signin(\?.*)?$/.test(page.url());
+      259 |       const wantsProtectedRoute = path === "/app" || path.startsWith("/app/");
+      260 |       if (redirectedToSignIn && wantsProtectedRoute) {
+        at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)
+        at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)
+        at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/recovery.spec.ts:57:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/recovery-Consent-recovery--16e1a--retry-and-dismiss-controls-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/full-r6/playwright-final/test-results/recovery-Consent-recovery--16e1a--retry-and-dismiss-controls-mobile-critical/error-context.md
+
+  37 failed
+    [desktop-critical] › tests/e2e/advisory-climate-gate.spec.ts:89:7 › N4 advisory and climate tranche diagnostics › CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence 
+    [desktop-critical] › tests/e2e/buyer-discovery.spec.ts:145:7 › Buyer discovery and scoped read behavior › buyer reaches the discovery shell and cannot read another actor's listing detail 
+    [desktop-critical] › tests/e2e/marketplace.spec.ts:6:7 › Marketplace create and read › farmer creates a listing and reads it back from detail 
+    [desktop-critical] › tests/e2e/marketplace.spec.ts:33:7 › Marketplace create and read › farmer edits a listing and sees optimistic reconciliation evidence 
+    [desktop-critical] › tests/e2e/n5-finance-traceability.spec.ts:214:7 › N5 finance and traceability tranche checks › CJ-004/CJ-008 finance HITL queue and decision actions are live 
+    [desktop-critical] › tests/e2e/n5-finance-traceability.spec.ts:237:7 › N5 finance and traceability tranche checks › CJ-007 traceability timeline renders ordered events and explicit evidence state 
+    [desktop-critical] › tests/e2e/n6-admin-observability.spec.ts:6:7 › N6 admin observability and rollout tranche diagnostics › PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence 
+    [desktop-critical] › tests/e2e/n6-admin-observability.spec.ts:24:7 › N6 admin observability and rollout tranche diagnostics › EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture 
+    [desktop-critical] › tests/e2e/negotiation.spec.ts:252:7 › Negotiation inbox and thread proof › pending confirmation approve/reject paths lock terminal state and outsider thread access is blocked 
+    [desktop-critical] › tests/e2e/r4-route-completion.spec.ts:171:7 › R4 route completion proof › admin analytics and cooperative dispatch routes are live and navigable 
+    [desktop-critical] › tests/e2e/r4-route-completion.spec.ts:196:7 › R4 route completion proof › wallet and notifications routes surface live escrow state after accepted negotiation 
+    [desktop-critical] › tests/e2e/r4-route-completion.spec.ts:301:7 › R4 route completion proof › server-authoritative home posture redirects after consent revoke 
+    [desktop-critical] › tests/e2e/r5-ux-hardening.spec.ts:303:7 › R5 UX hardening proof › captures public, onboarding, and role-home routes 
+    [desktop-critical] › tests/e2e/r5-ux-hardening.spec.ts:337:7 › R5 UX hardening proof › captures seeded marketplace, wallet, notifications, and traceability flows 
+    [desktop-critical] › tests/e2e/r5-ux-hardening.spec.ts:461:7 › R5 UX hardening proof › captures operations, advisory, climate, finance, and admin routes 
+    [desktop-critical] › tests/e2e/recovery.spec.ts:14:7 › Consent recovery and offline retry › consent revoke blocks protected routes until restored 
+    [desktop-critical] › tests/e2e/recovery.spec.ts:56:7 › Consent recovery and offline retry › offline seam exposes connectivity, retry, and dismiss controls 
+    [mobile-critical] › tests/e2e/advisory-climate-gate.spec.ts:63:7 › N4 advisory and climate tranche diagnostics › CJ-005 EP-006 RJ-003 DI-005 advisory route shows citations, confidence, and reviewer state 
+    [mobile-critical] › tests/e2e/advisory-climate-gate.spec.ts:89:7 › N4 advisory and climate tranche diagnostics › CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence 
+    [mobile-critical] › tests/e2e/auth-consent.spec.ts:6:7 › Auth and consent › sign-in validates identity fields and grants consent 
+    [mobile-critical] › tests/e2e/auth-consent.spec.ts:50:7 › Auth and consent › protected routes redirect to sign-in first and consent second 
+    [mobile-critical] › tests/e2e/buyer-discovery.spec.ts:145:7 › Buyer discovery and scoped read behavior › buyer reaches the discovery shell and cannot read another actor's listing detail 
+    [mobile-critical] › tests/e2e/marketplace.spec.ts:6:7 › Marketplace create and read › farmer creates a listing and reads it back from detail 
+    [mobile-critical] › tests/e2e/marketplace.spec.ts:33:7 › Marketplace create and read › farmer edits a listing and sees optimistic reconciliation evidence 
+    [mobile-critical] › tests/e2e/n5-finance-traceability.spec.ts:214:7 › N5 finance and traceability tranche checks › CJ-004/CJ-008 finance HITL queue and decision actions are live 
+    [mobile-critical] › tests/e2e/n5-finance-traceability.spec.ts:237:7 › N5 finance and traceability tranche checks › CJ-007 traceability timeline renders ordered events and explicit evidence state 
+    [mobile-critical] › tests/e2e/n6-admin-observability.spec.ts:6:7 › N6 admin observability and rollout tranche diagnostics › PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence 
+    [mobile-critical] › tests/e2e/n6-admin-observability.spec.ts:24:7 › N6 admin observability and rollout tranche diagnostics › EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture 
+    [mobile-critical] › tests/e2e/negotiation.spec.ts:252:7 › Negotiation inbox and thread proof › pending confirmation approve/reject paths lock terminal state and outsider thread access is blocked 
+    [mobile-critical] › tests/e2e/r4-route-completion.spec.ts:171:7 › R4 route completion proof › admin analytics and cooperative dispatch routes are live and navigable 
+    [mobile-critical] › tests/e2e/r4-route-completion.spec.ts:196:7 › R4 route completion proof › wallet and notifications routes surface live escrow state after accepted negotiation 
+    [mobile-critical] › tests/e2e/r4-route-completion.spec.ts:301:7 › R4 route completion proof › server-authoritative home posture redirects after consent revoke 
+    [mobile-critical] › tests/e2e/r5-ux-hardening.spec.ts:303:7 › R5 UX hardening proof › captures public, onboarding, and role-home routes 
+    [mobile-critical] › tests/e2e/r5-ux-hardening.spec.ts:337:7 › R5 UX hardening proof › captures seeded marketplace, wallet, notifications, and traceability flows 
+    [mobile-critical] › tests/e2e/r5-ux-hardening.spec.ts:461:7 › R5 UX hardening proof › captures operations, advisory, climate, finance, and admin routes 
+    [mobile-critical] › tests/e2e/recovery.spec.ts:14:7 › Consent recovery and offline retry › consent revoke blocks protected routes until restored 
+    [mobile-critical] › tests/e2e/recovery.spec.ts:56:7 › Consent recovery and offline retry › offline seam exposes connectivity, retry, and dismiss controls 
+  3 passed (16.4m)

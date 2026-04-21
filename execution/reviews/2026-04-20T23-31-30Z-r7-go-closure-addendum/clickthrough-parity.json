@@ -1,0 +1,118 @@
+{
+  "canary": [
+    {
+      "route": "/signin",
+      "status": 200,
+      "title": "",
+      "screenshot": "screenshots/canary-01-signin.png",
+      "ok": true
+    },
+    {
+      "route": "/app/home",
+      "status": 200,
+      "title": "",
+      "screenshot": "screenshots/canary-02-app_home.png",
+      "ok": true
+    },
+    {
+      "route": "/app/market/listings",
+      "status": 200,
+      "title": "",
+      "screenshot": "screenshots/canary-03-app_market_listings.png",
+      "ok": true
+    },
+    {
+      "route": "/app/market/negotiations",
+      "status": 200,
+      "title": "",
+      "screenshot": "screenshots/canary-04-app_market_negotiations.png",
+      "ok": true
+    },
+    {
+      "route": "/app/traceability",
+      "status": 200,
+      "title": "",
+      "screenshot": "screenshots/canary-05-app_traceability.png",
+      "ok": true
+    },
+    {
+      "route": "/app/wallet",
+      "status": 200,
+      "title": "",
+      "screenshot": "screenshots/canary-06-app_wallet.png",
+      "ok": true
+    },
+    {
+      "route": "/app/admin/analytics",
+      "status": 200,
+      "title": "",
+      "screenshot": "screenshots/canary-07-app_admin_analytics.png",
+      "ok": true
+    },
+    {
+      "route": "/app/finance/queue",
+      "status": 200,
+      "title": "",
+      "screenshot": "screenshots/canary-08-app_finance_queue.png",
+      "ok": true
+    }
+  ],
+  "production": [
+    {
+      "route": "/signin",
+      "status": 200,
+      "title": "",
+      "screenshot": "screenshots/production-01-signin.png",
+      "ok": true
+    },
+    {
+      "route": "/app/home",
+      "status": 200,
+      "title": "",
+      "screenshot": "screenshots/production-02-app_home.png",
+      "ok": true
+    },
+    {
+      "route": "/app/market/listings",
+      "status": 200,
+      "title": "",
+      "screenshot": "screenshots/production-03-app_market_listings.png",
+      "ok": true
+    },
+    {
+      "route": "/app/market/negotiations",
+      "status": 200,
+      "title": "",
+      "screenshot": "screenshots/production-04-app_market_negotiations.png",
+      "ok": true
+    },
+    {
+      "route": "/app/traceability",
+      "status": 200,
+      "title": "",
+      "screenshot": "screenshots/production-05-app_traceability.png",
+      "ok": true
+    },
+    {
+      "route": "/app/wallet",
+      "status": 200,
+      "title": "",
+      "screenshot": "screenshots/production-06-app_wallet.png",
+      "ok": true
+    },
+    {
+      "route": "/app/admin/analytics",
+      "status": 200,
+      "title": "",
+      "screenshot": "screenshots/production-07-app_admin_analytics.png",
+      "ok": true
+    },
+    {
+      "route": "/app/finance/queue",
+      "status": 200,
+      "title": "",
+      "screenshot": "screenshots/production-08-app_finance_queue.png",
+      "ok": true
+    }
+  ]
+}

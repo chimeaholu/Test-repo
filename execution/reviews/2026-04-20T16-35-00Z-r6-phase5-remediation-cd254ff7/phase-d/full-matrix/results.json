@@ -1,0 +1,1613 @@
+{
+  "config": {
+    "configFile": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/playwright.config.ts",
+    "rootDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T16-35-00Z-r6-phase5-remediation-cd254ff7/phase-d/full-matrix/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-critical",
+        "name": "desktop-critical",
+        "testDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T16-35-00Z-r6-phase5-remediation-cd254ff7/phase-d/full-matrix/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-critical",
+        "name": "mobile-critical",
+        "testDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "advisory-climate-gate.spec.ts",
+      "file": "advisory-climate-gate.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "N4 advisory and climate tranche diagnostics",
+          "file": "advisory-climate-gate.spec.ts",
+          "line": 82,
+          "column": 6,
+          "specs": [
+            {
+              "title": "CJ-005 EP-006 RJ-003 DI-005 advisory route shows citations, confidence, and reviewer state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 27820,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:12:59.092Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fbc827509024e8d96707-7b7588eef9cf158b3358",
+              "file": "advisory-climate-gate.spec.ts",
+              "line": 83,
+              "column": 7
+            },
+            {
+              "title": "CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 22197,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:13:27.657Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fbc827509024e8d96707-ec369bb7759c8f10b313",
+              "file": "advisory-climate-gate.spec.ts",
+              "line": 109,
+              "column": 7
+            },
+            {
+              "title": "CJ-005 EP-006 RJ-003 DI-005 advisory route shows citations, confidence, and reviewer state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 11037,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:21:33.332Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fbc827509024e8d96707-a210afcd80cdc8cbc1da",
+              "file": "advisory-climate-gate.spec.ts",
+              "line": 83,
+              "column": 7
+            },
+            {
+              "title": "CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10850,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:21:44.800Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fbc827509024e8d96707-0a868615bd9f576d1082",
+              "file": "advisory-climate-gate.spec.ts",
+              "line": 109,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "auth-consent.spec.ts",
+      "file": "auth-consent.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Auth and consent",
+          "file": "auth-consent.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "sign-in validates identity fields and grants consent",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16380,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:13:49.987Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "9eebd633b0f5ad865717-961bb4765073dea9c8f1",
+              "file": "auth-consent.spec.ts",
+              "line": 6,
+              "column": 7
+            },
+            {
+              "title": "protected routes redirect to sign-in first and consent second",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 17115,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:14:06.423Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "9eebd633b0f5ad865717-d575713603fc9fb7b39c",
+              "file": "auth-consent.spec.ts",
+              "line": 50,
+              "column": 7
+            },
+            {
+              "title": "sign-in validates identity fields and grants consent",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9598,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:21:55.703Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "9eebd633b0f5ad865717-8c7afe0d5c55d724bb2e",
+              "file": "auth-consent.spec.ts",
+              "line": 6,
+              "column": 7
+            },
+            {
+              "title": "protected routes redirect to sign-in first and consent second",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7255,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:22:05.356Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "9eebd633b0f5ad865717-95be6ec6ceccd1daa9a2",
+              "file": "auth-consent.spec.ts",
+              "line": 50,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "buyer-discovery.spec.ts",
+      "file": "buyer-discovery.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Buyer discovery and scoped read behavior",
+          "file": "buyer-discovery.spec.ts",
+          "line": 144,
+          "column": 6,
+          "specs": [
+            {
+              "title": "buyer reaches the discovery shell and cannot read another actor's listing detail",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 20390,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:14:23.708Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "8563ea5e165098f945c0-6e02ef304ffe1c90f177",
+              "file": "buyer-discovery.spec.ts",
+              "line": 145,
+              "column": 7
+            },
+            {
+              "title": "buyer reaches the discovery shell and cannot read another actor's listing detail",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 18758,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:22:12.841Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "8563ea5e165098f945c0-852d793ff557a891c9db",
+              "file": "buyer-discovery.spec.ts",
+              "line": 145,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "marketplace.spec.ts",
+      "file": "marketplace.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Marketplace create and read",
+          "file": "marketplace.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "farmer creates a listing and reads it back from detail",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19702,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:14:44.160Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "170e8a9d719db4caeb1d-597580fbcc5216ab8388",
+              "file": "marketplace.spec.ts",
+              "line": 6,
+              "column": 7
+            },
+            {
+              "title": "farmer edits a listing and sees optimistic reconciliation evidence",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 28056,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:15:03.962Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "170e8a9d719db4caeb1d-a850f073d979e622cebd",
+              "file": "marketplace.spec.ts",
+              "line": 33,
+              "column": 7
+            },
+            {
+              "title": "farmer creates a listing and reads it back from detail",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14929,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:22:31.644Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "170e8a9d719db4caeb1d-5707d68f7d440b4301a2",
+              "file": "marketplace.spec.ts",
+              "line": 6,
+              "column": 7
+            },
+            {
+              "title": "farmer edits a listing and sees optimistic reconciliation evidence",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14832,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:22:46.597Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "170e8a9d719db4caeb1d-a6eb61a0762e205a9b4d",
+              "file": "marketplace.spec.ts",
+              "line": 33,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "n5-finance-traceability.spec.ts",
+      "file": "n5-finance-traceability.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "N5 finance and traceability tranche checks",
+          "file": "n5-finance-traceability.spec.ts",
+          "line": 221,
+          "column": 6,
+          "specs": [
+            {
+              "title": "CJ-004/CJ-008 finance HITL queue and decision actions are live",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 12524,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:15:32.115Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3755e94e551be350ba76-34b6e2374c8d3788725a",
+              "file": "n5-finance-traceability.spec.ts",
+              "line": 222,
+              "column": 7
+            },
+            {
+              "title": "CJ-007 traceability timeline renders ordered events and explicit evidence state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10961,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:15:44.698Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3755e94e551be350ba76-f5337fa9fa2afed5f454",
+              "file": "n5-finance-traceability.spec.ts",
+              "line": 245,
+              "column": 7
+            },
+            {
+              "title": "CJ-004/CJ-008 finance HITL queue and decision actions are live",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6981,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:23:01.492Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3755e94e551be350ba76-108e693380e6e468248f",
+              "file": "n5-finance-traceability.spec.ts",
+              "line": 222,
+              "column": 7
+            },
+            {
+              "title": "CJ-007 traceability timeline renders ordered events and explicit evidence state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6507,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:23:08.534Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3755e94e551be350ba76-a4aea96cbb06d24dab43",
+              "file": "n5-finance-traceability.spec.ts",
+              "line": 245,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "n6-admin-observability.spec.ts",
+      "file": "n6-admin-observability.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "N6 admin observability and rollout tranche diagnostics",
+          "file": "n6-admin-observability.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14511,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:15:55.712Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2dd2302a57e794bc49c2-64f272bf4a6461ae24e4",
+              "file": "n6-admin-observability.spec.ts",
+              "line": 6,
+              "column": 7
+            },
+            {
+              "title": "EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 12259,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:16:10.263Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2dd2302a57e794bc49c2-7f2ab74925b619f0b47e",
+              "file": "n6-admin-observability.spec.ts",
+              "line": 24,
+              "column": 7
+            },
+            {
+              "title": "PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10610,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:23:15.085Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2dd2302a57e794bc49c2-65158a483b82421a3de8",
+              "file": "n6-admin-observability.spec.ts",
+              "line": 6,
+              "column": 7
+            },
+            {
+              "title": "EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 11665,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:23:25.724Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2dd2302a57e794bc49c2-178761aaab4fa4097b83",
+              "file": "n6-admin-observability.spec.ts",
+              "line": 24,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "negotiation.spec.ts",
+      "file": "negotiation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Negotiation inbox and thread proof",
+          "file": "negotiation.spec.ts",
+          "line": 248,
+          "column": 6,
+          "specs": [
+            {
+              "title": "pending confirmation approve/reject paths lock terminal state and outsider thread access is blocked",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 84065,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:16:22.583Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7cdc3ca600f014156e77-d57fa33803c9a413e146",
+              "file": "negotiation.spec.ts",
+              "line": 251,
+              "column": 7
+            },
+            {
+              "title": "pending confirmation approve/reject paths lock terminal state and outsider thread access is blocked",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 64041,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:23:37.463Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7cdc3ca600f014156e77-b95c4144c66b057dd938",
+              "file": "negotiation.spec.ts",
+              "line": 251,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "r4-route-completion.spec.ts",
+      "file": "r4-route-completion.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "R4 route completion proof",
+          "file": "r4-route-completion.spec.ts",
+          "line": 168,
+          "column": 6,
+          "specs": [
+            {
+              "title": "admin analytics and cooperative dispatch routes are live and navigable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 22516,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:17:46.755Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "681faf878db3be069551-7a6ad3b21a3c42f79344",
+              "file": "r4-route-completion.spec.ts",
+              "line": 171,
+              "column": 7
+            },
+            {
+              "title": "wallet and notifications routes surface live escrow state after accepted negotiation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 31793,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:18:09.360Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "681faf878db3be069551-f917faba9d17c8bb1cd4",
+              "file": "r4-route-completion.spec.ts",
+              "line": 196,
+              "column": 7
+            },
+            {
+              "title": "server-authoritative home posture redirects after consent revoke",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8632,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:18:41.192Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "681faf878db3be069551-a7b37f5b7ed4de489f29",
+              "file": "r4-route-completion.spec.ts",
+              "line": 300,
+              "column": 7
+            },
+            {
+              "title": "admin analytics and cooperative dispatch routes are live and navigable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19520,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:24:41.566Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "681faf878db3be069551-24191cf65141e9b4e5f6",
+              "file": "r4-route-completion.spec.ts",
+              "line": 171,
+              "column": 7
+            },
+            {
+              "title": "wallet and notifications routes surface live escrow state after accepted negotiation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16968,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:25:01.143Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "681faf878db3be069551-5c3e4aef2c937ddc1174",
+              "file": "r4-route-completion.spec.ts",
+              "line": 196,
+              "column": 7
+            },
+            {
+              "title": "server-authoritative home posture redirects after consent revoke",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7535,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:25:18.173Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "681faf878db3be069551-0eb02b918c857e0f7ec8",
+              "file": "r4-route-completion.spec.ts",
+              "line": 300,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "r5-ux-hardening.spec.ts",
+      "file": "r5-ux-hardening.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "R5 UX hardening proof",
+          "file": "r5-ux-hardening.spec.ts",
+          "line": 300,
+          "column": 6,
+          "specs": [
+            {
+              "title": "captures public, onboarding, and role-home routes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 24221,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:18:49.986Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ee6ec9af20f6280915b8-4c9183040d31cbfeab09",
+              "file": "r5-ux-hardening.spec.ts",
+              "line": 303,
+              "column": 7
+            },
+            {
+              "title": "captures seeded marketplace, wallet, notifications, and traceability flows",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 41754,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:19:14.275Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ee6ec9af20f6280915b8-441a8f84d71ab9949eb6",
+              "file": "r5-ux-hardening.spec.ts",
+              "line": 337,
+              "column": 7
+            },
+            {
+              "title": "captures operations, advisory, climate, finance, and admin routes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 51417,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:19:56.080Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ee6ec9af20f6280915b8-9ecf8f32e6e4a812160e",
+              "file": "r5-ux-hardening.spec.ts",
+              "line": 465,
+              "column": 7
+            },
+            {
+              "title": "captures public, onboarding, and role-home routes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 39129,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:25:25.760Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ee6ec9af20f6280915b8-47b5e9f4b45677a5b466",
+              "file": "r5-ux-hardening.spec.ts",
+              "line": 303,
+              "column": 7
+            },
+            {
+              "title": "captures seeded marketplace, wallet, notifications, and traceability flows",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 54450,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:26:04.915Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ee6ec9af20f6280915b8-16234708e0f10180305d",
+              "file": "r5-ux-hardening.spec.ts",
+              "line": 337,
+              "column": 7
+            },
+            {
+              "title": "captures operations, advisory, climate, finance, and admin routes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 57538,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:26:59.399Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ee6ec9af20f6280915b8-85932a8c656402d080b9",
+              "file": "r5-ux-hardening.spec.ts",
+              "line": 465,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "recovery.spec.ts",
+      "file": "recovery.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Consent recovery and offline retry",
+          "file": "recovery.spec.ts",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "consent revoke blocks protected routes until restored",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 29669,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:20:47.609Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ef78f3da5c9c24fceacf-0aea5e187e1746693d02",
+              "file": "recovery.spec.ts",
+              "line": 14,
+              "column": 7
+            },
+            {
+              "title": "offline seam exposes connectivity, retry, and dismiss controls",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 13646,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:21:17.309Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ef78f3da5c9c24fceacf-1caff7b2952e1fb47244",
+              "file": "recovery.spec.ts",
+              "line": 56,
+              "column": 7
+            },
+            {
+              "title": "consent revoke blocks protected routes until restored",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 25804,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:27:56.972Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ef78f3da5c9c24fceacf-daa0dabc6ad44a8c00b0",
+              "file": "recovery.spec.ts",
+              "line": 14,
+              "column": 7
+            },
+            {
+              "title": "offline seam exposes connectivity, retry, and dismiss controls",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 13396,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T17:28:22.808Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ef78f3da5c9c24fceacf-a9affe23f30be767c5ce",
+              "file": "recovery.spec.ts",
+              "line": 56,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-20T17:12:22.075Z",
+    "duration": 974658.7239999999,
+    "expected": 40,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

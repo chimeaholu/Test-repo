@@ -1,0 +1,12 @@
+
+ RUN  v3.2.4 /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web
+
+ ✓ features/shell/model.test.ts (5 tests) 21ms
+ ✓ features/admin/admin-analytics-workspace.test.tsx (2 tests) 783ms
+   ✓ admin analytics workspace > shows an explicit authorization error when admin APIs return forbidden  576ms
+
+ Test Files  2 passed (2)
+      Tests  7 passed (7)
+   Start at  15:28:09
+   Duration  7.57s (transform 770ms, setup 934ms, collect 1.82s, tests 805ms, environment 5.99s, prepare 1.28s)
+

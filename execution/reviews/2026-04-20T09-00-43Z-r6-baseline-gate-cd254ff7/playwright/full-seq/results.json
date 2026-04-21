@@ -1,0 +1,2584 @@
+{
+  "config": {
+    "configFile": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/playwright.config.ts",
+    "rootDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-critical",
+        "name": "desktop-critical",
+        "testDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-critical",
+        "name": "mobile-critical",
+        "testDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/results.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/html-report",
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "advisory-climate-gate.spec.ts",
+      "file": "advisory-climate-gate.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "N4 advisory and climate tranche diagnostics",
+          "file": "advisory-climate-gate.spec.ts",
+          "line": 62,
+          "column": 6,
+          "specs": [
+            {
+              "title": "CJ-005 EP-006 RJ-003 DI-005 advisory route shows citations, confidence, and reviewer state",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 221494,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('form[data-interactive=\\'true\\']')\nExpected: visible\nTimeout: 20000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 20000ms\u001b[22m\n\u001b[2m  - waiting for locator('form[data-interactive=\\'true\\']')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('form[data-interactive=\\'true\\']')\nExpected: visible\nTimeout: 20000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 20000ms\u001b[22m\n\u001b[2m  - waiting for locator('form[data-interactive=\\'true\\']')\u001b[22m\n\n    at waitForInteractiveForm (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:274:63)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:32:3)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:3)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:73:5",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 63,
+                          "line": 274
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:274\n\n  272 |     timeout: 20_000,\n  273 |   });\n> 274 |   await expect(page.locator(\"form[data-interactive='true']\")).toBeVisible({\n      |                                                               ^\n  275 |     timeout: 20_000,\n  276 |   });\n  277 | }"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 63,
+                            "line": 274
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('form[data-interactive=\\'true\\']')\nExpected: visible\nTimeout: 20000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 20000ms\u001b[22m\n\u001b[2m  - waiting for locator('form[data-interactive=\\'true\\']')\u001b[22m\n\n\n   at helpers.ts:274\n\n  272 |     timeout: 20_000,\n  273 |   });\n> 274 |   await expect(page.locator(\"form[data-interactive='true']\")).toBeVisible({\n      |                                                               ^\n  275 |     timeout: 20_000,\n  276 |   });\n  277 | }\n    at waitForInteractiveForm (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:274:63)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:32:3)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:3)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:73:5"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 90000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:13:52.302Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/advisory-climate-gate-N4-a-fcd24-nfidence-and-reviewer-state-desktop-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 63,
+                        "line": 274
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fbc827509024e8d96707-7b7588eef9cf158b3358",
+              "file": "advisory-climate-gate.spec.ts",
+              "line": 63,
+              "column": 7
+            },
+            {
+              "title": "CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 95744,
+                      "error": {
+                        "message": "Error: page.goto: Page crashed\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: Page crashed\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:50:13)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:3)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:93:5",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  252 |     try {\n> 253 |       await page.goto(path, { waitUntil: \"domcontentloaded\", timeout: 60_000 });\n      |                  ^\n  254 |       return;\n  255 |     } catch (error) {\n  256 |       const message = error instanceof Error ? error.message : String(error);"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "Error: page.goto: Page crashed\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  252 |     try {\n> 253 |       await page.goto(path, { waitUntil: \"domcontentloaded\", timeout: 60_000 });\n      |                  ^\n  254 |       return;\n  255 |     } catch (error) {\n  256 |       const message = error instanceof Error ? error.message : String(error);\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:50:13)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:3)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:93:5"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:17:48.543Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/advisory-climate-gate-N4-a-2743d-wledgement-and-MRV-evidence-desktop-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fbc827509024e8d96707-ec369bb7759c8f10b313",
+              "file": "advisory-climate-gate.spec.ts",
+              "line": 89,
+              "column": 7
+            },
+            {
+              "title": "CJ-005 EP-006 RJ-003 DI-005 advisory route shows citations, confidence, and reviewer state",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 657,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:73:32",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:73:32"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:37:46.079Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/advisory-climate-gate-N4-a-fcd24-nfidence-and-reviewer-state-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/advisory-climate-gate-N4-a-fcd24-nfidence-and-reviewer-state-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fbc827509024e8d96707-a210afcd80cdc8cbc1da",
+              "file": "advisory-climate-gate.spec.ts",
+              "line": 63,
+              "column": 7
+            },
+            {
+              "title": "CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 589,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:93:32",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:93:32"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:37:48.728Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/advisory-climate-gate-N4-a-2743d-wledgement-and-MRV-evidence-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/advisory-climate-gate-N4-a-2743d-wledgement-and-MRV-evidence-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fbc827509024e8d96707-0a868615bd9f576d1082",
+              "file": "advisory-climate-gate.spec.ts",
+              "line": 89,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "auth-consent.spec.ts",
+      "file": "auth-consent.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Auth and consent",
+          "file": "auth-consent.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "sign-in validates identity fields and grants consent",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 130580,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  252 |     try {\n> 253 |       await page.goto(path, { waitUntil: \"domcontentloaded\", timeout: 60_000 });\n      |                  ^\n  254 |       return;\n  255 |     } catch (error) {\n  256 |       const message = error instanceof Error ? error.message : String(error);\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:50:13)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/auth-consent.spec.ts:30:5"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:20:10.547Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/auth-consent-Auth-and-cons-638c7-y-fields-and-grants-consent-desktop-critical/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "9eebd633b0f5ad865717-961bb4765073dea9c8f1",
+              "file": "auth-consent.spec.ts",
+              "line": 6,
+              "column": 7
+            },
+            {
+              "title": "protected routes redirect to sign-in first and consent second",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 26027,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/\\/signin$/\u001b[39m\nReceived string:  \u001b[31m\"http://127.0.0.1:3010/app/market/listings\"\u001b[39m\nTimeout: 10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 10000ms\u001b[22m\n\u001b[2m    10 × unexpected value \"http://127.0.0.1:3010/app/market/listings\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/\\/signin$/\u001b[39m\nReceived string:  \u001b[31m\"http://127.0.0.1:3010/app/market/listings\"\u001b[39m\nTimeout: 10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 10000ms\u001b[22m\n\u001b[2m    10 × unexpected value \"http://127.0.0.1:3010/app/market/listings\"\u001b[22m\n\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/auth-consent.spec.ts:56:24",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/auth-consent.spec.ts",
+                          "column": 24,
+                          "line": 56
+                        },
+                        "snippet": "  54 |     const kojoEmail = `kojo.e2e.${runId}@example.com`;\n  55 |     await gotoPath(page, \"/app/market/listings\");\n> 56 |     await expect(page).toHaveURL(/\\/signin$/);\n     |                        ^\n  57 |\n  58 |     await signIn(page, {\n  59 |       displayName: \"Kojo Addo\","
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/auth-consent.spec.ts",
+                            "column": 24,
+                            "line": 56
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/\\/signin$/\u001b[39m\nReceived string:  \u001b[31m\"http://127.0.0.1:3010/app/market/listings\"\u001b[39m\nTimeout: 10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 10000ms\u001b[22m\n\u001b[2m    10 × unexpected value \"http://127.0.0.1:3010/app/market/listings\"\u001b[22m\n\n\n  54 |     const kojoEmail = `kojo.e2e.${runId}@example.com`;\n  55 |     await gotoPath(page, \"/app/market/listings\");\n> 56 |     await expect(page).toHaveURL(/\\/signin$/);\n     |                        ^\n  57 |\n  58 |     await signIn(page, {\n  59 |       displayName: \"Kojo Addo\",\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/auth-consent.spec.ts:56:24"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:22:32.426Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/auth-consent-Auth-and-cons-203cb-in-first-and-consent-second-desktop-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/auth-consent-Auth-and-cons-203cb-in-first-and-consent-second-desktop-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/auth-consent.spec.ts",
+                        "column": 24,
+                        "line": 56
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "9eebd633b0f5ad865717-d575713603fc9fb7b39c",
+              "file": "auth-consent.spec.ts",
+              "line": 50,
+              "column": 7
+            },
+            {
+              "title": "sign-in validates identity fields and grants consent",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 703,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/auth-consent.spec.ts:13:19",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/auth-consent.spec.ts:13:19"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:37:51.251Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/auth-consent-Auth-and-cons-638c7-y-fields-and-grants-consent-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/auth-consent-Auth-and-cons-638c7-y-fields-and-grants-consent-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "9eebd633b0f5ad865717-8c7afe0d5c55d724bb2e",
+              "file": "auth-consent.spec.ts",
+              "line": 6,
+              "column": 7
+            },
+            {
+              "title": "protected routes redirect to sign-in first and consent second",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1019,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/app/market/listings\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/app/market/listings\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/app/market/listings\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/app/market/listings\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/auth-consent.spec.ts:55:19",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/app/market/listings\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/app/market/listings\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/auth-consent.spec.ts:55:19"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:37:54.387Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/auth-consent-Auth-and-cons-203cb-in-first-and-consent-second-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/auth-consent-Auth-and-cons-203cb-in-first-and-consent-second-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "9eebd633b0f5ad865717-95be6ec6ceccd1daa9a2",
+              "file": "auth-consent.spec.ts",
+              "line": 50,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "buyer-discovery.spec.ts",
+      "file": "buyer-discovery.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Buyer discovery and scoped read behavior",
+          "file": "buyer-discovery.spec.ts",
+          "line": 144,
+          "column": 6,
+          "specs": [
+            {
+              "title": "buyer reaches the discovery shell and cannot read another actor's listing detail",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 66035,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Inbox and thread controls on the canonical N2-A2 runtime' })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Inbox and thread controls on the canonical N2-A2 runtime' })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Inbox and thread controls on the canonical N2-A2 runtime' })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Inbox and thread controls on the canonical N2-A2 runtime' })\u001b[22m\n\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/buyer-discovery.spec.ts:194:7",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/buyer-discovery.spec.ts",
+                          "column": 7,
+                          "line": 194
+                        },
+                        "snippet": "  192 |         name: \"Inbox and thread controls on the canonical N2-A2 runtime\",\n  193 |       }),\n> 194 |     ).toBeVisible();\n      |       ^\n  195 |     await expect(page.getByText(\"No visible threads yet\")).toBeVisible();\n  196 |\n  197 |     await gotoPath(page, detailHref);"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/buyer-discovery.spec.ts",
+                            "column": 7,
+                            "line": 194
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Inbox and thread controls on the canonical N2-A2 runtime' })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Inbox and thread controls on the canonical N2-A2 runtime' })\u001b[22m\n\n\n  192 |         name: \"Inbox and thread controls on the canonical N2-A2 runtime\",\n  193 |       }),\n> 194 |     ).toBeVisible();\n      |       ^\n  195 |     await expect(page.getByText(\"No visible threads yet\")).toBeVisible();\n  196 |\n  197 |     await gotoPath(page, detailHref);\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/buyer-discovery.spec.ts:194:7"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:23:06.845Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/buyer-discovery-Buyer-disc-f7e10-ther-actor-s-listing-detail-desktop-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/buyer-discovery-Buyer-disc-f7e10-ther-actor-s-listing-detail-desktop-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/buyer-discovery.spec.ts",
+                        "column": 7,
+                        "line": 194
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "8563ea5e165098f945c0-6e02ef304ffe1c90f177",
+              "file": "buyer-discovery.spec.ts",
+              "line": 145,
+              "column": 7
+            },
+            {
+              "title": "buyer reaches the discovery shell and cannot read another actor's listing detail",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 2043,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at primeSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/buyer-discovery.spec.ts:134:17)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/buyer-discovery.spec.ts:172:11",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at primeSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/buyer-discovery.spec.ts:134:17)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/buyer-discovery.spec.ts:172:11"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:37:59.493Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/buyer-discovery-Buyer-disc-f7e10-ther-actor-s-listing-detail-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/buyer-discovery-Buyer-disc-f7e10-ther-actor-s-listing-detail-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "8563ea5e165098f945c0-852d793ff557a891c9db",
+              "file": "buyer-discovery.spec.ts",
+              "line": 145,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "marketplace.spec.ts",
+      "file": "marketplace.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Marketplace create and read",
+          "file": "marketplace.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "farmer creates a listing and reads it back from detail",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 22362,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:24:17.399Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "170e8a9d719db4caeb1d-597580fbcc5216ab8388",
+              "file": "marketplace.spec.ts",
+              "line": 6,
+              "column": 7
+            },
+            {
+              "title": "farmer edits a listing and sees optimistic reconciliation evidence",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16569,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:24:40.220Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "170e8a9d719db4caeb1d-a850f073d979e622cebd",
+              "file": "marketplace.spec.ts",
+              "line": 33,
+              "column": 7
+            },
+            {
+              "title": "farmer creates a listing and reads it back from detail",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 19,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1604,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/marketplace.spec.ts:9:32",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/marketplace.spec.ts:9:32"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:38:05.381Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/marketplace-Marketplace-cr-4d170-d-reads-it-back-from-detail-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/marketplace-Marketplace-cr-4d170-d-reads-it-back-from-detail-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "170e8a9d719db4caeb1d-5707d68f7d440b4301a2",
+              "file": "marketplace.spec.ts",
+              "line": 6,
+              "column": 7
+            },
+            {
+              "title": "farmer edits a listing and sees optimistic reconciliation evidence",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 20,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 736,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/marketplace.spec.ts:38:32",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/marketplace.spec.ts:38:32"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:38:10.099Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/marketplace-Marketplace-cr-5c669-tic-reconciliation-evidence-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/marketplace-Marketplace-cr-5c669-tic-reconciliation-evidence-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "170e8a9d719db4caeb1d-a6eb61a0762e205a9b4d",
+              "file": "marketplace.spec.ts",
+              "line": 33,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "n5-finance-traceability.spec.ts",
+      "file": "n5-finance-traceability.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "N5 finance and traceability tranche checks",
+          "file": "n5-finance-traceability.spec.ts",
+          "line": 213,
+          "column": 6,
+          "specs": [
+            {
+              "title": "CJ-004/CJ-008 finance HITL queue and decision actions are live",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8596,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:24:57.053Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3755e94e551be350ba76-34b6e2374c8d3788725a",
+              "file": "n5-finance-traceability.spec.ts",
+              "line": 214,
+              "column": 7
+            },
+            {
+              "title": "CJ-007 traceability timeline renders ordered events and explicit evidence state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9520,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:25:05.696Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3755e94e551be350ba76-f5337fa9fa2afed5f454",
+              "file": "n5-finance-traceability.spec.ts",
+              "line": 237,
+              "column": 7
+            },
+            {
+              "title": "CJ-004/CJ-008 finance HITL queue and decision actions are live",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 21,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 928,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at primeSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:68:17)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:221:11",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at primeSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:68:17)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:221:11"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:38:13.677Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/n5-finance-traceability-N5-bf26b-d-decision-actions-are-live-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/n5-finance-traceability-N5-bf26b-d-decision-actions-are-live-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "3755e94e551be350ba76-108e693380e6e468248f",
+              "file": "n5-finance-traceability.spec.ts",
+              "line": 214,
+              "column": 7
+            },
+            {
+              "title": "CJ-007 traceability timeline renders ordered events and explicit evidence state",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 22,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1241,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at primeSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:68:17)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:245:11",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at primeSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:68:17)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:245:11"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:38:17.092Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/n5-finance-traceability-N5-a33b0-and-explicit-evidence-state-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/n5-finance-traceability-N5-a33b0-and-explicit-evidence-state-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "3755e94e551be350ba76-a4aea96cbb06d24dab43",
+              "file": "n5-finance-traceability.spec.ts",
+              "line": 237,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "n6-admin-observability.spec.ts",
+      "file": "n6-admin-observability.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "N6 admin observability and rollout tranche diagnostics",
+          "file": "n6-admin-observability.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 29963,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Service health' })\nExpected: visible\nTimeout: 20000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 20000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Service health' })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Service health' })\nExpected: visible\nTimeout: 20000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 20000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Service health' })\u001b[22m\n\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:19:73",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts",
+                          "column": 73,
+                          "line": 19
+                        },
+                        "snippet": "  17 |     await gotoPath(page, \"/app/admin/analytics\");\n  18 |     await expect(page).toHaveURL(/\\/app\\/admin\\/analytics(\\?.*)?$/, { timeout: 20_000 });\n> 19 |     await expect(page.getByRole(\"heading\", { name: \"Service health\" })).toBeVisible({ timeout: 20_000 });\n     |                                                                         ^\n  20 |     await expect(page.getByText(/Stale telemetry|Degraded telemetry|Alert summary/i)).toBeVisible();\n  21 |     await expect(page.getByText(\"Admin analytics route\")).not.toBeVisible();\n  22 |   });"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts",
+                            "column": 73,
+                            "line": 19
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Service health' })\nExpected: visible\nTimeout: 20000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 20000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Service health' })\u001b[22m\n\n\n  17 |     await gotoPath(page, \"/app/admin/analytics\");\n  18 |     await expect(page).toHaveURL(/\\/app\\/admin\\/analytics(\\?.*)?$/, { timeout: 20_000 });\n> 19 |     await expect(page.getByRole(\"heading\", { name: \"Service health\" })).toBeVisible({ timeout: 20_000 });\n     |                                                                         ^\n  20 |     await expect(page.getByText(/Stale telemetry|Degraded telemetry|Alert summary/i)).toBeVisible();\n  21 |     await expect(page.getByText(\"Admin analytics route\")).not.toBeVisible();\n  22 |   });\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:19:73"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:25:15.315Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/n6-admin-observability-N6--c45d3-and-degraded-state-evidence-desktop-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/n6-admin-observability-N6--c45d3-and-degraded-state-evidence-desktop-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts",
+                        "column": 73,
+                        "line": 19
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "2dd2302a57e794bc49c2-64f272bf4a6461ae24e4",
+              "file": "n6-admin-observability.spec.ts",
+              "line": 6,
+              "column": 7
+            },
+            {
+              "title": "EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 9575,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/Actor attribution|Audit history|Country scope/i)\nExpected: visible\nError: strict mode violation: getByText(/Actor attribution|Audit history|Country scope/i) resolved to 3 elements:\n    1) <span>Country scope</span> aka getByText('Country scope')\n    2) <span>Actor attribution</span> aka getByText('Actor attribution')\n    3) <p class=\"eyebrow\">Audit history</p> aka getByText('Audit history')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/Actor attribution|Audit history|Country scope/i)\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/Actor attribution|Audit history|Country scope/i)\nExpected: visible\nError: strict mode violation: getByText(/Actor attribution|Audit history|Country scope/i) resolved to 3 elements:\n    1) <span>Country scope</span> aka getByText('Country scope')\n    2) <span>Actor attribution</span> aka getByText('Actor attribution')\n    3) <p class=\"eyebrow\">Audit history</p> aka getByText('Audit history')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/Actor attribution|Audit history|Country scope/i)\u001b[22m\n\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:38:84",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts",
+                          "column": 84,
+                          "line": 38
+                        },
+                        "snippet": "  36 |     await expect(page).toHaveURL(/\\/app\\/admin(\\?.*)?$/, { timeout: 20_000 });\n  37 |     await expect(page.getByRole(\"button\", { name: /Freeze rollout/i })).toBeVisible({ timeout: 20_000 });\n> 38 |     await expect(page.getByText(/Actor attribution|Audit history|Country scope/i)).toBeVisible();\n     |                                                                                    ^\n  39 |   });\n  40 | });\n  41 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts",
+                            "column": 84,
+                            "line": 38
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/Actor attribution|Audit history|Country scope/i)\nExpected: visible\nError: strict mode violation: getByText(/Actor attribution|Audit history|Country scope/i) resolved to 3 elements:\n    1) <span>Country scope</span> aka getByText('Country scope')\n    2) <span>Actor attribution</span> aka getByText('Actor attribution')\n    3) <p class=\"eyebrow\">Audit history</p> aka getByText('Audit history')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/Actor attribution|Audit history|Country scope/i)\u001b[22m\n\n\n  36 |     await expect(page).toHaveURL(/\\/app\\/admin(\\?.*)?$/, { timeout: 20_000 });\n  37 |     await expect(page.getByRole(\"button\", { name: /Freeze rollout/i })).toBeVisible({ timeout: 20_000 });\n> 38 |     await expect(page.getByText(/Actor attribution|Audit history|Country scope/i)).toBeVisible();\n     |                                                                                    ^\n  39 |   });\n  40 | });\n  41 |\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:38:84"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:25:47.086Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/n6-admin-observability-N6--1ccc0-ope-chips-and-audit-posture-desktop-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/n6-admin-observability-N6--1ccc0-ope-chips-and-audit-posture-desktop-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts",
+                        "column": 84,
+                        "line": 38
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "2dd2302a57e794bc49c2-7f2ab74925b619f0b47e",
+              "file": "n6-admin-observability.spec.ts",
+              "line": 24,
+              "column": 7
+            },
+            {
+              "title": "PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 23,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 731,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:10:32",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:10:32"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:38:20.610Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/n6-admin-observability-N6--c45d3-and-degraded-state-evidence-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/n6-admin-observability-N6--c45d3-and-degraded-state-evidence-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "2dd2302a57e794bc49c2-65158a483b82421a3de8",
+              "file": "n6-admin-observability.spec.ts",
+              "line": 6,
+              "column": 7
+            },
+            {
+              "title": "EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 24,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 714,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:28:32",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:28:32"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:38:23.529Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/n6-admin-observability-N6--1ccc0-ope-chips-and-audit-posture-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/n6-admin-observability-N6--1ccc0-ope-chips-and-audit-posture-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "2dd2302a57e794bc49c2-178761aaab4fa4097b83",
+              "file": "n6-admin-observability.spec.ts",
+              "line": 24,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "negotiation.spec.ts",
+      "file": "negotiation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Negotiation inbox and thread proof",
+          "file": "negotiation.spec.ts",
+          "line": 249,
+          "column": 6,
+          "specs": [
+            {
+              "title": "pending confirmation approve/reject paths lock terminal state and outsider thread access is blocked",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 62689,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Inbox and thread controls on the canonical N2-A2 runtime' })\nExpected: visible\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Inbox and thread controls on the canonical N2-A2 runtime' })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Inbox and thread controls on the canonical N2-A2 runtime' })\nExpected: visible\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Inbox and thread controls on the canonical N2-A2 runtime' })\u001b[22m\n\n    at buyerCreateThread (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/negotiation.spec.ts:181:30)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/negotiation.spec.ts:274:5",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/negotiation.spec.ts",
+                          "column": 30,
+                          "line": 181
+                        },
+                        "snippet": "  179 |     }\n  180 |   }\n> 181 |   await expect(inboxHeading).toBeVisible({ timeout: 30_000 });\n      |                              ^\n  182 |   await page.getByLabel(\"Listing ID\").fill(listingId);\n  183 |   await page.getByLabel(\"Offer amount\").fill(\"385\");\n  184 |   await page.getByLabel(\"Currency\").fill(\"GHS\");"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/negotiation.spec.ts",
+                            "column": 30,
+                            "line": 181
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Inbox and thread controls on the canonical N2-A2 runtime' })\nExpected: visible\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Inbox and thread controls on the canonical N2-A2 runtime' })\u001b[22m\n\n\n  179 |     }\n  180 |   }\n> 181 |   await expect(inboxHeading).toBeVisible({ timeout: 30_000 });\n      |                              ^\n  182 |   await page.getByLabel(\"Listing ID\").fill(listingId);\n  183 |   await page.getByLabel(\"Offer amount\").fill(\"385\");\n  184 |   await page.getByLabel(\"Currency\").fill(\"GHS\");\n    at buyerCreateThread (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/negotiation.spec.ts:181:30)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/negotiation.spec.ts:274:5"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:26:00.043Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/negotiation-Negotiation-in-fff71-er-thread-access-is-blocked-desktop-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/negotiation-Negotiation-in-fff71-er-thread-access-is-blocked-desktop-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/negotiation.spec.ts",
+                        "column": 30,
+                        "line": 181
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "7cdc3ca600f014156e77-d57fa33803c9a413e146",
+              "file": "negotiation.spec.ts",
+              "line": 252,
+              "column": 7
+            },
+            {
+              "title": "pending confirmation approve/reject paths lock terminal state and outsider thread access is blocked",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 25,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1103,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at primeSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/negotiation.spec.ts:77:17)\n    at activateSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/negotiation.spec.ts:88:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/negotiation.spec.ts:265:11",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at primeSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/negotiation.spec.ts:77:17)\n    at activateSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/negotiation.spec.ts:88:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/negotiation.spec.ts:265:11"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:38:26.866Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/negotiation-Negotiation-in-fff71-er-thread-access-is-blocked-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/negotiation-Negotiation-in-fff71-er-thread-access-is-blocked-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "7cdc3ca600f014156e77-b95c4144c66b057dd938",
+              "file": "negotiation.spec.ts",
+              "line": 252,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "r4-route-completion.spec.ts",
+      "file": "r4-route-completion.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "R4 route completion proof",
+          "file": "r4-route-completion.spec.ts",
+          "line": 168,
+          "column": 6,
+          "specs": [
+            {
+              "title": "admin analytics and cooperative dispatch routes are live and navigable",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 73821,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Service health' })\nExpected: visible\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Service health' })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Service health' })\nExpected: visible\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Service health' })\u001b[22m\n\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:181:73",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts",
+                          "column": 73,
+                          "line": 181
+                        },
+                        "snippet": "  179 |     await gotoPath(page, \"/app/admin\");\n  180 |     await waitForWorkspaceReady(page);\n> 181 |     await expect(page.getByRole(\"heading\", { name: \"Service health\" })).toBeVisible({ timeout: 30_000 });\n      |                                                                         ^\n  182 |     await expect(page.getByRole(\"button\", { name: /Freeze rollout/i })).toBeVisible();\n  183 |     await expect(page.getByText(\"Admin analytics route\")).toHaveCount(0);\n  184 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts",
+                            "column": 73,
+                            "line": 181
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Service health' })\nExpected: visible\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Service health' })\u001b[22m\n\n\n  179 |     await gotoPath(page, \"/app/admin\");\n  180 |     await waitForWorkspaceReady(page);\n> 181 |     await expect(page.getByRole(\"heading\", { name: \"Service health\" })).toBeVisible({ timeout: 30_000 });\n      |                                                                         ^\n  182 |     await expect(page.getByRole(\"button\", { name: /Freeze rollout/i })).toBeVisible();\n  183 |     await expect(page.getByText(\"Admin analytics route\")).toHaveCount(0);\n  184 |\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:181:73"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:27:09.185Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/r4-route-completion-R4-rou-2ec5d-utes-are-live-and-navigable-desktop-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts",
+                        "column": 73,
+                        "line": 181
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "681faf878db3be069551-7a6ad3b21a3c42f79344",
+              "file": "r4-route-completion.spec.ts",
+              "line": 171,
+              "column": 7
+            },
+            {
+              "title": "wallet and notifications routes surface live escrow state after accepted negotiation",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 76286,
+                      "error": {
+                        "message": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/app/market/listings\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/app/market/listings\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at createListing (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:188:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:212:43",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  252 |     try {\n> 253 |       await page.goto(path, { waitUntil: \"domcontentloaded\", timeout: 60_000 });\n      |                  ^\n  254 |       return;\n  255 |     } catch (error) {\n  256 |       const message = error instanceof Error ? error.message : String(error);"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/app/market/listings\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  252 |     try {\n> 253 |       await page.goto(path, { waitUntil: \"domcontentloaded\", timeout: 60_000 });\n      |                  ^\n  254 |       return;\n  255 |     } catch (error) {\n  256 |       const message = error instanceof Error ? error.message : String(error);\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at createListing (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:188:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:212:43"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:28:33.130Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/r4-route-completion-R4-rou-8939e--after-accepted-negotiation-desktop-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "681faf878db3be069551-f917faba9d17c8bb1cd4",
+              "file": "r4-route-completion.spec.ts",
+              "line": 196,
+              "column": 7
+            },
+            {
+              "title": "server-authoritative home posture redirects after consent revoke",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 209425,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/Protected path open/i)\nExpected: visible\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/Protected path open/i)\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/Protected path open/i)\nExpected: visible\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/Protected path open/i)\u001b[22m\n\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:311:58",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts",
+                          "column": 58,
+                          "line": 311
+                        },
+                        "snippet": "  309 |     await gotoPath(page, \"/app/buyer\");\n  310 |     await waitForWorkspaceReady(page);\n> 311 |     await expect(page.getByText(/Protected path open/i)).toBeVisible({ timeout: 30_000 });\n      |                                                          ^\n  312 |\n  313 |     const revokeResponse = await request.post(`${API_BASE_URL}/api/v1/identity/consent/revoke`, {\n  314 |       data: {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts",
+                            "column": 58,
+                            "line": 311
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/Protected path open/i)\nExpected: visible\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/Protected path open/i)\u001b[22m\n\n\n  309 |     await gotoPath(page, \"/app/buyer\");\n  310 |     await waitForWorkspaceReady(page);\n> 311 |     await expect(page.getByText(/Protected path open/i)).toBeVisible({ timeout: 30_000 });\n      |                                                          ^\n  312 |\n  313 |     const revokeResponse = await request.post(`${API_BASE_URL}/api/v1/identity/consent/revoke`, {\n  314 |       data: {\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:311:58"
+                        },
+                        {
+                          "message": "Error: browserContext.close: Test ended.\nBrowser logs:\n\n<launching> /home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-36zGom --remote-debugging-pipe --no-startup-window\n<launched> pid=86415\n[pid=86415][err] [0420/093034.232791:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[pid=86415][err] [0420/093034.262251:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[pid=86415][err] [0420/093034.262326:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[pid=86415][err] [0420/093034.483464:WARNING:device/bluetooth/dbus/bluez_dbus_manager.cc:209] Floss manager service not available, cannot set Floss enable/disable.\n[pid=86415][err] [0420/093036.437274:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.\n[pid=86415][err] [0420/093127.999821:INFO:CONSOLE:25631] \"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold\", source: webpack-internal:///(app-pages-browser)/../../../../../../../../mnt/vault/MWH/Projects/Agrodomain/node_modules/.pnpm/next@15.5.15_@playwright+test@1.59.1_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js (25631)\n[pid=86415][err] [0420/093143.409794:INFO:CONSOLE:25631] \"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold\", source: webpack-internal:///(app-pages-browser)/../../../../../../../../mnt/vault/MWH/Projects/Agrodomain/node_modules/.pnpm/next@15.5.15_@playwright+test@1.59.1_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js (25631)\n[pid=86415][err] Received signal 11 SEGV_MAPERR 000000000000\n[pid=86415][err] #0 0x58151d8ecf5a (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3954f59)\n[pid=86415][err] #1 0x581520d1ed24 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x6d86d23)\n[pid=86415][err] #2 0x7915df6d6050 (/usr/lib/x86_64-linux-gnu/libc.so.6+0x3c04f)\n[pid=86415][err] #3 0x58152063cc32 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x66a4c31)\n[pid=86415][err] #4 0x581520639698 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x66a1697)\n[pid=86415][err] #5 0x58152082c8e7 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x68948e6)\n[pid=86415][err] #6 0x58151fedb05e (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x5f4305d)\n[pid=86415][err] #7 0x58151b9227b4 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x198a7b3)\n[pid=86415][err] #8 0x58151cd36921 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x2d9e920)\n[pid=86415][err] #9 0x7915e0233719 (/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.7400.6+0x54718)\n[pid=86415][err] #10 0x0ea00002daa0 ([anon:partition_alloc]+0xea00002da9f)\n[pid=86415][err] #11 0x58151c1682d3 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x21d02d2)\n[pid=86415][err] #12 0x58151c167a51 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x21cfa50)\n[pid=86415][err] #13 0x58151d70e2ef (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x37762ee)\n[pid=86415][err] #14 0x58151df7fe66 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3fe7e65)\n[pid=86415][err] #15 0x58151df7ffe6 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3fe7fe5)\n[pid=86415][err] #16 0x58151df83481 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3feb480)\n[pid=86415][err] #17 0x58151df80419 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3fe8418)\n[pid=86415][err] #18 0x58151df7f50e (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3fe750d)\n[pid=86415][err] #19 0x58151e91aad0 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x4982acf)\n[pid=86415][err] #20 0x58151e91bcf2 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x4983cf1)\n[pid=86415][err] #21 0x7915df6c124a (/usr/lib/x86_64-linux-gnu/libc.so.6+0x27249)\n[pid=86415][err]   r8: 0000000000000003  r9: 0000000000000200 r10: 0000000000000010 r11: fffffffc00000000\n[pid=86415][err]  r12: 00000ea4006870c0 r13: 00000ea400264380 r14: 00007ffcbc6160c0 r15: 00000ea4001064c0\n[pid=86415][err]   di: 0000000000000000  si: 00000ea4006a1e00  bp: 00007ffcbc616080  bx: 00000ea4006a1e00\n[pid=86415][err]   dx: 00007ffcbc6160c0  ax: 00000ea400264000  cx: 0000000000000000  sp: 00007ffcbc615fa0\n[pid=86415][err]   ip: 0000581520322942 efl: 0000000000010246 cgf: 002b000000000033 erf: 0000000000000004\n[pid=86415][err]  trp: 000000000000000e msk: 0000000000000000 cr2: 0000000000000000\n[pid=86415][err] [end of stack trace]"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:30:07.676Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/r4-route-completion-R4-rou-c4b4a-irects-after-consent-revoke-desktop-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts",
+                        "column": 58,
+                        "line": 311
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "681faf878db3be069551-a7b37f5b7ed4de489f29",
+              "file": "r4-route-completion.spec.ts",
+              "line": 301,
+              "column": 7
+            },
+            {
+              "title": "admin analytics and cooperative dispatch routes are live and navigable",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 26,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 896,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at primeSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:76:17)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:178:11",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at primeSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:76:17)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:178:11"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:38:30.138Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/r4-route-completion-R4-rou-2ec5d-utes-are-live-and-navigable-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/r4-route-completion-R4-rou-2ec5d-utes-are-live-and-navigable-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "681faf878db3be069551-24191cf65141e9b4e5f6",
+              "file": "r4-route-completion.spec.ts",
+              "line": 171,
+              "column": 7
+            },
+            {
+              "title": "wallet and notifications routes surface live escrow state after accepted negotiation",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 27,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1114,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at primeSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:76:17)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:211:11",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at primeSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:76:17)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:211:11"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:38:33.076Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/r4-route-completion-R4-rou-8939e--after-accepted-negotiation-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/r4-route-completion-R4-rou-8939e--after-accepted-negotiation-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "681faf878db3be069551-5c3e4aef2c937ddc1174",
+              "file": "r4-route-completion.spec.ts",
+              "line": 196,
+              "column": 7
+            },
+            {
+              "title": "server-authoritative home posture redirects after consent revoke",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 28,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 2176,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at primeSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:76:17)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:308:11",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at primeSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:76:17)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r4-route-completion.spec.ts:308:11"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:38:38.041Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/r4-route-completion-R4-rou-c4b4a-irects-after-consent-revoke-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/r4-route-completion-R4-rou-c4b4a-irects-after-consent-revoke-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "681faf878db3be069551-0eb02b918c857e0f7ec8",
+              "file": "r4-route-completion.spec.ts",
+              "line": 301,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "r5-ux-hardening.spec.ts",
+      "file": "r5-ux-hardening.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "R5 UX hardening",
+          "file": "r5-ux-hardening.spec.ts",
+          "line": 15,
+          "column": 6,
+          "specs": [
+            {
+              "title": "public routes remove planning copy and keep primary actions reachable at 320px",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "failed",
+                      "duration": 0,
+                      "error": {
+                        "message": "Test not found in the worker process. Make sure test title does not change."
+                      },
+                      "errors": [
+                        {
+                          "message": "Test not found in the worker process. Make sure test title does not change."
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:34:13.437Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ee6ec9af20f6280915b8-606c0edbf762804cc2fb",
+              "file": "r5-ux-hardening.spec.ts",
+              "line": 16,
+              "column": 7
+            },
+            {
+              "title": "authenticated routes keep cleaned copy on critical operator surfaces",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "failed",
+                      "duration": 0,
+                      "error": {
+                        "message": "Test not found in the worker process. Make sure test title does not change."
+                      },
+                      "errors": [
+                        {
+                          "message": "Test not found in the worker process. Make sure test title does not change."
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:34:13.438Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ee6ec9af20f6280915b8-163ce8fb76c14a045ac2",
+              "file": "r5-ux-hardening.spec.ts",
+              "line": 44,
+              "column": 7
+            },
+            {
+              "title": "public routes remove planning copy and keep primary actions reachable at 320px",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "failed",
+                      "duration": 0,
+                      "error": {
+                        "message": "Test not found in the worker process. Make sure test title does not change."
+                      },
+                      "errors": [
+                        {
+                          "message": "Test not found in the worker process. Make sure test title does not change."
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:38:44.389Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ee6ec9af20f6280915b8-b0f1f236adb2d4cf6c84",
+              "file": "r5-ux-hardening.spec.ts",
+              "line": 16,
+              "column": 7
+            },
+            {
+              "title": "authenticated routes keep cleaned copy on critical operator surfaces",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "failed",
+                      "duration": 0,
+                      "error": {
+                        "message": "Test not found in the worker process. Make sure test title does not change."
+                      },
+                      "errors": [
+                        {
+                          "message": "Test not found in the worker process. Make sure test title does not change."
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:38:44.390Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ee6ec9af20f6280915b8-8fa929080c83f3b9ac4e",
+              "file": "r5-ux-hardening.spec.ts",
+              "line": 44,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "recovery.spec.ts",
+      "file": "recovery.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Consent recovery and offline retry",
+          "file": "recovery.spec.ts",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "consent revoke blocks protected routes until restored",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 190034,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 180000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 180000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 180000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 63,
+                            "line": 274
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('form[data-interactive=\\'true\\']')\nExpected: visible\nReceived: undefined\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 20000ms\u001b[22m\n\u001b[2m  - waiting for locator('form[data-interactive=\\'true\\']')\u001b[22m\n\n\n   at helpers.ts:274\n\n  272 | }\n  273 |\n> 274 | async function waitForInteractiveForm(page: Page, route: \"/signin\" | \"/onboarding/consent\"): Promise<void> {\n      |                                                               ^\n  275 |   await expect(page).toHaveURL(new RegExp(`${route.replace(\"/\", \"\\\\/\")}(\\\\?.*)?$`), {\n  276 |     timeout: 20_000,\n  277 |   });\n    at waitForInteractiveForm (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:274:63)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:32:3)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:3)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/recovery.spec.ts:18:5"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:34:15.262Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/recovery-Consent-recovery--b3bf1-ected-routes-until-restored-desktop-critical/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ef78f3da5c9c24fceacf-0aea5e187e1746693d02",
+              "file": "recovery.spec.ts",
+              "line": 14,
+              "column": 7
+            },
+            {
+              "title": "offline seam exposes connectivity, retry, and dismiss controls",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1321,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/recovery.spec.ts:57:32",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/recovery.spec.ts:57:32"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:37:41.861Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/recovery-Consent-recovery--16e1a--retry-and-dismiss-controls-desktop-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ef78f3da5c9c24fceacf-1caff7b2952e1fb47244",
+              "file": "recovery.spec.ts",
+              "line": 56,
+              "column": 7
+            },
+            {
+              "title": "consent revoke blocks protected routes until restored",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 30,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1101,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/recovery.spec.ts:18:32",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/recovery.spec.ts:18:32"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:38:47.470Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/recovery-Consent-recovery--b3bf1-ected-routes-until-restored-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/recovery-Consent-recovery--b3bf1-ected-routes-until-restored-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ef78f3da5c9c24fceacf-daa0dabc6ad44a8c00b0",
+              "file": "recovery.spec.ts",
+              "line": 14,
+              "column": 7
+            },
+            {
+              "title": "offline seam exposes connectivity, retry, and dismiss controls",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 31,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 791,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/recovery.spec.ts:57:32",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 253
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 253
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3010/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3010/signin\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:253\n\n  251 |   return listingId;\n  252 | }\n> 253 |\n      | ^\n  254 | export async function gotoPath(page: Page, path: string): Promise<void> {\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:253:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:120:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/recovery.spec.ts:57:32"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T09:38:51.735Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/recovery-Consent-recovery--16e1a--retry-and-dismiss-controls-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T09-00-43Z-r6-baseline-gate-cd254ff7/playwright/full-seq/test-results/recovery-Consent-recovery--16e1a--retry-and-dismiss-controls-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 253
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ef78f3da5c9c24fceacf-a9affe23f30be767c5ce",
+              "file": "recovery.spec.ts",
+              "line": 56,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-20T09:09:11.625Z",
+    "duration": 1781407.289,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 34,
+    "flaky": 0
+  }
+}

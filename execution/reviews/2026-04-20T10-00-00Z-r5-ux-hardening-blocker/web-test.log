@@ -1,0 +1,20 @@
+
+> @agrodomain/web@0.0.0 test /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web
+> corepack pnpm --filter @agrodomain/contracts build && corepack pnpm --filter @agrodomain/config build && corepack pnpm run guard:contracts && vitest run
+
+
+> @agrodomain/contracts@0.0.0 build /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @agrodomain/config@0.0.0 build /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/config
+> node --eval "import('./src/index.js')"
+
+
+> @agrodomain/web@0.0.0 guard:contracts /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web
+> node ./scripts/verify-contract-boundary.mjs
+
+/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @agrodomain/web@0.0.0 test: `corepack pnpm --filter @agrodomain/contracts build && corepack pnpm --filter @agrodomain/config build && corepack pnpm run guard:contracts && vitest run`
+Command failed with signal "SIGTERM"
+Contract boundary verified.

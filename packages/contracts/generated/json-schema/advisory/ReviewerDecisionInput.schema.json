@@ -1,0 +1,59 @@
+{
+  "$ref": "#/definitions/ReviewerDecisionInput",
+  "definitions": {
+    "ReviewerDecisionInput": {
+      "additionalProperties": false,
+      "properties": {
+        "advisory_request_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "note": {
+          "maxLength": 500,
+          "minLength": 3,
+          "nullable": true,
+          "type": "string"
+        },
+        "outcome": {
+          "enum": [
+            "approve",
+            "revise",
+            "block",
+            "hitl_required"
+          ],
+          "type": "string"
+        },
+        "reason_code": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "transcript_link": {
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        }
+      },
+      "required": [
+        "advisory_request_id",
+        "outcome",
+        "reason_code"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Manual reviewer command payload used to enforce explicit HITL transitions for advisory responses.",
+  "x-agrodomain-contract": {
+    "id": "advisory.reviewer_decision_input",
+    "domain": "advisory",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-005",
+      "EP-006",
+      "DI-005"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md"
+    ]
+  }
+}

@@ -1,0 +1,4 @@
+
+> @agrodomain/contracts@0.0.0 build /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/contracts
+> tsc -p tsconfig.json
+

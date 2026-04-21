@@ -1,0 +1,220 @@
+{
+  "$ref": "#/definitions/RolloutStatusCollection",
+  "definitions": {
+    "RolloutStatusCollection": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "alert_severity": {
+          "enum": [
+            "none",
+            "info",
+            "warning",
+            "critical"
+          ],
+          "nullable": true,
+          "type": "string"
+        },
+        "audit_event_id": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "channel": {
+          "description": "Transport channel that originated or carried the request",
+          "enum": [
+            "pwa",
+            "ussd",
+            "whatsapp",
+            "sms",
+            "push",
+            "api"
+          ],
+          "type": "string"
+        },
+        "country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "generated_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "actor_id": {
+                "$ref": "#/definitions/RolloutStatusCollection/properties/actor_id"
+              },
+              "actor_role": {
+                "enum": [
+                  "admin",
+                  "finance_ops",
+                  "compliance"
+                ],
+                "type": "string"
+              },
+              "alert_severity": {
+                "$ref": "#/definitions/RolloutStatusCollection/properties/alert_severity"
+              },
+              "audit_event_id": {
+                "$ref": "#/definitions/RolloutStatusCollection/properties/audit_event_id"
+              },
+              "changed_at": {
+                "$ref": "#/definitions/RolloutStatusCollection/properties/generated_at"
+              },
+              "channel": {
+                "$ref": "#/definitions/RolloutStatusCollection/properties/channel"
+              },
+              "country_code": {
+                "$ref": "#/definitions/RolloutStatusCollection/properties/country_code"
+              },
+              "intent": {
+                "enum": [
+                  "freeze",
+                  "hold",
+                  "limited_release",
+                  "resume"
+                ],
+                "type": "string"
+              },
+              "limited_release_percent": {
+                "maximum": 99,
+                "minimum": 1,
+                "nullable": true,
+                "type": "integer"
+              },
+              "previous_state": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/RolloutStatusCollection/properties/items/items/properties/state"
+                  }
+                ],
+                "nullable": true
+              },
+              "reason_code": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "reason_detail": {
+                "maxLength": 280,
+                "minLength": 8,
+                "type": "string"
+              },
+              "request_id": {
+                "$ref": "#/definitions/RolloutStatusCollection/properties/request_id"
+              },
+              "schema_version": {
+                "$ref": "#/definitions/RolloutStatusCollection/properties/schema_version"
+              },
+              "scope_key": {
+                "maxLength": 96,
+                "minLength": 2,
+                "type": "string"
+              },
+              "service_name": {
+                "$ref": "#/definitions/RolloutStatusCollection/properties/service_name"
+              },
+              "slo_id": {
+                "$ref": "#/definitions/RolloutStatusCollection/properties/slo_id"
+              },
+              "state": {
+                "enum": [
+                  "active",
+                  "hold",
+                  "frozen",
+                  "limited_release"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "schema_version",
+              "request_id",
+              "actor_id",
+              "country_code",
+              "channel",
+              "service_name",
+              "slo_id",
+              "alert_severity",
+              "audit_event_id",
+              "actor_role",
+              "scope_key",
+              "state",
+              "previous_state",
+              "intent",
+              "reason_code",
+              "reason_detail",
+              "limited_release_percent",
+              "changed_at"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "request_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "service_name": {
+          "enum": [
+            "admin_control_plane",
+            "marketplace",
+            "advisory",
+            "finance",
+            "traceability",
+            "climate",
+            "rollout_control"
+          ],
+          "type": "string"
+        },
+        "slo_id": {
+          "maxLength": 32,
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "request_id",
+        "actor_id",
+        "country_code",
+        "channel",
+        "service_name",
+        "slo_id",
+        "alert_severity",
+        "audit_event_id",
+        "generated_at",
+        "items"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Current rollout posture across scoped services, countries, and channels for operator reads.",
+  "x-agrodomain-contract": {
+    "id": "observability.rollout_status_collection",
+    "domain": "observability",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "EP-005",
+      "DI-003"
+    ],
+    "source_artifacts": [
+      "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+      "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+    ]
+  }
+}

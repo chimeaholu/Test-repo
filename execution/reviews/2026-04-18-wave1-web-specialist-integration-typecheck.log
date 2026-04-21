@@ -1,0 +1,7 @@
+
+> @agrodomain/web@0.0.0 typecheck /mnt/vault/MWH/Projects/Agrodomain/apps/web
+> next typegen && tsc --noEmit
+
+Generating route types...
+✓ Route types generated successfully
+PASS

@@ -1,0 +1,122 @@
+[
+    {
+        "schema_version": "2026-04-18.wave1",
+        "policy_key": "admin.control-plane.default",
+        "environment": "local",
+        "mode": "active",
+        "country_codes": ["GH", "CI", "KE"],
+        "channel_allowlist": ["api", "pwa", "sms"],
+        "actor_subset_required": true,
+        "limited_release_percent": null,
+        "reason_code": "worker_enabled",
+        "updated_at": "2026-04-20T04:00:00Z"
+    },
+    {
+        "schema_version": "2026-04-18.wave1",
+        "policy_key": "admin.control-plane.default",
+        "environment": "test",
+        "mode": "active",
+        "country_codes": ["GH", "CI", "KE"],
+        "channel_allowlist": ["api", "pwa", "sms"],
+        "actor_subset_required": true,
+        "limited_release_percent": null,
+        "reason_code": "worker_enabled",
+        "updated_at": "2026-04-20T04:00:00Z"
+    },
+    {
+        "schema_version": "2026-04-18.wave1",
+        "policy_key": "admin.control-plane.default",
+        "environment": "ci",
+        "mode": "active",
+        "country_codes": ["GH", "CI", "KE"],
+        "channel_allowlist": ["api", "pwa", "sms"],
+        "actor_subset_required": true,
+        "limited_release_percent": null,
+        "reason_code": "worker_enabled",
+        "updated_at": "2026-04-20T04:00:00Z"
+    },
+    {
+        "schema_version": "2026-04-18.wave1",
+        "policy_key": "admin.control-plane.default",
+        "environment": "staging",
+        "mode": "limited_release",
+        "country_codes": ["GH"],
+        "channel_allowlist": ["api", "pwa"],
+        "actor_subset_required": true,
+        "limited_release_percent": 25,
+        "reason_code": "canary_gate",
+        "updated_at": "2026-04-20T04:00:00Z"
+    },
+    {
+        "schema_version": "2026-04-18.wave1",
+        "policy_key": "admin.control-plane.default",
+        "environment": "production",
+        "mode": "active",
+        "country_codes": ["GH", "CI", "KE"],
+        "channel_allowlist": ["api", "pwa"],
+        "actor_subset_required": true,
+        "limited_release_percent": null,
+        "reason_code": "steady_state",
+        "updated_at": "2026-04-20T04:00:00Z"
+    },
+    {
+        "schema_version": "2026-04-18.wave1",
+        "policy_key": "workflow.offline.default",
+        "environment": "local",
+        "mode": "active",
+        "country_codes": ["GH", "CI", "KE"],
+        "channel_allowlist": ["pwa"],
+        "actor_subset_required": false,
+        "limited_release_percent": null,
+        "reason_code": "backend_replay",
+        "updated_at": "2026-04-20T04:00:00Z"
+    },
+    {
+        "schema_version": "2026-04-18.wave1",
+        "policy_key": "workflow.offline.default",
+        "environment": "test",
+        "mode": "active",
+        "country_codes": ["GH", "CI", "KE"],
+        "channel_allowlist": ["pwa"],
+        "actor_subset_required": false,
+        "limited_release_percent": null,
+        "reason_code": "backend_replay",
+        "updated_at": "2026-04-20T04:00:00Z"
+    },
+    {
+        "schema_version": "2026-04-18.wave1",
+        "policy_key": "workflow.offline.default",
+        "environment": "ci",
+        "mode": "active",
+        "country_codes": ["GH", "CI", "KE"],
+        "channel_allowlist": ["pwa"],
+        "actor_subset_required": false,
+        "limited_release_percent": null,
+        "reason_code": "backend_replay",
+        "updated_at": "2026-04-20T04:00:00Z"
+    },
+    {
+        "schema_version": "2026-04-18.wave1",
+        "policy_key": "workflow.offline.default",
+        "environment": "staging",
+        "mode": "limited_release",
+        "country_codes": ["GH"],
+        "channel_allowlist": ["pwa"],
+        "actor_subset_required": false,
+        "limited_release_percent": 50,
+        "reason_code": "controlled_rollout",
+        "updated_at": "2026-04-20T04:00:00Z"
+    },
+    {
+        "schema_version": "2026-04-18.wave1",
+        "policy_key": "workflow.offline.default",
+        "environment": "production",
+        "mode": "active",
+        "country_codes": ["GH", "CI", "KE"],
+        "channel_allowlist": ["pwa"],
+        "actor_subset_required": false,
+        "limited_release_percent": null,
+        "reason_code": "steady_state",
+        "updated_at": "2026-04-20T04:00:00Z"
+    }
+]

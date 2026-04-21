@@ -1,0 +1,86 @@
+{
+  "$ref": "#/definitions/ClimateDegradedMode",
+  "definitions": {
+    "ClimateDegradedMode": {
+      "additionalProperties": false,
+      "properties": {
+        "assumptions": {
+          "items": {
+            "maxLength": 240,
+            "minLength": 3,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "degraded_mode": {
+          "enum": [
+            true
+          ],
+          "type": "boolean"
+        },
+        "detected_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "type": "string"
+        },
+        "farm_profile_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "reason_code": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "source_ids": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "source_window_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "source_window_id",
+        "country_code",
+        "farm_profile_id",
+        "degraded_mode",
+        "reason_code",
+        "assumptions",
+        "detected_at"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Explicit degraded-mode payload for climate source gaps or stale windows.",
+  "x-agrodomain-contract": {
+    "id": "climate.climate_degraded_mode",
+    "domain": "climate",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "EP-008",
+      "DI-006"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md"
+    ]
+  }
+}

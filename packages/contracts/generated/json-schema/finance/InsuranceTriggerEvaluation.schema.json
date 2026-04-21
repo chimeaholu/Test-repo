@@ -1,0 +1,157 @@
+{
+  "$ref": "#/definitions/InsuranceTriggerEvaluation",
+  "definitions": {
+    "InsuranceTriggerEvaluation": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "actor_role": {
+          "enum": [
+            "farmer",
+            "buyer",
+            "cooperative",
+            "advisor",
+            "finance",
+            "finance_ops",
+            "admin"
+          ],
+          "type": "string"
+        },
+        "climate_source_reference": {
+          "additionalProperties": false,
+          "properties": {
+            "observation_id": {
+              "minLength": 1,
+              "nullable": true,
+              "type": "string"
+            },
+            "observed_at": {
+              "description": "ISO-8601 timestamp with timezone offset",
+              "format": "date-time",
+              "type": "string"
+            },
+            "source_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "source_type": {
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "source_id",
+            "source_type",
+            "observation_id",
+            "observed_at"
+          ],
+          "type": "object"
+        },
+        "country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "evaluated_at": {
+          "$ref": "#/definitions/InsuranceTriggerEvaluation/properties/climate_source_reference/properties/observed_at"
+        },
+        "evaluation_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "evaluation_state": {
+          "enum": [
+            "no_payout",
+            "payout_emitted",
+            "duplicate_payout"
+          ],
+          "type": "string"
+        },
+        "idempotency_key": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "observed_value": {
+          "type": "number"
+        },
+        "partner_reference_id": {
+          "maxLength": 128,
+          "nullable": true,
+          "type": "string"
+        },
+        "payout_dedupe_key": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "request_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "source_event_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_observation_id": {
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "threshold_value": {
+          "type": "number"
+        },
+        "trigger_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "triggered": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "schema_version",
+        "evaluation_id",
+        "trigger_id",
+        "request_id",
+        "idempotency_key",
+        "actor_id",
+        "actor_role",
+        "country_code",
+        "source_event_id",
+        "source_observation_id",
+        "climate_source_reference",
+        "observed_value",
+        "threshold_value",
+        "evaluation_state",
+        "triggered",
+        "payout_dedupe_key",
+        "partner_reference_id",
+        "evaluated_at"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Insurance trigger evaluation outcome DTO with payout dedupe markers and climate-source references.",
+  "x-agrodomain-contract": {
+    "id": "finance.insurance_trigger_evaluation",
+    "domain": "finance",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "EP-008",
+      "DI-006"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+    ]
+  }
+}

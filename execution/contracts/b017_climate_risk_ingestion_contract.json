@@ -1,0 +1,44 @@
+{
+  "bead_id": "B-017",
+  "name": "Climate Risk Ingestion Pipeline",
+  "version": "1.0.0",
+  "status": "draft",
+  "scope": {
+    "sources": [
+      "weather",
+      "satellite"
+    ],
+    "focus": [
+      "normalization",
+      "source_provenance",
+      "country_context",
+      "dedupe"
+    ]
+  },
+  "normalized_signal": {
+    "required_fields": [
+      "signal_id",
+      "farm_id",
+      "country_code",
+      "region",
+      "normalized_metric",
+      "normalized_value",
+      "normalized_unit",
+      "risk_hint",
+      "observed_at",
+      "provenance_key",
+      "reconciliation_key",
+      "confidence"
+    ]
+  },
+  "supported_metric_mappings": [
+    "weather:precipitation_24h->rainfall_24h_mm",
+    "weather:temperature_max->temperature_max_c",
+    "satellite:ndvi->ndvi_ratio",
+    "satellite:soil_moisture->soil_moisture_ratio"
+  ],
+  "test_obligations": {
+    "journey": "CJ-006",
+    "data_check": "DI-006"
+  }
+}

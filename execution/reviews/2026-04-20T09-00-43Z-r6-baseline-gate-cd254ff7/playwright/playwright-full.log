@@ -1,0 +1,43 @@
+
+> agrodomain@0.0.0 test:e2e /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7
+> playwright test
+
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0013 -> 0014, control plane runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0013 -> 0014, control plane runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0014 -> 0015_worker_runtime_activation, worker runtime activation
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0014 -> 0015_worker_runtime_activation, worker runtime activation
+[2m[WebServer] [22mINFO:     Started server process [80809]
+[2m[WebServer] [22mINFO:     Waiting for application startup.
+[2m[WebServer] [22mINFO:     Application startup complete.
+[2m[WebServer] [22mERROR:    [Errno 98] error while attempting to bind on address ('127.0.0.1', 8000): address already in use
+[2m[WebServer] [22mINFO:     Waiting for application shutdown.
+[2m[WebServer] [22mINFO:     Application shutdown complete.
+ ELIFECYCLE  Command failed.

@@ -1,0 +1,285 @@
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+[2m[WebServer] [22mINFO:     Started server process [464582]
+[2m[WebServer] [22mINFO:     Waiting for application startup.
+[2m[WebServer] [22mINFO:     Application startup complete.
+[2m[WebServer] [22mINFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2m[WebServer] [22m{"correlation_id": "6c463bd7-e130-4720-97ec-b5c2c319a479", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "6c463bd7-e130-4720-97ec-b5c2c319a479", "timestamp": "2026-04-19T01:30:07.140216+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:45732 - "GET /readyz HTTP/1.1" 200 OK
+[2m[WebServer] [22m(node:464594) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:464607) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:464631) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m   ▲ Next.js 15.5.15
+[2m[WebServer] [22m   - Local:        http://127.0.0.1:3000
+[2m[WebServer] [22m   - Network:      http://127.0.0.1:3000
+[2m[WebServer] [22m
+[2m[WebServer] [22m ✓ Starting...
+[2m[WebServer] [22m ✓ Ready in 3.1s
+[2m[WebServer] [22m ○ Compiling /signin ...
+[2m[WebServer] [22m ✓ Compiled /signin in 11.1s (692 modules)
+[2m[WebServer] [22m GET /signin 200 in 12279ms
+
+Running 4 tests using 1 worker
+
+(node:464654) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:464654) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 212ms
+[2m[WebServer] [22m{"correlation_id": "3e852f6e-f463-4083-897e-36c6b5c2332e", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "3e852f6e-f463-4083-897e-36c6b5c2332e", "timestamp": "2026-04-19T01:30:30.212854+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47628 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--signin-w9xwsv", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--signin-w9xwsv", "timestamp": "2026-04-19T01:30:30.274465+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47642 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m ○ Compiling /onboarding/consent ...
+[2m[WebServer] [22m ✓ Compiled /onboarding/consent in 1559ms (685 modules)
+[2m[WebServer] [22m GET /onboarding/consent 200 in 1904ms
+[2m[WebServer] [22m{"correlation_id": "0edea703-d9d8-4c1d-86b9-04dfb0de29c5", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "0edea703-d9d8-4c1d-86b9-04dfb0de29c5", "timestamp": "2026-04-19T01:30:33.565231+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47642 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-2ky0ct", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-2ky0ct", "timestamp": "2026-04-19T01:30:33.619860+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47628 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m ○ Compiling /app/[role] ...
+[2m[WebServer] [22m ✓ Compiled /app/[role] in 1260ms (711 modules)
+[2m[WebServer] [22m(node:464729) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/admin 200 in 2809ms
+[2m[WebServer] [22m GET /app/admin 200 in 575ms
+[2m[WebServer] [22m(node:464737) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m ○ Compiling /app/admin/analytics ...
+[2m[WebServer] [22m ✓ Compiled /app/admin/analytics in 1527ms (719 modules)
+[2m[WebServer] [22m{"correlation_id": "fd5e7aeb-b6c9-4320-84c6-5006fda3e2bf", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "fd5e7aeb-b6c9-4320-84c6-5006fda3e2bf", "timestamp": "2026-04-19T01:30:40.076343+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:50784 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-7f5wsf", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-7f5wsf", "timestamp": "2026-04-19T01:30:40.093556+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:50796 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/admin/analytics 200 in 2421ms
+[2m[WebServer] [22m{"correlation_id": "e56425d1-ad2c-41a1-b51b-9dfa0c1e44dc", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "e56425d1-ad2c-41a1-b51b-9dfa0c1e44dc", "timestamp": "2026-04-19T01:30:41.673064+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:50796 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-bkpkqz", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-bkpkqz", "timestamp": "2026-04-19T01:30:41.692082+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:50784 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+  ✘  1 [desktop-critical] › tests/e2e/n6-admin-observability.spec.ts:6:7 › N6 admin observability and rollout tranche diagnostics › PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence (33.5s)
+(node:464751) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:464751) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 161ms
+[2m[WebServer] [22m{"correlation_id": "5ebd7969-c284-479a-8254-c2b55311fed8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "5ebd7969-c284-479a-8254-c2b55311fed8", "timestamp": "2026-04-19T01:31:05.122606+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47704 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--signin-q7221r", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--signin-q7221r", "timestamp": "2026-04-19T01:31:05.156524+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47720 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /onboarding/consent 200 in 125ms
+[2m[WebServer] [22m{"correlation_id": "885698de-6943-44e0-973d-acd24f7318ad", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "885698de-6943-44e0-973d-acd24f7318ad", "timestamp": "2026-04-19T01:31:06.236666+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47720 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-dxynqj", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-dxynqj", "timestamp": "2026-04-19T01:31:06.279115+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47704 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/admin 200 in 149ms
+[2m[WebServer] [22m(node:464824) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/admin 200 in 226ms
+[2m[WebServer] [22m GET /app/admin 200 in 197ms
+[2m[WebServer] [22m(node:464833) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m{"correlation_id": "61c28617-97aa-48c5-9bdc-e9366ed8ada3", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "61c28617-97aa-48c5-9bdc-e9366ed8ada3", "timestamp": "2026-04-19T01:31:09.033025+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47704 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-xoydpn", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-xoydpn", "timestamp": "2026-04-19T01:31:09.052370+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47720 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+  ✘  2 [desktop-critical] › tests/e2e/n6-admin-observability.spec.ts:24:7 › N6 admin observability and rollout tranche diagnostics › EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture (25.5s)
+(node:464845) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:464845) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 228ms
+[2m[WebServer] [22m{"correlation_id": "4cddb104-d48a-422c-aac7-d7982aa3422b", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "4cddb104-d48a-422c-aac7-d7982aa3422b", "timestamp": "2026-04-19T01:31:32.159814+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55916 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--signin-psthb7", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--signin-psthb7", "timestamp": "2026-04-19T01:31:32.184617+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55918 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /onboarding/consent 200 in 106ms
+[2m[WebServer] [22m{"correlation_id": "6a9d5360-166e-45b9-987a-48c3c9a76fa3", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "6a9d5360-166e-45b9-987a-48c3c9a76fa3", "timestamp": "2026-04-19T01:31:32.867439+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55918 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-qlz3wn", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-qlz3wn", "timestamp": "2026-04-19T01:31:32.897718+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55916 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/admin 200 in 144ms
+[2m[WebServer] [22m GET /app/admin 200 in 226ms
+[2m[WebServer] [22m(node:464916) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/admin/analytics 200 in 272ms
+[2m[WebServer] [22m{"correlation_id": "3688f938-3148-498e-ba20-158e2fa740be", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "3688f938-3148-498e-ba20-158e2fa740be", "timestamp": "2026-04-19T01:31:35.119524+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55916 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-nqhuhu", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-nqhuhu", "timestamp": "2026-04-19T01:31:35.132015+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55918 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+  ✘  3 [mobile-critical] › tests/e2e/n6-admin-observability.spec.ts:6:7 › N6 admin observability and rollout tranche diagnostics › PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence (25.1s)
+(node:464937) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:464937) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 127ms
+[2m[WebServer] [22m{"correlation_id": "0310844f-a946-4d91-a948-ba773700bfbf", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "0310844f-a946-4d91-a948-ba773700bfbf", "timestamp": "2026-04-19T01:31:58.990283+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:58902 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--signin-xrwxry", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--signin-xrwxry", "timestamp": "2026-04-19T01:31:59.033320+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:58906 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /onboarding/consent 200 in 73ms
+[2m[WebServer] [22m{"correlation_id": "b60bd2ca-4d00-4378-ae70-427e47d790ad", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "b60bd2ca-4d00-4378-ae70-427e47d790ad", "timestamp": "2026-04-19T01:31:59.678055+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:58906 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-6ykccu", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-6ykccu", "timestamp": "2026-04-19T01:31:59.717753+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:58902 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/admin 200 in 141ms
+[2m[WebServer] [22m(node:465010) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/admin 200 in 227ms
+[2m[WebServer] [22m GET /app/admin 200 in 181ms
+[2m[WebServer] [22m{"correlation_id": "0d6daf95-c32f-49d9-bafd-4179886462b9", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "0d6daf95-c32f-49d9-bafd-4179886462b9", "timestamp": "2026-04-19T01:32:02.448807+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:58902 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-dtr8em", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-dtr8em", "timestamp": "2026-04-19T01:32:02.465617+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:58906 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+  ✘  4 [mobile-critical] › tests/e2e/n6-admin-observability.spec.ts:24:7 › N6 admin observability and rollout tranche diagnostics › EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture (25.4s)
+
+
+  1) [desktop-critical] › tests/e2e/n6-admin-observability.spec.ts:6:7 › N6 admin observability and rollout tranche diagnostics › PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('heading', { name: 'Service health' })
+    Expected: visible
+    Timeout: 20000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 20000ms[22m
+    [2m  - waiting for getByRole('heading', { name: 'Service health' })[22m
+
+
+      17 |     await gotoPath(page, "/app/admin/analytics");
+      18 |     await expect(page).toHaveURL(/\/app\/admin\/analytics(\?.*)?$/, { timeout: 20_000 });
+    > 19 |     await expect(page.getByRole("heading", { name: "Service health" })).toBeVisible({ timeout: 20_000 });
+         |                                                                         ^
+      20 |     await expect(page.getByText(/Stale telemetry|Degraded telemetry|Alert summary/i)).toBeVisible();
+      21 |     await expect(page.getByText("Admin analytics route")).not.toBeVisible();
+      22 |   });
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:19:73
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-19T01-27-45Z-n6-q1-reliability-gate-pack-cd254ff7/playwright/n6-focused/test-results/n6-admin-observability-N6--c45d3-and-degraded-state-evidence-desktop-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-19T01-27-45Z-n6-q1-reliability-gate-pack-cd254ff7/playwright/n6-focused/test-results/n6-admin-observability-N6--c45d3-and-degraded-state-evidence-desktop-critical/error-context.md
+
+  2) [desktop-critical] › tests/e2e/n6-admin-observability.spec.ts:24:7 › N6 admin observability and rollout tranche diagnostics › EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('button', { name: /Freeze rollout/i })
+    Expected: visible
+    Timeout: 20000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 20000ms[22m
+    [2m  - waiting for getByRole('button', { name: /Freeze rollout/i })[22m
+
+
+      35 |     await gotoPath(page, "/app/admin");
+      36 |     await expect(page).toHaveURL(/\/app\/admin(\?.*)?$/, { timeout: 20_000 });
+    > 37 |     await expect(page.getByRole("button", { name: /Freeze rollout/i })).toBeVisible({ timeout: 20_000 });
+         |                                                                         ^
+      38 |     await expect(page.getByText(/Actor attribution|Audit history|Country scope/i)).toBeVisible();
+      39 |   });
+      40 | });
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:37:73
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-19T01-27-45Z-n6-q1-reliability-gate-pack-cd254ff7/playwright/n6-focused/test-results/n6-admin-observability-N6--1ccc0-ope-chips-and-audit-posture-desktop-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-19T01-27-45Z-n6-q1-reliability-gate-pack-cd254ff7/playwright/n6-focused/test-results/n6-admin-observability-N6--1ccc0-ope-chips-and-audit-posture-desktop-critical/error-context.md
+
+  3) [mobile-critical] › tests/e2e/n6-admin-observability.spec.ts:6:7 › N6 admin observability and rollout tranche diagnostics › PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('heading', { name: 'Service health' })
+    Expected: visible
+    Timeout: 20000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 20000ms[22m
+    [2m  - waiting for getByRole('heading', { name: 'Service health' })[22m
+
+
+      17 |     await gotoPath(page, "/app/admin/analytics");
+      18 |     await expect(page).toHaveURL(/\/app\/admin\/analytics(\?.*)?$/, { timeout: 20_000 });
+    > 19 |     await expect(page.getByRole("heading", { name: "Service health" })).toBeVisible({ timeout: 20_000 });
+         |                                                                         ^
+      20 |     await expect(page.getByText(/Stale telemetry|Degraded telemetry|Alert summary/i)).toBeVisible();
+      21 |     await expect(page.getByText("Admin analytics route")).not.toBeVisible();
+      22 |   });
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:19:73
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-19T01-27-45Z-n6-q1-reliability-gate-pack-cd254ff7/playwright/n6-focused/test-results/n6-admin-observability-N6--c45d3-and-degraded-state-evidence-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-19T01-27-45Z-n6-q1-reliability-gate-pack-cd254ff7/playwright/n6-focused/test-results/n6-admin-observability-N6--c45d3-and-degraded-state-evidence-mobile-critical/error-context.md
+
+  4) [mobile-critical] › tests/e2e/n6-admin-observability.spec.ts:24:7 › N6 admin observability and rollout tranche diagnostics › EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('button', { name: /Freeze rollout/i })
+    Expected: visible
+    Timeout: 20000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 20000ms[22m
+    [2m  - waiting for getByRole('button', { name: /Freeze rollout/i })[22m
+
+
+      35 |     await gotoPath(page, "/app/admin");
+      36 |     await expect(page).toHaveURL(/\/app\/admin(\?.*)?$/, { timeout: 20_000 });
+    > 37 |     await expect(page.getByRole("button", { name: /Freeze rollout/i })).toBeVisible({ timeout: 20_000 });
+         |                                                                         ^
+      38 |     await expect(page.getByText(/Actor attribution|Audit history|Country scope/i)).toBeVisible();
+      39 |   });
+      40 | });
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:37:73
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-19T01-27-45Z-n6-q1-reliability-gate-pack-cd254ff7/playwright/n6-focused/test-results/n6-admin-observability-N6--1ccc0-ope-chips-and-audit-posture-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-19T01-27-45Z-n6-q1-reliability-gate-pack-cd254ff7/playwright/n6-focused/test-results/n6-admin-observability-N6--1ccc0-ope-chips-and-audit-posture-mobile-critical/error-context.md
+
+  4 failed
+    [desktop-critical] › tests/e2e/n6-admin-observability.spec.ts:6:7 › N6 admin observability and rollout tranche diagnostics › PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence 
+    [desktop-critical] › tests/e2e/n6-admin-observability.spec.ts:24:7 › N6 admin observability and rollout tranche diagnostics › EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture 
+    [mobile-critical] › tests/e2e/n6-admin-observability.spec.ts:6:7 › N6 admin observability and rollout tranche diagnostics › PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence 
+    [mobile-critical] › tests/e2e/n6-admin-observability.spec.ts:24:7 › N6 admin observability and rollout tranche diagnostics › EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture 

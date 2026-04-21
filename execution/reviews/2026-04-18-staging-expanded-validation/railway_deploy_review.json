@@ -1,0 +1,35 @@
+{
+  "latest_deployment": "0166fb61-9a7e-4973-b062-106309bd0cb5",
+  "deployment_status": "SUCCESS",
+  "static_url": "web-staging-29cd.up.railway.app",
+  "deployment_url": null,
+  "service_instance_upstream_url": null,
+  "event_count": 7,
+  "event_errors": [],
+  "build_log_count": 46,
+  "deployment_log_count": 231,
+  "build_error_like_count": 0,
+  "deployment_error_like_count": 4,
+  "deployment_error_like_sample": [
+    {
+      "timestamp": "2026-04-18T00:38:55.300976036Z",
+      "severity": "error",
+      "message": "INFO:     Started server process [1]"
+    },
+    {
+      "timestamp": "2026-04-18T00:38:55.300980916Z",
+      "severity": "error",
+      "message": "INFO:     Waiting for application startup."
+    },
+    {
+      "timestamp": "2026-04-18T00:38:55.300986236Z",
+      "severity": "error",
+      "message": "INFO:     Application startup complete."
+    },
+    {
+      "timestamp": "2026-04-18T00:38:55.300990296Z",
+      "severity": "error",
+      "message": "INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)"
+    }
+  ]
+}

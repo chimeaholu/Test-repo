@@ -1,0 +1,92 @@
+[
+  {
+    "schema_version": "2026-04-18.wave1",
+    "environment": "local",
+    "public_schema_version": "2026-04-18.wave1",
+    "allowed_schema_versions": ["2026-04-18.wave1"],
+    "default_country_code": "GH",
+    "supported_country_codes": ["GH"],
+    "feature_flag_keys": [
+      "worker.operator_notifications",
+      "workflow.offline_backend_replay"
+    ],
+    "rollout_policy_keys": [
+      "admin.control-plane.default",
+      "workflow.offline.default"
+    ],
+    "telemetry_collection_enabled": true,
+    "admin_api_enabled": true
+  },
+  {
+    "schema_version": "2026-04-18.wave1",
+    "environment": "test",
+    "public_schema_version": "2026-04-18.wave1",
+    "allowed_schema_versions": ["2026-04-18.wave1"],
+    "default_country_code": "GH",
+    "supported_country_codes": ["GH"],
+    "feature_flag_keys": [
+      "worker.operator_notifications",
+      "workflow.offline_backend_replay"
+    ],
+    "rollout_policy_keys": [
+      "admin.control-plane.default",
+      "workflow.offline.default"
+    ],
+    "telemetry_collection_enabled": true,
+    "admin_api_enabled": true
+  },
+  {
+    "schema_version": "2026-04-18.wave1",
+    "environment": "ci",
+    "public_schema_version": "2026-04-18.wave1",
+    "allowed_schema_versions": ["2026-04-18.wave1"],
+    "default_country_code": "GH",
+    "supported_country_codes": ["GH"],
+    "feature_flag_keys": [
+      "worker.operator_notifications",
+      "workflow.offline_backend_replay"
+    ],
+    "rollout_policy_keys": [
+      "admin.control-plane.default",
+      "workflow.offline.default"
+    ],
+    "telemetry_collection_enabled": true,
+    "admin_api_enabled": true
+  },
+  {
+    "schema_version": "2026-04-18.wave1",
+    "environment": "staging",
+    "public_schema_version": "2026-04-18.wave1",
+    "allowed_schema_versions": ["2026-04-18.wave1"],
+    "default_country_code": "GH",
+    "supported_country_codes": ["GH"],
+    "feature_flag_keys": [
+      "worker.operator_notifications",
+      "workflow.offline_backend_replay"
+    ],
+    "rollout_policy_keys": [
+      "admin.control-plane.default",
+      "workflow.offline.default"
+    ],
+    "telemetry_collection_enabled": true,
+    "admin_api_enabled": true
+  },
+  {
+    "schema_version": "2026-04-18.wave1",
+    "environment": "production",
+    "public_schema_version": "2026-04-18.wave1",
+    "allowed_schema_versions": ["2026-04-18.wave1"],
+    "default_country_code": "GH",
+    "supported_country_codes": ["GH", "CI", "KE"],
+    "feature_flag_keys": [
+      "worker.operator_notifications",
+      "workflow.offline_backend_replay"
+    ],
+    "rollout_policy_keys": [
+      "admin.control-plane.default",
+      "workflow.offline.default"
+    ],
+    "telemetry_collection_enabled": true,
+    "admin_api_enabled": true
+  }
+]

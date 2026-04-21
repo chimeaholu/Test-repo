@@ -1,0 +1,225 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+_________ test_rollout_control_rejects_missing_actor_scope_and_reason __________
+
+client = <starlette.testclient.TestClient object at 0x7f2403d94a50>
+session = <sqlalchemy.orm.session.Session object at 0x7f2403d95b90>
+
+    def test_rollout_control_rejects_missing_actor_scope_and_reason(client, session) -> None:
+        _grant_admin_consent(session)
+        response = client.post(
+            "/api/v1/admin/rollouts/freeze",
+            json={
+                "release_id": "wave6-gh-rollout",
+                "service_name": "api",
+                "channel": "admin_console",
+            },
+            headers={"Authorization": "Bearer test-token"},
+        )
+    
+>       assert response.status_code in {403, 422}
+E       assert 404 in {403, 422}
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+apps/api/tests/integration/test_n6_admin_observability_reliability.py:46: AssertionError
+---------------------------- Captured stderr setup -----------------------------
+INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+INFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+INFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+INFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+INFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+INFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+INFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+INFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+INFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+INFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+INFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+INFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+INFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+INFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+INFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+INFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+INFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+INFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+INFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+INFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+INFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+INFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+INFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+INFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+___ test_admin_alert_feed_surfaces_degraded_breaches_instead_of_silent_loss ____
+
+client = <starlette.testclient.TestClient object at 0x7f2403f00310>
+session = <sqlalchemy.orm.session.Session object at 0x7f2403f1f390>
+
+    def test_admin_alert_feed_surfaces_degraded_breaches_instead_of_silent_loss(client, session) -> None:
+        _grant_admin_consent(session)
+        alerts_response = client.get(
+            "/api/v1/admin/observability/alerts?country_code=GH",
+            headers={"Authorization": "Bearer test-token"},
+        )
+    
+>       assert alerts_response.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+apps/api/tests/integration/test_n6_admin_observability_reliability.py:61: AssertionError
+---------------------------- Captured stderr setup -----------------------------
+INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+INFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+INFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+INFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+INFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+INFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+INFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+INFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+INFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+INFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+INFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+INFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+INFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+INFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+INFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+INFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+INFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+INFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+INFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+INFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+INFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+INFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+INFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+INFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+________ test_admin_analytics_marks_stale_data_as_degraded_not_healthy _________
+
+client = <starlette.testclient.TestClient object at 0x7f240336bb50>
+session = <sqlalchemy.orm.session.Session object at 0x7f2403370c10>
+
+    def test_admin_analytics_marks_stale_data_as_degraded_not_healthy(client, session) -> None:
+        _grant_admin_consent(session)
+    
+        response = client.get(
+            "/api/v1/admin/analytics/health?country_code=GH",
+            headers={"Authorization": "Bearer test-token"},
+        )
+    
+>       assert response.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+apps/api/tests/integration/test_n6_admin_observability_reliability.py:75: AssertionError
+---------------------------- Captured stderr setup -----------------------------
+INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+INFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+INFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+INFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+INFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+INFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+INFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+INFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+INFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+INFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+INFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+INFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+INFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+INFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+INFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+INFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+INFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+INFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+INFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+INFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+INFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+INFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+INFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+INFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+_______ test_duplicate_telemetry_ingest_is_deduped_before_slo_inflation ________
+
+client = <starlette.testclient.TestClient object at 0x7f2403278c90>
+session = <sqlalchemy.orm.session.Session object at 0x7f2403279e10>
+
+    def test_duplicate_telemetry_ingest_is_deduped_before_slo_inflation(client, session) -> None:
+        _grant_admin_consent(session)
+    
+        first_response = client.post(
+            "/api/v1/admin/observability/telemetry",
+            json={
+                "service_name": "api",
+                "channel": "admin_console",
+                "country_code": "GH",
+                "slo_id": "admin-api-latency",
+                "observation_id": "obs-telemetry-001",
+                "metric_name": "p95_latency_ms",
+                "metric_value": 1420,
+                "threshold_value": 1200,
+                "recorded_at": "2026-04-19T01:29:00Z",
+            },
+            headers={"Authorization": "Bearer test-token"},
+        )
+        second_response = client.post(
+            "/api/v1/admin/observability/telemetry",
+            json={
+                "service_name": "api",
+                "channel": "admin_console",
+                "country_code": "GH",
+                "slo_id": "admin-api-latency",
+                "observation_id": "obs-telemetry-001",
+                "metric_name": "p95_latency_ms",
+                "metric_value": 1420,
+                "threshold_value": 1200,
+                "recorded_at": "2026-04-19T01:29:00Z",
+            },
+            headers={"Authorization": "Bearer test-token"},
+        )
+    
+>       assert first_response.status_code == 202
+E       assert 404 == 202
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+apps/api/tests/integration/test_n6_admin_observability_reliability.py:115: AssertionError
+---------------------------- Captured stderr setup -----------------------------
+INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+INFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+INFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+INFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+INFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+INFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+INFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+INFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+INFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+INFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+INFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+INFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+INFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+INFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+INFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+INFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+INFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+INFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+INFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+INFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+INFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+INFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+INFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+INFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+=========================== short test summary info ============================
+FAILED apps/api/tests/integration/test_n6_admin_observability_reliability.py::test_rollout_control_rejects_missing_actor_scope_and_reason
+FAILED apps/api/tests/integration/test_n6_admin_observability_reliability.py::test_admin_alert_feed_surfaces_degraded_breaches_instead_of_silent_loss
+FAILED apps/api/tests/integration/test_n6_admin_observability_reliability.py::test_admin_analytics_marks_stale_data_as_degraded_not_healthy
+FAILED apps/api/tests/integration/test_n6_admin_observability_reliability.py::test_duplicate_telemetry_ingest_is_deduped_before_slo_inflation
+4 failed in 9.54s

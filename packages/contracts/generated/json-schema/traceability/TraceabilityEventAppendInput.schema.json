@@ -1,0 +1,68 @@
+{
+  "$ref": "#/definitions/TraceabilityEventAppendInput",
+  "definitions": {
+    "TraceabilityEventAppendInput": {
+      "additionalProperties": false,
+      "properties": {
+        "consignment_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "current_custody_actor_id": {
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "event_reference": {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        },
+        "milestone": {
+          "enum": [
+            "harvested",
+            "handoff_confirmed",
+            "dispatched",
+            "in_transit",
+            "delivered",
+            "exception_logged"
+          ],
+          "type": "string"
+        },
+        "occurred_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "type": "string"
+        },
+        "previous_event_reference": {
+          "maxLength": 128,
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        }
+      },
+      "required": [
+        "consignment_id",
+        "milestone",
+        "event_reference",
+        "previous_event_reference",
+        "occurred_at"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Append-only traceability event payload with continuity references.",
+  "x-agrodomain-contract": {
+    "id": "traceability.traceability_event_append_input",
+    "domain": "traceability",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-007",
+      "DI-006"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+    ]
+  }
+}

@@ -1,0 +1,283 @@
+{
+  "$ref": "#/definitions/AdminAnalyticsSnapshot",
+  "definitions": {
+    "AdminAnalyticsSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "alert_severity": {
+          "enum": [
+            "none",
+            "info",
+            "warning",
+            "critical"
+          ],
+          "nullable": true,
+          "type": "string"
+        },
+        "audit_event_id": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "channel": {
+          "description": "Transport channel that originated or carried the request",
+          "enum": [
+            "pwa",
+            "ussd",
+            "whatsapp",
+            "sms",
+            "push",
+            "api"
+          ],
+          "type": "string"
+        },
+        "country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "generated_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "type": "string"
+        },
+        "provenance": {
+          "items": {
+            "$ref": "#/definitions/AdminAnalyticsSnapshot/properties/summaries/items/properties/provenance/items"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "request_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "service_name": {
+          "enum": [
+            "admin_control_plane",
+            "marketplace",
+            "advisory",
+            "finance",
+            "traceability",
+            "climate",
+            "rollout_control"
+          ],
+          "type": "string"
+        },
+        "slo_id": {
+          "maxLength": 32,
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "stale_services": {
+          "items": {
+            "$ref": "#/definitions/AdminAnalyticsSnapshot/properties/service_name"
+          },
+          "type": "array"
+        },
+        "summaries": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "actor_id": {
+                "$ref": "#/definitions/AdminAnalyticsSnapshot/properties/actor_id"
+              },
+              "alert_severity": {
+                "$ref": "#/definitions/AdminAnalyticsSnapshot/properties/alert_severity"
+              },
+              "audit_event_id": {
+                "$ref": "#/definitions/AdminAnalyticsSnapshot/properties/audit_event_id"
+              },
+              "channel": {
+                "$ref": "#/definitions/AdminAnalyticsSnapshot/properties/channel"
+              },
+              "country_code": {
+                "$ref": "#/definitions/AdminAnalyticsSnapshot/properties/country_code"
+              },
+              "degraded_records": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "empty_records": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "generated_at": {
+                "$ref": "#/definitions/AdminAnalyticsSnapshot/properties/generated_at"
+              },
+              "health_state": {
+                "enum": [
+                  "current",
+                  "degraded",
+                  "empty"
+                ],
+                "type": "string"
+              },
+              "healthy_records": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "last_recorded_at": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/AdminAnalyticsSnapshot/properties/generated_at"
+                  }
+                ],
+                "description": "ISO-8601 timestamp with timezone offset",
+                "nullable": true
+              },
+              "provenance": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "citation_id": {
+                      "maxLength": 96,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "coverage_state": {
+                      "enum": [
+                        "current",
+                        "degraded",
+                        "empty"
+                      ],
+                      "type": "string"
+                    },
+                    "entity_type": {
+                      "maxLength": 64,
+                      "minLength": 2,
+                      "type": "string"
+                    },
+                    "last_recorded_at": {
+                      "allOf": [
+                        {
+                          "$ref": "#/definitions/AdminAnalyticsSnapshot/properties/generated_at"
+                        }
+                      ],
+                      "description": "ISO-8601 timestamp with timezone offset",
+                      "nullable": true
+                    },
+                    "note": {
+                      "maxLength": 240,
+                      "minLength": 3,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "record_count": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "source_service": {
+                      "$ref": "#/definitions/AdminAnalyticsSnapshot/properties/service_name"
+                    }
+                  },
+                  "required": [
+                    "citation_id",
+                    "source_service",
+                    "entity_type",
+                    "record_count",
+                    "last_recorded_at",
+                    "coverage_state",
+                    "note"
+                  ],
+                  "type": "object"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "request_id": {
+                "$ref": "#/definitions/AdminAnalyticsSnapshot/properties/request_id"
+              },
+              "schema_version": {
+                "$ref": "#/definitions/AdminAnalyticsSnapshot/properties/schema_version"
+              },
+              "service_name": {
+                "$ref": "#/definitions/AdminAnalyticsSnapshot/properties/service_name"
+              },
+              "slo_id": {
+                "$ref": "#/definitions/AdminAnalyticsSnapshot/properties/slo_id"
+              },
+              "total_records": {
+                "minimum": 0,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "schema_version",
+              "request_id",
+              "actor_id",
+              "country_code",
+              "channel",
+              "service_name",
+              "slo_id",
+              "alert_severity",
+              "audit_event_id",
+              "generated_at",
+              "total_records",
+              "healthy_records",
+              "degraded_records",
+              "empty_records",
+              "health_state",
+              "last_recorded_at",
+              "provenance"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "window_ended_at": {
+          "$ref": "#/definitions/AdminAnalyticsSnapshot/properties/generated_at"
+        },
+        "window_started_at": {
+          "$ref": "#/definitions/AdminAnalyticsSnapshot/properties/generated_at"
+        }
+      },
+      "required": [
+        "schema_version",
+        "request_id",
+        "actor_id",
+        "country_code",
+        "channel",
+        "service_name",
+        "slo_id",
+        "alert_severity",
+        "audit_event_id",
+        "generated_at",
+        "window_started_at",
+        "window_ended_at",
+        "summaries",
+        "provenance",
+        "stale_services"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Admin analytics mart snapshot spanning marketplace, advisory, finance, traceability, and climate operator rollups with provenance citations.",
+  "x-agrodomain-contract": {
+    "id": "analytics.admin_analytics_snapshot",
+    "domain": "analytics",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "PF-001",
+      "PF-004",
+      "DI-002"
+    ],
+    "source_artifacts": [
+      "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+      "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+      "execution/contracts/b025_enterprise_analytics_mart_contract.json"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+..............                                                           [100%]
+=============================== warnings summary ===============================
+../../../../../../../../home/node/.local/lib/python3.11/site-packages/_pytest/config/__init__.py:1474
+  /home/node/.local/lib/python3.11/site-packages/_pytest/config/__init__.py:1474: PytestConfigWarning: Unknown config option: asyncio_default_fixture_loop_scope
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+tests/integration/test_command_route.py: 3 warnings
+tests/integration/test_n6_admin_observability_reliability.py: 11 warnings
+  /home/node/.local/lib/python3.11/site-packages/alembic/config.py:612: DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces, commas, and colons for prepend_sys_path.  Consider adding path_separator=os to Alembic config.
+    util.warn_deprecated(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+14 passed, 15 warnings in 17.81s

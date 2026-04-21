@@ -1,0 +1,22 @@
+{
+  "name": "@agrodomain/config",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    }
+  },
+  "scripts": {
+    "build": "node --eval \"import('./src/index.js')\"",
+    "lint": "node --eval \"import('./src/index.js')\"",
+    "typecheck": "node --eval \"import('./src/index.js')\"",
+    "test": "node --test tests/index.test.mjs"
+  },
+  "dependencies": {
+    "@agrodomain/contracts": "workspace:*"
+  },
+  "devDependencies": {}
+}

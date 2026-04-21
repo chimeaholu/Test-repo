@@ -1,0 +1,485 @@
+{
+  "config": {
+    "configFile": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/playwright.config.ts",
+    "rootDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-critical",
+        "name": "desktop-critical",
+        "testDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-critical",
+        "name": "mobile-critical",
+        "testDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/results.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/html-report",
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "r5-ux-hardening.spec.ts",
+      "file": "r5-ux-hardening.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "R5 UX hardening proof",
+          "file": "r5-ux-hardening.spec.ts",
+          "line": 300,
+          "column": 6,
+          "specs": [
+            {
+              "title": "captures public, onboarding, and role-home routes",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 391103,
+                      "error": {
+                        "message": "TimeoutError: page.goto: Timeout 120000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3100/\", waiting until \"commit\"\u001b[22m\n",
+                        "stack": "TimeoutError: page.goto: Timeout 120000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3100/\", waiting until \"commit\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:306:19",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 257
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:257\n\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n> 257 |       await page.goto(path, { waitUntil: \"commit\", timeout: 120_000 });\n      |                  ^\n  258 |       const redirectedToSignIn = /\\/signin(\\?.*)?$/.test(page.url());\n  259 |       const wantsProtectedRoute = path === \"/app\" || path.startsWith(\"/app/\");\n  260 |       if (redirectedToSignIn && wantsProtectedRoute) {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 257
+                          },
+                          "message": "TimeoutError: page.goto: Timeout 120000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3100/\", waiting until \"commit\"\u001b[22m\n\n\n   at helpers.ts:257\n\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n> 257 |       await page.goto(path, { waitUntil: \"commit\", timeout: 120_000 });\n      |                  ^\n  258 |       const redirectedToSignIn = /\\/signin(\\?.*)?$/.test(page.url());\n  259 |       const wantsProtectedRoute = path === \"/app\" || path.startsWith(\"/app/\");\n  260 |       if (redirectedToSignIn && wantsProtectedRoute) {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:306:19"
+                        },
+                        {
+                          "message": "Error: browserContext.close: Test ended.\nBrowser logs:\n\n<launching> /home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-LsZxab --remote-debugging-pipe --no-startup-window\n<launched> pid=100226\n[pid=100226][err] [0420/120729.714794:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[pid=100226][err] [0420/120729.766813:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[pid=100226][err] [0420/120729.766874:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[pid=100226][err] [0420/120730.166652:WARNING:device/bluetooth/dbus/bluez_dbus_manager.cc:209] Floss manager service not available, cannot set Floss enable/disable.\n[pid=100226][err] [0420/120732.579612:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.\n[pid=100226][err] Received signal 11 SEGV_MAPERR 000000000000\n[pid=100226][err] #0 0x5da72a69ef5a (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3954f59)\n[pid=100226][err] #1 0x5da72dad0d24 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x6d86d23)\n[pid=100226][err] #2 0x7b3679f77050 (/usr/lib/x86_64-linux-gnu/libc.so.6+0x3c04f)\n[pid=100226][err] #3 0x5da72d5de8e7 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x68948e6)\n[pid=100226][err] #4 0x5da72cc8d05e (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x5f4305d)\n[pid=100226][err] #5 0x5da7286d47b4 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x198a7b3)\n[pid=100226][err] #6 0x5da729ae8921 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x2d9e920)\n[pid=100226][err] #7 0x7b367aad4719 (/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.7400.6+0x54718)\n[pid=100226][err] #8 0x1c980002daa0 ([anon:partition_alloc]+0x1c980002da9f)\n[pid=100226][err] #9 0x5da728f1a2d3 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x21d02d2)\n[pid=100226][err] #10 0x5da728f19a51 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x21cfa50)\n[pid=100226][err] #11 0x5da72a4c02ef (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x37762ee)\n[pid=100226][err] #12 0x5da72ad31e66 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3fe7e65)\n[pid=100226][err] #13 0x5da72ad31fe6 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3fe7fe5)\n[pid=100226][err] #14 0x5da72ad35481 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3feb480)\n[pid=100226][err] #15 0x5da72ad32419 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3fe8418)\n[pid=100226][err] #16 0x5da72ad3150e (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3fe750d)\n[pid=100226][err] #17 0x5da72b6ccad0 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x4982acf)\n[pid=100226][err] #18 0x5da72b6cdcf2 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x4983cf1)\n[pid=100226][err] #19 0x7b3679f6224a (/usr/lib/x86_64-linux-gnu/libc.so.6+0x27249)\n[pid=100226][err]   r8: 0000000000000004  r9: 000000000000fffe r10: 0000000000000000 r11: 0000000000000000\n[pid=100226][err]  r12: 0000000000000000 r13: 00001c9c005369a0 r14: 00001c9c00268000 r15: 0000000000000001\n[pid=100226][err]   di: 0000000000000000  si: 00005da731e44a00  bp: 00007ffcb078d4b0  bx: 0000000000000001\n[pid=100226][err]   dx: 30b4320000000000  ax: 00001c9c00309130  cx: 00005da72d3eb490  sp: 00007ffcb078d460\n[pid=100226][err]   ip: 00005da72d3eb5dc efl: 0000000000010206 cgf: 002b000000000033 erf: 0000000000000004\n[pid=100226][err]  trp: 000000000000000e msk: 0000000000000000 cr2: 0000000000000000\n[pid=100226][err] [end of stack trace]"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T12:07:26.764Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/test-results/r5-ux-hardening-R5-UX-hard-88d73-arding-and-role-home-routes-desktop-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 257
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ee6ec9af20f6280915b8-4c9183040d31cbfeab09",
+              "file": "r5-ux-hardening.spec.ts",
+              "line": 303,
+              "column": 7
+            },
+            {
+              "title": "captures seeded marketplace, wallet, notifications, and traceability flows",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 84162,
+                      "error": {
+                        "message": "Error: apiRequestContext.post: socket hang up\nCall log:\n\u001b[2m  - → POST http://127.0.0.1:8010/api/v1/identity/consent\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7727.15 Safari/537.36\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m    - Authorization: Bearer cf6321b98c1643e38cd9d521ca6567b3\u001b[22m\n\u001b[2m    - X-Correlation-ID: 7994604c-1020-4914-8fda-72d33ad7a785\u001b[22m\n\u001b[2m    - X-Request-ID: 7994604c-1020-4914-8fda-72d33ad7a785\u001b[22m\n\u001b[2m    - content-type: application/json\u001b[22m\n\u001b[2m    - content-length: 142\u001b[22m\n",
+                        "stack": "Error: apiRequestContext.post: socket hang up\nCall log:\n\u001b[2m  - → POST http://127.0.0.1:8010/api/v1/identity/consent\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7727.15 Safari/537.36\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m    - Authorization: Bearer cf6321b98c1643e38cd9d521ca6567b3\u001b[22m\n\u001b[2m    - X-Correlation-ID: 7994604c-1020-4914-8fda-72d33ad7a785\u001b[22m\n\u001b[2m    - X-Request-ID: 7994604c-1020-4914-8fda-72d33ad7a785\u001b[22m\n\u001b[2m    - content-type: application/json\u001b[22m\n\u001b[2m    - content-length: 142\u001b[22m\n\n    at createAuthenticatedSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:103:41)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:339:20",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts",
+                          "column": 41,
+                          "line": 103
+                        },
+                        "snippet": "  101 |\n  102 |   const consentRequestId = crypto.randomUUID();\n> 103 |   const consentResponse = await request.post(`${API_BASE_URL}/api/v1/identity/consent`, {\n      |                                         ^\n  104 |     data: {\n  105 |       captured_at: new Date().toISOString(),\n  106 |       policy_version: \"2026.04.w1\","
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts",
+                            "column": 41,
+                            "line": 103
+                          },
+                          "message": "Error: apiRequestContext.post: socket hang up\nCall log:\n\u001b[2m  - → POST http://127.0.0.1:8010/api/v1/identity/consent\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.7727.15 Safari/537.36\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m    - Authorization: Bearer cf6321b98c1643e38cd9d521ca6567b3\u001b[22m\n\u001b[2m    - X-Correlation-ID: 7994604c-1020-4914-8fda-72d33ad7a785\u001b[22m\n\u001b[2m    - X-Request-ID: 7994604c-1020-4914-8fda-72d33ad7a785\u001b[22m\n\u001b[2m    - content-type: application/json\u001b[22m\n\u001b[2m    - content-length: 142\u001b[22m\n\n\n  101 |\n  102 |   const consentRequestId = crypto.randomUUID();\n> 103 |   const consentResponse = await request.post(`${API_BASE_URL}/api/v1/identity/consent`, {\n      |                                         ^\n  104 |     data: {\n  105 |       captured_at: new Date().toISOString(),\n  106 |       policy_version: \"2026.04.w1\",\n    at createAuthenticatedSession (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:103:41)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:339:20"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T12:14:09.169Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/test-results/r5-ux-hardening-R5-UX-hard-12dc2-ions-and-traceability-flows-desktop-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts",
+                        "column": 41,
+                        "line": 103
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ee6ec9af20f6280915b8-441a8f84d71ab9949eb6",
+              "file": "r5-ux-hardening.spec.ts",
+              "line": 337,
+              "column": 7
+            },
+            {
+              "title": "captures operations, advisory, climate, finance, and admin routes",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 363206,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 300000ms exceeded while setting up \"page\".\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 300000ms exceeded while setting up \"page\".\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 300000ms exceeded while setting up \"page\".\u001b[39m"
+                        },
+                        {
+                          "message": "Error: browserContext.newPage: Test timeout of 300000ms exceeded."
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T12:20:14.235Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/test-results/r5-ux-hardening-R5-UX-hard-b209b-te-finance-and-admin-routes-desktop-critical/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ee6ec9af20f6280915b8-9ecf8f32e6e4a812160e",
+              "file": "r5-ux-hardening.spec.ts",
+              "line": 461,
+              "column": 7
+            },
+            {
+              "title": "captures public, onboarding, and role-home routes",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 41525,
+                      "error": {
+                        "message": "TimeoutError: page.screenshot: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n",
+                        "stack": "TimeoutError: page.screenshot: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n\n    at captureProof (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:44:16)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:309:11",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts",
+                          "column": 16,
+                          "line": 44
+                        },
+                        "snippet": "  42 |   }\n  43 |   try {\n> 44 |     await page.screenshot({ path: screenshotPath, fullPage: true });\n     |                ^\n  45 |   } catch (error) {\n  46 |     const message = error instanceof Error ? error.message : String(error);\n  47 |     if (!message.includes(\"Page.captureScreenshot\")) {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts",
+                            "column": 16,
+                            "line": 44
+                          },
+                          "message": "TimeoutError: page.screenshot: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n\n\n  42 |   }\n  43 |   try {\n> 44 |     await page.screenshot({ path: screenshotPath, fullPage: true });\n     |                ^\n  45 |   } catch (error) {\n  46 |     const message = error instanceof Error ? error.message : String(error);\n  47 |     if (!message.includes(\"Page.captureScreenshot\")) {\n    at captureProof (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:44:16)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:309:11"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T12:26:48.208Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/test-results/r5-ux-hardening-R5-UX-hard-88d73-arding-and-role-home-routes-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts",
+                        "column": 16,
+                        "line": 44
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ee6ec9af20f6280915b8-47b5e9f4b45677a5b466",
+              "file": "r5-ux-hardening.spec.ts",
+              "line": 303,
+              "column": 7
+            },
+            {
+              "title": "captures seeded marketplace, wallet, notifications, and traceability flows",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 31462,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Create, revise, and publish inventory with clear market status' })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Create, revise, and publish inventory with clear market status' })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Create, revise, and publish inventory with clear market status' })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Create, revise, and publish inventory with clear market status' })\u001b[22m\n\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:354:121",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts",
+                          "column": 121,
+                          "line": 354
+                        },
+                        "snippet": "  352 |     await primeSession(page, seller);\n  353 |     await gotoPath(page, \"/app/market/listings\");\n> 354 |     await expect(page.getByRole(\"heading\", { name: \"Create, revise, and publish inventory with clear market status\" })).toBeVisible();\n      |                                                                                                                         ^\n  355 |     await assertA11ySmoke(page);\n  356 |     await captureProof(page, testInfo, \"05-market-listings\");\n  357 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts",
+                            "column": 121,
+                            "line": 354
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Create, revise, and publish inventory with clear market status' })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Create, revise, and publish inventory with clear market status' })\u001b[22m\n\n\n  352 |     await primeSession(page, seller);\n  353 |     await gotoPath(page, \"/app/market/listings\");\n> 354 |     await expect(page.getByRole(\"heading\", { name: \"Create, revise, and publish inventory with clear market status\" })).toBeVisible();\n      |                                                                                                                         ^\n  355 |     await assertA11ySmoke(page);\n  356 |     await captureProof(page, testInfo, \"05-market-listings\");\n  357 |\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:354:121"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T12:27:41.542Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/test-results/r5-ux-hardening-R5-UX-hard-12dc2-ions-and-traceability-flows-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/test-results/r5-ux-hardening-R5-UX-hard-12dc2-ions-and-traceability-flows-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts",
+                        "column": 121,
+                        "line": 354
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ee6ec9af20f6280915b8-16234708e0f10180305d",
+              "file": "r5-ux-hardening.spec.ts",
+              "line": 337,
+              "column": 7
+            },
+            {
+              "title": "captures operations, advisory, climate, finance, and admin routes",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 630595,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 300000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 300000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 300000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 33,
+                            "line": 31
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByLabel('Full name')\nExpected: visible\nReceived: undefined\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('Full name')\u001b[22m\n\n\n   at helpers.ts:31\n\n  29 |     await gotoPath(page, \"/signin\");\n  30 |   }\n> 31 |   await expect(signInNameField).toBeVisible();\n     |                                 ^\n  32 |   await waitForInteractiveForm(page, \"/signin\");\n  33 |   const submitButton = page.getByRole(\"button\", { name: \"Continue to onboarding\" });\n  34 |   let reachedConsent = false;\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:31:33)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:3)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/r5-ux-hardening.spec.ts:464:5"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 300000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T12:28:26.657Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/test-results/r5-ux-hardening-R5-UX-hard-b209b-te-finance-and-admin-routes-mobile-critical/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ee6ec9af20f6280915b8-85932a8c656402d080b9",
+              "file": "r5-ux-hardening.spec.ts",
+              "line": 461,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-20T12:04:14.768Z",
+    "duration": 2182627.329,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 6,
+    "flaky": 0
+  }
+}

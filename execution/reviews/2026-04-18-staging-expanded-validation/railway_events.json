@@ -1,0 +1,65 @@
+[
+  {
+    "id": "ed2266e0-a74e-4529-b505-2c0aa14d135f",
+    "createdAt": "2026-04-18T00:38:37.159Z",
+    "completedAt": "2026-04-18T00:38:38.574Z",
+    "step": "SNAPSHOT_CODE",
+    "payload": {
+      "error": null
+    }
+  },
+  {
+    "id": "72e1855c-b935-40c1-9de9-5424669e07e5",
+    "createdAt": "2026-04-18T00:38:39.792Z",
+    "completedAt": "2026-04-18T00:38:49.560Z",
+    "step": "BUILD_IMAGE",
+    "payload": {
+      "error": null
+    }
+  },
+  {
+    "id": "dda1dfe2-e078-4d9d-9133-ff4bcf8b6b0e",
+    "createdAt": "2026-04-18T00:38:49.633Z",
+    "completedAt": "2026-04-18T00:38:50.978Z",
+    "step": "PUBLISH_IMAGE",
+    "payload": {
+      "error": null
+    }
+  },
+  {
+    "id": "1758685a-9660-4772-9fae-cd4370b2f843",
+    "createdAt": "2026-04-18T00:38:51.330Z",
+    "completedAt": "2026-04-18T00:38:54.350Z",
+    "step": "CREATE_CONTAINER",
+    "payload": {
+      "error": null
+    }
+  },
+  {
+    "id": "b71c887a-3f47-4eaa-9ffd-630797cfabdc",
+    "createdAt": "2026-04-18T00:38:54.567Z",
+    "completedAt": "2026-04-18T00:38:56.082Z",
+    "step": "HEALTHCHECK",
+    "payload": {
+      "error": null
+    }
+  },
+  {
+    "id": "cdaf1f43-1a1c-4634-a801-8be8b85fb396",
+    "createdAt": "2026-04-18T00:38:56.154Z",
+    "completedAt": "2026-04-18T00:38:58.111Z",
+    "step": "CONFIGURE_NETWORK",
+    "payload": {
+      "error": null
+    }
+  },
+  {
+    "id": "f6f27283-866d-446b-92e6-17442ab268c5",
+    "createdAt": "2026-04-18T00:38:58.831Z",
+    "completedAt": "2026-04-18T00:38:58.787Z",
+    "step": "DRAIN_INSTANCES",
+    "payload": {
+      "error": null
+    }
+  }
+]

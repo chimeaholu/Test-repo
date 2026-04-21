@@ -1,0 +1,121 @@
+{
+  "timestamp": "2026-04-20T23:32:09.217278+00:00",
+  "targets": {
+    "canary": "https://web-prod-n6-canary-r7.up.railway.app",
+    "production": "https://web-prod-n6-production.up.railway.app"
+  },
+  "smoke": {
+    "canary": [
+      {
+        "path": "/healthz",
+        "status_code": 200,
+        "ok": true,
+        "final_url": "https://web-prod-n6-canary-r7.up.railway.app/healthz"
+      },
+      {
+        "path": "/signin",
+        "status_code": 200,
+        "ok": true,
+        "final_url": "https://web-prod-n6-canary-r7.up.railway.app/signin"
+      },
+      {
+        "path": "/app/home",
+        "status_code": 200,
+        "ok": true,
+        "final_url": "https://web-prod-n6-canary-r7.up.railway.app/app/home"
+      },
+      {
+        "path": "/app/market/listings",
+        "status_code": 200,
+        "ok": true,
+        "final_url": "https://web-prod-n6-canary-r7.up.railway.app/app/market/listings"
+      },
+      {
+        "path": "/app/market/negotiations",
+        "status_code": 200,
+        "ok": true,
+        "final_url": "https://web-prod-n6-canary-r7.up.railway.app/app/market/negotiations"
+      },
+      {
+        "path": "/app/traceability",
+        "status_code": 200,
+        "ok": true,
+        "final_url": "https://web-prod-n6-canary-r7.up.railway.app/app/traceability"
+      },
+      {
+        "path": "/app/wallet",
+        "status_code": 200,
+        "ok": true,
+        "final_url": "https://web-prod-n6-canary-r7.up.railway.app/app/wallet"
+      },
+      {
+        "path": "/app/admin/analytics",
+        "status_code": 200,
+        "ok": true,
+        "final_url": "https://web-prod-n6-canary-r7.up.railway.app/app/admin/analytics"
+      },
+      {
+        "path": "/app/finance/queue",
+        "status_code": 200,
+        "ok": true,
+        "final_url": "https://web-prod-n6-canary-r7.up.railway.app/app/finance/queue"
+      }
+    ],
+    "production": [
+      {
+        "path": "/healthz",
+        "status_code": 200,
+        "ok": true,
+        "final_url": "https://web-prod-n6-production.up.railway.app/healthz"
+      },
+      {
+        "path": "/signin",
+        "status_code": 200,
+        "ok": true,
+        "final_url": "https://web-prod-n6-production.up.railway.app/signin"
+      },
+      {
+        "path": "/app/home",
+        "status_code": 200,
+        "ok": true,
+        "final_url": "https://web-prod-n6-production.up.railway.app/app/home"
+      },
+      {
+        "path": "/app/market/listings",
+        "status_code": 200,
+        "ok": true,
+        "final_url": "https://web-prod-n6-production.up.railway.app/app/market/listings"
+      },
+      {
+        "path": "/app/market/negotiations",
+        "status_code": 200,
+        "ok": true,
+        "final_url": "https://web-prod-n6-production.up.railway.app/app/market/negotiations"
+      },
+      {
+        "path": "/app/traceability",
+        "status_code": 200,
+        "ok": true,
+        "final_url": "https://web-prod-n6-production.up.railway.app/app/traceability"
+      },
+      {
+        "path": "/app/wallet",
+        "status_code": 200,
+        "ok": true,
+        "final_url": "https://web-prod-n6-production.up.railway.app/app/wallet"
+      },
+      {
+        "path": "/app/admin/analytics",
+        "status_code": 200,
+        "ok": true,
+        "final_url": "https://web-prod-n6-production.up.railway.app/app/admin/analytics"
+      },
+      {
+        "path": "/app/finance/queue",
+        "status_code": 200,
+        "ok": true,
+        "final_url": "https://web-prod-n6-production.up.railway.app/app/finance/queue"
+      }
+    ]
+  }
+}

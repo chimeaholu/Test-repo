@@ -1,0 +1,114 @@
+{
+  "$ref": "#/definitions/RolloutPolicy",
+  "definitions": {
+    "RolloutPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_subset_required": {
+          "type": "boolean"
+        },
+        "channel_allowlist": {
+          "items": {
+            "description": "Transport channel that originated or carried the request",
+            "enum": [
+              "pwa",
+              "ussd",
+              "whatsapp",
+              "sms",
+              "push",
+              "api"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "country_codes": {
+          "items": {
+            "description": "ISO alpha-2 country code",
+            "pattern": "^[A-Z]{2}$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "environment": {
+          "enum": [
+            "local",
+            "test",
+            "ci",
+            "staging",
+            "production"
+          ],
+          "type": "string"
+        },
+        "limited_release_percent": {
+          "maximum": 99,
+          "minimum": 1,
+          "nullable": true,
+          "type": "integer"
+        },
+        "mode": {
+          "enum": [
+            "active",
+            "hold",
+            "frozen",
+            "limited_release"
+          ],
+          "type": "string"
+        },
+        "policy_key": {
+          "maxLength": 96,
+          "minLength": 3,
+          "type": "string"
+        },
+        "reason_code": {
+          "maxLength": 96,
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "updated_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "policy_key",
+        "environment",
+        "mode",
+        "country_codes",
+        "channel_allowlist",
+        "actor_subset_required",
+        "limited_release_percent",
+        "reason_code",
+        "updated_at"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Typed rollout-policy schema that binds environment, country, channel, and bounded release mode into one source-backed config contract.",
+  "x-agrodomain-contract": {
+    "id": "config.rollout_policy",
+    "domain": "config",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "EP-005",
+      "EP-007",
+      "DI-003",
+      "DI-004"
+    ],
+    "source_artifacts": [
+      "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+      "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+    ]
+  }
+}

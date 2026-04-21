@@ -1,0 +1,387 @@
+{
+  "config": {
+    "configFile": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/playwright.config.ts",
+    "rootDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "desktop-critical",
+        "name": "desktop-critical",
+        "testDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "mobile-critical",
+        "name": "mobile-critical",
+        "testDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/results.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/html-report",
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "n5-finance-traceability.spec.ts",
+      "file": "n5-finance-traceability.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "N5 finance and traceability tranche checks",
+          "file": "n5-finance-traceability.spec.ts",
+          "line": 213,
+          "column": 6,
+          "specs": [
+            {
+              "title": "CJ-004/CJ-008 finance HITL queue and decision actions are live",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 19727,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('listing/listing-201', { exact: true })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('listing/listing-201', { exact: true })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('listing/listing-201', { exact: true })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('listing/listing-201', { exact: true })\u001b[22m\n\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:227:74",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts",
+                          "column": 74,
+                          "line": 227
+                        },
+                        "snippet": "  225 |\n  226 |     await page.getByRole(\"button\", { name: \"Submit finance request\" }).click();\n> 227 |     await expect(page.getByText(\"listing/listing-201\", { exact: true })).toBeVisible();\n      |                                                                          ^\n  228 |\n  229 |     await page.getByRole(\"button\", { name: \"Record partner approved\" }).click();\n  230 |     await expect(page.getByText(\"evidence_sufficient\")).toBeVisible();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts",
+                            "column": 74,
+                            "line": 227
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('listing/listing-201', { exact: true })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('listing/listing-201', { exact: true })\u001b[22m\n\n\n  225 |\n  226 |     await page.getByRole(\"button\", { name: \"Submit finance request\" }).click();\n> 227 |     await expect(page.getByText(\"listing/listing-201\", { exact: true })).toBeVisible();\n      |                                                                          ^\n  228 |\n  229 |     await page.getByRole(\"button\", { name: \"Record partner approved\" }).click();\n  230 |     await expect(page.getByText(\"evidence_sufficient\")).toBeVisible();\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:227:74"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-18T23:37:40.354Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/test-results/n5-finance-traceability-N5-bf26b-d-decision-actions-are-live-desktop-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/test-results/n5-finance-traceability-N5-bf26b-d-decision-actions-are-live-desktop-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts",
+                        "column": 74,
+                        "line": 227
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "3755e94e551be350ba76-34b6e2374c8d3788725a",
+              "file": "n5-finance-traceability.spec.ts",
+              "line": 214,
+              "column": 7
+            },
+            {
+              "title": "CJ-007 traceability timeline renders ordered events and explicit evidence state",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1213,
+                      "error": {
+                        "message": "Error: traceability.consignments.create did not return consignment_id: {\"status\":\"accepted\",\"request_id\":\"a8b8502d-7d45-40e7-9ef0-632ca85cebde\",\"idempotency_key\":\"c942a3bb-fa2f-4174-a000-5fda021f0478\",\"result\":{\"execution_id\":13,\"command_name\":\"traceability.consignments.create\",\"accepted\":true},\"error_code\":null,\"audit_event_id\":356,\"replayed\":false}",
+                        "stack": "Error: traceability.consignments.create did not return consignment_id: {\"status\":\"accepted\",\"request_id\":\"a8b8502d-7d45-40e7-9ef0-632ca85cebde\",\"idempotency_key\":\"c942a3bb-fa2f-4174-a000-5fda021f0478\",\"result\":{\"execution_id\":13,\"command_name\":\"traceability.consignments.create\",\"accepted\":true},\"error_code\":null,\"audit_event_id\":356,\"replayed\":false}\n    at createConsignmentTimeline (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:129:11)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:244:26",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts",
+                          "column": 11,
+                          "line": 129
+                        },
+                        "snippet": "  127 |   const consignmentId = createJson.result?.consignment?.consignment_id ?? createJson.result?.consignment_id;\n  128 |   if (!consignmentId) {\n> 129 |     throw new Error(`traceability.consignments.create did not return consignment_id: ${JSON.stringify(createJson)}`);\n      |           ^\n  130 |   }\n  131 |\n  132 |   const harvestRequestId = crypto.randomUUID();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts",
+                            "column": 11,
+                            "line": 129
+                          },
+                          "message": "Error: traceability.consignments.create did not return consignment_id: {\"status\":\"accepted\",\"request_id\":\"a8b8502d-7d45-40e7-9ef0-632ca85cebde\",\"idempotency_key\":\"c942a3bb-fa2f-4174-a000-5fda021f0478\",\"result\":{\"execution_id\":13,\"command_name\":\"traceability.consignments.create\",\"accepted\":true},\"error_code\":null,\"audit_event_id\":356,\"replayed\":false}\n\n  127 |   const consignmentId = createJson.result?.consignment?.consignment_id ?? createJson.result?.consignment_id;\n  128 |   if (!consignmentId) {\n> 129 |     throw new Error(`traceability.consignments.create did not return consignment_id: ${JSON.stringify(createJson)}`);\n      |           ^\n  130 |   }\n  131 |\n  132 |   const harvestRequestId = crypto.randomUUID();\n    at createConsignmentTimeline (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:129:11)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:244:26"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-18T23:38:02.527Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/test-results/n5-finance-traceability-N5-a33b0-and-explicit-evidence-state-desktop-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/test-results/n5-finance-traceability-N5-a33b0-and-explicit-evidence-state-desktop-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts",
+                        "column": 11,
+                        "line": 129
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "3755e94e551be350ba76-f5337fa9fa2afed5f454",
+              "file": "n5-finance-traceability.spec.ts",
+              "line": 237,
+              "column": 7
+            },
+            {
+              "title": "CJ-004/CJ-008 finance HITL queue and decision actions are live",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 20405,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('listing/listing-201', { exact: true })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('listing/listing-201', { exact: true })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('listing/listing-201', { exact: true })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('listing/listing-201', { exact: true })\u001b[22m\n\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:227:74",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts",
+                          "column": 74,
+                          "line": 227
+                        },
+                        "snippet": "  225 |\n  226 |     await page.getByRole(\"button\", { name: \"Submit finance request\" }).click();\n> 227 |     await expect(page.getByText(\"listing/listing-201\", { exact: true })).toBeVisible();\n      |                                                                          ^\n  228 |\n  229 |     await page.getByRole(\"button\", { name: \"Record partner approved\" }).click();\n  230 |     await expect(page.getByText(\"evidence_sufficient\")).toBeVisible();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts",
+                            "column": 74,
+                            "line": 227
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('listing/listing-201', { exact: true })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('listing/listing-201', { exact: true })\u001b[22m\n\n\n  225 |\n  226 |     await page.getByRole(\"button\", { name: \"Submit finance request\" }).click();\n> 227 |     await expect(page.getByText(\"listing/listing-201\", { exact: true })).toBeVisible();\n      |                                                                          ^\n  228 |\n  229 |     await page.getByRole(\"button\", { name: \"Record partner approved\" }).click();\n  230 |     await expect(page.getByText(\"evidence_sufficient\")).toBeVisible();\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:227:74"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-18T23:37:40.513Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/test-results/n5-finance-traceability-N5-bf26b-d-decision-actions-are-live-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/test-results/n5-finance-traceability-N5-bf26b-d-decision-actions-are-live-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts",
+                        "column": 74,
+                        "line": 227
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "3755e94e551be350ba76-108e693380e6e468248f",
+              "file": "n5-finance-traceability.spec.ts",
+              "line": 214,
+              "column": 7
+            },
+            {
+              "title": "CJ-007 traceability timeline renders ordered events and explicit evidence state",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 604,
+                      "error": {
+                        "message": "Error: traceability.consignments.create did not return consignment_id: {\"status\":\"accepted\",\"request_id\":\"e3f2d402-8deb-4ac8-9b10-d787a022b075\",\"idempotency_key\":\"3e46b165-b3fa-40af-b756-31e5f7ccd183\",\"result\":{\"execution_id\":14,\"command_name\":\"traceability.consignments.create\",\"accepted\":true},\"error_code\":null,\"audit_event_id\":357,\"replayed\":false}",
+                        "stack": "Error: traceability.consignments.create did not return consignment_id: {\"status\":\"accepted\",\"request_id\":\"e3f2d402-8deb-4ac8-9b10-d787a022b075\",\"idempotency_key\":\"3e46b165-b3fa-40af-b756-31e5f7ccd183\",\"result\":{\"execution_id\":14,\"command_name\":\"traceability.consignments.create\",\"accepted\":true},\"error_code\":null,\"audit_event_id\":357,\"replayed\":false}\n    at createConsignmentTimeline (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:129:11)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:244:26",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts",
+                          "column": 11,
+                          "line": 129
+                        },
+                        "snippet": "  127 |   const consignmentId = createJson.result?.consignment?.consignment_id ?? createJson.result?.consignment_id;\n  128 |   if (!consignmentId) {\n> 129 |     throw new Error(`traceability.consignments.create did not return consignment_id: ${JSON.stringify(createJson)}`);\n      |           ^\n  130 |   }\n  131 |\n  132 |   const harvestRequestId = crypto.randomUUID();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts",
+                            "column": 11,
+                            "line": 129
+                          },
+                          "message": "Error: traceability.consignments.create did not return consignment_id: {\"status\":\"accepted\",\"request_id\":\"e3f2d402-8deb-4ac8-9b10-d787a022b075\",\"idempotency_key\":\"3e46b165-b3fa-40af-b756-31e5f7ccd183\",\"result\":{\"execution_id\":14,\"command_name\":\"traceability.consignments.create\",\"accepted\":true},\"error_code\":null,\"audit_event_id\":357,\"replayed\":false}\n\n  127 |   const consignmentId = createJson.result?.consignment?.consignment_id ?? createJson.result?.consignment_id;\n  128 |   if (!consignmentId) {\n> 129 |     throw new Error(`traceability.consignments.create did not return consignment_id: ${JSON.stringify(createJson)}`);\n      |           ^\n  130 |   }\n  131 |\n  132 |   const harvestRequestId = crypto.randomUUID();\n    at createConsignmentTimeline (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:129:11)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:244:26"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-18T23:38:03.450Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/test-results/n5-finance-traceability-N5-a33b0-and-explicit-evidence-state-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/test-results/n5-finance-traceability-N5-a33b0-and-explicit-evidence-state-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts",
+                        "column": 11,
+                        "line": 129
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "3755e94e551be350ba76-a4aea96cbb06d24dab43",
+              "file": "n5-finance-traceability.spec.ts",
+              "line": 237,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-18T23:37:18.015Z",
+    "duration": 46527.056000000004,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 4,
+    "flaky": 0
+  }
+}

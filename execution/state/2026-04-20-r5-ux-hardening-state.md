@@ -1,0 +1,34 @@
+# R5 UX Hardening State
+
+- Timestamp: `2026-04-20T12:20:00Z`
+- Status: `PARTIAL`
+- Tracker wave: `Wave 0 production rebuild`
+- Completed beads:
+  - `R5-B01` remove remaining user-facing shell/wave-era language from the rerun route set
+  - `R5-B02` strengthen hierarchy, CTA framing, and operational readability across public, market, wallet, ops, finance, notifications, and admin routes
+  - `R5-B03` re-run focused component regressions and rebuild route packet documentation
+- Primary runtime refs:
+  - `apps/web/app/page.tsx`
+  - `apps/web/app/signin/page.tsx`
+  - `apps/web/app/onboarding/consent/page.tsx`
+  - `apps/web/app/app/profile/page.tsx`
+  - `apps/web/components/role-home.tsx`
+  - `apps/web/components/shell.tsx`
+  - `apps/web/app/globals.css`
+  - `apps/web/features/listings/listing-slice.tsx`
+  - `apps/web/features/negotiation/negotiation-inbox.tsx`
+  - `apps/web/features/wallet/wallet-workspace.tsx`
+  - `apps/web/features/cooperative/cooperative-dispatch-board.tsx`
+  - `apps/web/features/finance/finance-review-console.tsx`
+  - `apps/web/features/admin/admin-analytics-workspace.tsx`
+  - `apps/web/features/notifications/notification-center.tsx`
+- Verification refs:
+  - `execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/vitest-focused.log`
+  - `execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/route-packet-matrix.md`
+  - `execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/a11y-checks.md`
+  - `execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/artifact-index.md`
+  - `execution/reviews/2026-04-20T09-46-30Z-r5-ux-hardening/results.json`
+- Proof note:
+  - fresh desktop/mobile screenshot regeneration and browser-smoke refresh were blocked by local harness instability during this rerun
+  - the last complete R5 PASS screenshot pack remains `execution/reviews/2026-04-20T09-46-30Z-r5-ux-hardening/`
+- Next tranche handoff: `refresh browser proof pack on a clean harness before treating this rerun as a full PASS replacement`

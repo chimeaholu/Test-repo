@@ -1,0 +1,44 @@
+
+> @agrodomain/web@0.0.0 test /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web
+> corepack pnpm --filter @agrodomain/contracts build && corepack pnpm run guard:contracts && vitest run
+
+
+> @agrodomain/contracts@0.0.0 build /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @agrodomain/web@0.0.0 guard:contracts /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web
+> node ./scripts/verify-contract-boundary.mjs
+
+Contract boundary verified.
+
+ RUN  v3.2.4 /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web
+
+ ✓ features/finance/model.test.ts (3 tests) 67ms
+ ✓ features/negotiation/negotiation-inbox.test.tsx (4 tests) 1020ms
+   ✓ negotiation inbox > submits a buyer offer and renders audit/idempotency evidence  708ms
+ ✓ features/finance/finance-review-console.test.tsx (1 test) 718ms
+   ✓ finance review console > submits queue items and records partner decisions with telemetry  715ms
+ ✓ features/climate/climate-dashboard.test.tsx (1 test) 475ms
+   ✓ climate dashboard > renders degraded-mode detail and acknowledges alerts  471ms
+ ✓ features/advisory/conversation-workspace.test.tsx (1 test) 647ms
+   ✓ advisory conversation workspace > renders reviewer state, locale fallback, and citation drawer  643ms
+ ✓ features/listings/listing-slice.test.tsx (4 tests) 945ms
+   ✓ listing surfaces > renders buyer discovery from buyer-safe published listings only  537ms
+ ✓ lib/api/mock-client.test.ts (1 test) 15ms
+ ✓ features/listings/schema.test.ts (3 tests) 34ms
+ ✓ features/traceability/traceability-workspace.test.tsx (2 tests) 670ms
+   ✓ traceability workspace > opens evidence details and records telemetry  375ms
+ ✓ features/advisory/model.test.ts (2 tests) 8ms
+ ✓ features/identity/schema.test.ts (3 tests) 12ms
+ ✓ lib/offline/reducer.test.ts (2 tests) 7ms
+ ✓ features/negotiation/thread-state.test.ts (3 tests) 7ms
+ ✓ features/shell/model.test.ts (3 tests) 8ms
+ ✓ features/traceability/model.test.ts (3 tests) 8ms
+ ✓ features/climate/model.test.ts (2 tests) 6ms
+
+ Test Files  16 passed (16)
+      Tests  38 passed (38)
+   Start at  23:15:37
+   Duration  18.44s (transform 2.26s, setup 4.05s, collect 7.86s, tests 4.65s, environment 22.87s, prepare 4.71s)
+

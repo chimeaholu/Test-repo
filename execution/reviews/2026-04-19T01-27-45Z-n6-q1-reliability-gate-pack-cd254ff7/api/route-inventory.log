@@ -1,0 +1,17 @@
+apps/api/app/api/routes/.gitkeep
+apps/api/app/api/routes/__pycache__/advisory.cpython-311.pyc
+apps/api/app/api/routes/__pycache__/audit.cpython-311.pyc
+apps/api/app/api/routes/__pycache__/climate.cpython-311.pyc
+apps/api/app/api/routes/__pycache__/commands.cpython-311.pyc
+apps/api/app/api/routes/__pycache__/identity.cpython-311.pyc
+apps/api/app/api/routes/__pycache__/marketplace.cpython-311.pyc
+apps/api/app/api/routes/__pycache__/system.cpython-311.pyc
+apps/api/app/api/routes/__pycache__/traceability.cpython-311.pyc
+apps/api/app/api/routes/advisory.py
+apps/api/app/api/routes/audit.py
+apps/api/app/api/routes/climate.py
+apps/api/app/api/routes/commands.py
+apps/api/app/api/routes/identity.py
+apps/api/app/api/routes/marketplace.py
+apps/api/app/api/routes/system.py
+apps/api/app/api/routes/traceability.py

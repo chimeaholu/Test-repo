@@ -1,0 +1,8 @@
+
+> @agrodomain/web@0.0.0 typecheck /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web
+> corepack pnpm --filter @agrodomain/contracts build && corepack pnpm --filter @agrodomain/config build && corepack pnpm run guard:contracts && next typegen && tsc --noEmit
+
+
+> @agrodomain/contracts@0.0.0 build /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/contracts
+> tsc -p tsconfig.json
+

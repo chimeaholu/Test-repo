@@ -1,0 +1,168 @@
+{
+  "$ref": "#/definitions/TelemetryObservationInput",
+  "definitions": {
+    "TelemetryObservationInput": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "alert_severity": {
+          "enum": [
+            "none",
+            "info",
+            "warning",
+            "critical"
+          ],
+          "nullable": true,
+          "type": "string"
+        },
+        "audit_event_id": {
+          "default": 0,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "channel": {
+          "description": "Transport channel that originated or carried the request",
+          "enum": [
+            "pwa",
+            "ussd",
+            "whatsapp",
+            "sms",
+            "push",
+            "api"
+          ],
+          "type": "string"
+        },
+        "country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "error_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "idempotency_key": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "latency_p95_ms": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "note": {
+          "maxLength": 240,
+          "minLength": 3,
+          "nullable": true,
+          "type": "string"
+        },
+        "observation_id": {
+          "maxLength": 96,
+          "minLength": 1,
+          "type": "string"
+        },
+        "release_blocking": {
+          "type": "boolean"
+        },
+        "request_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sample_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "service_name": {
+          "enum": [
+            "admin_control_plane",
+            "marketplace",
+            "advisory",
+            "finance",
+            "traceability",
+            "climate",
+            "rollout_control"
+          ],
+          "type": "string"
+        },
+        "slo_id": {
+          "maxLength": 32,
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "source_kind": {
+          "enum": [
+            "api_runtime",
+            "web_runtime",
+            "manual_backfill"
+          ],
+          "type": "string"
+        },
+        "stale_after_seconds": {
+          "exclusiveMinimum": true,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "success_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "window_ended_at": {
+          "$ref": "#/definitions/TelemetryObservationInput/properties/window_started_at"
+        },
+        "window_started_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "request_id",
+        "actor_id",
+        "country_code",
+        "channel",
+        "service_name",
+        "slo_id",
+        "alert_severity",
+        "idempotency_key",
+        "observation_id",
+        "source_kind",
+        "window_started_at",
+        "window_ended_at",
+        "success_count",
+        "error_count",
+        "sample_count",
+        "latency_p95_ms",
+        "stale_after_seconds",
+        "release_blocking"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Telemetry ingestion payload for admin SLO evaluation with explicit freshness, success-rate, and release-blocking fields.",
+  "x-agrodomain-contract": {
+    "id": "observability.telemetry_observation_input",
+    "domain": "observability",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "PF-001",
+      "PF-004",
+      "DI-002"
+    ],
+    "source_artifacts": [
+      "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+      "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+      "execution/contracts/b027_observability_contract.json"
+    ]
+  }
+}

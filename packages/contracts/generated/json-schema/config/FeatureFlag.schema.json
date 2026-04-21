@@ -1,0 +1,125 @@
+{
+  "$ref": "#/definitions/FeatureFlag",
+  "definitions": {
+    "FeatureFlag": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_role_allowlist": {
+          "items": {
+            "enum": [
+              "farmer",
+              "buyer",
+              "cooperative_admin",
+              "advisor",
+              "finance_ops",
+              "compliance",
+              "admin"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "channel_allowlist": {
+          "items": {
+            "description": "Transport channel that originated or carried the request",
+            "enum": [
+              "pwa",
+              "ussd",
+              "whatsapp",
+              "sms",
+              "push",
+              "api"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "country_codes": {
+          "items": {
+            "description": "ISO alpha-2 country code",
+            "pattern": "^[A-Z]{2}$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "description": {
+          "maxLength": 280,
+          "minLength": 8,
+          "type": "string"
+        },
+        "enabled_by_default": {
+          "type": "boolean"
+        },
+        "expires_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "nullable": true,
+          "type": "string"
+        },
+        "flag_key": {
+          "maxLength": 96,
+          "minLength": 3,
+          "type": "string"
+        },
+        "owner_service": {
+          "maxLength": 64,
+          "minLength": 2,
+          "type": "string"
+        },
+        "rollout_policy_key": {
+          "maxLength": 96,
+          "minLength": 3,
+          "nullable": true,
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "disabled",
+            "enabled",
+            "conditional"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "flag_key",
+        "owner_service",
+        "description",
+        "state",
+        "enabled_by_default",
+        "country_codes",
+        "channel_allowlist",
+        "actor_role_allowlist",
+        "rollout_policy_key",
+        "expires_at"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Typed feature-flag definition shared across web, api, and worker boundaries with explicit country, channel, and actor scoping.",
+  "x-agrodomain-contract": {
+    "id": "config.feature_flag",
+    "domain": "config",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "EP-005",
+      "EP-007",
+      "DI-004"
+    ],
+    "source_artifacts": [
+      "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+      "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+    ]
+  }
+}

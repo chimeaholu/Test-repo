@@ -1,0 +1,6 @@
+
+> @agrodomain/worker@0.0.0 test /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/worker
+> python3 -m pytest tests -q
+
+.                                                                        [100%]
+1 passed in 7.26s

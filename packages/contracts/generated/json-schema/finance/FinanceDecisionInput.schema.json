@@ -1,0 +1,87 @@
+{
+  "$ref": "#/definitions/FinanceDecisionInput",
+  "definitions": {
+    "FinanceDecisionInput": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_role": {
+          "enum": [
+            "farmer",
+            "buyer",
+            "cooperative",
+            "advisor",
+            "finance",
+            "finance_ops",
+            "admin"
+          ],
+          "type": "string"
+        },
+        "decision_source": {
+          "enum": [
+            "partner",
+            "operator"
+          ],
+          "type": "string"
+        },
+        "finance_request_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "note": {
+          "maxLength": 300,
+          "minLength": 3,
+          "nullable": true,
+          "type": "string"
+        },
+        "outcome": {
+          "enum": [
+            "approved",
+            "declined",
+            "blocked",
+            "hitl_required"
+          ],
+          "type": "string"
+        },
+        "partner_reference_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "reason_code": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "transcript_link": {
+          "maxLength": 255,
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        }
+      },
+      "required": [
+        "finance_request_id",
+        "decision_source",
+        "outcome",
+        "actor_role",
+        "reason_code"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Partner or operator finance decision input preserving source, actor-role, and transcript linkage.",
+  "x-agrodomain-contract": {
+    "id": "finance.finance_decision_input",
+    "domain": "finance",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-004",
+      "CJ-008",
+      "DI-003"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+    ]
+  }
+}

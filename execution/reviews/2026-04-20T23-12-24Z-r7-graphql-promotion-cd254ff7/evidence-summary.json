@@ -1,0 +1,115 @@
+{
+  "deploy": {
+    "canary": {
+      "deploy_id": "535a7a4a-90cb-4d6f-917b-7a2bc0a738ce",
+      "status": "SUCCESS",
+      "url": "https://web-staging-29cd.up.railway.app",
+      "commit_sha": "c5d8f8eaa0948241fd4a9650ef82793eff0ff1f7",
+      "image_digest": "sha256:662aa517d12056c04d27af78a7a5837a066d9efab086092b7f7db83dd77af64e",
+      "commit_message": "Add friendly root route redirect to signin",
+      "branch": "staging"
+    },
+    "production": {
+      "deploy_id": "5867b1f6-3858-4ff6-bf73-6025108ea245",
+      "status": "SUCCESS",
+      "url": "https://web-prod-n6-production.up.railway.app",
+      "commit_sha": "ec7e7fb61063aeab140aecb8c008cf8ac1438513",
+      "image_digest": "sha256:4ec9aa736755cfd541d13717dd699ff55fa9b6c6c4f697002003177e9a483318",
+      "commit_message": "fix(prod-web-build): restore proven docker build path for contracts+next",
+      "branch": "deploy/n6-prod-subtree-5edce2"
+    }
+  },
+  "smoke": {
+    "canary": {
+      "status_codes": {
+        "GET /healthz": 200,
+        "GET /signin": 200,
+        "GET /app/onboarding/consent": 307,
+        "GET /app/home": 307,
+        "GET /app/market/listings": 404,
+        "GET /app/market/negotiations": 404,
+        "GET /app/traceability": 307,
+        "GET /app/wallet": 307,
+        "GET /app/admin/analytics": 307,
+        "GET /app/finance/queue": 307,
+        "POST /api/e2e/seed": 200,
+        "GET /api/e2e/state/checks": 200,
+        "GET /api/e2e/state/checks/full-critical": 200
+      },
+      "checks_http": 200,
+      "full_critical_http": 200,
+      "full_critical_payload": {
+        "check": "full-critical",
+        "passed": false,
+        "details": {
+          "auth-onboarding": false,
+          "listing-publish": false,
+          "negotiation-approval": false,
+          "escrow-release": false,
+          "advisory-citations": false,
+          "climate-ack": false,
+          "finance-hitl": false,
+          "traceability-dispatch": false,
+          "admin-analytics": false
+        }
+      }
+    },
+    "production": {
+      "status_codes": {
+        "GET /healthz": 200,
+        "GET /signin": 200,
+        "GET /app/onboarding/consent": 404,
+        "GET /app/home": 200,
+        "GET /app/market/listings": 200,
+        "GET /app/market/negotiations": 200,
+        "GET /app/traceability": 200,
+        "GET /app/wallet": 200,
+        "GET /app/admin/analytics": 200,
+        "GET /app/finance/queue": 200,
+        "POST /api/e2e/seed": 404,
+        "GET /api/e2e/state/checks": 404,
+        "GET /api/e2e/state/checks/full-critical": 404
+      },
+      "checks_http": 404,
+      "full_critical_http": 404,
+      "full_critical_payload": "<!DOCTYPE html><!--BeD7YuXmXYr1CPwtGGRuy--><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/css/1aaf6da46588c914.css\" data-precedence=\"next\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/_next/static/chunks/webpack-141ec262353df7b4.js\"/><script src=\"/_next/static/chunks/09c3fec"
+    }
+  },
+  "clickthrough": {
+    "canary": {
+      "passed_checks": [],
+      "failed_checks": [
+        "auth-onboarding",
+        "listing-publish",
+        "negotiation-approval",
+        "escrow-release",
+        "advisory-citations",
+        "climate-ack",
+        "finance-hitl",
+        "traceability-dispatch",
+        "admin-analytics",
+        "full-critical"
+      ],
+      "failed_count": 10
+    },
+    "production": {
+      "error": "checks payload unavailable"
+    }
+  },
+  "rollback_pointer": {
+    "canary_previous": {
+      "id": "4dc39bc0-768e-4541-b73f-3d53d00a8b7c",
+      "status": "SUCCESS",
+      "createdAt": "2026-04-18T00:50:10.130Z",
+      "staticUrl": "web-staging-29cd.up.railway.app",
+      "url": null
+    },
+    "production_previous": {
+      "id": "bc00a49a-ef4d-4d48-a300-1915d246891c",
+      "status": "SUCCESS",
+      "createdAt": "2026-04-19T23:29:28.441Z",
+      "staticUrl": "web-prod-n6-production.up.railway.app",
+      "url": null
+    }
+  }
+}

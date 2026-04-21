@@ -1,0 +1,19 @@
+{
+  "health_code": "HTTP/2 200 ",
+  "seed_code": "HTTP/2 200 ",
+  "checks_code": "HTTP/2 200 ",
+  "checks_passed": true,
+  "full_critical": true,
+  "individual": {
+    "auth-onboarding": true,
+    "listing-publish": true,
+    "negotiation-approval": true,
+    "escrow-release": true,
+    "advisory-citations": true,
+    "climate-ack": true,
+    "finance-hitl": true,
+    "traceability-dispatch": true,
+    "admin-analytics": true,
+    "full-critical": true
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "$ref": "#/definitions/FinancePartnerRequestInput",
+  "definitions": {
+    "FinancePartnerRequestInput": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_role": {
+          "enum": [
+            "farmer",
+            "buyer",
+            "cooperative",
+            "advisor",
+            "finance",
+            "finance_ops",
+            "admin"
+          ],
+          "type": "string"
+        },
+        "case_reference": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "currency": {
+          "pattern": "^[A-Z]{3}$",
+          "type": "string"
+        },
+        "partner_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "partner_reference_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "policy_context": {
+          "additionalProperties": false,
+          "properties": {
+            "matched_rule": {
+              "minLength": 1,
+              "nullable": true,
+              "type": "string"
+            },
+            "policy_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "policy_version": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "requires_hitl": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "policy_id",
+            "policy_version",
+            "matched_rule",
+            "requires_hitl"
+          ],
+          "type": "object"
+        },
+        "product_type": {
+          "enum": [
+            "invoice_advance",
+            "working_capital",
+            "input_credit"
+          ],
+          "type": "string"
+        },
+        "requested_amount": {
+          "exclusiveMinimum": true,
+          "minimum": 0,
+          "type": "number"
+        },
+        "responsibility_boundary": {
+          "additionalProperties": false,
+          "properties": {
+            "internal_can_approve": {
+              "type": "boolean"
+            },
+            "internal_can_block": {
+              "type": "boolean"
+            },
+            "internal_can_prepare": {
+              "type": "boolean"
+            },
+            "owner": {
+              "enum": [
+                "partner",
+                "internal",
+                "shared"
+              ],
+              "type": "string"
+            },
+            "partner_decision_required": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "owner",
+            "internal_can_prepare",
+            "internal_can_block",
+            "internal_can_approve",
+            "partner_decision_required"
+          ],
+          "type": "object"
+        },
+        "transcript_entries": {
+          "default": [],
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "captured_at": {
+                "description": "ISO-8601 timestamp with timezone offset",
+                "format": "date-time",
+                "type": "string"
+              },
+              "channel": {
+                "description": "Transport channel that originated or carried the request",
+                "enum": [
+                  "pwa",
+                  "ussd",
+                  "whatsapp",
+                  "sms",
+                  "push",
+                  "api"
+                ],
+                "type": "string"
+              },
+              "message": {
+                "maxLength": 500,
+                "minLength": 1,
+                "type": "string"
+              },
+              "speaker": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "speaker",
+              "message",
+              "channel",
+              "captured_at"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "case_reference",
+        "product_type",
+        "requested_amount",
+        "currency",
+        "partner_id",
+        "actor_role",
+        "responsibility_boundary",
+        "policy_context"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Canonical finance partner request payload with responsibility-boundary and policy metadata.",
+  "x-agrodomain-contract": {
+    "id": "finance.finance_partner_request_input",
+    "domain": "finance",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-004",
+      "DI-003"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+    ]
+  }
+}

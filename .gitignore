@@ -1,0 +1,12 @@
+.staging/
+node_modules/
+apps/web/.next/
+apps/web/tsconfig.tsbuildinfo
+*.tsbuildinfo
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.turbo/
+execution/reviews/staging-e2e-evidence/
+execution/reviews/*-staging-e2e-evidence/
+legacy/staging-runtime/execution/reviews/staging-e2e-evidence/

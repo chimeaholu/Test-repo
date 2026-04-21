@@ -1,0 +1,49 @@
+
+> @agrodomain/web@0.0.0 test /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web
+> corepack pnpm --filter @agrodomain/contracts build && corepack pnpm --filter @agrodomain/config build && corepack pnpm run guard:contracts && vitest run
+
+
+> @agrodomain/contracts@0.0.0 build /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @agrodomain/config@0.0.0 build /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/config
+> node --eval "import('./src/index.js')"
+
+
+> @agrodomain/web@0.0.0 guard:contracts /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web
+> node ./scripts/verify-contract-boundary.mjs
+
+Contract boundary verified.
+
+ RUN  v3.2.4 /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web
+
+ ✓ features/advisory/conversation-workspace.test.tsx (1 test) 664ms
+   ✓ advisory conversation workspace > renders reviewer state, locale fallback, and citation drawer  652ms
+ ✓ features/finance/finance-review-console.test.tsx (1 test) 660ms
+   ✓ finance review console > submits queue items and records partner decisions with telemetry  655ms
+ ✓ features/negotiation/negotiation-inbox.test.tsx (4 tests) 1382ms
+   ✓ negotiation inbox > submits a buyer offer and renders audit/idempotency evidence  769ms
+ ✓ features/traceability/traceability-workspace.test.tsx (2 tests) 643ms
+   ✓ traceability workspace > opens evidence details and records telemetry  341ms
+ ✓ features/climate/climate-dashboard.test.tsx (1 test) 1116ms
+   ✓ climate dashboard > renders degraded-mode detail and acknowledges alerts  1111ms
+ ✓ features/listings/listing-slice.test.tsx (4 tests) 1625ms
+   ✓ listing surfaces > renders buyer discovery from buyer-safe published listings only  836ms
+   ✓ listing surfaces > shows owner publish and revision cues with optimistic reconciliation  561ms
+ ✓ lib/api/mock-client.test.ts (2 tests) 18ms
+ ✓ features/advisory/model.test.ts (2 tests) 12ms
+ ✓ features/finance/model.test.ts (3 tests) 65ms
+ ✓ features/negotiation/thread-state.test.ts (3 tests) 14ms
+ ✓ features/traceability/model.test.ts (3 tests) 31ms
+ ✓ features/shell/model.test.ts (3 tests) 15ms
+ ✓ features/listings/schema.test.ts (3 tests) 40ms
+ ✓ features/identity/schema.test.ts (3 tests) 12ms
+ ✓ lib/offline/reducer.test.ts (3 tests) 19ms
+ ✓ features/climate/model.test.ts (2 tests) 9ms
+
+ Test Files  16 passed (16)
+      Tests  40 passed (40)
+   Start at  04:35:43
+   Duration  21.09s (transform 2.41s, setup 4.11s, collect 7.84s, tests 6.32s, environment 26.93s, prepare 5.60s)
+

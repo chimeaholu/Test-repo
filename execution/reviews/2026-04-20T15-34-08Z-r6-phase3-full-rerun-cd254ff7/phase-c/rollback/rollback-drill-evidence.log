@@ -1,0 +1,24 @@
+Rollback drill evidence refresh
+2026-04-20T15:36:54Z
+
+Anchor dossier:
+-rw-r--r-- 1 node node 8299 Apr 19 01:28 execution/reviews/2026-04-19T02-15-00Z-n6-r1-release-rollback-dossier.md
+
+Rollback closeout anchor:
+-rw-r--r-- 2 node node 1551 Apr 19 01:15 execution/reviews/2026-04-19T01-06-38Z-n5-q1-final-closeout-rerun-cd254ff7/n5-q1-final-closeout-report.md
+
+Rollback-specific API proofs:
+..                                                                       [100%]
+=============================== warnings summary ===============================
+../../../../../../../../home/node/.local/lib/python3.11/site-packages/_pytest/config/__init__.py:1474
+  /home/node/.local/lib/python3.11/site-packages/_pytest/config/__init__.py:1474: PytestConfigWarning: Unknown config option: asyncio_default_fixture_loop_scope
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+tests/integration/test_n6_admin_observability_reliability.py::test_rollout_control_persists_canary_promote_and_rollback_state
+tests/integration/test_n6_admin_observability_reliability.py::test_release_readiness_blocks_after_rollback_trigger_case
+  /home/node/.local/lib/python3.11/site-packages/alembic/config.py:612: DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces, commas, and colons for prepend_sys_path.  Consider adding path_separator=os to Alembic config.
+    util.warn_deprecated(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2 passed, 9 deselected, 3 warnings in 7.43s

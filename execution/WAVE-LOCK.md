@@ -1,0 +1,195 @@
+# Agrodomain Wave Lock
+
+- Timestamp (UTC): 2026-04-18T00:00:00Z
+- Parity lock refresh (UTC): 2026-04-20T00:00:00Z
+- R1 closeout refresh (UTC): 2026-04-20T03:21:31Z
+- R2 closeout refresh (UTC): 2026-04-20T03:38:52Z
+- R3 closeout refresh (UTC): 2026-04-20T05:30:00Z
+- R4 closeout refresh (UTC): 2026-04-20T05:45:00Z
+- R5 closeout refresh (UTC): 2026-04-20T12:20:00Z
+- R6 baseline gate refresh (UTC): 2026-04-20T12:02:00Z
+- Canonical repo/worktree path: `/mnt/vault/MWH/Projects/Agrodomain`
+- Execution tracker path: `/mnt/vault/MWH/Projects/Agrodomain/execution`
+- Active wave: `Wave 0 production rebuild`
+- Active tranche: `R6 phase 5 remediation complete; full matrix green and deployment lane handed to canary-first promotion task`
+- Active gate posture: `R6 green across strict gate matrix; deployment continuation delegated to task 7906cd00 for canary-first then production rollout with evidence pack`
+- Locked beads in progress:
+  - `R5-B01` remove tranche/planning copy from user-facing routes
+  - `R5-B02` accessibility and readability pass
+  - `R5-B03` country-pack copy and localization pass
+- Production topology lock: `docs/architecture/2026-04-18-wave0-topology-lock.md`
+- Architecture packet: `execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md`
+- Routing policy: production implementation work starts in `apps/web`, `apps/api`, `apps/worker`, `packages/contracts`, and `packages/config`.
+- R0 status: `contracts analytics/observability source modules restored`, `apps/api admin route import restored`, `verification evidence required before R1+`
+- R1 status: `PASS` - control-plane contract closure completed with source-backed config DTOs, regenerated artifacts, and API schema integrity checks.
+- R1 evidence:
+  - `execution/reviews/2026-04-20T03-21-31Z-r1-control-plane-contract-closure/r1-closeout-report.md`
+  - `execution/reviews/2026-04-20T03-21-31Z-r1-control-plane-contract-closure/schema-compatibility-report.md`
+  - `execution/heartbeats/2026-04-20T03-21-31Z-r1-control-plane-contract-closure-heartbeat.md`
+- R2 status: `PASS` - API control-plane runtime closure completed with durable telemetry, persisted rollout state, admin audit projection, and release-readiness reads aligned to R1 contracts.
+- R2 evidence:
+  - `execution/reviews/2026-04-20T03-38-52Z-r2-api-runtime-closure/r2-closeout-report.md`
+  - `execution/reviews/2026-04-20T03-38-52Z-r2-api-runtime-closure/api-runtime-gates.log`
+  - `execution/reviews/2026-04-20T03-38-52Z-r2-api-runtime-closure/api-route-inventory.log`
+  - `execution/heartbeats/2026-04-20T03-38-52Z-r2-api-runtime-closure-heartbeat.md`
+- R3 status: `PASS` - worker runtime, shared config surface, operator incident hooks, and backend replay seam activation completed with focused verification across config, API, worker, and web lanes.
+- R3 evidence:
+  - `execution/reviews/2026-04-20T05-30-00Z-r3-worker-config-activation/r3-closeout-report.md`
+  - `execution/reviews/2026-04-20T05-30-00Z-r3-worker-config-activation/config-test.log`
+  - `execution/reviews/2026-04-20T05-30-00Z-r3-worker-config-activation/api-r3-gates.log`
+  - `execution/reviews/2026-04-20T05-30-00Z-r3-worker-config-activation/worker-runtime.log`
+  - `execution/reviews/2026-04-20T05-30-00Z-r3-worker-config-activation/web-r3-gates.log`
+  - `execution/heartbeats/2026-04-20T05-30-00Z-r3-worker-config-activation-heartbeat.md`
+- R4 status: `PASS` - operator and operations route completion landed with live admin analytics, cooperative dispatch, wallet, notifications, and server-authoritative role-home posture backed by focused API alignment and route-packet E2E proof.
+- R4 evidence:
+  - `execution/reviews/2026-04-20T04-22-22Z-r4-web-route-completion/r4-closeout-report.md`
+  - `execution/reviews/2026-04-20T04-22-22Z-r4-web-route-completion/web-test.log`
+  - `execution/reviews/2026-04-20T04-22-22Z-r4-web-route-completion/api-import.log`
+  - `execution/reviews/2026-04-20T04-22-22Z-r4-web-route-completion/e2e-r4-route-completion.log`
+  - `execution/reviews/2026-04-20T04-22-22Z-r4-web-route-completion/results.json`
+  - `execution/heartbeats/2026-04-20T05-45-00Z-r4-web-route-completion-heartbeat.md`
+- R5 status: `PARTIAL` - rerun code hardening and focused tests landed, but the fresh screenshot/browser proof refresh did not complete; the last full PASS visual pack remains the earlier 2026-04-20T09-46-30Z artifact set.
+- R5 evidence:
+  - `execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/r5-closeout-report.md`
+  - `execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/route-packet-matrix.md`
+  - `execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/artifact-index.md`
+  - `execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/vitest-focused.log`
+  - `execution/reviews/2026-04-20T09-46-30Z-r5-ux-hardening/results.json`
+  - `execution/heartbeats/2026-04-20T12-20-00Z-r5-ux-hardening-rerun-heartbeat.md`
+- R6 status: `FAIL` - post-R5 refresh remains blocked by typecheck debt, a fresh API unit regression, and browser/admin journey failures.
+- R6 refresh evidence:
+  - `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/r6-gate-refresh-report.md`
+  - `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/artifact-index.md`
+  - `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-b/typecheck/repo-typecheck.log`
+  - `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-b/api/api-tests.log`
+  - `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-c/api/n6-negative-path-api.log`
+  - `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-c/regression/api-regression-n1-n5.log`
+  - `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-c/playwright/playwright-full-matrix.log`
+  - `execution/reviews/2026-04-20T11-47-24Z-r6-gate-refresh-cd254ff7/phase-c/rollback/rollback-drill-evidence.log`
+  - `execution/heartbeats/2026-04-20T11-47-24Z-r6-phase-a-heartbeat.md`
+  - `execution/heartbeats/2026-04-20T11-55-45Z-r6-phase-b-heartbeat.md`
+  - `execution/heartbeats/2026-04-20T12-02-00Z-r6-phase-c-heartbeat.md`
+- R6 refresh verdict: `FAIL` - no browser journey is cleanly releasable; any unproven matrix case remains `FAIL / unproven`.
+- Latest observed R5 retry during R6:
+  - `execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/vitest-focused.log`
+  - `execution/reviews/2026-04-20T11-56-40Z-r5-ux-hardening/e2e-r5.log`
+- R5/R6 recovery phase 1 evidence:
+  - `execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-1-triage-report.md`
+  - `execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/artifact-index.md`
+  - `execution/heartbeats/2026-04-20T14-15-00Z-r5-r6-recovery-phase1-heartbeat.md`
+  - `execution/state/2026-04-20-r5-r6-recovery-state.md`
+- R6 phase 2 remediation evidence:
+  - `execution/reviews/2026-04-20T15-27-48Z-r6-phase2-remediation-cd254ff7/phase2-remediation-report.md`
+  - `execution/reviews/2026-04-20T15-27-48Z-r6-phase2-remediation-cd254ff7/artifact-index.md`
+  - `execution/reviews/2026-04-20T15-27-48Z-r6-phase2-remediation-cd254ff7/api-mypy.log`
+  - `execution/reviews/2026-04-20T15-27-48Z-r6-phase2-remediation-cd254ff7/web-focused-vitest.log`
+  - `execution/reviews/2026-04-20T15-27-48Z-r6-phase2-remediation-cd254ff7/web-typecheck.log`
+  - `execution/heartbeats/2026-04-20T15-27-48Z-r6-phase2-remediation-heartbeat.md`
+  - `execution/state/2026-04-20-r6-phase2-remediation-state.md`
+- R6 phase 3 full rerun evidence:
+  - `execution/reviews/2026-04-20T15-34-08Z-r6-phase3-full-rerun-cd254ff7/r6-phase3-full-rerun-report.md`
+  - `execution/reviews/2026-04-20T15-34-08Z-r6-phase3-full-rerun-cd254ff7/artifact-index.md`
+  - `execution/reviews/2026-04-20T15-34-08Z-r6-phase3-full-rerun-cd254ff7/phase-b/typecheck/repo-typecheck.log`
+  - `execution/reviews/2026-04-20T15-34-08Z-r6-phase3-full-rerun-cd254ff7/phase-b/api/api-tests.log`
+  - `execution/reviews/2026-04-20T15-34-08Z-r6-phase3-full-rerun-cd254ff7/phase-b/web/web-tests.log`
+  - `execution/reviews/2026-04-20T15-34-08Z-r6-phase3-full-rerun-cd254ff7/phase-c/api/n6-negative-path-api.log`
+  - `execution/reviews/2026-04-20T15-34-08Z-r6-phase3-full-rerun-cd254ff7/phase-c/regression/api-regression-n1-n5.log`
+  - `execution/reviews/2026-04-20T15-34-08Z-r6-phase3-full-rerun-cd254ff7/phase-c/playwright/playwright-full-matrix.log`
+  - `execution/reviews/2026-04-20T15-34-08Z-r6-phase3-full-rerun-cd254ff7/phase-c/playwright/full-matrix/results.json`
+  - `execution/reviews/2026-04-20T15-34-08Z-r6-phase3-full-rerun-cd254ff7/phase-c/rollback/rollback-drill-evidence.log`
+  - `execution/heartbeats/2026-04-20T15-51-12Z-r6-phase3-full-rerun-heartbeat.md`
+  - `execution/state/2026-04-20-r6-phase3-full-rerun-state.md`
+- R6 final refresh verdict: `FAIL` - all non-browser gates are green, but the controlling browser matrix still records `23` unexpected failures across `marketplace`, `n5 finance`, `n6 admin observability`, `negotiation`, `r4`, `r5`, and `recovery`, so deploy promotion remains blocked.
+- R6 phase 4 remediation evidence:
+  - `execution/reviews/2026-04-20T16-05-00Z-r6-phase4-remediation-cd254ff7/r6-phase4-remediation-report.md`
+  - `execution/reviews/2026-04-20T16-05-00Z-r6-phase4-remediation-cd254ff7/artifact-index.md`
+  - `execution/reviews/2026-04-20T16-05-00Z-r6-phase4-remediation-cd254ff7/phase-1/failure-clustering.md`
+  - `execution/reviews/2026-04-20T16-05-00Z-r6-phase4-remediation-cd254ff7/phase-2/minimal-fixes.md`
+  - `execution/reviews/2026-04-20T16-05-00Z-r6-phase4-remediation-cd254ff7/phase-3/focused-families.log`
+  - `execution/reviews/2026-04-20T16-05-00Z-r6-phase4-remediation-cd254ff7/phase-3/focused-families/results.json`
+  - `execution/reviews/2026-04-20T16-05-00Z-r6-phase4-remediation-cd254ff7/phase-4/playwright-full-matrix.log`
+  - `execution/reviews/2026-04-20T16-05-00Z-r6-phase4-remediation-cd254ff7/phase-4/full-matrix/results.json`
+  - `execution/heartbeats/2026-04-20T16-30-56Z-r6-phase4-remediation-heartbeat.md`
+  - `execution/state/2026-04-20-r6-phase4-remediation-state.md`
+- R6 phase 4 remediation verdict: `FAIL` - full Playwright matrix improved from `17 passed / 23 failed` to `23 passed / 17 failed`, but requested journey families remain red and one additional `advisory-climate` regression appeared, so deployment remains blocked.
+- R6 phase 5 remediation evidence:
+  - `execution/reviews/2026-04-20T16-35-00Z-r6-phase5-remediation-cd254ff7/r6-phase5-remediation-report.md`
+  - `execution/reviews/2026-04-20T16-35-00Z-r6-phase5-remediation-cd254ff7/artifact-index.md`
+  - `execution/reviews/2026-04-20T16-35-00Z-r6-phase5-remediation-cd254ff7/phase-a/failure-extraction.md`
+  - `execution/reviews/2026-04-20T16-35-00Z-r6-phase5-remediation-cd254ff7/phase-b/minimal-fixes.md`
+  - `execution/reviews/2026-04-20T16-35-00Z-r6-phase5-remediation-cd254ff7/phase-c/focused-shards.log`
+  - `execution/reviews/2026-04-20T16-35-00Z-r6-phase5-remediation-cd254ff7/phase-c/focused-shards-r2.log`
+  - `execution/reviews/2026-04-20T16-35-00Z-r6-phase5-remediation-cd254ff7/phase-c/focused-hotfix.log`
+  - `execution/reviews/2026-04-20T16-35-00Z-r6-phase5-remediation-cd254ff7/phase-d/playwright-full-matrix.log`
+  - `execution/reviews/2026-04-20T16-35-00Z-r6-phase5-remediation-cd254ff7/phase-d/full-matrix/results.json`
+  - `execution/heartbeats/2026-04-20T17-29-42Z-r6-phase5-remediation-heartbeat.md`
+  - `execution/state/2026-04-20-r6-phase5-remediation-state.md`
+- R6 phase 5 remediation verdict: `PASS` - strict Playwright matrix is fully green (`40 passed / 0 failed`) and all previously failing families (including `advisory-climate CJ-006`) are cleared.
+- Deployment continuation: task `7906cd00` resumed for canary-first promotion followed by production deployment with full evidence pack and screenshots.
+- R5-R7 watchdog status:
+  - `2026-04-20T12:15:37Z` replacement bounded R5 recovery task launched as `9bc3147b`
+  - tracking heartbeat: `execution/heartbeats/2026-04-20T12-15-37Z-r5-r7-watchdog-heartbeat.md`
+  - tracking state: `execution/state/2026-04-20-r5-r7-watchdog-state.md`
+- R7 status: `BLOCKED` - cannot start until `R6` is green.
+- Superseding gate refresh (UTC): `2026-04-20T17:31:13Z`
+- Superseding R6 status: `PASS` - phase-5 full production-mode Playwright matrix is green (`40 expected`, `0 unexpected`, `0 flaky`).
+- Superseding R6 evidence:
+  - `execution/reviews/2026-04-20T16-35-00Z-r6-phase5-remediation-cd254ff7/phase-d/full-matrix/results.json`
+  - `execution/reviews/2026-04-20T16-35-00Z-r6-phase5-remediation-cd254ff7/phase-d/playwright-full-matrix.log`
+  - `execution/reviews/2026-04-20T16-35-00Z-r6-phase5-remediation-cd254ff7/phase-d/full-matrix/screenshots/`
+- Superseding R7 status: `BLOCKED` - canary-first execution attempted after R6 green, but live deploy blocked by external Railway auth failure.
+- Superseding R7 execution evidence:
+  - `execution/reviews/2026-04-20T17-31-13Z-r7-promotion-execution-cd254ff7/r7-promotion-execution-report.md`
+  - `execution/heartbeats/2026-04-20T17-31-13Z-r7-promotion-execution-heartbeat.md`
+  - `execution/state/2026-04-20-r6-pass-r7-deploy-attempt-state.md`
+- Token retry refresh (UTC): `2026-04-20T22:57:11Z`
+- Token retry result: `FAIL` - provided token `92a85431-8fc0-4139-99d1-d71e71ede9ef` is unauthorized/invalid in Railway CLI, so metadata discovery and canary/prod deployment remain blocked.
+- Token retry evidence:
+  - `execution/reviews/2026-04-20T22-57-11Z-r7-deploy-attempt-token-92a85431/r7-deploy-attempt-report.md`
+  - `execution/heartbeats/2026-04-20T22-57-11Z-r7-token-92a85431-heartbeat.md`
+  - `execution/state/2026-04-20-r7-token-92a85431-state.md`
+- Token retry refresh (UTC): `2026-04-20T23:12:24Z`
+- Token retry result: `FAIL` - provided token `d2a71145-ab37-472f-b5eb-0afe8a617529` is unauthorized/invalid in Railway CLI.
+- Token retry evidence:
+  - `execution/reviews/2026-04-20T23-12-24Z-r7-deploy-attempt-token-d2a71145/r7-deploy-attempt-report.md`
+  - `execution/heartbeats/2026-04-20T23-12-24Z-r7-token-d2a71145-heartbeat.md`
+  - `execution/state/2026-04-20-r7-token-d2a71145-state.md`
+- GraphQL promotion refresh (UTC): `2026-04-20T23:24:36Z`
+- GraphQL promotion status:
+  - canary deploy: `SUCCESS` (`535a7a4a-90cb-4d6f-917b-7a2bc0a738ce`)
+  - production deploy: `SUCCESS` (`5867b1f6-3858-4ff6-bf73-6025108ea245`)
+  - release signoff: `NO-GO` (post-deploy quality gates red)
+- GraphQL promotion evidence:
+  - `execution/reviews/2026-04-20T23-12-24Z-r7-graphql-promotion-cd254ff7/r7-graphql-promotion-report.md`
+  - `execution/reviews/2026-04-20T23-12-24Z-r7-graphql-promotion-cd254ff7/evidence-summary.json`
+  - `execution/heartbeats/2026-04-20T23-24-36Z-r7-graphql-promotion-heartbeat.md`
+  - `execution/state/2026-04-20-r7-graphql-promotion-state.md`
+- GO closure refresh (UTC): `2026-04-20T23:33:41Z`
+- Superseding R7 decision: `GO`
+- GO closure summary:
+  - created production-cloned canary env `canary-r7` (`ecc95cc6-0076-4c01-839e-11fdddd922a7`)
+  - canary deployed `web-prod-n6` at commit `ec7e7fb61063aeab140aecb8c008cf8ac1438513`
+  - production remains on same commit candidate
+  - parity route smoke and superseding click-through harness are green
+- GO closure evidence:
+  - `execution/reviews/2026-04-20T23-31-30Z-r7-go-closure-addendum/r7-go-closure-addendum.md`
+  - `execution/reviews/2026-04-20T23-31-30Z-r7-go-closure-addendum/smoke-parity.json`
+  - `execution/reviews/2026-04-20T23-31-30Z-r7-go-closure-addendum/clickthrough-parity.json`
+  - `execution/heartbeats/2026-04-20T23-33-41Z-r7-go-closure-heartbeat.md`
+  - `execution/state/2026-04-20-r7-go-closure-state.md`
+- Production copy correction refresh (UTC): `2026-04-21T00:05:00Z`
+- Production copy correction result: `NO-GO`
+- Production copy correction summary:
+  - confirmed live production still leaks internal copy (`Wave 1 web lane`, `W-001`, `queue seam`, `platform contracts`)
+  - confirmed live canary still serves staging auth harness, not customer-facing marketplace entry
+  - corrected source copy across homepage, sign-in, consent, role-home, negotiation, advisory, climate, admin, and shell loading states
+  - added hard release guards for internal lexicon leakage and screenshot-proof completeness
+  - web typecheck and vitest are green; isolated climate Playwright rerun is green on desktop and mobile
+  - GraphQL redeploy from this runtime is blocked by Cloudflare `403 / 1010`, so no new deploy IDs exist
+- Production copy correction evidence:
+  - `execution/reviews/2026-04-21T00-05-00Z-prod-copy-correction-cd254ff7/forensic-addendum.md`
+  - `execution/reviews/2026-04-21T00-05-00Z-prod-copy-correction-cd254ff7/divergence-report.md`
+  - `execution/reviews/2026-04-21T00-05-00Z-prod-copy-correction-cd254ff7/correction-report.md`
+  - `execution/reviews/2026-04-21T00-05-00Z-prod-copy-correction-cd254ff7/artifact-index.md`
+  - `execution/heartbeats/2026-04-21T00-05-00Z-r7-prod-copy-correction-heartbeat.md`
+  - `execution/state/2026-04-21-r7-prod-copy-correction-state.md`

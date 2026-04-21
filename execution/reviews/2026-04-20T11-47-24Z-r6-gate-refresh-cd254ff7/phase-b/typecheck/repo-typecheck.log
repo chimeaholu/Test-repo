@@ -1,0 +1,69 @@
+
+> agrodomain@0.0.0 typecheck /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7
+> corepack pnpm -r --filter @agrodomain/api --filter @agrodomain/worker --filter @agrodomain/web --filter @agrodomain/contracts --filter @agrodomain/config run typecheck
+
+Scope: 5 of 6 workspace projects
+apps/api typecheck$ python3 ./scripts/quality_gate.py typecheck
+apps/worker typecheck$ python3 -m compileall app
+packages/contracts typecheck$ tsc -p tsconfig.json --noEmit
+apps/worker typecheck: Listing 'app'...
+apps/worker typecheck: Listing 'app/consumers'...
+apps/worker typecheck: Listing 'app/dispatchers'...
+apps/worker typecheck: Listing 'app/jobs'...
+apps/worker typecheck: Done
+apps/api typecheck: [api:typecheck] starting: /usr/bin/python3 -m mypy --config-file pyproject.toml app tests scripts
+apps/api typecheck: app/modules/advisory/runtime.py:78: error: "object" has no attribute "__iter__"; maybe "__dir__" or "__str__"? (not iterable)  [attr-defined]
+apps/api typecheck: app/modules/advisory/runtime.py:337: error: "object" has no attribute "__iter__"; maybe "__dir__" or "__str__"? (not iterable)  [attr-defined]
+apps/api typecheck: tests/contract/test_control_plane_contract_integrity.py:49: error: Invalid index type "str" for "str"; expected type "SupportsIndex | slice[SupportsIndex | None, SupportsIndex | None, SupportsIndex | None]"  [index]
+apps/api typecheck: app/modules/analytics/runtime.py:145: error: Item "None" of "TelemetryObservationRecord | None" has no attribute "window_ended_at"  [union-attr]
+apps/api typecheck: app/services/commands/handlers.py:658: error: Argument 1 to "float" has incompatible type "object"; expected "str | Buffer | SupportsFloat | SupportsIndex"  [arg-type]
+apps/api typecheck: app/services/commands/handlers.py:763: error: No overload variant of "int" matches argument type "object"  [call-overload]
+apps/api typecheck: app/services/commands/handlers.py:763: note: Possible overload variants:
+apps/api typecheck: app/services/commands/handlers.py:763: note:     def int(str | Buffer | SupportsInt | SupportsIndex | SupportsTrunc = ..., /) -> int
+apps/api typecheck: app/services/commands/handlers.py:763: note:     def int(str | bytes | bytearray, /, base: SupportsIndex) -> int
+apps/api typecheck: app/services/commands/handlers.py:772: error: No overload variant of "int" matches argument type "object"  [call-overload]
+apps/api typecheck: app/services/commands/handlers.py:772: note: Possible overload variants:
+apps/api typecheck: app/services/commands/handlers.py:772: note:     def int(str | Buffer | SupportsInt | SupportsIndex | SupportsTrunc = ..., /) -> int
+apps/api typecheck: app/services/commands/handlers.py:772: note:     def int(str | bytes | bytearray, /, base: SupportsIndex) -> int
+apps/api typecheck: app/services/commands/handlers.py:831: error: Incompatible types in assignment (expression has type "FinanceRequestRecord | None", variable has type "FinanceRequestRecord")  [assignment]
+apps/api typecheck: app/services/commands/handlers.py:969: error: Argument "climate_source_reference" to "record_evaluation" of "FinanceRepository" has incompatible type "dict[str, str | None]"; expected "dict[str, object]"  [arg-type]
+apps/api typecheck: app/services/commands/handlers.py:969: note: "dict" is invariant -- see https://mypy.readthedocs.io/en/stable/common_issues.html#variance
+apps/api typecheck: app/services/commands/handlers.py:969: note: Consider using "Mapping" instead, which is covariant in the value type
+apps/api typecheck: app/services/commands/handlers.py:988: error: Argument "climate_source_reference" to "create_payout_event" of "FinanceRepository" has incompatible type "dict[str, str | None]"; expected "dict[str, object]"  [arg-type]
+apps/api typecheck: app/services/commands/handlers.py:988: note: "dict" is invariant -- see https://mypy.readthedocs.io/en/stable/common_issues.html#variance
+apps/api typecheck: app/services/commands/handlers.py:988: note: Consider using "Mapping" instead, which is covariant in the value type
+apps/api typecheck: app/services/commands/handlers.py:1105: error: Incompatible types in assignment (expression has type "ConsignmentRecord | None", variable has type "ConsignmentRecord")  [assignment]
+apps/api typecheck: app/services/commands/handlers.py:1166: error: Argument "actor_role" to "append_event" of "TraceabilityRepository" has incompatible type "str | None"; expected "str"  [arg-type]
+apps/api typecheck: app/services/commands/handlers.py:1170: error: Argument "milestone" to "append_event" of "TraceabilityRepository" has incompatible type "str"; expected "Literal['harvested', 'handoff_confirmed', 'dispatched', 'in_transit', 'delivered', 'exception_logged']"  [arg-type]
+apps/api typecheck: app/services/commands/handlers.py:1398: error: Incompatible types in assignment (expression has type "ListingProjection | None", variable has type "Listing")  [assignment]
+apps/api typecheck: app/services/commands/handlers.py:1432: error: Incompatible types in assignment (expression has type "NegotiationThread | None", variable has type "NegotiationThread")  [assignment]
+apps/api typecheck: app/services/commands/handlers.py:1467: error: Incompatible types in assignment (expression has type "NegotiationThread | None", variable has type "NegotiationThread")  [assignment]
+apps/api typecheck: app/services/commands/handlers.py:1519: error: Incompatible types in assignment (expression has type "NegotiationThread | None", variable has type "NegotiationThread")  [assignment]
+apps/api typecheck: app/services/commands/handlers.py:1565: error: Incompatible types in assignment (expression has type "NegotiationThread | None", variable has type "NegotiationThread")  [assignment]
+apps/api typecheck: app/services/commands/handlers.py:1619: error: Incompatible types in assignment (expression has type "NegotiationThread | None", variable has type "NegotiationThread")  [assignment]
+apps/api typecheck: app/services/commands/handlers.py:1683: error: Incompatible types in assignment (expression has type "EscrowRecord | None", variable has type "EscrowRecord")  [assignment]
+apps/api typecheck: app/services/commands/handlers.py:1751: error: Incompatible types in assignment (expression has type "EscrowRecord | None", variable has type "EscrowRecord")  [assignment]
+apps/api typecheck: app/services/commands/handlers.py:1915: error: Incompatible types in assignment (expression has type "EscrowRecord | None", variable has type "EscrowRecord")  [assignment]
+apps/api typecheck: app/services/commands/handlers.py:2040: error: Incompatible types in assignment (expression has type "EscrowRecord | None", variable has type "EscrowRecord")  [assignment]
+apps/api typecheck: app/services/commands/handlers.py:2153: error: Incompatible types in assignment (expression has type "EscrowRecord | None", variable has type "EscrowRecord")  [assignment]
+apps/api typecheck: app/services/commands/handlers.py:2357: error: Incompatible types in assignment (expression has type "ClimateAlert | None", variable has type "ClimateAlert")  [assignment]
+apps/api typecheck: app/services/commands/handlers.py:2376: error: Incompatible types in assignment (expression has type "FarmProfile | None", variable has type "FarmProfile")  [assignment]
+apps/api typecheck: app/services/commands/handlers.py:2417: error: Incompatible types in assignment (expression has type "FarmProfile | None", variable has type "FarmProfile")  [assignment]
+apps/api typecheck: app/services/commands/handlers.py:2487: error: Argument "provenance" to "create_mrv_evidence_record" of "ClimateRepository" has incompatible type "list[dict[str, bool | str | None]]"; expected "list[dict[str, object]]"  [arg-type]
+apps/api typecheck: app/api/routes/wallet.py:292: error: Argument "notification_payload" to "append_timeline_entry" of "EscrowRepository" has incompatible type "dict[str, str]"; expected "dict[str, object] | None"  [arg-type]
+apps/api typecheck: app/api/routes/wallet.py:292: note: "dict" is invariant -- see https://mypy.readthedocs.io/en/stable/common_issues.html#variance
+apps/api typecheck: app/api/routes/wallet.py:292: note: Consider using "Mapping" instead, which is covariant in the value type
+apps/api typecheck: app/api/routes/marketplace.py:152: error: Incompatible types in assignment (expression has type "list[Listing]", variable has type "list[ListingProjection]")  [assignment]
+apps/api typecheck: app/api/routes/marketplace.py:184: error: Incompatible types in assignment (expression has type "Listing | None", variable has type "ListingProjection | None")  [assignment]
+apps/api typecheck: app/api/routes/admin.py:85: error: Argument "environment" to "validate_runtime_country_access" has incompatible type "str"; expected "Literal['local', 'test', 'ci', 'staging', 'production']"  [arg-type]
+apps/api typecheck: app/api/routes/admin.py:140: error: Argument "environment" to "resolve_rollout_policy" has incompatible type "str"; expected "Literal['local', 'test', 'ci', 'staging', 'production']"  [arg-type]
+apps/api typecheck: app/api/routes/admin.py:338: error: Argument "environment" to "resolve_rollout_policy" has incompatible type "str"; expected "Literal['local', 'test', 'ci', 'staging', 'production']"  [arg-type]
+apps/api typecheck: app/services/commands/bus.py:363: error: Value of type "object" is not indexable  [index]
+apps/api typecheck: Found 35 errors in 8 files (checked 93 source files)
+apps/api typecheck: [api:typecheck] failed with exit code 1
+apps/api typecheck: Failed
+/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/api:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @agrodomain/api@0.0.0 typecheck: `python3 ./scripts/quality_gate.py typecheck`
+Exit status 1
+ WARN   Local package.json exists, but node_modules missing, did you mean to install?
+ ELIFECYCLE  Command failed with exit code 1.

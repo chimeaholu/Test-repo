@@ -1,0 +1,244 @@
+{
+  "$ref": "#/definitions/FinancePartnerRequest",
+  "definitions": {
+    "FinancePartnerRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "actor_role": {
+          "enum": [
+            "farmer",
+            "buyer",
+            "cooperative",
+            "advisor",
+            "finance",
+            "finance_ops",
+            "admin"
+          ],
+          "type": "string"
+        },
+        "case_reference": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "channel": {
+          "description": "Transport channel that originated or carried the request",
+          "enum": [
+            "pwa",
+            "ussd",
+            "whatsapp",
+            "sms",
+            "push",
+            "api"
+          ],
+          "type": "string"
+        },
+        "correlation_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "created_at": {
+          "$ref": "#/definitions/FinancePartnerRequest/properties/transcript_entries/items/properties/captured_at"
+        },
+        "currency": {
+          "pattern": "^[A-Z]{3}$",
+          "type": "string"
+        },
+        "finance_request_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "idempotency_key": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "partner_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "partner_reference_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "policy_context": {
+          "additionalProperties": false,
+          "properties": {
+            "matched_rule": {
+              "minLength": 1,
+              "nullable": true,
+              "type": "string"
+            },
+            "policy_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "policy_version": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "requires_hitl": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "policy_id",
+            "policy_version",
+            "matched_rule",
+            "requires_hitl"
+          ],
+          "type": "object"
+        },
+        "product_type": {
+          "enum": [
+            "invoice_advance",
+            "working_capital",
+            "input_credit"
+          ],
+          "type": "string"
+        },
+        "request_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "requested_amount": {
+          "exclusiveMinimum": true,
+          "minimum": 0,
+          "type": "number"
+        },
+        "responsibility_boundary": {
+          "additionalProperties": false,
+          "properties": {
+            "internal_can_approve": {
+              "type": "boolean"
+            },
+            "internal_can_block": {
+              "type": "boolean"
+            },
+            "internal_can_prepare": {
+              "type": "boolean"
+            },
+            "owner": {
+              "enum": [
+                "partner",
+                "internal",
+                "shared"
+              ],
+              "type": "string"
+            },
+            "partner_decision_required": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "owner",
+            "internal_can_prepare",
+            "internal_can_block",
+            "internal_can_approve",
+            "partner_decision_required"
+          ],
+          "type": "object"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "pending_partner",
+            "pending_review",
+            "partner_approved",
+            "partner_declined",
+            "blocked",
+            "hitl_required"
+          ],
+          "type": "string"
+        },
+        "transcript_entries": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "captured_at": {
+                "description": "ISO-8601 timestamp with timezone offset",
+                "format": "date-time",
+                "type": "string"
+              },
+              "channel": {
+                "$ref": "#/definitions/FinancePartnerRequest/properties/channel"
+              },
+              "message": {
+                "maxLength": 500,
+                "minLength": 1,
+                "type": "string"
+              },
+              "speaker": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "speaker",
+              "message",
+              "channel",
+              "captured_at"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "updated_at": {
+          "$ref": "#/definitions/FinancePartnerRequest/properties/transcript_entries/items/properties/captured_at"
+        }
+      },
+      "required": [
+        "schema_version",
+        "finance_request_id",
+        "request_id",
+        "idempotency_key",
+        "actor_id",
+        "actor_role",
+        "country_code",
+        "channel",
+        "correlation_id",
+        "case_reference",
+        "product_type",
+        "requested_amount",
+        "currency",
+        "partner_id",
+        "partner_reference_id",
+        "status",
+        "responsibility_boundary",
+        "policy_context",
+        "transcript_entries",
+        "created_at",
+        "updated_at"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Persisted finance partner request DTO used by review and partner-bound decision flows.",
+  "x-agrodomain-contract": {
+    "id": "finance.finance_partner_request",
+    "domain": "finance",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-004",
+      "DI-003"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+    ]
+  }
+}

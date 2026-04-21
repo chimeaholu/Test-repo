@@ -1,0 +1,26 @@
+# R3 Worker And Config Activation State
+
+- Timestamp: `2026-04-20T05:30:00Z`
+- Status: `PASS`
+- Tracker wave: `Wave 0 production rebuild`
+- Completed beads:
+  - `R3-B01` replace worker scaffold with real job runtime
+  - `R3-B02` replace config scaffold with typed env and country packs
+  - `R3-B03` activate backend replay seam and worker metadata path
+  - `R3-B04` add operator notifications and incident hooks
+- Primary runtime refs:
+  - `packages/config/src/index.js`
+  - `packages/config/src/data/environment-profiles.json`
+  - `packages/config/src/data/rollout-policies.json`
+  - `apps/api/app/core/shared_runtime_config.py`
+  - `apps/api/app/db/migrations/versions/0015_worker_runtime_activation.py`
+  - `apps/api/app/services/commands/bus.py`
+  - `apps/worker/app/runtime.py`
+  - `apps/web/lib/api/mock-client.ts`
+  - `apps/web/components/app-provider.tsx`
+- Verification refs:
+  - `execution/reviews/2026-04-20T05-30-00Z-r3-worker-config-activation/config-test.log`
+  - `execution/reviews/2026-04-20T05-30-00Z-r3-worker-config-activation/api-r3-gates.log`
+  - `execution/reviews/2026-04-20T05-30-00Z-r3-worker-config-activation/worker-runtime.log`
+  - `execution/reviews/2026-04-20T05-30-00Z-r3-worker-config-activation/web-r3-gates.log`
+- Next tranche handoff: `R4 web route completion for operator and operations surfaces`

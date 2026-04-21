@@ -1,0 +1,11 @@
+{
+  "name": "@agrodomain/worker",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "build": "python3 -m compileall app",
+    "lint": "python3 -m compileall app",
+    "typecheck": "python3 -m compileall app",
+    "test": "python3 -m pytest tests -q"
+  }
+}

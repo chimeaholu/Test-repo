@@ -1,0 +1,103 @@
+{
+  "$ref": "#/definitions/UssdSession",
+  "definitions": {
+    "UssdSession": {
+      "additionalProperties": false,
+      "properties": {
+        "country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "current_menu_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "expires_at_epoch_ms": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "last_seen_epoch_ms": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "locale": {
+          "maxLength": 16,
+          "minLength": 2,
+          "pattern": "^[a-z]{2}(?:-[A-Z]{2})?$",
+          "type": "string"
+        },
+        "phone_number": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "resume_menu_id": {
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "revision": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "session_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "started_at_epoch_ms": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "status": {
+          "enum": [
+            "active",
+            "timed_out",
+            "recovered",
+            "closed"
+          ],
+          "type": "string"
+        },
+        "workflow_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "session_id",
+        "workflow_id",
+        "phone_number",
+        "country_code",
+        "current_menu_id",
+        "revision",
+        "status",
+        "started_at_epoch_ms",
+        "last_seen_epoch_ms",
+        "expires_at_epoch_ms",
+        "locale"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Compact USSD session serialization and timeout recovery state.",
+  "x-agrodomain-contract": {
+    "id": "channels.ussd_session",
+    "domain": "channels",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "EP-002",
+      "DI-001"
+    ],
+    "source_artifacts": [
+      "execution/contracts/b004_ussd_adapter_contract.json",
+      "legacy/staging-runtime/src/agro_v2/ussd_adapter.py"
+    ]
+  }
+}

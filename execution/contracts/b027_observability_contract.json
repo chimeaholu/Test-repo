@@ -1,0 +1,39 @@
+{
+  "bead_id": "B-027",
+  "name": "Observability and SLO Instrumentation",
+  "scope": {
+    "focus": [
+      "traces",
+      "metrics",
+      "country_channel_slo_alerting",
+      "idempotent_telemetry_ingestion"
+    ]
+  },
+  "telemetry": {
+    "required_fields": [
+      "metric_id",
+      "channel",
+      "country_code",
+      "operation",
+      "value",
+      "tags"
+    ]
+  },
+  "slo_alert": {
+    "required_fields": [
+      "slo_id",
+      "sample_size",
+      "success_rate",
+      "p95_latency_ms",
+      "breached",
+      "severity"
+    ]
+  },
+  "test_obligations": {
+    "journeys": [
+      "PF-001",
+      "PF-004"
+    ],
+    "data_check": "DI-002"
+  }
+}

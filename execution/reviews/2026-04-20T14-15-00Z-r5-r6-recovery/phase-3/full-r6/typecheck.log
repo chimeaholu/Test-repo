@@ -1,0 +1,31 @@
+
+> agrodomain@0.0.0 typecheck /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7
+> corepack pnpm -r --filter @agrodomain/api --filter @agrodomain/worker --filter @agrodomain/web --filter @agrodomain/contracts --filter @agrodomain/config run typecheck
+
+Scope: 5 of 6 workspace projects
+apps/api typecheck$ python3 ./scripts/quality_gate.py typecheck
+apps/worker typecheck$ python3 -m compileall app
+packages/contracts typecheck$ tsc -p tsconfig.json --noEmit
+apps/api typecheck: [api:typecheck] starting: /usr/bin/python3 -m mypy --config-file pyproject.toml app tests scripts
+apps/worker typecheck: Listing 'app'...
+apps/worker typecheck: Listing 'app/consumers'...
+apps/worker typecheck: Listing 'app/dispatchers'...
+apps/worker typecheck: Listing 'app/jobs'...
+apps/worker typecheck: Done
+apps/api typecheck: Success: no issues found in 93 source files
+apps/api typecheck: [api:typecheck] passed
+apps/api typecheck: Done
+packages/contracts typecheck: Done
+packages/config typecheck$ node --eval "import('./src/index.js')"
+packages/config typecheck: Done
+apps/web typecheck$ corepack pnpm --filter @agrodomain/contracts build && corepack pnpm --filter @agrodomain/config build && corepack pnpm run guard:contracts && next typegen && tsc --noEmit
+apps/web typecheck: > @agrodomain/contracts@0.0.0 build /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/contracts
+apps/web typecheck: > tsc -p tsconfig.json
+apps/web typecheck: > @agrodomain/config@0.0.0 build /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/config
+apps/web typecheck: > node --eval "import('./src/index.js')"
+apps/web typecheck: > @agrodomain/web@0.0.0 guard:contracts /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web
+apps/web typecheck: > node ./scripts/verify-contract-boundary.mjs
+apps/web typecheck: Contract boundary verified.
+apps/web typecheck: Generating route types...
+apps/web typecheck: ✓ Route types generated successfully
+apps/web typecheck: Done

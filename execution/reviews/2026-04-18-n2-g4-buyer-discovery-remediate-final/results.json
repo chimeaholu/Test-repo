@@ -1,0 +1,239 @@
+{
+  "config": {
+    "configFile": "/mnt/vault/MWH/Projects/Agrodomain/execution/reviews/2026-04-18-n2-g4-buyer-discovery-remediate-final/playwright.run.config.ts",
+    "rootDir": "/tmp/agrodomain-buyer-remediate/MWH/Projects/Agrodomain/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/mnt/vault/MWH/Projects/Agrodomain/execution/reviews/2026-04-18-n2-g4-buyer-discovery-remediate-final/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-critical",
+        "name": "desktop-critical",
+        "testDir": "/tmp/agrodomain-buyer-remediate/MWH/Projects/Agrodomain/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "/mnt/vault/MWH/Projects/Agrodomain/execution/reviews/2026-04-18-n2-g4-buyer-discovery-remediate-final/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-critical",
+        "name": "mobile-critical",
+        "testDir": "/tmp/agrodomain-buyer-remediate/MWH/Projects/Agrodomain/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/mnt/vault/MWH/Projects/Agrodomain/execution/reviews/2026-04-18-n2-g4-buyer-discovery-remediate-final/results.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "/mnt/vault/MWH/Projects/Agrodomain/execution/reviews/2026-04-18-n2-g4-buyer-discovery-remediate-final/html-report",
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "buyer-discovery.spec.ts",
+      "file": "buyer-discovery.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Buyer discovery and scoped read behavior",
+          "file": "buyer-discovery.spec.ts",
+          "line": 142,
+          "column": 6,
+          "specs": [
+            {
+              "title": "buyer reaches the discovery shell and cannot read another actor's listing detail",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1726,
+                      "error": {
+                        "message": "Error: page.goto: Page crashed\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:39120/app/buyer\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: Page crashed\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:39120/app/buyer\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at gotoPath (/tmp/agrodomain-buyer-remediate/MWH/Projects/Agrodomain/tests/e2e/helpers.ts:247:18)\n    at /tmp/agrodomain-buyer-remediate/MWH/Projects/Agrodomain/tests/e2e/buyer-discovery.spec.ts:172:5",
+                        "location": {
+                          "file": "/tmp/agrodomain-buyer-remediate/MWH/Projects/Agrodomain/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 247
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:247\n\n  245 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  246 |     try {\n> 247 |       await page.goto(path, { waitUntil: \"domcontentloaded\", timeout: 60_000 });\n      |                  ^\n  248 |       return;\n  249 |     } catch (error) {\n  250 |       const message = error instanceof Error ? error.message : String(error);"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/tmp/agrodomain-buyer-remediate/MWH/Projects/Agrodomain/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 247
+                          },
+                          "message": "Error: page.goto: Page crashed\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:39120/app/buyer\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   at helpers.ts:247\n\n  245 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  246 |     try {\n> 247 |       await page.goto(path, { waitUntil: \"domcontentloaded\", timeout: 60_000 });\n      |                  ^\n  248 |       return;\n  249 |     } catch (error) {\n  250 |       const message = error instanceof Error ? error.message : String(error);\n    at gotoPath (/tmp/agrodomain-buyer-remediate/MWH/Projects/Agrodomain/tests/e2e/helpers.ts:247:18)\n    at /tmp/agrodomain-buyer-remediate/MWH/Projects/Agrodomain/tests/e2e/buyer-discovery.spec.ts:172:5"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-18T14:21:21.247Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/mnt/vault/MWH/Projects/Agrodomain/execution/reviews/2026-04-18-n2-g4-buyer-discovery-remediate-final/test-results/buyer-discovery-Buyer-disc-f7e10-ther-actor-s-listing-detail-desktop-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/tmp/agrodomain-buyer-remediate/MWH/Projects/Agrodomain/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 247
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "8563ea5e165098f945c0-6e02ef304ffe1c90f177",
+              "file": "buyer-discovery.spec.ts",
+              "line": 143,
+              "column": 7
+            },
+            {
+              "title": "buyer reaches the discovery shell and cannot read another actor's listing detail",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11085,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Review supply quickly, inspect proof, and move offers without losing context.' })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Review supply quickly, inspect proof, and move offers without losing context.' })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Review supply quickly, inspect proof, and move offers without losing context.' })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Review supply quickly, inspect proof, and move offers without losing context.' })\u001b[22m\n\n    at /tmp/agrodomain-buyer-remediate/MWH/Projects/Agrodomain/tests/e2e/buyer-discovery.spec.ts:177:7",
+                        "location": {
+                          "file": "/tmp/agrodomain-buyer-remediate/MWH/Projects/Agrodomain/tests/e2e/buyer-discovery.spec.ts",
+                          "column": 7,
+                          "line": 177
+                        },
+                        "snippet": "  175 |         name: \"Review supply quickly, inspect proof, and move offers without losing context.\",\n  176 |       }),\n> 177 |     ).toBeVisible();\n      |       ^\n  178 |\n  179 |     await gotoPath(page, \"/app/market/listings\");\n  180 |     await expect("
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/tmp/agrodomain-buyer-remediate/MWH/Projects/Agrodomain/tests/e2e/buyer-discovery.spec.ts",
+                            "column": 7,
+                            "line": 177
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Review supply quickly, inspect proof, and move offers without losing context.' })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Review supply quickly, inspect proof, and move offers without losing context.' })\u001b[22m\n\n\n  175 |         name: \"Review supply quickly, inspect proof, and move offers without losing context.\",\n  176 |       }),\n> 177 |     ).toBeVisible();\n      |       ^\n  178 |\n  179 |     await gotoPath(page, \"/app/market/listings\");\n  180 |     await expect(\n    at /tmp/agrodomain-buyer-remediate/MWH/Projects/Agrodomain/tests/e2e/buyer-discovery.spec.ts:177:7"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-18T14:21:24.674Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/mnt/vault/MWH/Projects/Agrodomain/execution/reviews/2026-04-18-n2-g4-buyer-discovery-remediate-final/test-results/buyer-discovery-Buyer-disc-f7e10-ther-actor-s-listing-detail-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/tmp/agrodomain-buyer-remediate/MWH/Projects/Agrodomain/tests/e2e/buyer-discovery.spec.ts",
+                        "column": 7,
+                        "line": 177
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "8563ea5e165098f945c0-852d793ff557a891c9db",
+              "file": "buyer-discovery.spec.ts",
+              "line": 143,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-18T14:21:19.136Z",
+    "duration": 16967.817,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

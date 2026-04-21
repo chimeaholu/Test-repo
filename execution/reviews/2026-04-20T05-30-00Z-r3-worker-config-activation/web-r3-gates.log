@@ -1,0 +1,11 @@
+
+ RUN  v3.2.4 /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web
+
+ ✓ lib/offline/reducer.test.ts (3 tests) 11ms
+ ✓ lib/api/mock-client.test.ts (2 tests) 33ms
+
+ Test Files  2 passed (2)
+      Tests  5 passed (5)
+   Start at  04:07:32
+   Duration  3.06s (transform 666ms, setup 585ms, collect 1.37s, tests 44ms, environment 2.57s, prepare 420ms)
+

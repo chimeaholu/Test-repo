@@ -1,0 +1,137 @@
+{
+  "$ref": "#/definitions/InsurancePayoutEvent",
+  "definitions": {
+    "InsurancePayoutEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "actor_role": {
+          "enum": [
+            "farmer",
+            "buyer",
+            "cooperative",
+            "advisor",
+            "finance",
+            "finance_ops",
+            "admin"
+          ],
+          "type": "string"
+        },
+        "climate_source_reference": {
+          "additionalProperties": false,
+          "properties": {
+            "observation_id": {
+              "minLength": 1,
+              "nullable": true,
+              "type": "string"
+            },
+            "observed_at": {
+              "description": "ISO-8601 timestamp with timezone offset",
+              "format": "date-time",
+              "type": "string"
+            },
+            "source_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "source_type": {
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "source_id",
+            "source_type",
+            "observation_id",
+            "observed_at"
+          ],
+          "type": "object"
+        },
+        "country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "created_at": {
+          "$ref": "#/definitions/InsurancePayoutEvent/properties/climate_source_reference/properties/observed_at"
+        },
+        "evaluation_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "partner_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "partner_reference_id": {
+          "maxLength": 128,
+          "nullable": true,
+          "type": "string"
+        },
+        "payout_amount": {
+          "exclusiveMinimum": true,
+          "minimum": 0,
+          "type": "number"
+        },
+        "payout_currency": {
+          "pattern": "^[A-Z]{3}$",
+          "type": "string"
+        },
+        "payout_dedupe_key": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "payout_event_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "trigger_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "payout_event_id",
+        "trigger_id",
+        "evaluation_id",
+        "actor_id",
+        "actor_role",
+        "country_code",
+        "partner_id",
+        "partner_reference_id",
+        "payout_dedupe_key",
+        "payout_amount",
+        "payout_currency",
+        "climate_source_reference",
+        "created_at"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Payout event DTO with immutable provenance back to the trigger evaluation and climate source.",
+  "x-agrodomain-contract": {
+    "id": "finance.insurance_payout_event",
+    "domain": "finance",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-004",
+      "EP-008",
+      "DI-006"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+    ]
+  }
+}

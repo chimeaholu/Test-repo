@@ -1,0 +1,100 @@
+{
+  "$ref": "#/definitions/EnvironmentProfile",
+  "definitions": {
+    "EnvironmentProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "admin_api_enabled": {
+          "type": "boolean"
+        },
+        "allowed_schema_versions": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "default_country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "environment": {
+          "enum": [
+            "local",
+            "test",
+            "ci",
+            "staging",
+            "production"
+          ],
+          "type": "string"
+        },
+        "feature_flag_keys": {
+          "items": {
+            "maxLength": 96,
+            "minLength": 3,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "public_schema_version": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "rollout_policy_keys": {
+          "items": {
+            "maxLength": 96,
+            "minLength": 3,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "supported_country_codes": {
+          "items": {
+            "$ref": "#/definitions/EnvironmentProfile/properties/default_country_code"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "telemetry_collection_enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "schema_version",
+        "environment",
+        "public_schema_version",
+        "allowed_schema_versions",
+        "default_country_code",
+        "supported_country_codes",
+        "feature_flag_keys",
+        "rollout_policy_keys",
+        "telemetry_collection_enabled",
+        "admin_api_enabled"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Typed environment profile used to enforce schema-version allowlists and feature/config availability across local, CI, staging, and production.",
+  "x-agrodomain-contract": {
+    "id": "config.environment_profile",
+    "domain": "config",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "EP-007",
+      "DI-004"
+    ],
+    "source_artifacts": [
+      "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+      "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+    ]
+  }
+}

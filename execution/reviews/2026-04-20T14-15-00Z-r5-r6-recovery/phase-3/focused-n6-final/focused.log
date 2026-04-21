@@ -1,0 +1,639 @@
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0013 -> 0014, control plane runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0013 -> 0014, control plane runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0014 -> 0015_worker_runtime_activation, worker runtime activation
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0014 -> 0015_worker_runtime_activation, worker runtime activation
+[2m[WebServer] [22mINFO:     Started server process [123020]
+[2m[WebServer] [22mINFO:     Waiting for application startup.
+[2m[WebServer] [22mINFO:     Application startup complete.
+[2m[WebServer] [22mINFO:     Uvicorn running on http://127.0.0.1:8214 (Press CTRL+C to quit)
+[2m[WebServer] [22m{"correlation_id": "64e3be70-11c9-4228-9638-4c96b37e0920", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "64e3be70-11c9-4228-9638-4c96b37e0920", "timestamp": "2026-04-20T15:06:36.840711+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:34160 - "GET /readyz HTTP/1.1" 200 OK
+[2m[WebServer] [22m(node:123172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:123244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:123273) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m   ▲ Next.js 15.5.15
+[2m[WebServer] [22m   - Local:        http://127.0.0.1:3214
+[2m[WebServer] [22m   - Network:      http://127.0.0.1:3214
+[2m[WebServer] [22m
+[2m[WebServer] [22m ✓ Starting...
+[2m[WebServer] [22mAttention: Next.js now collects completely anonymous telemetry regarding usage.
+[2m[WebServer] [22mThis information is used to shape Next.js' roadmap and prioritize features.
+[2m[WebServer] [22mYou can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+[2m[WebServer] [22mhttps://nextjs.org/telemetry
+[2m[WebServer] [22m
+[2m[WebServer] [22m ✓ Ready in 2.9s
+[2m[WebServer] [22m ○ Compiling /signin ...
+[2m[WebServer] [22m ✓ Compiled /signin in 14.7s (702 modules)
+[2m[WebServer] [22m GET /signin 200 in 15936ms
+
+Running 4 tests using 1 worker
+
+(node:123913) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:123913) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 177ms
+[2m[WebServer] [22m{"correlation_id": "b0ac3e9a-aa26-4501-87b1-d7ddb6496b5d", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "b0ac3e9a-aa26-4501-87b1-d7ddb6496b5d", "timestamp": "2026-04-20T15:07:05.158643+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43344 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--signin-e2qbq5", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--signin-e2qbq5", "timestamp": "2026-04-20T15:07:05.199117+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43358 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m ○ Compiling /onboarding/consent ...
+[2m[WebServer] [22m ✓ Compiled /onboarding/consent in 1850ms (695 modules)
+[2m[WebServer] [22m GET /onboarding/consent 200 in 2205ms
+[2m[WebServer] [22m{"correlation_id": "4585660c-f7e7-4a78-b96e-636c1a9694a8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "4585660c-f7e7-4a78-b96e-636c1a9694a8", "timestamp": "2026-04-20T15:07:08.702125+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43358 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-yggld2", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-yggld2", "timestamp": "2026-04-20T15:07:08.788489+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43344 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m ○ Compiling /app/[role] ...
+[2m[WebServer] [22m ✓ Compiled /app/[role] in 1647ms (724 modules)
+[2m[WebServer] [22m(node:124293) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/admin 200 in 3220ms
+[2m[WebServer] [22m{"correlation_id": "d28af1a4-bdb7-42d6-af03-e27eebc7d656", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "d28af1a4-bdb7-42d6-af03-e27eebc7d656", "timestamp": "2026-04-20T15:07:12.359988+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43344 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "74c4a556-6096-4dae-865a-8329c21a26b7", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "74c4a556-6096-4dae-865a-8329c21a26b7", "timestamp": "2026-04-20T15:07:12.365499+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43358 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "5928885b-58b8-4cc6-9d77-6699d999ee86", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "5928885b-58b8-4cc6-9d77-6699d999ee86", "timestamp": "2026-04-20T15:07:12.377326+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55256 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "8cf9a845-bef3-4d36-8bdf-5694029ccc6f", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "8cf9a845-bef3-4d36-8bdf-5694029ccc6f", "timestamp": "2026-04-20T15:07:12.382687+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43344 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "200c65d6-55d6-4dea-8065-786356691084", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "200c65d6-55d6-4dea-8065-786356691084", "timestamp": "2026-04-20T15:07:12.406494+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55276 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "e8f7fc0b-21af-4f07-8d23-9dd6258e6606", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "e8f7fc0b-21af-4f07-8d23-9dd6258e6606", "timestamp": "2026-04-20T15:07:12.413363+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55282 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "3b482e63-4457-4aac-8704-3113b9eaf2c8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "3b482e63-4457-4aac-8704-3113b9eaf2c8", "timestamp": "2026-04-20T15:07:12.414154+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43344 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "a3eb794b-4f13-4a27-9056-c186321dad08", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "a3eb794b-4f13-4a27-9056-c186321dad08", "timestamp": "2026-04-20T15:07:12.414713+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55256 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-yggld2", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-yggld2", "timestamp": "2026-04-20T15:07:12.421615+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55264 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-yggld2-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-yggld2-alerts", "timestamp": "2026-04-20T15:07:12.444882+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43358 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "4bb2b713-5a65-470c-b385-8d12991ab167", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "4bb2b713-5a65-470c-b385-8d12991ab167", "timestamp": "2026-04-20T15:07:12.471210+00:00"}
+[2m[WebServer] [22m{"correlation_id": "4b94598b-7855-4ace-ad5f-e97de417b11d", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "4b94598b-7855-4ace-ad5f-e97de417b11d", "timestamp": "2026-04-20T15:07:12.471926+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55276 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55282 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "e5fb959a-1ee6-4e44-a934-2b2d2f9fa63c", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "e5fb959a-1ee6-4e44-a934-2b2d2f9fa63c", "timestamp": "2026-04-20T15:07:12.489287+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55276 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "b0a5a702-78ef-4bcf-9eb4-c057f573e1d1", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "b0a5a702-78ef-4bcf-9eb4-c057f573e1d1", "timestamp": "2026-04-20T15:07:12.497062+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55282 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "095cc49f-19d9-40df-b36f-3a85f1e60844", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "095cc49f-19d9-40df-b36f-3a85f1e60844", "timestamp": "2026-04-20T15:07:12.512167+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55282 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-yggld2-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-yggld2-audit", "timestamp": "2026-04-20T15:07:12.538196+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55264 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "279cadd0-4859-4471-a195-d34e4f7b2c6f", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "279cadd0-4859-4471-a195-d34e4f7b2c6f", "timestamp": "2026-04-20T15:07:12.544208+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55264 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "c5f660ef-9f03-4f97-9f97-e2a7e26cd5d5", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "c5f660ef-9f03-4f97-9f97-e2a7e26cd5d5", "timestamp": "2026-04-20T15:07:12.552968+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55264 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-yggld2-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-yggld2-readiness", "timestamp": "2026-04-20T15:07:12.556967+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55256 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-yggld2-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-yggld2-rollouts", "timestamp": "2026-04-20T15:07:12.560527+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43344 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-yggld2", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-yggld2", "timestamp": "2026-04-20T15:07:12.561205+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43358 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-yggld2-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-yggld2-rollouts", "timestamp": "2026-04-20T15:07:12.564925+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55282 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-yggld2-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-yggld2-alerts", "timestamp": "2026-04-20T15:07:12.571786+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55276 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-muozx9", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-muozx9", "timestamp": "2026-04-20T15:07:12.599409+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43344 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-yggld2-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-yggld2-audit", "timestamp": "2026-04-20T15:07:12.611428+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55256 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-muozx9-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-muozx9-alerts", "timestamp": "2026-04-20T15:07:12.617549+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43358 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55264 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-yggld2-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-yggld2-readiness", "timestamp": "2026-04-20T15:07:12.619716+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-muozx9-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-muozx9-readiness", "timestamp": "2026-04-20T15:07:12.620404+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55276 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-muozx9-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-muozx9-rollouts", "timestamp": "2026-04-20T15:07:12.625486+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55282 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-muozx9-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-muozx9-audit", "timestamp": "2026-04-20T15:07:12.639266+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43344 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/admin 200 in 670ms
+[2m[WebServer] [22m(node:124380) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m ○ Compiling /app/admin/analytics ...
+[2m[WebServer] [22m ✓ Compiled /app/admin/analytics in 1502ms (729 modules)
+[2m[WebServer] [22m GET /app/admin/analytics 200 in 2273ms
+[2m[WebServer] [22m{"correlation_id": "10b6aa29-9da6-4f0d-b09c-7f3bee203fbc", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "10b6aa29-9da6-4f0d-b09c-7f3bee203fbc", "timestamp": "2026-04-20T15:07:17.292471+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43344 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-aqm5ez", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-aqm5ez", "timestamp": "2026-04-20T15:07:17.314067+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55282 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "c1b1c20e-f40b-41ad-a6a5-f057e61aac1f", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "c1b1c20e-f40b-41ad-a6a5-f057e61aac1f", "timestamp": "2026-04-20T15:07:17.397361+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55282 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "6fbfc1ad-e620-494d-9c9a-d14a042b8991", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "6fbfc1ad-e620-494d-9c9a-d14a042b8991", "timestamp": "2026-04-20T15:07:17.424581+00:00"}
+[2m[WebServer] [22m{"correlation_id": "ebc1b6f0-a338-4552-91f8-237a91b98838", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "ebc1b6f0-a338-4552-91f8-237a91b98838", "timestamp": "2026-04-20T15:07:17.425544+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43344 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55276 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "dd285a76-f3d0-46da-bc3f-d33cb8818024", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "dd285a76-f3d0-46da-bc3f-d33cb8818024", "timestamp": "2026-04-20T15:07:17.438393+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55264 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "0a407dd2-31a4-4961-8307-e62511e9d0d5", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "0a407dd2-31a4-4961-8307-e62511e9d0d5", "timestamp": "2026-04-20T15:07:17.450536+00:00"}
+[2m[WebServer] [22m{"correlation_id": "0113251c-f286-4053-894b-d99b188ba561", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "0113251c-f286-4053-894b-d99b188ba561", "timestamp": "2026-04-20T15:07:17.451555+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55282 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55256 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "f3bc7f0a-769e-429a-950c-a7e29bd30149", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "f3bc7f0a-769e-429a-950c-a7e29bd30149", "timestamp": "2026-04-20T15:07:17.466577+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43344 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "a9390abb-2810-4068-a421-5a773c26de18", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "a9390abb-2810-4068-a421-5a773c26de18", "timestamp": "2026-04-20T15:07:17.468348+00:00"}
+[2m[WebServer] [22m{"correlation_id": "0e260a34-c3fc-40ec-a0ae-c21cb39ea252", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "0e260a34-c3fc-40ec-a0ae-c21cb39ea252", "timestamp": "2026-04-20T15:07:17.470372+00:00"}
+[2m[WebServer] [22m{"correlation_id": "194b19f5-0a51-41c6-ab97-8d0a5b4f6aab", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "194b19f5-0a51-41c6-ab97-8d0a5b4f6aab", "timestamp": "2026-04-20T15:07:17.471075+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55276 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55264 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55282 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-a1wlx4", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-a1wlx4", "timestamp": "2026-04-20T15:07:17.484127+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43358 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-a1wlx4-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-a1wlx4-alerts", "timestamp": "2026-04-20T15:07:17.546697+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55256 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:43344 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55282 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-a1wlx4-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-a1wlx4-rollouts", "timestamp": "2026-04-20T15:07:17.554019+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-a1wlx4", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-a1wlx4", "timestamp": "2026-04-20T15:07:17.554794+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-a1wlx4-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-a1wlx4-readiness", "timestamp": "2026-04-20T15:07:17.575092+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55276 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-a1wlx4-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-a1wlx4-audit", "timestamp": "2026-04-20T15:07:17.578636+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55264 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-a1wlx4-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-a1wlx4-alerts", "timestamp": "2026-04-20T15:07:17.590409+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43358 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55276 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "291ffe72-7f7c-49d1-94d7-5ac0cde1c084", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "291ffe72-7f7c-49d1-94d7-5ac0cde1c084", "timestamp": "2026-04-20T15:07:17.593099+00:00"}
+[2m[WebServer] [22m{"correlation_id": "dd5ec7ad-4157-4978-a903-ab3c35b4e755", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "dd5ec7ad-4157-4978-a903-ab3c35b4e755", "timestamp": "2026-04-20T15:07:17.601345+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55264 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "9477266c-dcec-4406-953e-2305434cbb95", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "9477266c-dcec-4406-953e-2305434cbb95", "timestamp": "2026-04-20T15:07:17.620180+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43358 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "50ecebbc-eef5-4f3a-82c2-880a614d76e8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "50ecebbc-eef5-4f3a-82c2-880a614d76e8", "timestamp": "2026-04-20T15:07:17.620832+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55276 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-a1wlx4-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-a1wlx4-audit", "timestamp": "2026-04-20T15:07:17.625648+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55282 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55256 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-a1wlx4-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-a1wlx4-rollouts", "timestamp": "2026-04-20T15:07:17.626515+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-a1wlx4-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-a1wlx4-readiness", "timestamp": "2026-04-20T15:07:17.630192+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43344 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "b1324373-d4cd-46c3-9e77-586ce5291d40", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "b1324373-d4cd-46c3-9e77-586ce5291d40", "timestamp": "2026-04-20T15:07:17.643406+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55264 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-a1wlx4", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-a1wlx4", "timestamp": "2026-04-20T15:07:17.676290+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43358 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-a1wlx4-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-a1wlx4-alerts", "timestamp": "2026-04-20T15:07:17.677090+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55276 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-a1wlx4-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-a1wlx4-audit", "timestamp": "2026-04-20T15:07:17.686855+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:43344 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-a1wlx4-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-a1wlx4-rollouts", "timestamp": "2026-04-20T15:07:17.687639+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55282 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-a1wlx4-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-a1wlx4-readiness", "timestamp": "2026-04-20T15:07:17.691569+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:55256 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+  ✓  1 [desktop-critical] › tests/e2e/n6-admin-observability.spec.ts:6:7 › N6 admin observability and rollout tranche diagnostics › PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence (16.7s)
+[2m[WebServer] [22m GET /signin 200 in 327ms
+[2m[WebServer] [22m{"correlation_id": "16265a4a-eebe-4f42-8ca8-a17220b913a7", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "16265a4a-eebe-4f42-8ca8-a17220b913a7", "timestamp": "2026-04-20T15:07:22.941364+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52356 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--signin-whlp85", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--signin-whlp85", "timestamp": "2026-04-20T15:07:23.051903+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52362 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /onboarding/consent 200 in 222ms
+[2m[WebServer] [22m{"correlation_id": "03c386c2-624f-443c-91b0-cfeabe3ec957", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "03c386c2-624f-443c-91b0-cfeabe3ec957", "timestamp": "2026-04-20T15:07:24.753828+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52362 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-8lpix5", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-8lpix5", "timestamp": "2026-04-20T15:07:24.786289+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52356 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/admin 200 in 248ms
+[2m[WebServer] [22m{"correlation_id": "c79167ec-01d1-4410-93a0-0e057a36b404", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "c79167ec-01d1-4410-93a0-0e057a36b404", "timestamp": "2026-04-20T15:07:25.532960+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52356 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "ca575bd6-f63d-45e3-8a41-52977f2a6734", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "ca575bd6-f63d-45e3-8a41-52977f2a6734", "timestamp": "2026-04-20T15:07:25.551349+00:00"}
+[2m[WebServer] [22m{"correlation_id": "935b6754-ded3-43b1-9b93-5d3e9f2c4cbd", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "935b6754-ded3-43b1-9b93-5d3e9f2c4cbd", "timestamp": "2026-04-20T15:07:25.552953+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52356 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:52368 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "1cea3cf8-9061-4053-b896-ddcf4bac8796", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "1cea3cf8-9061-4053-b896-ddcf4bac8796", "timestamp": "2026-04-20T15:07:25.574711+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52382 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-8lpix5", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-8lpix5", "timestamp": "2026-04-20T15:07:25.583212+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52362 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "f236870e-d18a-4536-9d4d-28dede43e60b", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "f236870e-d18a-4536-9d4d-28dede43e60b", "timestamp": "2026-04-20T15:07:25.599915+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52392 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "5294d692-220f-42f3-9c80-10ee90fabd85", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "5294d692-220f-42f3-9c80-10ee90fabd85", "timestamp": "2026-04-20T15:07:25.616944+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52356 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "d8ca7feb-b6ae-4170-9081-88a03997e69f", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "d8ca7feb-b6ae-4170-9081-88a03997e69f", "timestamp": "2026-04-20T15:07:25.621296+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52368 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:52362 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "fdd51ad1-157e-49ad-bd6c-7f344063b72c", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "fdd51ad1-157e-49ad-bd6c-7f344063b72c", "timestamp": "2026-04-20T15:07:25.622129+00:00"}
+[2m[WebServer] [22m{"correlation_id": "860afde5-354c-4d3c-96e2-e31e195d03c4", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "860afde5-354c-4d3c-96e2-e31e195d03c4", "timestamp": "2026-04-20T15:07:25.623066+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52392 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-8lpix5-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-8lpix5-rollouts", "timestamp": "2026-04-20T15:07:25.650166+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52382 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-8lpix5-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-8lpix5-alerts", "timestamp": "2026-04-20T15:07:25.661534+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52396 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "94319c3d-a82f-4301-a7a4-421b718c39cc", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "94319c3d-a82f-4301-a7a4-421b718c39cc", "timestamp": "2026-04-20T15:07:25.672483+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52356 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "1d0d51ed-a4d3-4099-9d5a-c163a696fe73", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "1d0d51ed-a4d3-4099-9d5a-c163a696fe73", "timestamp": "2026-04-20T15:07:25.697341+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52392 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "d5a97424-cf18-45c2-b40e-2f764b9d8fd2", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "d5a97424-cf18-45c2-b40e-2f764b9d8fd2", "timestamp": "2026-04-20T15:07:25.699797+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52396 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "90414d84-b6fd-41bc-9fd7-1ccba790a608", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "90414d84-b6fd-41bc-9fd7-1ccba790a608", "timestamp": "2026-04-20T15:07:25.712859+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52356 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "53b6701d-061c-4fc2-ad9e-bcf58e4fd2c6", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "53b6701d-061c-4fc2-ad9e-bcf58e4fd2c6", "timestamp": "2026-04-20T15:07:25.729092+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52392 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "b0b39310-6683-433a-9156-e741f3ced127", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "b0b39310-6683-433a-9156-e741f3ced127", "timestamp": "2026-04-20T15:07:25.729902+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52396 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-8lpix5", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-8lpix5", "timestamp": "2026-04-20T15:07:25.780711+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52382 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-8lpix5-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-8lpix5-audit", "timestamp": "2026-04-20T15:07:25.833276+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52362 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-8lpix5-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-8lpix5-readiness", "timestamp": "2026-04-20T15:07:25.850313+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52368 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-8lpix5-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-8lpix5-rollouts", "timestamp": "2026-04-20T15:07:25.855195+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-8lpix5-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-8lpix5-alerts", "timestamp": "2026-04-20T15:07:25.860126+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52392 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:52356 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-8lpix5-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-8lpix5-readiness", "timestamp": "2026-04-20T15:07:25.882594+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52396 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-8lpix5-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-8lpix5-audit", "timestamp": "2026-04-20T15:07:25.900371+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52382 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-4gks8z-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-4gks8z-alerts", "timestamp": "2026-04-20T15:07:25.944960+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52368 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-4gks8z", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-4gks8z", "timestamp": "2026-04-20T15:07:25.950381+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52362 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-4gks8z-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-4gks8z-rollouts", "timestamp": "2026-04-20T15:07:25.954869+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52392 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:52396 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-4gks8z-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-4gks8z-audit", "timestamp": "2026-04-20T15:07:25.956862+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-4gks8z-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-4gks8z-readiness", "timestamp": "2026-04-20T15:07:25.963761+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52356 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m(node:124704) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/admin 200 in 395ms
+[2m[WebServer] [22m GET /app/admin 200 in 655ms
+[2m[WebServer] [22m{"correlation_id": "6f94f4a1-b570-4bc1-ae70-283cc58f3e5f", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "6f94f4a1-b570-4bc1-ae70-283cc58f3e5f", "timestamp": "2026-04-20T15:07:28.658411+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52356 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-rkaxeh", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-rkaxeh", "timestamp": "2026-04-20T15:07:28.676795+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52396 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "877dce8c-dd2a-494d-9cac-c18e51f3b7ef", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "877dce8c-dd2a-494d-9cac-c18e51f3b7ef", "timestamp": "2026-04-20T15:07:28.744824+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52396 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "62f6577a-b787-42d8-a254-d737c3bac465", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "62f6577a-b787-42d8-a254-d737c3bac465", "timestamp": "2026-04-20T15:07:28.752536+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52356 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "b5010ee2-e564-4bda-8484-eab5d3327cb9", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "b5010ee2-e564-4bda-8484-eab5d3327cb9", "timestamp": "2026-04-20T15:07:28.775638+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52396 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "8f1ab94b-09e0-4ab4-b9d0-377851a9908d", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "8f1ab94b-09e0-4ab4-b9d0-377851a9908d", "timestamp": "2026-04-20T15:07:28.776359+00:00"}
+[2m[WebServer] [22m{"correlation_id": "5daa8739-354d-4974-b65a-501716caad52", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "5daa8739-354d-4974-b65a-501716caad52", "timestamp": "2026-04-20T15:07:28.776874+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52362 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:52368 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:52392 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-viye0i", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-viye0i", "timestamp": "2026-04-20T15:07:28.785641+00:00"}
+[2m[WebServer] [22m{"correlation_id": "ab36f400-9fee-4fb3-816d-f414bad587ff", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "ab36f400-9fee-4fb3-816d-f414bad587ff", "timestamp": "2026-04-20T15:07:28.793133+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52356 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "32289edf-62c7-4f07-90e1-63f7aba86433", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "32289edf-62c7-4f07-90e1-63f7aba86433", "timestamp": "2026-04-20T15:07:28.817737+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52396 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "ee772cf4-61b9-4894-99ea-d51f226ba81f", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "ee772cf4-61b9-4894-99ea-d51f226ba81f", "timestamp": "2026-04-20T15:07:28.820351+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52362 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "99773ee2-1826-4982-9e9b-58d31bed20d2", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "99773ee2-1826-4982-9e9b-58d31bed20d2", "timestamp": "2026-04-20T15:07:28.830690+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52356 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "bc8817bc-d424-48cb-a7e6-4c1d78be676e", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "bc8817bc-d424-48cb-a7e6-4c1d78be676e", "timestamp": "2026-04-20T15:07:28.831487+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52368 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-viye0i-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-viye0i-alerts", "timestamp": "2026-04-20T15:07:28.844433+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52382 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-viye0i-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-viye0i-rollouts", "timestamp": "2026-04-20T15:07:28.913740+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52392 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-viye0i-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-viye0i-audit", "timestamp": "2026-04-20T15:07:28.937254+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52362 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-viye0i", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-viye0i", "timestamp": "2026-04-20T15:07:28.949300+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52356 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-viye0i-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-viye0i-rollouts", "timestamp": "2026-04-20T15:07:28.956951+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52382 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-viye0i-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-viye0i-alerts", "timestamp": "2026-04-20T15:07:28.959574+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-viye0i-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-viye0i-readiness", "timestamp": "2026-04-20T15:07:28.960433+00:00"}
+[2m[WebServer] [22m{"correlation_id": "6c09421b-c478-44df-a9d6-b1c6d94e5c9a", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "6c09421b-c478-44df-a9d6-b1c6d94e5c9a", "timestamp": "2026-04-20T15:07:28.961619+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52368 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:52396 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:52356 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "8942388b-d50c-490b-8d5d-2cca5e712ebc", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "8942388b-d50c-490b-8d5d-2cca5e712ebc", "timestamp": "2026-04-20T15:07:28.982775+00:00"}
+[2m[WebServer] [22m{"correlation_id": "6476edd0-7997-4bc9-b54a-bf293e25533d", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "6476edd0-7997-4bc9-b54a-bf293e25533d", "timestamp": "2026-04-20T15:07:28.983759+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52382 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:52368 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "95fdde5a-0909-4227-84c1-f69059443bf9", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "95fdde5a-0909-4227-84c1-f69059443bf9", "timestamp": "2026-04-20T15:07:28.987368+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52356 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "5f5e851c-bd62-48d6-a635-1ddae1ceb20e", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "5f5e851c-bd62-48d6-a635-1ddae1ceb20e", "timestamp": "2026-04-20T15:07:28.988869+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52396 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-viye0i-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-viye0i-readiness", "timestamp": "2026-04-20T15:07:28.996559+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52392 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-viye0i-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-viye0i-audit", "timestamp": "2026-04-20T15:07:28.999850+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52362 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-viye0i", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-viye0i", "timestamp": "2026-04-20T15:07:29.032073+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52382 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-viye0i-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-viye0i-alerts", "timestamp": "2026-04-20T15:07:29.042250+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52368 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-viye0i-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-viye0i-readiness", "timestamp": "2026-04-20T15:07:29.049309+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52396 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-viye0i-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-viye0i-rollouts", "timestamp": "2026-04-20T15:07:29.051774+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52356 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-viye0i-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-viye0i-audit", "timestamp": "2026-04-20T15:07:29.054415+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52392 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+  ✓  2 [desktop-critical] › tests/e2e/n6-admin-observability.spec.ts:24:7 › N6 admin observability and rollout tranche diagnostics › EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture (11.5s)
+(node:124851) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:124851) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 161ms
+[2m[WebServer] [22m{"correlation_id": "fa01c890-61ef-4ad2-9b09-6eb58ac6c20b", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "fa01c890-61ef-4ad2-9b09-6eb58ac6c20b", "timestamp": "2026-04-20T15:07:36.043009+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47764 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--signin-lqoofd", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--signin-lqoofd", "timestamp": "2026-04-20T15:07:36.136323+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47776 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /onboarding/consent 200 in 390ms
+[2m[WebServer] [22m{"correlation_id": "6c20bc43-d259-4b23-afa8-ff3ae4c3a812", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "6c20bc43-d259-4b23-afa8-ff3ae4c3a812", "timestamp": "2026-04-20T15:07:37.567592+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47776 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-r40177", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-r40177", "timestamp": "2026-04-20T15:07:37.610156+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47764 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/admin 200 in 204ms
+[2m[WebServer] [22m{"correlation_id": "b887811b-301b-4fb8-9bcf-4407fb3add37", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "b887811b-301b-4fb8-9bcf-4407fb3add37", "timestamp": "2026-04-20T15:07:38.250615+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47764 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:47776 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "d77b18a6-e57a-42d0-b3ae-36005b302d7d", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "d77b18a6-e57a-42d0-b3ae-36005b302d7d", "timestamp": "2026-04-20T15:07:38.256002+00:00"}
+[2m[WebServer] [22m{"correlation_id": "0e9e8c0a-f9fa-461f-84bb-49f28c83c35e", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "0e9e8c0a-f9fa-461f-84bb-49f28c83c35e", "timestamp": "2026-04-20T15:07:38.261489+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47778 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "703e3748-ceb2-49df-a806-5df17bfb3ef7", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "703e3748-ceb2-49df-a806-5df17bfb3ef7", "timestamp": "2026-04-20T15:07:38.266934+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47794 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "07452c8e-93df-4017-942c-e4b18af65899", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "07452c8e-93df-4017-942c-e4b18af65899", "timestamp": "2026-04-20T15:07:38.294979+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47798 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "1a9b84e4-9591-45a3-be48-74479fd41756", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "1a9b84e4-9591-45a3-be48-74479fd41756", "timestamp": "2026-04-20T15:07:38.300727+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47806 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:47764 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "39059581-0a3b-4570-a08a-e0896de20f16", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "39059581-0a3b-4570-a08a-e0896de20f16", "timestamp": "2026-04-20T15:07:38.304938+00:00"}
+[2m[WebServer] [22m{"correlation_id": "5b47e3a9-38fd-412c-9461-a06c2168f408", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "5b47e3a9-38fd-412c-9461-a06c2168f408", "timestamp": "2026-04-20T15:07:38.305637+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47776 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:47794 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "36e0bc55-8f1b-4a49-ab9e-df06c665bea3", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "36e0bc55-8f1b-4a49-ab9e-df06c665bea3", "timestamp": "2026-04-20T15:07:38.308888+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-r40177", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-r40177", "timestamp": "2026-04-20T15:07:38.323377+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47778 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "dcba04fe-7b11-4daa-82a0-e095d156feca", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "dcba04fe-7b11-4daa-82a0-e095d156feca", "timestamp": "2026-04-20T15:07:38.344008+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47806 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-r40177-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-r40177-alerts", "timestamp": "2026-04-20T15:07:38.412635+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47798 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-r40177-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-r40177-rollouts", "timestamp": "2026-04-20T15:07:38.424104+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-r40177-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-r40177-audit", "timestamp": "2026-04-20T15:07:38.424741+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47764 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:47794 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-r40177", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-r40177", "timestamp": "2026-04-20T15:07:38.430645+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47778 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-r40177-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-r40177-alerts", "timestamp": "2026-04-20T15:07:38.444785+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47806 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:47776 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-r40177-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-r40177-readiness", "timestamp": "2026-04-20T15:07:38.448822+00:00"}
+[2m[WebServer] [22m{"correlation_id": "c106e916-9111-454a-ad3b-5030b225c292", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "c106e916-9111-454a-ad3b-5030b225c292", "timestamp": "2026-04-20T15:07:38.451445+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47794 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "b051da25-6fff-4f8a-baea-bb82b6baad30", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "b051da25-6fff-4f8a-baea-bb82b6baad30", "timestamp": "2026-04-20T15:07:38.465692+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47806 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "63af72e7-d8c7-4ab4-a261-14e8feabcc01", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "63af72e7-d8c7-4ab4-a261-14e8feabcc01", "timestamp": "2026-04-20T15:07:38.467237+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47776 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "ed1256f2-60f3-45c6-a5d7-8868f5e18d87", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "ed1256f2-60f3-45c6-a5d7-8868f5e18d87", "timestamp": "2026-04-20T15:07:38.473079+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47794 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-r40177-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-r40177-readiness", "timestamp": "2026-04-20T15:07:38.489325+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47764 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "f53a50df-6fe2-44b7-b7e1-47c4e53897f9", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "f53a50df-6fe2-44b7-b7e1-47c4e53897f9", "timestamp": "2026-04-20T15:07:38.492834+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47806 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-r40177-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-r40177-rollouts", "timestamp": "2026-04-20T15:07:38.502119+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47798 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-r40177-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-r40177-audit", "timestamp": "2026-04-20T15:07:38.513406+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47778 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-8u4cgx", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-8u4cgx", "timestamp": "2026-04-20T15:07:38.528487+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47776 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-8u4cgx-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-8u4cgx-alerts", "timestamp": "2026-04-20T15:07:38.543010+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47794 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-8u4cgx-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-8u4cgx-readiness", "timestamp": "2026-04-20T15:07:38.552185+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47806 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-8u4cgx-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-8u4cgx-audit", "timestamp": "2026-04-20T15:07:38.565922+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47798 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-8u4cgx-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-8u4cgx-rollouts", "timestamp": "2026-04-20T15:07:38.570819+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47764 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m(node:125083) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/admin 200 in 403ms
+[2m[WebServer] [22m GET /app/admin/analytics 200 in 454ms
+[2m[WebServer] [22m{"correlation_id": "ec330109-d5b3-405d-a374-3221972c678f", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "ec330109-d5b3-405d-a374-3221972c678f", "timestamp": "2026-04-20T15:07:40.735300+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47764 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-jhp7z8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-jhp7z8", "timestamp": "2026-04-20T15:07:40.757611+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47798 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "c0f47c4c-dd02-47c5-86e9-80ae056ce001", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "c0f47c4c-dd02-47c5-86e9-80ae056ce001", "timestamp": "2026-04-20T15:07:40.845153+00:00"}
+[2m[WebServer] [22m{"correlation_id": "48dc76f9-39b3-4af8-a93c-e7d6e90e63ed", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "48dc76f9-39b3-4af8-a93c-e7d6e90e63ed", "timestamp": "2026-04-20T15:07:40.849714+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47798 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:47764 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "aafe7278-308d-4ef5-a937-a602de39a7c0", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "aafe7278-308d-4ef5-a937-a602de39a7c0", "timestamp": "2026-04-20T15:07:40.851801+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47806 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "6dc66b17-a0a1-430b-9a04-cf6a793a1059", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "6dc66b17-a0a1-430b-9a04-cf6a793a1059", "timestamp": "2026-04-20T15:07:40.852472+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47794 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "8a629838-5b74-4307-b516-d1f00375700e", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "8a629838-5b74-4307-b516-d1f00375700e", "timestamp": "2026-04-20T15:07:40.852977+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47776 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "3c73d49f-1c73-4362-a964-fff04786700e", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "3c73d49f-1c73-4362-a964-fff04786700e", "timestamp": "2026-04-20T15:07:40.854106+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47778 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "65895aec-e338-4687-9b98-422608401f1b", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "65895aec-e338-4687-9b98-422608401f1b", "timestamp": "2026-04-20T15:07:40.893315+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47764 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "709da723-4964-4fd1-9764-693c6ecbe895", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "709da723-4964-4fd1-9764-693c6ecbe895", "timestamp": "2026-04-20T15:07:40.895896+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47806 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "cf2a0715-5761-4bd7-bfcb-98ccbc8bc980", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "cf2a0715-5761-4bd7-bfcb-98ccbc8bc980", "timestamp": "2026-04-20T15:07:40.898430+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47794 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "c37183fe-7024-41f2-9913-09f3f86ef0eb", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "c37183fe-7024-41f2-9913-09f3f86ef0eb", "timestamp": "2026-04-20T15:07:40.899305+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47776 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-4fawcm-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-4fawcm-alerts", "timestamp": "2026-04-20T15:07:40.934205+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47778 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-4fawcm", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-4fawcm", "timestamp": "2026-04-20T15:07:40.951439+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47798 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-4fawcm", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-4fawcm", "timestamp": "2026-04-20T15:07:40.952922+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47776 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-4fawcm-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-4fawcm-readiness", "timestamp": "2026-04-20T15:07:40.959599+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47806 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-4fawcm-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-4fawcm-rollouts", "timestamp": "2026-04-20T15:07:40.961458+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47764 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-4fawcm-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-4fawcm-audit", "timestamp": "2026-04-20T15:07:40.968981+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47794 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "7ef2f669-c0dd-47e9-9304-b0a9249e1f88", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "7ef2f669-c0dd-47e9-9304-b0a9249e1f88", "timestamp": "2026-04-20T15:07:40.981827+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47764 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:47794 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "cad82b76-afbe-4a20-88e9-6a1ec1005bd1", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "cad82b76-afbe-4a20-88e9-6a1ec1005bd1", "timestamp": "2026-04-20T15:07:40.983640+00:00"}
+[2m[WebServer] [22m{"correlation_id": "65bc30a8-a77e-4836-91cc-1ddd218f4965", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "65bc30a8-a77e-4836-91cc-1ddd218f4965", "timestamp": "2026-04-20T15:07:41.007343+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47764 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "a8c82a17-a099-4aad-8543-ac2c3c506141", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "a8c82a17-a099-4aad-8543-ac2c3c506141", "timestamp": "2026-04-20T15:07:41.011832+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47794 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-4fawcm-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-4fawcm-alerts", "timestamp": "2026-04-20T15:07:41.022769+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47778 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "495efa3d-58a1-4433-b4a7-5aa34719cc14", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "495efa3d-58a1-4433-b4a7-5aa34719cc14", "timestamp": "2026-04-20T15:07:41.025749+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47764 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-4fawcm-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-4fawcm-rollouts", "timestamp": "2026-04-20T15:07:41.032374+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47798 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:47776 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-4fawcm-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-4fawcm-readiness", "timestamp": "2026-04-20T15:07:41.033151+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-4fawcm-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-4fawcm-audit", "timestamp": "2026-04-20T15:07:41.035009+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47806 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-4fawcm", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-4fawcm", "timestamp": "2026-04-20T15:07:41.057133+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47794 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-4fawcm-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-4fawcm-rollouts", "timestamp": "2026-04-20T15:07:41.068069+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47764 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-4fawcm-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-4fawcm-audit", "timestamp": "2026-04-20T15:07:41.074370+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47806 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-4fawcm-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-4fawcm-alerts", "timestamp": "2026-04-20T15:07:41.075918+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47778 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--admin-analytics-4fawcm-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--admin-analytics-4fawcm-readiness", "timestamp": "2026-04-20T15:07:41.087556+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47798 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+  ✓  3 [mobile-critical] › tests/e2e/n6-admin-observability.spec.ts:6:7 › N6 admin observability and rollout tranche diagnostics › PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence (10.0s)
+[2m[WebServer] [22m GET /signin 200 in 136ms
+[2m[WebServer] [22m{"correlation_id": "465fba55-aa7d-44ef-85e8-973934278318", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "465fba55-aa7d-44ef-85e8-973934278318", "timestamp": "2026-04-20T15:07:45.519102+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46764 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--signin-0tvtvs", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--signin-0tvtvs", "timestamp": "2026-04-20T15:07:45.567832+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46780 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /onboarding/consent 200 in 72ms
+[2m[WebServer] [22m{"correlation_id": "e1a18da7-a385-4141-9502-23ab36de9b34", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "e1a18da7-a385-4141-9502-23ab36de9b34", "timestamp": "2026-04-20T15:07:46.232435+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46780 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-uvwtqw", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-uvwtqw", "timestamp": "2026-04-20T15:07:46.272277+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46764 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/admin 200 in 190ms
+[2m[WebServer] [22m{"correlation_id": "449ec3c0-b0aa-4c5d-81f5-0eae51c133e5", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "449ec3c0-b0aa-4c5d-81f5-0eae51c133e5", "timestamp": "2026-04-20T15:07:46.740656+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46764 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "6251591e-8a6b-4630-9157-c99065517cf2", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "6251591e-8a6b-4630-9157-c99065517cf2", "timestamp": "2026-04-20T15:07:46.787634+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46780 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "f2f89bd1-1c99-41d4-aeb8-03dac15d759e", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "f2f89bd1-1c99-41d4-aeb8-03dac15d759e", "timestamp": "2026-04-20T15:07:46.792735+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46764 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "7097c615-252f-484e-91fb-98c99702060b", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "7097c615-252f-484e-91fb-98c99702060b", "timestamp": "2026-04-20T15:07:46.799274+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46790 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "cf2ad2f6-3116-49b4-a800-82d138ec25a7", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "cf2ad2f6-3116-49b4-a800-82d138ec25a7", "timestamp": "2026-04-20T15:07:46.804129+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46780 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "dbfd7d9c-742c-4f45-a4ed-2046b207dca4", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "dbfd7d9c-742c-4f45-a4ed-2046b207dca4", "timestamp": "2026-04-20T15:07:46.828345+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46780 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-uvwtqw", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-uvwtqw", "timestamp": "2026-04-20T15:07:46.834107+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-uvwtqw-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-uvwtqw-alerts", "timestamp": "2026-04-20T15:07:46.835949+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46792 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:46800 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "ced1dc07-79ad-4a2b-91a7-82c4397074a1", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "ced1dc07-79ad-4a2b-91a7-82c4397074a1", "timestamp": "2026-04-20T15:07:46.861722+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46780 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "3bf5e1d7-cb9c-4026-8fbc-0de81a6452f0", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "3bf5e1d7-cb9c-4026-8fbc-0de81a6452f0", "timestamp": "2026-04-20T15:07:46.862696+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46792 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-uvwtqw-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-uvwtqw-rollouts", "timestamp": "2026-04-20T15:07:46.879510+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46764 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-uvwtqw-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-uvwtqw-readiness", "timestamp": "2026-04-20T15:07:46.916942+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46802 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-uvwtqw-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-uvwtqw-audit", "timestamp": "2026-04-20T15:07:46.923597+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46790 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "a8033253-45aa-4f33-b782-688ccac43319", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "a8033253-45aa-4f33-b782-688ccac43319", "timestamp": "2026-04-20T15:07:46.954941+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46780 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "b8eaea58-34f5-4aff-9a13-e71ea680b301", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "b8eaea58-34f5-4aff-9a13-e71ea680b301", "timestamp": "2026-04-20T15:07:46.959739+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46792 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "314e0ba2-0f10-4dfc-9b7f-6c89d5c6e4fc", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "314e0ba2-0f10-4dfc-9b7f-6c89d5c6e4fc", "timestamp": "2026-04-20T15:07:46.989248+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46790 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "b573c350-e711-42d1-8c4d-65f33d337a39", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "b573c350-e711-42d1-8c4d-65f33d337a39", "timestamp": "2026-04-20T15:07:46.996370+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46780 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "97433373-cb6c-436f-b7e1-b6301a593f15", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "97433373-cb6c-436f-b7e1-b6301a593f15", "timestamp": "2026-04-20T15:07:46.999462+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46792 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-uvwtqw", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-uvwtqw", "timestamp": "2026-04-20T15:07:47.011761+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46800 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "f3e39c52-f6e3-41a2-8d94-9b1ba1947489", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "f3e39c52-f6e3-41a2-8d94-9b1ba1947489", "timestamp": "2026-04-20T15:07:47.015562+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46790 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "8b587b31-272f-416c-a762-c07a88e17a63", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "8b587b31-272f-416c-a762-c07a88e17a63", "timestamp": "2026-04-20T15:07:47.026514+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46780 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-uvwtqw-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-uvwtqw-alerts", "timestamp": "2026-04-20T15:07:47.054910+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46764 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-uvwtqw-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-uvwtqw-rollouts", "timestamp": "2026-04-20T15:07:47.059784+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46802 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-78x1jk-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-78x1jk-alerts", "timestamp": "2026-04-20T15:07:47.067390+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46780 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-78x1jk", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-78x1jk", "timestamp": "2026-04-20T15:07:47.073246+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46790 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-uvwtqw-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-uvwtqw-audit", "timestamp": "2026-04-20T15:07:47.079874+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46800 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:46792 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-uvwtqw-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-uvwtqw-readiness", "timestamp": "2026-04-20T15:07:47.082264+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-78x1jk-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-78x1jk-rollouts", "timestamp": "2026-04-20T15:07:47.105812+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46802 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-78x1jk-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-78x1jk-audit", "timestamp": "2026-04-20T15:07:47.121311+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46780 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-78x1jk-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-78x1jk-readiness", "timestamp": "2026-04-20T15:07:47.134186+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46764 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/admin 200 in 296ms
+[2m[WebServer] [22m(node:125271) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/admin 200 in 496ms
+[2m[WebServer] [22m{"correlation_id": "98dead14-5024-42d6-b82a-852d93e7b710", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "98dead14-5024-42d6-b82a-852d93e7b710", "timestamp": "2026-04-20T15:07:50.014867+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46764 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-44eny7", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-44eny7", "timestamp": "2026-04-20T15:07:50.043927+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46780 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "69ad2a94-0d47-461c-9946-71e1c49cad56", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "69ad2a94-0d47-461c-9946-71e1c49cad56", "timestamp": "2026-04-20T15:07:50.118868+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46780 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:46764 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:46802 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "037b91f4-5879-478d-a75a-e1cd0dc31385", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "037b91f4-5879-478d-a75a-e1cd0dc31385", "timestamp": "2026-04-20T15:07:50.139955+00:00"}
+[2m[WebServer] [22m{"correlation_id": "eb520622-e15f-49b5-b5d9-6771c66dc07c", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "eb520622-e15f-49b5-b5d9-6771c66dc07c", "timestamp": "2026-04-20T15:07:50.140689+00:00"}
+[2m[WebServer] [22m{"correlation_id": "b01dadc6-9909-4e79-a032-a410f9c47287", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "b01dadc6-9909-4e79-a032-a410f9c47287", "timestamp": "2026-04-20T15:07:50.171312+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46792 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "60d508be-2e77-42d8-9245-9236a8fe26bd", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "60d508be-2e77-42d8-9245-9236a8fe26bd", "timestamp": "2026-04-20T15:07:50.172020+00:00"}
+[2m[WebServer] [22m{"correlation_id": "0cb8aeac-fe4a-4fc3-8281-35ef004383f8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "0cb8aeac-fe4a-4fc3-8281-35ef004383f8", "timestamp": "2026-04-20T15:07:50.191544+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46800 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:46790 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "3433f7d7-1d68-4932-8126-188065cea5d0", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "3433f7d7-1d68-4932-8126-188065cea5d0", "timestamp": "2026-04-20T15:07:50.199748+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46780 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "1ec49deb-63a0-4b22-ab9f-d105742356bf", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "1ec49deb-63a0-4b22-ab9f-d105742356bf", "timestamp": "2026-04-20T15:07:50.206794+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46764 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:46802 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "f126d945-e108-4990-876e-597e10495c64", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "f126d945-e108-4990-876e-597e10495c64", "timestamp": "2026-04-20T15:07:50.208825+00:00"}
+[2m[WebServer] [22m{"correlation_id": "6a6aa108-113c-427d-aa37-b8000329fd67", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "6a6aa108-113c-427d-aa37-b8000329fd67", "timestamp": "2026-04-20T15:07:50.225004+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46792 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "dd3870d2-89a5-4a95-8747-ec8babebf4f5", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "dd3870d2-89a5-4a95-8747-ec8babebf4f5", "timestamp": "2026-04-20T15:07:50.238926+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46802 - "OPTIONS /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "5bbe4d21-2be2-4ed4-b412-65250c5c8719", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "5bbe4d21-2be2-4ed4-b412-65250c5c8719", "timestamp": "2026-04-20T15:07:50.251485+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46802 - "OPTIONS /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-nm1gx8-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-nm1gx8-alerts", "timestamp": "2026-04-20T15:07:50.276464+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46790 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-nm1gx8-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-nm1gx8-rollouts", "timestamp": "2026-04-20T15:07:50.281314+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-nm1gx8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-nm1gx8", "timestamp": "2026-04-20T15:07:50.281756+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-nm1gx8-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-nm1gx8-readiness", "timestamp": "2026-04-20T15:07:50.282405+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46780 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:46800 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:46764 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "d5e319cc-fcfe-4cb9-8255-1e5d998e1ed3", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "d5e319cc-fcfe-4cb9-8255-1e5d998e1ed3", "timestamp": "2026-04-20T15:07:50.284172+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46802 - "OPTIONS /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-nm1gx8-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-nm1gx8-audit", "timestamp": "2026-04-20T15:07:50.292086+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46792 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "5c068ca0-1169-4178-aa59-191779eb343a", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "5c068ca0-1169-4178-aa59-191779eb343a", "timestamp": "2026-04-20T15:07:50.304330+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46800 - "OPTIONS /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "3edfddde-f0f4-4378-b1a3-263bf58fad81", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "3edfddde-f0f4-4378-b1a3-263bf58fad81", "timestamp": "2026-04-20T15:07:50.307379+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46802 - "OPTIONS /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-nm1gx8-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-nm1gx8-alerts", "timestamp": "2026-04-20T15:07:50.346698+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46790 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-nm1gx8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-nm1gx8", "timestamp": "2026-04-20T15:07:50.355052+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46780 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-nm1gx8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-nm1gx8", "timestamp": "2026-04-20T15:07:50.358941+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46802 - "GET /api/v1/admin/analytics/health HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-nm1gx8-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-nm1gx8-rollouts", "timestamp": "2026-04-20T15:07:50.365110+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46764 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-nm1gx8-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-nm1gx8-audit", "timestamp": "2026-04-20T15:07:50.367150+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46800 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:46792 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-nm1gx8-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-nm1gx8-readiness", "timestamp": "2026-04-20T15:07:50.369228+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-nm1gx8-alerts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-nm1gx8-alerts", "timestamp": "2026-04-20T15:07:50.385438+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46790 - "GET /api/v1/admin/observability/alerts HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:46764 - "GET /api/v1/admin/audit/events HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-nm1gx8-audit", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-nm1gx8-audit", "timestamp": "2026-04-20T15:07:50.392545+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-nm1gx8-rollouts", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-nm1gx8-rollouts", "timestamp": "2026-04-20T15:07:50.398186+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46780 - "GET /api/v1/admin/rollouts/status HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-admin-nm1gx8-readiness", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-admin-nm1gx8-readiness", "timestamp": "2026-04-20T15:07:50.400147+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46802 - "GET /api/v1/admin/release-readiness HTTP/1.1" 200 OK
+  ✓  4 [mobile-critical] › tests/e2e/n6-admin-observability.spec.ts:24:7 › N6 admin observability and rollout tranche diagnostics › EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture (8.7s)
+
+  4 passed (1.3m)

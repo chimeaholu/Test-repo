@@ -1,0 +1,7 @@
+
+> agrodomain@0.0.0 test:e2e /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7
+> playwright test -- --grep-invert 'N6 admin observability'
+
+Error: http://127.0.0.1:8012/readyz is already used, make sure that nothing is running on the port/url or set reuseExistingServer:true in config.webServer.
+
+ ELIFECYCLE  Command failed with exit code 1.

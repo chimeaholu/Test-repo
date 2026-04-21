@@ -1,0 +1,34 @@
+{
+  "name": "@agrodomain/web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "corepack pnpm --filter @agrodomain/contracts build && corepack pnpm --filter @agrodomain/config build && next build",
+    "dev": "next dev",
+    "guard:contracts": "node ./scripts/verify-contract-boundary.mjs",
+    "guard:copy": "node ./scripts/verify-product-copy.mjs",
+    "lint": "corepack pnpm --filter @agrodomain/contracts build && corepack pnpm --filter @agrodomain/config build && corepack pnpm run guard:contracts && corepack pnpm run guard:copy && next typegen && tsc --noEmit",
+    "typecheck": "corepack pnpm --filter @agrodomain/contracts build && corepack pnpm --filter @agrodomain/config build && corepack pnpm run guard:contracts && corepack pnpm run guard:copy && next typegen && tsc --noEmit",
+    "test": "corepack pnpm --filter @agrodomain/contracts build && corepack pnpm --filter @agrodomain/config build && corepack pnpm run guard:contracts && corepack pnpm run guard:copy && vitest run"
+  },
+  "dependencies": {
+    "@agrodomain/config": "workspace:*",
+    "@agrodomain/contracts": "workspace:*",
+    "clsx": "^2.1.1",
+    "next": "^15.3.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@types/node": "^22.15.18",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "jsdom": "^26.1.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.3"
+  }
+}

@@ -1,0 +1,89 @@
+[2m[WebServer] [22mINFO:     127.0.0.1:49546 - "GET /readyz HTTP/1.1" 200 OK
+[2m[WebServer] [22m   ▲ Next.js 15.5.15
+[2m[WebServer] [22m   - Local:        http://127.0.0.1:3130
+[2m[WebServer] [22m   - Network:      http://127.0.0.1:3130
+[2m[WebServer] [22m
+[2m[WebServer] [22m ✓ Starting...
+[2m[WebServer] [22m ✓ Ready in 2.8s
+[2m[WebServer] [22m ○ Compiling /signin ...
+[2m[WebServer] [22m ✓ Compiled /signin in 9.9s (692 modules)
+[2m[WebServer] [22m GET /signin 200 in 10779ms
+
+Running 4 tests using 1 worker
+
+[2m[WebServer] [22mINFO:     127.0.0.1:58052 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:58052 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /signin 200 in 139ms
+[2m[WebServer] [22m ○ Compiling /app/finance/queue ...
+[2m[WebServer] [22mINFO:     127.0.0.1:58058 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:58074 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m ✓ Compiled /app/finance/queue in 2.3s (697 modules)
+[2m[WebServer] [22m GET /app/finance/queue 200 in 3015ms
+[2m[WebServer] [22mINFO:     127.0.0.1:58074 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:58058 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:58058 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:58074 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:58074 - "OPTIONS /api/v1/audit/events?request_id=0793580d-17f4-4a0e-81c0-31d7be49e957&idempotency_key=9322d79e-671a-4bf8-ad7f-8de23b356812 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:58058 - "GET /api/v1/audit/events?request_id=0793580d-17f4-4a0e-81c0-31d7be49e957&idempotency_key=9322d79e-671a-4bf8-ad7f-8de23b356812 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:58058 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:58074 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:58074 - "OPTIONS /api/v1/audit/events?request_id=79df78ee-460c-4c53-bebe-b1c68f1084e4&idempotency_key=bb64c51d-1db3-4088-b144-a915781194f6 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:58058 - "GET /api/v1/audit/events?request_id=79df78ee-460c-4c53-bebe-b1c68f1084e4&idempotency_key=bb64c51d-1db3-4088-b144-a915781194f6 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:58058 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:58074 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+  ✓  1 [desktop-critical] › tests/e2e/n5-finance-traceability.spec.ts:214:7 › N5 finance and traceability tranche checks › CJ-004/CJ-008 finance HITL queue and decision actions are live (6.5s)
+[2m[WebServer] [22mINFO:     127.0.0.1:55100 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55100 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55100 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55100 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55100 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /signin 200 in 155ms
+[2m[WebServer] [22m ○ Compiling /app/traceability/[consignmentId] ...
+[2m[WebServer] [22m ✓ Compiled /app/traceability/[consignmentId] in 985ms (707 modules)
+[2m[WebServer] [22mINFO:     127.0.0.1:55110 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55122 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/traceability/consignment-580b5b35774a 200 in 2475ms
+[2m[WebServer] [22mINFO:     127.0.0.1:55122 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55110 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55110 - "OPTIONS /api/v1/traceability/consignments/consignment-580b5b35774a HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55110 - "OPTIONS /api/v1/traceability/consignments/consignment-580b5b35774a HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55136 - "GET /api/v1/traceability/consignments/consignment-580b5b35774a HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55122 - "GET /api/v1/traceability/consignments/consignment-580b5b35774a HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55122 - "OPTIONS /api/v1/traceability/consignments/consignment-580b5b35774a HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55136 - "GET /api/v1/traceability/consignments/consignment-580b5b35774a HTTP/1.1" 200 OK
+  ✓  2 [desktop-critical] › tests/e2e/n5-finance-traceability.spec.ts:237:7 › N5 finance and traceability tranche checks › CJ-007 traceability timeline renders ordered events and explicit evidence state (5.0s)
+[2m[WebServer] [22mINFO:     127.0.0.1:55148 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55148 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /signin 200 in 196ms
+[2m[WebServer] [22m GET /app/finance/queue 200 in 211ms
+[2m[WebServer] [22mINFO:     127.0.0.1:35554 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35570 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35570 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35554 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35554 - "OPTIONS /api/v1/audit/events?request_id=ad3810dd-4fed-4dd6-87a1-55ab1de88e51&idempotency_key=359f87b0-b0e9-4e54-961f-5c8867e9d93e HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35570 - "GET /api/v1/audit/events?request_id=ad3810dd-4fed-4dd6-87a1-55ab1de88e51&idempotency_key=359f87b0-b0e9-4e54-961f-5c8867e9d93e HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35570 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35554 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35554 - "OPTIONS /api/v1/audit/events?request_id=38552d0f-6ed2-4829-b959-255e50306156&idempotency_key=a3bb6f0d-75da-413b-8e2d-a7323ba2ec84 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35570 - "GET /api/v1/audit/events?request_id=38552d0f-6ed2-4829-b959-255e50306156&idempotency_key=a3bb6f0d-75da-413b-8e2d-a7323ba2ec84 HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35570 - "OPTIONS /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35554 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+  ✓  3 [mobile-critical] › tests/e2e/n5-finance-traceability.spec.ts:214:7 › N5 finance and traceability tranche checks › CJ-004/CJ-008 finance HITL queue and decision actions are live (3.9s)
+[2m[WebServer] [22mINFO:     127.0.0.1:55148 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55148 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55148 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55148 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:55148 - "POST /api/v1/workflow/commands HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /signin 200 in 140ms
+[2m[WebServer] [22m GET /app/traceability/consignment-2c1d129e3fae 200 in 170ms
+[2m[WebServer] [22mINFO:     127.0.0.1:35572 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35582 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35582 - "OPTIONS /api/v1/traceability/consignments/consignment-2c1d129e3fae HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35582 - "OPTIONS /api/v1/traceability/consignments/consignment-2c1d129e3fae HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35582 - "OPTIONS /api/v1/traceability/consignments/consignment-2c1d129e3fae HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35598 - "GET /api/v1/traceability/consignments/consignment-2c1d129e3fae HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35572 - "GET /api/v1/traceability/consignments/consignment-2c1d129e3fae HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35614 - "GET /api/v1/traceability/consignments/consignment-2c1d129e3fae HTTP/1.1" 200 OK
+  ✓  4 [mobile-critical] › tests/e2e/n5-finance-traceability.spec.ts:237:7 › N5 finance and traceability tranche checks › CJ-007 traceability timeline renders ordered events and explicit evidence state (3.0s)
+
+  4 passed (42.7s)

@@ -1,0 +1,331 @@
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade  -> 0001, platform baseline
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, policy and workflow definitions
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0002 -> 0003, workflow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, audit and outbox
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0004 -> 0005, identity session and marketplace listings
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0005 -> 0007, listing read-model projection boundary
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0007 -> 0008, negotiation thread runtime and checkpoint persistence
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0008 -> 0009, wallet ledger and escrow runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0009 -> 0010, advisory retrieval and reviewer runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0010 -> 0011, climate ingestion, alerts, and mrv evidence runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0011 -> 0012, finance partner requests and insurance trigger runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0012 -> 0013, traceability consignment and append-only event-chain runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0013 -> 0014, control plane runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0013 -> 0014, control plane runtime
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0014 -> 0015_worker_runtime_activation, worker runtime activation
+[2m[WebServer] [22mINFO  [alembic.runtime.migration] Running upgrade 0014 -> 0015_worker_runtime_activation, worker runtime activation
+[2m[WebServer] [22mINFO:     Started server process [111562]
+[2m[WebServer] [22mINFO:     Waiting for application startup.
+[2m[WebServer] [22mINFO:     Application startup complete.
+[2m[WebServer] [22mINFO:     Uvicorn running on http://127.0.0.1:8203 (Press CTRL+C to quit)
+[2m[WebServer] [22m{"correlation_id": "2aa5016b-9314-43c1-8f14-bda8053f7c2e", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "2aa5016b-9314-43c1-8f14-bda8053f7c2e", "timestamp": "2026-04-20T14:29:11.000509+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:52944 - "GET /readyz HTTP/1.1" 200 OK
+[2m[WebServer] [22m(node:111566) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:111578) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:111599) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m   ▲ Next.js 15.5.15
+[2m[WebServer] [22m   - Local:        http://127.0.0.1:3203
+[2m[WebServer] [22m   - Network:      http://127.0.0.1:3203
+[2m[WebServer] [22m
+[2m[WebServer] [22m ✓ Starting...
+[2m[WebServer] [22mAttention: Next.js now collects completely anonymous telemetry regarding usage.
+[2m[WebServer] [22mThis information is used to shape Next.js' roadmap and prioritize features.
+[2m[WebServer] [22mYou can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+[2m[WebServer] [22mhttps://nextjs.org/telemetry
+[2m[WebServer] [22m
+[2m[WebServer] [22m ✓ Ready in 2.9s
+[2m[WebServer] [22m ○ Compiling /signin ...
+[2m[WebServer] [22m ✓ Compiled /signin in 12.2s (702 modules)
+[2m[WebServer] [22m GET /signin 200 in 13380ms
+
+Running 4 tests using 1 worker
+
+(node:111617) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:111617) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 287ms
+[2m[WebServer] [22m{"correlation_id": "3ada9d98-57be-4039-b0ff-46f2ea19d1a2", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "3ada9d98-57be-4039-b0ff-46f2ea19d1a2", "timestamp": "2026-04-20T14:29:36.109233+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46450 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--signin-8zt8pg", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--signin-8zt8pg", "timestamp": "2026-04-20T14:29:36.165004+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46466 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m ○ Compiling /onboarding/consent ...
+[2m[WebServer] [22m ✓ Compiled /onboarding/consent in 2.3s (695 modules)
+[2m[WebServer] [22m GET /onboarding/consent 200 in 2610ms
+[2m[WebServer] [22m{"correlation_id": "6950b2fb-f291-4929-ad1e-f76722f08b31", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "6950b2fb-f291-4929-ad1e-f76722f08b31", "timestamp": "2026-04-20T14:29:39.711268+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46466 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-anmi4d", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-anmi4d", "timestamp": "2026-04-20T14:29:39.746515+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46450 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m ○ Compiling /app/[role] ...
+[2m[WebServer] [22m ✓ Compiled /app/[role] in 1434ms (724 modules)
+[2m[WebServer] [22m(node:111691) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/advisor 200 in 3011ms
+[2m[WebServer] [22m{"correlation_id": "e0c57c46-f82d-4c38-b118-2411ba5eb000", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "e0c57c46-f82d-4c38-b118-2411ba5eb000", "timestamp": "2026-04-20T14:29:43.072367+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46450 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "9185752e-1394-4e2a-80ce-57f70fc9f9c1", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "9185752e-1394-4e2a-80ce-57f70fc9f9c1", "timestamp": "2026-04-20T14:29:43.093825+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46450 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-anmi4d", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-anmi4d", "timestamp": "2026-04-20T14:29:43.104637+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46466 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-anmi4d", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-anmi4d", "timestamp": "2026-04-20T14:29:43.135055+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46450 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "edeb0346-7ee6-4813-8742-538fc611d822", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "edeb0346-7ee6-4813-8742-538fc611d822", "timestamp": "2026-04-20T14:29:43.143433+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46466 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-advisor-sg1xxz", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-advisor-sg1xxz", "timestamp": "2026-04-20T14:29:43.164189+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46450 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/advisor 200 in 572ms
+[2m[WebServer] [22m(node:111700) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/advisor 200 in 538ms
+[2m[WebServer] [22m{"correlation_id": "6c10896d-f57c-4a48-a4b6-56a9b5f2e3cb", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "6c10896d-f57c-4a48-a4b6-56a9b5f2e3cb", "timestamp": "2026-04-20T14:29:46.505837+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46450 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-jrokmq", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-jrokmq", "timestamp": "2026-04-20T14:29:46.527332+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46466 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "53f0d468-b653-47c6-af64-fc75c75f3a8a", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "53f0d468-b653-47c6-af64-fc75c75f3a8a", "timestamp": "2026-04-20T14:29:46.604803+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46466 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "4487e732-ce41-4f13-865d-00998d9069d5", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "4487e732-ce41-4f13-865d-00998d9069d5", "timestamp": "2026-04-20T14:29:46.621455+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46450 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-advisor-od1mpr", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-advisor-od1mpr", "timestamp": "2026-04-20T14:29:46.640833+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:51420 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-advisor-od1mpr", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-advisor-od1mpr", "timestamp": "2026-04-20T14:29:46.651070+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46466 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m ○ Compiling /app/advisor/requests ...
+[2m[WebServer] [22m ✓ Compiled /app/advisor/requests in 1132ms (734 modules)
+[2m[WebServer] [22m GET /app/advisor/requests 200 in 1818ms
+[2m[WebServer] [22m{"correlation_id": "a21fd7ef-16aa-4898-8849-580ad928195b", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "a21fd7ef-16aa-4898-8849-580ad928195b", "timestamp": "2026-04-20T14:29:50.130353+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46466 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-tlvbhv", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-tlvbhv", "timestamp": "2026-04-20T14:29:50.153959+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:51420 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "e3de6949-87f5-4b0a-bf9a-e09abbe78229", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "e3de6949-87f5-4b0a-bf9a-e09abbe78229", "timestamp": "2026-04-20T14:29:50.214968+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:51420 - "OPTIONS /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "cb1b60ba-aa93-44a2-97e5-1a83edf9be6f", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "cb1b60ba-aa93-44a2-97e5-1a83edf9be6f", "timestamp": "2026-04-20T14:29:50.245642+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46466 - "OPTIONS /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "8a16b524-846d-41d7-afc3-c3b86095eb29", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "8a16b524-846d-41d7-afc3-c3b86095eb29", "timestamp": "2026-04-20T14:29:50.286608+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46466 - "OPTIONS /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-advisor-requests-fyr0ap", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-advisor-requests-fyr0ap", "timestamp": "2026-04-20T14:29:50.334688+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:51420 - "GET /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-advisor-requests-fyr0ap", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-advisor-requests-fyr0ap", "timestamp": "2026-04-20T14:29:50.346099+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46450 - "GET /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-advisor-requests-fyr0ap", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-advisor-requests-fyr0ap", "timestamp": "2026-04-20T14:29:50.365570+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35792 - "GET /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+  ✓  1 [desktop-critical] › tests/e2e/advisory-climate-gate.spec.ts:63:7 › N4 advisory and climate tranche diagnostics › CJ-005 EP-006 RJ-003 DI-005 advisory route shows citations, confidence, and reviewer state (20.6s)
+[2m[WebServer] [22m GET /signin 200 in 226ms
+[2m[WebServer] [22m{"correlation_id": "e060746f-0f14-4561-b6d8-60863df4d93b", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "e060746f-0f14-4561-b6d8-60863df4d93b", "timestamp": "2026-04-20T14:29:55.434903+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35804 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--signin-h13nlx", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--signin-h13nlx", "timestamp": "2026-04-20T14:29:55.495780+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35812 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /onboarding/consent 200 in 103ms
+[2m[WebServer] [22m{"correlation_id": "ade2b306-ba81-43db-a98a-2d9ff20bd188", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "ade2b306-ba81-43db-a98a-2d9ff20bd188", "timestamp": "2026-04-20T14:29:56.364172+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35812 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-3346qx", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-3346qx", "timestamp": "2026-04-20T14:29:56.389976+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35804 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/farmer 200 in 172ms
+[2m[WebServer] [22m{"correlation_id": "5e261803-5e9a-4ede-8af4-27b90a0557a0", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "5e261803-5e9a-4ede-8af4-27b90a0557a0", "timestamp": "2026-04-20T14:29:56.892929+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35804 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "3a8beb17-4248-46bc-ae00-9bd380add7c9", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "3a8beb17-4248-46bc-ae00-9bd380add7c9", "timestamp": "2026-04-20T14:29:56.899361+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35812 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-3346qx", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-3346qx", "timestamp": "2026-04-20T14:29:56.918720+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35824 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-3346qx", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-3346qx", "timestamp": "2026-04-20T14:29:56.928614+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35804 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "ca32ab12-b4bd-4486-b711-644ab5045891", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "ca32ab12-b4bd-4486-b711-644ab5045891", "timestamp": "2026-04-20T14:29:56.953878+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35804 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-farmer-lwcm14", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-farmer-lwcm14", "timestamp": "2026-04-20T14:29:56.977918+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35824 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m(node:111727) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/farmer 200 in 169ms
+[2m[WebServer] [22m ○ Compiling /app/climate/alerts ...
+[2m[WebServer] [22m ✓ Compiled /app/climate/alerts in 1212ms (744 modules)
+[2m[WebServer] [22m GET /app/climate/alerts 200 in 1706ms
+[2m[WebServer] [22m{"correlation_id": "bd53045d-ed27-4baf-92d3-1fe9f8601633", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "bd53045d-ed27-4baf-92d3-1fe9f8601633", "timestamp": "2026-04-20T14:30:00.767184+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35824 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-5qq3lz", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-5qq3lz", "timestamp": "2026-04-20T14:30:00.782570+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35804 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "581b4997-0ddb-47c9-9bea-0545d84c36b7", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "581b4997-0ddb-47c9-9bea-0545d84c36b7", "timestamp": "2026-04-20T14:30:00.904573+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35804 - "OPTIONS /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "37f78cb9-b7e2-4a62-b8be-3a3f78f15cd1", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "37f78cb9-b7e2-4a62-b8be-3a3f78f15cd1", "timestamp": "2026-04-20T14:30:00.916982+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35824 - "OPTIONS /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "ae2dce5b-fe2f-42bc-870b-8f52a42e223d", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "ae2dce5b-fe2f-42bc-870b-8f52a42e223d", "timestamp": "2026-04-20T14:30:00.945161+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35804 - "OPTIONS /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "7e3d895f-9d55-419f-834c-08e226277f1c", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "7e3d895f-9d55-419f-834c-08e226277f1c", "timestamp": "2026-04-20T14:30:00.958954+00:00"}
+[2m[WebServer] [22m{"correlation_id": "d5398e59-6c71-4bfd-a489-9582998795bc", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "d5398e59-6c71-4bfd-a489-9582998795bc", "timestamp": "2026-04-20T14:30:00.959688+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47702 - "OPTIONS /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:47710 - "OPTIONS /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "1359dfdf-5ddc-4c91-a237-5f0f1e462838", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "1359dfdf-5ddc-4c91-a237-5f0f1e462838", "timestamp": "2026-04-20T14:30:00.973592+00:00"}
+[2m[WebServer] [22m{"correlation_id": "trace-p-climate-alerts-i5yssw", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-p-climate-alerts-i5yssw", "timestamp": "2026-04-20T14:30:00.974437+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47720 - "OPTIONS /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:35812 - "GET /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "8e03de49-a4f5-474a-a46e-0fc9ab604e43", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "8e03de49-a4f5-474a-a46e-0fc9ab604e43", "timestamp": "2026-04-20T14:30:00.995845+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47702 - "OPTIONS /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "dda385eb-bfb8-4f68-8679-54a5cfd1abbc", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "dda385eb-bfb8-4f68-8679-54a5cfd1abbc", "timestamp": "2026-04-20T14:30:01.008696+00:00"}
+[2m[WebServer] [22m{"correlation_id": "ed53592a-d245-4b7e-a4ae-e9f36d3b2a64", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "ed53592a-d245-4b7e-a4ae-e9f36d3b2a64", "timestamp": "2026-04-20T14:30:01.009493+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47710 - "OPTIONS /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:47720 - "OPTIONS /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-p-climate-alerts-i5yssw", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-p-climate-alerts-i5yssw", "timestamp": "2026-04-20T14:30:01.081248+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35804 - "GET /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-p-climate-alerts-i5yssw", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-p-climate-alerts-i5yssw", "timestamp": "2026-04-20T14:30:01.089369+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35824 - "GET /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-p-climate-alerts-i5yssw", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-p-climate-alerts-i5yssw", "timestamp": "2026-04-20T14:30:01.114990+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35812 - "GET /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-p-climate-alerts-i5yssw", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-p-climate-alerts-i5yssw", "timestamp": "2026-04-20T14:30:01.134173+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47720 - "GET /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-p-climate-alerts-i5yssw", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-p-climate-alerts-i5yssw", "timestamp": "2026-04-20T14:30:01.135976+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47702 - "GET /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-p-climate-alerts-i5yssw", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-p-climate-alerts-i5yssw", "timestamp": "2026-04-20T14:30:01.145342+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:47710 - "GET /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-p-climate-alerts-i5yssw", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-p-climate-alerts-i5yssw", "timestamp": "2026-04-20T14:30:01.148978+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35824 - "GET /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-p-climate-alerts-i5yssw", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-p-climate-alerts-i5yssw", "timestamp": "2026-04-20T14:30:01.162914+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:35804 - "GET /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+  ✓  2 [desktop-critical] › tests/e2e/advisory-climate-gate.spec.ts:89:7 › N4 advisory and climate tranche diagnostics › CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence (11.3s)
+(node:111752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:111752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 293ms
+[2m[WebServer] [22m{"correlation_id": "2efdd90d-6dc1-4828-906a-7eb06c406fbe", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "2efdd90d-6dc1-4828-906a-7eb06c406fbe", "timestamp": "2026-04-20T14:30:10.560478+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60842 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--signin-ngjugj", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--signin-ngjugj", "timestamp": "2026-04-20T14:30:10.632697+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60858 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /onboarding/consent 200 in 299ms
+[2m[WebServer] [22m{"correlation_id": "106aa41e-7a47-4b63-a81b-659d4f189065", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "106aa41e-7a47-4b63-a81b-659d4f189065", "timestamp": "2026-04-20T14:30:12.121295+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60858 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-3inxvd", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-3inxvd", "timestamp": "2026-04-20T14:30:12.183758+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60842 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/advisor 200 in 543ms
+[2m[WebServer] [22m{"correlation_id": "05b9c1e1-bffc-4239-bdd6-d60e17cc57ea", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "05b9c1e1-bffc-4239-bdd6-d60e17cc57ea", "timestamp": "2026-04-20T14:30:13.390348+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60842 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "eadd2c7a-7e1e-4736-b0cc-953dc52caeb8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "eadd2c7a-7e1e-4736-b0cc-953dc52caeb8", "timestamp": "2026-04-20T14:30:13.417367+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60842 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-3inxvd", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-3inxvd", "timestamp": "2026-04-20T14:30:13.467229+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60858 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-3inxvd", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-3inxvd", "timestamp": "2026-04-20T14:30:13.492292+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60860 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "884b8ea1-6283-4a4b-9f62-56850276dc7c", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "884b8ea1-6283-4a4b-9f62-56850276dc7c", "timestamp": "2026-04-20T14:30:13.577758+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60860 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-advisor-jkn7lq", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-advisor-jkn7lq", "timestamp": "2026-04-20T14:30:13.606779+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60858 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m(node:111892) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/advisor 200 in 377ms
+[2m[WebServer] [22m GET /app/advisor 200 in 922ms
+[2m[WebServer] [22m{"correlation_id": "48a35e87-4254-4a6d-880d-06720d0fdec4", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "48a35e87-4254-4a6d-880d-06720d0fdec4", "timestamp": "2026-04-20T14:30:17.888338+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60858 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-tuxy03", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-tuxy03", "timestamp": "2026-04-20T14:30:17.921422+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60860 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "c6ce1263-83b4-4218-89bd-15371adf24ae", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "c6ce1263-83b4-4218-89bd-15371adf24ae", "timestamp": "2026-04-20T14:30:18.046247+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60860 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-advisor-ax725e", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-advisor-ax725e", "timestamp": "2026-04-20T14:30:18.087085+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60858 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "27d3a468-59e7-4b2e-9dc9-c94571d799c0", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "27d3a468-59e7-4b2e-9dc9-c94571d799c0", "timestamp": "2026-04-20T14:30:18.102428+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60858 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-advisor-ax725e", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-advisor-ax725e", "timestamp": "2026-04-20T14:30:18.133048+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60860 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/advisor/requests 200 in 731ms
+[2m[WebServer] [22m{"correlation_id": "9024b186-9f9e-41a6-8017-42d7665e6d54", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "9024b186-9f9e-41a6-8017-42d7665e6d54", "timestamp": "2026-04-20T14:30:20.231239+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60860 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-whr6zh", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-whr6zh", "timestamp": "2026-04-20T14:30:20.256129+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60858 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "2b3b00ba-ba10-4018-bff6-be7505517fa7", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "2b3b00ba-ba10-4018-bff6-be7505517fa7", "timestamp": "2026-04-20T14:30:20.333516+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60858 - "OPTIONS /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "47ad0e22-90b4-43a5-b3b7-f5c876ecc775", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "47ad0e22-90b4-43a5-b3b7-f5c876ecc775", "timestamp": "2026-04-20T14:30:20.359833+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60858 - "OPTIONS /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-advisor-requests-4hw6ws", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-advisor-requests-4hw6ws", "timestamp": "2026-04-20T14:30:20.371184+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60860 - "GET /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "70339016-ff6d-4936-8afd-467a579c0426", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "70339016-ff6d-4936-8afd-467a579c0426", "timestamp": "2026-04-20T14:30:20.397590+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60860 - "OPTIONS /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-advisor-requests-4hw6ws", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-advisor-requests-4hw6ws", "timestamp": "2026-04-20T14:30:20.409967+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:54110 - "GET /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-advisor-requests-4hw6ws", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-advisor-requests-4hw6ws", "timestamp": "2026-04-20T14:30:20.424202+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:60858 - "GET /api/v1/advisory/conversations?locale=en-GH HTTP/1.1" 200 OK
+  ✓  3 [mobile-critical] › tests/e2e/advisory-climate-gate.spec.ts:63:7 › N4 advisory and climate tranche diagnostics › CJ-005 EP-006 RJ-003 DI-005 advisory route shows citations, confidence, and reviewer state (15.8s)
+[2m[WebServer] [22m GET /signin 200 in 215ms
+[2m[WebServer] [22m{"correlation_id": "5944bf32-4c07-45a6-9c1e-cc0c8dbfcc73", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "5944bf32-4c07-45a6-9c1e-cc0c8dbfcc73", "timestamp": "2026-04-20T14:30:26.230149+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:54122 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--signin-dpysoj", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--signin-dpysoj", "timestamp": "2026-04-20T14:30:26.446855+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:54136 - "POST /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /onboarding/consent 200 in 375ms
+[2m[WebServer] [22m{"correlation_id": "3dc2d6b3-02db-4f56-9ce8-634d9acafc21", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "3dc2d6b3-02db-4f56-9ce8-634d9acafc21", "timestamp": "2026-04-20T14:30:27.935811+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:54136 - "OPTIONS /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-9ac7g1", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-9ac7g1", "timestamp": "2026-04-20T14:30:28.167555+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:54122 - "POST /api/v1/identity/consent HTTP/1.1" 200 OK
+[2m[WebServer] [22m GET /app/farmer 200 in 312ms
+[2m[WebServer] [22m{"correlation_id": "1b17098e-e514-4908-a94f-e5e24f504993", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "1b17098e-e514-4908-a94f-e5e24f504993", "timestamp": "2026-04-20T14:30:29.519534+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:54122 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "f2c92ab4-d5a3-4b4b-8ed8-ffe448da0b39", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "f2c92ab4-d5a3-4b4b-8ed8-ffe448da0b39", "timestamp": "2026-04-20T14:30:29.577403+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:54122 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-9ac7g1", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-9ac7g1", "timestamp": "2026-04-20T14:30:29.599010+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:54136 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boarding-consent-9ac7g1", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boarding-consent-9ac7g1", "timestamp": "2026-04-20T14:30:29.659788+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46634 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "1416cb12-ab94-4fbe-bc22-182c97df8577", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "1416cb12-ab94-4fbe-bc22-182c97df8577", "timestamp": "2026-04-20T14:30:29.818161+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46634 - "OPTIONS /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace--app-farmer-rlyju1", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace--app-farmer-rlyju1", "timestamp": "2026-04-20T14:30:29.882728+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:54136 - "GET /api/v1/identity/protected-action HTTP/1.1" 200 OK
+[2m[WebServer] [22m(node:112028) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/farmer 200 in 334ms
+[2m[WebServer] [22m GET /app/climate/alerts 200 in 755ms
+[2m[WebServer] [22m{"correlation_id": "90f664d2-6d9b-4729-a973-1f072adc2878", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "90f664d2-6d9b-4729-a973-1f072adc2878", "timestamp": "2026-04-20T14:30:33.008109+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:54136 - "OPTIONS /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-boot-gvd92j", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-boot-gvd92j", "timestamp": "2026-04-20T14:30:33.023058+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46634 - "GET /api/v1/identity/session HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "caa921f9-fc70-4074-a842-f8defe067dd8", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "caa921f9-fc70-4074-a842-f8defe067dd8", "timestamp": "2026-04-20T14:30:33.123455+00:00"}
+[2m[WebServer] [22m{"correlation_id": "c5c30ccd-7c2a-45ff-90ce-144906dc7213", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "c5c30ccd-7c2a-45ff-90ce-144906dc7213", "timestamp": "2026-04-20T14:30:33.124300+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46634 - "OPTIONS /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:54136 - "OPTIONS /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "e005d371-a192-4628-8fb0-85e92122ca43", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "e005d371-a192-4628-8fb0-85e92122ca43", "timestamp": "2026-04-20T14:30:33.129046+00:00"}
+[2m[WebServer] [22m{"correlation_id": "c3b42332-ceae-47ca-83bd-caddbc7ecf2c", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "c3b42332-ceae-47ca-83bd-caddbc7ecf2c", "timestamp": "2026-04-20T14:30:33.135644+00:00"}
+[2m[WebServer] [22m{"correlation_id": "922b9f74-3d5e-4c00-bece-c1d82686d8a0", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "922b9f74-3d5e-4c00-bece-c1d82686d8a0", "timestamp": "2026-04-20T14:30:33.136264+00:00"}
+[2m[WebServer] [22m{"correlation_id": "0c1ee40b-e707-4c0b-872f-7e05020e273b", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "0c1ee40b-e707-4c0b-872f-7e05020e273b", "timestamp": "2026-04-20T14:30:33.136645+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:54122 - "OPTIONS /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:46640 - "OPTIONS /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:46642 - "OPTIONS /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:46656 - "OPTIONS /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "1e55ef18-57fd-478e-94ca-807c607c3c5f", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "1e55ef18-57fd-478e-94ca-807c607c3c5f", "timestamp": "2026-04-20T14:30:33.196750+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46640 - "OPTIONS /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "8d9faa52-a30f-42c0-8d34-265e34023f1b", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "8d9faa52-a30f-42c0-8d34-265e34023f1b", "timestamp": "2026-04-20T14:30:33.197540+00:00"}
+[2m[WebServer] [22m{"correlation_id": "17573c42-1674-44b0-9fb6-402b00dd0f20", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "17573c42-1674-44b0-9fb6-402b00dd0f20", "timestamp": "2026-04-20T14:30:33.198101+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46642 - "OPTIONS /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22mINFO:     127.0.0.1:46656 - "OPTIONS /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-p-climate-alerts-lk8k49", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-p-climate-alerts-lk8k49", "timestamp": "2026-04-20T14:30:33.224385+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:54136 - "GET /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-p-climate-alerts-lk8k49", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-p-climate-alerts-lk8k49", "timestamp": "2026-04-20T14:30:33.229465+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:54122 - "GET /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-p-climate-alerts-lk8k49", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-p-climate-alerts-lk8k49", "timestamp": "2026-04-20T14:30:33.232697+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46634 - "GET /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-p-climate-alerts-lk8k49", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-p-climate-alerts-lk8k49", "timestamp": "2026-04-20T14:30:33.275332+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46656 - "GET /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-p-climate-alerts-lk8k49", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-p-climate-alerts-lk8k49", "timestamp": "2026-04-20T14:30:33.285075+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46640 - "GET /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-p-climate-alerts-lk8k49", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-p-climate-alerts-lk8k49", "timestamp": "2026-04-20T14:30:33.297637+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46642 - "GET /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-p-climate-alerts-lk8k49", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-p-climate-alerts-lk8k49", "timestamp": "2026-04-20T14:30:33.300239+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:46634 - "GET /api/v1/climate/mrv-evidence?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-p-climate-alerts-lk8k49", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-p-climate-alerts-lk8k49", "timestamp": "2026-04-20T14:30:33.309346+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:54122 - "GET /api/v1/climate/degraded-modes?locale=en-GH HTTP/1.1" 200 OK
+[2m[WebServer] [22m{"correlation_id": "trace-p-climate-alerts-lk8k49", "level": "INFO", "logger": "agrodomain.api.request", "message": "request.completed", "request_id": "trace-p-climate-alerts-lk8k49", "timestamp": "2026-04-20T14:30:33.310064+00:00"}
+[2m[WebServer] [22mINFO:     127.0.0.1:54136 - "GET /api/v1/climate/alerts?locale=en-GH HTTP/1.1" 200 OK
+  ✓  4 [mobile-critical] › tests/e2e/advisory-climate-gate.spec.ts:89:7 › N4 advisory and climate tranche diagnostics › CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence (12.1s)
+
+  4 passed (1.5m)

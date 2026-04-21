@@ -1,0 +1,447 @@
+
+> agrodomain@0.0.0 build /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7
+> corepack pnpm -r --filter @agrodomain/api --filter @agrodomain/worker --filter @agrodomain/web --filter @agrodomain/contracts --filter @agrodomain/config run build
+
+Scope: 5 of 6 workspace projects
+apps/api build$ python3 ./scripts/quality_gate.py build
+apps/worker build$ echo worker build placeholder
+packages/contracts build$ tsc -p tsconfig.json
+packages/config build$ echo config build placeholder
+apps/worker build: worker build placeholder
+apps/worker build: Done
+packages/config build: config build placeholder
+packages/config build: Done
+apps/api build: [api:contracts] validating canonical contract artifacts
+apps/api build: [api:contracts] passed
+apps/api build: [api:build] cleaning old build artifacts
+apps/api build: [api:build] starting: /usr/bin/python3 -m build --wheel --sdist
+apps/api build: * Creating isolated environment: venv+pip...
+apps/api build: * Installing packages in isolated environment:
+apps/api build:   - setuptools>=68
+apps/api build:   - wheel
+apps/api build: * Getting build dependencies for wheel...
+apps/api build: running egg_info
+apps/api build: creating agrodomain_api.egg-info
+apps/api build: writing agrodomain_api.egg-info/PKG-INFO
+apps/api build: writing dependency_links to agrodomain_api.egg-info/dependency_links.txt
+apps/api build: writing requirements to agrodomain_api.egg-info/requires.txt
+apps/api build: writing top-level names to agrodomain_api.egg-info/top_level.txt
+apps/api build: writing manifest file 'agrodomain_api.egg-info/SOURCES.txt'
+apps/api build: reading manifest file 'agrodomain_api.egg-info/SOURCES.txt'
+apps/api build: writing manifest file 'agrodomain_api.egg-info/SOURCES.txt'
+apps/api build: * Building wheel...
+apps/api build: running bdist_wheel
+apps/api build: running build
+apps/api build: running build_py
+apps/api build: creating build/lib/app
+apps/api build: copying ./app/__init__.py -> build/lib/app
+apps/api build: copying ./app/main.py -> build/lib/app
+apps/api build: creating build/lib/scripts
+apps/api build: copying ./scripts/quality_gate.py -> build/lib/scripts
+apps/api build: creating build/lib/app/core
+apps/api build: copying ./app/core/config.py -> build/lib/app/core
+apps/api build: copying ./app/core/request_context.py -> build/lib/app/core
+apps/api build: copying ./app/core/application.py -> build/lib/app/core
+apps/api build: copying ./app/core/logging.py -> build/lib/app/core
+apps/api build: copying ./app/core/auth.py -> build/lib/app/core
+apps/api build: copying ./app/core/telemetry.py -> build/lib/app/core
+apps/api build: copying ./app/core/db.py -> build/lib/app/core
+apps/api build: copying ./app/core/contracts_catalog.py -> build/lib/app/core
+apps/api build: creating build/lib/app/db
+apps/api build: copying ./app/db/base.py -> build/lib/app/db
+apps/api build: creating build/lib/app/services
+apps/api build: copying ./app/services/idempotency.py -> build/lib/app/services
+apps/api build: copying ./app/services/event_bus.py -> build/lib/app/services
+apps/api build: copying ./app/services/outbox.py -> build/lib/app/services
+apps/api build: creating build/lib/app/db/migrations
+apps/api build: copying ./app/db/migrations/env.py -> build/lib/app/db/migrations
+apps/api build: copying ./app/db/migrations/seed.py -> build/lib/app/db/migrations
+apps/api build: creating build/lib/app/db/repositories
+apps/api build: copying ./app/db/repositories/ledger.py -> build/lib/app/db/repositories
+apps/api build: copying ./app/db/repositories/finance.py -> build/lib/app/db/repositories
+apps/api build: copying ./app/db/repositories/advisory.py -> build/lib/app/db/repositories
+apps/api build: copying ./app/db/repositories/audit.py -> build/lib/app/db/repositories
+apps/api build: copying ./app/db/repositories/__init__.py -> build/lib/app/db/repositories
+apps/api build: copying ./app/db/repositories/workflow.py -> build/lib/app/db/repositories
+apps/api build: copying ./app/db/repositories/traceability.py -> build/lib/app/db/repositories
+apps/api build: copying ./app/db/repositories/marketplace.py -> build/lib/app/db/repositories
+apps/api build: copying ./app/db/repositories/identity.py -> build/lib/app/db/repositories
+apps/api build: copying ./app/db/repositories/climate.py -> build/lib/app/db/repositories
+apps/api build: creating build/lib/app/db/models
+apps/api build: copying ./app/db/models/ledger.py -> build/lib/app/db/models
+apps/api build: copying ./app/db/models/finance.py -> build/lib/app/db/models
+apps/api build: copying ./app/db/models/advisory.py -> build/lib/app/db/models
+apps/api build: copying ./app/db/models/audit.py -> build/lib/app/db/models
+apps/api build: copying ./app/db/models/__init__.py -> build/lib/app/db/models
+apps/api build: copying ./app/db/models/workflow.py -> build/lib/app/db/models
+apps/api build: copying ./app/db/models/platform.py -> build/lib/app/db/models
+apps/api build: copying ./app/db/models/traceability.py -> build/lib/app/db/models
+apps/api build: copying ./app/db/models/marketplace.py -> build/lib/app/db/models
+apps/api build: copying ./app/db/models/climate.py -> build/lib/app/db/models
+apps/api build: creating build/lib/app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0012_finance_and_insurance_runtime.py -> build/lib/app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0001_platform_baseline.py -> build/lib/app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0002_policy_and_workflow_definitions.py -> build/lib/app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0008_negotiation_threads_runtime.py -> build/lib/app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0013_traceability_event_chain_runtime.py -> build/lib/app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0004_audit_and_outbox.py -> build/lib/app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0011_climate_alerting_and_mrv.py -> build/lib/app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0003_workflow_runtime.py -> build/lib/app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0007_listing_read_model_projection.py -> build/lib/app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0005_vertical_slice_identity_marketplace.py -> build/lib/app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0009_wallet_ledger_and_escrow.py -> build/lib/app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0010_advisory_reviewer_runtime.py -> build/lib/app/db/migrations/versions
+apps/api build: creating build/lib/app/api/dependencies
+apps/api build: copying ./app/api/dependencies/request_context.py -> build/lib/app/api/dependencies
+apps/api build: creating build/lib/app/api/routes
+apps/api build: copying ./app/api/routes/advisory.py -> build/lib/app/api/routes
+apps/api build: copying ./app/api/routes/audit.py -> build/lib/app/api/routes
+apps/api build: copying ./app/api/routes/traceability.py -> build/lib/app/api/routes
+apps/api build: copying ./app/api/routes/marketplace.py -> build/lib/app/api/routes
+apps/api build: copying ./app/api/routes/identity.py -> build/lib/app/api/routes
+apps/api build: copying ./app/api/routes/climate.py -> build/lib/app/api/routes
+apps/api build: copying ./app/api/routes/system.py -> build/lib/app/api/routes
+apps/api build: copying ./app/api/routes/commands.py -> build/lib/app/api/routes
+apps/api build: creating build/lib/app/modules/advisory
+apps/api build: copying ./app/modules/advisory/runtime.py -> build/lib/app/modules/advisory
+apps/api build: creating build/lib/app/services/commands
+apps/api build: copying ./app/services/commands/errors.py -> build/lib/app/services/commands
+apps/api build: copying ./app/services/commands/__init__.py -> build/lib/app/services/commands
+apps/api build: copying ./app/services/commands/bus.py -> build/lib/app/services/commands
+apps/api build: copying ./app/services/commands/contracts.py -> build/lib/app/services/commands
+apps/api build: copying ./app/services/commands/handlers.py -> build/lib/app/services/commands
+apps/api build: running egg_info
+apps/api build: writing agrodomain_api.egg-info/PKG-INFO
+apps/api build: writing dependency_links to agrodomain_api.egg-info/dependency_links.txt
+apps/api build: writing requirements to agrodomain_api.egg-info/requires.txt
+apps/api build: writing top-level names to agrodomain_api.egg-info/top_level.txt
+apps/api build: reading manifest file 'agrodomain_api.egg-info/SOURCES.txt'
+apps/api build: writing manifest file 'agrodomain_api.egg-info/SOURCES.txt'
+apps/api build: copying ./app/py.typed -> build/lib/app
+apps/api build: installing to build/bdist.linux-x86_64/wheel
+apps/api build: running install
+apps/api build: running install_lib
+apps/api build: creating build/bdist.linux-x86_64/wheel
+apps/api build: creating build/bdist.linux-x86_64/wheel/app
+apps/api build: creating build/bdist.linux-x86_64/wheel/app/core
+apps/api build: copying build/lib/app/core/config.py -> build/bdist.linux-x86_64/wheel/./app/core
+apps/api build: copying build/lib/app/core/request_context.py -> build/bdist.linux-x86_64/wheel/./app/core
+apps/api build: copying build/lib/app/core/application.py -> build/bdist.linux-x86_64/wheel/./app/core
+apps/api build: copying build/lib/app/core/logging.py -> build/bdist.linux-x86_64/wheel/./app/core
+apps/api build: copying build/lib/app/core/auth.py -> build/bdist.linux-x86_64/wheel/./app/core
+apps/api build: copying build/lib/app/core/telemetry.py -> build/bdist.linux-x86_64/wheel/./app/core
+apps/api build: copying build/lib/app/core/db.py -> build/bdist.linux-x86_64/wheel/./app/core
+apps/api build: copying build/lib/app/core/contracts_catalog.py -> build/bdist.linux-x86_64/wheel/./app/core
+apps/api build: creating build/bdist.linux-x86_64/wheel/app/db
+apps/api build: creating build/bdist.linux-x86_64/wheel/app/db/migrations
+apps/api build: copying build/lib/app/db/migrations/env.py -> build/bdist.linux-x86_64/wheel/./app/db/migrations
+apps/api build: copying build/lib/app/db/migrations/seed.py -> build/bdist.linux-x86_64/wheel/./app/db/migrations
+apps/api build: creating build/bdist.linux-x86_64/wheel/app/db/migrations/versions
+apps/api build: copying build/lib/app/db/migrations/versions/0012_finance_and_insurance_runtime.py -> build/bdist.linux-x86_64/wheel/./app/db/migrations/versions
+apps/api build: copying build/lib/app/db/migrations/versions/0001_platform_baseline.py -> build/bdist.linux-x86_64/wheel/./app/db/migrations/versions
+apps/api build: copying build/lib/app/db/migrations/versions/0002_policy_and_workflow_definitions.py -> build/bdist.linux-x86_64/wheel/./app/db/migrations/versions
+apps/api build: copying build/lib/app/db/migrations/versions/0008_negotiation_threads_runtime.py -> build/bdist.linux-x86_64/wheel/./app/db/migrations/versions
+apps/api build: copying build/lib/app/db/migrations/versions/0013_traceability_event_chain_runtime.py -> build/bdist.linux-x86_64/wheel/./app/db/migrations/versions
+apps/api build: copying build/lib/app/db/migrations/versions/0004_audit_and_outbox.py -> build/bdist.linux-x86_64/wheel/./app/db/migrations/versions
+apps/api build: copying build/lib/app/db/migrations/versions/0011_climate_alerting_and_mrv.py -> build/bdist.linux-x86_64/wheel/./app/db/migrations/versions
+apps/api build: copying build/lib/app/db/migrations/versions/0003_workflow_runtime.py -> build/bdist.linux-x86_64/wheel/./app/db/migrations/versions
+apps/api build: copying build/lib/app/db/migrations/versions/0007_listing_read_model_projection.py -> build/bdist.linux-x86_64/wheel/./app/db/migrations/versions
+apps/api build: copying build/lib/app/db/migrations/versions/0005_vertical_slice_identity_marketplace.py -> build/bdist.linux-x86_64/wheel/./app/db/migrations/versions
+apps/api build: copying build/lib/app/db/migrations/versions/0009_wallet_ledger_and_escrow.py -> build/bdist.linux-x86_64/wheel/./app/db/migrations/versions
+apps/api build: copying build/lib/app/db/migrations/versions/0010_advisory_reviewer_runtime.py -> build/bdist.linux-x86_64/wheel/./app/db/migrations/versions
+apps/api build: creating build/bdist.linux-x86_64/wheel/app/db/repositories
+apps/api build: copying build/lib/app/db/repositories/ledger.py -> build/bdist.linux-x86_64/wheel/./app/db/repositories
+apps/api build: copying build/lib/app/db/repositories/finance.py -> build/bdist.linux-x86_64/wheel/./app/db/repositories
+apps/api build: copying build/lib/app/db/repositories/advisory.py -> build/bdist.linux-x86_64/wheel/./app/db/repositories
+apps/api build: copying build/lib/app/db/repositories/audit.py -> build/bdist.linux-x86_64/wheel/./app/db/repositories
+apps/api build: copying build/lib/app/db/repositories/__init__.py -> build/bdist.linux-x86_64/wheel/./app/db/repositories
+apps/api build: copying build/lib/app/db/repositories/workflow.py -> build/bdist.linux-x86_64/wheel/./app/db/repositories
+apps/api build: copying build/lib/app/db/repositories/traceability.py -> build/bdist.linux-x86_64/wheel/./app/db/repositories
+apps/api build: copying build/lib/app/db/repositories/marketplace.py -> build/bdist.linux-x86_64/wheel/./app/db/repositories
+apps/api build: copying build/lib/app/db/repositories/identity.py -> build/bdist.linux-x86_64/wheel/./app/db/repositories
+apps/api build: copying build/lib/app/db/repositories/climate.py -> build/bdist.linux-x86_64/wheel/./app/db/repositories
+apps/api build: copying build/lib/app/db/base.py -> build/bdist.linux-x86_64/wheel/./app/db
+apps/api build: creating build/bdist.linux-x86_64/wheel/app/db/models
+apps/api build: copying build/lib/app/db/models/ledger.py -> build/bdist.linux-x86_64/wheel/./app/db/models
+apps/api build: copying build/lib/app/db/models/finance.py -> build/bdist.linux-x86_64/wheel/./app/db/models
+apps/api build: copying build/lib/app/db/models/advisory.py -> build/bdist.linux-x86_64/wheel/./app/db/models
+apps/api build: copying build/lib/app/db/models/audit.py -> build/bdist.linux-x86_64/wheel/./app/db/models
+apps/api build: copying build/lib/app/db/models/__init__.py -> build/bdist.linux-x86_64/wheel/./app/db/models
+apps/api build: copying build/lib/app/db/models/workflow.py -> build/bdist.linux-x86_64/wheel/./app/db/models
+apps/api build: copying build/lib/app/db/models/platform.py -> build/bdist.linux-x86_64/wheel/./app/db/models
+apps/api build: copying build/lib/app/db/models/traceability.py -> build/bdist.linux-x86_64/wheel/./app/db/models
+apps/api build: copying build/lib/app/db/models/marketplace.py -> build/bdist.linux-x86_64/wheel/./app/db/models
+apps/api build: copying build/lib/app/db/models/climate.py -> build/bdist.linux-x86_64/wheel/./app/db/models
+apps/api build: creating build/bdist.linux-x86_64/wheel/app/api
+apps/api build: creating build/bdist.linux-x86_64/wheel/app/api/dependencies
+apps/api build: copying build/lib/app/api/dependencies/request_context.py -> build/bdist.linux-x86_64/wheel/./app/api/dependencies
+apps/api build: creating build/bdist.linux-x86_64/wheel/app/api/routes
+apps/api build: copying build/lib/app/api/routes/advisory.py -> build/bdist.linux-x86_64/wheel/./app/api/routes
+apps/api build: copying build/lib/app/api/routes/audit.py -> build/bdist.linux-x86_64/wheel/./app/api/routes
+apps/api build: copying build/lib/app/api/routes/traceability.py -> build/bdist.linux-x86_64/wheel/./app/api/routes
+apps/api build: copying build/lib/app/api/routes/marketplace.py -> build/bdist.linux-x86_64/wheel/./app/api/routes
+apps/api build: copying build/lib/app/api/routes/identity.py -> build/bdist.linux-x86_64/wheel/./app/api/routes
+apps/api build: copying build/lib/app/api/routes/climate.py -> build/bdist.linux-x86_64/wheel/./app/api/routes
+apps/api build: copying build/lib/app/api/routes/system.py -> build/bdist.linux-x86_64/wheel/./app/api/routes
+apps/api build: copying build/lib/app/api/routes/commands.py -> build/bdist.linux-x86_64/wheel/./app/api/routes
+apps/api build: copying build/lib/app/__init__.py -> build/bdist.linux-x86_64/wheel/./app
+apps/api build: creating build/bdist.linux-x86_64/wheel/app/modules
+apps/api build: creating build/bdist.linux-x86_64/wheel/app/modules/advisory
+apps/api build: copying build/lib/app/modules/advisory/runtime.py -> build/bdist.linux-x86_64/wheel/./app/modules/advisory
+apps/api build: creating build/bdist.linux-x86_64/wheel/app/services
+apps/api build: copying build/lib/app/services/idempotency.py -> build/bdist.linux-x86_64/wheel/./app/services
+apps/api build: copying build/lib/app/services/event_bus.py -> build/bdist.linux-x86_64/wheel/./app/services
+apps/api build: copying build/lib/app/services/outbox.py -> build/bdist.linux-x86_64/wheel/./app/services
+apps/api build: creating build/bdist.linux-x86_64/wheel/app/services/commands
+apps/api build: copying build/lib/app/services/commands/errors.py -> build/bdist.linux-x86_64/wheel/./app/services/commands
+apps/api build: copying build/lib/app/services/commands/__init__.py -> build/bdist.linux-x86_64/wheel/./app/services/commands
+apps/api build: copying build/lib/app/services/commands/bus.py -> build/bdist.linux-x86_64/wheel/./app/services/commands
+apps/api build: copying build/lib/app/services/commands/contracts.py -> build/bdist.linux-x86_64/wheel/./app/services/commands
+apps/api build: copying build/lib/app/services/commands/handlers.py -> build/bdist.linux-x86_64/wheel/./app/services/commands
+apps/api build: copying build/lib/app/main.py -> build/bdist.linux-x86_64/wheel/./app
+apps/api build: copying build/lib/app/py.typed -> build/bdist.linux-x86_64/wheel/./app
+apps/api build: creating build/bdist.linux-x86_64/wheel/scripts
+apps/api build: copying build/lib/scripts/quality_gate.py -> build/bdist.linux-x86_64/wheel/./scripts
+apps/api build: running install_egg_info
+apps/api build: Copying agrodomain_api.egg-info to build/bdist.linux-x86_64/wheel/./agrodomain_api-0.1.0-py3.11.egg-info
+apps/api build: running install_scripts
+apps/api build: creating build/bdist.linux-x86_64/wheel/agrodomain_api-0.1.0.dist-info/WHEEL
+apps/api build: creating '/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/api/dist/.tmp-afujm9ak/agrodomain_api-0.1.0-py3-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+apps/api build: adding 'app/__init__.py'
+apps/api build: adding 'app/main.py'
+apps/api build: adding 'app/py.typed'
+apps/api build: adding 'app/api/dependencies/request_context.py'
+apps/api build: adding 'app/api/routes/advisory.py'
+apps/api build: adding 'app/api/routes/audit.py'
+apps/api build: adding 'app/api/routes/climate.py'
+apps/api build: adding 'app/api/routes/commands.py'
+apps/api build: adding 'app/api/routes/identity.py'
+apps/api build: adding 'app/api/routes/marketplace.py'
+apps/api build: adding 'app/api/routes/system.py'
+apps/api build: adding 'app/api/routes/traceability.py'
+apps/api build: adding 'app/core/application.py'
+apps/api build: adding 'app/core/auth.py'
+apps/api build: adding 'app/core/config.py'
+apps/api build: adding 'app/core/contracts_catalog.py'
+apps/api build: adding 'app/core/db.py'
+apps/api build: adding 'app/core/logging.py'
+apps/api build: adding 'app/core/request_context.py'
+apps/api build: adding 'app/core/telemetry.py'
+apps/api build: adding 'app/db/base.py'
+apps/api build: adding 'app/db/migrations/env.py'
+apps/api build: adding 'app/db/migrations/seed.py'
+apps/api build: adding 'app/db/migrations/versions/0001_platform_baseline.py'
+apps/api build: adding 'app/db/migrations/versions/0002_policy_and_workflow_definitions.py'
+apps/api build: adding 'app/db/migrations/versions/0003_workflow_runtime.py'
+apps/api build: adding 'app/db/migrations/versions/0004_audit_and_outbox.py'
+apps/api build: adding 'app/db/migrations/versions/0005_vertical_slice_identity_marketplace.py'
+apps/api build: adding 'app/db/migrations/versions/0007_listing_read_model_projection.py'
+apps/api build: adding 'app/db/migrations/versions/0008_negotiation_threads_runtime.py'
+apps/api build: adding 'app/db/migrations/versions/0009_wallet_ledger_and_escrow.py'
+apps/api build: adding 'app/db/migrations/versions/0010_advisory_reviewer_runtime.py'
+apps/api build: adding 'app/db/migrations/versions/0011_climate_alerting_and_mrv.py'
+apps/api build: adding 'app/db/migrations/versions/0012_finance_and_insurance_runtime.py'
+apps/api build: adding 'app/db/migrations/versions/0013_traceability_event_chain_runtime.py'
+apps/api build: adding 'app/db/models/__init__.py'
+apps/api build: adding 'app/db/models/advisory.py'
+apps/api build: adding 'app/db/models/audit.py'
+apps/api build: adding 'app/db/models/climate.py'
+apps/api build: adding 'app/db/models/finance.py'
+apps/api build: adding 'app/db/models/ledger.py'
+apps/api build: adding 'app/db/models/marketplace.py'
+apps/api build: adding 'app/db/models/platform.py'
+apps/api build: adding 'app/db/models/traceability.py'
+apps/api build: adding 'app/db/models/workflow.py'
+apps/api build: adding 'app/db/repositories/__init__.py'
+apps/api build: adding 'app/db/repositories/advisory.py'
+apps/api build: adding 'app/db/repositories/audit.py'
+apps/api build: adding 'app/db/repositories/climate.py'
+apps/api build: adding 'app/db/repositories/finance.py'
+apps/api build: adding 'app/db/repositories/identity.py'
+apps/api build: adding 'app/db/repositories/ledger.py'
+apps/api build: adding 'app/db/repositories/marketplace.py'
+apps/api build: adding 'app/db/repositories/traceability.py'
+apps/api build: adding 'app/db/repositories/workflow.py'
+apps/api build: adding 'app/modules/advisory/runtime.py'
+apps/api build: adding 'app/services/event_bus.py'
+apps/api build: adding 'app/services/idempotency.py'
+apps/api build: adding 'app/services/outbox.py'
+apps/api build: adding 'app/services/commands/__init__.py'
+apps/api build: adding 'app/services/commands/bus.py'
+apps/api build: adding 'app/services/commands/contracts.py'
+apps/api build: adding 'app/services/commands/errors.py'
+apps/api build: adding 'app/services/commands/handlers.py'
+apps/api build: adding 'scripts/quality_gate.py'
+apps/api build: adding 'agrodomain_api-0.1.0.dist-info/METADATA'
+apps/api build: adding 'agrodomain_api-0.1.0.dist-info/WHEEL'
+apps/api build: adding 'agrodomain_api-0.1.0.dist-info/top_level.txt'
+apps/api build: adding 'agrodomain_api-0.1.0.dist-info/RECORD'
+apps/api build: removing build/bdist.linux-x86_64/wheel
+apps/api build: * Creating isolated environment: venv+pip...
+apps/api build: * Installing packages in isolated environment:
+apps/api build:   - setuptools>=68
+apps/api build:   - wheel
+packages/contracts build: Done
+apps/api build: * Getting build dependencies for sdist...
+apps/api build: running egg_info
+apps/api build: writing agrodomain_api.egg-info/PKG-INFO
+apps/api build: writing dependency_links to agrodomain_api.egg-info/dependency_links.txt
+apps/api build: writing requirements to agrodomain_api.egg-info/requires.txt
+apps/api build: writing top-level names to agrodomain_api.egg-info/top_level.txt
+apps/api build: reading manifest file 'agrodomain_api.egg-info/SOURCES.txt'
+apps/api build: writing manifest file 'agrodomain_api.egg-info/SOURCES.txt'
+apps/api build: * Building sdist...
+apps/api build: running sdist
+apps/api build: running egg_info
+apps/api build: writing agrodomain_api.egg-info/PKG-INFO
+apps/api build: writing dependency_links to agrodomain_api.egg-info/dependency_links.txt
+apps/api build: writing requirements to agrodomain_api.egg-info/requires.txt
+apps/api build: writing top-level names to agrodomain_api.egg-info/top_level.txt
+apps/api build: reading manifest file 'agrodomain_api.egg-info/SOURCES.txt'
+apps/api build: writing manifest file 'agrodomain_api.egg-info/SOURCES.txt'
+apps/api build: running check
+apps/api build: creating agrodomain_api-0.1.0
+apps/api build: creating agrodomain_api-0.1.0/app
+apps/api build: creating agrodomain_api-0.1.0/app/api/dependencies
+apps/api build: creating agrodomain_api-0.1.0/app/api/routes
+apps/api build: creating agrodomain_api-0.1.0/app/core
+apps/api build: creating agrodomain_api-0.1.0/app/db
+apps/api build: creating agrodomain_api-0.1.0/app/db/migrations
+apps/api build: creating agrodomain_api-0.1.0/app/db/migrations/versions
+apps/api build: creating agrodomain_api-0.1.0/app/db/models
+apps/api build: creating agrodomain_api-0.1.0/app/db/repositories
+apps/api build: creating agrodomain_api-0.1.0/app/modules/advisory
+apps/api build: creating agrodomain_api-0.1.0/app/services
+apps/api build: creating agrodomain_api-0.1.0/app/services/commands
+apps/api build: creating agrodomain_api-0.1.0/scripts
+apps/api build: creating agrodomain_api-0.1.0/agrodomain_api.egg-info
+apps/api build: copying files to agrodomain_api-0.1.0...
+apps/api build: copying README.md -> agrodomain_api-0.1.0
+apps/api build: copying pyproject.toml -> agrodomain_api-0.1.0
+apps/api build: copying ./app/__init__.py -> agrodomain_api-0.1.0/./app
+apps/api build: copying ./app/main.py -> agrodomain_api-0.1.0/./app
+apps/api build: copying ./app/py.typed -> agrodomain_api-0.1.0/./app
+apps/api build: copying ./app/api/dependencies/request_context.py -> agrodomain_api-0.1.0/./app/api/dependencies
+apps/api build: copying ./app/api/routes/advisory.py -> agrodomain_api-0.1.0/./app/api/routes
+apps/api build: copying ./app/api/routes/audit.py -> agrodomain_api-0.1.0/./app/api/routes
+apps/api build: copying ./app/api/routes/climate.py -> agrodomain_api-0.1.0/./app/api/routes
+apps/api build: copying ./app/api/routes/commands.py -> agrodomain_api-0.1.0/./app/api/routes
+apps/api build: copying ./app/api/routes/identity.py -> agrodomain_api-0.1.0/./app/api/routes
+apps/api build: copying ./app/api/routes/marketplace.py -> agrodomain_api-0.1.0/./app/api/routes
+apps/api build: copying ./app/api/routes/system.py -> agrodomain_api-0.1.0/./app/api/routes
+apps/api build: copying ./app/api/routes/traceability.py -> agrodomain_api-0.1.0/./app/api/routes
+apps/api build: copying ./app/core/application.py -> agrodomain_api-0.1.0/./app/core
+apps/api build: copying ./app/core/auth.py -> agrodomain_api-0.1.0/./app/core
+apps/api build: copying ./app/core/config.py -> agrodomain_api-0.1.0/./app/core
+apps/api build: copying ./app/core/contracts_catalog.py -> agrodomain_api-0.1.0/./app/core
+apps/api build: copying ./app/core/db.py -> agrodomain_api-0.1.0/./app/core
+apps/api build: copying ./app/core/logging.py -> agrodomain_api-0.1.0/./app/core
+apps/api build: copying ./app/core/request_context.py -> agrodomain_api-0.1.0/./app/core
+apps/api build: copying ./app/core/telemetry.py -> agrodomain_api-0.1.0/./app/core
+apps/api build: copying ./app/db/base.py -> agrodomain_api-0.1.0/./app/db
+apps/api build: copying ./app/db/migrations/env.py -> agrodomain_api-0.1.0/./app/db/migrations
+apps/api build: copying ./app/db/migrations/seed.py -> agrodomain_api-0.1.0/./app/db/migrations
+apps/api build: copying ./app/db/migrations/versions/0001_platform_baseline.py -> agrodomain_api-0.1.0/./app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0002_policy_and_workflow_definitions.py -> agrodomain_api-0.1.0/./app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0003_workflow_runtime.py -> agrodomain_api-0.1.0/./app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0004_audit_and_outbox.py -> agrodomain_api-0.1.0/./app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0005_vertical_slice_identity_marketplace.py -> agrodomain_api-0.1.0/./app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0007_listing_read_model_projection.py -> agrodomain_api-0.1.0/./app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0008_negotiation_threads_runtime.py -> agrodomain_api-0.1.0/./app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0009_wallet_ledger_and_escrow.py -> agrodomain_api-0.1.0/./app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0010_advisory_reviewer_runtime.py -> agrodomain_api-0.1.0/./app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0011_climate_alerting_and_mrv.py -> agrodomain_api-0.1.0/./app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0012_finance_and_insurance_runtime.py -> agrodomain_api-0.1.0/./app/db/migrations/versions
+apps/api build: copying ./app/db/migrations/versions/0013_traceability_event_chain_runtime.py -> agrodomain_api-0.1.0/./app/db/migrations/versions
+apps/api build: copying ./app/db/models/__init__.py -> agrodomain_api-0.1.0/./app/db/models
+apps/api build: copying ./app/db/models/advisory.py -> agrodomain_api-0.1.0/./app/db/models
+apps/api build: copying ./app/db/models/audit.py -> agrodomain_api-0.1.0/./app/db/models
+apps/api build: copying ./app/db/models/climate.py -> agrodomain_api-0.1.0/./app/db/models
+apps/api build: copying ./app/db/models/finance.py -> agrodomain_api-0.1.0/./app/db/models
+apps/api build: copying ./app/db/models/ledger.py -> agrodomain_api-0.1.0/./app/db/models
+apps/api build: copying ./app/db/models/marketplace.py -> agrodomain_api-0.1.0/./app/db/models
+apps/api build: copying ./app/db/models/platform.py -> agrodomain_api-0.1.0/./app/db/models
+apps/api build: copying ./app/db/models/traceability.py -> agrodomain_api-0.1.0/./app/db/models
+apps/api build: copying ./app/db/models/workflow.py -> agrodomain_api-0.1.0/./app/db/models
+apps/api build: copying ./app/db/repositories/__init__.py -> agrodomain_api-0.1.0/./app/db/repositories
+apps/api build: copying ./app/db/repositories/advisory.py -> agrodomain_api-0.1.0/./app/db/repositories
+apps/api build: copying ./app/db/repositories/audit.py -> agrodomain_api-0.1.0/./app/db/repositories
+apps/api build: copying ./app/db/repositories/climate.py -> agrodomain_api-0.1.0/./app/db/repositories
+apps/api build: copying ./app/db/repositories/finance.py -> agrodomain_api-0.1.0/./app/db/repositories
+apps/api build: copying ./app/db/repositories/identity.py -> agrodomain_api-0.1.0/./app/db/repositories
+apps/api build: copying ./app/db/repositories/ledger.py -> agrodomain_api-0.1.0/./app/db/repositories
+apps/api build: copying ./app/db/repositories/marketplace.py -> agrodomain_api-0.1.0/./app/db/repositories
+apps/api build: copying ./app/db/repositories/traceability.py -> agrodomain_api-0.1.0/./app/db/repositories
+apps/api build: copying ./app/db/repositories/workflow.py -> agrodomain_api-0.1.0/./app/db/repositories
+apps/api build: copying ./app/modules/advisory/runtime.py -> agrodomain_api-0.1.0/./app/modules/advisory
+apps/api build: copying ./app/services/event_bus.py -> agrodomain_api-0.1.0/./app/services
+apps/api build: copying ./app/services/idempotency.py -> agrodomain_api-0.1.0/./app/services
+apps/api build: copying ./app/services/outbox.py -> agrodomain_api-0.1.0/./app/services
+apps/api build: copying ./app/services/commands/__init__.py -> agrodomain_api-0.1.0/./app/services/commands
+apps/api build: copying ./app/services/commands/bus.py -> agrodomain_api-0.1.0/./app/services/commands
+apps/api build: copying ./app/services/commands/contracts.py -> agrodomain_api-0.1.0/./app/services/commands
+apps/api build: copying ./app/services/commands/errors.py -> agrodomain_api-0.1.0/./app/services/commands
+apps/api build: copying ./app/services/commands/handlers.py -> agrodomain_api-0.1.0/./app/services/commands
+apps/api build: copying ./scripts/quality_gate.py -> agrodomain_api-0.1.0/./scripts
+apps/api build: copying agrodomain_api.egg-info/PKG-INFO -> agrodomain_api-0.1.0/agrodomain_api.egg-info
+apps/api build: copying agrodomain_api.egg-info/SOURCES.txt -> agrodomain_api-0.1.0/agrodomain_api.egg-info
+apps/api build: copying agrodomain_api.egg-info/dependency_links.txt -> agrodomain_api-0.1.0/agrodomain_api.egg-info
+apps/api build: copying agrodomain_api.egg-info/requires.txt -> agrodomain_api-0.1.0/agrodomain_api.egg-info
+apps/api build: copying agrodomain_api.egg-info/top_level.txt -> agrodomain_api-0.1.0/agrodomain_api.egg-info
+apps/api build: copying agrodomain_api.egg-info/SOURCES.txt -> agrodomain_api-0.1.0/agrodomain_api.egg-info
+apps/api build: Writing agrodomain_api-0.1.0/setup.cfg
+apps/api build: Creating tar archive
+apps/api build: removing 'agrodomain_api-0.1.0' (and everything under it)
+apps/api build: Successfully built agrodomain_api-0.1.0-py3-none-any.whl and agrodomain_api-0.1.0.tar.gz
+apps/api build: [api:build] passed
+apps/api build: [api:build] produced exactly one wheel and one sdist
+apps/api build: Done
+apps/web build$ corepack pnpm --filter @agrodomain/contracts build && next build
+apps/web build: > @agrodomain/contracts@0.0.0 build /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/contracts
+apps/web build: > tsc -p tsconfig.json
+apps/web build: Attention: Next.js now collects completely anonymous telemetry regarding usage.
+apps/web build: This information is used to shape Next.js' roadmap and prioritize features.
+apps/web build: You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+apps/web build: https://nextjs.org/telemetry
+apps/web build:    ▲ Next.js 15.5.15
+apps/web build:    Creating an optimized production build ...
+apps/web build:  ✓ Compiled successfully in 21.8s
+apps/web build:    Linting and checking validity of types ...
+apps/web build:    Collecting page data ...
+apps/web build:    Generating static pages (0/20) ...
+apps/web build:    Generating static pages (5/20) 
+apps/web build:    Generating static pages (10/20) 
+apps/web build:    Generating static pages (15/20) 
+apps/web build:  ✓ Generating static pages (20/20)
+apps/web build:    Finalizing page optimization ...
+apps/web build:    Collecting build traces ...
+apps/web build: Route (app)                                 Size  First Load JS
+apps/web build: ┌ ○ /                                      168 B         106 kB
+apps/web build: ├ ○ /_not-found                            994 B         103 kB
+apps/web build: ├ ○ /app                                   123 B         102 kB
+apps/web build: ├ ƒ /app/[role]                          3.77 kB         141 kB
+apps/web build: ├ ○ /app/admin/analytics                   168 B         106 kB
+apps/web build: ├ ○ /app/advisor/requests                  130 B         142 kB
+apps/web build: ├ ○ /app/advisory/new                      131 B         142 kB
+apps/web build: ├ ○ /app/climate/alerts                  2.84 kB         141 kB
+apps/web build: ├ ○ /app/cooperative/dispatch              168 B         106 kB
+apps/web build: ├ ○ /app/finance/queue                   4.57 kB         142 kB
+apps/web build: ├ ○ /app/market/listings                   165 B         143 kB
+apps/web build: ├ ƒ /app/market/listings/[listingId]       165 B         143 kB
+apps/web build: ├ ƒ /app/market/negotiations             5.22 kB         143 kB
+apps/web build: ├ ○ /app/notifications                     163 B         106 kB
+apps/web build: ├ ƒ /app/offline/conflicts/[id]          1.65 kB         139 kB
+apps/web build: ├ ○ /app/offline/outbox                  1.46 kB         139 kB
+apps/web build: ├ ○ /app/payments/wallet                   163 B         106 kB
+apps/web build: ├ ○ /app/profile                         1.81 kB         139 kB
+apps/web build: ├ ƒ /app/traceability/[consignmentId]    2.77 kB         140 kB
+apps/web build: ├ ○ /icon.svg                                0 B            0 B
+apps/web build: ├ ○ /onboarding/consent                  2.49 kB         140 kB
+apps/web build: └ ○ /signin                              2.25 kB         140 kB
+apps/web build: + First Load JS shared by all             102 kB
+apps/web build:   ├ chunks/47233288-ae3f80d15bb5ed05.js  54.2 kB
+apps/web build:   ├ chunks/891-69f1b5c5fa0d0580.js       45.8 kB
+apps/web build:   └ other shared chunks (total)          1.93 kB
+apps/web build: ○  (Static)   prerendered as static content
+apps/web build: ƒ  (Dynamic)  server-rendered on demand
+apps/web build: Done

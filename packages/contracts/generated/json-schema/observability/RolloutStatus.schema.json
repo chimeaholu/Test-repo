@@ -1,0 +1,170 @@
+{
+  "$ref": "#/definitions/RolloutStatus",
+  "definitions": {
+    "RolloutStatus": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "actor_role": {
+          "enum": [
+            "admin",
+            "finance_ops",
+            "compliance"
+          ],
+          "type": "string"
+        },
+        "alert_severity": {
+          "enum": [
+            "none",
+            "info",
+            "warning",
+            "critical"
+          ],
+          "nullable": true,
+          "type": "string"
+        },
+        "audit_event_id": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "changed_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "type": "string"
+        },
+        "channel": {
+          "description": "Transport channel that originated or carried the request",
+          "enum": [
+            "pwa",
+            "ussd",
+            "whatsapp",
+            "sms",
+            "push",
+            "api"
+          ],
+          "type": "string"
+        },
+        "country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "intent": {
+          "enum": [
+            "freeze",
+            "hold",
+            "limited_release",
+            "resume"
+          ],
+          "type": "string"
+        },
+        "limited_release_percent": {
+          "maximum": 99,
+          "minimum": 1,
+          "nullable": true,
+          "type": "integer"
+        },
+        "previous_state": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/RolloutStatus/properties/state"
+            }
+          ],
+          "nullable": true
+        },
+        "reason_code": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "reason_detail": {
+          "maxLength": 280,
+          "minLength": 8,
+          "type": "string"
+        },
+        "request_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "scope_key": {
+          "maxLength": 96,
+          "minLength": 2,
+          "type": "string"
+        },
+        "service_name": {
+          "enum": [
+            "admin_control_plane",
+            "marketplace",
+            "advisory",
+            "finance",
+            "traceability",
+            "climate",
+            "rollout_control"
+          ],
+          "type": "string"
+        },
+        "slo_id": {
+          "maxLength": 32,
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "active",
+            "hold",
+            "frozen",
+            "limited_release"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "request_id",
+        "actor_id",
+        "country_code",
+        "channel",
+        "service_name",
+        "slo_id",
+        "alert_severity",
+        "audit_event_id",
+        "actor_role",
+        "scope_key",
+        "state",
+        "previous_state",
+        "intent",
+        "reason_code",
+        "reason_detail",
+        "limited_release_percent",
+        "changed_at"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Append-only rollout-control state record carrying explicit actor attribution, scope, country, and audit linkage.",
+  "x-agrodomain-contract": {
+    "id": "observability.rollout_status",
+    "domain": "observability",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "EP-005",
+      "PF-004",
+      "DI-003"
+    ],
+    "source_artifacts": [
+      "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+      "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+      "execution/contracts/b026_partner_api_gateway_contract.json"
+    ]
+  }
+}

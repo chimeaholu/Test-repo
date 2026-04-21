@@ -1,0 +1,28 @@
+[
+    {
+        "schema_version": "2026-04-18.wave1",
+        "flag_key": "worker.operator_notifications",
+        "owner_service": "worker",
+        "description": "Enables operator-facing incident notification fan-out for rollout and telemetry outbox events.",
+        "state": "conditional",
+        "enabled_by_default": true,
+        "country_codes": ["GH", "CI", "KE"],
+        "channel_allowlist": ["api", "pwa", "sms"],
+        "actor_role_allowlist": ["admin", "finance_ops", "compliance"],
+        "rollout_policy_key": "admin.control-plane.default",
+        "expires_at": null
+    },
+    {
+        "schema_version": "2026-04-18.wave1",
+        "flag_key": "workflow.offline_backend_replay",
+        "owner_service": "web",
+        "description": "Moves offline queue replay from client-only acknowledgement to backend command execution and reconciliation.",
+        "state": "conditional",
+        "enabled_by_default": true,
+        "country_codes": ["GH", "CI", "KE"],
+        "channel_allowlist": ["pwa"],
+        "actor_role_allowlist": ["admin", "buyer", "advisor", "farmer"],
+        "rollout_policy_key": "workflow.offline.default",
+        "expires_at": null
+    }
+]

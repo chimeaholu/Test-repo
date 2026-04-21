@@ -1,0 +1,233 @@
+[
+  {
+    "schema_version": "2026-04-18.wave1",
+    "environment": "local",
+    "country_pack": {
+      "schema_version": "2026-04-18.wave1",
+      "country_code": "GH",
+      "region": "West Africa",
+      "currency": "GHS",
+      "default_locale": "en-GH",
+      "supported_locales": ["en-GH"],
+      "supported_channels": ["pwa", "whatsapp", "ussd", "sms"],
+      "legal_notices": [
+        {
+          "notice_id": "gh-consent-001",
+          "locale": "en-GH",
+          "title": "Agrodomain consent notice",
+          "body_markdown": "Telemetry, audit, and workflow records are stored for regulated operations.",
+          "required_for_scopes": ["identity.core", "workflow.audit", "admin.observability"]
+        }
+      ],
+      "regulated_mutation_requires_consent": true
+    },
+    "feature_flag_keys": [
+      "worker.operator_notifications",
+      "workflow.offline_backend_replay"
+    ],
+    "rollout_policy_keys": [
+      "admin.control-plane.default",
+      "workflow.offline.default"
+    ],
+    "config_revision": "r3-gh-local-001",
+    "legal_notice_checksum": "gh-local-consent-20260420"
+  },
+  {
+    "schema_version": "2026-04-18.wave1",
+    "environment": "test",
+    "country_pack": {
+      "schema_version": "2026-04-18.wave1",
+      "country_code": "GH",
+      "region": "West Africa",
+      "currency": "GHS",
+      "default_locale": "en-GH",
+      "supported_locales": ["en-GH"],
+      "supported_channels": ["pwa", "whatsapp", "ussd", "sms"],
+      "legal_notices": [
+        {
+          "notice_id": "gh-consent-001",
+          "locale": "en-GH",
+          "title": "Agrodomain consent notice",
+          "body_markdown": "Telemetry, audit, and workflow records are stored for regulated operations.",
+          "required_for_scopes": ["identity.core", "workflow.audit", "admin.observability"]
+        }
+      ],
+      "regulated_mutation_requires_consent": true
+    },
+    "feature_flag_keys": [
+      "worker.operator_notifications",
+      "workflow.offline_backend_replay"
+    ],
+    "rollout_policy_keys": [
+      "admin.control-plane.default",
+      "workflow.offline.default"
+    ],
+    "config_revision": "r3-gh-test-001",
+    "legal_notice_checksum": "gh-test-consent-20260420"
+  },
+  {
+    "schema_version": "2026-04-18.wave1",
+    "environment": "test",
+    "country_pack": {
+      "schema_version": "2026-04-18.wave1",
+      "country_code": "CI",
+      "region": "West Africa",
+      "currency": "XOF",
+      "default_locale": "fr-CI",
+      "supported_locales": ["fr-CI"],
+      "supported_channels": ["pwa", "whatsapp", "sms"],
+      "legal_notices": [
+        {
+          "notice_id": "ci-consent-001",
+          "locale": "fr-CI",
+          "title": "Avis de consentement Agrodomain",
+          "body_markdown": "Les donnees d'audit et de telemetrie sont stockees pour les operations reglementees.",
+          "required_for_scopes": ["identity.core", "workflow.audit", "admin.observability"]
+        }
+      ],
+      "regulated_mutation_requires_consent": true
+    },
+    "feature_flag_keys": [
+      "worker.operator_notifications",
+      "workflow.offline_backend_replay"
+    ],
+    "rollout_policy_keys": [
+      "admin.control-plane.default",
+      "workflow.offline.default"
+    ],
+    "config_revision": "r3-ci-test-001",
+    "legal_notice_checksum": "ci-test-consent-20260420"
+  },
+  {
+    "schema_version": "2026-04-18.wave1",
+    "environment": "test",
+    "country_pack": {
+      "schema_version": "2026-04-18.wave1",
+      "country_code": "KE",
+      "region": "East Africa",
+      "currency": "KES",
+      "default_locale": "sw-KE",
+      "supported_locales": ["sw-KE", "en-KE"],
+      "supported_channels": ["pwa", "whatsapp", "sms"],
+      "legal_notices": [
+        {
+          "notice_id": "ke-consent-001",
+          "locale": "sw-KE",
+          "title": "Taarifa ya idhini ya Agrodomain",
+          "body_markdown": "Data za ukaguzi na telemetry huhifadhiwa kwa shughuli zinazodhibitiwa.",
+          "required_for_scopes": ["identity.core", "workflow.audit", "admin.observability"]
+        }
+      ],
+      "regulated_mutation_requires_consent": true
+    },
+    "feature_flag_keys": [
+      "worker.operator_notifications",
+      "workflow.offline_backend_replay"
+    ],
+    "rollout_policy_keys": [
+      "admin.control-plane.default",
+      "workflow.offline.default"
+    ],
+    "config_revision": "r3-ke-test-001",
+    "legal_notice_checksum": "ke-test-consent-20260420"
+  },
+  {
+    "schema_version": "2026-04-18.wave1",
+    "environment": "ci",
+    "country_pack": {
+      "schema_version": "2026-04-18.wave1",
+      "country_code": "GH",
+      "region": "West Africa",
+      "currency": "GHS",
+      "default_locale": "en-GH",
+      "supported_locales": ["en-GH"],
+      "supported_channels": ["pwa", "whatsapp", "ussd", "sms"],
+      "legal_notices": [
+        {
+          "notice_id": "gh-consent-001",
+          "locale": "en-GH",
+          "title": "Agrodomain consent notice",
+          "body_markdown": "Telemetry, audit, and workflow records are stored for regulated operations.",
+          "required_for_scopes": ["identity.core", "workflow.audit", "admin.observability"]
+        }
+      ],
+      "regulated_mutation_requires_consent": true
+    },
+    "feature_flag_keys": [
+      "worker.operator_notifications",
+      "workflow.offline_backend_replay"
+    ],
+    "rollout_policy_keys": [
+      "admin.control-plane.default",
+      "workflow.offline.default"
+    ],
+    "config_revision": "r3-gh-ci-001",
+    "legal_notice_checksum": "gh-ci-consent-20260420"
+  },
+  {
+    "schema_version": "2026-04-18.wave1",
+    "environment": "staging",
+    "country_pack": {
+      "schema_version": "2026-04-18.wave1",
+      "country_code": "GH",
+      "region": "West Africa",
+      "currency": "GHS",
+      "default_locale": "en-GH",
+      "supported_locales": ["en-GH"],
+      "supported_channels": ["pwa", "whatsapp", "ussd", "sms"],
+      "legal_notices": [
+        {
+          "notice_id": "gh-consent-001",
+          "locale": "en-GH",
+          "title": "Agrodomain consent notice",
+          "body_markdown": "Telemetry, audit, and workflow records are stored for regulated operations.",
+          "required_for_scopes": ["identity.core", "workflow.audit", "admin.observability"]
+        }
+      ],
+      "regulated_mutation_requires_consent": true
+    },
+    "feature_flag_keys": [
+      "worker.operator_notifications",
+      "workflow.offline_backend_replay"
+    ],
+    "rollout_policy_keys": [
+      "admin.control-plane.default",
+      "workflow.offline.default"
+    ],
+    "config_revision": "r3-gh-staging-001",
+    "legal_notice_checksum": "gh-staging-consent-20260420"
+  },
+  {
+    "schema_version": "2026-04-18.wave1",
+    "environment": "production",
+    "country_pack": {
+      "schema_version": "2026-04-18.wave1",
+      "country_code": "GH",
+      "region": "West Africa",
+      "currency": "GHS",
+      "default_locale": "en-GH",
+      "supported_locales": ["en-GH"],
+      "supported_channels": ["pwa", "whatsapp", "ussd", "sms"],
+      "legal_notices": [
+        {
+          "notice_id": "gh-consent-001",
+          "locale": "en-GH",
+          "title": "Agrodomain consent notice",
+          "body_markdown": "Telemetry, audit, and workflow records are stored for regulated operations.",
+          "required_for_scopes": ["identity.core", "workflow.audit", "admin.observability"]
+        }
+      ],
+      "regulated_mutation_requires_consent": true
+    },
+    "feature_flag_keys": [
+      "worker.operator_notifications",
+      "workflow.offline_backend_replay"
+    ],
+    "rollout_policy_keys": [
+      "admin.control-plane.default",
+      "workflow.offline.default"
+    ],
+    "config_revision": "r3-gh-production-001",
+    "legal_notice_checksum": "gh-production-consent-20260420"
+  }
+]

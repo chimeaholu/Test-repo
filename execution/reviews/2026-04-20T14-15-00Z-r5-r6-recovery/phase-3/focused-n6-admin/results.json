@@ -1,0 +1,374 @@
+{
+  "config": {
+    "configFile": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/playwright.config.ts",
+    "rootDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/focused-n6-admin/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-critical",
+        "name": "desktop-critical",
+        "testDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/focused-n6-admin/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-critical",
+        "name": "mobile-critical",
+        "testDir": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/focused-n6-admin/results.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/focused-n6-admin/html-report",
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "n6-admin-observability.spec.ts",
+      "file": "n6-admin-observability.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "N6 admin observability and rollout tranche diagnostics",
+          "file": "n6-admin-observability.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 100144,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 282
+                          },
+                          "message": "Error: page.waitForTimeout: Target page, context or browser has been closed\n\n   at helpers.ts:282\n\n  280 |         throw error;\n  281 |       }\n> 282 |       await page.waitForTimeout(500);\n      |                  ^\n  283 |     }\n  284 |   }\n  285 | }\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:282:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:54:7)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:3)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:10:5"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T14:19:13.166Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/focused-n6-admin/test-results/n6-admin-observability-N6--c45d3-and-degraded-state-evidence-desktop-critical/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "2dd2302a57e794bc49c2-64f272bf4a6461ae24e4",
+              "file": "n6-admin-observability.spec.ts",
+              "line": 6,
+              "column": 7
+            },
+            {
+              "title": "EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-critical",
+                  "projectName": "desktop-critical",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 7914,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://127.0.0.1:3102/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3102/signin\", waiting until \"commit\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://127.0.0.1:3102/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3102/signin\", waiting until \"commit\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:28:32",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 257
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:257\n\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n> 257 |       await page.goto(path, { waitUntil: \"commit\", timeout: 120_000 });\n      |                  ^\n  258 |       const redirectedToSignIn = /\\/signin(\\?.*)?$/.test(page.url());\n  259 |       const wantsProtectedRoute = path === \"/app\" || path.startsWith(\"/app/\");\n  260 |       if (redirectedToSignIn && wantsProtectedRoute) {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 257
+                          },
+                          "message": "Error: page.goto: net::ERR_EMPTY_RESPONSE at http://127.0.0.1:3102/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3102/signin\", waiting until \"commit\"\u001b[22m\n\n\n   at helpers.ts:257\n\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n> 257 |       await page.goto(path, { waitUntil: \"commit\", timeout: 120_000 });\n      |                  ^\n  258 |       const redirectedToSignIn = /\\/signin(\\?.*)?$/.test(page.url());\n  259 |       const wantsProtectedRoute = path === \"/app\" || path.startsWith(\"/app/\");\n  260 |       if (redirectedToSignIn && wantsProtectedRoute) {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:28:32"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T14:20:55.451Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/focused-n6-admin/test-results/n6-admin-observability-N6--1ccc0-ope-chips-and-audit-posture-desktop-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/focused-n6-admin/test-results/n6-admin-observability-N6--1ccc0-ope-chips-and-audit-posture-desktop-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 257
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "2dd2302a57e794bc49c2-7f2ab74925b619f0b47e",
+              "file": "n6-admin-observability.spec.ts",
+              "line": 24,
+              "column": 7
+            },
+            {
+              "title": "PF-001 PF-004 admin analytics route exposes live health and degraded-state evidence",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 512,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3102/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3102/signin\", waiting until \"commit\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3102/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3102/signin\", waiting until \"commit\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:10:32",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 257
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:257\n\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n> 257 |       await page.goto(path, { waitUntil: \"commit\", timeout: 120_000 });\n      |                  ^\n  258 |       const redirectedToSignIn = /\\/signin(\\?.*)?$/.test(page.url());\n  259 |       const wantsProtectedRoute = path === \"/app\" || path.startsWith(\"/app/\");\n  260 |       if (redirectedToSignIn && wantsProtectedRoute) {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 257
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3102/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3102/signin\", waiting until \"commit\"\u001b[22m\n\n\n   at helpers.ts:257\n\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n> 257 |       await page.goto(path, { waitUntil: \"commit\", timeout: 120_000 });\n      |                  ^\n  258 |       const redirectedToSignIn = /\\/signin(\\?.*)?$/.test(page.url());\n  259 |       const wantsProtectedRoute = path === \"/app\" || path.startsWith(\"/app/\");\n  260 |       if (redirectedToSignIn && wantsProtectedRoute) {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:10:32"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T14:21:06.882Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/focused-n6-admin/test-results/n6-admin-observability-N6--c45d3-and-degraded-state-evidence-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/focused-n6-admin/test-results/n6-admin-observability-N6--c45d3-and-degraded-state-evidence-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 257
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "2dd2302a57e794bc49c2-65158a483b82421a3de8",
+              "file": "n6-admin-observability.spec.ts",
+              "line": 6,
+              "column": 7
+            },
+            {
+              "title": "EP-005 DI-003 admin workspace shows rollout controls with scope chips and audit posture",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-critical",
+                  "projectName": "mobile-critical",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 459,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3102/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3102/signin\", waiting until \"commit\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3102/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3102/signin\", waiting until \"commit\"\u001b[22m\n\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:28:32",
+                        "location": {
+                          "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                          "column": 18,
+                          "line": 257
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:257\n\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n> 257 |       await page.goto(path, { waitUntil: \"commit\", timeout: 120_000 });\n      |                  ^\n  258 |       const redirectedToSignIn = /\\/signin(\\?.*)?$/.test(page.url());\n  259 |       const wantsProtectedRoute = path === \"/app\" || path.startsWith(\"/app/\");\n  260 |       if (redirectedToSignIn && wantsProtectedRoute) {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                            "column": 18,
+                            "line": 257
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3102/signin\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3102/signin\", waiting until \"commit\"\u001b[22m\n\n\n   at helpers.ts:257\n\n  255 |   for (let attempt = 0; attempt < 3; attempt += 1) {\n  256 |     try {\n> 257 |       await page.goto(path, { waitUntil: \"commit\", timeout: 120_000 });\n      |                  ^\n  258 |       const redirectedToSignIn = /\\/signin(\\?.*)?$/.test(page.url());\n  259 |       const wantsProtectedRoute = path === \"/app\" || path.startsWith(\"/app/\");\n  260 |       if (redirectedToSignIn && wantsProtectedRoute) {\n    at gotoPath (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:257:18)\n    at signIn (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:29:11)\n    at signInAndGrantConsent (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts:124:9)\n    at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n6-admin-observability.spec.ts:28:32"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-20T14:21:09.013Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/focused-n6-admin/test-results/n6-admin-observability-N6--1ccc0-ope-chips-and-audit-posture-mobile-critical/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/execution/reviews/2026-04-20T14-15-00Z-r5-r6-recovery/phase-3/focused-n6-admin/test-results/n6-admin-observability-N6--1ccc0-ope-chips-and-audit-posture-mobile-critical/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/helpers.ts",
+                        "column": 18,
+                        "line": 257
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "2dd2302a57e794bc49c2-178761aaab4fa4097b83",
+              "file": "n6-admin-observability.spec.ts",
+              "line": 24,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-20T14:18:18.526Z",
+    "duration": 171270.29700000002,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 4,
+    "flaky": 0
+  }
+}

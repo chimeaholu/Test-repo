@@ -1,0 +1,52 @@
+
+> @agrodomain/web@0.0.0 test /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web
+> corepack pnpm --filter @agrodomain/contracts build && corepack pnpm --filter @agrodomain/config build && corepack pnpm run guard:contracts && vitest run
+
+
+> @agrodomain/contracts@0.0.0 build /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @agrodomain/config@0.0.0 build /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/packages/config
+> node --eval "import('./src/index.js')"
+
+
+> @agrodomain/web@0.0.0 guard:contracts /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web
+> node ./scripts/verify-contract-boundary.mjs
+
+Contract boundary verified.
+
+ RUN  v3.2.4 /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web
+
+ ✓ features/listings/listing-slice.test.tsx (4 tests) 636ms
+   ✓ listing surfaces > renders buyer discovery from buyer-safe published listings only  360ms
+ ✓ features/negotiation/negotiation-inbox.test.tsx (4 tests) 1505ms
+   ✓ negotiation inbox > submits a buyer offer and renders audit/idempotency evidence  819ms
+ ✓ features/traceability/traceability-workspace.test.tsx (2 tests) 1788ms
+   ✓ traceability workspace > renders explicit evidence metadata error when attachments are absent  714ms
+   ✓ traceability workspace > opens evidence details and records telemetry  1060ms
+ ✓ features/admin/admin-analytics-workspace.test.tsx (2 tests) 1786ms
+   ✓ admin analytics workspace > shows an explicit authorization error when admin APIs return forbidden  1089ms
+   ✓ admin analytics workspace > does not reload the page when rollout mutation is forbidden  673ms
+ ✓ features/advisory/conversation-workspace.test.tsx (1 test) 911ms
+   ✓ advisory conversation workspace > renders reviewer state, locale fallback, and citation drawer  897ms
+ ✓ features/finance/finance-review-console.test.tsx (1 test) 1510ms
+   ✓ finance review console > submits queue items and records partner decisions with telemetry  1491ms
+ ✓ features/finance/model.test.ts (3 tests) 37ms
+ ✓ features/climate/climate-dashboard.test.tsx (1 test) 1130ms
+   ✓ climate dashboard > renders degraded-mode detail and acknowledges alerts  1114ms
+ ✓ lib/api/mock-client.test.ts (2 tests) 24ms
+ ✓ features/listings/schema.test.ts (3 tests) 49ms
+ ✓ features/shell/model.test.ts (5 tests) 42ms
+ ✓ features/traceability/model.test.ts (3 tests) 31ms
+ ✓ features/negotiation/thread-state.test.ts (3 tests) 59ms
+ ✓ features/climate/model.test.ts (2 tests) 18ms
+ ✓ features/identity/schema.test.ts (3 tests) 11ms
+ ✓ lib/offline/reducer.test.ts (3 tests) 12ms
+ ✓ features/advisory/model.test.ts (2 tests) 25ms
+
+ Test Files  17 passed (17)
+      Tests  44 passed (44)
+   Start at  15:35:11
+   Duration  30.75s (transform 3.83s, setup 6.58s, collect 13.65s, tests 9.57s, environment 37.80s, prepare 7.76s)
+

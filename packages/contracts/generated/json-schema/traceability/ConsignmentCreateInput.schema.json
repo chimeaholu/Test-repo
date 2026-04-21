@@ -1,0 +1,36 @@
+{
+  "$ref": "#/definitions/ConsignmentCreateInput",
+  "definitions": {
+    "ConsignmentCreateInput": {
+      "additionalProperties": false,
+      "properties": {
+        "current_custody_actor_id": {
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "partner_reference_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "description": "Command payload for creating a new consignment aggregate.",
+  "x-agrodomain-contract": {
+    "id": "traceability.consignment_create_input",
+    "domain": "traceability",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-007",
+      "DI-006"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+    ]
+  }
+}

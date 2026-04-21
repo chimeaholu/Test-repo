@@ -1,0 +1,168 @@
+{
+  "$ref": "#/definitions/FinanceReviewQueueItem",
+  "definitions": {
+    "FinanceReviewQueueItem": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "actor_role": {
+          "enum": [
+            "farmer",
+            "buyer",
+            "cooperative",
+            "advisor",
+            "finance",
+            "finance_ops",
+            "admin"
+          ],
+          "type": "string"
+        },
+        "country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "type": "string"
+        },
+        "finance_request_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "partner_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "partner_reference_id": {
+          "maxLength": 128,
+          "nullable": true,
+          "type": "string"
+        },
+        "policy_context": {
+          "additionalProperties": false,
+          "properties": {
+            "matched_rule": {
+              "minLength": 1,
+              "nullable": true,
+              "type": "string"
+            },
+            "policy_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "policy_version": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "requires_hitl": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "policy_id",
+            "policy_version",
+            "matched_rule",
+            "requires_hitl"
+          ],
+          "type": "object"
+        },
+        "queue_item_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "responsibility_boundary": {
+          "additionalProperties": false,
+          "properties": {
+            "internal_can_approve": {
+              "type": "boolean"
+            },
+            "internal_can_block": {
+              "type": "boolean"
+            },
+            "internal_can_prepare": {
+              "type": "boolean"
+            },
+            "owner": {
+              "enum": [
+                "partner",
+                "internal",
+                "shared"
+              ],
+              "type": "string"
+            },
+            "partner_decision_required": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "owner",
+            "internal_can_prepare",
+            "internal_can_block",
+            "internal_can_approve",
+            "partner_decision_required"
+          ],
+          "type": "object"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "pending_review",
+            "approved",
+            "blocked",
+            "hitl_required"
+          ],
+          "type": "string"
+        },
+        "summary": {
+          "maxLength": 240,
+          "minLength": 3,
+          "type": "string"
+        },
+        "updated_at": {
+          "$ref": "#/definitions/FinanceReviewQueueItem/properties/created_at"
+        }
+      },
+      "required": [
+        "schema_version",
+        "queue_item_id",
+        "finance_request_id",
+        "partner_id",
+        "partner_reference_id",
+        "actor_id",
+        "actor_role",
+        "country_code",
+        "status",
+        "responsibility_boundary",
+        "policy_context",
+        "summary",
+        "created_at",
+        "updated_at"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Operator queue item for finance and insurance review surfaces.",
+  "x-agrodomain-contract": {
+    "id": "finance.finance_review_queue_item",
+    "domain": "finance",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-008",
+      "DI-003"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+    ]
+  }
+}

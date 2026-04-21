@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin</title>
+  <style>
+    body { font-family: ui-sans-serif, system-ui, sans-serif; margin: 0; background: #f4f1e8; color: #152219; }
+    header { padding: 20px 24px; background: #1f4f3b; color: #f8f4e8; }
+    main { padding: 24px; display: grid; gap: 16px; max-width: 960px; }
+    section { background: white; border-radius: 16px; padding: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    nav a { margin-right: 12px; color: #f8f4e8; }
+    form { display: inline-block; margin: 6px 8px 0 0; }
+    button { border: 0; border-radius: 999px; padding: 10px 16px; background: #cc7a00; color: white; cursor: pointer; }
+    code, pre { background: #f6f4ef; padding: 2px 4px; border-radius: 4px; }
+    .meta { color: #5c665e; font-size: 14px; }
+  </style>
+</head>
+<body>
+    <header>
+      <div data-testid="app-shell"><strong>Admin</strong></div>
+      <div class="meta">Signed in as admin-001 (admin)</div>
+      
+      <nav>
+        <a href="/app/onboarding/consent">Consent</a>
+        <a href="/app/listings/new">Listings</a>
+        <a href="/app/negotiation">Negotiation</a>
+        <a href="/app/wallet">Wallet</a>
+        <a href="/app/advisory/new">Advisory</a>
+        <a href="/app/climate/alerts">Climate</a>
+        <a href="/app/finance/queue">Finance</a>
+        <a href="/app/traceability">Traceability</a>
+        <a href="/app/admin/analytics">Admin</a>
+      </nav>
+    
+    </header>
+    <main>
+        <section>
+          <h1>Admin analytics</h1>
+          <pre>{
+  "anonymized_subject_key": "4f3ef16d3b36ed4f",
+  "citation_count": 3,
+  "citation_source_ids": [
+    "source-003",
+    "source-001",
+    "source-002"
+  ],
+  "climate_signal_count": 3,
+  "commodity_code": "maize",
+  "country_code": "GH",
+  "custody_stage": "quality_checked",
+  "data_check_id": "DI-003",
+  "high_risk_signal_count": 3,
+  "listing_status": "published",
+  "metric_value": {
+    "approved_finance_cases": 1,
+    "evidence_attachment_refs": 2,
+    "high_risk_signal_ratio": 1.0,
+    "published_price_minor": 500000,
+    "published_quantity_kg": 1200,
+    "released_escrows": 1,
+    "user_actions": 8
+  },
+  "price_band": "growth",
+  "quantity_band": "medium",
+  "region": "west_africa",
+  "schema_version": "enterprise-analytics.v1",
+  "traceability_event_count": 2
+}</pre>
+          <p>Observability alerts: <strong>1</strong></p>
+        </section>
+        </main>
+    </body>
+</html>

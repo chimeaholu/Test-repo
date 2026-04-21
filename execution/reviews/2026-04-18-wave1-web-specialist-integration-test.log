@@ -1,0 +1,18 @@
+
+> @agrodomain/web@0.0.0 test /mnt/vault/MWH/Projects/Agrodomain/apps/web
+> vitest run
+
+
+ RUN  v3.2.4 /mnt/vault/MWH/Projects/Agrodomain/apps/web
+
+ ✓ lib/api/mock-client.test.ts (1 test) 9ms
+ ✓ lib/offline/reducer.test.ts (2 tests) 7ms
+ ✓ features/identity/schema.test.ts (3 tests) 9ms
+ ✓ features/shell/model.test.ts (3 tests) 7ms
+
+ Test Files  4 passed (4)
+      Tests  9 passed (9)
+   Start at  04:04:54
+   Duration  3.48s (transform 419ms, setup 728ms, collect 492ms, tests 32ms, environment 3.92s, prepare 973ms)
+
+PASS

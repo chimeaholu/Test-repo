@@ -1,0 +1,18 @@
+......                                                                   [100%]
+=============================== warnings summary ===============================
+../../../../../../../../home/node/.local/lib/python3.11/site-packages/_pytest/config/__init__.py:1474
+  /home/node/.local/lib/python3.11/site-packages/_pytest/config/__init__.py:1474: PytestConfigWarning: Unknown config option: asyncio_default_fixture_loop_scope
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+tests/integration/test_app_boot.py::test_app_boot_with_test_config
+tests/integration/test_app_boot.py::test_app_boot_allows_loopback_cors_on_dynamic_ports
+tests/integration/test_n6_admin_observability_reliability.py::test_rollout_control_rejects_missing_actor_scope_and_reason
+tests/integration/test_n6_admin_observability_reliability.py::test_admin_alert_feed_surfaces_degraded_breaches_instead_of_silent_loss
+tests/integration/test_n6_admin_observability_reliability.py::test_admin_analytics_marks_stale_data_as_degraded_not_healthy
+tests/integration/test_n6_admin_observability_reliability.py::test_duplicate_telemetry_ingest_is_deduped_before_slo_inflation
+  /home/node/.local/lib/python3.11/site-packages/alembic/config.py:612: DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces, commas, and colons for prepend_sys_path.  Consider adding path_separator=os to Alembic config.
+    util.warn_deprecated(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+6 passed, 7 warnings in 10.79s

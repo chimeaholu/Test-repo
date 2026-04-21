@@ -1,0 +1,415 @@
+[2m[WebServer] [22m(node:443373) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:443385) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:443406) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m   ▲ Next.js 15.5.15
+[2m[WebServer] [22m   - Local:        http://127.0.0.1:3000
+[2m[WebServer] [22m   - Network:      http://127.0.0.1:3000
+[2m[WebServer] [22m
+[2m[WebServer] [22m ✓ Starting...
+[2m[WebServer] [22m ✓ Ready in 2.9s
+[2m[WebServer] [22m ○ Compiling /signin ...
+[2m[WebServer] [22m ✓ Compiled /signin in 11.3s (692 modules)
+[2m[WebServer] [22m GET /signin 200 in 12268ms
+
+Running 16 tests using 2 workers
+
+(node:443425) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:443426) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:443425) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:443426) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 245ms
+[2m[WebServer] [22m GET /signin 200 in 285ms
+[2m[WebServer] [22m GET /signin 200 in 322ms
+[2m[WebServer] [22m ○ Compiling /onboarding/consent ...
+[2m[WebServer] [22m ✓ Compiled /onboarding/consent in 1806ms (685 modules)
+[2m[WebServer] [22m GET /onboarding/consent 200 in 1752ms
+[2m[WebServer] [22m GET /onboarding/consent 200 in 2250ms
+[2m[WebServer] [22m ○ Compiling /app/[role] ...
+[2m[WebServer] [22m ✓ Compiled /app/[role] in 1734ms (711 modules)
+[2m[WebServer] [22m(node:443567) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/farmer 200 in 3425ms
+[2m[WebServer] [22m GET /app/advisor 200 in 3826ms
+[2m[WebServer] [22m GET /app/advisor 200 in 695ms
+[2m[WebServer] [22m(node:443575) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 [desktop-critical] › tests/e2e/auth-consent.spec.ts:6:7 › Auth and consent › sign-in validates identity fields and grants consent (12.9s)
+[2m[WebServer] [22m ○ Compiling /app/market/listings ...
+[2m[WebServer] [22m ✓ Compiled /app/market/listings in 2.5s (731 modules)
+[2m[WebServer] [22m GET /app/market/listings 200 in 3099ms
+[2m[WebServer] [22m GET /app/advisor/requests 200 in 3533ms
+[2m[WebServer] [22m GET /signin 200 in 189ms
+[2m[WebServer] [22m GET /onboarding/consent 200 in 171ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 336ms
+  ✓   1 [desktop-critical] › tests/e2e/advisory-climate-gate.spec.ts:27:7 › N4 advisory and climate tranche diagnostics › CJ-005 EP-006 RJ-003 DI-005 advisory route shows citations, confidence, and reviewer state (21.4s)
+[2m[WebServer] [22m GET /signin 200 in 220ms
+[2m[WebServer] [22m GET /onboarding/consent 200 in 163ms
+  ✓   3 [desktop-critical] › tests/e2e/auth-consent.spec.ts:50:7 › Auth and consent › protected routes redirect to sign-in first and consent second (11.2s)
+[2m[WebServer] [22m GET /onboarding/consent 200 in 102ms
+[2m[WebServer] [22m GET /signin 200 in 156ms
+[2m[WebServer] [22m GET /app/buyer 200 in 560ms
+[2m[WebServer] [22m GET /app/farmer 200 in 339ms
+[2m[WebServer] [22m(node:443630) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/farmer 200 in 212ms
+[2m[WebServer] [22m ○ Compiling /app/climate/alerts ...
+[2m[WebServer] [22m ✓ Compiled /app/climate/alerts in 1696ms (741 modules)
+[2m[WebServer] [22m GET /app/climate/alerts 200 in 2273ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 232ms
+[2m[WebServer] [22m ○ Compiling /app/market/negotiations ...
+[2m[WebServer] [22m ✓ Compiled /app/market/negotiations in 1927ms (751 modules)
+[2m[WebServer] [22m GET /app/market/negotiations 200 in 2481ms
+  ✓   4 [desktop-critical] › tests/e2e/advisory-climate-gate.spec.ts:56:7 › N4 advisory and climate tranche diagnostics › CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence (14.5s)
+[2m[WebServer] [22m GET /signin 200 in 234ms
+[2m[WebServer] [22m ○ Compiling /app/market/listings/[listingId] ...
+[2m[WebServer] [22m ✓ Compiled /app/market/listings/[listingId] in 1710ms (756 modules)
+[2m[WebServer] [22m GET /onboarding/consent 200 in 1355ms
+[2m[WebServer] [22m(node:443653) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/market/listings/listing-6b67cd785d12 200 in 3368ms
+[2m[WebServer] [22m GET /app/farmer 200 in 453ms
+[2m[WebServer] [22m GET /app/farmer 200 in 285ms
+[2m[WebServer] [22m(node:443661) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/market/listings 200 in 451ms
+[2m[WebServer] [22m GET /app/farmer 200 in 312ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 306ms
+[2m[WebServer] [22m(node:443671) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   5 [desktop-critical] › tests/e2e/buyer-discovery.spec.ts:143:7 › Buyer discovery and scoped read behavior › buyer reaches the discovery shell and cannot read another actor's listing detail (21.4s)
+[2m[WebServer] [22m GET /signin 200 in 440ms
+[2m[WebServer] [22m GET /app/farmer 200 in 547ms
+[2m[WebServer] [22m(node:443695) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/market/listings/listing-90e90ee5feda 200 in 506ms
+[2m[WebServer] [22m(node:443703) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/market/listings 200 in 195ms
+[2m[WebServer] [22m GET /app/farmer 200 in 408ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 450ms
+[2m[WebServer] [22m(node:443712) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   6 [desktop-critical] › tests/e2e/marketplace.spec.ts:6:7 › Marketplace create and read › farmer creates a listing and reads it back from detail (16.6s)
+[2m[WebServer] [22m GET /signin 200 in 159ms
+[2m[WebServer] [22m GET /signin 200 in 239ms
+[2m[WebServer] [22m GET /app/buyer 200 in 606ms
+[2m[WebServer] [22m GET /onboarding/consent 200 in 377ms
+[2m[WebServer] [22m(node:443736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/market/negotiations?listingId=listing-8415d13546f5 200 in 631ms
+[2m[WebServer] [22m GET /app/farmer 200 in 754ms
+[2m[WebServer] [22m(node:443744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/farmer 200 in 258ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 350ms
+[2m[WebServer] [22m GET /app/farmer 200 in 393ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 973ms
+[2m[WebServer] [22m(node:443752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 327ms
+[2m[WebServer] [22m GET /app/farmer 200 in 452ms
+[2m[WebServer] [22m(node:443760) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/market/negotiations 200 in 151ms
+[2m[WebServer] [22m GET /app/market/listings/listing-78324dd80b96 200 in 254ms
+[2m[WebServer] [22m(node:443768) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 326ms
+[2m[WebServer] [22m GET /app/buyer 200 in 703ms
+[2m[WebServer] [22m(node:443777) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [desktop-critical] › tests/e2e/marketplace.spec.ts:33:7 › Marketplace create and read › farmer edits a listing and sees optimistic reconciliation evidence (19.3s)
+(node:443785) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/market/negotiations 200 in 168ms
+(node:443785) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 154ms
+[2m[WebServer] [22m GET /signin 200 in 175ms
+[2m[WebServer] [22m GET /app/farmer 200 in 425ms
+[2m[WebServer] [22m GET /onboarding/consent 200 in 329ms
+[2m[WebServer] [22m(node:443856) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/advisor 200 in 161ms
+[2m[WebServer] [22m GET /app/advisor 200 in 524ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 553ms
+[2m[WebServer] [22m(node:443864) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/advisor/requests 200 in 762ms
+[2m[WebServer] [22m GET /app/farmer 200 in 542ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 254ms
+[2m[WebServer] [22m GET /signin 200 in 181ms
+[2m[WebServer] [22m GET /signin 200 in 200ms
+  ✘   9 [mobile-critical] › tests/e2e/advisory-climate-gate.spec.ts:27:7 › N4 advisory and climate tranche diagnostics › CJ-005 EP-006 RJ-003 DI-005 advisory route shows citations, confidence, and reviewer state (13.4s)
+[2m[WebServer] [22m GET /app/buyer 200 in 434ms
+(node:443896) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:443902) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+(node:443896) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 374ms
+[2m[WebServer] [22m GET /app/market/negotiations?listingId=listing-dce24c260655 200 in 433ms
+[2m[WebServer] [22m GET /onboarding/consent 200 in 115ms
+[2m[WebServer] [22m GET /signin 200 in 431ms
+[2m[WebServer] [22m GET /app/farmer 200 in 590ms
+[2m[WebServer] [22m GET /app/farmer 200 in 720ms
+[2m[WebServer] [22m(node:443979) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/farmer 200 in 182ms
+[2m[WebServer] [22m GET /app/climate/alerts 200 in 426ms
+[2m[WebServer] [22m GET /app/market/negotiations 200 in 267ms
+  ✘  10 [mobile-critical] › tests/e2e/advisory-climate-gate.spec.ts:56:7 › N4 advisory and climate tranche diagnostics › CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence (12.8s)
+(node:443989) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:443989) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 1934ms
+[2m[WebServer] [22m GET /signin 200 in 567ms
+[2m[WebServer] [22m GET /app/buyer 200 in 857ms
+[2m[WebServer] [22m(node:444060) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 679ms
+[2m[WebServer] [22m GET /app/market/negotiations 200 in 278ms
+[2m[WebServer] [22m GET /onboarding/consent 200 in 155ms
+[2m[WebServer] [22m GET /app/farmer 200 in 320ms
+[2m[WebServer] [22m GET /signin 200 in 412ms
+[2m[WebServer] [22m(node:444069) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/buyer 200 in 393ms
+  ✓  11 [mobile-critical] › tests/e2e/auth-consent.spec.ts:6:7 › Auth and consent › sign-in validates identity fields and grants consent (10.0s)
+[2m[WebServer] [22m GET /app/market/listings 200 in 182ms
+[2m[WebServer] [22m GET /app/market/negotiations?threadId=thread-1a7567bcc4a0 200 in 217ms
+[2m[WebServer] [22m GET /signin 200 in 104ms
+[2m[WebServer] [22m GET /onboarding/consent 200 in 159ms
+  ✓   7 [desktop-critical] › tests/e2e/negotiation.spec.ts:250:7 › Negotiation inbox and thread proof › pending confirmation approve/reject paths lock terminal state and outsider thread access is blocked (1.2m)
+(node:444094) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/market/listings 200 in 147ms
+(node:444094) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /onboarding/consent 200 in 123ms
+[2m[WebServer] [22m GET /signin 200 in 192ms
+[2m[WebServer] [22m GET /app/buyer 200 in 279ms
+[2m[WebServer] [22m(node:444171) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  12 [mobile-critical] › tests/e2e/auth-consent.spec.ts:50:7 › Auth and consent › protected routes redirect to sign-in first and consent second (8.5s)
+[2m[WebServer] [22m GET /signin 200 in 224ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 151ms
+[2m[WebServer] [22m GET /onboarding/consent 200 in 104ms
+[2m[WebServer] [22m GET /app/farmer 200 in 324ms
+[2m[WebServer] [22m(node:444193) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/farmer 200 in 294ms
+[2m[WebServer] [22m GET /app/market/negotiations 200 in 541ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 560ms
+[2m[WebServer] [22m GET /app/farmer 200 in 255ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 404ms
+[2m[WebServer] [22m(node:444202) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/market/listings/listing-51b986129ca2 200 in 238ms
+[2m[WebServer] [22m(node:444211) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/market/listings/listing-0edc17dfa4e1 200 in 351ms
+  ✓  13 [mobile-critical] › tests/e2e/buyer-discovery.spec.ts:143:7 › Buyer discovery and scoped read behavior › buyer reaches the discovery shell and cannot read another actor's listing detail (14.7s)
+[2m[WebServer] [22m GET /signin 200 in 146ms
+  ✓  14 [mobile-critical] › tests/e2e/marketplace.spec.ts:6:7 › Marketplace create and read › farmer creates a listing and reads it back from detail (13.3s)
+[2m[WebServer] [22m GET /signin 200 in 701ms
+[2m[WebServer] [22m GET /app/farmer 200 in 853ms
+[2m[WebServer] [22m(node:444242) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/market/listings 200 in 176ms
+[2m[WebServer] [22m GET /app/farmer 200 in 400ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 332ms
+[2m[WebServer] [22m GET /onboarding/consent 200 in 360ms
+[2m[WebServer] [22m(node:444257) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/farmer 200 in 266ms
+[2m[WebServer] [22m GET /app/farmer 200 in 537ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 328ms
+[2m[WebServer] [22m(node:444265) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/farmer 200 in 531ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 429ms
+[2m[WebServer] [22m GET /signin 200 in 214ms
+[2m[WebServer] [22m GET /app/buyer 200 in 481ms
+[2m[WebServer] [22m(node:444274) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/market/negotiations?listingId=listing-e6da2c30e78d 200 in 141ms
+[2m[WebServer] [22m GET /app/market/listings/listing-fb2e21a575ef 200 in 191ms
+[2m[WebServer] [22m(node:444282) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 227ms
+[2m[WebServer] [22m GET /app/farmer 200 in 381ms
+  ✓  16 [mobile-critical] › tests/e2e/marketplace.spec.ts:33:7 › Marketplace create and read › farmer edits a listing and sees optimistic reconciliation evidence (17.4s)
+[2m[WebServer] [22m(node:444292) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/market/negotiations 200 in 155ms
+[2m[WebServer] [22m GET /signin 200 in 128ms
+[2m[WebServer] [22m GET /app/buyer 200 in 338ms
+[2m[WebServer] [22m(node:444300) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/market/negotiations 200 in 150ms
+[2m[WebServer] [22m GET /signin 200 in 182ms
+[2m[WebServer] [22m GET /app/farmer 200 in 273ms
+[2m[WebServer] [22m(node:444309) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/market/listings 200 in 188ms
+[2m[WebServer] [22m GET /app/farmer 200 in 209ms
+[2m[WebServer] [22m GET /app/market/listings 200 in 435ms
+[2m[WebServer] [22m(node:444317) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 209ms
+[2m[WebServer] [22m GET /app/buyer 200 in 217ms
+[2m[WebServer] [22m(node:444325) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/market/negotiations?listingId=listing-74b62401043d 200 in 164ms
+[2m[WebServer] [22m GET /signin 200 in 177ms
+[2m[WebServer] [22m GET /app/farmer 200 in 240ms
+[2m[WebServer] [22m(node:444333) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/market/negotiations 200 in 110ms
+[2m[WebServer] [22m GET /signin 200 in 156ms
+[2m[WebServer] [22m GET /app/buyer 200 in 527ms
+[2m[WebServer] [22m(node:444341) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/market/negotiations 200 in 113ms
+[2m[WebServer] [22m GET /signin 200 in 203ms
+[2m[WebServer] [22m GET /app/buyer 200 in 271ms
+[2m[WebServer] [22m(node:444349) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /app/market/negotiations?threadId=thread-0f89157f5ed7 200 in 125ms
+  ✓  15 [mobile-critical] › tests/e2e/negotiation.spec.ts:250:7 › Negotiation inbox and thread proof › pending confirmation approve/reject paths lock terminal state and outsider thread access is blocked (53.9s)
+
+
+  1) [mobile-critical] › tests/e2e/advisory-climate-gate.spec.ts:27:7 › N4 advisory and climate tranche diagnostics › CJ-005 EP-006 RJ-003 DI-005 advisory route shows citations, confidence, and reviewer state 
+
+    Error: page.screenshot: Target crashed 
+    Browser logs:
+
+    <launching> /home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-tKbp9w --remote-debugging-pipe --no-startup-window
+    <launched> pid=443798
+    [pid=443798][err] [0418/233952.005704:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+    [pid=443798][err] [0418/233952.009395:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+    [pid=443798][err] [0418/233952.009470:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+    [pid=443798][err] [0418/233952.041965:WARNING:device/bluetooth/dbus/bluez_dbus_manager.cc:209] Floss manager service not available, cannot set Floss enable/disable.
+    [pid=443798][err] [0418/233952.206233:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.
+    [pid=443798][err] [0418/233953.713352:INFO:CONSOLE:25631] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: webpack-internal:///(app-pages-browser)/../../../../../../../../mnt/vault/MWH/Projects/Agrodomain/node_modules/.pnpm/next@15.5.15_@playwright+test@1.59.1_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js (25631)
+    [pid=443798][err] [0418/234000.562197:INFO:CONSOLE:25631] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: webpack-internal:///(app-pages-browser)/../../../../../../../../mnt/vault/MWH/Projects/Agrodomain/node_modules/.pnpm/next@15.5.15_@playwright+test@1.59.1_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js (25631)
+    [pid=443798][err] Received signal 11 SEGV_MAPERR 000000000000
+    [pid=443798][err] #0 0x6150115c1f5a (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3954f59)
+    [pid=443798][err] #1 0x6150149f3d24 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x6d86d23)
+    [pid=443798][err] #2 0x745684fa9050 (/usr/lib/x86_64-linux-gnu/libc.so.6+0x3c04f)
+    [pid=443798][err] #3 0x6150145018e7 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x68948e6)
+    [pid=443798][err] #4 0x615013bb005e (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x5f4305d)
+    [pid=443798][err] #5 0x61500f5f77b4 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x198a7b3)
+    [pid=443798][err] #6 0x615010a0b921 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x2d9e920)
+    [pid=443798][err] #7 0x745685b06719 (/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.7400.6+0x54718)
+    [pid=443798][err] #8 0x1b900002daa0 ([anon:partition_alloc]+0x1b900002da9f)
+    [pid=443798][err] #9 0x61500fe3d2d3 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x21d02d2)
+    [pid=443798][err] #10 0x61500fe3ca51 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x21cfa50)
+    [pid=443798][err] #11 0x6150113e32ef (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x37762ee)
+    [pid=443798][err] #12 0x615011c54e66 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3fe7e65)
+    [pid=443798][err] #13 0x615011c54fe6 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3fe7fe5)
+    [pid=443798][err] #14 0x615011c58481 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3feb480)
+    [pid=443798][err] #15 0x615011c55419 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3fe8418)
+    [pid=443798][err] #16 0x615011c5450e (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3fe750d)
+    [pid=443798][err] #17 0x6150125efad0 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x4982acf)
+    [pid=443798][err] #18 0x6150125f0cf2 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x4983cf1)
+    [pid=443798][err] #19 0x745684f9424a (/usr/lib/x86_64-linux-gnu/libc.so.6+0x27249)
+    [pid=443798][err]   r8: 0000000000000004  r9: 000000000000fffe r10: 0000000000000000 r11: 0000000000000000
+    [pid=443798][err]  r12: 0000000000000000 r13: 00001b94002daf00 r14: 00001b9400268000 r15: 0000000000000001
+    [pid=443798][err]   di: 0000000000000000  si: 0000615018d67a00  bp: 00007ffd5218f060  bx: 0000000000000001
+    [pid=443798][err]   dx: f040350000000000  ax: 00001b9400328140  cx: 000061501430e490  sp: 00007ffd5218f010
+    [pid=443798][err]   ip: 000061501430e5dc efl: 0000000000010206 cgf: 002b000000000033 erf: 0000000000000004
+    [pid=443798][err]  trp: 000000000000000e msk: 0000000000000000 cr2: 0000000000000000
+    [pid=443798][err] [end of stack trace]
+    Call log:
+    [2m  - taking page screenshot[22m
+    [2m  - waiting for fonts to load...[22m
+    [2m  - fonts loaded[22m
+
+
+      21 |     return;
+      22 |   }
+    > 23 |   await page.screenshot({ path: screenshotPath, fullPage: true });
+         |              ^
+      24 | }
+      25 |
+      26 | test.describe("N4 advisory and climate tranche diagnostics", () => {
+        at captureProof (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:23:14)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:53:11
+
+    Error Context: execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/regression-n1-n4/test-results/advisory-climate-gate-N4-a-fcd24-nfidence-and-reviewer-state-mobile-critical/error-context.md
+
+  2) [mobile-critical] › tests/e2e/advisory-climate-gate.spec.ts:56:7 › N4 advisory and climate tranche diagnostics › CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence 
+
+    Error: page.screenshot: Target crashed 
+    Browser logs:
+
+    <launching> /home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-Cu5cZt --remote-debugging-pipe --no-startup-window
+    <launched> pid=443917
+    [pid=443917][err] [0418/234007.802326:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+    [pid=443917][err] [0418/234007.810222:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+    [pid=443917][err] [0418/234007.810336:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+    [pid=443917][err] [0418/234007.836699:WARNING:device/bluetooth/dbus/bluez_dbus_manager.cc:209] Floss manager service not available, cannot set Floss enable/disable.
+    [pid=443917][err] [0418/234008.077198:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.
+    [pid=443917][err] [0418/234010.101301:INFO:CONSOLE:25631] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: webpack-internal:///(app-pages-browser)/../../../../../../../../mnt/vault/MWH/Projects/Agrodomain/node_modules/.pnpm/next@15.5.15_@playwright+test@1.59.1_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js (25631)
+    [pid=443917][err] [0418/234016.749458:INFO:CONSOLE:25631] "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold", source: webpack-internal:///(app-pages-browser)/../../../../../../../../mnt/vault/MWH/Projects/Agrodomain/node_modules/.pnpm/next@15.5.15_@playwright+test@1.59.1_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js (25631)
+    [pid=443917][err] Received signal 11 SEGV_MAPERR 000000000000
+    [pid=443917][err] #0 0x637637e22f5a (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3954f59)
+    [pid=443917][err] #1 0x63763b254d24 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x6d86d23)
+    [pid=443917][err] #2 0x70a221510050 (/usr/lib/x86_64-linux-gnu/libc.so.6+0x3c04f)
+    [pid=443917][err] #3 0x63763ad628e7 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x68948e6)
+    [pid=443917][err] #4 0x63763a41105e (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x5f4305d)
+    [pid=443917][err] #5 0x637635e587b4 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x198a7b3)
+    [pid=443917][err] #6 0x63763726c921 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x2d9e920)
+    [pid=443917][err] #7 0x70a22206d719 (/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.7400.6+0x54718)
+    [pid=443917][err] #8 0x3f380002daa0 ([anon:partition_alloc]+0x3f380002da9f)
+    [pid=443917][err] #9 0x63763669e2d3 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x21d02d2)
+    [pid=443917][err] #10 0x63763669da51 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x21cfa50)
+    [pid=443917][err] #11 0x637637c442ef (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x37762ee)
+    [pid=443917][err] #12 0x6376384b5e66 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3fe7e65)
+    [pid=443917][err] #13 0x6376384b5fe6 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3fe7fe5)
+    [pid=443917][err] #14 0x6376384b9481 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3feb480)
+    [pid=443917][err] #15 0x6376384b6419 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3fe8418)
+    [pid=443917][err] #16 0x6376384b550e (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x3fe750d)
+    [pid=443917][err] #17 0x637638e50ad0 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x4982acf)
+    [pid=443917][err] #18 0x637638e51cf2 (/home/node/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell+0x4983cf1)
+    [pid=443917][err] #19 0x70a2214fb24a (/usr/lib/x86_64-linux-gnu/libc.so.6+0x27249)
+    [pid=443917][err]   r8: 0000000000000004  r9: 000000000000fffe r10: 0000000000000000 r11: 0000000000000000
+    [pid=443917][err]  r12: 0000000000000000 r13: 00003f3c003cad80 r14: 00003f3c00268000 r15: 0000000000000002
+    [pid=443917][err]   di: 0000000000000000  si: 000063763f5c8a00  bp: 00007ffc1a2494d0  bx: 0000000000000001
+    [pid=443917][err]   dx: 901a300000000000  ax: 00003f3c00534050  cx: 000063763ab6f490  sp: 00007ffc1a249480
+    [pid=443917][err]   ip: 000063763ab6f5dc efl: 0000000000010206 cgf: 002b000000000033 erf: 0000000000000004
+    [pid=443917][err]  trp: 000000000000000e msk: 0000000000000000 cr2: 0000000000000000
+    [pid=443917][err] [end of stack trace]
+    Call log:
+    [2m  - taking page screenshot[22m
+    [2m  - waiting for fonts to load...[22m
+    [2m  - fonts loaded[22m
+
+
+      21 |     return;
+      22 |   }
+    > 23 |   await page.screenshot({ path: screenshotPath, fullPage: true });
+         |              ^
+      24 | }
+      25 |
+      26 | test.describe("N4 advisory and climate tranche diagnostics", () => {
+        at captureProof (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:23:14)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/advisory-climate-gate.spec.ts:82:11
+
+    Error Context: execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/regression-n1-n4/test-results/advisory-climate-gate-N4-a-2743d-wledgement-and-MRV-evidence-mobile-critical/error-context.md
+
+  2 failed
+    [mobile-critical] › tests/e2e/advisory-climate-gate.spec.ts:27:7 › N4 advisory and climate tranche diagnostics › CJ-005 EP-006 RJ-003 DI-005 advisory route shows citations, confidence, and reviewer state 
+    [mobile-critical] › tests/e2e/advisory-climate-gate.spec.ts:56:7 › N4 advisory and climate tranche diagnostics › CJ-006 EP-008 RJ-003 DI-006 climate route shows alert acknowledgement and MRV evidence 
+  14 passed (3.5m)

@@ -1,0 +1,178 @@
+{
+  "$ref": "#/definitions/FinanceDecision",
+  "definitions": {
+    "FinanceDecision": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "actor_role": {
+          "enum": [
+            "farmer",
+            "buyer",
+            "cooperative",
+            "advisor",
+            "finance",
+            "finance_ops",
+            "admin"
+          ],
+          "type": "string"
+        },
+        "decided_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "type": "string"
+        },
+        "decision_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "decision_source": {
+          "enum": [
+            "partner",
+            "operator"
+          ],
+          "type": "string"
+        },
+        "finance_request_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "note": {
+          "maxLength": 300,
+          "nullable": true,
+          "type": "string"
+        },
+        "outcome": {
+          "enum": [
+            "approved",
+            "declined",
+            "blocked",
+            "hitl_required"
+          ],
+          "type": "string"
+        },
+        "partner_reference_id": {
+          "maxLength": 128,
+          "nullable": true,
+          "type": "string"
+        },
+        "policy_context": {
+          "additionalProperties": false,
+          "properties": {
+            "matched_rule": {
+              "minLength": 1,
+              "nullable": true,
+              "type": "string"
+            },
+            "policy_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "policy_version": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "requires_hitl": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "policy_id",
+            "policy_version",
+            "matched_rule",
+            "requires_hitl"
+          ],
+          "type": "object"
+        },
+        "reason_code": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "request_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "responsibility_boundary": {
+          "additionalProperties": false,
+          "properties": {
+            "internal_can_approve": {
+              "type": "boolean"
+            },
+            "internal_can_block": {
+              "type": "boolean"
+            },
+            "internal_can_prepare": {
+              "type": "boolean"
+            },
+            "owner": {
+              "enum": [
+                "partner",
+                "internal",
+                "shared"
+              ],
+              "type": "string"
+            },
+            "partner_decision_required": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "owner",
+            "internal_can_prepare",
+            "internal_can_block",
+            "internal_can_approve",
+            "partner_decision_required"
+          ],
+          "type": "object"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "transcript_link": {
+          "maxLength": 255,
+          "nullable": true,
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "decision_id",
+        "finance_request_id",
+        "request_id",
+        "actor_id",
+        "actor_role",
+        "decision_source",
+        "outcome",
+        "reason_code",
+        "note",
+        "partner_reference_id",
+        "responsibility_boundary",
+        "policy_context",
+        "transcript_link",
+        "decided_at"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Finance decision DTO that forbids internal approval shortcuts and preserves accountability fields.",
+  "x-agrodomain-contract": {
+    "id": "finance.finance_decision",
+    "domain": "finance",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-004",
+      "CJ-008",
+      "DI-003"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n5-wave5-finance-insurance-traceability-tranche.md"
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+
+> @agrodomain/web@0.0.0 build /mnt/vault/MWH/Projects/Agrodomain/apps/web
+> next build
+
+   ▲ Next.js 15.5.15
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 16.5s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/20) ...
+   Generating static pages (5/20) 
+   Generating static pages (10/20) 
+   Generating static pages (15/20) 
+ ✓ Generating static pages (20/20)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                      180 B         105 kB
+├ ○ /_not-found                            992 B         102 kB
+├ ○ /app                                   123 B         102 kB
+├ ƒ /app/[role]                          3.83 kB         112 kB
+├ ○ /app/admin/analytics                   180 B         105 kB
+├ ○ /app/advisor/requests                  180 B         105 kB
+├ ○ /app/advisory/new                      170 B         105 kB
+├ ○ /app/climate/alerts                    180 B         105 kB
+├ ○ /app/cooperative/dispatch              180 B         105 kB
+├ ○ /app/finance/queue                     180 B         105 kB
+├ ○ /app/market/listings                   180 B         105 kB
+├ ƒ /app/market/listings/[listingId]       170 B         105 kB
+├ ○ /app/market/negotiations               180 B         105 kB
+├ ○ /app/notifications                     170 B         105 kB
+├ ƒ /app/offline/conflicts/[id]          1.72 kB         110 kB
+├ ○ /app/offline/outbox                  1.52 kB         110 kB
+├ ○ /app/payments/wallet                   170 B         105 kB
+├ ○ /app/profile                          1.8 kB         123 kB
+├ ƒ /app/traceability/[consignmentId]      170 B         105 kB
+├ ○ /icon.svg                                0 B            0 B
+├ ○ /onboarding/consent                  2.41 kB         123 kB
+└ ○ /signin                              2.14 kB         123 kB
++ First Load JS shared by all             101 kB
+  ├ chunks/695-00bca043953d4170.js       45.3 kB
+  ├ chunks/d99d8e6a-80443bd3c9d31f50.js  54.2 kB
+  └ other shared chunks (total)          1.93 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+PASS

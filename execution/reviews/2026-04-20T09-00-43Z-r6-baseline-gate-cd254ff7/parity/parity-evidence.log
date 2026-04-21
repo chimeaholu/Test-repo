@@ -1,0 +1,13 @@
+# Parity evidence
+[OK] execution/WAVE-LOCK.md
+  size=4386 mtime=1776675815.7630296
+[OK] .planning/STATE.md
+  size=6260 mtime=1776675815.77303
+[OK] apps/api/app/api/routes/admin.py
+  size=21651 mtime=1776657236.3529932
+[OK] apps/web/app/app/admin/analytics/page.tsx
+  size=169 mtime=1776658799.3874578
+[OK] tests/e2e/n6-admin-observability.spec.ts
+  size=1634 mtime=1776562055.5595472
+[OK] apps/api/tests/integration/test_n6_admin_observability_reliability.py
+  size=11344 mtime=1776657473.7861385

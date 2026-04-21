@@ -1,0 +1,367 @@
+{
+  "started_at": "2026-04-20T23:19:51.580529+00:00",
+  "project_id": "812c9677-9d2a-4496-9a82-4bd2dbb90607",
+  "rollback_pointer": {
+    "canary_previous": {
+      "id": "4dc39bc0-768e-4541-b73f-3d53d00a8b7c",
+      "status": "SUCCESS",
+      "createdAt": "2026-04-18T00:50:10.130Z",
+      "staticUrl": "web-staging-29cd.up.railway.app",
+      "url": null
+    },
+    "production_previous": {
+      "id": "bc00a49a-ef4d-4d48-a300-1915d246891c",
+      "status": "SUCCESS",
+      "createdAt": "2026-04-19T23:29:28.441Z",
+      "staticUrl": "web-prod-n6-production.up.railway.app",
+      "url": null
+    }
+  },
+  "canary": {
+    "deploy_id": "535a7a4a-90cb-4d6f-917b-7a2bc0a738ce",
+    "poll": [
+      {
+        "ts": "2026-04-20T23:19:52.835018+00:00",
+        "status": "INITIALIZING",
+        "staticUrl": "web-staging-29cd.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:19:58.032717+00:00",
+        "status": "BUILDING",
+        "staticUrl": "web-staging-29cd.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:20:03.352493+00:00",
+        "status": "BUILDING",
+        "staticUrl": "web-staging-29cd.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:20:08.560674+00:00",
+        "status": "BUILDING",
+        "staticUrl": "web-staging-29cd.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:20:13.765589+00:00",
+        "status": "BUILDING",
+        "staticUrl": "web-staging-29cd.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:20:19.047017+00:00",
+        "status": "BUILDING",
+        "staticUrl": "web-staging-29cd.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:20:24.319732+00:00",
+        "status": "DEPLOYING",
+        "staticUrl": "web-staging-29cd.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:20:29.558878+00:00",
+        "status": "SUCCESS",
+        "staticUrl": "web-staging-29cd.up.railway.app",
+        "url": null
+      }
+    ],
+    "final": {
+      "id": "535a7a4a-90cb-4d6f-917b-7a2bc0a738ce",
+      "status": "SUCCESS",
+      "createdAt": "2026-04-20T23:19:52.299Z",
+      "updatedAt": "2026-04-20T23:20:26.697Z",
+      "staticUrl": "web-staging-29cd.up.railway.app",
+      "url": null,
+      "canRollback": true,
+      "canRedeploy": true,
+      "serviceId": "a90a7dc8-3e69-4f3e-a028-5704cbad2ef7",
+      "environmentId": "04fe2393-74b8-4dcf-8bfe-d26d7af63cf9",
+      "projectId": "812c9677-9d2a-4496-9a82-4bd2dbb90607",
+      "meta": {
+        "plan": "hobby",
+        "repo": "chimeaholu/Test-repo",
+        "branch": "staging",
+        "logsV2": true,
+        "reason": "deploy",
+        "runtime": "V2",
+        "buildOnly": false,
+        "commitHash": "c5d8f8eaa0948241fd4a9650ef82793eff0ff1f7",
+        "configFile": "railway.json",
+        "imageDigest": "sha256:662aa517d12056c04d27af78a7a5837a066d9efab086092b7f7db83dd77af64e",
+        "commitAuthor": "",
+        "volumeMounts": [],
+        "commitMessage": "Add friendly root route redirect to signin",
+        "rootDirectory": null,
+        "skipBuildCache": true,
+        "serviceManifest": {
+          "build": {
+            "builder": "DOCKERFILE",
+            "buildCommand": null,
+            "nixpacksPlan": null,
+            "watchPatterns": [],
+            "dockerfilePath": "Dockerfile",
+            "buildEnvironment": null,
+            "nixpacksConfigPath": null
+          },
+          "deploy": {
+            "region": null,
+            "runtime": "V2",
+            "numReplicas": 1,
+            "cronSchedule": null,
+            "startCommand": null,
+            "limitOverride": null,
+            "overlapSeconds": null,
+            "drainingSeconds": null,
+            "healthcheckPath": "/healthz",
+            "preDeployCommand": null,
+            "sleepApplication": false,
+            "useLegacyStacker": false,
+            "ipv6EgressEnabled": false,
+            "multiRegionConfig": {
+              "us-east4-eqdc4a": {
+                "numReplicas": 1
+              }
+            },
+            "requiredMountPath": null,
+            "restartPolicyType": "ON_FAILURE",
+            "healthcheckTimeout": null,
+            "registryCredentials": null,
+            "restartPolicyMaxRetries": 5
+          }
+        },
+        "nixpacksProviders": [
+          "node"
+        ],
+        "fileServiceManifest": {
+          "build": {
+            "builder": "DOCKERFILE",
+            "dockerfilePath": "Dockerfile"
+          },
+          "deploy": {
+            "numReplicas": 1,
+            "healthcheckPath": "/healthz",
+            "restartPolicyType": "ON_FAILURE",
+            "restartPolicyMaxRetries": 5
+          }
+        },
+        "ignoreWatchPatterns": true,
+        "propertyFileMapping": {
+          "build.builder": "$.build.builder",
+          "deploy.numReplicas": "$.deploy.numReplicas",
+          "build.dockerfilePath": "$.build.dockerfilePath",
+          "deploy.healthcheckPath": "$.deploy.healthcheckPath",
+          "deploy.restartPolicyType": "$.deploy.restartPolicyType",
+          "deploy.restartPolicyMaxRetries": "$.deploy.restartPolicyMaxRetries"
+        }
+      }
+    }
+  },
+  "production": {
+    "deploy_id": "5867b1f6-3858-4ff6-bf73-6025108ea245",
+    "poll": [
+      {
+        "ts": "2026-04-20T23:20:30.779395+00:00",
+        "status": "INITIALIZING",
+        "staticUrl": "web-prod-n6-production.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:20:35.994514+00:00",
+        "status": "BUILDING",
+        "staticUrl": "web-prod-n6-production.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:20:41.213797+00:00",
+        "status": "BUILDING",
+        "staticUrl": "web-prod-n6-production.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:20:46.407335+00:00",
+        "status": "BUILDING",
+        "staticUrl": "web-prod-n6-production.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:20:51.601705+00:00",
+        "status": "BUILDING",
+        "staticUrl": "web-prod-n6-production.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:20:56.779496+00:00",
+        "status": "BUILDING",
+        "staticUrl": "web-prod-n6-production.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:21:01.973877+00:00",
+        "status": "BUILDING",
+        "staticUrl": "web-prod-n6-production.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:21:07.178051+00:00",
+        "status": "BUILDING",
+        "staticUrl": "web-prod-n6-production.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:21:12.365638+00:00",
+        "status": "BUILDING",
+        "staticUrl": "web-prod-n6-production.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:21:17.607709+00:00",
+        "status": "BUILDING",
+        "staticUrl": "web-prod-n6-production.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:21:22.813529+00:00",
+        "status": "BUILDING",
+        "staticUrl": "web-prod-n6-production.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:21:28.017490+00:00",
+        "status": "BUILDING",
+        "staticUrl": "web-prod-n6-production.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:21:33.216072+00:00",
+        "status": "BUILDING",
+        "staticUrl": "web-prod-n6-production.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:21:38.407336+00:00",
+        "status": "BUILDING",
+        "staticUrl": "web-prod-n6-production.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:21:43.605674+00:00",
+        "status": "BUILDING",
+        "staticUrl": "web-prod-n6-production.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:21:48.815664+00:00",
+        "status": "DEPLOYING",
+        "staticUrl": "web-prod-n6-production.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:21:54.020827+00:00",
+        "status": "DEPLOYING",
+        "staticUrl": "web-prod-n6-production.up.railway.app",
+        "url": null
+      },
+      {
+        "ts": "2026-04-20T23:21:59.222260+00:00",
+        "status": "SUCCESS",
+        "staticUrl": "web-prod-n6-production.up.railway.app",
+        "url": null
+      }
+    ],
+    "final": {
+      "id": "5867b1f6-3858-4ff6-bf73-6025108ea245",
+      "status": "SUCCESS",
+      "createdAt": "2026-04-20T23:20:30.091Z",
+      "updatedAt": "2026-04-20T23:21:56.406Z",
+      "staticUrl": "web-prod-n6-production.up.railway.app",
+      "url": null,
+      "canRollback": true,
+      "canRedeploy": true,
+      "serviceId": "a19793a1-c81d-423a-9ab9-836066c85580",
+      "environmentId": "291d66c8-a153-484f-8cd6-36aac78df6cc",
+      "projectId": "812c9677-9d2a-4496-9a82-4bd2dbb90607",
+      "meta": {
+        "plan": "hobby",
+        "repo": "chimeaholu/Test-repo",
+        "branch": "deploy/n6-prod-subtree-5edce2",
+        "logsV2": true,
+        "reason": "deploy",
+        "runtime": "V2",
+        "buildOnly": false,
+        "commitHash": "ec7e7fb61063aeab140aecb8c008cf8ac1438513",
+        "configFile": "railway.web.json",
+        "imageDigest": "sha256:4ec9aa736755cfd541d13717dd699ff55fa9b6c6c4f697002003177e9a483318",
+        "commitAuthor": "",
+        "volumeMounts": [],
+        "commitMessage": "fix(prod-web-build): restore proven docker build path for contracts+next",
+        "rootDirectory": null,
+        "skipBuildCache": true,
+        "serviceManifest": {
+          "build": {
+            "builder": "DOCKERFILE",
+            "buildCommand": null,
+            "nixpacksPlan": null,
+            "watchPatterns": [],
+            "dockerfilePath": "apps/web/Dockerfile",
+            "buildEnvironment": null,
+            "nixpacksConfigPath": null
+          },
+          "deploy": {
+            "region": null,
+            "runtime": "V2",
+            "numReplicas": 1,
+            "cronSchedule": null,
+            "startCommand": null,
+            "limitOverride": null,
+            "overlapSeconds": null,
+            "drainingSeconds": null,
+            "healthcheckPath": "/healthz",
+            "preDeployCommand": null,
+            "sleepApplication": false,
+            "useLegacyStacker": false,
+            "ipv6EgressEnabled": false,
+            "multiRegionConfig": {
+              "asia-southeast1-eqsg3a": {
+                "numReplicas": 1
+              }
+            },
+            "requiredMountPath": null,
+            "restartPolicyType": "ON_FAILURE",
+            "healthcheckTimeout": null,
+            "registryCredentials": null,
+            "restartPolicyMaxRetries": 5
+          }
+        },
+        "nixpacksProviders": [
+          "node"
+        ],
+        "fileServiceManifest": {
+          "build": {
+            "builder": "DOCKERFILE",
+            "dockerfilePath": "apps/web/Dockerfile"
+          },
+          "deploy": {
+            "numReplicas": 1,
+            "healthcheckPath": "/healthz",
+            "restartPolicyType": "ON_FAILURE",
+            "restartPolicyMaxRetries": 5
+          }
+        },
+        "ignoreWatchPatterns": true,
+        "propertyFileMapping": {
+          "build.builder": "$.build.builder",
+          "deploy.numReplicas": "$.deploy.numReplicas",
+          "build.dockerfilePath": "$.build.dockerfilePath",
+          "deploy.healthcheckPath": "$.deploy.healthcheckPath",
+          "deploy.restartPolicyType": "$.deploy.restartPolicyType",
+          "deploy.restartPolicyMaxRetries": "$.deploy.restartPolicyMaxRetries"
+        }
+      }
+    }
+  },
+  "finished_at": "2026-04-20T23:21:59.432167+00:00"
+}

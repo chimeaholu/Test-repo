@@ -1,0 +1,30 @@
+
+ RUN  v3.2.4 /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/apps/web
+
+ ✓ features/negotiation/negotiation-inbox.test.tsx (4 tests) 4096ms
+   ✓ negotiation inbox > submits a buyer offer and renders audit/idempotency evidence  3458ms
+   ✓ negotiation inbox > renders pending confirmation controls only for the authorized confirmer  333ms
+ ✓ features/advisory/conversation-workspace.test.tsx (1 test) 1301ms
+   ✓ advisory conversation workspace > renders reviewer state, locale fallback, and citation drawer  1298ms
+ ✓ features/traceability/traceability-workspace.test.tsx (2 tests) 1263ms
+   ✓ traceability workspace > renders explicit evidence metadata error when attachments are absent  688ms
+   ✓ traceability workspace > opens evidence details and records telemetry  549ms
+ ✓ features/climate/climate-dashboard.test.tsx (1 test) 406ms
+   ✓ climate dashboard > renders degraded-mode detail and acknowledges alerts  400ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  features/finance/finance-review-console.test.tsx [ features/finance/finance-review-console.test.tsx ]
+Error: [vitest-worker]: Timeout calling "fetch" with "["/features/finance/finance-review-console.tsx","web"]"
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  features/listings/listing-slice.test.tsx [ features/listings/listing-slice.test.tsx ]
+Error: [vitest-worker]: Timeout calling "fetch" with "["/features/listings/listing-slice.tsx","web"]"
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 4 passed (6)
+      Tests  8 passed (8)
+   Start at  12:49:20
+   Duration  3824.09s (transform 277.54s, setup 232.65s, collect 9.03s, tests 7.07s, environment 457.11s, prepare 5.43s)
+

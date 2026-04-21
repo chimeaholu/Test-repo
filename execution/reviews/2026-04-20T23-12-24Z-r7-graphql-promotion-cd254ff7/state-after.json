@@ -1,0 +1,108 @@
+{
+  "project": {
+    "id": "812c9677-9d2a-4496-9a82-4bd2dbb90607",
+    "name": "agrodomain-staging",
+    "services": {
+      "edges": [
+        {
+          "node": {
+            "id": "a19793a1-c81d-423a-9ab9-836066c85580",
+            "name": "web-prod-n6",
+            "serviceInstances": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "48e4d687-5c48-4499-85f9-ec854dd79bc6",
+                    "environmentId": "291d66c8-a153-484f-8cd6-36aac78df6cc",
+                    "latestDeployment": {
+                      "id": "5867b1f6-3858-4ff6-bf73-6025108ea245",
+                      "status": "SUCCESS",
+                      "createdAt": "2026-04-20T23:20:30.091Z",
+                      "staticUrl": "web-prod-n6-production.up.railway.app",
+                      "url": null
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "node": {
+            "id": "a90a7dc8-3e69-4f3e-a028-5704cbad2ef7",
+            "name": "web",
+            "serviceInstances": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "4fda658e-c1d1-4586-8bff-a9b7cc87c703",
+                    "environmentId": "04fe2393-74b8-4dcf-8bfe-d26d7af63cf9",
+                    "latestDeployment": {
+                      "id": "535a7a4a-90cb-4d6f-917b-7a2bc0a738ce",
+                      "status": "SUCCESS",
+                      "createdAt": "2026-04-20T23:19:52.299Z",
+                      "staticUrl": "web-staging-29cd.up.railway.app",
+                      "url": null
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "node": {
+            "id": "d71fd82b-498d-4fc0-b281-7423c2d9e2df",
+            "name": "api-prod-n6",
+            "serviceInstances": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "8e04df1a-66bb-4f78-b4a2-1f15ca19c458",
+                    "environmentId": "291d66c8-a153-484f-8cd6-36aac78df6cc",
+                    "latestDeployment": {
+                      "id": "9aae20b6-be41-4174-b779-445eb3807a26",
+                      "status": "SUCCESS",
+                      "createdAt": "2026-04-19T23:29:28.168Z",
+                      "staticUrl": "api-prod-n6-production.up.railway.app",
+                      "url": null
+                    }
+                  }
+                },
+                {
+                  "node": {
+                    "id": "a5952d7f-c801-4702-987b-6321a79aaf48",
+                    "environmentId": "04fe2393-74b8-4dcf-8bfe-d26d7af63cf9",
+                    "latestDeployment": {
+                      "id": "163bb52c-6171-40f6-888f-2a7115fe9163",
+                      "status": "FAILED",
+                      "createdAt": "2026-04-19T23:29:28.708Z",
+                      "staticUrl": null,
+                      "url": null
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "environments": {
+      "edges": [
+        {
+          "node": {
+            "id": "04fe2393-74b8-4dcf-8bfe-d26d7af63cf9",
+            "name": "staging"
+          }
+        },
+        {
+          "node": {
+            "id": "291d66c8-a153-484f-8cd6-36aac78df6cc",
+            "name": "production"
+          }
+        }
+      ]
+    }
+  }
+}

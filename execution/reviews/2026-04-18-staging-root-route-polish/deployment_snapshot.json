@@ -1,0 +1,12 @@
+{
+  "serviceId": "a90a7dc8-3e69-4f3e-a028-5704cbad2ef7",
+  "upstreamUrl": null,
+  "latestDeployment": {
+    "id": "4dc39bc0-768e-4541-b73f-3d53d00a8b7c",
+    "status": "SUCCESS",
+    "createdAt": "2026-04-18T00:50:10.130Z",
+    "updatedAt": "2026-04-18T00:50:47.161Z",
+    "staticUrl": "web-staging-29cd.up.railway.app",
+    "url": null
+  }
+}

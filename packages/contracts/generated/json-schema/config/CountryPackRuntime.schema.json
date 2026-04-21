@@ -1,0 +1,181 @@
+{
+  "$ref": "#/definitions/CountryPackRuntime",
+  "definitions": {
+    "CountryPackRuntime": {
+      "additionalProperties": false,
+      "properties": {
+        "config_revision": {
+          "maxLength": 96,
+          "minLength": 1,
+          "type": "string"
+        },
+        "country_pack": {
+          "additionalProperties": false,
+          "properties": {
+            "country_code": {
+              "description": "ISO alpha-2 country code",
+              "pattern": "^[A-Z]{2}$",
+              "type": "string"
+            },
+            "currency": {
+              "pattern": "^[A-Z]{3}$",
+              "type": "string"
+            },
+            "default_locale": {
+              "maxLength": 16,
+              "minLength": 2,
+              "pattern": "^[a-z]{2}(?:-[A-Z]{2})?$",
+              "type": "string"
+            },
+            "legal_notices": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "body_markdown": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "locale": {
+                    "$ref": "#/definitions/CountryPackRuntime/properties/country_pack/properties/default_locale"
+                  },
+                  "notice_id": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "required_for_scopes": {
+                    "items": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  },
+                  "title": {
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "notice_id",
+                  "locale",
+                  "title",
+                  "body_markdown",
+                  "required_for_scopes"
+                ],
+                "type": "object"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "region": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "regulated_mutation_requires_consent": {
+              "type": "boolean"
+            },
+            "schema_version": {
+              "$ref": "#/definitions/CountryPackRuntime/properties/schema_version"
+            },
+            "supported_channels": {
+              "items": {
+                "enum": [
+                  "ussd",
+                  "whatsapp",
+                  "pwa",
+                  "sms"
+                ],
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "supported_locales": {
+              "items": {
+                "$ref": "#/definitions/CountryPackRuntime/properties/country_pack/properties/default_locale"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "schema_version",
+            "country_code",
+            "region",
+            "currency",
+            "default_locale",
+            "supported_locales",
+            "supported_channels",
+            "legal_notices",
+            "regulated_mutation_requires_consent"
+          ],
+          "type": "object"
+        },
+        "environment": {
+          "enum": [
+            "local",
+            "test",
+            "ci",
+            "staging",
+            "production"
+          ],
+          "type": "string"
+        },
+        "feature_flag_keys": {
+          "items": {
+            "maxLength": 96,
+            "minLength": 3,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "legal_notice_checksum": {
+          "maxLength": 128,
+          "minLength": 8,
+          "type": "string"
+        },
+        "rollout_policy_keys": {
+          "items": {
+            "maxLength": 96,
+            "minLength": 3,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "environment",
+        "country_pack",
+        "feature_flag_keys",
+        "rollout_policy_keys",
+        "config_revision",
+        "legal_notice_checksum"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Country-pack runtime binding that ties the canonical country pack to environment-specific feature and rollout policy references.",
+  "x-agrodomain-contract": {
+    "id": "config.country_pack_runtime",
+    "domain": "config",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-001",
+      "EP-007",
+      "DI-004"
+    ],
+    "source_artifacts": [
+      "execution/reviews/2026-04-20-agrodomain-enterprise-master-plan-revision.md",
+      "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+      "execution/contracts/b002_identity_consent_contract.json"
+    ]
+  }
+}

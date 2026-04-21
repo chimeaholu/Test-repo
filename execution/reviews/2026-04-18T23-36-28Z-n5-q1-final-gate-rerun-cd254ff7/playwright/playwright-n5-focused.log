@@ -1,0 +1,149 @@
+[2m[WebServer] [22m(node:443001) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:443013) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:443034) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m   ▲ Next.js 15.5.15
+[2m[WebServer] [22m   - Local:        http://127.0.0.1:3000
+[2m[WebServer] [22m   - Network:      http://127.0.0.1:3000
+[2m[WebServer] [22m
+[2m[WebServer] [22m ✓ Starting...
+[2m[WebServer] [22m ✓ Ready in 3.1s
+[2m[WebServer] [22m ○ Compiling /signin ...
+[2m[WebServer] [22m ✓ Compiled /signin in 12.6s (692 modules)
+[2m[WebServer] [22m GET /signin 200 in 13823ms
+
+Running 4 tests using 2 workers
+
+(node:443052) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:443053) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:443052) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:443053) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m GET /signin 200 in 306ms
+[2m[WebServer] [22m GET /signin 200 in 574ms
+[2m[WebServer] [22m ○ Compiling /app/finance/queue ...
+[2m[WebServer] [22m ✓ Compiled /app/finance/queue in 3.4s (697 modules)
+[2m[WebServer] [22m GET /app/finance/queue 200 in 4734ms
+[2m[WebServer] [22m GET /app/finance/queue 200 in 4386ms
+  ✘  1 [desktop-critical] › tests/e2e/n5-finance-traceability.spec.ts:214:7 › N5 finance and traceability tranche checks › CJ-004/CJ-008 finance HITL queue and decision actions are live (19.7s)
+(node:443200) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [mobile-critical] › tests/e2e/n5-finance-traceability.spec.ts:214:7 › N5 finance and traceability tranche checks › CJ-004/CJ-008 finance HITL queue and decision actions are live (20.4s)
+(node:443209) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:443200) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:443209) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [desktop-critical] › tests/e2e/n5-finance-traceability.spec.ts:237:7 › N5 finance and traceability tranche checks › CJ-007 traceability timeline renders ordered events and explicit evidence state (1.2s)
+  ✘  4 [mobile-critical] › tests/e2e/n5-finance-traceability.spec.ts:237:7 › N5 finance and traceability tranche checks › CJ-007 traceability timeline renders ordered events and explicit evidence state (604ms)
+
+
+  1) [desktop-critical] › tests/e2e/n5-finance-traceability.spec.ts:214:7 › N5 finance and traceability tranche checks › CJ-004/CJ-008 finance HITL queue and decision actions are live 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByText('listing/listing-201', { exact: true })
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+    [2m  - waiting for getByText('listing/listing-201', { exact: true })[22m
+
+
+      225 |
+      226 |     await page.getByRole("button", { name: "Submit finance request" }).click();
+    > 227 |     await expect(page.getByText("listing/listing-201", { exact: true })).toBeVisible();
+          |                                                                          ^
+      228 |
+      229 |     await page.getByRole("button", { name: "Record partner approved" }).click();
+      230 |     await expect(page.getByText("evidence_sufficient")).toBeVisible();
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:227:74
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/test-results/n5-finance-traceability-N5-bf26b-d-decision-actions-are-live-desktop-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/test-results/n5-finance-traceability-N5-bf26b-d-decision-actions-are-live-desktop-critical/error-context.md
+
+  2) [desktop-critical] › tests/e2e/n5-finance-traceability.spec.ts:237:7 › N5 finance and traceability tranche checks › CJ-007 traceability timeline renders ordered events and explicit evidence state 
+
+    Error: traceability.consignments.create did not return consignment_id: {"status":"accepted","request_id":"a8b8502d-7d45-40e7-9ef0-632ca85cebde","idempotency_key":"c942a3bb-fa2f-4174-a000-5fda021f0478","result":{"execution_id":13,"command_name":"traceability.consignments.create","accepted":true},"error_code":null,"audit_event_id":356,"replayed":false}
+
+      127 |   const consignmentId = createJson.result?.consignment?.consignment_id ?? createJson.result?.consignment_id;
+      128 |   if (!consignmentId) {
+    > 129 |     throw new Error(`traceability.consignments.create did not return consignment_id: ${JSON.stringify(createJson)}`);
+          |           ^
+      130 |   }
+      131 |
+      132 |   const harvestRequestId = crypto.randomUUID();
+        at createConsignmentTimeline (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:129:11)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:244:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/test-results/n5-finance-traceability-N5-a33b0-and-explicit-evidence-state-desktop-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/test-results/n5-finance-traceability-N5-a33b0-and-explicit-evidence-state-desktop-critical/error-context.md
+
+  3) [mobile-critical] › tests/e2e/n5-finance-traceability.spec.ts:214:7 › N5 finance and traceability tranche checks › CJ-004/CJ-008 finance HITL queue and decision actions are live 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByText('listing/listing-201', { exact: true })
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+    [2m  - waiting for getByText('listing/listing-201', { exact: true })[22m
+
+
+      225 |
+      226 |     await page.getByRole("button", { name: "Submit finance request" }).click();
+    > 227 |     await expect(page.getByText("listing/listing-201", { exact: true })).toBeVisible();
+          |                                                                          ^
+      228 |
+      229 |     await page.getByRole("button", { name: "Record partner approved" }).click();
+      230 |     await expect(page.getByText("evidence_sufficient")).toBeVisible();
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:227:74
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/test-results/n5-finance-traceability-N5-bf26b-d-decision-actions-are-live-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/test-results/n5-finance-traceability-N5-bf26b-d-decision-actions-are-live-mobile-critical/error-context.md
+
+  4) [mobile-critical] › tests/e2e/n5-finance-traceability.spec.ts:237:7 › N5 finance and traceability tranche checks › CJ-007 traceability timeline renders ordered events and explicit evidence state 
+
+    Error: traceability.consignments.create did not return consignment_id: {"status":"accepted","request_id":"e3f2d402-8deb-4ac8-9b10-d787a022b075","idempotency_key":"3e46b165-b3fa-40af-b756-31e5f7ccd183","result":{"execution_id":14,"command_name":"traceability.consignments.create","accepted":true},"error_code":null,"audit_event_id":357,"replayed":false}
+
+      127 |   const consignmentId = createJson.result?.consignment?.consignment_id ?? createJson.result?.consignment_id;
+      128 |   if (!consignmentId) {
+    > 129 |     throw new Error(`traceability.consignments.create did not return consignment_id: ${JSON.stringify(createJson)}`);
+          |           ^
+      130 |   }
+      131 |
+      132 |   const harvestRequestId = crypto.randomUUID();
+        at createConsignmentTimeline (/ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:129:11)
+        at /ductor/agents/engineering/workspace/worktrees/agrodomain-n5-web-cd254ff7/tests/e2e/n5-finance-traceability.spec.ts:244:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/test-results/n5-finance-traceability-N5-a33b0-and-explicit-evidence-state-mobile-critical/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: execution/reviews/2026-04-18T23-36-28Z-n5-q1-final-gate-rerun-cd254ff7/playwright/n5-focused/test-results/n5-finance-traceability-N5-a33b0-and-explicit-evidence-state-mobile-critical/error-context.md
+
+  4 failed
+    [desktop-critical] › tests/e2e/n5-finance-traceability.spec.ts:214:7 › N5 finance and traceability tranche checks › CJ-004/CJ-008 finance HITL queue and decision actions are live 
+    [desktop-critical] › tests/e2e/n5-finance-traceability.spec.ts:237:7 › N5 finance and traceability tranche checks › CJ-007 traceability timeline renders ordered events and explicit evidence state 
+    [mobile-critical] › tests/e2e/n5-finance-traceability.spec.ts:214:7 › N5 finance and traceability tranche checks › CJ-004/CJ-008 finance HITL queue and decision actions are live 
+    [mobile-critical] › tests/e2e/n5-finance-traceability.spec.ts:237:7 › N5 finance and traceability tranche checks › CJ-007 traceability timeline renders ordered events and explicit evidence state 

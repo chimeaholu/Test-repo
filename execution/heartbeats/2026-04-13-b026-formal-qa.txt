@@ -1,0 +1,6 @@
+SHA b2e1f487662ee3a9a0816ad715739f7a18d0dad9
+TMPDIR /tmp/tmp.xGg52zSsO7
+PWD /tmp/tmp.xGg52zSsO7/MWH/Projects/Agrodomain
+COMMAND PYTHONPATH=src pytest -q tests/test_partner_api_gateway.py tests/test_partner_api_gateway_contract_stub.py tests/test_audit_events.py tests/test_enterprise_analytics_mart.py tests/test_tool_contracts.py tests/test_package_exports.py
+.......................                                                  [100%]
+23 passed in 0.87s

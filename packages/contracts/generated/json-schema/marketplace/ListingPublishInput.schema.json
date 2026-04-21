@@ -1,0 +1,33 @@
+{
+  "$ref": "#/definitions/ListingPublishInput",
+  "definitions": {
+    "ListingPublishInput": {
+      "additionalProperties": false,
+      "properties": {
+        "listing_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "listing_id"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Canonical publish-listing payload for moving a seller draft into buyer-visible discovery.",
+  "x-agrodomain-contract": {
+    "id": "marketplace.listing_publish_input",
+    "domain": "marketplace",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-002",
+      "CJ-003",
+      "DI-001"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+    ]
+  }
+}

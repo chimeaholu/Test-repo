@@ -1,0 +1,15 @@
+{
+  "root_status_line": "HTTP/2 307 ",
+  "root_code": 307,
+  "root_location": "/signin",
+  "root_pass": true,
+  "signin_status_line": "HTTP/2 200 ",
+  "signin_code": 200,
+  "signin_pass": true,
+  "health_status_line": "HTTP/2 200 ",
+  "health_code": 200,
+  "health_pass": true,
+  "seed_status_line": "HTTP/2 200 ",
+  "seed_code": 200,
+  "seed_pass": true
+}

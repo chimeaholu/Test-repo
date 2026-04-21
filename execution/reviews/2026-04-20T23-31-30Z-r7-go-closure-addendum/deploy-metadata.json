@@ -1,0 +1,182 @@
+{
+  "canary": {
+    "id": "9a8b1eed-3c36-42ec-b5b7-7cb8908e69a8",
+    "status": "SUCCESS",
+    "createdAt": "2026-04-20T23:29:26.614Z",
+    "updatedAt": "2026-04-20T23:31:08.157Z",
+    "staticUrl": "web-prod-n6-canary-r7.up.railway.app",
+    "url": null,
+    "serviceId": "a19793a1-c81d-423a-9ab9-836066c85580",
+    "environmentId": "ecc95cc6-0076-4c01-839e-11fdddd922a7",
+    "projectId": "812c9677-9d2a-4496-9a82-4bd2dbb90607",
+    "meta": {
+      "plan": "hobby",
+      "repo": "chimeaholu/Test-repo",
+      "branch": "deploy/n6-prod-subtree-5edce2",
+      "logsV2": true,
+      "reason": "deploy",
+      "runtime": "V2",
+      "buildOnly": false,
+      "commitHash": "ec7e7fb61063aeab140aecb8c008cf8ac1438513",
+      "configFile": "railway.web.json",
+      "imageDigest": "sha256:f78a372ddeb9d4f1fb7fc50f1ab856e8708bcfbf3d8265a6adbe738b648795fe",
+      "commitAuthor": "",
+      "volumeMounts": [],
+      "commitMessage": "fix(prod-web-build): restore proven docker build path for contracts+next",
+      "rootDirectory": null,
+      "skipBuildCache": true,
+      "serviceManifest": {
+        "build": {
+          "builder": "DOCKERFILE",
+          "buildCommand": null,
+          "nixpacksPlan": null,
+          "watchPatterns": [],
+          "dockerfilePath": "apps/web/Dockerfile",
+          "buildEnvironment": null,
+          "nixpacksConfigPath": null
+        },
+        "deploy": {
+          "region": null,
+          "runtime": "V2",
+          "numReplicas": 1,
+          "cronSchedule": null,
+          "startCommand": null,
+          "limitOverride": null,
+          "overlapSeconds": null,
+          "drainingSeconds": null,
+          "healthcheckPath": "/healthz",
+          "preDeployCommand": null,
+          "sleepApplication": false,
+          "useLegacyStacker": false,
+          "ipv6EgressEnabled": false,
+          "multiRegionConfig": {
+            "asia-southeast1-eqsg3a": {
+              "numReplicas": 1
+            }
+          },
+          "requiredMountPath": null,
+          "restartPolicyType": "ON_FAILURE",
+          "healthcheckTimeout": null,
+          "registryCredentials": null,
+          "restartPolicyMaxRetries": 5
+        }
+      },
+      "nixpacksProviders": [
+        "node"
+      ],
+      "fileServiceManifest": {
+        "build": {
+          "builder": "DOCKERFILE",
+          "dockerfilePath": "apps/web/Dockerfile"
+        },
+        "deploy": {
+          "numReplicas": 1,
+          "healthcheckPath": "/healthz",
+          "restartPolicyType": "ON_FAILURE",
+          "restartPolicyMaxRetries": 5
+        }
+      },
+      "ignoreWatchPatterns": true,
+      "propertyFileMapping": {
+        "build.builder": "$.build.builder",
+        "deploy.numReplicas": "$.deploy.numReplicas",
+        "build.dockerfilePath": "$.build.dockerfilePath",
+        "deploy.healthcheckPath": "$.deploy.healthcheckPath",
+        "deploy.restartPolicyType": "$.deploy.restartPolicyType",
+        "deploy.restartPolicyMaxRetries": "$.deploy.restartPolicyMaxRetries"
+      }
+    },
+    "canRollback": true,
+    "canRedeploy": true
+  },
+  "production": {
+    "id": "5867b1f6-3858-4ff6-bf73-6025108ea245",
+    "status": "SUCCESS",
+    "createdAt": "2026-04-20T23:20:30.091Z",
+    "updatedAt": "2026-04-20T23:21:56.406Z",
+    "staticUrl": "web-prod-n6-production.up.railway.app",
+    "url": null,
+    "serviceId": "a19793a1-c81d-423a-9ab9-836066c85580",
+    "environmentId": "291d66c8-a153-484f-8cd6-36aac78df6cc",
+    "projectId": "812c9677-9d2a-4496-9a82-4bd2dbb90607",
+    "meta": {
+      "plan": "hobby",
+      "repo": "chimeaholu/Test-repo",
+      "branch": "deploy/n6-prod-subtree-5edce2",
+      "logsV2": true,
+      "reason": "deploy",
+      "runtime": "V2",
+      "buildOnly": false,
+      "commitHash": "ec7e7fb61063aeab140aecb8c008cf8ac1438513",
+      "configFile": "railway.web.json",
+      "imageDigest": "sha256:4ec9aa736755cfd541d13717dd699ff55fa9b6c6c4f697002003177e9a483318",
+      "commitAuthor": "",
+      "volumeMounts": [],
+      "commitMessage": "fix(prod-web-build): restore proven docker build path for contracts+next",
+      "rootDirectory": null,
+      "skipBuildCache": true,
+      "serviceManifest": {
+        "build": {
+          "builder": "DOCKERFILE",
+          "buildCommand": null,
+          "nixpacksPlan": null,
+          "watchPatterns": [],
+          "dockerfilePath": "apps/web/Dockerfile",
+          "buildEnvironment": null,
+          "nixpacksConfigPath": null
+        },
+        "deploy": {
+          "region": null,
+          "runtime": "V2",
+          "numReplicas": 1,
+          "cronSchedule": null,
+          "startCommand": null,
+          "limitOverride": null,
+          "overlapSeconds": null,
+          "drainingSeconds": null,
+          "healthcheckPath": "/healthz",
+          "preDeployCommand": null,
+          "sleepApplication": false,
+          "useLegacyStacker": false,
+          "ipv6EgressEnabled": false,
+          "multiRegionConfig": {
+            "asia-southeast1-eqsg3a": {
+              "numReplicas": 1
+            }
+          },
+          "requiredMountPath": null,
+          "restartPolicyType": "ON_FAILURE",
+          "healthcheckTimeout": null,
+          "registryCredentials": null,
+          "restartPolicyMaxRetries": 5
+        }
+      },
+      "nixpacksProviders": [
+        "node"
+      ],
+      "fileServiceManifest": {
+        "build": {
+          "builder": "DOCKERFILE",
+          "dockerfilePath": "apps/web/Dockerfile"
+        },
+        "deploy": {
+          "numReplicas": 1,
+          "healthcheckPath": "/healthz",
+          "restartPolicyType": "ON_FAILURE",
+          "restartPolicyMaxRetries": 5
+        }
+      },
+      "ignoreWatchPatterns": true,
+      "propertyFileMapping": {
+        "build.builder": "$.build.builder",
+        "deploy.numReplicas": "$.deploy.numReplicas",
+        "build.dockerfilePath": "$.build.dockerfilePath",
+        "deploy.healthcheckPath": "$.deploy.healthcheckPath",
+        "deploy.restartPolicyType": "$.deploy.restartPolicyType",
+        "deploy.restartPolicyMaxRetries": "$.deploy.restartPolicyMaxRetries"
+      }
+    },
+    "canRollback": true,
+    "canRedeploy": true
+  }
+}

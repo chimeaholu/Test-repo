@@ -1,0 +1,54 @@
+
+> @agrodomain/web@0.0.0 build /mnt/vault/MWH/Projects/Agrodomain/apps/web
+> corepack pnpm --filter @agrodomain/contracts build && next build
+
+
+> @agrodomain/contracts@0.0.0 build /mnt/vault/MWH/Projects/Agrodomain/packages/contracts
+> tsc -p tsconfig.json
+
+   ▲ Next.js 15.5.15
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 26.5s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/20) ...
+   Generating static pages (5/20) 
+   Generating static pages (10/20) 
+   Generating static pages (15/20) 
+ ✓ Generating static pages (20/20)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                      177 B         105 kB
+├ ○ /_not-found                            993 B         103 kB
+├ ○ /app                                   123 B         102 kB
+├ ƒ /app/[role]                          3.77 kB         131 kB
+├ ○ /app/admin/analytics                   177 B         105 kB
+├ ○ /app/advisor/requests                  177 B         105 kB
+├ ○ /app/advisory/new                      168 B         105 kB
+├ ○ /app/climate/alerts                    177 B         105 kB
+├ ○ /app/cooperative/dispatch              177 B         105 kB
+├ ○ /app/finance/queue                     177 B         105 kB
+├ ○ /app/market/listings                   166 B         133 kB
+├ ƒ /app/market/listings/[listingId]       166 B         133 kB
+├ ○ /app/market/negotiations               177 B         105 kB
+├ ○ /app/notifications                     168 B         105 kB
+├ ƒ /app/offline/conflicts/[id]          1.65 kB         129 kB
+├ ○ /app/offline/outbox                  1.45 kB         129 kB
+├ ○ /app/payments/wallet                   168 B         105 kB
+├ ○ /app/profile                         1.79 kB         129 kB
+├ ƒ /app/traceability/[consignmentId]      168 B         105 kB
+├ ○ /icon.svg                                0 B            0 B
+├ ○ /onboarding/consent                  2.41 kB         130 kB
+└ ○ /signin                              2.14 kB         130 kB
++ First Load JS shared by all             102 kB
+  ├ chunks/09c3fec0-1226c3ff1021d309.js  54.2 kB
+  ├ chunks/826-cf3a79e89df7b509.js       45.6 kB
+  └ other shared chunks (total)          1.93 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

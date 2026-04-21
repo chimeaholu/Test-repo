@@ -1,0 +1,67 @@
+ WARN  using --force I sure hope you know what you are doing
+Scope: all 6 workspace projects
+Recreating /mnt/vault/MWH/Projects/Agrodomain/node_modules
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +232 -1
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+Progress: resolved 232, reused 17, downloaded 0, added 0
+Progress: resolved 232, reused 61, downloaded 0, added 0
+Progress: resolved 232, reused 109, downloaded 0, added 0
+Progress: resolved 232, reused 151, downloaded 1, added 3
+Progress: resolved 232, reused 151, downloaded 3, added 4
+Progress: resolved 232, reused 151, downloaded 9, added 4
+Progress: resolved 232, reused 151, downloaded 10, added 4
+Progress: resolved 232, reused 151, downloaded 11, added 4
+Progress: resolved 232, reused 151, downloaded 13, added 4
+Progress: resolved 232, reused 151, downloaded 14, added 4
+Progress: resolved 232, reused 151, downloaded 14, added 6
+Progress: resolved 232, reused 151, downloaded 18, added 6
+Progress: resolved 232, reused 151, downloaded 27, added 6
+Progress: resolved 232, reused 151, downloaded 34, added 9
+Progress: resolved 232, reused 151, downloaded 43, added 9
+Progress: resolved 232, reused 151, downloaded 45, added 10
+Progress: resolved 232, reused 151, downloaded 59, added 12
+Progress: resolved 232, reused 151, downloaded 74, added 15
+Progress: resolved 232, reused 151, downloaded 80, added 18
+Progress: resolved 232, reused 151, downloaded 81, added 19
+Progress: resolved 232, reused 151, downloaded 81, added 20
+Progress: resolved 232, reused 151, downloaded 81, added 23
+Progress: resolved 232, reused 151, downloaded 81, added 24
+Progress: resolved 232, reused 151, downloaded 81, added 25
+Progress: resolved 232, reused 151, downloaded 81, added 32
+Progress: resolved 232, reused 151, downloaded 81, added 43
+Progress: resolved 232, reused 151, downloaded 81, added 58
+Progress: resolved 232, reused 151, downloaded 81, added 61
+Progress: resolved 232, reused 151, downloaded 81, added 77
+Progress: resolved 232, reused 151, downloaded 81, added 79
+Progress: resolved 232, reused 151, downloaded 81, added 99
+Progress: resolved 232, reused 151, downloaded 81, added 111
+Progress: resolved 232, reused 151, downloaded 81, added 123
+Progress: resolved 232, reused 151, downloaded 81, added 150
+Progress: resolved 232, reused 151, downloaded 81, added 155
+Progress: resolved 232, reused 151, downloaded 81, added 159
+Progress: resolved 232, reused 151, downloaded 81, added 160
+Progress: resolved 232, reused 151, downloaded 81, added 161
+Progress: resolved 232, reused 151, downloaded 81, added 162
+Progress: resolved 232, reused 151, downloaded 81, added 163
+Progress: resolved 232, reused 151, downloaded 81, added 166
+Progress: resolved 232, reused 151, downloaded 81, added 170
+Progress: resolved 232, reused 151, downloaded 81, added 189
+Progress: resolved 232, reused 151, downloaded 81, added 214
+Progress: resolved 232, reused 151, downloaded 81, added 231
+Progress: resolved 232, reused 151, downloaded 81, added 232, done
+
+devDependencies:
++ @playwright/test 1.59.1
++ turbo 2.9.6
+
+╭ Warning ─────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│   Ignored build scripts: esbuild, sharp.                                     │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+│   to run scripts.                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Done in 1m 6.1s using pnpm v10.11.0
