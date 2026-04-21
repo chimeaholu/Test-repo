@@ -1785,7 +1785,7 @@ export const agroApiClient = {
       status: string;
       request_id: string;
       idempotency_key: string;
-      result: { schema_version: string; listing: ListingRecord };
+      result: { schema_version: typeof schemaVersion; listing: ListingRecord };
       audit_event_id: number;
       replayed: boolean;
     }>(
@@ -1832,7 +1832,7 @@ export const agroApiClient = {
   },
 
   async getWalletSummary(traceId: string): Promise<ResponseEnvelope<{
-    schema_version: string;
+    schema_version: typeof schemaVersion;
     actor_id: string;
     country_code: string;
     total_balance: number;
@@ -1862,7 +1862,7 @@ export const agroApiClient = {
 
   async listWalletTransactions(traceId: string): Promise<ResponseEnvelope<{
     items: Array<{
-      schema_version: string;
+      schema_version: typeof schemaVersion;
       entry_id: string;
       actor_id: string;
       escrow_id: string | null;
@@ -1907,7 +1907,7 @@ export const agroApiClient = {
 
   async listEscrows(traceId: string): Promise<ResponseEnvelope<{
     items: Array<{
-      schema_version: string;
+      schema_version: typeof schemaVersion;
       escrow_id: string;
       thread_id: string;
       listing_id: string;
@@ -2131,7 +2131,7 @@ export const agroApiClient = {
       status: string;
       request_id: string;
       idempotency_key: string;
-      result: { schema_version: string; thread: NegotiationThreadRead };
+      result: { schema_version: typeof schemaVersion; thread: NegotiationThreadRead };
       audit_event_id: number;
       replayed: boolean;
     }>(
