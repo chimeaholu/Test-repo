@@ -1,5 +1,5 @@
-import { WalletWorkspace } from "@/features/wallet/wallet-workspace";
+import { WalletDashboardClient } from "@/features/wallet/wallet-dashboard";
 
 export default function WalletPage() {
-  return <WalletWorkspace />;
+  return <WalletDashboardClient />;
 }
