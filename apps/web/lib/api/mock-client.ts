@@ -2,6 +2,7 @@ import type {
   ActorRole,
   ConsentCapturePayload,
   CreateListingResult,
+  EscrowRead,
   FinanceDecision,
   FinanceDecisionInput,
   FinancePartnerRequest,
@@ -28,6 +29,8 @@ import type {
   ResponseEnvelope,
   SignInPayload,
   UpdateListingResult,
+  WalletBalanceRead,
+  WalletLedgerEntry as WalletLedgerEntryContract,
 } from "@agrodomain/contracts";
 import {
   advisoryConversationCollectionSchema,
@@ -1831,22 +1834,12 @@ export const agroApiClient = {
     );
   },
 
-  async getWalletSummary(traceId: string): Promise<ResponseEnvelope<{
-    schema_version: string;
-    actor_id: string;
-    country_code: string;
-    total_balance: number;
-    available_balance: number;
-    held_balance: number;
-    currency: string;
-    balance_version: number;
-    updated_at: string;
-  }>> {
+  async getWalletSummary(traceId: string): Promise<ResponseEnvelope<WalletBalanceRead>> {
     const workspace = await this.getWalletWorkspace(traceId);
     const b = workspace.data.wallet.balance;
     return responseEnvelope(
       {
-        schema_version: schemaVersion as typeof schemaVersion,
+        schema_version: schemaVersion,
         actor_id: workspace.data.actor_id,
         country_code: workspace.data.country_code,
         total_balance: b.total_balance,
@@ -1855,27 +1848,13 @@ export const agroApiClient = {
         currency: workspace.data.wallet.currency,
         balance_version: b.balance_version,
         updated_at: b.updated_at ?? nowIso(),
-      },
+      } as WalletBalanceRead,
       traceId,
     );
   },
 
   async listWalletTransactions(traceId: string): Promise<ResponseEnvelope<{
-    items: Array<{
-      schema_version: string;
-      entry_id: string;
-      actor_id: string;
-      escrow_id: string | null;
-      direction: string;
-      amount: number;
-      currency: string;
-      reason: string;
-      entry_sequence: number;
-      balance_version: number;
-      resulting_available_balance: number;
-      resulting_held_balance: number;
-      created_at: string;
-    }>;
+    items: WalletLedgerEntryContract[];
   }>> {
     const workspace = await this.getWalletWorkspace(traceId);
     let runningAvailable = workspace.data.wallet.balance.available_balance;
@@ -1887,7 +1866,7 @@ export const agroApiClient = {
         runningAvailable -= entry.amount;
       }
       return {
-        schema_version: schemaVersion as typeof schemaVersion,
+        schema_version: schemaVersion,
         entry_id: entry.entry_id,
         actor_id: workspace.data.actor_id,
         escrow_id: entry.escrow_id,
@@ -1902,40 +1881,15 @@ export const agroApiClient = {
         created_at: entry.created_at ?? nowIso(),
       };
     });
-    return responseEnvelope({ items }, traceId);
+    return responseEnvelope({ items: items as unknown as WalletLedgerEntryContract[] }, traceId);
   },
 
   async listEscrows(traceId: string): Promise<ResponseEnvelope<{
-    items: Array<{
-      schema_version: string;
-      escrow_id: string;
-      thread_id: string;
-      listing_id: string;
-      buyer_actor_id: string;
-      seller_actor_id: string;
-      country_code: string;
-      amount: number;
-      currency: string;
-      state: string;
-      partner_reason_code: string | null;
-      timeline: Array<{
-        entry_id: string;
-        request_id: string;
-        idempotency_key: string;
-        actor_id: string;
-        transition: string;
-        state: string;
-        note: string | null;
-        notification: Record<string, unknown> | null;
-        created_at: string;
-      }>;
-      created_at: string;
-      updated_at: string;
-    }>;
+    items: EscrowRead[];
   }>> {
     const workspace = await this.getWalletWorkspace(traceId);
     const items = workspace.data.escrow.escrows.map((escrow) => ({
-      schema_version: schemaVersion as typeof schemaVersion,
+      schema_version: schemaVersion,
       escrow_id: escrow.escrow_id,
       thread_id: escrow.thread_id,
       listing_id: escrow.listing_id,
@@ -1959,7 +1913,7 @@ export const agroApiClient = {
       })),
       created_at: escrow.created_at ?? nowIso(),
       updated_at: escrow.updated_at ?? nowIso(),
-    }));
+    })) as unknown as EscrowRead[];
     return responseEnvelope({ items }, traceId);
   },
 
