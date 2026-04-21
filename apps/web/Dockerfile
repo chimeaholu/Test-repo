@@ -20,4 +20,4 @@ ENV HOSTNAME=0.0.0.0
 
 EXPOSE 3000
 
-CMD ["corepack", "pnpm", "--filter", "@agrodomain/web", "exec", "next", "start", "-p", "3000", "-H", "0.0.0.0"]
+CMD ["node", "apps/web/server.js"]
