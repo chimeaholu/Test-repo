@@ -8,6 +8,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 COPY apps/api/pyproject.toml /app/apps/api/pyproject.toml
 COPY apps/api/app /app/apps/api/app
 COPY packages/contracts/generated /app/packages/contracts/generated
+COPY packages/config/src/data /app/packages/config/src/data
 
 RUN pip install --no-cache-dir /app/apps/api
 

@@ -32,9 +32,10 @@ class Settings(BaseSettings):
         default_factory=lambda: [
             "http://127.0.0.1:3000",
             "http://localhost:3000",
+            "https://web-prod-n6-production.up.railway.app",
         ]
     )
-    cors_allowed_origin_regex: str = r"https?://(127\.0\.0\.1|localhost)(:\d+)?"
+    cors_allowed_origin_regex: str = r"https?://(127\.0\.0\.1|localhost)(:\d+)?|https://.*\.up\.railway\.app"
     api_tokens: dict[str, str] = Field(
         default_factory=lambda: {"test-token": "system:test"}
     )
