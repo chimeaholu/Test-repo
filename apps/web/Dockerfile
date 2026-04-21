@@ -1,4 +1,4 @@
-FROM node:22-bookworm-slim AS builder
+FROM node:22-bookworm-slim
 
 WORKDIR /app
 
@@ -13,22 +13,11 @@ RUN corepack pnpm install --no-frozen-lockfile --prod=false
 RUN corepack pnpm --filter @agrodomain/contracts build || true
 RUN corepack pnpm --filter @agrodomain/config build || true
 RUN corepack pnpm --filter @agrodomain/web exec next build
-RUN ls -la /app/apps/web/.next/standalone/ && echo "STANDALONE OK"
-
-FROM node:22-bookworm-slim AS runner
-
-WORKDIR /app
 
 ENV NODE_ENV=production
-ENV NEXT_TELEMETRY_DISABLED=1
-ENV NEXT_PUBLIC_AGRO_API_BASE_URL=https://api-prod-n6-production.up.railway.app
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 
-COPY --from=builder /app/apps/web/.next/standalone ./
-COPY --from=builder /app/apps/web/.next/static ./apps/web/.next/static
-COPY --from=builder /app/apps/web/public ./apps/web/public
-
 EXPOSE 3000
 
-CMD ["node", "apps/web/server.js"]
+CMD ["corepack", "pnpm", "--filter", "@agrodomain/web", "exec", "next", "start", "-p", "3000", "-H", "0.0.0.0"]
