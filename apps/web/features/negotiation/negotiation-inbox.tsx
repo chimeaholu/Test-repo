@@ -492,7 +492,7 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
               <SectionHeading
                 eyebrow="Open offer"
                 title="Buyer offer composer"
-                body="Start with a published lot, submit one canonical offer, and keep the result visible if the request is replayed or retried."
+                body="Start with a published lot, submit your offer, and keep the result visible if the request is replayed or retried."
               />
               <p className="muted detail-note">This composer is buyer-only and assumes the lot has already passed the buyer-safe visibility boundary.</p>
               <form
@@ -821,7 +821,7 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
             ) : (
               <InsightCallout
                 title="No mutation evidence captured yet"
-                body="Create or update a thread to surface request metadata, replay state, and audit evidence from the canonical audit route."
+                body="Create or update a thread to surface request details, replay state, and audit evidence."
                 tone="neutral"
               />
             )}

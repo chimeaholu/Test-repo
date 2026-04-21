@@ -34,20 +34,22 @@ function SyncBanner() {
         </div>
         <h2>Offline work stays visible and recoverable.</h2>
         <p className="muted">
-          Pending items: {summary.actionableCount}. Conflicts: {summary.conflictedCount}. Trace ID: {traceId}.
+          Pending items: {summary.actionableCount}. Conflicts: {summary.conflictedCount}.
         </p>
       </div>
-      <div className="inline-actions">
-        <button className="button-ghost" onClick={() => setConnectivityState("online")} type="button">
-          Force online
-        </button>
-        <button className="button-ghost" onClick={() => setConnectivityState("degraded")} type="button">
-          Simulate degraded
-        </button>
-        <button className="button-secondary" onClick={() => setConnectivityState("offline")} type="button">
-          Simulate offline
-        </button>
-      </div>
+      {process.env.NODE_ENV === "development" && (
+        <div className="inline-actions">
+          <button className="button-ghost" onClick={() => setConnectivityState("online")} type="button">
+            Force online
+          </button>
+          <button className="button-ghost" onClick={() => setConnectivityState("degraded")} type="button">
+            Simulate degraded
+          </button>
+          <button className="button-secondary" onClick={() => setConnectivityState("offline")} type="button">
+            Simulate offline
+          </button>
+        </div>
+      )}
     </section>
   );
 }
@@ -180,7 +182,9 @@ export function ProtectedShell({ children }: { children: ReactNode }) {
             </p>
           </div>
           <div className="inline-actions">
-            <span className="trace-chip">Trace {traceId}</span>
+            {process.env.NODE_ENV === "development" && (
+              <span className="trace-chip">Trace {traceId}</span>
+            )}
             <button className="button-ghost" type="button" onClick={clearSession}>
               Sign out
             </button>

@@ -75,12 +75,21 @@ export default function ConflictPage() {
           <SectionHeading eyebrow="Operator guidance" title="What to do next" />
           <InsightCallout
             title="Conflict guidance"
-            body={conflict?.detail ?? "Inspect queue metadata and retry when safe."}
+            body={conflict?.detail ?? "This item could not be synced automatically. You can retry it or dismiss it if the action is no longer needed."}
             tone="accent"
           />
-          <pre style={{ overflowX: "auto", whiteSpace: "pre-wrap" }}>
-            {JSON.stringify(item.envelope, null, 2)}
-          </pre>
+          <InfoList
+            items={[
+              { label: "Status", value: item.status ?? "conflicted" },
+              { label: "Intent", value: item.intent },
+              { label: "Created", value: item.envelope.metadata.emitted_at },
+            ]}
+          />
+          <div className="inline-actions" style={{ marginTop: "1rem" }}>
+            <button className="button-primary" type="button" onClick={() => window.history.back()}>
+              Back to queue
+            </button>
+          </div>
         </article>
       </div>
     </>

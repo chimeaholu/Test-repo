@@ -79,7 +79,7 @@ export function escrowStateCopy(escrow: EscrowReadModel): { title: string; body:
     case "partner_pending":
       return {
         title: "Partner confirmation timed out or degraded",
-        body: "The platform marked the transfer as pending and emitted fallback settlement updates. Retrying is safe because repeated submit remains idempotent on the canonical command bus.",
+        body: "The platform marked the transfer as pending and issued provisional settlement updates. Retrying is safe because the system will not process the same request twice.",
       };
     case "funded":
       return {
@@ -118,7 +118,7 @@ export function deriveWalletActions(escrow: EscrowReadModel, actorId: string): W
       helperText:
         escrow.state === "partner_pending"
           ? "Retry the funding confirmation after the pending marker. Repeated submit remains replay-safe."
-          : "Move buyer funds into hold on the canonical escrow runtime.",
+          : "Move buyer funds into escrow hold.",
       label: escrow.state === "partner_pending" ? "Retry funding" : "Fund escrow",
     });
   }

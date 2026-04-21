@@ -133,7 +133,7 @@ export const offlineOutboxCopy: OfflineOutboxCopy = {
   eyebrow: "Offline recovery",
   title: "Outbox and replay controls",
   body:
-    "Queued work stays in context, replay order stays deterministic, and each item exposes the envelope metadata the transport requires.",
+    "Queued work stays in context, replay order is preserved, and each item shows the details needed to track its progress.",
 };
 
 export const advisoryCopyByLocale: Record<ExperienceLocale, AdvisoryCopy> = {

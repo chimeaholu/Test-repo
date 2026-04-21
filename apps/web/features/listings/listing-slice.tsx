@@ -734,7 +734,7 @@ export function ListingDetailClient({ listingId }: { listingId: string }) {
             <SectionHeading
               eyebrow="Edit listing"
               title="Owner edit flow"
-              body="Changes are applied optimistically first, then reconciled against the canonical API response."
+              body="Changes are applied immediately and then confirmed with the server."
             />
             <form
               className="form-stack"
