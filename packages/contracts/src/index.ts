@@ -17,3 +17,4 @@ export * from "./marketplace/index.js";
 export * from "./negotiation/index.js";
 export * from "./climate/index.js";
 export * from "./traceability/index.js";
+export * from "./escrow/index.js";
