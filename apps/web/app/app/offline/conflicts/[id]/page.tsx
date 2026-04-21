@@ -80,7 +80,7 @@ export default function ConflictPage() {
           />
           <InfoList
             items={[
-              { label: "Status", value: item.status ?? "conflicted" },
+              { label: "Status", value: item.state ?? "conflicted" },
               { label: "Intent", value: item.intent },
               { label: "Created", value: item.envelope.metadata.emitted_at },
             ]}
