@@ -12,6 +12,7 @@ import {
 } from "../common/primitives.js";
 
 const currencySchema = z.string().regex(/^[A-Z]{3}$/u);
+const readModelSchemaVersion = z.string().min(1);
 
 const escrowStateSchema = z.enum([
   "initiated",
@@ -60,7 +61,7 @@ export const settlementTimelineEntrySchema = z.object({
 /* ---------- Escrow read model ---------- */
 
 export const escrowReadSchema = z.object({
-  schema_version: schemaVersionLiteral,
+  schema_version: readModelSchemaVersion,
   escrow_id: z.string().min(1),
   thread_id: z.string().min(1),
   listing_id: z.string().min(1),
@@ -79,7 +80,7 @@ export const escrowReadSchema = z.object({
 /* ---------- Wallet balance ---------- */
 
 export const walletBalanceReadSchema = z.object({
-  schema_version: schemaVersionLiteral,
+  schema_version: readModelSchemaVersion,
   actor_id: actorIdSchema,
   country_code: countryCodeSchema,
   total_balance: z.number(),
@@ -93,7 +94,7 @@ export const walletBalanceReadSchema = z.object({
 /* ---------- Wallet ledger entry ---------- */
 
 export const walletLedgerEntrySchema = z.object({
-  schema_version: schemaVersionLiteral,
+  schema_version: readModelSchemaVersion,
   entry_id: z.string().min(1),
   actor_id: actorIdSchema,
   escrow_id: z.string().min(1).nullable().optional(),

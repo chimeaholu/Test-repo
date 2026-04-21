@@ -1832,7 +1832,7 @@ export const agroApiClient = {
   },
 
   async getWalletSummary(traceId: string): Promise<ResponseEnvelope<{
-    schema_version: typeof schemaVersion;
+    schema_version: string;
     actor_id: string;
     country_code: string;
     total_balance: number;
@@ -1862,7 +1862,7 @@ export const agroApiClient = {
 
   async listWalletTransactions(traceId: string): Promise<ResponseEnvelope<{
     items: Array<{
-      schema_version: typeof schemaVersion;
+      schema_version: string;
       entry_id: string;
       actor_id: string;
       escrow_id: string | null;
@@ -1907,7 +1907,7 @@ export const agroApiClient = {
 
   async listEscrows(traceId: string): Promise<ResponseEnvelope<{
     items: Array<{
-      schema_version: typeof schemaVersion;
+      schema_version: string;
       escrow_id: string;
       thread_id: string;
       listing_id: string;
