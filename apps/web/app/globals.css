@@ -839,6 +839,129 @@ textarea:focus-visible {
   }
 }
 
+/* --- Deploy branch additions: wallet, timeline, animation --- */
+
+.wallet-layout {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: minmax(300px, 0.95fr) minmax(0, 1.42fr);
+}
+
+.wallet-detail-grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.95fr);
+}
+
+.wallet-actions {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.wallet-action-card {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.54);
+}
+
+.stat-strip {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.stat-chip {
+  display: grid;
+  gap: 0.2rem;
+  padding: var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.52);
+}
+
+.stat-chip strong {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.timeline-list {
+  list-style: none;
+  display: grid;
+  gap: var(--space-3);
+  padding: 0;
+  margin: 0;
+}
+
+.timeline-row {
+  display: flex;
+  gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px dashed var(--line);
+}
+
+.timeline-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.empty-state {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  min-height: 10rem;
+  align-content: center;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 251, 244, 0.74);
+}
+
+.hero-band {
+  display: grid;
+  gap: var(--space-4);
+  padding-top: var(--space-3);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-card,
+.surface-card,
+.queue-card,
+.panel,
+.metric-card,
+.sync-banner {
+  animation: fade-up 360ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@media (max-width: 1040px) {
+  .wallet-layout,
+  .wallet-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .stat-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .actions-row > *,
+  .inline-actions > * {
+    flex: 1 1 100%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -853,7 +976,8 @@ textarea:focus-visible {
   .button-secondary:hover,
   .button-ghost:hover,
   .task-card:hover,
-  .nav-link:hover {
+  .nav-link:hover,
+  .thread-list-item:hover {
     transform: none;
   }
 }
