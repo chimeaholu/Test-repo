@@ -1,5 +1,9 @@
 :root {
   color-scheme: light;
+
+  /* ===================================================================
+     EXISTING TOKENS — preserved for backward compatibility
+     =================================================================== */
   --bg: #f6f1e7;
   --bg-strong: #e5d7bf;
   --surface: rgba(255, 251, 244, 0.92);
@@ -34,12 +38,243 @@
   --space-7: 3rem;
   --space-8: 4rem;
   --max-width: 1240px;
-  --font-body: "Avenir Next", "Segoe UI", "Trebuchet MS", sans-serif;
-  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  --font-body: "Inter", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-display: "DM Sans", "Inter", "Segoe UI", system-ui, sans-serif;
   --focus-ring: 0 0 0 2px rgba(255, 251, 244, 0.98), 0 0 0 5px rgba(31, 109, 82, 0.72);
   --transition-fast: 140ms ease;
   --transition-med: 220ms ease;
+
+  /* ===================================================================
+     EXPANDED DESIGN TOKEN SYSTEM
+     =================================================================== */
+
+  /* ----- Primary palette: agricultural green ----- */
+  --color-earth-50: #f0f7f2;
+  --color-earth-100: #d4eadb;
+  --color-earth-200: #a8d5b7;
+  --color-earth-300: #7cbf93;
+  --color-earth-400: #50aa6f;
+  --color-earth-500: #4a8c5e;
+  --color-earth-600: #3d7a4f;
+  --color-earth-700: #2d5a3d;
+  --color-earth-800: #234a31;
+  --color-earth-900: #1a2f1e;
+
+  /* ----- Secondary palette: harvest gold/orange ----- */
+  --color-harvest-50: #fef9f0;
+  --color-harvest-100: #fcefd4;
+  --color-harvest-200: #f8dda8;
+  --color-harvest-300: #f3cb7c;
+  --color-harvest-400: #e5a94e;
+  --color-harvest-500: #d4922e;
+  --color-harvest-600: #c17b2a;
+  --color-harvest-700: #a16523;
+  --color-harvest-800: #81501c;
+  --color-harvest-900: #613c15;
+
+  /* ----- Neutral palette: warm earth tones ----- */
+  --color-soil-50: #fdfbf7;
+  --color-soil-100: #f8f3ea;
+  --color-soil-200: #efe6d5;
+  --color-soil-300: #e0d3be;
+  --color-soil-400: #c9b89a;
+  --color-soil-500: #a89878;
+  --color-soil-600: #8a7c62;
+  --color-soil-700: #6e634f;
+  --color-soil-800: #544b3c;
+  --color-soil-900: #3a342b;
+
+  /* ----- Sky blue: weather/info ----- */
+  --color-sky-50: #f0f7fc;
+  --color-sky-100: #d4eaf8;
+  --color-sky-500: #3b82c4;
+  --color-sky-700: #2a5c8a;
+  --color-sky-900: #1a3a5c;
+
+  /* ----- Semantic colors ----- */
+  --color-success-light: #d4f5dd;
+  --color-success: #3d8c5a;
+  --color-success-dark: #2a6340;
+  --color-warning-light: #fef3cd;
+  --color-warning: #d4922e;
+  --color-warning-dark: #a16523;
+  --color-danger-light: #fde2de;
+  --color-danger: #c44b3b;
+  --color-danger-dark: #993327;
+  --color-info-light: #d4eaf8;
+  --color-info: #3b82c4;
+  --color-info-dark: #2a5c8a;
+
+  /* ----- Surface colors ----- */
+  --color-surface-card: var(--color-soil-50);
+  --color-surface-elevated: #ffffff;
+  --color-surface-sunken: var(--color-soil-100);
+  --color-surface-overlay: rgba(26, 47, 30, 0.5);
+
+  /* ----- Role-specific accents ----- */
+  --color-role-farmer: #3d8c5a;
+  --color-role-buyer: #3b82c4;
+  --color-role-cooperative: #7c5ab8;
+  --color-role-transporter: #c17b2a;
+  --color-role-investor: #d4922e;
+  --color-role-advisor: #2a8a8a;
+
+  /* ----- Typography ----- */
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-heading: "DM Sans", "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* ----- Extended spacing ----- */
+  --space-0: 0;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* ----- Shadows (agricultural tint) ----- */
+  --shadow-sm: 0 1px 2px rgba(26, 47, 30, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(26, 47, 30, 0.07), 0 2px 4px -2px rgba(26, 47, 30, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(26, 47, 30, 0.08), 0 4px 6px -4px rgba(26, 47, 30, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(26, 47, 30, 0.1), 0 8px 10px -6px rgba(26, 47, 30, 0.05);
+
+  /* ----- Animation tokens ----- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+
+  /* ----- Border radius (expanded) ----- */
+  --radius-full: 9999px;
 }
+
+/* ===================================================================
+   DARK MODE TOKENS
+   =================================================================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    /* Legacy tokens — dark overrides */
+    --bg: #0f1a13;
+    --bg-strong: #1a2b1f;
+    --surface: rgba(22, 38, 28, 0.92);
+    --surface-strong: #1c2f22;
+    --surface-contrast: #1a2b1f;
+    --ink: #e8f0ea;
+    --ink-soft: #a3b5a9;
+    --ink-muted: #7f9a88;
+    --line: rgba(168, 213, 183, 0.12);
+    --line-strong: rgba(168, 213, 183, 0.2);
+    --brand: #50aa6f;
+    --brand-strong: #7cbf93;
+    --brand-soft: rgba(80, 170, 111, 0.15);
+    --accent: #e5a94e;
+    --accent-soft: rgba(229, 169, 78, 0.15);
+    --danger: #e06b5a;
+    --danger-soft: rgba(224, 107, 90, 0.15);
+    --warning: #d4922e;
+    --shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+    --shadow-soft: 0 18px 34px rgba(0, 0, 0, 0.2);
+    --focus-ring: 0 0 0 2px rgba(15, 26, 19, 0.98), 0 0 0 5px rgba(80, 170, 111, 0.72);
+
+    /* Earth palette — dark mode */
+    --color-earth-50: #1a2f1e;
+    --color-earth-100: #1e3624;
+    --color-earth-200: #234a31;
+    --color-earth-300: #2d5a3d;
+    --color-earth-400: #3d7a4f;
+    --color-earth-500: #4a8c5e;
+    --color-earth-600: #50aa6f;
+    --color-earth-700: #7cbf93;
+    --color-earth-800: #a8d5b7;
+    --color-earth-900: #d4eadb;
+
+    /* Harvest palette — dark mode */
+    --color-harvest-50: #2a1f0e;
+    --color-harvest-100: #3d2c14;
+    --color-harvest-200: #614018;
+    --color-harvest-300: #81501c;
+    --color-harvest-400: #a16523;
+    --color-harvest-500: #c17b2a;
+    --color-harvest-600: #d4922e;
+    --color-harvest-700: #e5a94e;
+    --color-harvest-800: #f3cb7c;
+    --color-harvest-900: #fcefd4;
+
+    /* Soil palette — dark mode */
+    --color-soil-50: #1a1714;
+    --color-soil-100: #25211b;
+    --color-soil-200: #3a342b;
+    --color-soil-300: #544b3c;
+    --color-soil-400: #6e634f;
+    --color-soil-500: #8a7c62;
+    --color-soil-600: #a89878;
+    --color-soil-700: #c9b89a;
+    --color-soil-800: #e0d3be;
+    --color-soil-900: #f8f3ea;
+
+    /* Sky palette — dark mode */
+    --color-sky-50: #0f1e2e;
+    --color-sky-100: #1a3a5c;
+    --color-sky-500: #3b82c4;
+    --color-sky-700: #6ba8e0;
+    --color-sky-900: #d4eaf8;
+
+    /* Semantic — dark mode */
+    --color-success-light: rgba(61, 140, 90, 0.2);
+    --color-success: #50aa6f;
+    --color-success-dark: #7cbf93;
+    --color-warning-light: rgba(212, 146, 46, 0.2);
+    --color-warning: #e5a94e;
+    --color-warning-dark: #f3cb7c;
+    --color-danger-light: rgba(196, 75, 59, 0.2);
+    --color-danger: #e06b5a;
+    --color-danger-dark: #f0a89e;
+    --color-info-light: rgba(59, 130, 196, 0.2);
+    --color-info: #6ba8e0;
+    --color-info-dark: #a4cef0;
+
+    /* Surfaces — dark mode */
+    --color-surface-card: var(--color-soil-50);
+    --color-surface-elevated: #1c2f22;
+    --color-surface-sunken: #0a120d;
+    --color-surface-overlay: rgba(0, 0, 0, 0.6);
+
+    /* Role accents — dark mode (brighter for contrast) */
+    --color-role-farmer: #50aa6f;
+    --color-role-buyer: #6ba8e0;
+    --color-role-cooperative: #a485d0;
+    --color-role-transporter: #e5a94e;
+    --color-role-investor: #f3cb7c;
+    --color-role-advisor: #40b8b8;
+
+    /* Shadows — dark mode */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.15);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -4px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* ===================================================================
+   GLOBAL RESETS & BASE STYLES
+   =================================================================== */
 
 * {
   box-sizing: border-box;
@@ -960,6 +1195,47 @@ textarea:focus-visible {
   .inline-actions > * {
     flex: 1 1 100%;
   }
+}
+
+/* --- Loading skeleton --- */
+
+.loading-skeleton {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.skeleton-line {
+  height: 1rem;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(
+    90deg,
+    rgba(23, 38, 28, 0.06) 25%,
+    rgba(23, 38, 28, 0.12) 50%,
+    rgba(23, 38, 28, 0.06) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* --- Error boundary recovery --- */
+
+.error-recovery {
+  display: grid;
+  gap: var(--space-4);
+  place-content: center;
+  min-height: 40vh;
+  padding: var(--space-6);
+  text-align: center;
 }
 
 @media (prefers-reduced-motion: reduce) {
