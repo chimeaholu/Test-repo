@@ -1,11 +1,19 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 
-import { useAppState } from "@/components/app-provider";
+import { api } from "@/lib/api-client";
+import { ApiRequestError } from "@/lib/api-types";
+import {
+  writeSessionToStorage,
+  SESSION_TOKEN_KEY,
+} from "@/lib/auth-context";
 import { signInSchema } from "@/features/identity/schema";
 import { InsightCallout, SectionHeading, StatusPill } from "@/components/ui-primitives";
 import { signInCopy } from "@/lib/content/route-copy";
+
+import type { IdentitySession } from "@agrodomain/contracts";
 
 const countries = [
   { code: "GH", label: "Ghana" },
@@ -22,17 +30,53 @@ const roles = [
   { value: "admin", label: "Admin" },
 ] as const;
 
+/**
+ * Map API / network errors to user-friendly messages.
+ */
+function friendlyErrorMessage(err: unknown): string {
+  if (err instanceof ApiRequestError) {
+    const { apiError } = err;
+
+    // Validation error from FastAPI (422) — surface the backend message
+    if (apiError.status === 422) {
+      return apiError.message || "Please check your details and try again.";
+    }
+
+    // Network / timeout
+    if (apiError.status === -1) {
+      if (apiError.code === "request_timeout") {
+        return "The request timed out. Please check your connection and try again.";
+      }
+      return "Unable to reach the server. Please check your internet connection and try again.";
+    }
+
+    // Server error (5xx)
+    if (apiError.status >= 500) {
+      return "Something went wrong on our end. Please try again in a moment.";
+    }
+
+    // Other HTTP errors — use the backend message if present
+    if (apiError.message) {
+      return apiError.message;
+    }
+  }
+
+  return "An unexpected error occurred. Please try again.";
+}
+
 export default function SignInPage() {
-  const { signIn } = useAppState();
+  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [isInteractive, setIsInteractive] = useState(false);
 
   useEffect(() => {
     setIsInteractive(true);
   }, []);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const formData = new FormData(event.currentTarget);
     const result = signInSchema.safeParse({
       displayName: formData.get("displayName"),
@@ -47,7 +91,35 @@ export default function SignInPage() {
     }
 
     setError(null);
-    void signIn(result.data);
+    setIsLoading(true);
+
+    try {
+      const response = await api.post<{
+        access_token: string;
+        session: IdentitySession;
+      }>(
+        "/api/v1/identity/session",
+        {
+          display_name: result.data.displayName,
+          email: result.data.email,
+          role: result.data.role,
+          country_code: result.data.countryCode,
+        },
+        { noAuth: true },
+      );
+
+      // Persist token where api-client.ts reads it (localStorage)
+      writeSessionToStorage(response.access_token, response.session);
+
+      // Also set a cookie so Next.js middleware can gate /app/* routes
+      document.cookie = `agrodomain-session-token=${response.access_token}; path=/; max-age=${60 * 60 * 24 * 30}; SameSite=Lax`;
+
+      router.push("/onboarding/consent");
+    } catch (err) {
+      setError(friendlyErrorMessage(err));
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -116,6 +188,7 @@ export default function SignInPage() {
                 minLength={2}
                 placeholder="Ama Mensah"
                 required
+                disabled={isLoading}
               />
               <p className="field-help" id="displayName-help">
                 Use the name your cooperative, buyer group, or field team expects.
@@ -131,6 +204,7 @@ export default function SignInPage() {
                 aria-describedby="email-help"
                 placeholder="ama@example.com"
                 required
+                disabled={isLoading}
               />
               <p className="field-help" id="email-help">
                 This is used for account recovery, notifications, and route context.
@@ -138,7 +212,7 @@ export default function SignInPage() {
             </div>
             <div className="field">
               <label htmlFor="role">Role</label>
-              <select id="role" name="role" defaultValue="farmer" aria-describedby="role-help">
+              <select id="role" name="role" defaultValue="farmer" aria-describedby="role-help" disabled={isLoading}>
                 {roles.map((role) => (
                   <option key={role.value} value={role.value}>
                     {role.label}
@@ -151,7 +225,7 @@ export default function SignInPage() {
             </div>
             <div className="field">
               <label htmlFor="countryCode">Country pack</label>
-              <select id="countryCode" name="countryCode" defaultValue="GH" aria-describedby="country-help">
+              <select id="countryCode" name="countryCode" defaultValue="GH" aria-describedby="country-help" disabled={isLoading}>
                 {countries.map((country) => (
                   <option key={country.code} value={country.code}>
                     {country.label}
@@ -168,8 +242,20 @@ export default function SignInPage() {
               </p>
             ) : null}
             <div className="actions-row">
-              <button className="button-primary" type="submit">
-                Continue to onboarding
+              <button
+                className="button-primary"
+                type="submit"
+                disabled={isLoading}
+                aria-busy={isLoading}
+              >
+                {isLoading ? (
+                  <>
+                    <span className="spinner" aria-hidden="true" />
+                    Signing in...
+                  </>
+                ) : (
+                  "Continue to onboarding"
+                )}
               </button>
               <p className="muted detail-note">No protected work is unlocked on this route.</p>
             </div>
