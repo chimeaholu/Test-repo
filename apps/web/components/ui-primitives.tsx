@@ -77,12 +77,28 @@ export function InsightCallout(props: {
   );
 }
 
-export function LoadingState(props: { label: string }) {
+export function LoadingSkeleton(props: { lines?: number }) {
+  const count = props.lines ?? 3;
+  return (
+    <div className="loading-skeleton" aria-hidden="true">
+      {Array.from({ length: count }, (_, i) => (
+        <div
+          key={i}
+          className="skeleton-line"
+          style={{ width: i === count - 1 ? "60%" : "100%" }}
+        />
+      ))}
+    </div>
+  );
+}
+
+export function LoadingState(props: { label: string; skeleton?: boolean; lines?: number }) {
   return (
     <SurfaceCard>
       <p className="muted state-message" role="status" aria-live="polite">
         {props.label}
       </p>
+      {props.skeleton !== false ? <LoadingSkeleton lines={props.lines} /> : null}
     </SurfaceCard>
   );
 }
