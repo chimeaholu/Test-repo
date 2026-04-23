@@ -5,7 +5,7 @@ import React, { useEffect, useMemo, useState } from "react";
 
 import { useAppState } from "@/components/app-provider";
 import { InsightCallout, SectionHeading, StatusPill, SurfaceCard } from "@/components/ui-primitives";
-import { agroApiClient } from "@/lib/api/mock-client";
+import { getNotificationCenter } from "@/lib/api/notifications";
 
 export function NotificationCenter() {
   const { queue, session, traceId } = useAppState();
@@ -19,27 +19,36 @@ export function NotificationCenter() {
     delivery_state: string;
     created_at: string | null;
   }>>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!session) {
       return;
     }
-    let cancelled = false;
-    void agroApiClient
-      .getNotificationCenter(traceId)
+    const controller = new AbortController();
+    setIsLoading(true);
+
+    void getNotificationCenter({ signal: controller.signal })
       .then((response) => {
-        if (!cancelled) {
-          setItems(response.data.items);
+        if (!controller.signal.aborted) {
+          setItems(response.items ?? []);
+          setError(null);
         }
       })
       .catch((nextError) => {
-        if (!cancelled) {
+        if (!controller.signal.aborted) {
           setError(nextError instanceof Error ? nextError.message : "Unable to load notifications.");
         }
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) {
+          setIsLoading(false);
+        }
       });
+
     return () => {
-      cancelled = true;
+      controller.abort();
     };
   }, [session, traceId]);
 
@@ -93,6 +102,11 @@ export function NotificationCenter() {
             <p className="muted">Notifications generated from recovery and replay conditions.</p>
           </article>
         </div>
+
+        {isLoading ? (
+          <p className="muted" role="status">Loading notifications...</p>
+        ) : null}
+
         {error ? <p className="field-error" role="alert">{error}</p> : null}
       </SurfaceCard>
 
@@ -120,7 +134,7 @@ export function NotificationCenter() {
             </div>
           </article>
         ))}
-        {merged.length === 0 ? <p className="muted">There are no active notifications for this account.</p> : null}
+        {merged.length === 0 && !isLoading ? <p className="muted">There are no active notifications for this account.</p> : null}
       </div>
     </div>
   );

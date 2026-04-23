@@ -14,7 +14,7 @@ import {
   sortAdvisoryItems,
   type AdvisoryViewModel,
 } from "@/features/advisory/model";
-import { agroApiClient } from "@/lib/api/mock-client";
+import { getAdvisoryConversations } from "@/lib/api/advisory";
 import { advisoryCopyByLocale, resolveExperienceLocale } from "@/lib/content/route-copy";
 import { recordTelemetry } from "@/lib/telemetry/client";
 
@@ -35,34 +35,38 @@ export function AdvisoryConversationWorkspace(props: { surface: "advisor" | "req
       return;
     }
 
-    let cancelled = false;
+    const controller = new AbortController();
     setIsLoading(true);
-    void agroApiClient
-      .listAdvisoryConversations(traceId, localeState.resolvedLocale)
+
+    void getAdvisoryConversations(
+      { locale: localeState.resolvedLocale },
+      { signal: controller.signal },
+    )
       .then((response) => {
-        if (cancelled) {
+        if (controller.signal.aborted) {
           return;
         }
-        const sortedItems = sortAdvisoryItems(response.data.items);
+        const sortedItems = sortAdvisoryItems(response.items ?? []);
         setItems(sortedItems);
         setActiveId(sortedItems[0]?.advisory_request_id ?? null);
-        setRuntimeMode(response.data.runtime_mode);
+        setRuntimeMode("live");
         setError(null);
       })
       .catch((nextError) => {
-        if (cancelled) {
+        if (controller.signal.aborted) {
           return;
         }
+        setRuntimeMode("fallback");
         setError(nextError instanceof Error ? nextError.message : "Unable to load advisory conversation.");
       })
       .finally(() => {
-        if (!cancelled) {
+        if (!controller.signal.aborted) {
           setIsLoading(false);
         }
       });
 
     return () => {
-      cancelled = true;
+      controller.abort();
     };
   }, [localeState.resolvedLocale, session, traceId]);
 

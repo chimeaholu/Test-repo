@@ -12,7 +12,7 @@ import {
   timelineContinuityWarnings,
   traceabilityMilestoneTone,
 } from "@/features/traceability/model";
-import { agroApiClient } from "@/lib/api/mock-client";
+import { getConsignment } from "@/lib/api/traceability";
 import { recordTelemetry } from "@/lib/telemetry/client";
 
 export function TraceabilityWorkspace({ consignmentId }: { consignmentId: string }) {
@@ -30,36 +30,36 @@ export function TraceabilityWorkspace({ consignmentId }: { consignmentId: string
     if (!session) {
       return;
     }
-    let cancelled = false;
+    const controller = new AbortController();
     setLoading(true);
     setError(null);
-    void agroApiClient
-      .getConsignmentDetail(consignmentId, traceId)
+
+    void getConsignment(consignmentId, { signal: controller.signal })
       .then((response) => {
-        if (cancelled) {
+        if (controller.signal.aborted) {
           return;
         }
-        const orderedTimeline = sortTimeline(response.data.timeline);
-        setConsignment(response.data.consignment);
+        const orderedTimeline = sortTimeline(response.timeline ?? []);
+        setConsignment(response.consignment);
         setTimeline(orderedTimeline);
-        setAttachments(response.data.evidence_attachments);
-        setAttachmentErrors(response.data.evidence_attachment_errors);
+        setAttachments(response.evidence_attachments ?? []);
+        setAttachmentErrors([]);
         setActiveEventId(orderedTimeline[0]?.trace_event_id ?? null);
       })
       .catch((nextError) => {
-        if (cancelled) {
+        if (controller.signal.aborted) {
           return;
         }
         setError(nextError instanceof Error ? nextError.message : "Unable to load traceability timeline.");
       })
       .finally(() => {
-        if (!cancelled) {
+        if (!controller.signal.aborted) {
           setLoading(false);
         }
       });
 
     return () => {
-      cancelled = true;
+      controller.abort();
     };
   }, [consignmentId, session, traceId]);
 

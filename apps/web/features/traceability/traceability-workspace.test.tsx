@@ -3,20 +3,18 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const { mockUseAppState, mockAgroApiClient, mockRecordTelemetry } = vi.hoisted(() => ({
+const { mockUseAppState, mockGetConsignment, mockRecordTelemetry } = vi.hoisted(() => ({
   mockUseAppState: vi.fn(),
   mockRecordTelemetry: vi.fn(),
-  mockAgroApiClient: {
-    getConsignmentDetail: vi.fn(),
-  },
+  mockGetConsignment: vi.fn(),
 }));
 
 vi.mock("@/components/app-provider", () => ({
   useAppState: () => mockUseAppState(),
 }));
 
-vi.mock("@/lib/api/mock-client", () => ({
-  agroApiClient: mockAgroApiClient,
+vi.mock("@/lib/api/traceability", () => ({
+  getConsignment: mockGetConsignment,
 }));
 
 vi.mock("@/lib/telemetry/client", () => ({
@@ -60,43 +58,41 @@ describe("traceability workspace", () => {
   });
 
   it("renders explicit evidence metadata error when attachments are absent", async () => {
-    mockAgroApiClient.getConsignmentDetail.mockResolvedValue({
-      data: {
-        consignment: {
+    mockGetConsignment.mockResolvedValue({
+      schema_version: "2026-04-18.wave5",
+      consignment: {
+        schema_version: "2026-04-18.wave5",
+        consignment_id: "consignment-1",
+        actor_id: "actor-farmer",
+        country_code: "GH",
+        partner_reference_id: "partner-shipment-77",
+        status: "in_transit",
+        current_custody_actor_id: "actor-transporter",
+        correlation_id: "corr-1",
+        created_at: "2026-04-18T00:00:00.000Z",
+        updated_at: "2026-04-18T00:10:00.000Z",
+      },
+      timeline: [
+        {
           schema_version: "2026-04-18.wave5",
+          trace_event_id: "trace-1",
           consignment_id: "consignment-1",
           actor_id: "actor-farmer",
+          actor_role: "farmer",
           country_code: "GH",
-          partner_reference_id: "partner-shipment-77",
-          status: "in_transit",
-          current_custody_actor_id: "actor-transporter",
+          request_id: "req-1",
+          idempotency_key: "idem-1",
           correlation_id: "corr-1",
+          causation_id: null,
+          milestone: "harvested",
+          event_reference: "evt-1",
+          previous_event_reference: null,
+          order_index: 1,
+          occurred_at: "2026-04-18T00:00:00.000Z",
           created_at: "2026-04-18T00:00:00.000Z",
-          updated_at: "2026-04-18T00:10:00.000Z",
         },
-        timeline: [
-          {
-            schema_version: "2026-04-18.wave5",
-            trace_event_id: "trace-1",
-            consignment_id: "consignment-1",
-            actor_id: "actor-farmer",
-            actor_role: "farmer",
-            country_code: "GH",
-            request_id: "req-1",
-            idempotency_key: "idem-1",
-            correlation_id: "corr-1",
-            causation_id: null,
-            milestone: "harvested",
-            event_reference: "evt-1",
-            previous_event_reference: null,
-            order_index: 1,
-            occurred_at: "2026-04-18T00:00:00.000Z",
-            created_at: "2026-04-18T00:00:00.000Z",
-          },
-        ],
-        evidence_attachments: [],
-        evidence_attachment_errors: [],
-      },
+      ],
+      evidence_attachments: [],
     });
 
     render(<TraceabilityWorkspace consignmentId="consignment-1" />);
@@ -105,59 +101,57 @@ describe("traceability workspace", () => {
   });
 
   it("opens evidence details and records telemetry", async () => {
-    mockAgroApiClient.getConsignmentDetail.mockResolvedValue({
-      data: {
-        consignment: {
+    mockGetConsignment.mockResolvedValue({
+      schema_version: "2026-04-18.wave5",
+      consignment: {
+        schema_version: "2026-04-18.wave5",
+        consignment_id: "consignment-1",
+        actor_id: "actor-farmer",
+        country_code: "GH",
+        partner_reference_id: "partner-shipment-77",
+        status: "delivered",
+        current_custody_actor_id: "actor-buyer",
+        correlation_id: "corr-1",
+        created_at: "2026-04-18T00:00:00.000Z",
+        updated_at: "2026-04-18T00:10:00.000Z",
+      },
+      timeline: [
+        {
           schema_version: "2026-04-18.wave5",
+          trace_event_id: "trace-1",
+          consignment_id: "consignment-1",
+          actor_id: "actor-farmer",
+          actor_role: "farmer",
+          country_code: "GH",
+          request_id: "req-1",
+          idempotency_key: "idem-1",
+          correlation_id: "corr-1",
+          causation_id: null,
+          milestone: "delivered",
+          event_reference: "evt-1",
+          previous_event_reference: null,
+          order_index: 1,
+          occurred_at: "2026-04-18T00:00:00.000Z",
+          created_at: "2026-04-18T00:00:00.000Z",
+        },
+      ],
+      evidence_attachments: [
+        {
+          schema_version: "2026-04-18.wave5",
+          evidence_attachment_id: "attach-1",
+          trace_event_id: "trace-1",
           consignment_id: "consignment-1",
           actor_id: "actor-farmer",
           country_code: "GH",
-          partner_reference_id: "partner-shipment-77",
-          status: "delivered",
-          current_custody_actor_id: "actor-buyer",
-          correlation_id: "corr-1",
+          media_type: "image/jpeg",
+          file_name: "delivery-proof.jpg",
+          storage_url: "https://example.com/delivery-proof.jpg",
+          checksum_sha256: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          validation_state: "validated",
+          captured_at: "2026-04-18T00:00:00.000Z",
           created_at: "2026-04-18T00:00:00.000Z",
-          updated_at: "2026-04-18T00:10:00.000Z",
         },
-        timeline: [
-          {
-            schema_version: "2026-04-18.wave5",
-            trace_event_id: "trace-1",
-            consignment_id: "consignment-1",
-            actor_id: "actor-farmer",
-            actor_role: "farmer",
-            country_code: "GH",
-            request_id: "req-1",
-            idempotency_key: "idem-1",
-            correlation_id: "corr-1",
-            causation_id: null,
-            milestone: "delivered",
-            event_reference: "evt-1",
-            previous_event_reference: null,
-            order_index: 1,
-            occurred_at: "2026-04-18T00:00:00.000Z",
-            created_at: "2026-04-18T00:00:00.000Z",
-          },
-        ],
-        evidence_attachments: [
-          {
-            schema_version: "2026-04-18.wave5",
-            evidence_attachment_id: "attach-1",
-            trace_event_id: "trace-1",
-            consignment_id: "consignment-1",
-            actor_id: "actor-farmer",
-            country_code: "GH",
-            media_type: "image/jpeg",
-            file_name: "delivery-proof.jpg",
-            storage_url: "https://example.com/delivery-proof.jpg",
-            checksum_sha256: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            validation_state: "validated",
-            captured_at: "2026-04-18T00:00:00.000Z",
-            created_at: "2026-04-18T00:00:00.000Z",
-          },
-        ],
-        evidence_attachment_errors: [],
-      },
+      ],
     });
 
     render(<TraceabilityWorkspace consignmentId="consignment-1" />);

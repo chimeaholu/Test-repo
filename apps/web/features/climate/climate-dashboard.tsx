@@ -14,7 +14,12 @@ import {
   type ClimateDegradedModeViewModel,
   type MrvEvidenceViewModel,
 } from "@/features/climate/model";
-import { agroApiClient } from "@/lib/api/mock-client";
+import {
+  getClimateAlerts,
+  getDegradedModes,
+  getMrvEvidence,
+  acknowledgeAlert as acknowledgeAlertApi,
+} from "@/lib/api/climate";
 import { climateCopy } from "@/lib/content/route-copy";
 import { recordTelemetry } from "@/lib/telemetry/client";
 
@@ -34,36 +39,42 @@ export function ClimateDashboardClient() {
       return;
     }
 
-    let cancelled = false;
+    const controller = new AbortController();
     setIsLoading(true);
-    void agroApiClient
-      .listClimateRuntime(traceId, session.actor.locale)
-      .then((response) => {
-        if (cancelled) {
+
+    void Promise.all([
+      getClimateAlerts(undefined, { signal: controller.signal }),
+      getDegradedModes(undefined, { signal: controller.signal }),
+      getMrvEvidence(undefined, { signal: controller.signal }),
+    ])
+      .then(([alertsResponse, degradedResponse, evidenceResponse]) => {
+        if (controller.signal.aborted) {
           return;
         }
-        const sortedAlerts = sortAlerts(response.data.alerts);
+        const alertItems = alertsResponse.items ?? [];
+        const sortedAlerts = sortAlerts(alertItems);
         setAlerts(sortedAlerts);
-        setDegradedModes(response.data.degraded_modes);
-        setEvidenceRecords(response.data.evidence_records);
-        setRuntimeMode(response.data.runtime_mode);
+        setDegradedModes(degradedResponse ?? []);
+        setEvidenceRecords(evidenceResponse ?? []);
+        setRuntimeMode("live");
         setActiveAlertId(sortedAlerts[0]?.alert_id ?? null);
         setError(null);
       })
       .catch((nextError) => {
-        if (cancelled) {
+        if (controller.signal.aborted) {
           return;
         }
+        setRuntimeMode("fallback");
         setError(nextError instanceof Error ? nextError.message : "Unable to load climate alerts.");
       })
       .finally(() => {
-        if (!cancelled) {
+        if (!controller.signal.aborted) {
           setIsLoading(false);
         }
       });
 
     return () => {
-      cancelled = true;
+      controller.abort();
     };
   }, [session, traceId]);
 
@@ -91,7 +102,7 @@ export function ClimateDashboardClient() {
 
     setIsAcknowledging(true);
     try {
-      await agroApiClient.acknowledgeClimateAlert(activeAlert.alert_id, session.actor.actor_id, traceId);
+      await acknowledgeAlertApi(activeAlert.alert_id, session.actor.actor_id);
       setAlerts((current) =>
         current.map((item) => (item.alert_id === activeAlert.alert_id ? { ...item, acknowledged: true } : item)),
       );
