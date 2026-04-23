@@ -8,7 +8,10 @@ import { useEffect, useState } from "react";
 import { useAppState } from "@/components/app-provider";
 import { EmptyState, ErrorState, InsightCallout, LoadingState, SectionHeading, StatusPill, SurfaceCard } from "@/components/ui-primitives";
 import { listingFormSchema, listingRecordToFormValues, type ListingFormValues } from "@/features/listings/schema";
-import { agroApiClient } from "@/lib/api/mock-client";
+import { getAuditEvents } from "@/lib/api/audit";
+import { createListing as createListingCommand, updateListing as updateListingCommand } from "@/lib/api/commands";
+import type { CommandMetadata } from "@/lib/api/commands";
+import { getListings, getListing as fetchListing } from "@/lib/api/marketplace";
 import { recordTelemetry } from "@/lib/telemetry/client";
 
 type MutationEvidence = {
@@ -116,9 +119,9 @@ function formValuesToUpdateInput(listingId: string, values: ListingFormValues): 
   };
 }
 
-async function loadAuditEvidence(requestId: string, idempotencyKey: string, traceId: string): Promise<number> {
-  const audit = await agroApiClient.getAuditEvents(requestId, idempotencyKey, traceId);
-  return audit.data.items.length;
+async function loadAuditEvidence(requestId: string, idempotencyKey: string): Promise<number> {
+  const audit = await getAuditEvents({ request_id: requestId, idempotency_key: idempotencyKey });
+  return audit.items.length;
 }
 
 function BuyerFeed(props: { items: ListingRecord[]; traceId: string }) {
@@ -221,9 +224,9 @@ export function ListingSliceClient() {
   async function refreshListings() {
     setIsLoading(true);
     try {
-      const response = await agroApiClient.listListings(traceId);
-      setItems(response.data.items);
-      setBuyerItems(response.data.items.filter(isBuyerSafePublished));
+      const collection = await getListings();
+      setItems(collection.items);
+      setBuyerItems(collection.items.filter(isBuyerSafePublished));
       setError(null);
     } catch (nextError) {
       setError(nextError instanceof Error ? nextError.message : "Unable to load listings.");
@@ -307,24 +310,27 @@ export function ListingSliceClient() {
               }
 
               try {
-                const creation = await agroApiClient.createListing(
+                const meta: CommandMetadata = {
+                  actor_id: session.actor.actor_id,
+                  country_code: session.actor.country_code,
+                  correlation_id: traceId,
+                };
+                const creation = await createListingCommand(
                   formValuesToCreateInput(parsed.data),
-                  traceId,
-                  session.actor.actor_id,
-                  session.actor.country_code,
+                  meta,
                 );
+                const createdListing = (creation.result as { listing: ListingRecord }).listing;
                 const auditEventCount = await loadAuditEvidence(
-                  creation.data.request_id,
-                  creation.data.idempotency_key,
-                  traceId,
+                  creation.request_id,
+                  creation.idempotency_key,
                 );
                 setEvidence({
                   actionLabel: "Create committed",
-                  listingId: creation.data.listing.listing_id,
-                  requestId: creation.data.request_id,
-                  idempotencyKey: creation.data.idempotency_key,
+                  listingId: createdListing.listing_id,
+                  requestId: creation.request_id,
+                  idempotencyKey: creation.idempotency_key,
                   auditEventCount,
-                  replayed: creation.data.replayed,
+                  replayed: creation.replayed,
                 });
                 setFormValues(initialCreateForm);
                 await refreshListings();
@@ -584,25 +590,25 @@ export function ListingDetailClient({ listingId }: { listingId: string }) {
     void (async () => {
       for (let attempt = 0; attempt < 5; attempt += 1) {
         try {
-          const response = await agroApiClient.getListing(listingId, traceId);
+          const record = await fetchListing(listingId);
           if (cancelled) {
             return;
           }
-          if (getListingWorkspaceMode(session.actor.role) === "buyer-feed" && !isBuyerSafePublished(response.data)) {
+          if (getListingWorkspaceMode(session.actor.role) === "buyer-feed" && !isBuyerSafePublished(record)) {
             setListing(null);
             setFormValues(null);
             setError("listing_not_published");
             return;
           }
-          setListing(response.data);
-          setFormValues(listingRecordToFormValues(response.data));
+          setListing(record);
+          setFormValues(listingRecordToFormValues(record));
           setError(null);
           recordListingViewTelemetry(traceId, {
             actor_role: session.actor.role,
             surface: getListingWorkspaceMode(session.actor.role) === "buyer-feed" ? "buyer_detail" : "owner_detail",
-            listing_id: response.data.listing_id,
-            revision_count: response.data.revision_count,
-            published: response.data.status === "published",
+            listing_id: record.listing_id,
+            revision_count: record.revision_count,
+            published: record.status === "published",
           });
           return;
         } catch (nextError) {
@@ -669,23 +675,27 @@ export function ListingDetailClient({ listingId }: { listingId: string }) {
     setListing(optimisticListing);
 
     try {
-      const update = await agroApiClient.updateListing(
+      const meta: CommandMetadata = {
+        actor_id: session.actor.actor_id,
+        country_code: session.actor.country_code,
+        correlation_id: traceId,
+      };
+      const update = await updateListingCommand(
         formValuesToUpdateInput(listing.listing_id, parsed.data),
-        traceId,
-        session.actor.actor_id,
-        session.actor.country_code,
+        meta,
       );
-      const auditEventCount = await loadAuditEvidence(update.data.request_id, update.data.idempotency_key, traceId);
-      setListing(update.data.listing);
-      setFormValues(listingRecordToFormValues(update.data.listing));
+      const updatedRecord = (update.result as { listing: ListingRecord }).listing;
+      const auditEventCount = await loadAuditEvidence(update.request_id, update.idempotency_key);
+      setListing(updatedRecord);
+      setFormValues(listingRecordToFormValues(updatedRecord));
       setOptimisticState("reconciled");
       setEvidence({
         actionLabel: "Edit committed",
-        listingId: update.data.listing.listing_id,
-        requestId: update.data.request_id,
-        idempotencyKey: update.data.idempotency_key,
+        listingId: updatedRecord.listing_id,
+        requestId: update.request_id,
+        idempotencyKey: update.idempotency_key,
         auditEventCount,
-        replayed: update.data.replayed,
+        replayed: update.replayed,
       });
     } catch (nextError) {
       setListing(previousListing);

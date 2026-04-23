@@ -13,7 +13,16 @@ import React, { useEffect, useState } from "react";
 
 import { useAppState } from "@/components/app-provider";
 import { EmptyState, ErrorState, InsightCallout, SectionHeading, StatusPill, SurfaceCard } from "@/components/ui-primitives";
-import { agroApiClient } from "@/lib/api/mock-client";
+import { getAuditEvents } from "@/lib/api/audit";
+import {
+  createNegotiation as createNegotiationCommand,
+  counterNegotiation as counterNegotiationCommand,
+  requestNegotiationConfirmation as requestConfirmationCommand,
+  approveNegotiationConfirmation as approveConfirmationCommand,
+  rejectNegotiationConfirmation as rejectConfirmationCommand,
+} from "@/lib/api/commands";
+import type { CommandMetadata } from "@/lib/api/commands";
+import { getNegotiations, getNegotiation } from "@/lib/api/marketplace";
 import { recordTelemetry } from "@/lib/telemetry/client";
 import { deriveNegotiationThreadUiState } from "@/features/negotiation/thread-state";
 
@@ -115,9 +124,9 @@ function mutationErrorMessage(errorCode: string): string {
   }
 }
 
-async function loadAuditEvidence(requestId: string, idempotencyKey: string, traceId: string): Promise<number> {
-  const audit = await agroApiClient.getAuditEvents(requestId, idempotencyKey, traceId);
-  return audit.data.items.length;
+async function loadAuditEvidence(requestId: string, idempotencyKey: string): Promise<number> {
+  const audit = await getAuditEvents({ request_id: requestId, idempotency_key: idempotencyKey });
+  return audit.items.length;
 }
 
 const negotiationPageCopy = {
@@ -173,11 +182,19 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
 
   const activeSession = session;
 
+  function buildMeta(): CommandMetadata {
+    return {
+      actor_id: activeSession.actor.actor_id,
+      country_code: activeSession.actor.country_code,
+      correlation_id: traceId,
+    };
+  }
+
   async function refreshInbox(preferredThreadId = selectedThreadId): Promise<void> {
     setIsLoadingInbox(true);
     try {
-      const response = await agroApiClient.listNegotiations(traceId);
-      const items = response.data.items;
+      const collection = await getNegotiations();
+      const items = collection.items;
       setThreads(items);
       setMutationError(null);
 
@@ -202,13 +219,13 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
   async function loadThread(threadId: string): Promise<void> {
     setIsLoadingThread(true);
     try {
-      const response = await agroApiClient.getNegotiationThread(threadId, traceId);
-      setSelectedThread(response.data);
+      const thread = await getNegotiation(threadId);
+      setSelectedThread(thread);
       setThreadError(null);
       setCounterOffer((current) => ({
         ...current,
-        offerAmount: response.data.current_offer_amount.toString(),
-        offerCurrency: response.data.current_offer_currency,
+        offerAmount: thread.current_offer_amount.toString(),
+        offerCurrency: thread.current_offer_currency,
       }));
     } catch (error) {
       const code = error instanceof Error ? error.message : "Unable to load negotiation thread.";
@@ -229,7 +246,7 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
 
     try {
       const response = await run();
-      const auditEventCount = await loadAuditEvidence(response.request_id, response.idempotency_key, traceId);
+      const auditEventCount = await loadAuditEvidence(response.request_id, response.idempotency_key);
       setEvidence({
         actionLabel,
         auditEventCount,
@@ -294,13 +311,9 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
     };
 
     await runMutation("Offer created", async () => {
-      const response = await agroApiClient.createNegotiation(
-        input,
-        traceId,
-        activeSession.actor.actor_id,
-        activeSession.actor.country_code,
-      );
-      return response.data;
+      const result = await createNegotiationCommand(input, buildMeta());
+      const thread = (result.result as { thread: NegotiationThreadRead }).thread;
+      return { thread, request_id: result.request_id, idempotency_key: result.idempotency_key, replayed: result.replayed };
     });
   }
 
@@ -322,13 +335,9 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
     };
 
     await runMutation("Counter committed", async () => {
-      const response = await agroApiClient.counterNegotiation(
-        input,
-        traceId,
-        activeSession.actor.actor_id,
-        activeSession.actor.country_code,
-      );
-      return response.data;
+      const result = await counterNegotiationCommand(input, buildMeta());
+      const thread = (result.result as { thread: NegotiationThreadRead }).thread;
+      return { thread, request_id: result.request_id, idempotency_key: result.idempotency_key, replayed: result.replayed };
     });
   }
 
@@ -344,13 +353,9 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
     };
 
     await runMutation("Confirmation requested", async () => {
-      const response = await agroApiClient.requestNegotiationConfirmation(
-        input,
-        traceId,
-        activeSession.actor.actor_id,
-        activeSession.actor.country_code,
-      );
-      return response.data;
+      const result = await requestConfirmationCommand(input, buildMeta());
+      const thread = (result.result as { thread: NegotiationThreadRead }).thread;
+      return { thread, request_id: result.request_id, idempotency_key: result.idempotency_key, replayed: result.replayed };
     });
   }
 
@@ -365,21 +370,18 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
     };
 
     await runMutation(decision === "approve" ? "Confirmation approved" : "Confirmation rejected", async () => {
-      const response =
+      const result =
         decision === "approve"
-          ? await agroApiClient.approveNegotiationConfirmation(
+          ? await approveConfirmationCommand(
               baseInput as NegotiationConfirmationApproveInput,
-              traceId,
-              activeSession.actor.actor_id,
-              activeSession.actor.country_code,
+              buildMeta(),
             )
-          : await agroApiClient.rejectNegotiationConfirmation(
+          : await rejectConfirmationCommand(
               baseInput as NegotiationConfirmationRejectInput,
-              traceId,
-              activeSession.actor.actor_id,
-              activeSession.actor.country_code,
+              buildMeta(),
             );
-      return response.data;
+      const thread = (result.result as { thread: NegotiationThreadRead }).thread;
+      return { thread, request_id: result.request_id, idempotency_key: result.idempotency_key, replayed: result.replayed };
     });
   }
 

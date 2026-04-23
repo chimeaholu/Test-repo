@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import type { IdentitySession, ListingRecord, UpdateListingResult } from "@agrodomain/contracts";
+import type { IdentitySession, ListingRecord } from "@agrodomain/contracts";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import type { ReactNode } from "react";
@@ -20,24 +20,40 @@ vi.mock("next/link", () => ({
   ),
 }));
 
-const { mockAgroApiClient, mockRecordTelemetry, mockUseAppState } = vi.hoisted(() => ({
+const {
+  mockRecordTelemetry,
+  mockUseAppState,
+  mockGetAuditEvents,
+  mockGetListings,
+  mockFetchListing,
+  mockCreateListing,
+  mockUpdateListing,
+} = vi.hoisted(() => ({
   mockUseAppState: vi.fn(),
   mockRecordTelemetry: vi.fn(),
-  mockAgroApiClient: {
-    createListing: vi.fn(),
-    getAuditEvents: vi.fn(),
-    getListing: vi.fn(),
-    listListings: vi.fn(),
-    updateListing: vi.fn(),
-  },
+  mockGetAuditEvents: vi.fn(),
+  mockGetListings: vi.fn(),
+  mockFetchListing: vi.fn(),
+  mockCreateListing: vi.fn(),
+  mockUpdateListing: vi.fn(),
 }));
 
 vi.mock("@/components/app-provider", () => ({
   useAppState: () => mockUseAppState(),
 }));
 
-vi.mock("@/lib/api/mock-client", () => ({
-  agroApiClient: mockAgroApiClient,
+vi.mock("@/lib/api/audit", () => ({
+  getAuditEvents: (...args: unknown[]) => mockGetAuditEvents(...args),
+}));
+
+vi.mock("@/lib/api/commands", () => ({
+  createListing: (...args: unknown[]) => mockCreateListing(...args),
+  updateListing: (...args: unknown[]) => mockUpdateListing(...args),
+}));
+
+vi.mock("@/lib/api/marketplace", () => ({
+  getListings: (...args: unknown[]) => mockGetListings(...args),
+  getListing: (...args: unknown[]) => mockFetchListing(...args),
 }));
 
 vi.mock("@/lib/telemetry/client", () => ({
@@ -119,14 +135,12 @@ describe("listing surfaces", () => {
       session: buildSession("buyer"),
       traceId: "trace-buyer",
     });
-    mockAgroApiClient.listListings.mockResolvedValue({
-      data: {
-        schema_version: "2026-04-18.wave1",
-        items: [
-          buildListing({ listing_id: "published-1", view_scope: "buyer_safe", status: "published" }),
-          buildListing({ listing_id: "owner-draft", status: "draft", view_scope: "owner" }),
-        ],
-      },
+    mockGetListings.mockResolvedValue({
+      schema_version: "2026-04-18.wave1",
+      items: [
+        buildListing({ listing_id: "published-1", view_scope: "buyer_safe", status: "published" }),
+        buildListing({ listing_id: "owner-draft", status: "draft", view_scope: "owner" }),
+      ],
     });
 
     render(<ListingSliceClient />);
@@ -143,9 +157,9 @@ describe("listing surfaces", () => {
       session: buildSession("buyer"),
       traceId: "trace-buyer-detail-blocked",
     });
-    mockAgroApiClient.getListing.mockResolvedValue({
-      data: buildListing({ status: "draft", view_scope: "owner", published_revision_number: null }),
-    });
+    mockFetchListing.mockResolvedValue(
+      buildListing({ status: "draft", view_scope: "owner", published_revision_number: null }),
+    );
 
     render(<ListingDetailClient listingId="listing-1" />);
 
@@ -158,9 +172,9 @@ describe("listing surfaces", () => {
       session: buildSession("buyer"),
       traceId: "trace-buyer-detail",
     });
-    mockAgroApiClient.getListing.mockResolvedValue({
-      data: buildListing({ listing_id: "published-1", status: "published", view_scope: "buyer_safe" }),
-    });
+    mockFetchListing.mockResolvedValue(
+      buildListing({ listing_id: "published-1", status: "published", view_scope: "buyer_safe" }),
+    );
 
     render(<ListingDetailClient listingId="published-1" />);
     expect(await screen.findByText("Buyer-safe affordance boundary")).toBeInTheDocument();
@@ -203,12 +217,17 @@ describe("listing surfaces", () => {
       updated_at: "2026-04-18T00:05:00.000Z",
     });
     const updateDeferred = deferred<{
-      data: UpdateListingResult & { request_id: string; idempotency_key: string };
+      status: string;
+      request_id: string;
+      idempotency_key: string;
+      result: { schema_version: string; listing: typeof updatedListing; audit_event_id: number };
+      audit_event_id: number;
+      replayed: boolean;
     }>();
 
-    mockAgroApiClient.getListing.mockResolvedValue({ data: initialListing });
-    mockAgroApiClient.updateListing.mockReturnValue(updateDeferred.promise);
-    mockAgroApiClient.getAuditEvents.mockResolvedValue({ data: { items: [{}, {}] } });
+    mockFetchListing.mockResolvedValue(initialListing);
+    mockUpdateListing.mockReturnValue(updateDeferred.promise);
+    mockGetAuditEvents.mockResolvedValue({ items: [{}, {}] });
 
     render(<ListingDetailClient listingId="listing-1" />);
     expect(await screen.findByText("Publish and revision cues")).toBeInTheDocument();
@@ -225,14 +244,16 @@ describe("listing surfaces", () => {
     });
 
     updateDeferred.resolve({
-      data: {
+      status: "ok",
+      request_id: "req-1",
+      idempotency_key: "idem-1",
+      result: {
         schema_version: "2026-04-18.wave1",
         listing: updatedListing,
         audit_event_id: 17,
-        replayed: false,
-        request_id: "req-1",
-        idempotency_key: "idem-1",
       },
+      audit_event_id: 17,
+      replayed: false,
     });
 
     await waitFor(() => {

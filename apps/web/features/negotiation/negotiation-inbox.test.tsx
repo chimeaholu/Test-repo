@@ -4,27 +4,49 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const { mockAgroApiClient, mockRecordTelemetry, mockUseAppState } = vi.hoisted(() => ({
+const {
+  mockRecordTelemetry,
+  mockUseAppState,
+  mockGetAuditEvents,
+  mockGetNegotiations,
+  mockGetNegotiation,
+  mockCreateNegotiation,
+  mockCounterNegotiation,
+  mockRequestConfirmation,
+  mockApproveConfirmation,
+  mockRejectConfirmation,
+} = vi.hoisted(() => ({
   mockUseAppState: vi.fn(),
   mockRecordTelemetry: vi.fn(),
-  mockAgroApiClient: {
-    approveNegotiationConfirmation: vi.fn(),
-    counterNegotiation: vi.fn(),
-    createNegotiation: vi.fn(),
-    getAuditEvents: vi.fn(),
-    getNegotiationThread: vi.fn(),
-    listNegotiations: vi.fn(),
-    rejectNegotiationConfirmation: vi.fn(),
-    requestNegotiationConfirmation: vi.fn(),
-  },
+  mockGetAuditEvents: vi.fn(),
+  mockGetNegotiations: vi.fn(),
+  mockGetNegotiation: vi.fn(),
+  mockCreateNegotiation: vi.fn(),
+  mockCounterNegotiation: vi.fn(),
+  mockRequestConfirmation: vi.fn(),
+  mockApproveConfirmation: vi.fn(),
+  mockRejectConfirmation: vi.fn(),
 }));
 
 vi.mock("@/components/app-provider", () => ({
   useAppState: () => mockUseAppState(),
 }));
 
-vi.mock("@/lib/api/mock-client", () => ({
-  agroApiClient: mockAgroApiClient,
+vi.mock("@/lib/api/audit", () => ({
+  getAuditEvents: (...args: unknown[]) => mockGetAuditEvents(...args),
+}));
+
+vi.mock("@/lib/api/commands", () => ({
+  createNegotiation: (...args: unknown[]) => mockCreateNegotiation(...args),
+  counterNegotiation: (...args: unknown[]) => mockCounterNegotiation(...args),
+  requestNegotiationConfirmation: (...args: unknown[]) => mockRequestConfirmation(...args),
+  approveNegotiationConfirmation: (...args: unknown[]) => mockApproveConfirmation(...args),
+  rejectNegotiationConfirmation: (...args: unknown[]) => mockRejectConfirmation(...args),
+}));
+
+vi.mock("@/lib/api/marketplace", () => ({
+  getNegotiations: (...args: unknown[]) => mockGetNegotiations(...args),
+  getNegotiation: (...args: unknown[]) => mockGetNegotiation(...args),
 }));
 
 vi.mock("@/lib/telemetry/client", () => ({
@@ -105,19 +127,19 @@ describe("negotiation inbox", () => {
       session: buildSession("buyer"),
       traceId: "trace-negotiation-create",
     });
-    mockAgroApiClient.listNegotiations
-      .mockResolvedValueOnce({ data: { schema_version: "2026-04-18.wave1", items: [] } })
-      .mockResolvedValueOnce({ data: { schema_version: "2026-04-18.wave1", items: [createdThread] } });
-    mockAgroApiClient.createNegotiation.mockResolvedValue({
-      data: {
-        thread: createdThread,
-        request_id: "req-neg-create",
-        idempotency_key: "idem-neg-create",
-        replayed: false,
-      },
+    mockGetNegotiations
+      .mockResolvedValueOnce({ schema_version: "2026-04-18.wave1", items: [] })
+      .mockResolvedValueOnce({ schema_version: "2026-04-18.wave1", items: [createdThread] });
+    mockCreateNegotiation.mockResolvedValue({
+      status: "ok",
+      request_id: "req-neg-create",
+      idempotency_key: "idem-neg-create",
+      result: { thread: createdThread },
+      audit_event_id: 1,
+      replayed: false,
     });
-    mockAgroApiClient.getNegotiationThread.mockResolvedValue({ data: createdThread });
-    mockAgroApiClient.getAuditEvents.mockResolvedValue({ data: { items: [{}, {}, {}] } });
+    mockGetNegotiation.mockResolvedValue(createdThread);
+    mockGetAuditEvents.mockResolvedValue({ items: [{}, {}, {}] });
 
     render(<NegotiationInboxClient initialListingId="listing-1" />);
 
@@ -129,15 +151,16 @@ describe("negotiation inbox", () => {
     fireEvent.click(screen.getByRole("button", { name: "Create offer thread" }));
 
     await waitFor(() => {
-      expect(mockAgroApiClient.createNegotiation).toHaveBeenCalledWith(
+      expect(mockCreateNegotiation).toHaveBeenCalledWith(
         expect.objectContaining({
           listing_id: "listing-1",
           offer_amount: 500,
           offer_currency: "GHS",
         }),
-        "trace-negotiation-create",
-        "actor-buyer",
-        "GH",
+        expect.objectContaining({
+          actor_id: "actor-buyer",
+          country_code: "GH",
+        }),
       );
     });
 
@@ -172,10 +195,10 @@ describe("negotiation inbox", () => {
       session: buildSession("buyer"),
       traceId: "trace-negotiation-pending",
     });
-    mockAgroApiClient.listNegotiations.mockResolvedValue({
-      data: { schema_version: "2026-04-18.wave1", items: [thread] },
+    mockGetNegotiations.mockResolvedValue({
+      schema_version: "2026-04-18.wave1", items: [thread],
     });
-    mockAgroApiClient.getNegotiationThread.mockResolvedValue({ data: thread });
+    mockGetNegotiation.mockResolvedValue(thread);
 
     render(<NegotiationInboxClient initialThreadId="thread-1" />);
 
@@ -190,10 +213,10 @@ describe("negotiation inbox", () => {
       session: buildSession("buyer"),
       traceId: "trace-negotiation-unauthorized",
     });
-    mockAgroApiClient.listNegotiations.mockResolvedValue({
-      data: { schema_version: "2026-04-18.wave1", items: [] },
+    mockGetNegotiations.mockResolvedValue({
+      schema_version: "2026-04-18.wave1", items: [],
     });
-    mockAgroApiClient.getNegotiationThread.mockRejectedValue(new Error("thread_not_found"));
+    mockGetNegotiation.mockRejectedValue(new Error("thread_not_found"));
 
     render(<NegotiationInboxClient initialThreadId="thread-outsider" />);
 
@@ -222,10 +245,10 @@ describe("negotiation inbox", () => {
       session: buildSession("farmer"),
       traceId: "trace-negotiation-terminal",
     });
-    mockAgroApiClient.listNegotiations.mockResolvedValue({
-      data: { schema_version: "2026-04-18.wave1", items: [thread] },
+    mockGetNegotiations.mockResolvedValue({
+      schema_version: "2026-04-18.wave1", items: [thread],
     });
-    mockAgroApiClient.getNegotiationThread.mockResolvedValue({ data: thread });
+    mockGetNegotiation.mockResolvedValue(thread);
 
     render(<NegotiationInboxClient initialThreadId="thread-1" />);
 
