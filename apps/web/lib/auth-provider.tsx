@@ -9,10 +9,12 @@ import {
   AuthContext,
   type AuthContextValue,
   type AuthSessionState,
+  type GrantConsentData,
   type SignInData,
   type UnauthenticatedState,
   UNAUTHENTICATED,
   clearSessionFromStorage,
+  consentStateFromRecord,
   readSessionFromStorage,
   sessionStateFromIdentity,
   writeSessionToStorage,
@@ -26,6 +28,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [sessionState, setSessionState] = useState<
     AuthSessionState | UnauthenticatedState
   >(UNAUTHENTICATED);
+  const [identitySession, setIdentitySession] = useState<IdentitySession | null>(null);
   const [isReady, setIsReady] = useState(false);
 
   // -----------------------------------------------------------------------
@@ -49,6 +52,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // Optimistically populate state from localStorage while we validate
       if (!cancelled) {
         setSessionState(sessionStateFromIdentity(stored.token, stored.session));
+        setIdentitySession(stored.session);
       }
 
       try {
@@ -63,12 +67,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setSessionState(
             sessionStateFromIdentity(stored.token, validatedSession),
           );
+          setIdentitySession(validatedSession);
         }
       } catch (err) {
         // Token expired or invalid — clear everything
         if (!cancelled) {
           clearSessionFromStorage();
           setSessionState(UNAUTHENTICATED);
+          setIdentitySession(null);
         }
       } finally {
         if (!cancelled) {
@@ -107,6 +113,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setSessionState(
       sessionStateFromIdentity(response.access_token, response.session),
     );
+    setIdentitySession(response.session);
   }, []);
 
   // -----------------------------------------------------------------------
@@ -116,6 +123,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const signOut = useCallback(() => {
     clearSessionFromStorage();
     setSessionState(UNAUTHENTICATED);
+    setIdentitySession(null);
   }, []);
 
   // -----------------------------------------------------------------------
@@ -136,10 +144,74 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       );
       writeSessionToStorage(stored.token, session);
       setSessionState(sessionStateFromIdentity(stored.token, session));
+      setIdentitySession(session);
     } catch {
       clearSessionFromStorage();
       setSessionState(UNAUTHENTICATED);
+      setIdentitySession(null);
     }
+  }, []);
+
+  // -----------------------------------------------------------------------
+  // grantConsent
+  // -----------------------------------------------------------------------
+
+  const grantConsent = useCallback(
+    async (data: GrantConsentData): Promise<void> => {
+      const updatedSession = await api.post<IdentitySession>(
+        "/api/v1/identity/consent",
+        {
+          policy_version: data.policyVersion,
+          scope_ids: data.scopeIds,
+          captured_at: new Date().toISOString(),
+        },
+      );
+
+      const stored = readSessionFromStorage();
+      if (stored) {
+        writeSessionToStorage(stored.token, updatedSession);
+        setSessionState(sessionStateFromIdentity(stored.token, updatedSession));
+      } else {
+        // Update only consent portion if storage was cleared
+        setSessionState((prev) => {
+          if (!prev.isAuthenticated) return prev;
+          return {
+            ...prev,
+            consent: consentStateFromRecord(updatedSession.consent),
+          };
+        });
+      }
+      setIdentitySession(updatedSession);
+    },
+    [],
+  );
+
+  // -----------------------------------------------------------------------
+  // revokeConsent
+  // -----------------------------------------------------------------------
+
+  const revokeConsent = useCallback(async (reason: string): Promise<void> => {
+    const response = await api.post<{
+      reason: string;
+      session: IdentitySession;
+    }>("/api/v1/identity/consent/revoke", { reason });
+
+    const stored = readSessionFromStorage();
+    if (stored) {
+      writeSessionToStorage(stored.token, response.session);
+      setSessionState(
+        sessionStateFromIdentity(stored.token, response.session),
+      );
+    } else {
+      setSessionState((prev) => {
+        if (!prev.isAuthenticated) return prev;
+        return {
+          ...prev,
+          consent: consentStateFromRecord(response.session.consent),
+        };
+      });
+    }
+    setIdentitySession(response.session);
   }, []);
 
   // -----------------------------------------------------------------------
@@ -150,11 +222,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     () => ({
       ...sessionState,
       isReady,
+      identitySession,
       signIn,
       signOut,
       refreshSession,
+      grantConsent,
+      revokeConsent,
     }),
-    [sessionState, isReady, signIn, signOut, refreshSession],
+    [sessionState, isReady, identitySession, signIn, signOut, refreshSession, grantConsent, revokeConsent],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

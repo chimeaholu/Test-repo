@@ -1,36 +1,43 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
 
-import { useAppState } from "@/components/app-provider";
+import { useAuth } from "@/lib/auth-context";
 import { consentSchema } from "@/features/identity/schema";
 import { InfoList, InsightCallout, SectionHeading, StatusPill } from "@/components/ui-primitives";
 import { consentCopy } from "@/lib/content/route-copy";
+import { homeRouteForRole } from "@/features/shell/model";
+import { ApiRequestError } from "@/lib/api-types";
 
 const scopeOptions = [
-  { value: "identity.core", label: "Identity and session controls" },
-  { value: "workflow.audit", label: "Workflow audit and regulated operations" },
-  { value: "notifications.delivery", label: "Channel delivery and recovery prompts" },
+  { value: "data_collection" as const, label: "Data collection and processing" },
+  { value: "platform_notifications" as const, label: "Platform notifications and recovery prompts" },
+  { value: "audit_logging" as const, label: "Audit logging and regulated operations" },
 ] as const;
 
 export default function ConsentPage() {
-  const { ensureConsentPending, grantConsent, isHydrated, session } = useAppState();
+  const auth = useAuth();
+  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isInteractive, setIsInteractive] = useState(false);
-
-  useEffect(() => {
-    if (isHydrated && session?.consent.state === "identified") {
-      ensureConsentPending();
-    }
-  }, [ensureConsentPending, isHydrated, session]);
 
   useEffect(() => {
     setIsInteractive(true);
   }, []);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  // If consent is already granted, redirect to role-appropriate dashboard
+  useEffect(() => {
+    if (auth.isReady && auth.isAuthenticated && auth.consent.consentGranted) {
+      router.replace(homeRouteForRole(auth.role));
+    }
+  }, [auth.isReady, auth.isAuthenticated, auth.consent.consentGranted, auth.role, router]);
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const formData = new FormData(event.currentTarget);
     const scopeIds = formData.getAll("scopeIds").map((value) => String(value));
     const result = consentSchema.safeParse({
@@ -45,11 +52,38 @@ export default function ConsentPage() {
     }
 
     setError(null);
-    void grantConsent({
-      policyVersion: result.data.policyVersion,
-      scopeIds: result.data.scopeIds,
-    });
+    setIsSubmitting(true);
+
+    try {
+      await auth.grantConsent({
+        policyVersion: result.data.policyVersion,
+        scopeIds: result.data.scopeIds,
+      });
+
+      // Redirect to role-appropriate dashboard after successful consent
+      if (auth.role) {
+        router.push(homeRouteForRole(auth.role));
+      }
+    } catch (err) {
+      if (err instanceof ApiRequestError) {
+        setError(err.apiError.message);
+      } else {
+        setError("Consent could not be recorded. Please try again.");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  // Show nothing until the auth provider is ready
+  if (!auth.isReady) {
+    return null;
+  }
+
+  // Redirect to sign in if not authenticated
+  if (!auth.isAuthenticated) {
+    return null;
+  }
 
   return (
     <main className="page-shell" id="main-content">
@@ -118,31 +152,35 @@ export default function ConsentPage() {
             items={[
               { label: "Policy version", value: consentCopy.policyVersion },
               { label: "Channel", value: "pwa" },
-              { label: "Country", value: session?.actor.country_code ?? "pending" },
-              { label: "Role", value: session?.actor.role ?? "pending" },
+              { label: "Country", value: auth.countryCode ?? "pending" },
+              { label: "Role", value: auth.role ?? "pending" },
             ]}
           />
           <div className="journey-grid compact-grid" aria-label="Scope explanation">
             <article className="journey-card subtle">
-              <h3>Identity scope</h3>
-              <p className="muted">Needed to route you correctly, maintain session continuity, and explain who performed each action.</p>
+              <h3>Data collection scope</h3>
+              <p className="muted">Needed to collect and process operational data for your workspace, including session state and activity records.</p>
             </article>
             <article className="journey-card subtle">
-              <h3>Workflow scope</h3>
+              <h3>Notifications scope</h3>
+              <p className="muted">Needed to send recovery prompts, channel handoff advice, and platform notifications.</p>
+            </article>
+            <article className="journey-card subtle">
+              <h3>Audit logging scope</h3>
               <p className="muted">Needed where regulated actions, approvals, or evidence retention apply.</p>
             </article>
           </div>
           <form
             className="form-stack"
             data-interactive={isInteractive ? "true" : "false"}
-            onSubmit={handleSubmit}
+            onSubmit={(e) => void handleSubmit(e)}
           >
-            <fieldset className="fieldset checkbox-list">
+            <fieldset className="fieldset checkbox-list" disabled={isSubmitting}>
               <legend>Select the consent scopes you accept</legend>
               {scopeOptions.map((scope) => (
                 <label className="checkbox-item" key={scope.value}>
                   <input
-                    defaultChecked={scope.value !== "notifications.delivery"}
+                    defaultChecked={scope.value !== "platform_notifications"}
                     name="scopeIds"
                     type="checkbox"
                     value={scope.value}
@@ -150,9 +188,9 @@ export default function ConsentPage() {
                   <span>
                     <strong>{scope.label}</strong>
                     <span className="helper-inline">
-                      {scope.value === "identity.core"
-                        ? "Needed to load the correct workspace and verify your identity state."
-                        : scope.value === "workflow.audit"
+                      {scope.value === "data_collection"
+                        ? "Needed to load the correct workspace and process operational data."
+                        : scope.value === "audit_logging"
                           ? "Needed to log regulated actions and keep audit history intact."
                           : "Needed to send recovery prompts and channel handoff advice."}
                     </span>
@@ -161,7 +199,7 @@ export default function ConsentPage() {
               ))}
             </fieldset>
             <label className="checkbox-item">
-              <input name="accepted" type="checkbox" />
+              <input name="accepted" type="checkbox" disabled={isSubmitting} />
               <span>I confirm this consent text can be recorded with its policy version and capture time.</span>
             </label>
             {error ? (
@@ -170,8 +208,13 @@ export default function ConsentPage() {
               </p>
             ) : null}
             <div className="actions-row">
-              <button className="button-primary" type="submit">
-                Grant consent
+              <button
+                className="button-primary"
+                type="submit"
+                disabled={isSubmitting}
+                aria-busy={isSubmitting}
+              >
+                {isSubmitting ? "Granting consent\u2026" : "Grant consent"}
               </button>
               <Link className="button-ghost" href="/signin">
                 Back to sign in

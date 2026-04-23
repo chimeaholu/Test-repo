@@ -1,6 +1,6 @@
 "use client";
 
-import type { ActorRole, IdentitySession } from "@agrodomain/contracts";
+import type { ActorRole, ConsentRecord, IdentitySession } from "@agrodomain/contracts";
 import { createContext, useContext } from "react";
 
 // ---------------------------------------------------------------------------
@@ -9,6 +9,23 @@ import { createContext, useContext } from "react";
 
 export const SESSION_TOKEN_KEY = "agrodomain.session-token.v1";
 export const SESSION_METADATA_KEY = "agrodomain.session.v1";
+
+// ---------------------------------------------------------------------------
+// Consent state exposed through context
+// ---------------------------------------------------------------------------
+
+export interface ConsentState {
+  /** Whether consent has been granted for the current session. */
+  consentGranted: boolean;
+  /** The scope IDs the user consented to. */
+  consentScopes: string[];
+  /** ISO timestamp when consent was captured, or null if not yet captured. */
+  consentTimestamp: string | null;
+  /** ISO timestamp when consent was revoked, or null if not revoked. */
+  consentRevokedAt: string | null;
+  /** The policy version consent was granted under. */
+  consentPolicyVersion: string | null;
+}
 
 // ---------------------------------------------------------------------------
 // Session state exposed through context
@@ -22,6 +39,7 @@ export interface AuthSessionState {
   email: string;
   isAuthenticated: true;
   sessionToken: string;
+  consent: ConsentState;
 }
 
 export interface UnauthenticatedState {
@@ -32,6 +50,7 @@ export interface UnauthenticatedState {
   email: null;
   isAuthenticated: false;
   sessionToken: null;
+  consent: ConsentState;
 }
 
 export type SessionState = AuthSessionState | UnauthenticatedState;
@@ -43,20 +62,41 @@ export interface SignInData {
   countryCode: string;
 }
 
+export interface GrantConsentData {
+  policyVersion: string;
+  scopeIds: string[];
+}
+
 // ---------------------------------------------------------------------------
-// Context value
+// Context value — use intersection instead of extends to support union base
 // ---------------------------------------------------------------------------
 
-export interface AuthContextValue extends SessionState {
+export interface AuthContextMethods {
   /** Whether the provider has finished checking localStorage on mount. */
   isReady: boolean;
+  /** The full IdentitySession from the API, or null when unauthenticated. */
+  identitySession: IdentitySession | null;
   /** Sign in by calling the identity API. Throws on failure. */
   signIn: (data: SignInData) => Promise<void>;
   /** Clear session from state and localStorage. */
   signOut: () => void;
   /** Re-validate the current token against the API and refresh state. */
   refreshSession: () => Promise<void>;
+  /** Grant consent by calling the identity consent API. */
+  grantConsent: (data: GrantConsentData) => Promise<void>;
+  /** Revoke consent by calling the identity consent/revoke API. */
+  revokeConsent: (reason: string) => Promise<void>;
 }
+
+export type AuthContextValue = SessionState & AuthContextMethods;
+
+const DEFAULT_CONSENT: ConsentState = {
+  consentGranted: false,
+  consentScopes: [],
+  consentTimestamp: null,
+  consentRevokedAt: null,
+  consentPolicyVersion: null,
+};
 
 const UNAUTHENTICATED: UnauthenticatedState = {
   actorId: null,
@@ -66,9 +106,10 @@ const UNAUTHENTICATED: UnauthenticatedState = {
   email: null,
   isAuthenticated: false,
   sessionToken: null,
+  consent: DEFAULT_CONSENT,
 };
 
-export { UNAUTHENTICATED };
+export { DEFAULT_CONSENT, UNAUTHENTICATED };
 
 export const AuthContext = createContext<AuthContextValue | null>(null);
 
@@ -119,6 +160,16 @@ export function clearSessionFromStorage(): void {
   window.localStorage.removeItem(SESSION_METADATA_KEY);
 }
 
+export function consentStateFromRecord(consent: ConsentRecord): ConsentState {
+  return {
+    consentGranted: consent.state === "consent_granted",
+    consentScopes: consent.scope_ids ?? [],
+    consentTimestamp: consent.captured_at ?? null,
+    consentRevokedAt: consent.revoked_at ?? null,
+    consentPolicyVersion: consent.policy_version ?? null,
+  };
+}
+
 export function sessionStateFromIdentity(
   token: string,
   session: IdentitySession,
@@ -131,5 +182,6 @@ export function sessionStateFromIdentity(
     email: session.actor.email,
     isAuthenticated: true,
     sessionToken: token,
+    consent: consentStateFromRecord(session.consent),
   };
 }
