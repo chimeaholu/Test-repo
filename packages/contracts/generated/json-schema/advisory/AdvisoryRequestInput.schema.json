@@ -1,0 +1,135 @@
+{
+  "$ref": "#/definitions/AdvisoryRequestInput",
+  "definitions": {
+    "AdvisoryRequestInput": {
+      "additionalProperties": false,
+      "properties": {
+        "advisory_conversation_id": {
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "locale": {
+          "maxLength": 16,
+          "minLength": 2,
+          "pattern": "^[a-z]{2}(?:-[A-Z]{2})?$",
+          "type": "string"
+        },
+        "policy_context": {
+          "additionalProperties": false,
+          "default": {
+            "sensitive_topics": []
+          },
+          "properties": {
+            "crop": {
+              "maxLength": 80,
+              "minLength": 2,
+              "nullable": true,
+              "type": "string"
+            },
+            "farm_profile_id": {
+              "minLength": 1,
+              "nullable": true,
+              "type": "string"
+            },
+            "region": {
+              "maxLength": 80,
+              "minLength": 2,
+              "nullable": true,
+              "type": "string"
+            },
+            "sensitive_topics": {
+              "default": [],
+              "items": {
+                "maxLength": 80,
+                "minLength": 2,
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "question_text": {
+          "maxLength": 2000,
+          "minLength": 12,
+          "type": "string"
+        },
+        "topic": {
+          "maxLength": 120,
+          "minLength": 3,
+          "type": "string"
+        },
+        "transcript_entries": {
+          "default": [],
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "captured_at": {
+                "description": "ISO-8601 timestamp with timezone offset",
+                "format": "date-time",
+                "type": "string"
+              },
+              "channel": {
+                "description": "Transport channel that originated or carried the request",
+                "enum": [
+                  "pwa",
+                  "ussd",
+                  "whatsapp",
+                  "sms",
+                  "push",
+                  "api"
+                ],
+                "type": "string"
+              },
+              "message": {
+                "maxLength": 2000,
+                "minLength": 1,
+                "type": "string"
+              },
+              "speaker": {
+                "enum": [
+                  "user",
+                  "assistant",
+                  "reviewer",
+                  "system"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "speaker",
+              "message",
+              "captured_at",
+              "channel"
+            ],
+            "type": "object"
+          },
+          "maxItems": 20,
+          "type": "array"
+        }
+      },
+      "required": [
+        "topic",
+        "question_text",
+        "locale"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Canonical advisory query payload with locale, transcript context, and policy-context hints for grounded retrieval.",
+  "x-agrodomain-contract": {
+    "id": "advisory.advisory_request_input",
+    "domain": "advisory",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-005",
+      "DI-005"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md",
+      "v2-planning/AGRO-V2-PRD.md"
+    ]
+  }
+}

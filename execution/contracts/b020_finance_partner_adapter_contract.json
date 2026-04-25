@@ -1,0 +1,48 @@
+{
+  "bead_id": "B-020",
+  "title": "Finance Partner Decision Adapter",
+  "tool_name": "finance.partner_decision.submit",
+  "schema_versions": [
+    "finance-partner.v1"
+  ],
+  "scope": {
+    "focus": [
+      "responsibility_boundary",
+      "partner_policy",
+      "idempotency",
+      "regulated_decision_envelope"
+    ]
+  },
+  "input": {
+    "required_fields": [
+      "request_id",
+      "idempotency_key",
+      "decision_type",
+      "partner_id",
+      "country_code",
+      "applicant_id",
+      "product_code",
+      "amount_minor",
+      "currency",
+      "risk_score",
+      "actor_id",
+      "policy_context"
+    ],
+    "optional_fields": [
+      "evidence_reference_ids"
+    ]
+  },
+  "output": {
+    "fields": [
+      "outcome",
+      "partner_reference_id",
+      "responsibility_boundary",
+      "rationale_summary",
+      "requires_hitl"
+    ]
+  },
+  "test_obligations": {
+    "journey": "CJ-004",
+    "data_check": "DI-003"
+  }
+}

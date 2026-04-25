@@ -1,0 +1,228 @@
+{
+  "$ref": "#/definitions/InvestmentCollection",
+  "definitions": {
+    "InvestmentCollection": {
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "actual_return_amount": {
+                "nullable": true,
+                "type": "number"
+              },
+              "amount": {
+                "exclusiveMinimum": true,
+                "minimum": 0,
+                "type": "number"
+              },
+              "country_code": {
+                "description": "ISO alpha-2 country code",
+                "pattern": "^[A-Z]{2}$",
+                "type": "string"
+              },
+              "currency": {
+                "pattern": "^[A-Z]{3}$",
+                "type": "string"
+              },
+              "expected_return_amount": {
+                "nullable": true,
+                "type": "number"
+              },
+              "expected_return_date": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/InvestmentCollection/properties/items/items/properties/invested_at"
+                  }
+                ],
+                "description": "ISO-8601 timestamp with timezone offset",
+                "nullable": true
+              },
+              "invested_at": {
+                "description": "ISO-8601 timestamp with timezone offset",
+                "format": "date-time",
+                "type": "string"
+              },
+              "investment_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "investor_actor_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "opportunity": {
+                "additionalProperties": false,
+                "nullable": true,
+                "properties": {
+                  "actor_id": {
+                    "$ref": "#/definitions/InvestmentCollection/properties/items/items/properties/investor_actor_id"
+                  },
+                  "country_code": {
+                    "$ref": "#/definitions/InvestmentCollection/properties/items/items/properties/country_code"
+                  },
+                  "created_at": {
+                    "$ref": "#/definitions/InvestmentCollection/properties/items/items/properties/invested_at"
+                  },
+                  "currency": {
+                    "$ref": "#/definitions/InvestmentCollection/properties/items/items/properties/currency"
+                  },
+                  "current_amount": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "description": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "expected_return_pct": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "farm_id": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "funding_goal": {
+                    "$ref": "#/definitions/InvestmentCollection/properties/items/items/properties/amount"
+                  },
+                  "max_investment": {
+                    "$ref": "#/definitions/InvestmentCollection/properties/items/items/properties/amount"
+                  },
+                  "min_investment": {
+                    "$ref": "#/definitions/InvestmentCollection/properties/items/items/properties/amount"
+                  },
+                  "opportunity_id": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "percent_funded": {
+                    "maximum": 100,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "remaining_amount": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "schema_version": {
+                    "$ref": "#/definitions/InvestmentCollection/properties/schema_version"
+                  },
+                  "status": {
+                    "enum": [
+                      "open",
+                      "funded",
+                      "closed",
+                      "completed"
+                    ],
+                    "type": "string"
+                  },
+                  "timeline_months": {
+                    "exclusiveMinimum": true,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "title": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "updated_at": {
+                    "$ref": "#/definitions/InvestmentCollection/properties/items/items/properties/invested_at"
+                  }
+                },
+                "required": [
+                  "schema_version",
+                  "opportunity_id",
+                  "farm_id",
+                  "actor_id",
+                  "country_code",
+                  "currency",
+                  "title",
+                  "description",
+                  "funding_goal",
+                  "current_amount",
+                  "expected_return_pct",
+                  "timeline_months",
+                  "status",
+                  "min_investment",
+                  "max_investment",
+                  "percent_funded",
+                  "remaining_amount",
+                  "created_at",
+                  "updated_at"
+                ],
+                "type": "object"
+              },
+              "opportunity_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "penalty_amount": {
+                "minimum": 0,
+                "type": "number"
+              },
+              "schema_version": {
+                "$ref": "#/definitions/InvestmentCollection/properties/schema_version"
+              },
+              "status": {
+                "enum": [
+                  "active",
+                  "matured",
+                  "withdrawn"
+                ],
+                "type": "string"
+              },
+              "updated_at": {
+                "$ref": "#/definitions/InvestmentCollection/properties/items/items/properties/invested_at"
+              }
+            },
+            "required": [
+              "schema_version",
+              "investment_id",
+              "opportunity_id",
+              "investor_actor_id",
+              "country_code",
+              "amount",
+              "currency",
+              "status",
+              "invested_at",
+              "expected_return_date",
+              "actual_return_amount",
+              "penalty_amount",
+              "expected_return_amount",
+              "updated_at",
+              "opportunity"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "items"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Collection payload for investor-scoped AgroFund portfolio views.",
+  "x-agrodomain-contract": {
+    "id": "finance.investment_collection",
+    "domain": "finance",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "QG-04"
+    ],
+    "source_artifacts": [
+      "output_to_user/AGRODOMAIN-ENHANCED-REMEDIATION-PRD.md"
+    ]
+  }
+}

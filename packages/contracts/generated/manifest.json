@@ -1,0 +1,1124 @@
+{
+  "contracts": [
+    {
+      "domain": "envelope",
+      "id": "envelope.request",
+      "kind": "request",
+      "name": "RequestEnvelope",
+      "schema_path": "generated/json-schema/envelope/RequestEnvelope.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "legacy/staging-runtime/src/agro_v2/tool_contracts.py"
+      ],
+      "traceability": [
+        "AIJ-002",
+        "IDI-003"
+      ]
+    },
+    {
+      "domain": "envelope",
+      "id": "envelope.response",
+      "kind": "response",
+      "name": "ResponseEnvelope",
+      "schema_path": "generated/json-schema/envelope/ResponseEnvelope.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "legacy/staging-runtime/src/agro_v2/tool_contracts.py"
+      ],
+      "traceability": [
+        "AIJ-002",
+        "IDI-003"
+      ]
+    },
+    {
+      "domain": "envelope",
+      "id": "envelope.event",
+      "kind": "event",
+      "name": "EventEnvelope",
+      "schema_path": "generated/json-schema/envelope/EventEnvelope.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "legacy/staging-runtime/src/agro_v2/tool_contracts.py"
+      ],
+      "traceability": [
+        "AIJ-002",
+        "IDI-003"
+      ]
+    },
+    {
+      "domain": "errors",
+      "id": "errors.reason_catalog",
+      "kind": "catalog",
+      "name": "ReasonCatalog",
+      "schema_path": "generated/json-schema/errors/ReasonCatalog.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "legacy/staging-runtime/src/agro_v2/tool_contracts.py"
+      ],
+      "traceability": [
+        "AIJ-002",
+        "IDI-003"
+      ]
+    },
+    {
+      "domain": "identity",
+      "id": "identity.country_pack",
+      "kind": "dto",
+      "name": "CountryPack",
+      "schema_path": "generated/json-schema/identity/CountryPack.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b002_identity_consent_contract.json",
+        "legacy/staging-runtime/src/agro_v2/country_pack.py"
+      ],
+      "traceability": [
+        "CJ-001",
+        "EP-007",
+        "DI-004"
+      ]
+    },
+    {
+      "domain": "identity",
+      "id": "identity.membership",
+      "kind": "dto",
+      "name": "Membership",
+      "schema_path": "generated/json-schema/identity/Membership.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "legacy/staging-runtime/src/agro_v2/identity_consent.py"
+      ],
+      "traceability": [
+        "CJ-001",
+        "EP-007"
+      ]
+    },
+    {
+      "domain": "identity",
+      "id": "identity.consent_capture",
+      "kind": "dto",
+      "name": "ConsentCapture",
+      "schema_path": "generated/json-schema/identity/ConsentCapture.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b002_identity_consent_contract.json",
+        "legacy/staging-runtime/src/agro_v2/identity_consent.py"
+      ],
+      "traceability": [
+        "CJ-001",
+        "EP-007",
+        "DI-004"
+      ]
+    },
+    {
+      "domain": "identity",
+      "id": "identity.consent_record",
+      "kind": "dto",
+      "name": "ConsentRecord",
+      "schema_path": "generated/json-schema/identity/ConsentRecord.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b002_identity_consent_contract.json",
+        "legacy/staging-runtime/src/agro_v2/identity_consent.py"
+      ],
+      "traceability": [
+        "CJ-001",
+        "EP-007",
+        "DI-004"
+      ]
+    },
+    {
+      "domain": "identity",
+      "id": "identity.consent_gate",
+      "kind": "dto",
+      "name": "ConsentGateDecision",
+      "schema_path": "generated/json-schema/identity/ConsentGateDecision.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "legacy/staging-runtime/src/agro_v2/policy_guardrails.py"
+      ],
+      "traceability": [
+        "EP-007",
+        "DI-004"
+      ]
+    },
+    {
+      "domain": "workflow",
+      "id": "workflow.instance",
+      "kind": "dto",
+      "name": "WorkflowInstance",
+      "schema_path": "generated/json-schema/workflow/WorkflowInstance.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+      ],
+      "traceability": [
+        "CJ-001",
+        "EP-007"
+      ]
+    },
+    {
+      "domain": "workflow",
+      "id": "workflow.step",
+      "kind": "dto",
+      "name": "WorkflowStep",
+      "schema_path": "generated/json-schema/workflow/WorkflowStep.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+      ],
+      "traceability": [
+        "CJ-001",
+        "EP-007"
+      ]
+    },
+    {
+      "domain": "workflow",
+      "id": "workflow.policy_decision",
+      "kind": "dto",
+      "name": "PolicyDecision",
+      "schema_path": "generated/json-schema/workflow/PolicyDecision.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b002_identity_consent_contract.json",
+        "legacy/staging-runtime/src/agro_v2/policy_guardrails.py"
+      ],
+      "traceability": [
+        "CJ-001",
+        "EP-007",
+        "DI-004"
+      ]
+    },
+    {
+      "domain": "advisory",
+      "id": "advisory.advisory_request_input",
+      "kind": "dto",
+      "name": "AdvisoryRequestInput",
+      "schema_path": "generated/json-schema/advisory/AdvisoryRequestInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md",
+        "v2-planning/AGRO-V2-PRD.md"
+      ],
+      "traceability": [
+        "CJ-005",
+        "DI-005"
+      ]
+    },
+    {
+      "domain": "advisory",
+      "id": "advisory.advisory_citation",
+      "kind": "dto",
+      "name": "AdvisoryCitation",
+      "schema_path": "generated/json-schema/advisory/AdvisoryCitation.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md"
+      ],
+      "traceability": [
+        "CJ-005",
+        "DI-005"
+      ]
+    },
+    {
+      "domain": "advisory",
+      "id": "advisory.reviewer_decision",
+      "kind": "dto",
+      "name": "ReviewerDecision",
+      "schema_path": "generated/json-schema/advisory/ReviewerDecision.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md"
+      ],
+      "traceability": [
+        "CJ-005",
+        "EP-006",
+        "DI-005"
+      ]
+    },
+    {
+      "domain": "advisory",
+      "id": "advisory.advisory_response",
+      "kind": "dto",
+      "name": "AdvisoryResponse",
+      "schema_path": "generated/json-schema/advisory/AdvisoryResponse.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md",
+        "v2-planning/AGRO-V2-TEST-PLAN.md"
+      ],
+      "traceability": [
+        "CJ-005",
+        "RJ-003",
+        "DI-005"
+      ]
+    },
+    {
+      "domain": "advisory",
+      "id": "advisory.advisory_conversation_collection",
+      "kind": "dto",
+      "name": "AdvisoryConversationCollection",
+      "schema_path": "generated/json-schema/advisory/AdvisoryConversationCollection.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md"
+      ],
+      "traceability": [
+        "CJ-005",
+        "RJ-003",
+        "DI-005"
+      ]
+    },
+    {
+      "domain": "advisory",
+      "id": "advisory.reviewer_decision_input",
+      "kind": "dto",
+      "name": "ReviewerDecisionInput",
+      "schema_path": "generated/json-schema/advisory/ReviewerDecisionInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md"
+      ],
+      "traceability": [
+        "CJ-005",
+        "EP-006",
+        "DI-005"
+      ]
+    },
+    {
+      "domain": "channels",
+      "id": "channels.ussd_session",
+      "kind": "dto",
+      "name": "UssdSession",
+      "schema_path": "generated/json-schema/channels/UssdSession.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b004_ussd_adapter_contract.json",
+        "legacy/staging-runtime/src/agro_v2/ussd_adapter.py"
+      ],
+      "traceability": [
+        "EP-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "channels",
+      "id": "channels.whatsapp_command",
+      "kind": "dto",
+      "name": "WhatsAppCommand",
+      "schema_path": "generated/json-schema/channels/WhatsAppCommand.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b005_whatsapp_adapter_contract.json",
+        "legacy/staging-runtime/src/agro_v2/whatsapp_adapter.py"
+      ],
+      "traceability": [
+        "EP-003",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "channels",
+      "id": "channels.offline_queue_command",
+      "kind": "dto",
+      "name": "OfflineQueueCommand",
+      "schema_path": "generated/json-schema/channels/OfflineQueueCommand.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b006_pwa_offline_queue_contract.json",
+        "legacy/staging-runtime/src/agro_v2/offline_queue.py",
+        "legacy/staging-runtime/src/agro_v2/offline_action_queue.py"
+      ],
+      "traceability": [
+        "EP-002",
+        "RJ-001",
+        "RJ-002",
+        "DI-001",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "channels",
+      "id": "channels.offline_queue_result",
+      "kind": "dto",
+      "name": "OfflineQueueResult",
+      "schema_path": "generated/json-schema/channels/OfflineQueueResult.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b006_pwa_offline_queue_contract.json",
+        "legacy/staging-runtime/src/agro_v2/offline_queue.py",
+        "legacy/staging-runtime/src/agro_v2/offline_action_queue.py"
+      ],
+      "traceability": [
+        "EP-002",
+        "RJ-001",
+        "RJ-002",
+        "DI-001",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "channels",
+      "id": "channels.translator_command",
+      "kind": "dto",
+      "name": "TranslatorCommand",
+      "schema_path": "generated/json-schema/channels/TranslatorCommand.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+      ],
+      "traceability": [
+        "EP-002",
+        "EP-003"
+      ]
+    },
+    {
+      "domain": "notifications",
+      "id": "notifications.attempt",
+      "kind": "dto",
+      "name": "NotificationAttempt",
+      "schema_path": "generated/json-schema/notifications/NotificationAttempt.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b013_settlement_notification_contract.json",
+        "legacy/staging-runtime/src/agro_v2/notification_broker.py",
+        "legacy/staging-runtime/src/agro_v2/settlement_notifications.py"
+      ],
+      "traceability": [
+        "EP-003",
+        "RJ-001",
+        "RJ-002",
+        "DI-001",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "notifications",
+      "id": "notifications.result",
+      "kind": "dto",
+      "name": "NotificationResult",
+      "schema_path": "generated/json-schema/notifications/NotificationResult.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/contracts/b013_settlement_notification_contract.json",
+        "legacy/staging-runtime/src/agro_v2/notification_broker.py",
+        "legacy/staging-runtime/src/agro_v2/settlement_notifications.py"
+      ],
+      "traceability": [
+        "EP-003",
+        "DI-001",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "notifications",
+      "id": "notifications.settlement_notification_payload",
+      "kind": "dto",
+      "name": "SettlementNotificationPayload",
+      "schema_path": "generated/json-schema/notifications/SettlementNotificationPayload.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "EP-004",
+        "RJ-004",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.listing_create_input",
+      "kind": "dto",
+      "name": "ListingCreateInput",
+      "schema_path": "generated/json-schema/marketplace/ListingCreateInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "legacy/staging-runtime/src/agro_v2/listings.py",
+        "legacy/staging-runtime/src/agro_v2/frontend_listing_wizard.py"
+      ],
+      "traceability": [
+        "CJ-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.listing_update_input",
+      "kind": "dto",
+      "name": "ListingUpdateInput",
+      "schema_path": "generated/json-schema/marketplace/ListingUpdateInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-002",
+        "RJ-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.listing_publish_input",
+      "kind": "dto",
+      "name": "ListingPublishInput",
+      "schema_path": "generated/json-schema/marketplace/ListingPublishInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-002",
+        "CJ-003",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.listing_unpublish_input",
+      "kind": "dto",
+      "name": "ListingUnpublishInput",
+      "schema_path": "generated/json-schema/marketplace/ListingUnpublishInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.listing_record",
+      "kind": "dto",
+      "name": "ListingRecord",
+      "schema_path": "generated/json-schema/marketplace/ListingRecord.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+        "legacy/staging-runtime/src/agro_v2/listings.py"
+      ],
+      "traceability": [
+        "CJ-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.listing_revision_summary",
+      "kind": "dto",
+      "name": "ListingRevisionSummary",
+      "schema_path": "generated/json-schema/marketplace/ListingRevisionSummary.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.listing_collection",
+      "kind": "dto",
+      "name": "ListingCollection",
+      "schema_path": "generated/json-schema/marketplace/ListingCollection.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+      ],
+      "traceability": [
+        "CJ-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.create_listing_result",
+      "kind": "dto",
+      "name": "CreateListingResult",
+      "schema_path": "generated/json-schema/marketplace/CreateListingResult.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+      ],
+      "traceability": [
+        "CJ-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.update_listing_result",
+      "kind": "dto",
+      "name": "UpdateListingResult",
+      "schema_path": "generated/json-schema/marketplace/UpdateListingResult.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+      ],
+      "traceability": [
+        "RJ-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.publish_listing_result",
+      "kind": "dto",
+      "name": "PublishListingResult",
+      "schema_path": "generated/json-schema/marketplace/PublishListingResult.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-002",
+        "CJ-003",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "marketplace",
+      "id": "marketplace.unpublish_listing_result",
+      "kind": "dto",
+      "name": "UnpublishListingResult",
+      "schema_path": "generated/json-schema/marketplace/UnpublishListingResult.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-002",
+        "DI-001"
+      ]
+    },
+    {
+      "domain": "negotiation",
+      "id": "negotiation.negotiation_create_input",
+      "kind": "dto",
+      "name": "NegotiationCreateInput",
+      "schema_path": "generated/json-schema/negotiation/NegotiationCreateInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-003",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "negotiation",
+      "id": "negotiation.negotiation_counter_input",
+      "kind": "dto",
+      "name": "NegotiationCounterInput",
+      "schema_path": "generated/json-schema/negotiation/NegotiationCounterInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-003",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "negotiation",
+      "id": "negotiation.negotiation_confirmation_request_input",
+      "kind": "dto",
+      "name": "NegotiationConfirmationRequestInput",
+      "schema_path": "generated/json-schema/negotiation/NegotiationConfirmationRequestInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-003",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "negotiation",
+      "id": "negotiation.negotiation_confirmation_approve_input",
+      "kind": "dto",
+      "name": "NegotiationConfirmationApproveInput",
+      "schema_path": "generated/json-schema/negotiation/NegotiationConfirmationApproveInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-003",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "negotiation",
+      "id": "negotiation.negotiation_confirmation_reject_input",
+      "kind": "dto",
+      "name": "NegotiationConfirmationRejectInput",
+      "schema_path": "generated/json-schema/negotiation/NegotiationConfirmationRejectInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-003",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "negotiation",
+      "id": "negotiation.negotiation_thread_read",
+      "kind": "dto",
+      "name": "NegotiationThreadRead",
+      "schema_path": "generated/json-schema/negotiation/NegotiationThreadRead.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-003",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "negotiation",
+      "id": "negotiation.negotiation_thread_collection",
+      "kind": "dto",
+      "name": "NegotiationThreadCollection",
+      "schema_path": "generated/json-schema/negotiation/NegotiationThreadCollection.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+      ],
+      "traceability": [
+        "CJ-003",
+        "DI-002"
+      ]
+    },
+    {
+      "domain": "ledger",
+      "id": "ledger.wallet_funding_input",
+      "kind": "dto",
+      "name": "WalletFundingInput",
+      "schema_path": "generated/json-schema/ledger/WalletFundingInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "ledger",
+      "id": "ledger.wallet_release_input",
+      "kind": "dto",
+      "name": "WalletReleaseInput",
+      "schema_path": "generated/json-schema/ledger/WalletReleaseInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "ledger",
+      "id": "ledger.wallet_reverse_input",
+      "kind": "dto",
+      "name": "WalletReverseInput",
+      "schema_path": "generated/json-schema/ledger/WalletReverseInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "EP-004",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "ledger",
+      "id": "ledger.wallet_reconciliation_input",
+      "kind": "dto",
+      "name": "WalletReconciliationInput",
+      "schema_path": "generated/json-schema/ledger/WalletReconciliationInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+      ],
+      "traceability": [
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "ledger",
+      "id": "ledger.wallet_ledger_entry",
+      "kind": "dto",
+      "name": "WalletLedgerEntry",
+      "schema_path": "generated/json-schema/ledger/WalletLedgerEntry.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "DI-003",
+        "IDI-003"
+      ]
+    },
+    {
+      "domain": "ledger",
+      "id": "ledger.wallet_balance_read",
+      "kind": "dto",
+      "name": "WalletBalanceRead",
+      "schema_path": "generated/json-schema/ledger/WalletBalanceRead.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "RJ-004",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "ledger",
+      "id": "ledger.wallet_transaction_collection",
+      "kind": "dto",
+      "name": "WalletTransactionCollection",
+      "schema_path": "generated/json-schema/ledger/WalletTransactionCollection.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "RJ-004",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "escrow",
+      "id": "escrow.escrow_initiate_input",
+      "kind": "dto",
+      "name": "EscrowInitiateInput",
+      "schema_path": "generated/json-schema/escrow/EscrowInitiateInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "escrow",
+      "id": "escrow.escrow_fund_input",
+      "kind": "dto",
+      "name": "EscrowFundInput",
+      "schema_path": "generated/json-schema/escrow/EscrowFundInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "EP-004",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "escrow",
+      "id": "escrow.escrow_mark_partner_pending_input",
+      "kind": "dto",
+      "name": "EscrowMarkPartnerPendingInput",
+      "schema_path": "generated/json-schema/escrow/EscrowMarkPartnerPendingInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+      ],
+      "traceability": [
+        "EP-004",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "escrow",
+      "id": "escrow.escrow_release_input",
+      "kind": "dto",
+      "name": "EscrowReleaseInput",
+      "schema_path": "generated/json-schema/escrow/EscrowReleaseInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "escrow",
+      "id": "escrow.escrow_reverse_input",
+      "kind": "dto",
+      "name": "EscrowReverseInput",
+      "schema_path": "generated/json-schema/escrow/EscrowReverseInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "EP-004",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "escrow",
+      "id": "escrow.escrow_dispute_open_input",
+      "kind": "dto",
+      "name": "EscrowDisputeOpenInput",
+      "schema_path": "generated/json-schema/escrow/EscrowDisputeOpenInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "escrow",
+      "id": "escrow.settlement_timeline_entry",
+      "kind": "dto",
+      "name": "SettlementTimelineEntry",
+      "schema_path": "generated/json-schema/escrow/SettlementTimelineEntry.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "EP-004",
+        "RJ-004",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "escrow",
+      "id": "escrow.escrow_read",
+      "kind": "dto",
+      "name": "EscrowRead",
+      "schema_path": "generated/json-schema/escrow/EscrowRead.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "RJ-004",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "escrow",
+      "id": "escrow.escrow_collection",
+      "kind": "dto",
+      "name": "EscrowCollection",
+      "schema_path": "generated/json-schema/escrow/EscrowCollection.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+      ],
+      "traceability": [
+        "CJ-004",
+        "RJ-004",
+        "DI-003"
+      ]
+    },
+    {
+      "domain": "finance",
+      "id": "finance.funding_opportunity_create_input",
+      "kind": "dto",
+      "name": "FundingOpportunityCreateInput",
+      "schema_path": "generated/json-schema/finance/FundingOpportunityCreateInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "output_to_user/AGRODOMAIN-ENHANCED-REMEDIATION-PRD.md"
+      ],
+      "traceability": [
+        "QG-04",
+        "CJ-005"
+      ]
+    },
+    {
+      "domain": "finance",
+      "id": "finance.investment_create_input",
+      "kind": "dto",
+      "name": "InvestmentCreateInput",
+      "schema_path": "generated/json-schema/finance/InvestmentCreateInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "output_to_user/AGRODOMAIN-ENHANCED-REMEDIATION-PRD.md"
+      ],
+      "traceability": [
+        "QG-04",
+        "EP-005"
+      ]
+    },
+    {
+      "domain": "finance",
+      "id": "finance.investment_withdraw_input",
+      "kind": "dto",
+      "name": "InvestmentWithdrawInput",
+      "schema_path": "generated/json-schema/finance/InvestmentWithdrawInput.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "output_to_user/AGRODOMAIN-ENHANCED-REMEDIATION-PRD.md"
+      ],
+      "traceability": [
+        "QG-04",
+        "EP-005"
+      ]
+    },
+    {
+      "domain": "finance",
+      "id": "finance.funding_opportunity_read",
+      "kind": "dto",
+      "name": "FundingOpportunityRead",
+      "schema_path": "generated/json-schema/finance/FundingOpportunityRead.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "output_to_user/AGRODOMAIN-ENHANCED-REMEDIATION-PRD.md"
+      ],
+      "traceability": [
+        "QG-04"
+      ]
+    },
+    {
+      "domain": "finance",
+      "id": "finance.investment_read",
+      "kind": "dto",
+      "name": "InvestmentRead",
+      "schema_path": "generated/json-schema/finance/InvestmentRead.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "output_to_user/AGRODOMAIN-ENHANCED-REMEDIATION-PRD.md"
+      ],
+      "traceability": [
+        "QG-04"
+      ]
+    },
+    {
+      "domain": "finance",
+      "id": "finance.funding_opportunity_collection",
+      "kind": "dto",
+      "name": "FundingOpportunityCollection",
+      "schema_path": "generated/json-schema/finance/FundingOpportunityCollection.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "output_to_user/AGRODOMAIN-ENHANCED-REMEDIATION-PRD.md"
+      ],
+      "traceability": [
+        "QG-04"
+      ]
+    },
+    {
+      "domain": "finance",
+      "id": "finance.investment_collection",
+      "kind": "dto",
+      "name": "InvestmentCollection",
+      "schema_path": "generated/json-schema/finance/InvestmentCollection.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "output_to_user/AGRODOMAIN-ENHANCED-REMEDIATION-PRD.md"
+      ],
+      "traceability": [
+        "QG-04"
+      ]
+    },
+    {
+      "domain": "climate",
+      "id": "climate.climate_alert",
+      "kind": "dto",
+      "name": "ClimateAlert",
+      "schema_path": "generated/json-schema/climate/ClimateAlert.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md"
+      ],
+      "traceability": [
+        "CJ-006",
+        "DI-006"
+      ]
+    },
+    {
+      "domain": "climate",
+      "id": "climate.climate_alert_acknowledgement",
+      "kind": "dto",
+      "name": "ClimateAlertAcknowledgement",
+      "schema_path": "generated/json-schema/climate/ClimateAlertAcknowledgement.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md"
+      ],
+      "traceability": [
+        "CJ-006",
+        "DI-006"
+      ]
+    },
+    {
+      "domain": "climate",
+      "id": "climate.climate_degraded_mode",
+      "kind": "dto",
+      "name": "ClimateDegradedMode",
+      "schema_path": "generated/json-schema/climate/ClimateDegradedMode.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md"
+      ],
+      "traceability": [
+        "EP-008",
+        "DI-006"
+      ]
+    },
+    {
+      "domain": "climate",
+      "id": "climate.mrv_evidence_record",
+      "kind": "dto",
+      "name": "MrvEvidenceRecord",
+      "schema_path": "generated/json-schema/climate/MrvEvidenceRecord.schema.json",
+      "schema_version": "2026-04-18.wave1",
+      "source_artifacts": [
+        "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md"
+      ],
+      "traceability": [
+        "CJ-006",
+        "EP-008",
+        "DI-006"
+      ]
+    }
+  ],
+  "generated_at": "deterministic"
+}

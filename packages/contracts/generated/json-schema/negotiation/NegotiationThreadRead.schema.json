@@ -1,0 +1,179 @@
+{
+  "$ref": "#/definitions/NegotiationThreadRead",
+  "definitions": {
+    "NegotiationThreadRead": {
+      "additionalProperties": false,
+      "properties": {
+        "buyer_actor_id": {
+          "$ref": "#/definitions/NegotiationThreadRead/properties/seller_actor_id"
+        },
+        "confirmation_checkpoint": {
+          "additionalProperties": false,
+          "nullable": true,
+          "properties": {
+            "note": {
+              "maxLength": 300,
+              "nullable": true,
+              "type": "string"
+            },
+            "requested_at": {
+              "$ref": "#/definitions/NegotiationThreadRead/properties/last_action_at"
+            },
+            "requested_by_actor_id": {
+              "$ref": "#/definitions/NegotiationThreadRead/properties/seller_actor_id"
+            },
+            "required_confirmer_actor_id": {
+              "$ref": "#/definitions/NegotiationThreadRead/properties/seller_actor_id"
+            }
+          },
+          "required": [
+            "requested_by_actor_id",
+            "required_confirmer_actor_id",
+            "requested_at",
+            "note"
+          ],
+          "type": "object"
+        },
+        "country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "created_at": {
+          "$ref": "#/definitions/NegotiationThreadRead/properties/last_action_at"
+        },
+        "current_offer_amount": {
+          "exclusiveMinimum": true,
+          "minimum": 0,
+          "type": "number"
+        },
+        "current_offer_currency": {
+          "pattern": "^[A-Z]{3}$",
+          "type": "string"
+        },
+        "last_action_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "type": "string"
+        },
+        "listing_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "messages": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "action": {
+                "enum": [
+                  "offer_created",
+                  "offer_countered",
+                  "confirmation_requested",
+                  "confirmation_approved",
+                  "confirmation_rejected"
+                ],
+                "type": "string"
+              },
+              "actor_id": {
+                "$ref": "#/definitions/NegotiationThreadRead/properties/seller_actor_id"
+              },
+              "amount": {
+                "exclusiveMinimum": true,
+                "minimum": 0,
+                "nullable": true,
+                "type": "number"
+              },
+              "created_at": {
+                "$ref": "#/definitions/NegotiationThreadRead/properties/last_action_at"
+              },
+              "currency": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/NegotiationThreadRead/properties/current_offer_currency"
+                  }
+                ],
+                "nullable": true
+              },
+              "note": {
+                "maxLength": 300,
+                "nullable": true,
+                "type": "string"
+              },
+              "schema_version": {
+                "$ref": "#/definitions/NegotiationThreadRead/properties/schema_version"
+              }
+            },
+            "required": [
+              "schema_version",
+              "actor_id",
+              "action",
+              "amount",
+              "currency",
+              "note",
+              "created_at"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "seller_actor_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "open",
+            "pending_confirmation",
+            "accepted",
+            "rejected"
+          ],
+          "type": "string"
+        },
+        "thread_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "updated_at": {
+          "$ref": "#/definitions/NegotiationThreadRead/properties/last_action_at"
+        }
+      },
+      "required": [
+        "schema_version",
+        "thread_id",
+        "listing_id",
+        "seller_actor_id",
+        "buyer_actor_id",
+        "country_code",
+        "status",
+        "current_offer_amount",
+        "current_offer_currency",
+        "last_action_at",
+        "created_at",
+        "updated_at",
+        "confirmation_checkpoint",
+        "messages"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Cross-role thread read DTO shared by buyer and seller refresh flows.",
+  "x-agrodomain-contract": {
+    "id": "negotiation.negotiation_thread_read",
+    "domain": "negotiation",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-003",
+      "DI-002"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n2-wave2-marketplace-negotiation-tranche.md"
+    ]
+  }
+}

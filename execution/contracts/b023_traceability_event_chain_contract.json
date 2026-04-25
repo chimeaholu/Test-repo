@@ -1,0 +1,28 @@
+{
+  "bead_id": "B-023",
+  "name": "Traceability Event Chain Service",
+  "scope": {
+    "focus": [
+      "consignment_lifecycle",
+      "hash_chain_continuity",
+      "custody_events",
+      "immutable_event_projection"
+    ]
+  },
+  "event": {
+    "required_fields": [
+      "consignment_id",
+      "listing_id",
+      "sequence",
+      "event_type",
+      "location_code",
+      "evidence_reference_ids",
+      "previous_event_hash",
+      "event_hash"
+    ]
+  },
+  "test_obligations": {
+    "journey": "CJ-007",
+    "data_check": "DI-006"
+  }
+}

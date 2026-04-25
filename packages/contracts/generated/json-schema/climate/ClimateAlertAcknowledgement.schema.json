@@ -1,0 +1,56 @@
+{
+  "$ref": "#/definitions/ClimateAlertAcknowledgement",
+  "definitions": {
+    "ClimateAlertAcknowledgement": {
+      "additionalProperties": false,
+      "properties": {
+        "acknowledged_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "type": "string"
+        },
+        "actor_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "alert_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "note": {
+          "maxLength": 300,
+          "minLength": 3,
+          "nullable": true,
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "alert_id",
+        "actor_id",
+        "acknowledged_at"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Acknowledgement payload for operator-visible climate alerts.",
+  "x-agrodomain-contract": {
+    "id": "climate.climate_alert_acknowledgement",
+    "domain": "climate",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-006",
+      "DI-006"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md"
+    ]
+  }
+}

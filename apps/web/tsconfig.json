@@ -1,0 +1,63 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "preserve",
+    "strict": true,
+    "baseUrl": ".",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "es2022"
+    ],
+    "allowJs": false,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
+    "skipLibCheck": true
+  },
+  "include": [
+    ".next-playwright/e2e/types/**/*.ts",
+    ".next-playwright/post-copy/types/**/*.ts",
+    ".next/types/**/*.ts",
+    "/tmp/agrodomain-next-debug/types/**/*.ts",
+    "/tmp/agrodomain-next-playwright/e2e/types/**/*.ts",
+    "/tmp/agrodomain-next-playwright/r8-3100/types/**/*.ts",
+    "/tmp/agrodomain-next-playwright/r8-3101/types/**/*.ts",
+    "/tmp/agrodomain-next-playwright/r8-3103/types/**/*.ts",
+    "/tmp/agrodomain-next-playwright/r8-3104/types/**/*.ts",
+    "/tmp/agrodomain-next-playwright/r8-3105/types/**/*.ts",
+    "/tmp/agrodomain-next-playwright/r8/types/**/*.ts",
+    "/tmp/agrodomain-next-r8/types/**/*.ts",
+    "app/**/*.css",
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "components/**/*.ts",
+    "components/**/*.tsx",
+    "features/**/*.ts",
+    "features/**/*.tsx",
+    "lib/**/*.d.ts",
+    "lib/**/*.ts",
+    "lib/**/*.tsx",
+    "next-env.d.ts",
+    "next.config.ts",
+    "vitest.config.ts",
+    "/tmp/agrodomain-next-playwright/r8-3106/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

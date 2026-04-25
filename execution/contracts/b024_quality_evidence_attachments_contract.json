@@ -1,0 +1,28 @@
+{
+  "bead_id": "B-024",
+  "name": "Quality Evidence Attachments",
+  "scope": {
+    "focus": [
+      "attachment_capture",
+      "metadata_validation",
+      "traceability_gallery_projection",
+      "ux_state_coverage"
+    ]
+  },
+  "attachment": {
+    "required_fields": [
+      "attachment_id",
+      "consignment_id",
+      "event_id",
+      "attachment_kind",
+      "mime_type",
+      "file_name",
+      "preview_url",
+      "metadata"
+    ]
+  },
+  "test_obligations": {
+    "journey": "CJ-007",
+    "data_check": "DI-006"
+  }
+}

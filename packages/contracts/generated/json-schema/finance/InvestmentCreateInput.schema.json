@@ -1,0 +1,48 @@
+{
+  "$ref": "#/definitions/InvestmentCreateInput",
+  "definitions": {
+    "InvestmentCreateInput": {
+      "additionalProperties": false,
+      "properties": {
+        "amount": {
+          "exclusiveMinimum": true,
+          "minimum": 0,
+          "type": "number"
+        },
+        "currency": {
+          "pattern": "^[A-Z]{3}$",
+          "type": "string"
+        },
+        "note": {
+          "maxLength": 300,
+          "minLength": 3,
+          "type": "string"
+        },
+        "opportunity_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "opportunity_id",
+        "amount",
+        "currency"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Investor funding payload for moving wallet balance into an active AgroFund position.",
+  "x-agrodomain-contract": {
+    "id": "finance.investment_create_input",
+    "domain": "finance",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "QG-04",
+      "EP-005"
+    ],
+    "source_artifacts": [
+      "output_to_user/AGRODOMAIN-ENHANCED-REMEDIATION-PRD.md"
+    ]
+  }
+}

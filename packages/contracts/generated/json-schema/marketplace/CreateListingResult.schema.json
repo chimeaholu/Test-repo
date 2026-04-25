@@ -1,0 +1,169 @@
+{
+  "$ref": "#/definitions/CreateListingResult",
+  "definitions": {
+    "CreateListingResult": {
+      "additionalProperties": false,
+      "properties": {
+        "audit_event_id": {
+          "exclusiveMinimum": true,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "listing": {
+          "additionalProperties": false,
+          "properties": {
+            "actor_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "commodity": {
+              "maxLength": 64,
+              "minLength": 2,
+              "type": "string"
+            },
+            "country_code": {
+              "description": "ISO alpha-2 country code",
+              "pattern": "^[A-Z]{2}$",
+              "type": "string"
+            },
+            "created_at": {
+              "$ref": "#/definitions/CreateListingResult/properties/listing/properties/published_at"
+            },
+            "has_unpublished_changes": {
+              "type": "boolean"
+            },
+            "listing_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "location": {
+              "maxLength": 120,
+              "minLength": 2,
+              "type": "string"
+            },
+            "price_amount": {
+              "exclusiveMinimum": true,
+              "minimum": 0,
+              "type": "number"
+            },
+            "price_currency": {
+              "pattern": "^[A-Z]{3}$",
+              "type": "string"
+            },
+            "published_at": {
+              "description": "ISO-8601 timestamp with timezone offset",
+              "format": "date-time",
+              "nullable": true,
+              "type": "string"
+            },
+            "published_revision_number": {
+              "exclusiveMinimum": true,
+              "minimum": 0,
+              "nullable": true,
+              "type": "integer"
+            },
+            "quantity_tons": {
+              "exclusiveMinimum": true,
+              "minimum": 0,
+              "type": "number"
+            },
+            "revision_count": {
+              "exclusiveMinimum": true,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "revision_number": {
+              "exclusiveMinimum": true,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "schema_version": {
+              "$ref": "#/definitions/CreateListingResult/properties/schema_version"
+            },
+            "status": {
+              "enum": [
+                "draft",
+                "published",
+                "closed"
+              ],
+              "type": "string"
+            },
+            "summary": {
+              "maxLength": 600,
+              "minLength": 12,
+              "type": "string"
+            },
+            "title": {
+              "maxLength": 120,
+              "minLength": 3,
+              "type": "string"
+            },
+            "updated_at": {
+              "$ref": "#/definitions/CreateListingResult/properties/listing/properties/published_at"
+            },
+            "view_scope": {
+              "enum": [
+                "owner",
+                "buyer_safe"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "schema_version",
+            "listing_id",
+            "actor_id",
+            "country_code",
+            "title",
+            "commodity",
+            "quantity_tons",
+            "price_amount",
+            "price_currency",
+            "location",
+            "summary",
+            "status",
+            "revision_number",
+            "published_revision_number",
+            "revision_count",
+            "has_unpublished_changes",
+            "view_scope",
+            "published_at",
+            "created_at",
+            "updated_at"
+          ],
+          "type": "object"
+        },
+        "replayed": {
+          "type": "boolean"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "listing",
+        "audit_event_id",
+        "replayed"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Command result payload for create-listing mutations with audit linkage.",
+  "x-agrodomain-contract": {
+    "id": "marketplace.create_listing_result",
+    "domain": "marketplace",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-002",
+      "DI-001"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+    ]
+  }
+}

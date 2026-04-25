@@ -1,0 +1,61 @@
+{
+  "$ref": "#/definitions/WalletReconciliationInput",
+  "definitions": {
+    "WalletReconciliationInput": {
+      "additionalProperties": false,
+      "properties": {
+        "country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "currency": {
+          "pattern": "^[A-Z]{3}$",
+          "type": "string"
+        },
+        "expected_available_balance": {
+          "type": "number"
+        },
+        "expected_held_balance": {
+          "type": "number"
+        },
+        "note": {
+          "maxLength": 300,
+          "minLength": 3,
+          "type": "string"
+        },
+        "reconciliation_marker": {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        },
+        "wallet_actor_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "wallet_actor_id",
+        "country_code",
+        "currency",
+        "reconciliation_marker",
+        "expected_available_balance",
+        "expected_held_balance"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Reconciliation payload for recording balance checks and markers against the append-only ledger.",
+  "x-agrodomain-contract": {
+    "id": "ledger.wallet_reconciliation_input",
+    "domain": "ledger",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "DI-003"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+    ]
+  }
+}

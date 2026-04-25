@@ -1,0 +1,29 @@
+{
+  "bead_id": "B-025",
+  "name": "Enterprise Analytics Data Mart Contract",
+  "scope": {
+    "focus": [
+      "anonymized_regional_intelligence",
+      "metrics_schema_projection",
+      "traceability_and_climate_rollup",
+      "citation_backed_provenance"
+    ]
+  },
+  "mart_row": {
+    "required_fields": [
+      "schema_version",
+      "anonymized_subject_key",
+      "country_code",
+      "region",
+      "commodity_code",
+      "climate_signal_count",
+      "traceability_event_count",
+      "citation_source_ids",
+      "metric_value"
+    ]
+  },
+  "test_obligations": {
+    "journey": "CJ-008",
+    "data_check": "DI-003"
+  }
+}

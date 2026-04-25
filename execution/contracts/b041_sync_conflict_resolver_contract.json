@@ -1,0 +1,46 @@
+{
+  "bead_id": "B-041",
+  "scope": {
+    "focus": [
+      "deterministic_precedence",
+      "user_visible_resolution",
+      "session_parity",
+      "audit_resolution"
+    ]
+  },
+  "precedence_order": [
+    "session_parity",
+    "policy_gate",
+    "server_precedence",
+    "client_retry"
+  ],
+  "conflict_types": [
+    "version_mismatch",
+    "duplicate_commit",
+    "session_refresh_required",
+    "session_revoked",
+    "device_binding_changed",
+    "policy_challenge"
+  ],
+  "user_resolution_states": [
+    "server_version_applied",
+    "retry_ready",
+    "session_refresh_required",
+    "reauth_required",
+    "manual_review_required"
+  ],
+  "audit_payload_fields": [
+    "conflict_type",
+    "resolution_policy",
+    "final_state",
+    "session_parity",
+    "client_action"
+  ],
+  "test_obligations": {
+    "journeys": [
+      "ARJ-003",
+      "ARJ-005"
+    ],
+    "data_check": "ARDI-003"
+  }
+}

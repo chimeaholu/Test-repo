@@ -1,0 +1,553 @@
+.trucker-stack,
+.trucker-stack-sm {
+  display: flex;
+  flex-direction: column;
+}
+
+.trucker-stack {
+  gap: 1.25rem;
+}
+
+.trucker-stack-sm {
+  gap: 0.875rem;
+}
+
+.trucker-hero {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: 1.25rem;
+  background:
+    radial-gradient(circle at top right, rgba(31, 109, 82, 0.16), transparent 32%),
+    radial-gradient(circle at bottom left, rgba(188, 113, 33, 0.16), transparent 36%),
+    linear-gradient(160deg, rgba(255, 253, 249, 0.98), rgba(248, 243, 234, 0.98));
+}
+
+.trucker-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), transparent 60%);
+  pointer-events: none;
+}
+
+.trucker-hero-copy,
+.trucker-hero-panel {
+  position: relative;
+  z-index: 1;
+}
+
+.trucker-pill-row,
+.trucker-inline,
+.trucker-card-meta,
+.trucker-card-actions,
+.trucker-driver-head,
+.trucker-driver-foot,
+.trucker-modal-actions,
+.trucker-driver-actions,
+.trucker-proof-grid,
+.trucker-signature-head,
+.trucker-page-head,
+.trucker-review-strip {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.trucker-pill-row,
+.trucker-card-meta,
+.trucker-card-actions,
+.trucker-proof-grid,
+.trucker-review-strip {
+  flex-wrap: wrap;
+}
+
+.trucker-inline {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trucker-inline-start {
+  align-items: flex-start;
+}
+
+.trucker-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.trucker-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 52px;
+  padding: 0.875rem 1rem;
+  border: 1px solid rgba(26, 88, 66, 0.12);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink-soft);
+  font-weight: 700;
+}
+
+.trucker-tab.active {
+  border-color: rgba(31, 109, 82, 0.28);
+  box-shadow: inset 0 -3px 0 rgba(31, 109, 82, 0.75);
+  color: var(--color-brand-700);
+}
+
+.trucker-primary-cta,
+.trucker-availability-card,
+.trucker-trust-chip,
+.trucker-mini-grid,
+.trucker-detail-strip,
+.trucker-stepper,
+.trucker-route-visual,
+.trucker-review-modal,
+.trucker-estimate-banner {
+  display: flex;
+  gap: 1rem;
+}
+
+.trucker-primary-cta,
+.trucker-availability-card,
+.trucker-estimate-banner,
+.trucker-trust-chip {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trucker-primary-cta {
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+  background: linear-gradient(135deg, rgba(19, 66, 50, 0.98), rgba(31, 109, 82, 0.96));
+  color: #fff;
+}
+
+.trucker-primary-cta h3,
+.trucker-primary-cta .muted {
+  color: #fff;
+}
+
+.trucker-grid,
+.trucker-form-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.trucker-grid {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.trucker-form-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.trucker-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  margin-top: 1rem;
+}
+
+.trucker-shipment-card,
+.trucker-load-card,
+.trucker-driver-card,
+.trucker-map-card,
+.trucker-signature-card {
+  border: 1px solid rgba(26, 88, 66, 0.1);
+  border-radius: 1.125rem;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.trucker-shipment-card,
+.trucker-load-card,
+.trucker-driver-card {
+  padding: 1rem;
+}
+
+.trucker-map-card {
+  padding: 1.25rem;
+}
+
+.trucker-card-meta {
+  margin-top: 0.75rem;
+  color: var(--ink-soft);
+  font-size: 0.925rem;
+}
+
+.trucker-link-inline,
+.trucker-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-brand-700);
+  font-weight: 700;
+}
+
+.trucker-driver-copy,
+.trucker-cta-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.trucker-driver-head,
+.trucker-driver-foot {
+  justify-content: space-between;
+}
+
+.trucker-driver-head {
+  align-items: center;
+}
+
+.trucker-driver-foot {
+  margin-top: 0.875rem;
+  align-items: flex-end;
+}
+
+.trucker-rating {
+  color: var(--color-accent-700);
+  font-weight: 700;
+}
+
+.trucker-eyebrow {
+  color: var(--ink-muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.trucker-load-price {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-brand-700);
+}
+
+.trucker-detail-strip {
+  flex-direction: column;
+}
+
+.trucker-detail-strip article,
+.trucker-review-strip article {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.84);
+}
+
+.trucker-detail-strip article svg,
+.trucker-review-strip article svg {
+  color: var(--color-brand-600);
+  flex-shrink: 0;
+}
+
+.trucker-page-head {
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.trucker-route-visual {
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 1.25rem;
+  background: linear-gradient(180deg, rgba(250, 245, 237, 0.92), rgba(255, 255, 255, 0.96));
+}
+
+.trucker-route-marker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+}
+
+.trucker-route-line {
+  position: relative;
+  flex: 1;
+  min-height: 6px;
+  margin: 0 0.75rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(31, 109, 82, 0.22), rgba(188, 113, 33, 0.25));
+}
+
+.trucker-route-truck {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 12px 24px rgba(31, 109, 82, 0.18);
+  color: var(--color-brand-700);
+}
+
+.trucker-route-truck.stage-posted {
+  left: 2%;
+}
+
+.trucker-route-truck.stage-accepted,
+.trucker-route-truck.stage-picked_up {
+  left: 28%;
+}
+
+.trucker-route-truck.stage-in_transit {
+  left: 54%;
+}
+
+.trucker-route-truck.stage-delivered {
+  left: calc(100% - 36px);
+}
+
+.trucker-stepper {
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.trucker-step {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+}
+
+.trucker-step-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(26, 88, 66, 0.18);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink-soft);
+  font-weight: 700;
+}
+
+.trucker-step-dot.ready {
+  background: var(--color-brand-600);
+  border-color: var(--color-brand-700);
+  color: #fff;
+}
+
+.trucker-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.875rem;
+  margin-top: 1rem;
+}
+
+.trucker-detail-item {
+  padding: 0.875rem 1rem;
+  border-radius: 1rem;
+  background: rgba(248, 243, 234, 0.92);
+}
+
+.trucker-detail-item span {
+  display: block;
+  color: var(--ink-muted);
+  font-size: 0.82rem;
+}
+
+.trucker-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  margin-top: 1rem;
+}
+
+.trucker-timeline-entry {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 0.875rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.trucker-timeline-entry.tone-warning {
+  border: 1px solid rgba(196, 75, 59, 0.18);
+}
+
+.trucker-timeline-entry.tone-success {
+  border: 1px solid rgba(42, 111, 67, 0.16);
+}
+
+.trucker-timeline-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  background: rgba(31, 109, 82, 0.1);
+  color: var(--color-brand-700);
+}
+
+.trucker-driver-actions {
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.trucker-file-drop {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: 48px;
+  padding: 0.875rem 1rem;
+  border: 1px dashed rgba(26, 88, 66, 0.22);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.92);
+  cursor: pointer;
+  flex: 1;
+}
+
+.trucker-signature-card {
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.trucker-signature-canvas {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 0.75rem;
+  border: 1px solid rgba(26, 88, 66, 0.16);
+  border-radius: 1rem;
+  background: #fffaf1;
+  touch-action: none;
+}
+
+.trucker-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-weight: 600;
+}
+
+.trucker-field-grid,
+.trucker-field-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  margin-top: 1rem;
+}
+
+.trucker-estimate-banner {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(244, 200, 139, 0.2);
+}
+
+.trucker-estimate-banner svg {
+  color: var(--color-accent-700);
+}
+
+.trucker-review-strip {
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.trucker-review-strip > .ds-btn {
+  align-self: center;
+}
+
+.trucker-review-modal {
+  flex-direction: column;
+}
+
+.trucker-trust-chip {
+  align-self: flex-start;
+  padding: 0.5rem 0.875rem;
+  border-radius: 999px;
+  background: rgba(31, 109, 82, 0.08);
+  font-weight: 700;
+}
+
+.trucker-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.trucker-mini-grid article {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.trucker-mini-grid span {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--ink-muted);
+  font-size: 0.8rem;
+}
+
+@media (max-width: 900px) {
+  .trucker-mini-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trucker-primary-cta,
+  .trucker-availability-card,
+  .trucker-route-visual,
+  .trucker-review-strip {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .trucker-page-head,
+  .trucker-driver-head,
+  .trucker-driver-foot {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .trucker-route-line {
+    width: 100%;
+    min-height: 38px;
+    margin: 0;
+  }
+
+  .trucker-route-truck.stage-posted {
+    left: 4%;
+  }
+
+  .trucker-route-truck.stage-delivered {
+    left: calc(100% - 40px);
+  }
+}
+
+@media (max-width: 640px) {
+  .trucker-tab {
+    min-height: 48px;
+    font-size: 0.95rem;
+  }
+
+  .trucker-card-meta,
+  .trucker-card-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .trucker-stepper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .trucker-step {
+    flex-direction: row;
+  }
+}

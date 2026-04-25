@@ -1,0 +1,102 @@
+{
+  "$ref": "#/definitions/OfflineQueueResult",
+  "definitions": {
+    "OfflineQueueResult": {
+      "additionalProperties": false,
+      "properties": {
+        "conflict": {
+          "additionalProperties": false,
+          "properties": {
+            "conflict_ref": {
+              "minLength": 1,
+              "nullable": true,
+              "type": "string"
+            },
+            "reason_code": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/OfflineQueueResult/properties/error_code"
+                }
+              ],
+              "nullable": true
+            },
+            "state": {
+              "enum": [
+                "none",
+                "stale_version",
+                "duplicate_operation",
+                "remote_override"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        "disposition": {
+          "enum": [
+            "applied",
+            "duplicate",
+            "retry",
+            "terminal_failure"
+          ],
+          "type": "string"
+        },
+        "error_code": {
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "item_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "result_ref": {
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "retry_after_ms": {
+          "exclusiveMinimum": true,
+          "minimum": 0,
+          "nullable": true,
+          "type": "integer"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "item_id",
+        "disposition",
+        "conflict"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Replay result contract with retry budget and reconciliation conflict data.",
+  "x-agrodomain-contract": {
+    "id": "channels.offline_queue_result",
+    "domain": "channels",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "EP-002",
+      "RJ-001",
+      "RJ-002",
+      "DI-001",
+      "DI-002"
+    ],
+    "source_artifacts": [
+      "execution/contracts/b006_pwa_offline_queue_contract.json",
+      "legacy/staging-runtime/src/agro_v2/offline_queue.py",
+      "legacy/staging-runtime/src/agro_v2/offline_action_queue.py"
+    ]
+  }
+}

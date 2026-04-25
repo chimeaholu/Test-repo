@@ -1,0 +1,36 @@
+{
+  "bead_id": "B-048",
+  "name": "Event Bus Topic Partitioning Model",
+  "scope": {
+    "focus": [
+      "topic_taxonomy",
+      "farm_partitioning",
+      "region_partitioning",
+      "replay_safe_routing"
+    ]
+  },
+  "input": {
+    "required_fields": [
+      "session_id",
+      "batch_index",
+      "event_id",
+      "event_type",
+      "farm_id",
+      "country_code"
+    ]
+  },
+  "output": {
+    "required_fields": [
+      "topic_name",
+      "topic_family",
+      "partition_key",
+      "partition_scope",
+      "ordering_key",
+      "replay_safe_key"
+    ]
+  },
+  "test_obligations": {
+    "journey": "IOTJ-004",
+    "data_check": "IOTDI-004"
+  }
+}

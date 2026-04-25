@@ -1,0 +1,30 @@
+{
+  "bead_id": "B-019",
+  "title": "MRV Evidence Record Service",
+  "scope": {
+    "focus": [
+      "assumptions",
+      "provenance",
+      "audit_log",
+      "evidence_model"
+    ]
+  },
+  "provenance_fields": [
+    "source_signal_id",
+    "provenance_key",
+    "reconciliation_key",
+    "observed_at",
+    "confidence"
+  ],
+  "persisted_fields": [
+    "record_id",
+    "metric_name",
+    "methodology",
+    "audit_event_id",
+    "audit_event_hash"
+  ],
+  "test_obligations": {
+    "journey": "EP-008",
+    "data_check": "DI-006"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "$ref": "#/definitions/WorkflowInstance",
+  "definitions": {
+    "WorkflowInstance": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "draft",
+            "active",
+            "blocked",
+            "completed",
+            "cancelled"
+          ],
+          "type": "string"
+        },
+        "updated_at": {
+          "$ref": "#/definitions/WorkflowInstance/properties/created_at"
+        },
+        "workflow_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "workflow_type": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "workflow_id",
+        "workflow_type",
+        "actor_id",
+        "country_code",
+        "state",
+        "created_at",
+        "updated_at"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Canonical workflow instance shared across identity, marketplace, and audit boundaries.",
+  "x-agrodomain-contract": {
+    "id": "workflow.instance",
+    "domain": "workflow",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-001",
+      "EP-007"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md"
+    ]
+  }
+}
