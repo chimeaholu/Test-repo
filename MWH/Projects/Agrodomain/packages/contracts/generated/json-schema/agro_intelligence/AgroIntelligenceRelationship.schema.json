@@ -1,0 +1,190 @@
+{
+  "$ref": "#/definitions/AgroIntelligenceRelationship",
+  "definitions": {
+    "AgroIntelligenceRelationship": {
+      "additionalProperties": false,
+      "properties": {
+        "attribute_payload": {
+          "additionalProperties": {},
+          "type": "object"
+        },
+        "created_at": {
+          "$ref": "#/definitions/AgroIntelligenceRelationship/properties/provenance/items/properties/collected_at"
+        },
+        "lifecycle_state": {
+          "enum": [
+            "ingested",
+            "normalized",
+            "matched_or_unmatched",
+            "scored",
+            "pending_verification",
+            "verified",
+            "rejected",
+            "stale"
+          ],
+          "type": "string"
+        },
+        "provenance": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "adapter_key": {
+                "maxLength": 80,
+                "minLength": 3,
+                "nullable": true,
+                "type": "string"
+              },
+              "boundary_ingest_id": {
+                "maxLength": 80,
+                "minLength": 1,
+                "nullable": true,
+                "type": "string"
+              },
+              "checksum": {
+                "maxLength": 128,
+                "minLength": 3,
+                "nullable": true,
+                "type": "string"
+              },
+              "collected_at": {
+                "description": "ISO-8601 timestamp with timezone offset",
+                "format": "date-time",
+                "type": "string"
+              },
+              "collection_method": {
+                "maxLength": 80,
+                "minLength": 2,
+                "type": "string"
+              },
+              "confidence_weight": {
+                "maximum": 100,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "data_product": {
+                "maxLength": 120,
+                "minLength": 3,
+                "nullable": true,
+                "type": "string"
+              },
+              "legal_basis": {
+                "maxLength": 80,
+                "minLength": 2,
+                "type": "string"
+              },
+              "partner_slug": {
+                "maxLength": 80,
+                "minLength": 2,
+                "nullable": true,
+                "type": "string"
+              },
+              "schema_version": {
+                "$ref": "#/definitions/AgroIntelligenceRelationship/properties/schema_version"
+              },
+              "source_id": {
+                "maxLength": 120,
+                "minLength": 1,
+                "type": "string"
+              },
+              "source_tier": {
+                "enum": [
+                  "A",
+                  "B",
+                  "C"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "schema_version",
+              "source_id",
+              "source_tier",
+              "collected_at",
+              "collection_method",
+              "legal_basis",
+              "confidence_weight"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "relationship_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "type": "string"
+        },
+        "relationship_type": {
+          "enum": [
+            "belongs_to",
+            "operates",
+            "manages",
+            "contains",
+            "trades",
+            "serves",
+            "stores_or_processes",
+            "asserts",
+            "confirms_or_rejects"
+          ],
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "source_entity_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "type": "string"
+        },
+        "target_entity_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "type": "string"
+        },
+        "trust_tier": {
+          "enum": [
+            "bronze",
+            "silver",
+            "gold"
+          ],
+          "type": "string"
+        },
+        "updated_at": {
+          "$ref": "#/definitions/AgroIntelligenceRelationship/properties/provenance/items/properties/collected_at"
+        }
+      },
+      "required": [
+        "schema_version",
+        "relationship_id",
+        "source_entity_id",
+        "target_entity_id",
+        "relationship_type",
+        "trust_tier",
+        "lifecycle_state",
+        "provenance",
+        "attribute_payload",
+        "created_at",
+        "updated_at"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Typed AgroIntelligence graph edge with lifecycle and provenance state.",
+  "x-agrodomain-contract": {
+    "id": "agro_intelligence.relationship",
+    "domain": "agro_intelligence",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "DI-004",
+      "AIJ-002"
+    ],
+    "source_artifacts": [
+      "output_to_user/AGRODOMAIN-ENHANCEMENT-BUILD-SPEC.md",
+      "output_to_user/AGRODOMAIN-AGROINTELLIGENCE-RESEARCH-AND-MODULE-SPEC.md"
+    ]
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "$ref": "#/definitions/WeatherOutlook",
+  "definitions": {
+    "WeatherOutlook": {
+      "additionalProperties": false,
+      "properties": {
+        "farm_profile_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "forecast": {
+          "additionalProperties": false,
+          "properties": {
+            "days": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "date": {
+                    "maxLength": 10,
+                    "minLength": 10,
+                    "type": "string"
+                  },
+                  "evapotranspiration_mm": {
+                    "nullable": true,
+                    "type": "number"
+                  },
+                  "precipitation_mm": {
+                    "nullable": true,
+                    "type": "number"
+                  },
+                  "precipitation_probability_pct": {
+                    "nullable": true,
+                    "type": "number"
+                  },
+                  "temperature_max_c": {
+                    "nullable": true,
+                    "type": "number"
+                  },
+                  "temperature_min_c": {
+                    "nullable": true,
+                    "type": "number"
+                  },
+                  "weather_code": {
+                    "nullable": true,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "date",
+                  "temperature_max_c",
+                  "temperature_min_c",
+                  "precipitation_mm",
+                  "precipitation_probability_pct",
+                  "evapotranspiration_mm",
+                  "weather_code"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "degraded_mode": {
+              "type": "boolean"
+            },
+            "degraded_reasons": {
+              "default": [],
+              "items": {
+                "minLength": 3,
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "generated_at": {
+              "description": "ISO-8601 timestamp with timezone offset",
+              "format": "date-time",
+              "type": "string"
+            },
+            "kind": {
+              "enum": [
+                "forecast",
+                "history"
+              ],
+              "type": "string"
+            },
+            "latitude": {
+              "nullable": true,
+              "type": "number"
+            },
+            "longitude": {
+              "nullable": true,
+              "type": "number"
+            },
+            "provider": {
+              "maxLength": 40,
+              "minLength": 2,
+              "type": "string"
+            },
+            "provider_mode": {
+              "enum": [
+                "live",
+                "degraded"
+              ],
+              "type": "string"
+            },
+            "source_window_end": {
+              "nullable": true,
+              "type": "string"
+            },
+            "source_window_start": {
+              "nullable": true,
+              "type": "string"
+            },
+            "timezone": {
+              "nullable": true,
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "provider",
+            "provider_mode",
+            "latitude",
+            "longitude",
+            "timezone",
+            "generated_at",
+            "degraded_mode",
+            "days"
+          ],
+          "type": "object"
+        },
+        "history": {
+          "$ref": "#/definitions/WeatherOutlook/properties/forecast"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "farm_profile_id",
+        "forecast",
+        "history"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Provider-backed forecast and recent history bundle normalized behind the weather adapter seam.",
+  "x-agrodomain-contract": {
+    "id": "climate.weather_outlook",
+    "domain": "climate",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "DI-31",
+      "EP-31"
+    ],
+    "source_artifacts": [
+      "output_to_user/AGRODOMAIN-ENHANCEMENT-BUILD-SPEC.md"
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "$ref": "#/definitions/InvestmentWithdrawInput",
+  "definitions": {
+    "InvestmentWithdrawInput": {
+      "additionalProperties": false,
+      "properties": {
+        "investment_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "note": {
+          "maxLength": 300,
+          "minLength": 3,
+          "type": "string"
+        }
+      },
+      "required": [
+        "investment_id"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Withdrawal payload for unwinding an active AgroFund position with deterministic penalty handling.",
+  "x-agrodomain-contract": {
+    "id": "finance.investment_withdraw_input",
+    "domain": "finance",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "QG-04",
+      "EP-005"
+    ],
+    "source_artifacts": [
+      "output_to_user/AGRODOMAIN-ENHANCED-REMEDIATION-PRD.md"
+    ]
+  }
+}

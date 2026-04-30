@@ -1,0 +1,123 @@
+{
+  "$ref": "#/definitions/CopilotResolveInput",
+  "definitions": {
+    "CopilotResolveInput": {
+      "additionalProperties": false,
+      "properties": {
+        "context": {
+          "additionalProperties": false,
+          "default": {},
+          "properties": {
+            "alert_id": {
+              "minLength": 1,
+              "nullable": true,
+              "type": "string"
+            },
+            "listing_id": {
+              "minLength": 1,
+              "nullable": true,
+              "type": "string"
+            },
+            "shipment_id": {
+              "minLength": 1,
+              "nullable": true,
+              "type": "string"
+            },
+            "thread_id": {
+              "minLength": 1,
+              "nullable": true,
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "locale": {
+          "maxLength": 16,
+          "minLength": 2,
+          "pattern": "^[a-z]{2}(?:-[A-Z]{2})?$",
+          "type": "string"
+        },
+        "message": {
+          "maxLength": 2000,
+          "minLength": 3,
+          "type": "string"
+        },
+        "route_path": {
+          "maxLength": 240,
+          "minLength": 1,
+          "type": "string"
+        },
+        "transcript_entries": {
+          "default": [],
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "captured_at": {
+                "description": "ISO-8601 timestamp with timezone offset",
+                "format": "date-time",
+                "type": "string"
+              },
+              "channel": {
+                "description": "Transport channel that originated or carried the request",
+                "enum": [
+                  "pwa",
+                  "ussd",
+                  "whatsapp",
+                  "sms",
+                  "push",
+                  "api"
+                ],
+                "type": "string"
+              },
+              "message": {
+                "maxLength": 2000,
+                "minLength": 1,
+                "type": "string"
+              },
+              "speaker": {
+                "enum": [
+                  "user",
+                  "assistant",
+                  "reviewer",
+                  "system"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "speaker",
+              "message",
+              "captured_at",
+              "channel"
+            ],
+            "type": "object"
+          },
+          "maxItems": 20,
+          "type": "array"
+        }
+      },
+      "required": [
+        "route_path",
+        "locale",
+        "message"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Assist-and-act copilot prompt input with route context, transcript context, and optional aggregate references.",
+  "x-agrodomain-contract": {
+    "id": "copilot.resolve_input",
+    "domain": "copilot",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-010",
+      "EP-003",
+      "EP-006"
+    ],
+    "source_artifacts": [
+      "output_to_user/AGRODOMAIN-ENHANCEMENT-BUILD-SPEC.md",
+      "output_to_user/AGRODOMAIN-ENHANCEMENT-TEST-PLAN.md"
+    ]
+  }
+}

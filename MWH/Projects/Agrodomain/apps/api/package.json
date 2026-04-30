@@ -1,0 +1,13 @@
+{
+  "name": "@agrodomain/api",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "build": "python3 ./scripts/quality_gate.py build",
+    "lint": "python3 ./scripts/quality_gate.py lint",
+    "typecheck": "python3 ./scripts/quality_gate.py typecheck",
+    "test": "python3 ./scripts/quality_gate.py test",
+    "test:migrations": "python3 ./scripts/quality_gate.py test:migrations",
+    "verify": "python3 ./scripts/quality_gate.py verify"
+  }
+}

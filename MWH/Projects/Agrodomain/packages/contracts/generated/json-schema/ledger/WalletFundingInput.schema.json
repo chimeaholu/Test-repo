@@ -1,0 +1,74 @@
+{
+  "$ref": "#/definitions/WalletFundingInput",
+  "definitions": {
+    "WalletFundingInput": {
+      "additionalProperties": false,
+      "properties": {
+        "amount": {
+          "exclusiveMinimum": true,
+          "minimum": 0,
+          "type": "number"
+        },
+        "country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "currency": {
+          "pattern": "^[A-Z]{3}$",
+          "type": "string"
+        },
+        "note": {
+          "maxLength": 300,
+          "minLength": 3,
+          "type": "string"
+        },
+        "reconciliation_marker": {
+          "maxLength": 128,
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "reference_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "reference_type": {
+          "enum": [
+            "deposit",
+            "manual_seed",
+            "settlement_reversal"
+          ],
+          "type": "string"
+        },
+        "wallet_actor_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "wallet_actor_id",
+        "country_code",
+        "currency",
+        "amount",
+        "reference_type",
+        "reference_id"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Funding payload for appending wallet credit entries before escrow participation.",
+  "x-agrodomain-contract": {
+    "id": "ledger.wallet_funding_input",
+    "domain": "ledger",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-004",
+      "DI-003"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+    ]
+  }
+}

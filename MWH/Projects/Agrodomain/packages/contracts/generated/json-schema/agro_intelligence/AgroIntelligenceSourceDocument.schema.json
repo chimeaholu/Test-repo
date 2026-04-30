@@ -1,0 +1,127 @@
+{
+  "$ref": "#/definitions/AgroIntelligenceSourceDocument",
+  "definitions": {
+    "AgroIntelligenceSourceDocument": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter_key": {
+          "maxLength": 80,
+          "minLength": 3,
+          "nullable": true,
+          "type": "string"
+        },
+        "boundary_ingest_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "checksum": {
+          "maxLength": 128,
+          "minLength": 3,
+          "nullable": true,
+          "type": "string"
+        },
+        "collected_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "type": "string"
+        },
+        "country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "document_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "type": "string"
+        },
+        "document_kind": {
+          "enum": [
+            "registry_record",
+            "survey_extract",
+            "partner_upload",
+            "field_enumeration",
+            "market_feed",
+            "weather_feed",
+            "geospatial_layer",
+            "transactional_exhaust"
+          ],
+          "type": "string"
+        },
+        "entity_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 80,
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "legal_basis": {
+          "maxLength": 80,
+          "minLength": 2,
+          "type": "string"
+        },
+        "partner_slug": {
+          "maxLength": 80,
+          "minLength": 2,
+          "nullable": true,
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "source_id": {
+          "maxLength": 120,
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_tier": {
+          "enum": [
+            "A",
+            "B",
+            "C"
+          ],
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 200,
+          "minLength": 3,
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "document_id",
+        "source_id",
+        "source_tier",
+        "country_code",
+        "title",
+        "document_kind",
+        "collected_at",
+        "legal_basis"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Source-document metadata preserving acquisition tier, legal basis, and boundary-ingest linkage.",
+  "x-agrodomain-contract": {
+    "id": "agro_intelligence.source_document",
+    "domain": "agro_intelligence",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "DI-004",
+      "AIJ-002"
+    ],
+    "source_artifacts": [
+      "output_to_user/AGRODOMAIN-ENHANCEMENT-BUILD-SPEC.md",
+      "output_to_user/AGRODOMAIN-AGROINTELLIGENCE-RESEARCH-AND-MODULE-SPEC.md"
+    ]
+  }
+}

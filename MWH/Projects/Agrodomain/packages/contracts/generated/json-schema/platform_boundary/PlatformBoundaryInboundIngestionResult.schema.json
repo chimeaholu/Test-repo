@@ -1,0 +1,79 @@
+{
+  "$ref": "#/definitions/PlatformBoundaryInboundIngestionResult",
+  "definitions": {
+    "PlatformBoundaryInboundIngestionResult": {
+      "additionalProperties": false,
+      "properties": {
+        "consent_status": {
+          "enum": [
+            "not_required",
+            "verified",
+            "missing",
+            "revoked"
+          ],
+          "type": "string"
+        },
+        "ingest_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "type": "string"
+        },
+        "partner_slug": {
+          "maxLength": 80,
+          "minLength": 2,
+          "type": "string"
+        },
+        "provenance_status": {
+          "enum": [
+            "verified",
+            "missing"
+          ],
+          "type": "string"
+        },
+        "reason_code": {
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "accepted",
+            "rejected"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "ingest_id",
+        "partner_slug",
+        "status",
+        "reason_code",
+        "consent_status",
+        "provenance_status"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Accepted or rejected ingestion receipt with provenance and consent evaluation outcome.",
+  "x-agrodomain-contract": {
+    "id": "platform_boundary.inbound_ingestion_result",
+    "domain": "platform_boundary",
+    "kind": "response",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "DI-004",
+      "DI-006"
+    ],
+    "source_artifacts": [
+      "output_to_user/AGRODOMAIN-ENHANCEMENT-BUILD-SPEC.md",
+      "output_to_user/AGRODOMAIN-ENHANCEMENT-TEST-PLAN.md"
+    ]
+  }
+}

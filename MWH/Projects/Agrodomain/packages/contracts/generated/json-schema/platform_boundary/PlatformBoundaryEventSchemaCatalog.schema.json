@@ -1,0 +1,204 @@
+{
+  "$ref": "#/definitions/PlatformBoundaryEventSchemaCatalog",
+  "definitions": {
+    "PlatformBoundaryEventSchemaCatalog": {
+      "additionalProperties": false,
+      "properties": {
+        "catalog_version": {
+          "maxLength": 32,
+          "minLength": 1,
+          "type": "string"
+        },
+        "generated_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "adapter_boundaries": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "adapter_key": {
+                      "maxLength": 80,
+                      "minLength": 3,
+                      "type": "string"
+                    },
+                    "authentication": {
+                      "enum": [
+                        "bearer_token"
+                      ],
+                      "type": "string"
+                    },
+                    "consent": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "rationale": {
+                          "maxLength": 240,
+                          "minLength": 3,
+                          "type": "string"
+                        },
+                        "required": {
+                          "type": "boolean"
+                        },
+                        "schema_version": {
+                          "$ref": "#/definitions/PlatformBoundaryEventSchemaCatalog/properties/schema_version"
+                        },
+                        "scope_ids": {
+                          "default": [],
+                          "items": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "required": [
+                        "schema_version",
+                        "required",
+                        "rationale"
+                      ],
+                      "type": "object"
+                    },
+                    "delivery_mode": {
+                      "enum": [
+                        "api_pull",
+                        "webhook",
+                        "reporting"
+                      ],
+                      "type": "string"
+                    },
+                    "max_batch_size": {
+                      "exclusiveMinimum": true,
+                      "minimum": 0,
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "ownership": {
+                      "maxLength": 120,
+                      "minLength": 3,
+                      "type": "string"
+                    },
+                    "schema_version": {
+                      "$ref": "#/definitions/PlatformBoundaryEventSchemaCatalog/properties/schema_version"
+                    },
+                    "status": {
+                      "enum": [
+                        "active",
+                        "pilot"
+                      ],
+                      "type": "string"
+                    },
+                    "supports_replay": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "schema_version",
+                    "adapter_key",
+                    "delivery_mode",
+                    "authentication",
+                    "ownership",
+                    "supports_replay",
+                    "status",
+                    "consent"
+                  ],
+                  "type": "object"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "contains_personal_data": {
+                "type": "boolean"
+              },
+              "data_classification": {
+                "enum": [
+                  "identity",
+                  "marketplace",
+                  "transport",
+                  "climate",
+                  "finance",
+                  "operational"
+                ],
+                "type": "string"
+              },
+              "description": {
+                "maxLength": 400,
+                "minLength": 12,
+                "type": "string"
+              },
+              "event_family": {
+                "maxLength": 120,
+                "minLength": 3,
+                "type": "string"
+              },
+              "ownership": {
+                "maxLength": 120,
+                "minLength": 3,
+                "type": "string"
+              },
+              "owning_domain": {
+                "maxLength": 64,
+                "minLength": 2,
+                "type": "string"
+              },
+              "schema_version": {
+                "$ref": "#/definitions/PlatformBoundaryEventSchemaCatalog/properties/schema_version"
+              },
+              "version": {
+                "maxLength": 32,
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "schema_version",
+              "event_family",
+              "version",
+              "owning_domain",
+              "ownership",
+              "description",
+              "data_classification",
+              "contains_personal_data",
+              "adapter_boundaries"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "catalog_version",
+        "generated_at",
+        "items"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Canonical EH5 event-family catalog with ownership, classification, and partner adapter boundaries.",
+  "x-agrodomain-contract": {
+    "id": "platform_boundary.event_schema_catalog",
+    "domain": "platform_boundary",
+    "kind": "catalog",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "DI-004",
+      "DI-006"
+    ],
+    "source_artifacts": [
+      "output_to_user/AGRODOMAIN-ENHANCEMENT-BUILD-SPEC.md",
+      "output_to_user/AGRODOMAIN-ENHANCEMENT-TEST-PLAN.md"
+    ]
+  }
+}

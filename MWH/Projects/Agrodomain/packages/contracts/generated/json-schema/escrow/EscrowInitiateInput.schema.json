@@ -1,0 +1,37 @@
+{
+  "$ref": "#/definitions/EscrowInitiateInput",
+  "definitions": {
+    "EscrowInitiateInput": {
+      "additionalProperties": false,
+      "properties": {
+        "note": {
+          "maxLength": 300,
+          "minLength": 3,
+          "type": "string"
+        },
+        "thread_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "thread_id"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Escrow initiation payload bound to an accepted negotiation thread.",
+  "x-agrodomain-contract": {
+    "id": "escrow.escrow_initiate_input",
+    "domain": "escrow",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-004",
+      "DI-003"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+    ]
+  }
+}

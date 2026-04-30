@@ -1,0 +1,46 @@
+{
+  "$ref": "#/definitions/EscrowFundInput",
+  "definitions": {
+    "EscrowFundInput": {
+      "additionalProperties": false,
+      "properties": {
+        "escrow_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "note": {
+          "maxLength": 300,
+          "minLength": 3,
+          "type": "string"
+        },
+        "partner_outcome": {
+          "default": "funded",
+          "enum": [
+            "funded",
+            "timeout"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "escrow_id"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Escrow funding payload with deterministic timeout seam for partner-pending behavior.",
+  "x-agrodomain-contract": {
+    "id": "escrow.escrow_fund_input",
+    "domain": "escrow",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-004",
+      "EP-004",
+      "DI-003"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n3-wave3-wallet-escrow-settlement-tranche.md"
+    ]
+  }
+}
