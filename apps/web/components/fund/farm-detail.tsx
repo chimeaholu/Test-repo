@@ -45,9 +45,9 @@ export function FarmDetail(props: {
 
       <SurfaceCard>
         <SectionHeading
-          eyebrow="Farm opportunity"
+          eyebrow="Farm detail"
           title={opportunity.listing.title}
-          body="Review the farm story, funding need, return case, and protection signals before you invest."
+          body="Review the current farm profile, funding posture, and expected return range before you commit more capital."
         />
         <div className="pill-row">
           <StatusPill tone="neutral">{opportunity.listing.location}</StatusPill>
@@ -60,7 +60,7 @@ export function FarmDetail(props: {
 
       <div className="fund-detail-grid">
         <SurfaceCard>
-          <SectionHeading eyebrow="Why this opportunity matters" title="What this farm is raising for" />
+          <SectionHeading eyebrow="Farm profile" title="What this farm is raising for" />
           <InfoList
             items={[
               { label: "Farmer", value: opportunity.farmerName },
@@ -74,7 +74,7 @@ export function FarmDetail(props: {
         </SurfaceCard>
 
         <SurfaceCard>
-          <SectionHeading eyebrow="Return and risk" title="Expected returns and timeline" />
+          <SectionHeading eyebrow="Return profile" title="Expected returns and cadence" />
           <InfoList
             items={[
               { label: "Expected return", value: `${opportunity.expectedReturnPct}%` },
@@ -87,11 +87,11 @@ export function FarmDetail(props: {
       </div>
 
       <SurfaceCard>
-        <SectionHeading eyebrow="Return and risk" title="What to keep in view" />
+        <SectionHeading eyebrow="Risk factors" title="What to keep in view" />
         <div className="fund-risk-list">
           {opportunity.riskFactors.map((risk) => (
             <article className="fund-risk-card" key={risk}>
-              <strong>Protection signal</strong>
+              <strong>Operational watchpoint</strong>
               <p>{risk}</p>
             </article>
           ))}

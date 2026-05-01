@@ -2,10 +2,6 @@ import { z } from "zod";
 
 import { defineContract, schemaVersion } from "../common/contract.js";
 import {
-  agroIntelligenceFreshnessStatusSchema,
-  agroIntelligenceTrustTierSchema,
-} from "../agro_intelligence/index.js";
-import {
   actorIdSchema,
   countryCodeSchema,
   isoTimestampSchema,
@@ -92,47 +88,6 @@ export const listingCollectionSchema = z
   .object({
     schema_version: schemaVersionLiteral,
     items: z.array(listingRecordSchema),
-  })
-  .strict();
-
-export const marketplaceIntelligenceEntityMatchSchema = z
-  .object({
-    entity_id: z.string().min(1).max(80),
-    canonical_name: z.string().min(2).max(160),
-    country_code: countryCodeSchema,
-    trust_tier: agroIntelligenceTrustTierSchema,
-    confidence_score: z.number().int().min(0).max(100),
-    freshness_status: agroIntelligenceFreshnessStatusSchema,
-    operator_tags: z.array(z.string().min(1)).default([]),
-    commodity_tags: z.array(z.string().min(1)).default([]),
-    location_signature: z.string(),
-    source_document_count: z.number().int().nonnegative(),
-    pending_claim_count: z.number().int().nonnegative(),
-    updated_at: isoTimestampSchema,
-    match_score: z.number().int().min(0).max(100),
-    match_reasons: z.array(z.string().min(1)),
-  })
-  .strict();
-
-export const marketplaceListingIntelligenceReadSchema = z
-  .object({
-    schema_version: schemaVersionLiteral,
-    listing_id: z.string().min(1),
-    country_code: countryCodeSchema,
-    matched_buyer_count: z.number().int().nonnegative(),
-    buyer_matches: z.array(marketplaceIntelligenceEntityMatchSchema),
-    seller_entity_match: marketplaceIntelligenceEntityMatchSchema.nullable(),
-  })
-  .strict();
-
-export const marketplaceNegotiationIntelligenceReadSchema = z
-  .object({
-    schema_version: schemaVersionLiteral,
-    thread_id: z.string().min(1),
-    listing_id: z.string().min(1),
-    country_code: countryCodeSchema,
-    counterparty_actor_id: actorIdSchema,
-    counterparty_entity_match: marketplaceIntelligenceEntityMatchSchema.nullable(),
   })
   .strict();
 
@@ -258,34 +213,6 @@ export const listingCollectionContract = defineContract({
   ],
 });
 
-export const marketplaceListingIntelligenceReadContract = defineContract({
-  id: "marketplace.listing_intelligence_read",
-  name: "MarketplaceListingIntelligenceRead",
-  kind: "dto",
-  domain: "marketplace",
-  schemaVersion,
-  schema: marketplaceListingIntelligenceReadSchema,
-  description: "AgroIntelligence connector read model for seller trust resolution and buyer-match guidance on a marketplace listing.",
-  traceability: ["DI-006", "AIJ-002"],
-  sourceArtifacts: [
-    "output_to_user/AGRODOMAIN-ENHANCEMENT-BUILD-SPEC.md",
-  ],
-});
-
-export const marketplaceNegotiationIntelligenceReadContract = defineContract({
-  id: "marketplace.negotiation_intelligence_read",
-  name: "MarketplaceNegotiationIntelligenceRead",
-  kind: "dto",
-  domain: "marketplace",
-  schemaVersion,
-  schema: marketplaceNegotiationIntelligenceReadSchema,
-  description: "AgroIntelligence connector read model for counterparty trust resolution inside the negotiation workspace.",
-  traceability: ["DI-006", "AIJ-002"],
-  sourceArtifacts: [
-    "output_to_user/AGRODOMAIN-ENHANCEMENT-BUILD-SPEC.md",
-  ],
-});
-
 export const createListingResultContract = defineContract({
   id: "marketplace.create_listing_result",
   name: "CreateListingResult",
@@ -349,9 +276,6 @@ export type ListingPublishInput = z.infer<typeof listingPublishInputSchema>;
 export type ListingUnpublishInput = z.infer<typeof listingUnpublishInputSchema>;
 export type ListingRevisionSummary = z.infer<typeof listingRevisionSummarySchema>;
 export type ListingCollection = z.infer<typeof listingCollectionSchema>;
-export type MarketplaceIntelligenceEntityMatch = z.infer<typeof marketplaceIntelligenceEntityMatchSchema>;
-export type MarketplaceListingIntelligenceRead = z.infer<typeof marketplaceListingIntelligenceReadSchema>;
-export type MarketplaceNegotiationIntelligenceRead = z.infer<typeof marketplaceNegotiationIntelligenceReadSchema>;
 export type CreateListingResult = z.infer<typeof createListingResultSchema>;
 export type UpdateListingResult = z.infer<typeof updateListingResultSchema>;
 export type PublishListingResult = z.infer<typeof publishListingResultSchema>;

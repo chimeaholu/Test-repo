@@ -9,6 +9,8 @@ import {
   advisoryStatusTone,
   confidenceTone,
   resolveAdvisoryLocale,
+  reviewerBody,
+  reviewerHeadline,
   sortAdvisoryItems,
   type AdvisoryViewModel,
 } from "@/features/advisory/model";
@@ -19,7 +21,6 @@ import { advisoryCopyByLocale, resolveExperienceLocale } from "@/lib/content/rou
 import { recordTelemetry } from "@/lib/telemetry/client";
 
 type SubmitFormState = {
-  location: string;
   topic: string;
   questionText: string;
 };
@@ -30,71 +31,6 @@ type SubmitEvidence = {
   auditEventCount: number;
   replayed: boolean;
 } | null;
-
-function humanizeAdvisoryStatus(status: AdvisoryViewModel["status"]): string {
-  switch (status) {
-    case "ready":
-      return "Ready";
-    case "delivered":
-      return "Sent";
-    case "hitl_required":
-      return "Needs review";
-    case "revised":
-      return "Revised";
-    case "blocked":
-      return "On hold";
-    default:
-      return String(status).replaceAll("_", " ");
-  }
-}
-
-function humanizeConfidenceBand(confidenceBand: AdvisoryViewModel["confidence_band"]): string {
-  if (confidenceBand === "high") {
-    return "Strong fit";
-  }
-  if (confidenceBand === "medium") {
-    return "Check before sending";
-  }
-  return "Limited confidence";
-}
-
-function reviewHeadline(item: AdvisoryViewModel): string {
-  if (!item.reviewer_decision) {
-    return "Ready to share";
-  }
-
-  switch (item.reviewer_decision.outcome) {
-    case "approve":
-      return "Ready to send";
-    case "revise":
-      return "Needs a closer review";
-    case "block":
-      return "Hold this answer for now";
-    case "hitl_required":
-      return "A person still needs to confirm this";
-  }
-}
-
-function reviewBody(item: AdvisoryViewModel): string {
-  if (!item.reviewer_decision) {
-    return "The latest guidance is ready to use, with the source detail still available if you want to double-check it.";
-  }
-
-  if (item.reviewer_decision.note) {
-    return item.reviewer_decision.note;
-  }
-
-  switch (item.reviewer_decision.outcome) {
-    case "approve":
-      return "The guidance is ready to share with the current supporting sources attached.";
-    case "revise":
-      return "The guidance needs another pass before it should be shared more widely.";
-    case "block":
-      return "The guidance should stay on hold until the supporting detail improves.";
-    case "hitl_required":
-      return "A person needs to confirm the next step before this answer should be treated as field-ready guidance.";
-  }
-}
 
 export function AdvisoryConversationWorkspace(props: { surface: "advisor" | "requester" }) {
   const { session, traceId } = useAppState();
@@ -107,11 +43,7 @@ export function AdvisoryConversationWorkspace(props: { surface: "advisor" | "req
   const [runtimeMode, setRuntimeMode] = useState<"live" | "fallback">("fallback");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [submitForm, setSubmitForm] = useState<SubmitFormState>({
-    location: "",
-    topic: "",
-    questionText: "",
-  });
+  const [submitForm, setSubmitForm] = useState<SubmitFormState>({ topic: "", questionText: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitEvidence, setSubmitEvidence] = useState<SubmitEvidence>(null);
   const [refreshKey, setRefreshKey] = useState(0);
@@ -197,9 +129,6 @@ export function AdvisoryConversationWorkspace(props: { surface: "advisor" | "req
     setError(null);
     setSubmitEvidence(null);
     try {
-      const questionText = submitForm.location.trim()
-        ? `${submitForm.questionText.trim()}\nLocation: ${submitForm.location.trim()}`
-        : submitForm.questionText.trim();
       const result = await sendCommand(
         {
           actorId: session.actor.actor_id,
@@ -210,8 +139,8 @@ export function AdvisoryConversationWorkspace(props: { surface: "advisor" | "req
           journeyIds: ["CJ-005"],
           dataCheckIds: ["DI-005"],
           input: {
-            topic: submitForm.topic.trim(),
-            question_text: questionText,
+            topic: submitForm.topic,
+            question_text: submitForm.questionText,
             locale: localeState.resolvedLocale,
             transcript_entries: [],
             policy_context: { sensitive_topics: [] },
@@ -239,13 +168,13 @@ export function AdvisoryConversationWorkspace(props: { surface: "advisor" | "req
         trace_id: traceId,
         timestamp: new Date().toISOString(),
         detail: {
-          topic: submitForm.topic.trim(),
+          topic: submitForm.topic,
           request_id: result.data.request_id,
           replayed: result.data.replayed,
         },
       });
 
-      setSubmitForm({ location: "", topic: "", questionText: "" });
+      setSubmitForm({ topic: "", questionText: "" });
       setRefreshKey((k) => k + 1);
     } catch (nextError) {
       setError(nextError instanceof Error ? nextError.message : "Unable to submit advisory request.");
@@ -258,30 +187,17 @@ export function AdvisoryConversationWorkspace(props: { surface: "advisor" | "req
     return null;
   }
 
-  const heroCopy =
-    props.surface === "advisor"
-      ? {
-          body: "Keep the farmer's question, the recommended response, and the supporting context in one place.",
-          eyebrow: "AgroGuide requests",
-          title: "Review the next request and send practical guidance",
-        }
-      : {
-          body: "Use clear, practical language so the platform can return the most helpful response.",
-          eyebrow: "Ask AgroGuide",
-          title: "Describe the issue and get grounded guidance",
-        };
-
   return (
     <div className="content-stack">
       <SurfaceCard>
         <SectionHeading
-          eyebrow={heroCopy.eyebrow}
-          title={heroCopy.title}
-          body={heroCopy.body}
+          eyebrow={copy.historyEyebrow}
+          title="Review evidence-backed recommendations"
+          body={copy.historyBody}
           actions={
             <div className="pill-row">
               <StatusPill tone={runtimeMode === "live" ? "online" : "degraded"}>
-                {runtimeMode === "live" ? "Live updates" : "Saved reference view"}
+                {runtimeMode === "live" ? "Live service" : "Reference view"}
               </StatusPill>
               <StatusPill tone="neutral">{localeState.resolvedLocale}</StatusPill>
             </div>
@@ -292,8 +208,8 @@ export function AdvisoryConversationWorkspace(props: { surface: "advisor" | "req
           <p className="muted">{runtimeMode === "live" ? copy.runtimeLive : copy.runtimeFallback}</p>
           <p className="muted">
             {props.surface === "advisor"
-              ? "Requests waiting, the recommended guidance, the supporting sources, and the review note stay visible together."
-              : "Describe the crop issue clearly, then review the latest guidance, supporting sources, and any review note in the same place."}
+              ? "Queue and detail stay visible together so reviewers can compare confidence, policy context, and conversation history."
+              : "This view keeps recommendations readable on mobile while showing why the answer can be trusted or why it is still on hold."}
           </p>
         </div>
       </SurfaceCard>
@@ -301,13 +217,13 @@ export function AdvisoryConversationWorkspace(props: { surface: "advisor" | "req
       {props.surface === "requester" ? (
         <SurfaceCard>
           <SectionHeading
-            eyebrow="New guidance request"
-            title="Ask AgroGuide"
-            body="Describe the crop issue in plain language so the platform can return grounded guidance and keep the next review step clear."
+            eyebrow="New request"
+            title="Ask for guidance"
+            body="Submit a question to the advisory system. Responses are grounded in vetted sources and reviewed before delivery."
           />
-          <div className="stack-sm advisory-request-form">
+          <div className="stack-sm">
             <label className="field-label" htmlFor="advisory-topic">
-              What do you need help with?
+              Topic
               <input
                 className="field-input"
                 id="advisory-topic"
@@ -319,34 +235,19 @@ export function AdvisoryConversationWorkspace(props: { surface: "advisor" | "req
                 value={submitForm.topic}
               />
             </label>
-            <label className="field-label" htmlFor="advisory-location">
-              Where is this happening?
-              <input
-                className="field-input"
-                id="advisory-location"
-                maxLength={160}
-                onChange={(e) => setSubmitForm((prev) => ({ ...prev, location: e.target.value }))}
-                placeholder="District, region, or village"
-                type="text"
-                value={submitForm.location}
-              />
-            </label>
             <label className="field-label" htmlFor="advisory-question">
-              What have you observed so far?
+              Question
               <textarea
                 className="field-input"
                 id="advisory-question"
                 maxLength={2000}
                 minLength={12}
                 onChange={(e) => setSubmitForm((prev) => ({ ...prev, questionText: e.target.value }))}
-                placeholder="Include the crop, the main symptom, and what changed recently if you know it."
+                placeholder="Describe your situation in detail so the advisory can ground its response..."
                 rows={4}
                 value={submitForm.questionText}
               />
             </label>
-            <p className="muted">
-              Include the crop, the main symptom, and what changed recently if you know it.
-            </p>
             <div className="actions-row">
               <button
                 className="button-primary"
@@ -354,23 +255,16 @@ export function AdvisoryConversationWorkspace(props: { surface: "advisor" | "req
                 onClick={() => void submitAdvisoryRequest()}
                 type="button"
               >
-                {isSubmitting ? "Saving request..." : "Request guidance"}
+                {isSubmitting ? "Submitting..." : "Submit request"}
               </button>
             </div>
           </div>
           {submitEvidence ? (
-            <div className="stack-sm">
-              <InsightCallout
-                title="Guidance request saved"
-                body="Your request is now in the queue with its supporting history attached so the next answer and review note stay together."
-                tone="brand"
-              />
-              <p className="muted">
-                Reference {submitEvidence.requestId} · {submitEvidence.auditEventCount} recorded step
-                {submitEvidence.auditEventCount === 1 ? "" : "s"}
-                {submitEvidence.replayed ? " · replay protected" : ""}
-              </p>
-            </div>
+            <InsightCallout
+              title="Request submitted"
+              body={`Request ${submitEvidence.requestId} recorded with ${submitEvidence.auditEventCount} audit event(s).${submitEvidence.replayed ? " (replayed)" : ""}`}
+              tone="brand"
+            />
           ) : null}
         </SurfaceCard>
       ) : null}
@@ -401,9 +295,9 @@ export function AdvisoryConversationWorkspace(props: { surface: "advisor" | "req
         <div className="advisory-layout">
           <SurfaceCard>
             <SectionHeading
-              eyebrow={props.surface === "advisor" ? "Requests waiting" : "Recent guidance"}
-              title={props.surface === "advisor" ? "Open the next request" : "Review the latest guidance"}
-              body="Open a request to read the recommended guidance, check the supporting sources, and decide whether it is ready to send."
+              eyebrow={props.surface === "advisor" ? "Case queue" : "Recent guidance"}
+              title={props.surface === "advisor" ? "Advisory requests" : "Latest responses"}
+              body="Open a case to inspect reviewer status, confidence, and source proof before moving forward."
             />
             <div className="advisory-thread-list" role="list" aria-label="Advisory requests">
               {items.map((item) => (
@@ -417,9 +311,9 @@ export function AdvisoryConversationWorkspace(props: { surface: "advisor" | "req
                 >
                   <div className="queue-head">
                     <div className="pill-row">
-                      <StatusPill tone={advisoryStatusTone(item.status)}>{humanizeAdvisoryStatus(item.status)}</StatusPill>
+                      <StatusPill tone={advisoryStatusTone(item.status)}>{item.status.replaceAll("_", " ")}</StatusPill>
                       <StatusPill tone={confidenceTone(item.confidence_band)}>
-                        {humanizeConfidenceBand(item.confidence_band)}
+                        {item.confidence_band} confidence
                       </StatusPill>
                     </div>
                     <span className="muted">{new Date(item.created_at).toLocaleString()}</span>
@@ -427,7 +321,7 @@ export function AdvisoryConversationWorkspace(props: { surface: "advisor" | "req
                   <h3>{item.topic}</h3>
                   <p className="muted">{item.question_text}</p>
                   <p className="muted">
-                    {item.citations.length} supporting source{item.citations.length === 1 ? "" : "s"} · {reviewHeadline(item)}
+                    {item.citations.length} citations · reviewer: {item.reviewer_decision.outcome.replaceAll("_", " ")}
                   </p>
                 </button>
               ))}
@@ -438,75 +332,63 @@ export function AdvisoryConversationWorkspace(props: { surface: "advisor" | "req
             <SurfaceCard>
               <SectionHeading
                 eyebrow={activeItem.topic}
-                title="Recommended guidance"
+                title="Guidance summary"
                 body={activeItem.question_text}
                 actions={
                   <div className="pill-row">
                     <StatusPill tone={advisoryStatusTone(activeItem.status)}>
-                      {humanizeAdvisoryStatus(activeItem.status)}
+                      {activeItem.status.replaceAll("_", " ")}
                     </StatusPill>
                     <StatusPill tone={confidenceTone(activeItem.confidence_band)}>
-                      {Math.round(activeItem.confidence_score * 100)}% ready
+                      {Math.round(activeItem.confidence_score * 100)}% confidence
                     </StatusPill>
                   </div>
                 }
               />
               <p>{activeItem.response_text}</p>
               {activeItem.status === "blocked" ? (
-                <InsightCallout title="Keep this answer on hold" body={copy.blockedCopy} tone="accent" />
+                <InsightCallout title="Blocked delivery" body={copy.blockedCopy} tone="accent" />
               ) : null}
               {activeItem.status === "hitl_required" ? (
-                <InsightCallout title="Needs closer review" body={copy.hitlCopy} tone="brand" />
+                <InsightCallout title="Held for human review" body={copy.hitlCopy} tone="brand" />
               ) : null}
             </SurfaceCard>
 
             <SurfaceCard>
               <SectionHeading
                 eyebrow={copy.reviewerLabel}
-                title={reviewHeadline(activeItem)}
-                body={reviewBody(activeItem)}
+                title={reviewerHeadline(activeItem)}
+                body={reviewerBody(activeItem)}
               />
-              {activeItem.reviewer_decision ? (
-                <ul className="info-list">
-                  <li>
-                    <span>Decision</span>
-                    <strong>{activeItem.reviewer_decision.outcome.replaceAll("_", " ")}</strong>
-                  </li>
-                  <li>
-                    <span>Review threshold</span>
-                    <strong>
-                      {Math.round(activeItem.reviewer_decision.policy_context.confidence_threshold * 100)}%
-                    </strong>
-                  </li>
-                  <li>
-                    <span>Sensitivity</span>
-                    <strong>
-                      {activeItem.reviewer_decision.policy_context.policy_sensitive
-                        ? "Needs extra care"
-                        : "Routine guidance"}
-                    </strong>
-                  </li>
-                </ul>
-              ) : (
-                <p className="muted">
-                  No extra review note is attached to this response. The source details and history are still available below.
-                </p>
-              )}
+              <ul className="info-list">
+                <li>
+                  <span>Reason code</span>
+                  <strong>{activeItem.reviewer_decision.reason_code}</strong>
+                </li>
+                <li>
+                  <span>Policy threshold</span>
+                  <strong>{Math.round(activeItem.reviewer_decision.policy_context.confidence_threshold * 100)}%</strong>
+                </li>
+                <li>
+                  <span>Policy sensitivity</span>
+                  <strong>{activeItem.reviewer_decision.policy_context.policy_sensitive ? "Sensitive" : "Routine"}</strong>
+                </li>
+              </ul>
             </SurfaceCard>
 
             <SurfaceCard>
               <SectionHeading
                 eyebrow={copy.citationsLabel}
-                title="Open the source details when you need them"
-                body="The guidance stays attached to the source material that shaped the answer."
+                title="Source proof"
+                body="Field guidance stays attached to the evidence used to form it."
                 actions={
                   <button className="button-ghost" onClick={toggleDrawer} type="button">
-                    {drawerOpen ? "Hide source details" : "Open source details"}
+                    {drawerOpen ? "Hide citations" : "Open citation drawer"}
                   </button>
                 }
               />
               <p className="muted">
-                {activeItem.citations.length} supporting source{activeItem.citations.length === 1 ? "" : "s"} linked
+                {activeItem.citations.length} vetted sources linked · model {activeItem.model_name} {activeItem.model_version}
               </p>
               {drawerOpen ? (
                 <div className="advisory-citations" role="list" aria-label="Citation drawer">
@@ -530,7 +412,7 @@ export function AdvisoryConversationWorkspace(props: { surface: "advisor" | "req
               <SectionHeading
                 eyebrow={copy.transcriptLabel}
                 title="Conversation history"
-                body="Check the prompts and reply history that shaped the current guidance."
+                body="The final response can be checked against the prompts and reviewer events that shaped it."
               />
               <ol className="timeline-list">
                 {activeItem.transcript_entries.map((entry) => (

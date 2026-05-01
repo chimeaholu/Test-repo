@@ -99,9 +99,9 @@ export function FirstActionStep({ session, onComplete, onTour }: FirstActionStep
 
   return (
     <div className="onboarding-step onboarding-step-final">
-      <h2 className="onboarding-final-heading">Choose your first action</h2>
+      <h2 className="onboarding-final-heading">You&apos;re all set!</h2>
       <p className="onboarding-final-subheading">
-        Choose the first thing you want to do so the workspace opens in the right place.
+        Here&apos;s what you can do right now:
       </p>
 
       <div className="onboarding-action-cards">
@@ -131,13 +131,13 @@ export function FirstActionStep({ session, onComplete, onTour }: FirstActionStep
         className="onboarding-dashboard-btn"
         onClick={onComplete}
       >
-        Open my workspace
+        Go to My Dashboard
       </Button>
 
       <p className="onboarding-tour-link">
         or{" "}
         <button type="button" className="onboarding-tour-link-btn" onClick={onTour}>
-          take a quick tour
+          take a quick tour of the platform
         </button>
       </p>
     </div>

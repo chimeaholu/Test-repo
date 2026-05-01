@@ -30,13 +30,6 @@ const nextConfig = {
         headers: [{ key: "Cache-Control", value: "no-store" }],
       },
       {
-        source: "/preview",
-        headers: [
-          { key: "Cache-Control", value: "no-store" },
-          { key: "X-Robots-Tag", value: "noindex, nofollow" },
-        ],
-      },
-      {
         source: "/onboarding/:path*",
         headers: [
           { key: "Cache-Control", value: "no-store" },

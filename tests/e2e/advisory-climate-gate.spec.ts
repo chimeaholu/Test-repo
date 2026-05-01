@@ -42,7 +42,7 @@ async function openAdvisorRequestsWithRecovery(
   page: Page,
   authInput: Parameters<typeof signInAndGrantConsent>[1],
 ): Promise<void> {
-  const heading = page.getByRole("heading", { name: "Review the next request and send practical guidance" });
+  const heading = page.getByRole("heading", { name: "Review evidence-backed recommendations" });
   const onAuthGate =
     /\/signin(\?.*)?$/.test(page.url()) || /\/onboarding\/consent(\?.*)?$/.test(page.url());
   if (onAuthGate) {
@@ -63,7 +63,7 @@ async function openClimateAlertsWithRecovery(
   page: Page,
   authInput: Parameters<typeof signInAndGrantConsent>[1],
 ): Promise<void> {
-  const heading = page.getByRole("heading", { name: "See what conditions matter most right now" });
+  const heading = page.getByRole("heading", { name: "Monitor weather risk and field evidence with confidence in view" });
   const onAuthGate =
     /\/signin(\?.*)?$/.test(page.url()) || /\/onboarding\/consent(\?.*)?$/.test(page.url());
   if (onAuthGate) {
@@ -94,13 +94,13 @@ test.describe("N4 advisory and climate tranche diagnostics", () => {
     await openAdvisorRequestsWithRecovery(page, advisorIdentity);
     await expect(
       page.getByText(
-        "Requests waiting, the recommended guidance, the supporting sources, and the review note stay visible together.",
+        "Every response keeps citations, confidence, and reviewer posture visible before anyone treats it as field advice.",
       ),
     ).toBeVisible();
-    await expect(page.getByText(/Ready/i).first()).toBeVisible();
-    await expect(page.getByText(/Review note/i)).toBeVisible();
-    await page.getByRole("button", { name: "Open source details" }).click();
-    await expect(page.getByRole("heading", { name: "Open the source details when you need them" })).toBeVisible();
+    await expect(page.getByText(/confidence/i).first()).toBeVisible();
+    await expect(page.getByText(/Reviewer decision/i)).toBeVisible();
+    await page.getByRole("button", { name: "Open citation drawer" }).click();
+    await expect(page.getByRole("heading", { name: "Source proof" })).toBeVisible();
     await expect(page.getByText("Unverified input claims control")).toBeVisible();
 
     await captureProof(page, testInfo, "cj005-advisory-conversation");
@@ -120,14 +120,14 @@ test.describe("N4 advisory and climate tranche diagnostics", () => {
     await openClimateAlertsWithRecovery(page, farmerIdentity);
     await expect(
       page.getByText(
-        "Follow current alerts, likely field conditions, and practical timing advice for the next few hours and days.",
+        "Alert severity, acknowledgement state, source posture, and evidence assumptions stay visible together so operators do not over-read partial data.",
       ),
     ).toBeVisible();
-    await expect(page.getByRole("button", { name: /Mark reviewed/i })).toBeVisible();
-    await expect(page.getByRole("heading", { name: "Field confidence note" })).toBeVisible();
+    await expect(page.getByRole("button", { name: /Acknowledge alert/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Assumptions and method references" })).toBeVisible();
     await expect(page.getByText("IPCC Tier 2 Annex 4")).toBeVisible();
-    await expect(page.getByText(/Field note/i).first()).toBeVisible();
-    await expect(page.getByText(/late/i).first()).toBeVisible();
+    await expect(page.getByText(/Assumption/i).first()).toBeVisible();
+    await expect(page.getByText(/degraded/i).first()).toBeVisible();
 
     await captureProof(page, testInfo, "cj006-climate-dashboard");
   });

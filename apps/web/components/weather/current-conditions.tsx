@@ -52,7 +52,7 @@ export function CurrentConditions(props: {
         </div>
         <div className="pill-row">
           <StatusPill tone={props.runtimeMode === "live" ? "online" : "degraded"}>
-            {props.runtimeMode === "live" ? "Live updates" : "Saved reference view"}
+            {props.runtimeMode === "live" ? "Live climate feed" : "Continuity mode"}
           </StatusPill>
           <StatusPill tone={props.openAlertCount > 0 ? "degraded" : "online"}>
             {props.openAlertCount} open alert{props.openAlertCount === 1 ? "" : "s"}
@@ -97,8 +97,8 @@ export function CurrentConditions(props: {
 
       {props.degradedCount > 0 ? (
         <p className="muted">
-          {props.degradedCount} recent update window{props.degradedCount === 1 ? "" : "s"} came in late. Use this as
-          a planning guide and confirm locally before acting.
+          {props.degradedCount} source window{props.degradedCount === 1 ? "" : "s"} remain degraded. Treat the
+          forecast as directional until the next refresh.
         </p>
       ) : null}
     </section>

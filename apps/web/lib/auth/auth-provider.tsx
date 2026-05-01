@@ -5,20 +5,10 @@ import type { ReactNode } from "react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { createTraceId } from "@/features/shell/model";
 import { identityApi } from "@/lib/api/identity";
-import { AUTH_STATE_EVENT } from "@/lib/api-client";
+import { createTraceId } from "@/features/shell/model";
 import { recordTelemetry } from "@/lib/telemetry/client";
-import {
-  AuthContext,
-  type AuthContextValue,
-  type MagicLinkChallenge,
-  type MagicLinkInput,
-  type MagicLinkVerifyInput,
-  type PasswordSignInInput,
-  type SignInInput,
-  type SignInOptions,
-} from "./auth-context";
+import { AuthContext, type AuthContextValue, type SignInInput } from "./auth-context";
 
 /** Lightweight cookie so Next.js middleware can gate protected routes. */
 function syncSessionCookie(hasSession: boolean): void {
@@ -31,15 +21,8 @@ function syncSessionCookie(hasSession: boolean): void {
   }
 }
 
-function normalizeRedirectTarget(redirectTo?: string | null): string | null {
-  if (!redirectTo || !redirectTo.startsWith("/app") || redirectTo.startsWith("//")) {
-    return null;
-  }
-  return redirectTo;
-}
-
-function authErrorMessage(error: unknown, fallback: string): string {
-  return error instanceof Error ? error.message : fallback;
+function readStoredSessionSnapshot(): IdentitySession | null {
+  return identityApi.getStoredSession(createTraceId("auth-storage-sync")).data;
 }
 
 export function AuthProvider({
@@ -55,42 +38,105 @@ export function AuthProvider({
   const [signInError, setSignInError] = useState<string | null>(null);
   const [session, setSession] = useState<IdentitySession | null>(null);
 
-  const applyStoredSession = useCallback(() => {
-    const traceId = createTraceId("auth-sync");
-    const stored = identityApi.getStoredSession(traceId).data;
-    setSession(stored);
-    syncSessionCookie(Boolean(stored));
-    onSessionChange?.(stored);
-  }, [onSessionChange]);
-
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    const syncFromEvent = () => applyStoredSession();
-    const syncFromStorage = (event: StorageEvent) => {
-      if (
-        event.key === null ||
-        event.key === "agrodomain.session.v2" ||
-        event.key === "agrodomain.session-token.v1"
-      ) {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const storage = window.localStorage;
+    const storagePrototype = Object.getPrototypeOf(storage) as Storage;
+    const originalPrototypeSetItem = storagePrototype.setItem;
+    const originalPrototypeRemoveItem = storagePrototype.removeItem;
+    const originalPrototypeClear = storagePrototype.clear;
+    const originalInstanceSetItem = storage.setItem.bind(storage);
+    const originalInstanceRemoveItem = storage.removeItem.bind(storage);
+    const originalInstanceClear = storage.clear.bind(storage);
+
+    const applyStoredSession = () => {
+      const stored = readStoredSessionSnapshot();
+      setSession(stored);
+      syncSessionCookie(Boolean(stored));
+      onSessionChange?.(stored);
+    };
+
+    const patchedSetItem = function patchedSetItem(this: Storage, key: string, value: string) {
+      originalPrototypeSetItem.call(this, key, value);
+      if (key === "agrodomain.session.v2" || key === "agrodomain.session-token.v1") {
         applyStoredSession();
       }
     };
-
-    window.addEventListener(AUTH_STATE_EVENT, syncFromEvent);
-    window.addEventListener("storage", syncFromStorage);
-    return () => {
-      window.removeEventListener(AUTH_STATE_EVENT, syncFromEvent);
-      window.removeEventListener("storage", syncFromStorage);
+    const patchedRemoveItem = function patchedRemoveItem(this: Storage, key: string) {
+      originalPrototypeRemoveItem.call(this, key);
+      if (key === "agrodomain.session.v2" || key === "agrodomain.session-token.v1") {
+        applyStoredSession();
+      }
     };
-  }, [applyStoredSession]);
+    const patchedClear = function patchedClear(this: Storage) {
+      originalPrototypeClear.call(this);
+      applyStoredSession();
+    };
 
+    storagePrototype.setItem = patchedSetItem;
+    storagePrototype.removeItem = patchedRemoveItem;
+    storagePrototype.clear = patchedClear;
+
+    Object.defineProperty(storage, "setItem", {
+      configurable: true,
+      value(key: string, value: string) {
+        originalInstanceSetItem(key, value);
+        if (key === "agrodomain.session.v2" || key === "agrodomain.session-token.v1") {
+          applyStoredSession();
+        }
+      },
+    });
+    Object.defineProperty(storage, "removeItem", {
+      configurable: true,
+      value(key: string) {
+        originalInstanceRemoveItem(key);
+        if (key === "agrodomain.session.v2" || key === "agrodomain.session-token.v1") {
+          applyStoredSession();
+        }
+      },
+    });
+    Object.defineProperty(storage, "clear", {
+      configurable: true,
+      value() {
+        originalInstanceClear();
+        applyStoredSession();
+      },
+    });
+
+    return () => {
+      storagePrototype.setItem = originalPrototypeSetItem;
+      storagePrototype.removeItem = originalPrototypeRemoveItem;
+      storagePrototype.clear = originalPrototypeClear;
+      Object.defineProperty(storage, "setItem", {
+        configurable: true,
+        value: originalInstanceSetItem,
+      });
+      Object.defineProperty(storage, "removeItem", {
+        configurable: true,
+        value: originalInstanceRemoveItem,
+      });
+      Object.defineProperty(storage, "clear", {
+        configurable: true,
+        value: originalInstanceClear,
+      });
+    };
+  }, [onSessionChange]);
+
+  // Restore session on mount
   useEffect(() => {
     const traceId = createTraceId("auth-boot");
     const bootToken = identityApi.getStoredAccessToken();
+    const stored = identityApi.getStoredSession(traceId).data;
+    setSession(stored);
+    syncSessionCookie(Boolean(stored));
 
     void identityApi
       .restoreSession(traceId)
       .then((response) => {
+        // Guard against stale resolution if another sign-in happened meanwhile.
         if (identityApi.getStoredAccessToken() !== bootToken) return;
         setSession(response.data);
         syncSessionCookie(Boolean(response.data));
@@ -103,28 +149,17 @@ export function AuthProvider({
         });
       })
       .finally(() => setIsHydrated(true));
-  }, [onSessionChange]);
-
-  const pushAfterSignIn = useCallback(
-    (options?: SignInOptions) => {
-      const nextTarget = normalizeRedirectTarget(options?.redirectTo);
-      router.push(
-        nextTarget
-          ? `/onboarding/consent?next=${encodeURIComponent(nextTarget)}`
-          : "/onboarding/consent",
-      );
-    },
-    [router],
-  );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const signIn = useCallback(
-    async (input: SignInInput, options?: SignInOptions) => {
-      const traceId = createTraceId("preview-sign-in");
+    async (input: SignInInput) => {
+      const traceId = createTraceId("sign-in");
       setIsSigningIn(true);
       setSignInError(null);
       try {
         const response = (
-          await identityApi.signInPreview(
+          await identityApi.signIn(
             {
               country_code: input.countryCode,
               display_name: input.displayName,
@@ -137,96 +172,36 @@ export function AuthProvider({
         setSession(response);
         syncSessionCookie(true);
         onSessionChange?.(response);
-        pushAfterSignIn(options);
-      } catch (error) {
-        const message = authErrorMessage(error, "Preview access failed. Please try again.");
+        router.push("/onboarding/consent");
+      } catch (err) {
+        const message =
+          err instanceof Error ? err.message : "Sign-in failed. Please try again.";
         setSignInError(message);
-        throw error;
+        throw err;
       } finally {
         setIsSigningIn(false);
       }
     },
-    [onSessionChange, pushAfterSignIn],
-  );
-
-  const signInWithPassword = useCallback(
-    async (input: PasswordSignInInput, options?: SignInOptions) => {
-      const traceId = createTraceId("password-sign-in");
-      setIsSigningIn(true);
-      setSignInError(null);
-      try {
-        const response = (await identityApi.signInWithPassword(input, traceId)).data;
-        setSession(response);
-        syncSessionCookie(true);
-        onSessionChange?.(response);
-        pushAfterSignIn(options);
-      } catch (error) {
-        const message = authErrorMessage(error, "Password sign-in failed. Please try again.");
-        setSignInError(message);
-        throw error;
-      } finally {
-        setIsSigningIn(false);
-      }
-    },
-    [onSessionChange, pushAfterSignIn],
-  );
-
-  const requestMagicLink = useCallback(async (input: MagicLinkInput): Promise<MagicLinkChallenge> => {
-    const traceId = createTraceId("magic-link");
-    setIsSigningIn(true);
-    setSignInError(null);
-    try {
-      return (await identityApi.requestMagicLink(input, traceId)).data;
-    } catch (error) {
-      const message = authErrorMessage(error, "Magic-link request failed. Please try again.");
-      setSignInError(message);
-      throw error;
-    } finally {
-      setIsSigningIn(false);
-    }
-  }, []);
-
-  const verifyMagicLink = useCallback(
-    async (input: MagicLinkVerifyInput, options?: SignInOptions) => {
-      const traceId = createTraceId("magic-link-verify");
-      setIsSigningIn(true);
-      setSignInError(null);
-      try {
-        const response = (await identityApi.verifyMagicLink(input, traceId)).data;
-        setSession(response);
-        syncSessionCookie(true);
-        onSessionChange?.(response);
-        pushAfterSignIn(options);
-      } catch (error) {
-        const message = authErrorMessage(error, "Magic-link verification failed. Please try again.");
-        setSignInError(message);
-        throw error;
-      } finally {
-        setIsSigningIn(false);
-      }
-    },
-    [onSessionChange, pushAfterSignIn],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [router],
   );
 
   const clearSession = useCallback(() => {
-    const traceId = createTraceId("sign-out");
-    void identityApi.logout(traceId).finally(() => {
-      identityApi.clear();
-      setSession(null);
-      setSignInError(null);
-      syncSessionCookie(false);
-      onSessionChange?.(null);
-      router.push("/signin");
-    });
-  }, [onSessionChange, router]);
+    identityApi.clear();
+    setSession(null);
+    setSignInError(null);
+    syncSessionCookie(false);
+    onSessionChange?.(null);
+    router.push("/signin");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router]);
 
   const updateSession = useCallback(
     (newSession: IdentitySession | null) => {
       setSession(newSession);
       syncSessionCookie(Boolean(newSession));
-      onSessionChange?.(newSession);
     },
-    [onSessionChange],
+    [],
   );
 
   const value = useMemo<AuthContextValue>(
@@ -236,24 +211,10 @@ export function AuthProvider({
       signInError,
       session,
       signIn,
-      signInWithPassword,
-      requestMagicLink,
-      verifyMagicLink,
       clearSession,
       updateSession,
     }),
-    [
-      clearSession,
-      isHydrated,
-      isSigningIn,
-      requestMagicLink,
-      session,
-      signIn,
-      signInError,
-      signInWithPassword,
-      verifyMagicLink,
-      updateSession,
-    ],
+    [isHydrated, isSigningIn, signInError, session, signIn, clearSession, updateSession],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

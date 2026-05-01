@@ -16,19 +16,15 @@ import type {
   ListingWizardStepId,
 } from "@/components/marketplace/listing-wizard/types";
 import { SurfaceCard, SectionHeading, InsightCallout, StatusPill } from "@/components/ui-primitives";
-import { buildListingWizardGuidance } from "@/features/marketplace/trust";
 import { auditApi } from "@/lib/api/audit";
 import { marketplaceApi } from "@/lib/api/marketplace";
-import { DeferredMutationQueuedError } from "@/lib/offline/mutation-engine";
-import { recordTelemetry } from "@/lib/telemetry/client";
-import { recordMarketplaceConversion } from "@/lib/telemetry/marketplace";
 
 const DRAFT_STORAGE_KEY = "agrodomain_listing_wizard_v1";
 
 const STEPS: Array<{ id: ListingWizardStepId; label: string }> = [
-  { id: "basic", label: "Lot details" },
-  { id: "pricing", label: "Price and delivery" },
-  { id: "media", label: "Photos and proof" },
+  { id: "basic", label: "Basic info" },
+  { id: "pricing", label: "Pricing" },
+  { id: "media", label: "Media & location" },
   { id: "review", label: "Review" },
 ];
 
@@ -212,13 +208,12 @@ async function loadAuditEvidence(requestId: string, idempotencyKey: string, trac
 }
 
 export function ListingWizardContainer() {
-  const { queue, session, traceId } = useAppState();
+  const { session, traceId } = useAppState();
   const [draft, setDraft] = useState<ListingWizardDraft | null>(null);
   const [currentStep, setCurrentStep] = useState<ListingWizardStepId>("basic");
   const [errors, setErrors] = useState<ListingWizardFieldErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionError, setSubmissionError] = useState<string | null>(null);
-  const [submissionNotice, setSubmissionNotice] = useState<string | null>(null);
   const [evidence, setEvidence] = useState<SubmissionEvidence>(null);
   const [savedListingId, setSavedListingId] = useState<string | null>(null);
 
@@ -254,32 +249,12 @@ export function ListingWizardContainer() {
     window.localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(draft));
   }, [draft]);
 
-  const guidance = draft ? buildListingWizardGuidance(currentStep, draft) : null;
-
-  useEffect(() => {
-    if (!session || !guidance) {
-      return;
-    }
-    recordTelemetry({
-      event: "marketplace_conversion_step",
-      trace_id: traceId,
-      timestamp: new Date().toISOString(),
-      detail: {
-        actor_role: session.actor.role,
-        flow: "listing_wizard",
-        readiness_score: guidance.readinessScore,
-        step: currentStep,
-      },
-    });
-  }, [currentStep, guidance, session, traceId]);
-
   if (!session || !draft) {
     return null;
   }
 
   const activeSession = session;
   const activeDraft = draft;
-  const activeGuidance = guidance ?? buildListingWizardGuidance(currentStep, activeDraft);
 
   function updateDraft<K extends keyof ListingWizardDraft>(field: K, value: ListingWizardDraft[K]) {
     setDraft((current) => {
@@ -396,31 +371,10 @@ export function ListingWizardContainer() {
 
     setIsSubmitting(true);
     setSubmissionError(null);
-    setSubmissionNotice(null);
 
     try {
       if (mode === "draft" && savedListingId) {
         setSubmissionError("This draft is already saved. Publish it or open the listing detail to continue.");
-        return;
-      }
-
-      if (mode === "publish" && queue.connectivity_state !== "online") {
-        recordMarketplaceConversion({
-          actorId: activeSession.actor.actor_id,
-          actorRole: activeSession.actor.role,
-          blockerCode: "offline_publish_blocked",
-          countryCode: activeSession.actor.country_code,
-          listingId: savedListingId,
-          outcome: "blocked",
-          queueDepth: queue.items.length,
-          sourceSurface: "listing_wizard",
-          stage: "listing_published",
-          traceId,
-          urgency: "attention",
-        });
-        setSubmissionError(
-          "Publishing requires a live connection. Save the draft offline first, then publish when the connection returns.",
-        );
         return;
       }
 
@@ -458,18 +412,6 @@ export function ListingWizardContainer() {
       }
 
       const auditEventCount = await loadAuditEvidence(requestId, idempotencyKey, traceId);
-      recordTelemetry({
-        event: "marketplace_conversion_step",
-        trace_id: traceId,
-        timestamp: new Date().toISOString(),
-        detail: {
-          action: mode,
-          actor_role: activeSession.actor.role,
-          audit_event_count: auditEventCount,
-          flow: "listing_wizard",
-          readiness_score: activeGuidance.readinessScore,
-        },
-      });
       setEvidence({
         actionLabel,
         auditEventCount,
@@ -477,20 +419,6 @@ export function ListingWizardContainer() {
         listingId,
         replayed,
         requestId,
-      });
-
-      recordMarketplaceConversion({
-        actorId: activeSession.actor.actor_id,
-        actorRole: activeSession.actor.role,
-        countryCode: activeSession.actor.country_code,
-        listingId,
-        outcome: "completed",
-        queueDepth: queue.items.length,
-        replayed,
-        sourceSurface: "listing_wizard",
-        stage: mode === "publish" ? "listing_published" : "listing_draft_saved",
-        traceId,
-        urgency: mode === "publish" ? "attention" : "routine",
       });
 
       if (mode === "publish") {
@@ -503,39 +431,6 @@ export function ListingWizardContainer() {
         }
       }
     } catch (error) {
-      if (error instanceof DeferredMutationQueuedError) {
-        recordMarketplaceConversion({
-          actorId: activeSession.actor.actor_id,
-          actorRole: activeSession.actor.role,
-          countryCode: activeSession.actor.country_code,
-          listingId: savedListingId,
-          outcome: "completed",
-          queueDepth: queue.items.length + 1,
-          sourceSurface: "listing_wizard",
-          stage: "listing_draft_saved",
-          traceId,
-          urgency: "attention",
-        });
-        setSubmissionNotice(
-          "Draft saved offline. Open the outbox to replay it when connectivity returns.",
-        );
-        setEvidence(null);
-        return;
-      }
-      recordMarketplaceConversion({
-        actorId: activeSession.actor.actor_id,
-        actorRole: activeSession.actor.role,
-        blockerCode:
-          error instanceof Error ? error.message : "listing_submit_failed",
-        countryCode: activeSession.actor.country_code,
-        listingId: savedListingId,
-        outcome: "blocked",
-        queueDepth: queue.items.length,
-        sourceSurface: "listing_wizard",
-        stage: mode === "publish" ? "listing_published" : "listing_draft_saved",
-        traceId,
-        urgency: "attention",
-      });
       setSubmissionError(error instanceof Error ? error.message : "Unable to save this listing.");
     } finally {
       setIsSubmitting(false);
@@ -547,8 +442,8 @@ export function ListingWizardContainer() {
       <SurfaceCard>
         <SectionHeading
           eyebrow="Create listing"
-          title="Show buyers exactly what you have available"
-          body="Move from lot details to pricing, proof, and final review with one guided flow built for customer-facing clarity."
+          title="4-step listing wizard"
+          body="Guide the seller through structured listing creation, keep draft state on this device, and publish through the existing marketplace commands."
         />
         <StepIndicator currentStep={currentStep} steps={STEPS} className="ds-steps" />
       </SurfaceCard>
@@ -556,7 +451,7 @@ export function ListingWizardContainer() {
       <SurfaceCard>
         <div className="pill-row">
           <StatusPill tone="neutral">{activeSession.actor.role}</StatusPill>
-          <StatusPill tone="neutral">Draft saved on this device</StatusPill>
+          <StatusPill tone="neutral">Draft persists locally</StatusPill>
           <StatusPill tone={activeDraft.photos.length > 0 ? "online" : "degraded"}>
             {activeDraft.photos.length > 0 ? `${activeDraft.photos.length} previews ready` : "No photos yet"}
           </StatusPill>
@@ -568,74 +463,13 @@ export function ListingWizardContainer() {
           </p>
         ) : null}
 
-        {submissionNotice ? (
-          <InsightCallout
-            title="Saved offline"
-            body={submissionNotice}
-            tone="accent"
-          />
-        ) : null}
-
         {evidence ? (
           <InsightCallout
             title={`${evidence.actionLabel} confirmed`}
-            body={`Listing ${evidence.listingId} was updated successfully. Reference ${evidence.requestId} is available if support needs to review it.`}
+            body={`Listing ${evidence.listingId} produced request ${evidence.requestId} with ${evidence.auditEventCount} audit events. Support code: ${evidence.idempotencyKey}.`}
             tone="brand"
           />
         ) : null}
-      </SurfaceCard>
-
-      <SurfaceCard className="market-guidance-card">
-        <SectionHeading
-          eyebrow="Guided next step"
-          title={activeGuidance.title}
-          body={activeGuidance.body}
-          actions={
-            <div className="pill-row">
-              <StatusPill tone={activeGuidance.readinessScore >= 80 ? "online" : activeGuidance.readinessScore >= 55 ? "degraded" : "neutral"}>
-                {activeGuidance.readinessLabel}
-              </StatusPill>
-              <StatusPill tone="neutral">{activeGuidance.nextActionLabel}</StatusPill>
-            </div>
-          }
-        />
-
-        <div className="queue-grid market-guidance-grid">
-          <article className="queue-card">
-            <h3>What buyers need before they act</h3>
-            <div className="market-trust-signal-list" role="list" aria-label="Listing readiness signals">
-              {activeGuidance.trustSignals.map((signal) => (
-                <article className="market-trust-signal" key={signal.label} role="listitem">
-                  <div className="queue-head">
-                    <strong>{signal.label}</strong>
-                    <StatusPill tone={signal.tone}>{signal.value}</StatusPill>
-                  </div>
-                  <p className="muted">{signal.detail}</p>
-                </article>
-              ))}
-            </div>
-          </article>
-
-          <article className="queue-card">
-            <h3>Clear before you continue</h3>
-            {activeGuidance.blockers.length === 0 ? (
-              <InsightCallout
-                title="No current blockers"
-                body="This step has enough signal to move forward. Keep the next step focused on clarity, not extra copy."
-                tone="brand"
-              />
-            ) : (
-              <ul className="summary-list">
-                {activeGuidance.blockers.map((blocker) => (
-                  <li key={blocker}>
-                    <span>Needs attention</span>
-                    <strong>{blocker}</strong>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </article>
-        </div>
       </SurfaceCard>
 
       {currentStep === "basic" ? (

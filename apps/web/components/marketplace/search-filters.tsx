@@ -106,7 +106,7 @@ export function SearchFilters({
 
         <div className="market-filter-field">
           <label className="market-filter-label" htmlFor="market-price-min">
-            Price range
+            Min price
           </label>
           <Input
             id="market-price-min"
@@ -121,7 +121,7 @@ export function SearchFilters({
 
         <div className="market-filter-field">
           <label className="market-filter-label" htmlFor="market-price-max">
-            Maximum price
+            Max price
           </label>
           <Input
             id="market-price-max"
@@ -136,7 +136,7 @@ export function SearchFilters({
 
         <div className="market-filter-field">
           <label className="market-filter-label" htmlFor="market-age-filter">
-            Availability
+            Listing age
           </label>
           <Select
             id="market-age-filter"

@@ -136,8 +136,7 @@
                     "enum": [
                       "whatsapp",
                       "sms",
-                      "push",
-                      "email"
+                      "push"
                     ],
                     "type": "string"
                   },

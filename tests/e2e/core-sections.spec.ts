@@ -28,7 +28,9 @@ test.describe("Core sections remain click-through reachable", () => {
     });
 
     await gotoPath(page, "/app/finance/queue");
-    await expect(page.getByRole("heading", { name: "Payments and disputes waiting for review" })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "Protected finance queue with settlement and consent posture" }),
+    ).toBeVisible();
 
     await page.getByRole("button", { name: "Sign out" }).click();
 
@@ -66,7 +68,7 @@ test.describe("Core sections remain click-through reachable", () => {
 
     await gotoPath(page, `/app/traceability/${listingId}`);
     await expect(
-      page.getByRole("heading", { name: "Track the journey for this lot" }),
+      page.getByRole("heading", { name: `Traceability chain for ${listingId}` }),
     ).toBeVisible();
 
     await gotoPath(page, "/app/notifications");

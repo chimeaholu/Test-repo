@@ -1,0 +1,34 @@
+{
+  "bead_id": "B-046",
+  "title": "Sensor Event Schema and Provenance Contract",
+  "scope": {
+    "focus": [
+      "sensor_event_envelope",
+      "provenance_metadata",
+      "schema_versioning",
+      "registry_binding"
+    ]
+  },
+  "schema_versions": [
+    "sensor-event.v1"
+  ],
+  "registry_binding_fields": [
+    "device_id",
+    "lineage_root_id",
+    "registry_version",
+    "registry_status"
+  ],
+  "provenance_fields": [
+    "source_provider",
+    "source_message_id",
+    "signature",
+    "signer_id",
+    "confidence",
+    "trace_id",
+    "chain_of_custody"
+  ],
+  "test_obligations": {
+    "journey": "IOTJ-002",
+    "data_check": "IOTDI-002"
+  }
+}

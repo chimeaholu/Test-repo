@@ -1,7 +1,5 @@
 import { clsx } from "clsx";
 
-import { formatCurrency } from "@/lib/i18n/format";
-
 interface CurrencyDisplayProps {
   amount: number;
   currency?: string;
@@ -15,10 +13,11 @@ export function CurrencyDisplay({
   locale = "en-GH",
   className,
 }: CurrencyDisplayProps) {
-  const formatted = formatCurrency(amount, {
-    currency: currency as "GHS" | "NGN" | "USD" | "JMD",
-    locale,
-  });
+  const formatted = new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency,
+    minimumFractionDigits: 2,
+  }).format(amount);
 
-  return <span className={clsx(className)}>{formatted}</span>;
+  return <span className={className}>{formatted}</span>;
 }

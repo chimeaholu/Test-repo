@@ -7,7 +7,6 @@ import type {
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { DashboardActionTile } from "@/components/dashboard-action-tile";
 import { useAppState } from "@/components/app-provider";
 import {
   ActionLink,
@@ -332,15 +331,15 @@ export function FarmerDashboard() {
       <SurfaceCard className="farmer-hero-card">
         <SectionHeading
           eyebrow="Farmer workspace"
-          title={`${getGreeting()}, ${session.actor.display_name}. Keep the next field move clear.`}
-          body="Check what needs attention, move produce into the market, and keep weather and payment updates close by."
+          title={`${getGreeting()}, ${session.actor.display_name}.`}
+          body="Track your live listings, open negotiations, wallet posture, and field alerts from one role-specific dashboard."
           actions={
             <div className="pill-row">
               <StatusPill tone={session.consent.state === "consent_granted" ? "online" : "degraded"}>
-                {session.consent.state === "consent_granted" ? "Ready" : "Needs attention"}
+                {session.consent.state === "consent_granted" ? "Consent active" : "Consent needs attention"}
               </StatusPill>
               <StatusPill tone={queue.connectivity_state === "online" ? "online" : queue.connectivity_state}>
-                {queue.connectivity_state === "degraded" ? "Limited updates" : queue.connectivity_state}
+                {queue.connectivity_state === "degraded" ? "Low signal" : queue.connectivity_state}
               </StatusPill>
             </div>
           }
@@ -351,12 +350,12 @@ export function FarmerDashboard() {
             <p className="muted">
               {primaryAlert
                 ? `${data.climateAlerts.length} active field alerts. Highest urgency: ${primaryAlert.title}.`
-                : "No field alerts are blocking today's farm work."}
+                : "No climate alerts are blocking today’s field work."}
             </p>
           </div>
           <div className="actions-row">
-            <ActionLink href="/app/market/listings" label="Create listing" />
-            <ActionLink href="/app/weather" label="Check weather" tone="secondary" />
+            <ActionLink href="/app/market/listings" label="Open marketplace" />
+            <ActionLink href="/app/market/negotiations" label="Review offers" tone="secondary" />
           </div>
         </div>
       </SurfaceCard>
@@ -398,7 +397,8 @@ export function FarmerDashboard() {
             {errors.climate ? "..." : data.climateAlerts.length}
           </strong>
           <p className="muted">
-            {errors.climate ?? `${data.degradedModes.length} update windows currently need extra care.`}
+            {errors.climate ??
+              `${data.degradedModes.length} source windows currently marked degraded.`}
           </p>
         </article>
       </div>
@@ -408,49 +408,38 @@ export function FarmerDashboard() {
           <SurfaceCard>
             <SectionHeading
               eyebrow="Quick actions"
-              title="Choose the next farm task"
-              body="Move into selling, payment follow-up, or support without digging through extra screens."
+              title="Keep your highest-frequency moves within reach"
+              body="These actions map to the routes you already use in the live product, so the dashboard remains a true launch point instead of a detached overview."
             />
             <div className="farmer-quick-actions">
-              <DashboardActionTile
-                detail="Open the market workspace and publish fresh produce supply."
-                eyebrow="Do now"
-                href="/app/market/listings"
-                icon={<MarketIcon size={20} />}
-                label="Create listing"
-              />
-              <DashboardActionTile
-                detail="Review today's weather updates before you plan the next field move."
-                eyebrow="Watch"
-                href="/app/weather"
-                icon={<SunIcon size={20} />}
-                label="Check weather"
-                tone="secondary"
-              />
-              <DashboardActionTile
-                detail="Inspect cash on hand, money on hold, and recent payout activity."
-                eyebrow="Money"
-                href="/app/payments/wallet"
-                icon={<WalletIcon size={20} />}
-                label="View wallet"
-                tone="secondary"
-              />
-              <DashboardActionTile
-                detail="Continue practical field guidance with local support close by."
-                eyebrow="Need help"
-                href="/app/advisory/new"
-                icon={<AdvisoryIcon size={20} />}
-                label="Ask AgroGuide"
-                tone="warning"
-              />
+              <Link className="task-card primary" href="/app/market/listings">
+                <MarketIcon className="farmer-action-icon" size={24} />
+                <strong>Create new listing</strong>
+                <p className="muted">Open the marketplace workspace and publish fresh produce supply.</p>
+              </Link>
+              <Link className="task-card secondary" href="/app/weather">
+                <SunIcon className="farmer-action-icon" size={24} />
+                <strong>Check weather</strong>
+                <p className="muted">Review live climate alerts, degraded windows, and evidence posture.</p>
+              </Link>
+              <Link className="task-card secondary" href="/app/payments/wallet">
+                <WalletIcon className="farmer-action-icon" size={24} />
+                <strong>View wallet</strong>
+                <p className="muted">Inspect cash on hand, escrow exposure, and recent settlement activity.</p>
+              </Link>
+              <Link className="task-card warning" href="/app/advisory/new">
+                <AdvisoryIcon className="farmer-action-icon" size={24} />
+                <strong>Ask AgroGuide</strong>
+                <p className="muted">Continue agronomy guidance with climate-aware, evidence-backed support.</p>
+              </Link>
             </div>
           </SurfaceCard>
 
           <SurfaceCard>
             <SectionHeading
-              eyebrow="Today's field and market picture"
+              eyebrow="Active listings"
               title="Your current market presence"
-              body="Keep the latest listing state, volume, and price picture clear before you move into offers."
+              body="Keep the latest listing state and buyer-safe visibility clear before you move into negotiations."
               actions={
                 <Link className="button-ghost farmer-inline-link" href="/app/market/listings">
                   See all listings
@@ -489,7 +478,7 @@ export function FarmerDashboard() {
                       {listing.commodity} · {listing.quantity_tons} tons · {listing.location}
                     </p>
                     <p className="muted">
-                      {formatMoney(listing.price_amount, listing.price_currency)} · {listing.revision_count} saved changes
+                      {formatMoney(listing.price_amount, listing.price_currency)} · {listing.revision_count} revisions
                     </p>
                     <p className="muted">Updated {formatRelativeTime(listing.updated_at)}</p>
                   </Link>
@@ -543,12 +532,12 @@ export function FarmerDashboard() {
         <div className="content-stack">
           <SurfaceCard>
             <SectionHeading
-              eyebrow="Weather and guidance"
+              eyebrow="AgroWeather"
               title="Field outlook"
-              body="Keep local warnings, next-step timing, and confidence cues close to today's work."
+              body="This widget stays grounded in the live climate feed. When direct forecast detail is unavailable, it keeps alert severity and data confidence front and center instead of guessing."
               actions={
                 <Link className="button-ghost farmer-inline-link" href="/app/weather">
-                  Open weather
+                  Open climate center
                 </Link>
               }
             />
@@ -581,8 +570,8 @@ export function FarmerDashboard() {
                 </div>
                 {data.degradedModes.length > 0 ? (
                   <InsightCallout
-                    title="Update confidence is reduced"
-                    body={`${data.degradedModes.length} weather update windows are limited. Keep the warning posture, but verify field conditions before making transport or harvest changes.`}
+                    title="Source confidence is reduced"
+                    body={`${data.degradedModes.length} climate source windows are degraded. Keep the warning posture, but verify field conditions before committing transport or harvest changes.`}
                     tone="accent"
                   />
                 ) : null}
@@ -599,7 +588,7 @@ export function FarmerDashboard() {
             <SectionHeading
               eyebrow="AgroGuide"
               title="Today’s advisory nudge"
-              body="Keep one practical recommendation close to the dashboard so field action and guidance stay connected."
+              body="Keep one grounded recommendation close to the dashboard so field action and guidance stay connected."
             />
             {errors.advisory ? (
               <EmptyState title="AgroGuide is unavailable" body={errors.advisory} />
@@ -610,7 +599,7 @@ export function FarmerDashboard() {
                     {advisoryTip.status.replace("_", " ")}
                   </StatusPill>
                   <StatusPill tone={advisoryTip.grounded ? "online" : "neutral"}>
-                    {advisoryTip.grounded ? "Ready" : "Draft"}
+                    {advisoryTip.grounded ? "Grounded" : "Draft"}
                   </StatusPill>
                 </div>
                 <strong>{advisoryTip.topic}</strong>
@@ -631,29 +620,29 @@ export function FarmerDashboard() {
 
           <SurfaceCard>
             <SectionHeading
-              eyebrow="Saved work"
-              title="Saved work and updates"
-              body="Keep unfinished work and key updates visible so you know whether to continue or tidy things up first."
+              eyebrow="Recovery posture"
+              title="Queue and notifications"
+              body="Offline-safe state remains visible here so you can judge whether to keep moving or resolve sync issues first."
             />
             <div className="stat-strip">
               <article className="stat-chip">
-                <span className="metric-label">Saved actions</span>
+                <span className="metric-label">Queued actions</span>
                 <strong>{queueState.actionableCount}</strong>
-                <span className="muted">Work waiting to finish when you return to it.</span>
+                <span className="muted">Actions ready to retry or replay.</span>
               </article>
               <article className="stat-chip">
-                <span className="metric-label">Needs attention</span>
+                <span className="metric-label">Conflicts</span>
                 <strong>{queueState.conflictedCount}</strong>
                 <span className="muted">Items that need review before they can clear.</span>
               </article>
             </div>
             <div className="actions-row">
               <Link className="button-ghost" href="/app/offline/outbox">
-                Open saved work
+                Open outbox
               </Link>
               <Link className="button-ghost" href="/app/notifications">
                 <BellIcon size={16} />
-                View updates
+                View notifications
               </Link>
             </div>
           </SurfaceCard>

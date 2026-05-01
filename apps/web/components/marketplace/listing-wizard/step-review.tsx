@@ -107,15 +107,15 @@ export function ListingWizardStepReview({
 
       <article className="queue-card">
         <InsightCallout
-          title="Final review before buyers see this lot"
-          body="Use this check to confirm the lot story, the trade terms, and the proof buyers will rely on before you publish."
+          title="Uses the live marketplace command flow"
+          body="Draft creation still runs through the existing listing mutation, and publish triggers the same command bus sequence already validated in R0."
           tone="brand"
         />
         {savedListingId ? (
           <div className="detail-stack">
             <p className="muted">Most recent draft reference: {savedListingId}</p>
             <Link className="button-ghost" href={`/app/market/listings/${savedListingId}`}>
-              Review details
+              Open listing detail
             </Link>
           </div>
         ) : null}

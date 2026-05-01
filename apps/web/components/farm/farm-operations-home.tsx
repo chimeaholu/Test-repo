@@ -132,7 +132,7 @@ export function FarmOperationsHome() {
         actions={
           <>
             <Button onClick={() => setActivityOpen(true)} variant="ghost">
-              Log field activity
+              Log activity
             </Button>
             <Button onClick={() => setAddFieldOpen(true)}>Add field</Button>
           </>
@@ -141,24 +141,24 @@ export function FarmOperationsHome() {
           { href: "/app/farmer", label: "Farmer" },
           { label: "Farm" },
         ]}
-        description="See which field needs attention, what work is coming next, and which resources are running low."
-        title="Keep your fields, season work, and inputs in one working view"
+        description="Field boundaries, crop timelines, activities, and input posture stay on one surface so operational decisions are visible before they become problems."
+        title="Farm management"
       />
 
       {workspace ? (
         <Card className="farm-hero" variant="elevated">
           <div className="farm-hero-copy">
-            <p className="farm-kicker">Farm overview</p>
+            <p className="farm-kicker">AgroFarm operations</p>
             <h2>{workspace.farm.farmName}</h2>
             <p>
-              {workspace.farm.district} · {workspace.farm.primaryCrop} season
+              {workspace.farm.district} · {workspace.farm.primaryCrop} programme
             </p>
           </div>
           <div className="farm-hero-meta">
             <Badge variant={workspace.farm.mode === "live" ? "success" : "warning"}>
-              {workspace.farm.mode === "live" ? "Ready" : "Limited updates"}
+              {workspace.farm.mode === "live" ? "live data" : "reference-backed"}
             </Badge>
-            <Badge variant="info">Next harvest in view</Badge>
+            <Badge variant="info">{workspace.weather.sourceLabel}</Badge>
           </div>
           <p className="farm-hero-alert">{workspace.weather.alertSummary}</p>
         </Card>
@@ -186,7 +186,7 @@ export function FarmOperationsHome() {
               <div className="farm-section-head">
                 <div>
                   <p className="farm-kicker">Field layout</p>
-                  <h3>Fields</h3>
+                  <h3>Operations surface</h3>
                 </div>
                 <div className="farm-toggle-row">
                   <Button onClick={() => setViewMode("map")} size="sm" variant={viewMode === "map" ? "primary" : "ghost"}>
@@ -237,16 +237,16 @@ export function FarmOperationsHome() {
                     <strong>{selectedField.areaHectares.toFixed(1)} hectares</strong>
                   </div>
                   <div className="farm-summary-pair">
-                    <span>Current field state</span>
+                    <span>Next task</span>
                     <strong>{selectedField.nextTask}</strong>
                   </div>
                   <div className="farm-summary-pair">
-                    <span>Weather risk</span>
+                    <span>Health note</span>
                     <strong>{selectedField.healthSummary}</strong>
                   </div>
                 </div>
                 <div className="farm-rail-actions">
-                  <Button href={`/app/farm/fields/${selectedField.fieldId}`}>Open field</Button>
+                  <Button href={`/app/farm/fields/${selectedField.fieldId}`}>Open field workspace</Button>
                   <Button href="/app/farm/inputs" variant="ghost">
                     View inputs
                   </Button>
@@ -256,8 +256,8 @@ export function FarmOperationsHome() {
               <Card className="farm-rail-card">
                 <div className="farm-section-head">
                   <div>
-                    <p className="farm-kicker">Inputs and season status</p>
-                    <h3>Inputs running low</h3>
+                    <p className="farm-kicker">Inventory watch</p>
+                    <h3>Stock pressure</h3>
                   </div>
                   <Badge variant={lowStockCount > 0 ? "warning" : "success"}>
                     {lowStockCount > 0 ? `${lowStockCount} low` : "stable"}
@@ -265,8 +265,8 @@ export function FarmOperationsHome() {
                 </div>
                 <p className="farm-rail-note">
                   {lowStockCount > 0
-                    ? "One or more inputs are close to the reorder level. Replenish before the next field task."
-                    : "No inputs are currently running low."}
+                    ? "One or more inputs are close to the reorder threshold. Replenish before the next fertilizing or spraying cycle."
+                    : "No inputs are below the current reorder guardrail."}
                 </p>
               </Card>
             </div>
@@ -285,7 +285,7 @@ export function FarmOperationsHome() {
         <AddFieldFlow onCancel={() => setAddFieldOpen(false)} onSubmit={handleAddField} />
       </Modal>
 
-      <Modal onClose={() => setActivityOpen(false)} open={activityOpen && Boolean(selectedField)} size="lg" title="Log field activity">
+      <Modal onClose={() => setActivityOpen(false)} open={activityOpen && Boolean(selectedField)} size="lg" title="Log activity">
         {selectedField && workspace ? (
           <ActivityForm
             field={selectedField}

@@ -1,29 +1,29 @@
-import type { IdentitySession, ListingRecord, NotificationFeedItem } from "@agrodomain/contracts";
+import type {
+  IdentitySession,
+  ListingRecord,
+  NegotiationThreadRead,
+} from "@agrodomain/contracts";
 
 import { advisoryApi } from "@/lib/api/advisory";
 import { climateApi } from "@/lib/api/climate";
 import { marketplaceApi } from "@/lib/api/marketplace";
 import { walletApi } from "@/lib/api/wallet";
-import {
-  readUserPreferences,
-  type NotificationCategory,
-} from "@/lib/user-preferences";
+import { readUserPreferences, type NotificationCategory } from "@/lib/user-preferences";
 import type { ClimateAlert } from "@/lib/api-types";
 import type { EscrowReadModel } from "@/features/wallet/model";
-import {
-  buildSettlementNotification,
-  buildTradeNotification,
-  compareNotifications,
-  createNotificationItem,
-} from "@/features/notifications/seam";
 
-type AdvisoryItem = Awaited<
-  ReturnType<typeof advisoryApi.listConversations>
->["data"]["items"][number];
+type AdvisoryItem = Awaited<ReturnType<typeof advisoryApi.listConversations>>["data"]["items"][number];
 
-export type FeedNotification = NotificationFeedItem & {
+export interface FeedNotification {
+  id: string;
   category: NotificationCategory;
-};
+  title: string;
+  body: string;
+  actionLabel: string | null;
+  href: string;
+  createdAt: string;
+  read: boolean;
+}
 
 function startOfDay(value: Date): Date {
   return new Date(value.getFullYear(), value.getMonth(), value.getDate());
@@ -38,237 +38,124 @@ export function relativeDayLabel(createdAt: string, now = new Date()): string {
   if (diff <= 86_400_000) {
     return "YESTERDAY";
   }
-  return created
-    .toLocaleDateString("en-US", {
-      weekday: "long",
-      month: "short",
-      day: "numeric",
-    })
-    .toUpperCase();
+  return created.toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "short",
+    day: "numeric",
+  }).toUpperCase();
 }
 
 function buildTradeNotifications(
-  session: IdentitySession,
-  threads: Awaited<
-    ReturnType<typeof marketplaceApi.listNegotiations>
-  >["data"]["items"],
+  threads: NegotiationThreadRead[],
   listings: ListingRecord[],
 ): FeedNotification[] {
-  const preferences = readUserPreferences(session);
-  const listingsById = new Map(
-    listings.map((item) => [item.listing_id, item] as const),
-  );
-
-  return threads.slice(0, 8).map((thread) =>
-    buildTradeNotification({
-      actorId: session.actor.actor_id,
-      listingsById,
-      preferences,
-      thread,
-    }),
-  );
+  const listingTitles = new Map(listings.map((item) => [item.listing_id, item.title]));
+  return threads.slice(0, 8).map((thread) => ({
+    id: `trade:${thread.thread_id}`,
+    category: "trade" as const,
+    title: `Negotiation update for ${listingTitles.get(thread.listing_id) ?? thread.listing_id}`,
+    body: `Thread is ${thread.status.replaceAll("_", " ")} with ${thread.messages.length} recorded message${thread.messages.length === 1 ? "" : "s"}.`,
+    actionLabel: "Open Inbox",
+    href: `/app/market/negotiations?threadId=${thread.thread_id}`,
+    createdAt: thread.updated_at ?? thread.created_at,
+    read: false,
+  }));
 }
 
 function buildFinanceNotifications(
-  session: IdentitySession,
   escrows: EscrowReadModel[],
   listings: ListingRecord[],
+  role: IdentitySession["actor"]["role"],
 ): FeedNotification[] {
-  const preferences = readUserPreferences(session);
-  const listingsById = new Map(
-    listings.map((item) => [item.listing_id, item] as const),
-  );
-  const settlementNotifications = escrows.slice(0, 6).map((escrow) =>
-    buildSettlementNotification({
-      actorId: session.actor.actor_id,
-      escrow,
-      listingTitle: listingsById.get(escrow.listing_id)?.title ?? null,
-      preferences,
-    }),
-  );
+  const settlementNotifications = escrows.slice(0, 6).map((escrow) => ({
+    id: `finance:${escrow.escrow_id}`,
+    category: "finance" as const,
+    title: `Settlement ${escrow.state.replaceAll("_", " ")}`,
+    body: `Listing ${escrow.listing_id} is holding ${escrow.amount} ${escrow.currency}.`,
+    actionLabel: "View Wallet",
+    href: `/app/payments/wallet?escrow=${escrow.escrow_id}`,
+    createdAt: escrow.updated_at,
+    read: false,
+  }));
 
-  if (session.actor.role !== "investor") {
+  if (role !== "investor") {
     return settlementNotifications;
   }
 
   const opportunityNotifications = listings
     .filter((listing) => listing.status === "published")
     .slice(0, 2)
-    .map((listing) =>
-      createNotificationItem({
-        action: {
-          label: "Review opportunity",
-          href: `/app/fund?listing=${listing.listing_id}`,
-        },
-        body: `${listing.title} is available for review in AgroFund using the current marketplace record.`,
-        category: "finance",
-        createdAt: listing.updated_at,
-        lifecycleState: "info",
-        listingId: listing.listing_id,
-        module: "wallet",
-        nextActionCopy: "Review the listing from AgroFund before funding a related opportunity.",
-        notificationId: `finance:fund:${listing.listing_id}`,
-        payload: {
-          listing_id: listing.listing_id,
-          settlement_state: listing.status,
-        },
-        preferences,
-        read: false,
-        templateKey: "wallet.investor_opportunity",
-        title: `Funding window open for ${listing.commodity}`,
-        urgency: "routine",
-      }),
-    );
+    .map((listing) => ({
+      id: `finance:fund:${listing.listing_id}`,
+      category: "finance" as const,
+      title: `Funding window open for ${listing.commodity}`,
+      body: `${listing.title} is available for review in AgroFund using the current marketplace record.`,
+      actionLabel: "Review Opportunity",
+      href: `/app/fund?listing=${listing.listing_id}`,
+      createdAt: listing.updated_at,
+      read: false,
+    }));
 
   return [...settlementNotifications, ...opportunityNotifications];
 }
 
-function buildWeatherNotifications(
-  session: IdentitySession,
-  alerts: ClimateAlert[],
-): FeedNotification[] {
-  const preferences = readUserPreferences(session);
-  return alerts.slice(0, 8).map((alert) =>
-    createNotificationItem({
-      action: {
-        label: "Check weather",
-        href: "/app/weather",
-      },
-      body: alert.summary,
-      category: "weather",
-      createdAt: alert.created_at,
-      lifecycleState: alert.acknowledged ? "resolved" : "pending",
-      module: "climate",
-      nextActionCopy: alert.acknowledged
-        ? null
-        : "Review the alert and confirm the next farm action while the weather window is active.",
-      notificationId: `weather:${alert.alert_id}`,
-      payload: {
-        alert_id: alert.alert_id,
-      },
-      preferences,
-      read: alert.acknowledged,
-      readAt: alert.acknowledged ? alert.created_at : null,
-      templateKey: "climate.alert",
-      title: alert.title,
-      urgency: alert.acknowledged ? "routine" : "attention",
-    }),
-  );
+function buildWeatherNotifications(alerts: ClimateAlert[]): FeedNotification[] {
+  return alerts.slice(0, 8).map((alert) => ({
+    id: `weather:${alert.alert_id}`,
+    category: "weather" as const,
+    title: alert.title,
+    body: alert.summary,
+    actionLabel: "Check Weather",
+    href: "/app/weather",
+    createdAt: alert.created_at,
+    read: alert.acknowledged,
+  }));
 }
 
-function buildAdvisoryNotifications(
-  session: IdentitySession,
-  items: AdvisoryItem[],
-): FeedNotification[] {
-  const preferences = readUserPreferences(session);
-  const isAdvisor =
-    session.actor.role === "advisor" ||
-    session.actor.role === "extension_agent";
-
-  return items.slice(0, 8).map((item) =>
-    createNotificationItem({
-      action: {
-        label: isAdvisor ? "View request" : "View tip",
-        href: isAdvisor ? "/app/advisor/requests" : "/app/advisory/new",
-      },
-      body: item.response_text,
-      category: "advisory",
-      createdAt: item.delivered_at ?? item.created_at,
-      lifecycleState: item.status === "delivered" ? "resolved" : "pending",
-      module: "advisory",
-      nextActionCopy: isAdvisor
-        ? "Review the request and confirm whether further follow-up is needed."
-        : "Open the advisory workspace for the full recommendation and sources.",
-      notificationId: `advisory:${item.advisory_request_id}`,
-      payload: {
-        advisory_request_id: item.advisory_request_id,
-      },
-      preferences,
-      read: item.status === "delivered",
-      readAt:
-        item.status === "delivered"
-          ? item.delivered_at ?? item.created_at
-          : null,
-      templateKey: "advisory.response",
-      title: item.topic,
-      urgency: item.status === "delivered" ? "routine" : "attention",
-    }),
-  );
+function buildAdvisoryNotifications(items: AdvisoryItem[], role: string): FeedNotification[] {
+  return items.slice(0, 8).map((item) => ({
+    id: `advisory:${item.advisory_request_id}`,
+    category: "advisory" as const,
+    title: item.topic,
+    body: item.response_text,
+    actionLabel: role === "advisor" || role === "extension_agent" ? "View Request" : "View Tip",
+    href: role === "advisor" || role === "extension_agent" ? "/app/advisor/requests" : "/app/advisory/new",
+    createdAt: item.delivered_at ?? item.created_at,
+    read: item.status === "delivered",
+  }));
 }
 
 function buildSystemNotifications(
   session: IdentitySession,
   queueDepth: number,
 ): FeedNotification[] {
-  const preferences = readUserPreferences(session);
   const items: FeedNotification[] = [
-    createNotificationItem({
-      action: {
-        label: "Review profile",
-        href: "/app/profile",
-      },
+    {
+      id: "system:consent",
+      category: "system",
+      title: session.consent.state === "consent_granted" ? "Consent is active" : "Consent needs review",
       body:
         session.consent.state === "consent_granted"
           ? "Protected actions remain available for your current workspace."
           : "Review consent to restore protected actions across the platform.",
-      category: "system",
+      actionLabel: "Review Profile",
+      href: "/app/profile",
       createdAt: session.consent.captured_at ?? new Date().toISOString(),
-      lifecycleState:
-        session.consent.state === "consent_granted" ? "resolved" : "blocked",
-      module: "identity",
-      nextActionCopy:
-        session.consent.state === "consent_granted"
-          ? null
-          : "Complete consent review before continuing with protected actions.",
-      notificationId: "system:consent",
-      payload: {
-        consent_state: session.consent.state,
-      },
-      preferences,
       read: session.consent.state === "consent_granted",
-      readAt:
-        session.consent.state === "consent_granted"
-          ? session.consent.captured_at
-          : null,
-      templateKey: "identity.consent_state",
-      title:
-        session.consent.state === "consent_granted"
-          ? "Consent is active"
-          : "Consent needs review",
-      urgency:
-        session.consent.state === "consent_granted"
-          ? "routine"
-          : "attention",
-    }),
+    },
   ];
 
   if (queueDepth > 0) {
-    items.push(
-      createNotificationItem({
-        action: {
-          label: "Open outbox",
-          href: "/app/offline/outbox",
-        },
-        body: `${queueDepth} queued item${
-          queueDepth === 1 ? "" : "s"
-        } still need attention or replay.`,
-        category: "system",
-        createdAt: new Date().toISOString(),
-        lifecycleState: "pending",
-        module: "system",
-        nextActionCopy:
-          "Review the outbox and replay blocked changes when connectivity is stable.",
-        notificationId: "system:queue",
-        payload: {
-          queue_depth: queueDepth,
-        },
-        preferences,
-        read: false,
-        templateKey: "system.queue_depth",
-        title: "Saved work is waiting to sync",
-        urgency: queueDepth > 3 ? "urgent" : "attention",
-      }),
-    );
+    items.push({
+      id: "system:queue",
+      category: "system",
+      title: "Saved work is waiting to sync",
+      body: `${queueDepth} queued item${queueDepth === 1 ? "" : "s"} still need attention or replay.`,
+      actionLabel: "Open Outbox",
+      href: "/app/offline/outbox",
+      createdAt: new Date().toISOString(),
+      read: false,
+    });
   }
 
   return items;
@@ -280,15 +167,10 @@ export function applyReadState(
 ): FeedNotification[] {
   const preferences = readUserPreferences(session);
   const readIds = new Set(preferences.notifications.readIds);
-  return notifications.map((item) =>
-    item.read || !readIds.has(item.notification_id)
-      ? item
-      : {
-          ...item,
-          read: true,
-          read_at: item.read_at ?? new Date().toISOString(),
-        },
-  );
+  return notifications.map((item) => ({
+    ...item,
+    read: item.read || readIds.has(item.id),
+  }));
 }
 
 export function groupNotifications(notifications: FeedNotification[]): Array<{
@@ -297,13 +179,13 @@ export function groupNotifications(notifications: FeedNotification[]): Array<{
 }> {
   const groups = new Map<string, FeedNotification[]>();
   for (const item of notifications) {
-    const label = relativeDayLabel(item.created_at);
+    const label = relativeDayLabel(item.createdAt);
     groups.set(label, [...(groups.get(label) ?? []), item]);
   }
 
   return Array.from(groups.entries()).map(([label, items]) => ({
     label,
-    items: items.sort(compareNotifications),
+    items: items.sort((left, right) => new Date(right.createdAt).getTime() - new Date(left.createdAt).getTime()),
   }));
 }
 
@@ -318,44 +200,31 @@ export async function loadNotificationFeed(params: {
       .filter(([, enabled]) => enabled)
       .map(([category]) => category as NotificationCategory),
   );
-  const [
-    listingsResponse,
-    negotiationsResponse,
-    escrowsResponse,
-    climateResponse,
-    advisoryResponse,
-  ] = await Promise.all([
-    marketplaceApi.listListings(params.traceId),
-    marketplaceApi.listNegotiations(params.traceId),
-    walletApi.listEscrows(params.traceId),
-    climateApi.listRuntime(params.traceId, params.session.actor.locale),
-    advisoryApi.listConversations(params.traceId, params.session.actor.locale),
-  ]);
+  const [listingsResponse, negotiationsResponse, escrowsResponse, climateResponse, advisoryResponse] =
+    await Promise.all([
+      marketplaceApi.listListings(params.traceId),
+      marketplaceApi.listNegotiations(params.traceId),
+      walletApi.listEscrows(params.traceId),
+      climateApi.listRuntime(params.traceId, params.session.actor.locale),
+      advisoryApi.listConversations(params.traceId, params.session.actor.locale),
+    ]);
 
   const notifications = [
-    ...buildTradeNotifications(
-      params.session,
-      negotiationsResponse.data.items,
-      listingsResponse.data.items,
-    ),
-    ...buildFinanceNotifications(
-      params.session,
-      escrowsResponse.data.items,
-      listingsResponse.data.items,
-    ),
-    ...buildWeatherNotifications(params.session, climateResponse.data.alerts),
-    ...buildAdvisoryNotifications(params.session, advisoryResponse.data.items),
+    ...buildTradeNotifications(negotiationsResponse.data.items, listingsResponse.data.items),
+    ...buildFinanceNotifications(escrowsResponse.data.items, listingsResponse.data.items, params.session.actor.role),
+    ...buildWeatherNotifications(climateResponse.data.alerts),
+    ...buildAdvisoryNotifications(advisoryResponse.data.items, params.session.actor.role),
     ...buildSystemNotifications(params.session, params.queueDepth),
   ].filter((item) => enabledCategories.has(item.category));
 
   return applyReadState(
     params.session,
-    notifications.sort(compareNotifications),
+    notifications.sort(
+      (left, right) => new Date(right.createdAt).getTime() - new Date(left.createdAt).getTime(),
+    ),
   );
 }
 
-export function unreadNotificationCount(
-  notifications: FeedNotification[],
-): number {
+export function unreadNotificationCount(notifications: FeedNotification[]): number {
   return notifications.filter((item) => !item.read).length;
 }

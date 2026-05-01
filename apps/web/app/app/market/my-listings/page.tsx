@@ -111,7 +111,7 @@ export default function MyListingsPage() {
                 Return to marketplace
               </Link>
             }
-            body="This view is for sellers managing active lots. Buyers stay in the marketplace and negotiation flow."
+            body="This management view is reserved for seller-side roles. Buyers stay on the discovery and negotiation surfaces."
             title="My Listings is not available for buyer accounts"
           />
         </SurfaceCard>
@@ -213,9 +213,9 @@ export default function MyListingsPage() {
     <div className="content-stack">
       <SurfaceCard>
         <SectionHeading
-          eyebrow="Your listings"
-          title="See what is live, what needs work, and what buyers are responding to"
-          body="Manage every draft, live lot, and completed record from one seller view."
+          eyebrow="Seller workspace"
+          title="My listings"
+          body="Manage every draft and published lot from one place without changing the existing marketplace routing or command flow."
           actions={
             <Link className="button-ghost" href="/app/market/listings">
               Open marketplace
@@ -224,19 +224,14 @@ export default function MyListingsPage() {
         />
         <div className="stat-strip">
           <article className="stat-chip">
-            <span className="metric-label">Needs attention</span>
-            <strong>{items.filter((item) => item.status === "draft" || item.has_unpublished_changes).length}</strong>
-            <span className="muted">Drafts and unpublished changes that still need review.</span>
-          </article>
-          <article className="stat-chip">
-            <span className="metric-label">Live now</span>
-            <strong>{items.filter((item) => item.status === "published").length}</strong>
-            <span className="muted">Lots that buyers can review in the marketplace today.</span>
-          </article>
-          <article className="stat-chip">
-            <span className="metric-label">Completed</span>
+            <span className="metric-label">Inventory</span>
             <strong>{items.length}</strong>
-            <span className="muted">All seller records, including closed lots, stay visible here.</span>
+            <span className="muted">Actor-scoped records from the marketplace list endpoint.</span>
+          </article>
+          <article className="stat-chip">
+            <span className="metric-label">Published now</span>
+            <strong>{tabCounts.published}</strong>
+            <span className="muted">These listings are currently discoverable by buyers.</span>
           </article>
         </div>
       </SurfaceCard>
@@ -277,7 +272,7 @@ export default function MyListingsPage() {
 
         <div className="market-bulk-bar">
           <p className="muted">
-            {selectedIds.length} selected. Use bulk actions to move visible lots live or take them out of buyer view.
+            {selectedIds.length} selected. Unpublished maps to the current `closed` listing state in the live contract.
           </p>
           <div className="actions-row">
             <button

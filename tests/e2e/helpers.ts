@@ -1,32 +1,17 @@
-import { expect, type APIRequestContext, type Page } from "@playwright/test";
+import { expect, type Page } from "@playwright/test";
 
-export type Role =
-  | "farmer"
-  | "buyer"
-  | "cooperative"
-  | "transporter"
-  | "investor"
-  | "extension_agent"
-  | "advisor"
-  | "finance"
-  | "admin";
+type Role = "farmer" | "buyer" | "cooperative" | "advisor" | "finance" | "admin";
 const SESSION_KEY = "agrodomain.session.v2";
 const TOKEN_KEY = "agrodomain.session-token.v1";
 const CONSENT_ROUTE = /\/onboarding\/consent(\?.*)?$/;
 const E2E_ORIGIN =
   process.env.PLAYWRIGHT_BASE_URL ??
   `http://127.0.0.1:${process.env.PLAYWRIGHT_WEB_PORT ?? "3000"}`;
-const API_BASE_URL =
-  process.env.AGRO_E2E_API_BASE_URL ??
-  `http://127.0.0.1:${process.env.AGRO_E2E_API_PORT ?? "8000"}`;
 
 const roleHomeRoute: Record<Role, string> = {
   farmer: "/app/farmer",
   buyer: "/app/buyer",
   cooperative: "/app/cooperative",
-  transporter: "/app/transporter",
-  investor: "/app/investor",
-  extension_agent: "/app/extension_agent",
   advisor: "/app/advisor",
   finance: "/app/finance",
   admin: "/app/admin",
@@ -40,12 +25,6 @@ function signInRoleLabel(role: Role): string {
       return "Buyer";
     case "cooperative":
       return "Co-op Manager";
-    case "transporter":
-      return "Transporter";
-    case "investor":
-      return "Investor";
-    case "extension_agent":
-      return "Extension Agent";
     default:
       throw new Error(`Sign-in UI does not currently expose role ${role}.`);
   }
@@ -64,13 +43,6 @@ export async function signIn(
   const alreadyOnSignIn = /\/signin(\?.*)?$/.test(page.url());
   if (!alreadyOnSignIn) {
     await gotoPath(page, "/signin");
-  }
-  const legacyRoleTilesVisible =
-    (await page.locator("label.pub-role-tile").count()) > 0;
-  if (!legacyRoleTilesVisible) {
-    throw new Error(
-      "pending-backend: /signin no longer supports arbitrary role bootstrap; use real password or magic-link fixtures instead",
-    );
   }
   await expect(emailField).toBeVisible();
   await waitForInteractiveForm(page, "/signin");
@@ -109,9 +81,7 @@ export async function grantConsent(page: Page): Promise<void> {
   const acceptedCheckbox = page.locator("input[name='accepted']");
   await acceptedCheckbox.check();
   await expect(acceptedCheckbox).toBeChecked();
-  const grantButton = page.getByRole("button", {
-    name: /Accept and continue|Grant consent/i,
-  });
+  const grantButton = page.getByRole("button", { name: "Grant consent" });
   let reachedWorkspace = false;
   for (let attempt = 0; attempt < 2 && !reachedWorkspace; attempt += 1) {
     await grantButton.click();
@@ -214,147 +184,6 @@ export async function signInAndGrantConsent(
   await expect(page).toHaveURL(new RegExp(`${roleHomeRoute[input.role]}$`), {
     timeout: 20_000,
   });
-}
-
-export type SessionSeed = {
-  accessToken: string;
-  session: {
-    actor: {
-      actor_id: string;
-      country_code: string;
-      display_name: string;
-      email: string;
-      membership?: {
-        organization_name: string;
-      };
-      role: string;
-    };
-    consent?: {
-      state?: string;
-    };
-  };
-};
-
-type BootstrapMode = "login_only" | "register_or_login";
-
-type BootstrapSessionInput = {
-  countryCode?: "GH" | "NG" | "JM";
-  displayName: string;
-  email: string;
-  password: string;
-  phoneNumber?: string;
-  role: Role;
-  scopeIds?: string[];
-  mode?: BootstrapMode;
-};
-
-function buildPhoneNumber(countryCode: "GH" | "NG" | "JM", seed: string): string {
-  const digits = seed.replace(/\D/g, "").slice(-7).padStart(7, "0");
-  if (countryCode === "NG") {
-    return `+23480${digits}`;
-  }
-  if (countryCode === "JM") {
-    return `+1876555${digits.slice(-4)}`;
-  }
-  return `+23324${digits}`;
-}
-
-async function grantConsentByToken(
-  request: APIRequestContext,
-  accessToken: string,
-  scopeIds: string[],
-): Promise<SessionSeed["session"]> {
-  const response = await request.post(`${API_BASE_URL}/api/v1/identity/consent`, {
-    data: {
-      captured_at: new Date().toISOString(),
-      policy_version: "2026.04.eh7",
-      scope_ids: scopeIds,
-    },
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
-  expect(response.ok(), `consent grant failed: ${await response.text()}`).toBeTruthy();
-  return (await response.json()) as SessionSeed["session"];
-}
-
-async function loginWithPassword(
-  request: APIRequestContext,
-  input: BootstrapSessionInput,
-): Promise<SessionSeed> {
-  const response = await request.post(`${API_BASE_URL}/api/v1/identity/login/password`, {
-    data: {
-      identifier: input.email,
-      password: input.password,
-      country_code: input.countryCode ?? "GH",
-      role: input.role,
-    },
-  });
-  expect(response.ok(), `password login failed: ${await response.text()}`).toBeTruthy();
-  const payload = (await response.json()) as {
-    access_token: string;
-    session: SessionSeed["session"];
-  };
-  return {
-    accessToken: payload.access_token,
-    session: payload.session,
-  };
-}
-
-export async function bootstrapPasswordSession(
-  request: APIRequestContext,
-  input: BootstrapSessionInput,
-): Promise<SessionSeed> {
-  const countryCode = input.countryCode ?? "GH";
-  let seed: SessionSeed;
-
-  if ((input.mode ?? "register_or_login") === "login_only") {
-    seed = await loginWithPassword(request, input);
-  } else {
-    const response = await request.post(`${API_BASE_URL}/api/v1/identity/register/password`, {
-      data: {
-        display_name: input.displayName,
-        email: input.email,
-        phone_number:
-          input.phoneNumber ?? buildPhoneNumber(countryCode, `${Date.now()}${Math.random()}`),
-        password: input.password,
-        role: input.role,
-        country_code: countryCode,
-      },
-    });
-
-    if (response.ok()) {
-      const payload = (await response.json()) as {
-        access_token: string;
-        session: SessionSeed["session"];
-      };
-      seed = {
-        accessToken: payload.access_token,
-        session: payload.session,
-      };
-    } else if (response.status() === 409) {
-      seed = await loginWithPassword(request, input);
-    } else {
-      expect(
-        response.ok(),
-        `password registration failed: ${response.status()} ${await response.text()}`,
-      ).toBeTruthy();
-      throw new Error("unreachable");
-    }
-  }
-
-  if (seed.session.consent?.state === "consent_granted") {
-    return seed;
-  }
-
-  return {
-    accessToken: seed.accessToken,
-    session: await grantConsentByToken(
-      request,
-      seed.accessToken,
-      input.scopeIds ?? ["identity.core", "workflow.audit", "notifications.delivery"],
-    ),
-  };
 }
 
 export async function createListing(
@@ -493,9 +322,7 @@ async function waitForInteractiveForm(page: Page, route: "/signin" | "/onboardin
   await expect(page).toHaveURL(new RegExp(`${route.replace("/", "\\/")}(\\?.*)?$`), {
     timeout: 20_000,
   });
-  const formLocator =
-    route === "/signin"
-      ? page.locator("main form").first()
-      : page.locator("form.onboarding-consent-form");
-  await expect(formLocator).toBeVisible({ timeout: 20_000 });
+  await expect(page.locator("form[data-interactive='true']")).toBeVisible({
+    timeout: 20_000,
+  });
 }

@@ -27,7 +27,6 @@ import {
 } from "@/features/climate/model";
 import { advisoryApi } from "@/lib/api/advisory";
 import { climateApi } from "@/lib/api/climate";
-import { climateCopy } from "@/lib/content/route-copy";
 import type { ClimateObservationRead, ClimateRuntimeSnapshot, FarmProfileRead } from "@/lib/api-types";
 
 type AdvisoryConversation = Awaited<ReturnType<typeof advisoryApi.listConversations>>["data"]["items"][number];
@@ -42,47 +41,6 @@ function uniqueFarmIds(input: {
       ...input.evidenceRecords.map((record) => record.farm_profile_id),
     ].filter(Boolean)),
   );
-}
-
-function buildBestNextWindowSummary(input: {
-  current: ReturnType<typeof buildCurrentSnapshot>;
-  hourly: ReturnType<typeof buildHourlyForecast>;
-  openAlertCount: number;
-}): { detail: string; title: string } {
-  const bestWindow = input.hourly.find((point) => point.rainfallMm <= 3 && point.windKph <= 18);
-
-  if (bestWindow) {
-    return {
-      detail: `${bestWindow.timeLabel} looks like the clearest working window if field conditions on the ground still agree.`,
-      title: `Plan around ${bestWindow.timeLabel}`,
-    };
-  }
-
-  if (input.openAlertCount > 0) {
-    return {
-      detail: "Open alerts are still active, so keep field work light and confirm conditions locally before spraying, harvest, or transport prep.",
-      title: "Wait for a calmer window",
-    };
-  }
-
-  if (input.current) {
-    return {
-      detail: `Conditions are steady right now around ${input.current.temperatureC}°C with ${input.current.rainProbability}% rain likelihood. Use short, flexible work blocks and keep checking the next forecast update.`,
-      title: "Use shorter work blocks",
-    };
-  }
-
-  return {
-    detail: "The latest forecast still needs enough recent readings to suggest a stronger timing window.",
-    title: "Watch for the next update",
-  };
-}
-
-function humanizeMethodTag(methodTag: string): string {
-  return methodTag
-    .replaceAll("-", " ")
-    .replaceAll("_", " ")
-    .replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
 export function WeatherDashboardClient() {
@@ -227,11 +185,6 @@ export function WeatherDashboardClient() {
   const relevantDegradedModes = selectedFarmId
     ? degradedModes.filter((item) => item.farm_profile_id === selectedFarmId)
     : degradedModes;
-  const bestWindow = buildBestNextWindowSummary({
-    current,
-    hourly,
-    openAlertCount,
-  });
 
   async function acknowledgeAlert(alertId: string): Promise<void> {
     if (!session) {
@@ -255,28 +208,20 @@ export function WeatherDashboardClient() {
     <div className="content-stack" data-testid="weather-dashboard-root">
       <SurfaceCard>
         <SectionHeading
-          eyebrow="Weather and field outlook"
-          title="See what conditions matter most right now"
-          body="Follow current alerts, likely field conditions, and practical timing advice for the next few hours and days."
+          eyebrow="AgroWeather"
+          title="Forecasts, field context, and weather-linked advice in one workflow"
+          body="See the latest forecast, field conditions, and weather-linked advice in one place so daily planning stays simple."
           actions={
-            <div className="inline-actions">
-              <a className="button-primary" href="#climate-alerts">
-                Review today&apos;s alerts
-              </a>
-              <Link className="button-secondary" href="/app/advisory/new">
-                Ask AgroGuide
-              </Link>
+            <div className="pill-row">
+              <StatusPill tone={runtimeMode === "live" ? "online" : "degraded"}>
+                {runtimeMode === "live" ? "Live mode" : "Continuity mode"}
+              </StatusPill>
+              <StatusPill tone={session.consent.state === "consent_granted" ? "online" : "degraded"}>
+                {session.consent.state === "consent_granted" ? "Protected actions ready" : "Consent needs review"}
+              </StatusPill>
             </div>
           }
         />
-        <div className="pill-row">
-          <StatusPill tone={runtimeMode === "live" ? "online" : "degraded"}>
-            {runtimeMode === "live" ? "Live updates" : "Saved reference view"}
-          </StatusPill>
-          <StatusPill tone={openAlertCount > 0 ? "degraded" : "online"}>
-            {openAlertCount > 0 ? `${openAlertCount} alert${openAlertCount === 1 ? "" : "s"} to review` : "No urgent alerts"}
-          </StatusPill>
-        </div>
         <div className="weather-toolbar">
           <div className="field weather-selector-field">
             <label htmlFor="weather-farm-selector">Farm location</label>
@@ -295,6 +240,9 @@ export function WeatherDashboardClient() {
             </select>
           </div>
           <div className="actions-row">
+            <Link className="button-secondary" href="/app/advisory/new">
+              Open AgroGuide
+            </Link>
             <Link className="button-ghost" href="/app/notifications">
               Weather notifications
             </Link>
@@ -305,7 +253,7 @@ export function WeatherDashboardClient() {
       {isLoading ? (
         <SurfaceCard data-testid="weather-loading-state">
           <p className="muted" role="status">
-            {climateCopy.loadingCopy}
+            Loading weather intelligence for your current farm context...
           </p>
         </SurfaceCard>
       ) : null}
@@ -321,8 +269,8 @@ export function WeatherDashboardClient() {
       {!isLoading && !selectedFarm ? (
         <SurfaceCard data-testid="weather-empty-state">
           <EmptyState
-            title="No field is connected yet"
-            body="Connect a field profile to see local alerts, forecast timing, and crop guidance here. Until then, AgroGuide can still help you work through the issue."
+            title="No farm profile is mapped yet"
+            body="Weather intelligence activates after the climate signal service can match your actor to at least one field profile. Until the farm-management lane lands, review your profile or continue in AgroGuide."
             actions={
               <>
                 <Link className="button-primary" href="/app/profile">
@@ -361,24 +309,16 @@ export function WeatherDashboardClient() {
             <div className="content-stack">
               <SurfaceCard>
                 <SectionHeading
-                  eyebrow="Today and tomorrow"
+                  eyebrow="7-day forecast"
                   title="Daily outlook"
-                  body="Use the next two days to judge rain pressure, field access, and harvest timing before conditions shift again."
+                  body="Daily highs, lows, rain probability, and wind are projected from the latest climate observation window and active alert posture."
                 />
                 <ForecastDaily points={daily} />
               </SurfaceCard>
 
               <SurfaceCard>
                 <SectionHeading
-                  eyebrow="Best next window"
-                  title={bestWindow.title}
-                  body={bestWindow.detail}
-                />
-              </SurfaceCard>
-
-              <SurfaceCard>
-                <SectionHeading
-                  eyebrow="Today and tomorrow"
+                  eyebrow="Hourly breakdown"
                   title="Today in 3-hour blocks"
                   body="Use the hourly strip to time field entry, spraying, irrigation, and transport prep before the next weather swing."
                 />
@@ -390,11 +330,11 @@ export function WeatherDashboardClient() {
 
             <div className="content-stack">
               {selectedAlerts[0] ? (
-                <SurfaceCard id="climate-alerts">
+                <SurfaceCard>
                   <SectionHeading
-                    eyebrow="Immediate alerts"
-                    title="Review today&apos;s alerts"
-                    body="See what needs attention now, what it affects, and what can wait until the field settles."
+                    eyebrow="Alerts"
+                    title="Weather alert center"
+                    body="See open and acknowledged alerts together, with clear confidence notes to support your next field decision."
                   />
                   <div className="weather-alert-stack" data-testid="weather-alert-list">
                     {selectedAlerts.map((alert) => (
@@ -429,10 +369,10 @@ export function WeatherDashboardClient() {
                           type="button"
                         >
                           {alert.acknowledged
-                            ? "Reviewed"
+                            ? "Acknowledged"
                             : isAcknowledging === alert.alert_id
                               ? "Saving..."
-                              : "Mark reviewed"}
+                              : "Acknowledge alert"}
                         </button>
                       </article>
                     ))}
@@ -441,32 +381,32 @@ export function WeatherDashboardClient() {
               ) : (
                 <SurfaceCard>
                   <EmptyState
-                    title="No urgent alerts right now"
-                    body="Use the forecast, crop guidance, and field confidence note below to plan routine work."
+                    title="No active weather alerts"
+                    body="The selected farm has no open weather alert right now. Use the forecast and crop advice to plan routine field work."
                   />
                 </SurfaceCard>
               )}
 
               <SurfaceCard data-testid="weather-crop-advice">
                 <SectionHeading
-                  eyebrow="Harvest watch"
+                  eyebrow="Crop-specific advice"
                   title={`What this means for ${selectedFarm.crop_type}`}
-                  body="The guidance below translates the forecast into the next practical move for this crop and field."
+                  body="The advice below stays rule-based for now. It uses the selected farm crop, weather projection, and alert severity to recommend the next safe move."
                 />
                 <CropAdvice advisoryContext={latestAdvisory} cropLabel={selectedFarm.farm_name} items={cropAdvice} />
               </SurfaceCard>
 
               <SurfaceCard>
                 <SectionHeading
-                  eyebrow="How reliable this view is"
-                  title="Field confidence note"
-                  body="Use the source checks, assumptions, and delayed-update notes below to judge how much weight to place on the forecast."
+                  eyebrow="Confidence notes"
+                  title="How this forecast was checked"
+                  body="Reference notes and field observations stay beside the forecast so you can judge confidence before acting."
                 />
                 <div className="weather-evidence-stack">
                   {selectedEvidence.map((record) => (
                     <article className="queue-item" key={record.evidence_id}>
                       <div className="queue-head">
-                        <strong>{humanizeMethodTag(record.method_tag)}</strong>
+                        <strong>{record.method_tag}</strong>
                         <StatusPill tone={mrvCompletenessTone(record.source_completeness)}>
                           {record.source_completeness}
                         </StatusPill>
@@ -474,13 +414,13 @@ export function WeatherDashboardClient() {
                       <ul className="summary-list">
                         {record.assumption_notes.map((note) => (
                           <li key={note}>
-                            <span>Field note</span>
+                            <span>Assumption</span>
                             <strong>{note}</strong>
                           </li>
                         ))}
                         {record.source_references.map((reference) => (
                           <li key={reference.source_id}>
-                            <span>Checked with</span>
+                            <span>Method reference</span>
                             <strong>{reference.method_reference}</strong>
                           </li>
                         ))}

@@ -10,8 +10,6 @@ from app.services.commands.errors import CommandRejectedError
 
 LOAD_POST_ROLES = {"farmer", "buyer", "cooperative", "admin"}
 TRANSPORT_ASSIGN_ROLES = {"transporter", "admin"}
-DISPATCH_ASSIGN_ROLES = {"farmer", "buyer", "cooperative", "admin"}
-DISPATCH_REASSIGN_ROLES = {"cooperative", "admin"}
 ALLOWED_LOAD_STATUSES = {"posted", "assigned", "in_transit", "delivered", "cancelled"}
 OPERATIONAL_EVENT_TYPES = {"picked_up", "in_transit", "checkpoint"}
 
@@ -187,89 +185,12 @@ class TransportRuntime:
             allowed=TRANSPORT_ASSIGN_ROLES,
             reason_code="transport_load_assign_forbidden",
         )
-        return self._create_assignment(
-            dispatcher_actor_id=actor_id,
-            dispatcher_role=actor_role,
-            transporter_actor_id=actor_id,
-            load=load,
-            vehicle_info=vehicle_info,
-            location_lat=location_lat,
-            location_lng=location_lng,
-            notes=notes,
-            dispatcher_owned=True,
-            reason_code="transport_load_assign_forbidden",
-        )
-
-    def dispatch_assign_load(
-        self,
-        *,
-        dispatcher_actor_id: str,
-        dispatcher_role: str | None,
-        transporter_actor_id: str,
-        load: TransportLoad,
-        vehicle_info: dict[str, object],
-        location_lat: float | None,
-        location_lng: float | None,
-        notes: str | None,
-    ) -> ShipmentMutationResult:
-        self._ensure_role(
-            dispatcher_actor_id,
-            dispatcher_role,
-            allowed=DISPATCH_ASSIGN_ROLES,
-            reason_code="transport_dispatch_assign_forbidden",
-        )
-        dispatcher_owned = dispatcher_actor_id == load.poster_actor_id or dispatcher_role in {"cooperative", "admin"}
-        if not dispatcher_owned and dispatcher_actor_id != "system:test":
-            raise CommandRejectedError(
-                status_code=403,
-                error_code="policy_denied",
-                reason_code="transport_dispatch_assign_scope_forbidden",
-                payload={"load_id": load.load_id},
-            )
-        normalized_transporter_actor_id = self._ensure_non_empty(
-            transporter_actor_id,
-            field_name="transporter_actor_id",
-        )
-        if normalized_transporter_actor_id == load.poster_actor_id and dispatcher_actor_id != "system:test":
+        self._ensure_coordinate_pair(location_lat, location_lng)
+        if actor_id == load.poster_actor_id and actor_id != "system:test":
             raise CommandRejectedError(
                 status_code=403,
                 error_code="policy_denied",
                 reason_code="transport_self_assignment_forbidden",
-                payload={"load_id": load.load_id},
-            )
-        return self._create_assignment(
-            dispatcher_actor_id=dispatcher_actor_id,
-            dispatcher_role=dispatcher_role,
-            transporter_actor_id=normalized_transporter_actor_id,
-            load=load,
-            vehicle_info=vehicle_info,
-            location_lat=location_lat,
-            location_lng=location_lng,
-            notes=notes,
-            dispatcher_owned=dispatcher_owned,
-            reason_code="transport_dispatch_assign_forbidden",
-        )
-
-    def _create_assignment(
-        self,
-        *,
-        dispatcher_actor_id: str,
-        dispatcher_role: str | None,
-        transporter_actor_id: str,
-        load: TransportLoad,
-        vehicle_info: dict[str, object],
-        location_lat: float | None,
-        location_lng: float | None,
-        notes: str | None,
-        dispatcher_owned: bool,
-        reason_code: str,
-    ) -> ShipmentMutationResult:
-        self._ensure_coordinate_pair(location_lat, location_lng)
-        if not dispatcher_owned and dispatcher_actor_id != "system:test":
-            raise CommandRejectedError(
-                status_code=403,
-                error_code="policy_denied",
-                reason_code=reason_code,
                 payload={"load_id": load.load_id},
             )
         if load.status != "posted":
@@ -297,12 +218,12 @@ class TransportRuntime:
         updated_load = self.repository.update_load(
             load=load,
             status="assigned",
-            assigned_transporter_actor_id=transporter_actor_id,
+            assigned_transporter_actor_id=actor_id,
         )
         shipment = self.repository.create_shipment(
             shipment_id=f"shipment-{uuid4().hex[:12]}",
             load_id=load.load_id,
-            transporter_actor_id=transporter_actor_id,
+            transporter_actor_id=actor_id,
             country_code=load.country_code,
             vehicle_info=vehicle_info,
             current_location_lat=location_lat,
@@ -311,7 +232,7 @@ class TransportRuntime:
         event = self.repository.create_shipment_event(
             event_id=f"sevt-{uuid4().hex[:12]}",
             shipment_id=shipment.shipment_id,
-            actor_id=dispatcher_actor_id,
+            actor_id=actor_id,
             event_type="assigned",
             event_at=datetime.now(tz=UTC),
             location_lat=location_lat,
@@ -319,76 +240,6 @@ class TransportRuntime:
             notes=notes.strip() if notes else None,
         )
         return ShipmentMutationResult(load=updated_load, shipment=shipment, event=event)
-
-    def reassign_shipment(
-        self,
-        *,
-        actor_id: str,
-        actor_role: str | None,
-        load: TransportLoad,
-        shipment: Shipment,
-        transporter_actor_id: str,
-        vehicle_info: dict[str, object],
-        location_lat: float | None,
-        location_lng: float | None,
-        notes: str | None,
-    ) -> ShipmentMutationResult:
-        self._ensure_role(
-            actor_id,
-            actor_role,
-            allowed=DISPATCH_REASSIGN_ROLES,
-            reason_code="transport_dispatch_reassign_forbidden",
-        )
-        self._ensure_coordinate_pair(location_lat, location_lng)
-        normalized_transporter_actor_id = self._ensure_non_empty(
-            transporter_actor_id,
-            field_name="transporter_actor_id",
-        )
-        if shipment.status == "delivered":
-            raise CommandRejectedError(
-                status_code=409,
-                error_code="transport_shipment_closed",
-                reason_code="transport_shipment_already_delivered",
-                payload={"shipment_id": shipment.shipment_id},
-            )
-        if normalized_transporter_actor_id == shipment.transporter_actor_id:
-            raise CommandRejectedError(
-                status_code=409,
-                error_code="transport_reassignment_noop",
-                reason_code="transport_reassignment_same_transporter",
-                payload={"shipment_id": shipment.shipment_id},
-            )
-        if not vehicle_info:
-            raise CommandRejectedError(
-                status_code=422,
-                error_code="invalid_payload",
-                reason_code="vehicle_info_missing",
-                payload={"field": "vehicle_info"},
-            )
-        updated_load = self.repository.update_load(
-            load=load,
-            status="assigned" if shipment.status == "assigned" else "in_transit",
-            assigned_transporter_actor_id=normalized_transporter_actor_id,
-        )
-        updated_shipment = self.repository.update_shipment(
-            shipment=shipment,
-            status="assigned" if shipment.status == "assigned" else shipment.status,
-            transporter_actor_id=normalized_transporter_actor_id,
-            current_location_lat=location_lat,
-            current_location_lng=location_lng,
-        )
-        updated_shipment.vehicle_info = vehicle_info
-        event = self.repository.create_shipment_event(
-            event_id=f"sevt-{uuid4().hex[:12]}",
-            shipment_id=shipment.shipment_id,
-            actor_id=actor_id,
-            event_type="reassigned",
-            event_at=datetime.now(tz=UTC),
-            location_lat=location_lat,
-            location_lng=location_lng,
-            notes=notes.strip() if notes else None,
-        )
-        return ShipmentMutationResult(load=updated_load, shipment=updated_shipment, event=event)
 
     def log_operational_event(
         self,

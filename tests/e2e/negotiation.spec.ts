@@ -167,7 +167,7 @@ async function buyerCreateThread(
   await gotoPath(page, `/app/market/negotiations?listingId=${listingId}`);
   await waitForWorkspaceReady(page);
   const inboxHeading = page.getByRole("heading", {
-    name: "Keep every negotiation moving toward a clear outcome",
+    name: "Track every live negotiation in one place",
   });
   const inboxLoaded = await inboxHeading.isVisible({ timeout: 10_000 }).catch(() => false);
   if (!inboxLoaded) {
@@ -183,11 +183,11 @@ async function buyerCreateThread(
   await page.getByLabel("Offer amount").fill("385");
   await page.getByLabel("Currency").fill("GHS");
   await page.getByLabel("Buyer note").fill("Buyer opening offer for canonical thread proof.");
-  await page.getByRole("button", { name: "Send opening offer" }).click();
-  await expect(page.getByRole("list", { name: "Negotiation conversations" })).toContainText(listingId, { timeout: 30_000 });
+  await page.getByRole("button", { name: "Create offer thread" }).click();
+  await expect(page.getByRole("list", { name: "Negotiation threads" })).toContainText(listingId, { timeout: 30_000 });
 
   const buyerThreadButton = page
-    .getByRole("list", { name: "Negotiation conversations" })
+    .getByRole("list", { name: "Negotiation threads" })
     .getByRole("button")
     .filter({ hasText: listingId })
     .first();
@@ -218,31 +218,31 @@ async function buyerCreateThread(
 async function sellerRequestConfirmation(page: Page, listingId: string): Promise<void> {
   await gotoPath(page, "/app/market/negotiations");
   await waitForWorkspaceReady(page);
-  const sellerThreadList = page.getByRole("list", { name: "Negotiation conversations" });
+  const sellerThreadList = page.getByRole("list", { name: "Negotiation threads" });
   await expect(sellerThreadList).toContainText(listingId, { timeout: 30_000 });
   await sellerThreadList.getByRole("button").filter({ hasText: listingId }).first().click();
-  await expect(page.getByRole("heading", { name: "Prepare the deal for a final answer" })).toBeVisible({ timeout: 30_000 });
+  await expect(page.getByRole("heading", { name: "Request confirmation" })).toBeVisible({ timeout: 30_000 });
   await page.getByLabel("Checkpoint note").fill("Seller requests final buyer confirmation.");
-  await page.getByRole("button", { name: "Move to payment review" }).click();
-  await expect(page.getByText(/A final decision is still needed/i)).toBeVisible({ timeout: 30_000 });
-  await expect(page.getByRole("button", { name: "Accept offer" })).toHaveCount(0);
-  await expect(page.getByRole("button", { name: "Decline" })).toHaveCount(0);
+  await page.getByRole("button", { name: "Move to pending confirmation" }).click();
+  await expect(page.getByText(/Waiting for (authorized )?confirmation/i)).toBeVisible({ timeout: 30_000 });
+  await expect(page.getByRole("button", { name: "Approve thread" })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Reject thread" })).toHaveCount(0);
 }
 
 async function buyerOpenPendingConfirmationThread(page: Page, listingId: string): Promise<void> {
   await gotoPath(page, "/app/market/negotiations");
   await waitForWorkspaceReady(page);
   const buyerThreadButton = page
-    .getByRole("list", { name: "Negotiation conversations" })
+    .getByRole("list", { name: "Negotiation threads" })
     .getByRole("button")
     .filter({ hasText: listingId })
     .first();
   await expect(buyerThreadButton).toBeVisible({ timeout: 30_000 });
   await buyerThreadButton.scrollIntoViewIfNeeded();
   await buyerThreadButton.click();
-  await expect(page.getByText(/A final decision is still needed/i)).toBeVisible();
-  await expect(page.getByRole("button", { name: "Accept offer" })).toBeVisible({ timeout: 30_000 });
-  await expect(page.getByRole("button", { name: "Decline" })).toBeVisible({ timeout: 30_000 });
+  await expect(page.getByText(/Waiting for (authorized )?confirmation/i)).toBeVisible();
+  await expect(page.getByRole("button", { name: "Approve thread" })).toBeVisible({ timeout: 30_000 });
+  await expect(page.getByRole("button", { name: "Reject thread" })).toBeVisible({ timeout: 30_000 });
 }
 
 test.describe("Negotiation inbox and thread proof", () => {
@@ -276,11 +276,11 @@ test.describe("Negotiation inbox and thread proof", () => {
     await activateSession(page, buyerSession, "/app/buyer");
     await buyerOpenPendingConfirmationThread(page, listingIdApprove);
     await page.getByLabel("Decision note").fill("Buyer approves the negotiated thread.");
-    await page.getByRole("button", { name: "Accept offer" }).click();
+    await page.getByRole("button", { name: "Approve thread" }).click();
     await expect(page.getByText("Terminal-state lock is active")).toBeVisible();
     await expect(page.getByText("Thread status is accepted.")).toBeVisible();
     await expect(page.getByRole("button", { name: "Submit counter" })).toHaveCount(0);
-    await expect(page.getByRole("button", { name: "Move to payment review" })).toHaveCount(0);
+    await expect(page.getByRole("button", { name: "Move to pending confirmation" })).toHaveCount(0);
 
     await activateSession(page, sellerSession, "/app/farmer");
     const listingIdReject = await sellerCreateAndPublishListing(
@@ -296,7 +296,7 @@ test.describe("Negotiation inbox and thread proof", () => {
     await activateSession(page, buyerSession, "/app/buyer");
     await buyerOpenPendingConfirmationThread(page, listingIdReject);
     await page.getByLabel("Decision note").fill("Buyer rejects this thread.");
-    await page.getByRole("button", { name: "Decline" }).click();
+    await page.getByRole("button", { name: "Reject thread" }).click();
     await expect(page.getByText("Terminal-state lock is active")).toBeVisible();
     await expect(page.getByText("Thread status is rejected.")).toBeVisible();
     await expect(page.getByRole("button", { name: "Submit counter" })).toHaveCount(0);

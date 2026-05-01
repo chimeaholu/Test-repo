@@ -63,7 +63,7 @@ export function SellerCard(props: SellerCardProps) {
           {props.profileLabel ?? "Open profile"}
         </Link>
       ) : (
-        <span className="market-card-footnote">Public seller profile details will appear here as more seller information becomes available.</span>
+        <span className="market-card-footnote">Public seller profile routing is not available in the current API contract.</span>
       )}
     </aside>
   );

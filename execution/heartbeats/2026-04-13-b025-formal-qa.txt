@@ -1,0 +1,13 @@
+B-025 formal QA summary
+Date: 2026-04-13
+Decision: PASS
+SHA: a525c9291fcd65da3e9e7ce90b93b4e5c31c8a8a
+Commit timestamp: 2026-04-13T08:50:57+00:00
+Subject: B-025 add enterprise analytics mart contract
+Command:
+PYTHONPATH=src pytest -q tests/test_enterprise_analytics_mart.py tests/test_enterprise_analytics_mart_contract_stub.py tests/test_advisory_retrieval.py tests/test_climate_risk_ingestion.py tests/test_traceability_event_chain.py tests/test_listings.py tests/test_package_exports.py
+Result:
+27 passed in 0.75s
+Notes:
+- Exact-SHA isolated checkout used for verification.
+- Common warning only: pytest_asyncio deprecation for unset asyncio_default_fixture_loop_scope.

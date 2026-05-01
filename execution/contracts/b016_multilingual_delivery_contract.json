@@ -1,0 +1,49 @@
+{
+  "bead_id": "B-016",
+  "name": "Multilingual Delivery Framework",
+  "version": "1.0.0",
+  "status": "draft",
+  "locales": {
+    "supported": [
+      "en",
+      "en-GH",
+      "en-NG",
+      "en-JM",
+      "fr"
+    ],
+    "fallback_order": [
+      "preferred_locale",
+      "user_fallback_locale",
+      "country_default_locale",
+      "platform_default_locale"
+    ]
+  },
+  "readability": {
+    "max_sentence_words": 18,
+    "max_long_words": 6,
+    "warning_codes": [
+      "sentence_length_exceeds_budget",
+      "too_many_long_words",
+      "single_sentence_delivery"
+    ]
+  },
+  "delivery": {
+    "max_citation_count": 3,
+    "copy_fields": [
+      "body",
+      "summary",
+      "cta_label"
+    ]
+  },
+  "test_obligations": {
+    "journeys": [
+      "CJ-005",
+      "RJ-003"
+    ],
+    "ux_quality": [
+      "UXJ-002",
+      "UXDI-002"
+    ],
+    "data_check": "DI-005"
+  }
+}

@@ -14,7 +14,6 @@ if str(APP_ROOT) not in sys.path:
 
 from app.core.db import clear_db_caches, get_session_factory
 from app.db.migrations.seed import run_seed
-from app.seed_demo_data import seed_demo_data
 
 
 def prepare_database(database_url: str) -> None:
@@ -34,8 +33,6 @@ def prepare_database(database_url: str) -> None:
 
     with get_session_factory(database_url)() as session:
         run_seed(session)
-        if os.environ.get("AGRO_E2E_INCLUDE_DEMO_DATA", "1") != "0":
-            seed_demo_data(session)
         session.commit()
 
 

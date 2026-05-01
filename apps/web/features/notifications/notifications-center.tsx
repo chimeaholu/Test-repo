@@ -12,13 +12,6 @@ import {
   type FeedNotification,
 } from "@/features/notifications/model";
 import {
-  notificationDueLabel,
-  notificationTone,
-  notificationUrgencyLabel,
-} from "@/features/notifications/seam";
-import { formatDateTime } from "@/lib/i18n/format";
-import { recordMarketplaceConversion } from "@/lib/telemetry/marketplace";
-import {
   markAllNotificationsRead,
   markNotificationReadState,
   readUserPreferences,
@@ -27,15 +20,28 @@ import {
 
 const PAGE_SIZE = 8;
 
-const CATEGORY_META: Record<NotificationCategory, { label: string }> = {
-  advisory: { label: "Guidance" },
-  copilot: { label: "Help" },
-  finance: { label: "Payments" },
-  system: { label: "Account" },
-  trade: { label: "Trade" },
-  transport: { label: "Transport" },
-  weather: { label: "Weather" },
+const CATEGORY_META: Record<
+  NotificationCategory,
+  {
+    label: string;
+    tone: "online" | "offline" | "degraded" | "neutral";
+  }
+> = {
+  advisory: { label: "Advisory", tone: "neutral" },
+  finance: { label: "Finance", tone: "online" },
+  system: { label: "System", tone: "degraded" },
+  trade: { label: "Trade", tone: "online" },
+  weather: { label: "Weather", tone: "degraded" },
 };
+
+function formatTimestamp(value: string): string {
+  return new Date(value).toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    month: "short",
+    day: "numeric",
+  });
+}
 
 export function NotificationsCenterClient() {
   const { queue, session, traceId } = useAppState();
@@ -64,31 +70,6 @@ export function NotificationsCenterClient() {
         }
         setNotifications(nextNotifications);
         setError(null);
-
-        const marketplaceSignals = nextNotifications.filter(
-          (item) => item.module === "marketplace" || item.module === "wallet",
-        );
-        if (marketplaceSignals.length > 0) {
-          recordMarketplaceConversion({
-            actorId: session.actor.actor_id,
-            actorRole: session.actor.role,
-            countryCode: session.actor.country_code,
-            notificationCount: marketplaceSignals.length,
-            outcome: "completed",
-            queueDepth: queue.items.length,
-            sourceSurface: "notifications_center",
-            stage: "notification_impression",
-            traceId,
-            urgency:
-              marketplaceSignals.some((item) => item.urgency === "critical")
-                ? "critical"
-                : marketplaceSignals.some((item) => item.urgency === "urgent")
-                  ? "urgent"
-                  : marketplaceSignals.some((item) => item.urgency === "attention")
-                    ? "attention"
-                    : "routine",
-          });
-        }
       })
       .catch((nextError) => {
         if (!cancelled) {
@@ -121,11 +102,9 @@ export function NotificationsCenterClient() {
       }),
       {
         advisory: 0,
-        copilot: 0,
         finance: 0,
         system: 0,
         trade: 0,
-        transport: 0,
         weather: 0,
       },
     );
@@ -157,54 +136,38 @@ export function NotificationsCenterClient() {
   const handleToggleRead = (notificationId: string, nextRead: boolean) => {
     markNotificationReadState(session, notificationId, nextRead);
     setNotifications((current) =>
-      current.map((item) =>
-        item.notification_id === notificationId
-          ? {
-              ...item,
-              read: nextRead,
-              read_at: nextRead ? item.read_at ?? new Date().toISOString() : null,
-            }
-          : item,
-      ),
+      current.map((item) => (item.id === notificationId ? { ...item, read: nextRead } : item)),
     );
   };
 
   const handleMarkAllRead = () => {
     markAllNotificationsRead(
       session,
-      notifications.filter((item) => !item.read).map((item) => item.notification_id),
+      notifications.filter((item) => !item.read).map((item) => item.id),
     );
-    setNotifications((current) =>
-      current.map((item) => ({
-        ...item,
-        read: true,
-        read_at: item.read_at ?? new Date().toISOString(),
-      })),
-    );
+    setNotifications((current) => current.map((item) => ({ ...item, read: true })));
   };
 
   const allFilters: Array<{ key: NotificationCategory | "all"; label: string; count: number }> = [
     { key: "all", label: "All", count: notifications.length },
     { key: "trade", label: "Trade", count: countsByFilter.trade },
-    { key: "finance", label: "Payments", count: countsByFilter.finance },
+    { key: "finance", label: "Finance", count: countsByFilter.finance },
     { key: "weather", label: "Weather", count: countsByFilter.weather },
-    { key: "advisory", label: "Guidance", count: countsByFilter.advisory },
-    { key: "copilot", label: "Help", count: countsByFilter.copilot },
-    { key: "transport", label: "Transport", count: countsByFilter.transport },
-    { key: "system", label: "Account", count: countsByFilter.system },
+    { key: "advisory", label: "Advisory", count: countsByFilter.advisory },
+    { key: "system", label: "System", count: countsByFilter.system },
   ];
 
   return (
     <div className="r3-page-stack" role="main" aria-label="Notifications">
       <SurfaceCard className="r3-hero-card">
         <SectionHeading
-          eyebrow="Notifications"
-          title="See the updates that matter most right now"
-          body="Track changes across trading, payments, transport, weather, and guidance from one feed."
+          eyebrow="Notification center"
+          title="Trade, finance, weather, advisory, and system updates"
+          body="Each item is anchored to live marketplace, wallet, climate, advisory, or consent state. Category preferences are applied before the feed is rendered."
           actions={
             <div className="pill-row">
               <StatusPill tone={unreadCount > 0 ? "degraded" : "online"}>{unreadCount} unread</StatusPill>
-              <StatusPill tone="neutral">{enabledCategoryCount} views on</StatusPill>
+              <StatusPill tone="neutral">{enabledCategoryCount} categories enabled</StatusPill>
             </div>
           }
         />
@@ -215,13 +178,13 @@ export function NotificationsCenterClient() {
             onClick={handleMarkAllRead}
             type="button"
           >
-            Mark all read
+            Mark All Read
           </button>
           <Link className="button-secondary" href="/app/settings">
-            Manage alerts
+            Manage Preferences
           </Link>
           <Link className="button-ghost" href="/app/profile">
-            Review profile
+            Review Profile
           </Link>
         </div>
       </SurfaceCard>
@@ -237,8 +200,8 @@ export function NotificationsCenterClient() {
       <SurfaceCard>
         <SectionHeading
           eyebrow="Filter"
-          title="Latest updates"
-          body="Choose the part of the business you want to follow most closely."
+          title="Focus the feed by workflow"
+          body="Muted categories are removed from the feed and badge count until they are re-enabled in settings."
         />
         <div className="r3-filter-row" role="tablist" aria-label="Notification categories">
           {allFilters.map((filter) => (
@@ -262,7 +225,7 @@ export function NotificationsCenterClient() {
 
       {isLoading ? (
         <SurfaceCard>
-          <p className="muted">Loading recent updates...</p>
+          <p className="muted">Loading live notifications...</p>
         </SurfaceCard>
       ) : null}
 
@@ -271,21 +234,21 @@ export function NotificationsCenterClient() {
           <EmptyState
             title={
               enabledCategoryCount === 0
-                ? "No updates in this view right now"
+                ? "All categories are muted"
                 : activeFilter === "finance" && session.actor.role === "investor"
-                  ? "No payment or portfolio updates yet"
-                  : "No updates in this view right now"
+                  ? "No wallet or fund notifications yet"
+                  : "No notifications match this filter"
             }
             body={
               enabledCategoryCount === 0
-                ? "Turn on at least one update type in settings to repopulate this feed."
+                ? "Re-enable at least one notification category in settings to repopulate this feed."
                 : activeFilter === "finance" && session.actor.role === "investor"
-                  ? "Portfolio and payment updates will appear here when something changes."
-                : "When something changes here, it will appear in this feed."
+                  ? "AgroFund updates will appear here when new marketplace-backed opportunities or wallet-linked portfolio changes are available."
+                : "The selected category has no active updates from the current runtime."
             }
             actions={
               <Link className="button-primary" href={activeFilter === "finance" && session.actor.role === "investor" ? "/app/fund" : "/app/settings"}>
-                {activeFilter === "finance" && session.actor.role === "investor" ? "Open portfolio" : "Open settings"}
+                {activeFilter === "finance" && session.actor.role === "investor" ? "Open AgroFund" : "Open Settings"}
               </Link>
             }
           />
@@ -297,69 +260,30 @@ export function NotificationsCenterClient() {
           <div className="r3-group-label">{group.label}</div>
           <div className="r3-list-stack">
             {group.items.map((item) => (
-              <SurfaceCard
-                className={`r3-list-card${item.read ? " is-read" : ""}`}
-                key={item.notification_id}
-              >
+              <SurfaceCard className={`r3-list-card${item.read ? " is-read" : ""}`} key={item.id}>
                 <div className="r3-notification-meta">
                   <div className="pill-row">
-                    <StatusPill tone={notificationTone(item)}>
-                      {CATEGORY_META[item.category].label}
-                    </StatusPill>
-                    <StatusPill tone={notificationTone(item)}>
-                      {notificationUrgencyLabel(item.urgency)}
-                    </StatusPill>
+                    <StatusPill tone={CATEGORY_META[item.category].tone}>{CATEGORY_META[item.category].label}</StatusPill>
                     {!item.read ? <span className="r3-unread-dot" aria-hidden="true" /> : null}
                   </div>
-                  <span className="r3-time-note">
-                    {formatDateTime(item.created_at, {
-                      locale: readUserPreferences(session).display.locale,
-                    })}
-                  </span>
+                  <span className="r3-time-note">{formatTimestamp(item.createdAt)}</span>
                 </div>
                 <div className="stack-sm">
                   <strong>{item.title}</strong>
                   <p className="muted">{item.body}</p>
-                  {item.next_action_copy ? (
-                    <p className="muted">{item.next_action_copy}</p>
-                  ) : null}
-                  {notificationDueLabel(item) ? (
-                    <p className="muted">{notificationDueLabel(item)}</p>
-                  ) : null}
                 </div>
                 <div className="r3-notification-actions">
-                  {item.action ? (
-                    <Link
-                      className="button-ghost"
-                      href={item.action.href}
-                      onClick={() =>
-                        recordMarketplaceConversion({
-                          actorId: session.actor.actor_id,
-                          actorRole: session.actor.role,
-                          countryCode: session.actor.country_code,
-                          escrowId: item.escrow_id,
-                          listingId: item.listing_id,
-                          notificationCount: notifications.length,
-                          outcome: "completed",
-                          sourceSurface: "notifications_center",
-                          stage: "notification_action",
-                          threadId: item.thread_id,
-                          traceId,
-                          urgency: item.urgency,
-                        })
-                      }
-                    >
-                      {item.action.label}
+                  {item.actionLabel ? (
+                    <Link className="button-ghost" href={item.href}>
+                      {item.actionLabel}
                     </Link>
                   ) : null}
                   <button
                     className="button-secondary"
-                    onClick={() =>
-                      handleToggleRead(item.notification_id, !item.read)
-                    }
+                    onClick={() => handleToggleRead(item.id, !item.read)}
                     type="button"
                   >
-                    Mark as {item.read ? "unread" : "read"}
+                    Mark as {item.read ? "Unread" : "Read"}
                   </button>
                 </div>
               </SurfaceCard>
@@ -375,7 +299,7 @@ export function NotificationsCenterClient() {
             onClick={() => setVisibleCount((current) => current + PAGE_SIZE)}
             type="button"
           >
-            Load more
+            Load More
           </button>
         </div>
       ) : null}

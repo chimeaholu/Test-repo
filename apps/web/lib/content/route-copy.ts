@@ -138,21 +138,21 @@ export const offlineOutboxCopy: OfflineOutboxCopy = {
 
 export const advisoryCopyByLocale: Record<ExperienceLocale, AdvisoryCopy> = {
   "en-GH": {
-    historyEyebrow: "AgroGuide requests",
-    historyTitle: "Recommended guidance with the supporting context close by",
+    historyEyebrow: "Advisory workspace",
+    historyTitle: "Evidence-backed recommendations with source context",
     historyBody:
-      "Keep the farmer's question, the recommended guidance, and the supporting context in one place before you send an answer forward.",
-    localeFallback: "This language is not available yet. Showing the closest supported advisory language for now.",
+      "Every response keeps citations, confidence, and reviewer posture visible before anyone treats it as field advice.",
+    localeFallback: "This language is not available yet. Showing the closest supported advisory language.",
     runtimeFallback:
-      "Live updates are still catching up. You can keep working from the latest saved guidance and source detail without losing context.",
-    runtimeLive: "You are viewing the latest advisory updates.",
-    reviewerLabel: "Review note",
-    citationsLabel: "Supporting sources",
-    transcriptLabel: "Supporting history",
-    blockedCopy: "This answer should stay on hold until a reviewer clears it or revises the guidance.",
-    hitlCopy: "A person still needs to confirm this answer before it should be shared as field guidance.",
-    emptyCopy: "No AgroGuide requests are available for this language yet.",
-    loadingCopy: "Loading AgroGuide requests...",
+      "The live advisory service is still catching up. You can continue triage in a clearly labeled reference view without losing the evidence attached to the response.",
+    runtimeLive: "You are viewing live advisory data.",
+    reviewerLabel: "Reviewer decision",
+    citationsLabel: "Citations",
+    transcriptLabel: "Conversation history",
+    blockedCopy: "Delivery is blocked. Do not restate this as approved advice until a reviewer clears or revises it.",
+    hitlCopy: "Human review is required before this answer can be shown as field guidance.",
+    emptyCopy: "No advisory conversations are available for this language yet.",
+    loadingCopy: "Loading advisory workspace...",
   },
   "fr-CI": {
     historyEyebrow: "Conversation de conseil",
@@ -193,10 +193,10 @@ export const advisoryCopyByLocale: Record<ExperienceLocale, AdvisoryCopy> = {
 };
 
 export const climateCopy: ClimateCopy = {
-  runtimeLive: "Alerts and forecasts are coming from the latest climate updates.",
+  runtimeLive: "Alerts and evidence are coming from the live climate service.",
   runtimeFallback:
-    "Fresh climate updates are delayed. This view keeps the latest saved forecast and field context available so planning can continue carefully.",
-  loadingCopy: "Loading weather alerts and field outlook...",
+    "The climate service is still catching up. This workspace clearly labels reference data and degraded evidence so teams do not over-read incomplete information.",
+  loadingCopy: "Loading climate alerts and evidence...",
 };
 
 export const walletCopy: WalletCopy = {

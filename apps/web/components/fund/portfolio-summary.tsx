@@ -13,7 +13,7 @@ export function PortfolioSummary(props: {
   return (
     <section className="fund-portfolio-summary">
       <article>
-        <span>Your portfolio</span>
+        <span>Total invested</span>
         <strong>{formatMoney(props.totalInvested, props.currency)}</strong>
       </article>
       <article>
@@ -21,7 +21,7 @@ export function PortfolioSummary(props: {
         <strong>{formatMoney(props.expectedReturns, props.currency)}</strong>
       </article>
       <article>
-        <span>Active commitments</span>
+        <span>Active farms</span>
         <strong>{props.activeInvestments}</strong>
       </article>
     </section>

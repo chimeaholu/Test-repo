@@ -1,0 +1,63 @@
+{
+  "bead_id": "B-028",
+  "scope": {
+    "focus": [
+      "fixtures",
+      "channel_stubs",
+      "suite_execution"
+    ],
+    "channels": [
+      "ussd",
+      "whatsapp",
+      "pwa"
+    ]
+  },
+  "dependencies": [
+    "B-004",
+    "B-005",
+    "B-006",
+    "B-009",
+    "B-012"
+  ],
+  "test_obligations": {
+    "unit": "fixture integrity checks",
+    "journeys": {
+      "core": [
+        "CJ-001",
+        "CJ-002",
+        "CJ-003",
+        "CJ-004",
+        "CJ-005",
+        "CJ-006",
+        "CJ-007",
+        "CJ-008"
+      ],
+      "enterprise": [
+        "EP-001",
+        "EP-002",
+        "EP-003",
+        "EP-004",
+        "EP-005",
+        "EP-006",
+        "EP-007",
+        "EP-008"
+      ]
+    },
+    "data_checks": [
+      "DI-001",
+      "DI-002",
+      "DI-003",
+      "DI-004",
+      "DI-005",
+      "DI-006"
+    ]
+  },
+  "suite_report": {
+    "required_fields": [
+      "passed",
+      "execution_count",
+      "covered_journeys",
+      "covered_data_checks"
+    ]
+  }
+}

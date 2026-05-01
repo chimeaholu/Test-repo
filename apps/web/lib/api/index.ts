@@ -8,7 +8,6 @@
 export { advisoryApi } from "./advisory";
 export { auditApi } from "./audit";
 export { climateApi } from "./climate";
-export { copilotApi } from "./copilot";
 export { farmApi } from "./farm";
 export { fundApi } from "./fund";
 export { identityApi } from "./identity";

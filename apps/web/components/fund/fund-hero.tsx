@@ -24,57 +24,58 @@ export function FundHero({
       <div className="fund-hero-copy">
         <Badge variant="brand" className="fund-hero-badge">
           <ShieldCheck size={14} />
-          Protection in place
+          Escrow-backed agricultural investing
         </Badge>
-        <p className="fund-hero-eyebrow">AgroFund</p>
-        <h1>Back agricultural opportunities with clearer progress and return visibility</h1>
+        <p className="fund-hero-eyebrow">AgroFund portal</p>
+        <h1>Invest in African agriculture with live operating context.</h1>
         <p>
-          Compare live opportunities, review funding progress, and invest in farms with more confidence.
+          Review opportunities sourced from active Agrodomain supply, see how much capital is already committed,
+          and fund farms with clearer payout and settlement visibility.
         </p>
 
         <div className="fund-hero-actions">
           <Button href="#fund-opportunities" size="lg">
-            Explore opportunities
+            Browse opportunities
             <ArrowRight size={16} />
           </Button>
-          <Button href="/app/fund/my-investments" size="lg" variant="secondary">
+          <Button href="/app/payments/wallet" size="lg" variant="secondary">
             <Wallet size={16} />
-            View my investments
+            Open wallet
           </Button>
         </div>
       </div>
 
       <div className="fund-hero-panel">
         <article>
-          <span>Featured opportunities</span>
+          <span>Live opportunities</span>
           <strong>{liveOpportunities}</strong>
-          <p>Farm opportunities ready to compare right now.</p>
+          <p>Listings converted into investable farm opportunities.</p>
         </article>
         <article>
-          <span>Funding progress</span>
+          <span>Capital committed</span>
           <strong>{capitalCommitted}</strong>
-          <p>Capital already committed across active opportunities.</p>
+          <p>Derived from live escrow activity and current funding progress.</p>
         </article>
         <article>
-          <span>Returns paid</span>
+          <span>Settled payouts</span>
           <strong>{settledPayouts}</strong>
-          <p>Payouts already returned through the platform.</p>
+          <p>Completed release events flowing through the wallet ledger.</p>
         </article>
         <article>
           <span>Active investors</span>
           <strong>{activeInvestors}</strong>
-          <p>People already backing live farm opportunities.</p>
+          <p>Unique buyers or investors already participating in open deals.</p>
         </article>
       </div>
 
       <div className="fund-hero-trust">
         <div>
           <TrendingUp size={18} />
-          <span>Expected return stays visible before you invest.</span>
+          <span>Return expectations stay visible before capital leaves the wallet.</span>
         </div>
         <div>
           <ShieldCheck size={18} />
-          <span>Funding progress, payout history, and protection signals stay close after you commit.</span>
+          <span>Escrow state, payout history, and counterparty movement remain visible after funding.</span>
         </div>
       </div>
     </section>

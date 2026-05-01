@@ -6,7 +6,7 @@ export default function AnalyticsPage() {
     <ErrorBoundary
       secondaryHref="/app"
       secondaryLabel="Back to dashboard"
-      title="Insights could not finish loading."
+      title="AgroInsights could not finish loading."
     >
       <AnalyticsDashboardClient />
     </ErrorBoundary>

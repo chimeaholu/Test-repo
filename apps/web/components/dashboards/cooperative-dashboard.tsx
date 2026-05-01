@@ -87,7 +87,7 @@ export function CooperativeDashboard() {
       })
       .catch((nextError) => {
         if (!cancelled) {
-          setError(nextError instanceof Error ? nextError.message : "Unable to load the cooperative workspace.");
+          setError(nextError instanceof Error ? nextError.message : "Unable to load cooperative dashboard.");
         }
       });
 
@@ -186,27 +186,27 @@ export function CooperativeDashboard() {
     <div className="r3-page-stack">
       <SurfaceCard className="r3-hero-card">
         <SectionHeading
-          eyebrow="Cooperative workspace"
-          title="Coordinate members, shipments, and payouts with less back-and-forth."
-          body="Keep member activity, dispatch readiness, and payment follow-up visible in one operating view."
+          eyebrow="Cooperative dashboard"
+          title={session.actor.membership.organization_name}
+          body={`${stats.activeMembers} active members surfaced from live marketplace, negotiation, and wallet activity.`}
           actions={
             <div className="pill-row">
               <StatusPill tone="neutral">{stats.activeListings} live listings</StatusPill>
               <StatusPill tone={stats.pendingDispatches > 0 ? "degraded" : "online"}>
-                {stats.pendingDispatches} shipments to assign
+                {stats.pendingDispatches} pending dispatches
               </StatusPill>
             </div>
           }
         />
         <div className="r3-action-row">
           <Link className="button-primary" href="/app/cooperative/dispatch">
-            Open Dispatch
+            Dispatch Board
           </Link>
           <Link className="button-secondary" href="/app/market/listings">
-            Review Member Work
+            View Listings
           </Link>
-          <Link className="button-ghost" href="/app/agro-intelligence/buyers">
-            Buyer Directory
+          <Link className="button-ghost" href="/app/payments/wallet">
+            Cooperative Wallet
           </Link>
         </div>
       </SurfaceCard>
@@ -219,25 +219,25 @@ export function CooperativeDashboard() {
         </SurfaceCard>
       ) : null}
 
-      <section className="r3-kpi-grid" aria-label="Cooperative summary">
+      <section className="r3-kpi-grid" aria-label="Cooperative statistics">
         <SurfaceCard className="r3-kpi-card">
-          <span className="eyebrow">Members needing review</span>
+          <span className="eyebrow">Active Members</span>
           <strong>{formatCompact(stats.activeMembers)}</strong>
-          <p className="muted">Distinct members currently visible across active work in the platform.</p>
+          <p className="muted">Distinct member actors currently visible in live workflows.</p>
         </SurfaceCard>
         <SurfaceCard className="r3-kpi-card">
-          <span className="eyebrow">Recent cooperative activity</span>
+          <span className="eyebrow">Aggregated Listings</span>
           <strong>{formatCompact(stats.activeListings)}</strong>
           <p className="muted">{formatCompact(stats.totalVolume)} tonnes currently visible to buyers.</p>
         </SurfaceCard>
         <SurfaceCard className="r3-kpi-card">
-          <span className="eyebrow">Shipments to assign</span>
+          <span className="eyebrow">Pending Dispatches</span>
           <strong>{formatCompact(stats.pendingDispatches)}</strong>
-          <p className="muted">Lots that are far enough along to move into dispatch planning.</p>
+          <p className="muted">Lots with downstream negotiation or escrow activity.</p>
         </SurfaceCard>
         <SurfaceCard className="r3-kpi-card">
-          <span className="eyebrow">Payments to watch</span>
-          <strong>{walletBalance ? formatMoney(stats.pendingPayouts, walletBalance.currency) : "--"}</strong>
+          <span className="eyebrow">Total Volume</span>
+          <strong>{formatCompact(stats.totalVolume)}t</strong>
           <p className="muted">
             Revenue {walletBalance ? formatMoney(stats.revenueYtd, walletBalance.currency) : "--"} YTD.
           </p>
@@ -247,12 +247,12 @@ export function CooperativeDashboard() {
       <section className="r3-two-column">
         <SurfaceCard>
           <SectionHeading
-            eyebrow="What needs movement today"
+            eyebrow="Dispatch"
             title="Dispatch board"
-            body="Move member lots into collection, pickup, and delivery work from one place."
+            body="Listings move into this queue once they have a live negotiation or settlement signal behind them."
             actions={
               <Link className="button-ghost" href="/app/cooperative/dispatch">
-                Open dispatch
+                Manage
               </Link>
             }
           />
@@ -260,7 +260,7 @@ export function CooperativeDashboard() {
             {dispatchCards.length === 0 ? (
               <div className="empty-state">
                 <strong>No dispatch tasks</strong>
-                <p className="muted">Collection and delivery tasks will appear here when trade work is ready to move.</p>
+                <p className="muted">Collection and delivery tasks will appear here when orders are placed.</p>
               </div>
             ) : (
               dispatchCards.map((item) => (
@@ -282,12 +282,12 @@ export function CooperativeDashboard() {
 
         <SurfaceCard>
           <SectionHeading
-            eyebrow="Transport and payout follow-up"
+            eyebrow="Wallet"
             title="Cooperative wallet"
-            body="Keep current balance, held funds, and pending payouts visible beside dispatch work."
+            body="Current balance and held funds are taken directly from the live wallet data."
             actions={
               <Link className="button-ghost" href="/app/payments/wallet">
-                View wallet
+                View Details
               </Link>
             }
           />
@@ -310,12 +310,12 @@ export function CooperativeDashboard() {
 
       <SurfaceCard>
         <SectionHeading
-          eyebrow="Member and market activity"
-          title="What changed most recently"
-          body="Follow the latest member, listing, and negotiation movement across the cooperative."
+          eyebrow="Activity"
+          title="Member activity"
+          body="Recent marketplace and negotiation events across the cooperative workspace."
           actions={
             <Link className="button-ghost" href="/app/notifications">
-              View updates
+              View All
             </Link>
           }
         />
@@ -323,7 +323,7 @@ export function CooperativeDashboard() {
           {activityFeed.length === 0 ? (
             <div className="empty-state">
               <strong>No recent activity</strong>
-              <p className="muted">Recent member actions will appear here as they use the platform.</p>
+              <p className="muted">Member actions will appear here as they use the platform.</p>
             </div>
           ) : (
             activityFeed.map((item) => (

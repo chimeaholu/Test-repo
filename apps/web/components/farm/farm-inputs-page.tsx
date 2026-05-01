@@ -166,8 +166,8 @@ export function FarmInputsPage() {
           { href: "/app/farm", label: "Farm" },
           { label: "Inputs" },
         ]}
-        description="See what is in stock, what is low, and what needs replacing soon."
-        title="Input inventory"
+        description="Inventory, expiry risk, and actual usage stay linked to field activities so the team can trust what is in store and what has already been applied."
+        title="Input tracker"
       />
 
       {workspace ? <MetricGrid metrics={metrics} /> : null}

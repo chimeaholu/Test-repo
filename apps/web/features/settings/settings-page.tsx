@@ -5,97 +5,47 @@ import Link from "next/link";
 
 import { useAppState } from "@/components/app-provider";
 import {
-  getActiveLocaleOptions,
-  getPlannedLocaleOptions,
-  resolveLocaleProfile,
-  type ReadingLevelBand,
-} from "@/lib/i18n/config";
-import { getLocaleMessages } from "@/lib/i18n/messages";
-import {
   patchUserPreferences,
   readUserPreferences,
-  type AppLocale,
+  type AppLanguage,
   type CurrencyFormat,
   type NotificationCategory,
 } from "@/lib/user-preferences";
 
-const LOCALE_OPTIONS = getActiveLocaleOptions().map((option) => ({
-  description: option.description,
-  label: option.displayName,
-  value: option.code as AppLocale,
-}));
-
-const READING_LEVEL_OPTIONS: Array<{ label: string; value: ReadingLevelBand }> = [
-  { label: "Plain English", value: "plain" },
-  { label: "Standard English", value: "standard" },
+const LANGUAGE_OPTIONS: Array<{ value: AppLanguage; label: string }> = [
+  { value: "en", label: "English" },
+  { value: "tw", label: "Twi" },
+  { value: "ha", label: "Hausa" },
+  { value: "yo", label: "Yoruba" },
+  { value: "pcm", label: "Pidgin" },
 ];
 
 const CATEGORY_OPTIONS: Array<{ value: NotificationCategory; label: string; detail: string }> = [
   { value: "trade", label: "Trade updates", detail: "Negotiation changes, listing updates, and buyer activity." },
-  { value: "finance", label: "Payment alerts", detail: "Money on hold, payout activity, and wallet changes." },
+  { value: "finance", label: "Finance alerts", detail: "Escrow movement, payout activity, and wallet status." },
   { value: "weather", label: "Weather alerts", detail: "Climate warnings and risk signals tied to your locale." },
-  { value: "advisory", label: "Guidance messages", detail: "Agronomy guidance, requests, and crop care updates." },
-  { value: "copilot", label: "Workspace help", detail: "Task support, summaries, and helpful prompts inside the workspace." },
-  { value: "transport", label: "Transport notices", detail: "Shipment coordination, driver handoff, and delivery status updates." },
-  { value: "system", label: "Account notices", detail: "Permissions, security reminders, and account-level notices." },
+  { value: "advisory", label: "Advisory messages", detail: "Agronomy guidance, requests, and crop care updates." },
+  { value: "system", label: "System notices", detail: "Consent posture, queue sync, and account-level notices." },
 ];
 
-const REGION_OPTIONS: Record<string, string[]> = {
-  GH: [
-    "Ahafo",
-    "Ashanti",
-    "Bono",
-    "Bono East",
-    "Central",
-    "Eastern",
-    "Greater Accra",
-    "North East",
-    "Northern",
-    "Oti",
-    "Savannah",
-    "Upper East",
-    "Upper West",
-    "Volta",
-    "Western",
-    "Western North",
-  ],
-  JM: [
-    "Clarendon",
-    "Hanover",
-    "Kingston",
-    "Manchester",
-    "Portland",
-    "Saint Andrew",
-    "Saint Ann",
-    "Saint Catherine",
-    "Saint Elizabeth",
-    "Saint James",
-    "Saint Mary",
-    "Saint Thomas",
-    "Trelawny",
-    "Westmoreland",
-  ],
-  NG: [
-    "Abia",
-    "Adamawa",
-    "Akwa Ibom",
-    "Anambra",
-    "Bauchi",
-    "Benue",
-    "Cross River",
-    "Delta",
-    "Federal Capital Territory",
-    "Kaduna",
-    "Kano",
-    "Katsina",
-    "Lagos",
-    "Nasarawa",
-    "Ogun",
-    "Oyo",
-    "Plateau",
-    "Rivers",
-  ],
-};
+const REGION_OPTIONS = [
+  "Ahafo",
+  "Ashanti",
+  "Bono",
+  "Bono East",
+  "Central",
+  "Eastern",
+  "Greater Accra",
+  "North East",
+  "Northern",
+  "Oti",
+  "Savannah",
+  "Upper East",
+  "Upper West",
+  "Volta",
+  "Western",
+  "Western North",
+];
 
 export function SettingsPageClient() {
   const { session, updateSession } = useAppState();
@@ -103,9 +53,8 @@ export function SettingsPageClient() {
   const [email, setEmail] = useState("");
   const [region, setRegion] = useState("");
   const [city, setCity] = useState("");
-  const [locale, setLocale] = useState<AppLocale>("en-GH");
+  const [language, setLanguage] = useState<AppLanguage>("en");
   const [currency, setCurrency] = useState<CurrencyFormat>("GHS");
-  const [readingLevelBand, setReadingLevelBand] = useState<ReadingLevelBand>("plain");
   const [push, setPush] = useState(true);
   const [sms, setSms] = useState(true);
   const [emailNotifications, setEmailNotifications] = useState(true);
@@ -115,25 +64,12 @@ export function SettingsPageClient() {
     finance: true,
     weather: true,
     advisory: true,
-    copilot: true,
-    transport: true,
     system: true,
   });
   const [shareProfile, setShareProfile] = useState(true);
   const [analyticsOptOut, setAnalyticsOptOut] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
-  const localeProfile = session
-    ? resolveLocaleProfile({
-        countryCode: session.actor.country_code,
-        preferredLocale: locale,
-        readingLevelBand,
-        sessionLocale: session.actor.locale,
-      })
-    : null;
-  const messages = getLocaleMessages(localeProfile).settings;
-  const plannedLocales = session ? getPlannedLocaleOptions(session.actor.country_code) : [];
-  const regionOptions = session ? REGION_OPTIONS[session.actor.country_code] ?? [] : [];
 
   useEffect(() => {
     if (!session) {
@@ -144,9 +80,8 @@ export function SettingsPageClient() {
     setEmail(session.actor.email);
     setRegion(prefs.profile.region);
     setCity(prefs.profile.city);
-    setLocale(prefs.display.locale);
+    setLanguage(prefs.display.language);
     setCurrency(prefs.display.currency);
-    setReadingLevelBand(prefs.display.readingLevelBand);
     setPush(prefs.notifications.push);
     setSms(prefs.notifications.sms);
     setEmailNotifications(prefs.notifications.email);
@@ -166,9 +101,8 @@ export function SettingsPageClient() {
       email !== session.actor.email ||
       region !== prefs.profile.region ||
       city !== prefs.profile.city ||
-      locale !== prefs.display.locale ||
+      language !== prefs.display.language ||
       currency !== prefs.display.currency ||
-      readingLevelBand !== prefs.display.readingLevelBand ||
       push !== prefs.notifications.push ||
       sms !== prefs.notifications.sms ||
       emailNotifications !== prefs.notifications.email ||
@@ -185,9 +119,8 @@ export function SettingsPageClient() {
     email,
     emailNotifications,
     fullName,
-    locale,
+    language,
     push,
-    readingLevelBand,
     region,
     session,
     shareProfile,
@@ -213,9 +146,8 @@ export function SettingsPageClient() {
         categories,
       },
       display: {
-        locale,
+        language,
         currency,
-        readingLevelBand,
       },
       privacy: {
         shareProfile,
@@ -234,12 +166,12 @@ export function SettingsPageClient() {
         ...session.actor,
         display_name: fullName.trim() || session.actor.display_name,
         email: email.trim() || session.actor.email,
-        locale,
+        locale: `${language}-${session.actor.country_code}`,
       },
     });
 
     setIsSaving(false);
-    setMessage("Settings updated successfully");
+    setMessage("Profile updated successfully");
   };
 
   const handleUseCurrentLocation = () => {
@@ -266,7 +198,7 @@ export function SettingsPageClient() {
       {message ? <div className="r3-inline-banner">{message}</div> : null}
 
       <section className="r3-settings-section" aria-label="Profile">
-        <h2>Account and security</h2>
+        <h2>Profile</h2>
         <div className="r3-settings-card r3-settings-profile-grid">
           <div className="r3-profile-photo">
             <div>{fullName.slice(0, 1).toUpperCase()}</div>
@@ -302,7 +234,7 @@ export function SettingsPageClient() {
       </section>
 
       <section className="r3-settings-section" aria-label="Notifications">
-        <h2>Alerts and updates</h2>
+        <h2>Notifications</h2>
         <div className="r3-settings-card">
           <ToggleRow checked={push} label="Push Notifications" onChange={setPush} />
           <ToggleRow checked={sms} label="SMS Alerts" onChange={setSms} />
@@ -310,8 +242,8 @@ export function SettingsPageClient() {
           <ToggleRow checked={whatsapp} label="WhatsApp Updates" onChange={setWhatsapp} />
           <div className="r3-settings-divider" />
           <div className="stack-sm">
-            <h3>Update types</h3>
-            <p className="muted">Turn views on or off based on the parts of the business you want to hear about most.</p>
+            <h3>Notification Categories</h3>
+            <p className="muted">Muted categories are removed from the notification center and navigation badge.</p>
           </div>
           {CATEGORY_OPTIONS.map((option) => (
             <ToggleRow
@@ -325,75 +257,31 @@ export function SettingsPageClient() {
         </div>
       </section>
 
-      <section className="r3-settings-section" aria-label={messages.localeSectionLabel}>
-        <h2>{messages.localeSectionLabel}</h2>
+      <section className="r3-settings-section" aria-label="Language">
+        <h2>Language</h2>
         <div className="r3-settings-card">
-          <div className="stack-sm">
-            <h3>{messages.activeLocalesTitle}</h3>
-            <p className="muted">{messages.activeLocalesBody}</p>
-          </div>
-          {LOCALE_OPTIONS.map((option) => (
+          {LANGUAGE_OPTIONS.map((option) => (
             <label className="r3-radio-row" key={option.value}>
               <input
-                checked={locale === option.value}
-                name="locale"
-                onChange={() => setLocale(option.value)}
+                checked={language === option.value}
+                name="language"
+                onChange={() => setLanguage(option.value)}
                 type="radio"
               />
-              <span>
-                <strong>{option.label}</strong>
-                <small>{option.description}</small>
-              </span>
+              <span>{option.label}</span>
             </label>
           ))}
-          <div className="r3-settings-divider" />
-          <div className="stack-sm">
-            <h3>{messages.readingLevelTitle}</h3>
-            <p className="muted">Shorter labels and simpler helper text stay preferred until local-language packs clear QA.</p>
-          </div>
-          {READING_LEVEL_OPTIONS.map((option) => (
-            <label className="r3-radio-row" key={option.value}>
-              <input
-                checked={readingLevelBand === option.value}
-                name="readingLevelBand"
-                onChange={() => setReadingLevelBand(option.value)}
-                type="radio"
-              />
-              <span>{option.value === "plain" ? messages.readingLevelPlain : messages.readingLevelStandard}</span>
-            </label>
-          ))}
-          {localeProfile?.fallbackNotice ? (
-            <>
-              <div className="r3-settings-divider" />
-              <div className="stack-sm">
-                <h3>{messages.localeFallbackTitle}</h3>
-                <p className="muted">{localeProfile.fallbackNotice}</p>
-              </div>
-            </>
-          ) : null}
-          <div className="r3-settings-divider" />
-          <div className="stack-sm">
-            <h3>{messages.comingSoonTitle}</h3>
-            <p className="muted">{messages.comingSoonBody}</p>
-          </div>
-          <ul className="pub-auth-list">
-            {plannedLocales.map((option) => (
-              <li key={option.code}>
-                <strong>{option.displayName}</strong>: {option.description}
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
       <section className="r3-settings-section" aria-label="Region and location">
-        <h2>Language and region</h2>
+        <h2>Region &amp; Location</h2>
         <div className="r3-settings-card">
           <label className="field">
-            <span>{messages.regionLabel}</span>
+            <span>Region</span>
             <select value={region} onChange={(event) => setRegion(event.target.value)}>
-              <option value="">{messages.regionPrompt}</option>
-              {regionOptions.map((option) => (
+              <option value="">Select a region</option>
+              {REGION_OPTIONS.map((option) => (
                 <option key={option} value={option}>
                   {option}
                 </option>
@@ -416,14 +304,12 @@ export function SettingsPageClient() {
       </section>
 
       <section className="r3-settings-section" aria-label="Display">
-        <h2>Advanced preferences</h2>
+        <h2>Display &amp; Privacy</h2>
         <div className="r3-settings-card">
           <label className="field">
             <span>Currency display</span>
             <select value={currency} onChange={(event) => setCurrency(event.target.value as CurrencyFormat)}>
               <option value="GHS">GHS</option>
-              <option value="NGN">NGN</option>
-              <option value="JMD">JMD</option>
               <option value="USD">USD</option>
             </select>
           </label>
@@ -433,7 +319,7 @@ export function SettingsPageClient() {
       </section>
 
       <section className="r3-settings-section" aria-label="Security">
-        <h2>Account protection</h2>
+        <h2>Security</h2>
         <div className="r3-settings-card">
           <SettingsLink href="/app/profile" label="Change Password" />
           <SettingsLink href="/app/profile" label="Two-Factor Authentication (2FA)" />
@@ -441,7 +327,7 @@ export function SettingsPageClient() {
       </section>
 
       <section className="r3-settings-section" aria-label="Data and privacy">
-        <h2>Data and privacy</h2>
+        <h2>Data &amp; Privacy</h2>
         <div className="r3-settings-card">
           <button className="r3-settings-link" onClick={() => setMessage("We'll prepare your data and send it to your email within 24 hours.")} type="button">
             <span>Export My Data</span>
@@ -459,7 +345,7 @@ export function SettingsPageClient() {
       </section>
 
       <section className="r3-settings-section" aria-label="About">
-        <h2>Help and policies</h2>
+        <h2>About</h2>
         <div className="r3-settings-card">
           <SettingsLink href="/contact" label="Help Centre" />
           <SettingsLink href="/contact" label="Contact Support" />

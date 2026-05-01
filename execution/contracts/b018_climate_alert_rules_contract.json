@@ -1,0 +1,39 @@
+{
+  "bead_id": "B-018",
+  "title": "Climate Alert Rules Engine",
+  "scope": {
+    "focus": [
+      "thresholds",
+      "precedence",
+      "farm_context",
+      "canonical_state_emission"
+    ]
+  },
+  "supported_metrics": [
+    "rainfall_24h_mm",
+    "temperature_max_c",
+    "ndvi_ratio",
+    "soil_moisture_ratio"
+  ],
+  "severity_order": [
+    "critical",
+    "warning",
+    "watch"
+  ],
+  "state_payload_fields": [
+    "alert_id",
+    "alert_type",
+    "severity",
+    "precedence",
+    "metric_name",
+    "observed_value",
+    "threshold_value",
+    "source_signal_id",
+    "provenance_key",
+    "reason"
+  ],
+  "test_obligations": {
+    "journey": "CJ-006",
+    "data_check": "DI-006"
+  }
+}

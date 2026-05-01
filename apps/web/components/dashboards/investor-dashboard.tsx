@@ -70,7 +70,7 @@ export function InvestorDashboard() {
       })
       .catch((nextError) => {
         if (!cancelled) {
-          setError(nextError instanceof Error ? nextError.message : "Unable to load the investor workspace.");
+          setError(nextError instanceof Error ? nextError.message : "Unable to load investor dashboard.");
         }
       });
 
@@ -143,43 +143,43 @@ export function InvestorDashboard() {
     <div className="r3-page-stack">
       <SurfaceCard className="r3-investor-summary">
         <SectionHeading
-          eyebrow="Investor workspace"
-          title="Track your portfolio and review the next farm opportunity."
-          body="See current commitments, expected returns, and payout progress without digging through separate screens."
+          eyebrow="Investor dashboard"
+          title="Your Portfolio"
+          body={`Welcome, ${session.actor.display_name.split(" ")[0]}. See your opportunities, active farms, and portfolio value in one place.`}
           actions={
             <div className="pill-row">
-              <StatusPill tone={roiTone(summary.avgRoi)}>Avg return {summary.avgRoi.toFixed(1)}%</StatusPill>
+              <StatusPill tone={roiTone(summary.avgRoi)}>Avg ROI {summary.avgRoi.toFixed(1)}%</StatusPill>
               <StatusPill tone="neutral">{summary.availableOpportunities} opportunities</StatusPill>
             </div>
           }
         />
         <section className="r3-investor-kpis" aria-label="Portfolio summary">
           <div>
-            <span>Active commitments</span>
+            <span>Total Invested</span>
             <strong>{walletBalance ? formatMoney(summary.totalInvested, walletBalance.currency) : "--"}</strong>
           </div>
           <div>
-            <span>Returns paid</span>
+            <span>Total Returns</span>
             <strong>{walletBalance ? formatMoney(summary.totalReturns, walletBalance.currency) : "--"}</strong>
           </div>
           <div>
-            <span>Portfolio protection</span>
+            <span>Active Farms</span>
             <strong>{summary.activeInvestments.length}</strong>
           </div>
           <div>
-            <span>Portfolio value</span>
+            <span>Portfolio Value</span>
             <strong>{walletBalance ? formatMoney(walletBalance.total, walletBalance.currency) : "--"}</strong>
           </div>
         </section>
         <div className="r3-action-row">
           <Link className="button-primary" href="/app/fund">
-            Explore opportunities
+            Browse Opportunities
           </Link>
           <Link className="button-secondary" href="/app/fund/my-investments">
-            View portfolio
+            My Portfolio
           </Link>
           <Link className="button-ghost" href="/app/fund">
-            Watch returns
+            Fund a Farm
           </Link>
         </div>
       </SurfaceCard>
@@ -196,21 +196,21 @@ export function InvestorDashboard() {
         <SurfaceCard>
           <SectionHeading
             eyebrow="Explore"
-            title="Where to invest next"
-            body="Review the next farm opportunities that are open for funding today."
-            actions={
+            title="Featured opportunities"
+            body="Discover farm opportunities that are open for funding today."
+          actions={
               <Link className="button-ghost" href="/app/fund">
-                See all
+                Explore All
               </Link>
             }
           />
           <div className="r3-card-grid">
             {opportunities.length === 0 ? (
-                <div className="empty-state">
-                  <strong>No opportunities available</strong>
-                  <p className="muted">New farm opportunities will appear here as fresh supply opens for funding.</p>
-                </div>
-              ) : (
+              <div className="empty-state">
+                <strong>No opportunities available</strong>
+                <p className="muted">New farm opportunities will appear here as fresh listings are published.</p>
+              </div>
+            ) : (
               opportunities.map((item) => (
                 <article className="r3-opportunity-card" key={item.listing_id}>
                   <div className="r3-opportunity-media">
@@ -228,10 +228,10 @@ export function InvestorDashboard() {
                     </p>
                     <div className="pill-row">
                       <StatusPill tone="online">Expected Return: {item.expectedReturn}%</StatusPill>
-                      <StatusPill tone="neutral">Protected</StatusPill>
+                      <StatusPill tone="neutral">Insured</StatusPill>
                     </div>
                     <Link className="button-ghost" href={`/app/fund/${item.listing_id}`}>
-                      See details
+                      View Details
                     </Link>
                   </div>
                 </article>
@@ -244,11 +244,11 @@ export function InvestorDashboard() {
           <SurfaceCard>
             <SectionHeading
               eyebrow="Portfolio"
-              title="How your portfolio is performing"
-              body="Track the positions you are actively funding and the movement around them."
+              title="Active investments"
+              body="Track the positions you are actively funding and monitor recent movement."
               actions={
                 <Link className="button-ghost" href="/app/fund/my-investments">
-                  See all
+                  See All
                 </Link>
               }
             />
@@ -276,11 +276,11 @@ export function InvestorDashboard() {
           </SurfaceCard>
 
           <SurfaceCard>
-            <SectionHeading
-              eyebrow="Returns"
-              title="Recent payouts and movement"
-              body="Review recent payouts as farms complete their funding cycles."
-            />
+          <SectionHeading
+            eyebrow="Returns"
+            title="Payout history"
+            body="Review recent payouts as farms complete their funding cycles."
+          />
             <div className="r3-list-stack">
               {payouts.length === 0 ? (
                 <div className="empty-state">
@@ -304,12 +304,12 @@ export function InvestorDashboard() {
 
           <SurfaceCard>
             <SectionHeading
-              eyebrow="Portfolio protection"
-              title={`Portfolio protection: ${risk.level}`}
+              eyebrow="Risk overview"
+              title={`Portfolio Risk: ${risk.level}`}
               body={`${risk.cropCount} crop types, ${risk.insuranceCoverage}% coverage, ${risk.geoSpread} active regions.`}
               actions={
                 <Link className="button-ghost" href="/app/notifications">
-                  View updates
+                  View Full Report
                 </Link>
               }
             />

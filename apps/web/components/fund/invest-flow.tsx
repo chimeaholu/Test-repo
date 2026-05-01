@@ -78,7 +78,7 @@ export function InvestFlow(props: {
       <SectionHeading
         eyebrow="Invest now"
         title="Fund this farm from your wallet"
-        body="Review the amount, expected return, and timeline before you invest."
+        body="Review your amount, expected return, and timeline before the wallet transfer is committed."
       />
 
       {step === "success" && receipt ? (
@@ -125,7 +125,7 @@ export function InvestFlow(props: {
                 }}
                 type="button"
               >
-                Review amount
+                Review investment
               </button>
             </>
           ) : null}
@@ -147,7 +147,7 @@ export function InvestFlow(props: {
               ) : null}
               <div className="inline-actions">
                 <button className="button-primary" disabled={isSubmitting} onClick={() => void confirmInvestment()} type="button">
-                  {isSubmitting ? "Investing now..." : "Invest now"}
+                  {isSubmitting ? "Funding farm..." : "Confirm and fund farm"}
                 </button>
                 <button className="button-ghost" disabled={isSubmitting} onClick={() => setStep("edit")} type="button">
                   Edit amount

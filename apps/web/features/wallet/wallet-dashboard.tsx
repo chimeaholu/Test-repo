@@ -21,10 +21,8 @@ import { TransactionTable } from "@/components/wallet/transaction-table";
 import { InfoList, InsightCallout, SectionHeading, StatusPill, SurfaceCard } from "@/components/ui-primitives";
 import { auditApi } from "@/lib/api/audit";
 import { walletApi } from "@/lib/api/wallet";
-import { buildSettlementNotification } from "@/features/notifications/seam";
 import { queueSummary } from "@/lib/offline/reducer";
 import { recordTelemetry } from "@/lib/telemetry/client";
-import { recordMarketplaceConversion } from "@/lib/telemetry/marketplace";
 import { readUserPreferences } from "@/lib/user-preferences";
 import {
   formatMoney,
@@ -59,19 +57,6 @@ const COUNTRY_CURRENCY_MAP: Record<string, string> = {
   NG: "NGN",
 };
 const SUPPORTED_CURRENCIES = ["GHS", "NGN", "JMD", "USD"] as const;
-
-function conversionStageForAction(action: EscrowAction) {
-  switch (action) {
-    case "fund":
-      return "escrow_funded" as const;
-    case "release":
-      return "escrow_released" as const;
-    case "reverse":
-      return "escrow_reversed" as const;
-    case "dispute":
-      return "escrow_disputed" as const;
-  }
-}
 
 function currencyOptionsForCountry(countryCode: string) {
   const preferredCurrency = COUNTRY_CURRENCY_MAP[countryCode] ?? "USD";
@@ -140,19 +125,8 @@ export function WalletDashboardClient() {
   }
 
   const activeSession = session;
-  const notificationPreferences = readUserPreferences(activeSession);
   const currencyOptions = currencyOptionsForCountry(activeSession.actor.country_code);
   const queueCounts = queueSummary(queue.items);
-  const settlementSignals = escrows.map((escrow) =>
-    buildSettlementNotification({
-      actorId: activeSession.actor.actor_id,
-      escrow,
-      preferences: notificationPreferences,
-    }),
-  );
-  const urgentSettlementSignals = settlementSignals.filter(
-    (item) => item.urgency === "urgent" || item.urgency === "critical",
-  );
   const pendingFallback = escrows.some((item) => {
     const notification = latestNotification(item);
     return (
@@ -160,7 +134,7 @@ export function WalletDashboardClient() {
       notification?.delivery_state === "fallback_sent" ||
       notification?.delivery_state === "action_required"
     );
-  }) || urgentSettlementSignals.length > 0;
+  });
   const totalEscrowExposure = escrows.reduce((sum, item) => sum + item.amount, 0);
 
   async function refreshWallet(currency: string): Promise<void> {
@@ -276,27 +250,6 @@ export function WalletDashboardClient() {
           replayed: response.data.replayed,
         },
       });
-      recordMarketplaceConversion({
-        actorId: activeSession.actor.actor_id,
-        actorRole: activeSession.actor.role,
-        countryCode: activeSession.actor.country_code,
-        durationMs: performance.now() - startedAt,
-        escrowId: escrow.escrow_id,
-        listingId: escrow.listing_id,
-        notificationCount: response.data.escrow_transition.notification_count,
-        outcome: "completed",
-        replayed: response.data.replayed,
-        sourceSurface: "wallet_dashboard",
-        stage: conversionStageForAction(action),
-        threadId: escrow.thread_id,
-        traceId,
-        urgency:
-          action === "release"
-            ? "attention"
-            : action === "dispute"
-              ? "critical"
-              : "urgent",
-      });
     } catch (nextError) {
       const code = nextError instanceof Error ? nextError.message : "settlement_action_failed";
       setActionError(code);
@@ -309,20 +262,6 @@ export function WalletDashboardClient() {
           error_code: code,
           escrow_id: escrow.escrow_id,
         },
-      });
-      recordMarketplaceConversion({
-        actorId: activeSession.actor.actor_id,
-        actorRole: activeSession.actor.role,
-        blockerCode: code,
-        countryCode: activeSession.actor.country_code,
-        escrowId: escrow.escrow_id,
-        listingId: escrow.listing_id,
-        outcome: "blocked",
-        sourceSurface: "wallet_dashboard",
-        stage: conversionStageForAction(action),
-        threadId: escrow.thread_id,
-        traceId,
-        urgency: "critical",
       });
     } finally {
       setMutatingEscrowId(null);
@@ -349,17 +288,17 @@ export function WalletDashboardClient() {
     <div className="wallet-home-stack">
       <SurfaceCard>
         <SectionHeading
-          eyebrow="Wallet"
-          title="See your balance, money on hold, and recent payment movement"
-          body="Track available cash, review payment holds, and keep the latest customer-facing money movement visible across every device."
+          eyebrow="Wallet home"
+          title="Your balance, transactions, and escrows"
+          body="Track available cash, review live settlement status, and keep portfolio money movement visible across every device."
           actions={headerBadges}
         />
         <div className="inline-actions">
-          <Link className="button-secondary" href="/app/market/negotiations">
-            Review deals
+          <Link className="button-secondary" href="/app/fund">
+            Explore AgroFund
           </Link>
-          <Link className="button-ghost" href="/app/offline/outbox">
-            Review details
+          <Link className="button-ghost" href="/app/fund/my-investments">
+            View my investments
           </Link>
         </div>
         <div className="wallet-hero-metrics">
@@ -373,7 +312,7 @@ export function WalletDashboardClient() {
           </article>
           <article>
             <span>Review items</span>
-            <strong>{Math.max(queueCounts.actionableCount, urgentSettlementSignals.length)}</strong>
+            <strong>{queueCounts.actionableCount}</strong>
           </article>
         </div>
       </SurfaceCard>
@@ -390,11 +329,7 @@ export function WalletDashboardClient() {
         <SurfaceCard>
           <InsightCallout
             title="Some payment updates still need attention"
-            body={
-              urgentSettlementSignals[0]
-                ? `${urgentSettlementSignals[0].title}. ${urgentSettlementSignals[0].next_action_copy ?? "Review the latest escrow activity before you retry, reverse, or escalate."}`
-                : `Review the latest escrow activity and any pending updates before you retry, reverse, or escalate. Current review items: ${queueCounts.actionableCount} active and ${queueCounts.conflictedCount} conflicted.`
-            }
+            body={`Review the latest escrow activity and any pending updates before you retry, reverse, or escalate. Current review items: ${queueCounts.actionableCount} active and ${queueCounts.conflictedCount} conflicted.`}
             tone="accent"
           />
           <div className="inline-actions">
@@ -437,18 +372,18 @@ export function WalletDashboardClient() {
       <div className="wallet-two-up">
         <SurfaceCard>
           <SectionHeading
-            eyebrow="Recent transactions"
+            eyebrow="Money movement"
             title="Transaction history"
-            body="Filter credits, debits, and payment-hold movement, then export the exact set you need."
+            body="Filter credits, debits, and escrow-linked ledger movement, then export the exact set you need."
           />
           <TransactionTable entries={transactions} />
         </SurfaceCard>
 
         <SurfaceCard>
           <SectionHeading
-            eyebrow="Payments on hold"
-            title="Active payment holds"
-            body="Every open payment hold shows its state, participant context, and the actions available right now."
+            eyebrow="Escrow overview"
+            title="Active settlement cards"
+            body="Every open escrow shows its state, participant context, and the real action buttons tied to the wallet API."
           />
 
           {isLoading ? <p className="muted">Loading wallet and escrow activity...</p> : null}
@@ -481,16 +416,16 @@ export function WalletDashboardClient() {
       {evidence ? (
         <SurfaceCard>
           <SectionHeading
-            eyebrow="Latest payment update"
+            eyebrow="Recent activity"
             title="Latest wallet action"
-            body="After you release payment, raise an issue, or review details, the latest reference appears here."
+            body="After you fund, release, reverse, or dispute an escrow, the latest reference details appear here."
           />
           <InfoList
             items={[
               { label: "Action", value: evidence.actionLabel },
               { label: "Update status", value: evidence.replayed ? "Updated again" : "Updated once" },
               { label: "Reference", value: evidence.requestId },
-              { label: "Review details", value: evidence.idempotencyKey },
+              { label: "Support code", value: evidence.idempotencyKey },
               { label: "Timeline updates", value: evidence.auditEventCount },
               { label: "Payment messages", value: evidence.notificationCount },
             ]}
@@ -500,9 +435,9 @@ export function WalletDashboardClient() {
 
       <SurfaceCard>
         <SectionHeading
-          eyebrow="Related portfolio activity"
+          eyebrow="Portfolio controls"
           title="Wallet operating context"
-          body="Quick cues for follow-up notifications, healthy payment states, offline conflicts, and available credits."
+          body="Quick operational cues for funds visibility, AgroFund posture, queue health, and settlement accountability."
         />
         <div className="wallet-context-grid">
           <article>
@@ -519,7 +454,7 @@ export function WalletDashboardClient() {
           </article>
           <article>
             <strong>{transactions.filter((item) => item.direction === "credit").length}</strong>
-            <span>Credits available for the next payment or transfer</span>
+            <span>Credits that can roll into fund opportunities</span>
           </article>
         </div>
       </SurfaceCard>

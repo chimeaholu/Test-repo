@@ -1,11 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useParams } from "next/navigation";
 
 import { useAppState } from "@/components/app-provider";
 import { InfoList, InsightCallout, SectionHeading, SurfaceCard } from "@/components/ui-primitives";
-import { queueItemSummary, queueStateLabel } from "@/lib/offline/policy";
 
 const conflictCopy = {
   device_binding_changed: {
@@ -53,52 +51,36 @@ export default function ConflictPage() {
     <>
       <SurfaceCard>
         <SectionHeading
-          eyebrow="Sync issue"
-          title="This update needs review before it can finish"
-          body={queueItemSummary(item)}
+          eyebrow="Recovery workspace"
+          title={item.intent}
+          body="Conflict guidance is tied to the recorded error so recovery stays consistent across replay attempts and device states."
         />
       </SurfaceCard>
 
       <div className="queue-grid">
         <article className="queue-card">
-          <SectionHeading eyebrow="What happened" title="Safe next step" />
+          <SectionHeading eyebrow="Conflict details" title="Recovery data" />
           <InfoList
             items={[
               { label: "Item ID", value: item.item_id },
-              { label: "Current state", value: queueStateLabel(item) },
               { label: "Conflict code", value: item.conflict_code ?? "none" },
               { label: "Recommended action", value: conflict?.action ?? "Retry later" },
+              { label: "Envelope request", value: item.envelope.metadata.request_id },
+              { label: "Schema version", value: item.envelope.metadata.schema_version },
             ]}
           />
-          <div className="actions-row">
-            <Link className="button-primary" href="/app/offline/outbox">
-              Try again
-            </Link>
-            <Link className="button-secondary" href="/app/offline/outbox">
-              Keep saved
-            </Link>
-          </div>
         </article>
 
         <article className="queue-card">
-          <SectionHeading eyebrow="Advanced details" title="See advanced details" />
+          <SectionHeading eyebrow="Operator guidance" title="What to do next" />
           <InsightCallout
             title="Conflict guidance"
             body={conflict?.detail ?? "Inspect queue metadata and retry when safe."}
             tone="accent"
           />
-          <details>
-            <summary>See advanced details</summary>
-            <InfoList
-              items={[
-                { label: "Envelope request", value: item.envelope.metadata.request_id },
-                { label: "Schema version", value: item.envelope.metadata.schema_version },
-              ]}
-            />
-            <pre style={{ overflowX: "auto", whiteSpace: "pre-wrap" }}>
-              {JSON.stringify(item.envelope, null, 2)}
-            </pre>
-          </details>
+          <pre style={{ overflowX: "auto", whiteSpace: "pre-wrap" }}>
+            {JSON.stringify(item.envelope, null, 2)}
+          </pre>
         </article>
       </div>
     </>

@@ -25,7 +25,9 @@ export function FieldDetail({ field, onLogActivity, workspace }: FieldDetailProp
           <div>
             <p className="farm-kicker">Field detail</p>
             <h1>{field.name}</h1>
-            <p>Follow the crop stage, recent work, and next action for this field in one place.</p>
+            <p>
+              {field.currentCrop} · {field.variety} · {field.areaHectares.toFixed(1)} hectares
+            </p>
           </div>
           <div className="farm-detail-badges">
             <Badge variant={field.status === "active" ? "success" : field.status === "preparing" ? "warning" : "neutral"}>
@@ -50,7 +52,7 @@ export function FieldDetail({ field, onLogActivity, workspace }: FieldDetailProp
               <strong>{field.nextTask}</strong>
             </div>
             <div className="farm-summary-pair">
-              <span>Recent work</span>
+              <span>Last activity</span>
               <strong>
                 {field.lastActivityType} · {new Date(field.lastActivityAt).toLocaleDateString()}
               </strong>
@@ -60,9 +62,9 @@ export function FieldDetail({ field, onLogActivity, workspace }: FieldDetailProp
               <strong>{workspace.weather.alertSummary}</strong>
             </div>
             <div className="farm-detail-actions">
-              <Button onClick={onLogActivity}>Log field activity</Button>
+              <Button onClick={onLogActivity}>Log activity</Button>
               <Button href="/app/farm/inputs" variant="ghost">
-                Inputs used here
+                Review inputs
               </Button>
             </div>
           </div>
@@ -74,8 +76,8 @@ export function FieldDetail({ field, onLogActivity, workspace }: FieldDetailProp
         <Card className="farm-detail-card">
           <div className="farm-section-head">
             <div>
-              <p className="farm-kicker">Weather and risk</p>
-              <h3>Weather risk</h3>
+              <p className="farm-kicker">Weather context</p>
+              <h3>Field weather watch</h3>
             </div>
             <Badge variant="info">{workspace.weather.riskLabel}</Badge>
           </div>

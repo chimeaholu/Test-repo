@@ -89,19 +89,6 @@ export const identitySessionSchema = z
     actor: sessionActorSchema,
     consent: clientConsentRecordSchema,
     available_roles: z.array(actorRoleSchema),
-    workspace: z
-      .object({
-        tenant_id: z.string().min(1),
-        tenant_label: z.string().min(1),
-        environment_scope: z.enum(["shared_demo_tenant"]),
-        data_origin: z.enum(["synthetic_demo"]),
-        is_demo_tenant: z.boolean(),
-        watermark: z.string().min(1),
-        suppressed_rails: z.array(z.string().min(1)),
-        operator_can_switch_personas: z.boolean(),
-      })
-      .strict()
-      .optional(),
   })
   .strict();
 

@@ -97,9 +97,7 @@ export function climateSeverityTone(
 }
 
 export function climateSourceConfidence(alert: ClimateAlertViewModel): string {
-  return alert.degraded_mode
-    ? "Confidence is lighter while recent source updates catch up"
-    : "Checked against the latest available source window";
+  return alert.degraded_mode ? "Reduced while source windows recover" : "Verified from current source window";
 }
 
 export function mrvCompletenessTone(

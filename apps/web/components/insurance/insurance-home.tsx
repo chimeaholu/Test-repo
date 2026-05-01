@@ -79,7 +79,7 @@ export function InsuranceHome() {
     return (
       <div className="content-stack">
         <SurfaceCard>
-          <p className="muted">Loading AgroShield...</p>
+          <p className="muted">Loading AgroShield workspace...</p>
         </SurfaceCard>
       </div>
     );
@@ -110,36 +110,37 @@ export function InsuranceHome() {
         <div className="insurance-hero-copy">
           <div>
             <p className="insurance-policy-kicker">AgroShield</p>
-            <h1>Keep coverage, claims, and weather-backed protection in one place</h1>
+            <h1>Coverage, claims, and weather evidence in one workspace.</h1>
             <p className="muted measure">
-              Review your active cover, see claims in motion, and add protection before the next risk window arrives.
+              See cover status, claim progress, and wallet-ready reserves in one place so seasonal decisions stay easy
+              to track.
             </p>
           </div>
           <div className="insurance-hero-badges">
             <Badge variant="brand">
               <ShieldCheck size={14} />
-              Active cover
+              Parametric cover
             </Badge>
             <Badge variant="neutral">
               <WalletCards size={14} />
-              Weather-backed protection
+              Wallet-linked checkout
             </Badge>
           </div>
         </div>
 
         <div className="insurance-kpi-grid" aria-label="Insurance KPIs">
           <article>
-            <span>Protected now</span>
+            <span>Total coverage</span>
             <strong>{formatMoney(dashboard.kpis.total_coverage, dashboard.wallet.currency)}</strong>
             <p>Across {dashboard.policies.length} insured field{dashboard.policies.length === 1 ? "" : "s"}.</p>
           </article>
           <article>
-            <span>Claims in progress</span>
+            <span>Active claims</span>
             <strong>{dashboard.kpis.active_claims}</strong>
             <p>Claims still moving through verification or payout.</p>
           </article>
           <article>
-            <span>Paid out</span>
+            <span>Total payouts received</span>
             <strong>{formatMoney(dashboard.kpis.total_payouts_received, dashboard.wallet.currency)}</strong>
             <p>Settled directly back into AgroWallet-linked policies.</p>
           </article>
@@ -154,9 +155,9 @@ export function InsuranceHome() {
       <div className="insurance-dashboard-grid">
         <section className="content-stack">
           <SectionHeading
-            eyebrow="Active cover"
+            eyebrow="Policies"
             title="Active coverage"
-            body="See what is protected now, which field is covered, and where a claim is already underway."
+            body="Each policy keeps the latest field conditions close at hand so you can review cover status before filing or tracking a claim."
           />
           {dashboard.policies.length > 0 ? (
             dashboard.policies.map((policy) => (
@@ -184,9 +185,9 @@ export function InsuranceHome() {
 
       <section className="content-stack">
         <SectionHeading
-          eyebrow="Claims in progress"
-          title="Claims in progress"
-          body="Each claim brings together what happened, where it stands, and what payment outcome is expected."
+          eyebrow="Claims"
+          title="Claims history"
+          body="Claim cards bring together the weather event, field notes, and payout progress for each insured field."
         />
 
         {dashboard.claims.length > 0 ? (
@@ -213,7 +214,7 @@ export function InsuranceHome() {
             ))}
           </div>
         ) : (
-          <EmptyState title="No claims yet" body="When a covered event is triggered, the claim will appear here with payment progress." />
+          <EmptyState title="No claims yet" body="Active policies will surface claims here as climate thresholds are crossed." />
         )}
       </section>
     </div>

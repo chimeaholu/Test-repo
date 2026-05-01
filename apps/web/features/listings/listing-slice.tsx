@@ -13,7 +13,6 @@ import { InsightCallout, SectionHeading, StatusPill, SurfaceCard } from "@/compo
 import { listingFormSchema, listingRecordToFormValues, type ListingFormValues } from "@/features/listings/schema";
 import { auditApi } from "@/lib/api/audit";
 import { marketplaceApi } from "@/lib/api/marketplace";
-import { DeferredMutationQueuedError } from "@/lib/offline/mutation-engine";
 import { recordTelemetry } from "@/lib/telemetry/client";
 
 const { useDeferredValue, useEffect, useState } = React;
@@ -375,19 +374,19 @@ function BuyerFeed(props: { items: ListingRecord[]; traceId: string }) {
 
   return (
     <div className="content-stack">
-        <SurfaceCard className="market-hero-card">
+      <SurfaceCard className="market-hero-card">
         <div className="market-hero-copy">
-          <div className="market-hero-badge">Marketplace</div>
+          <div className="market-hero-badge">Marketplace home</div>
           <SectionHeading
-            eyebrow="Buyer marketplace"
-            title="Find the right lot faster"
-            body="Browse produce, compare price and quality, and move into the next conversation with a clearer view of what is available now."
+            eyebrow="Buyer discovery"
+            title="Discover trusted agricultural supply in one place"
+            body="Filter live listings by commodity, location, price band, and freshness so you can move from discovery to negotiation without guesswork."
           />
           <div className="market-hero-metrics" role="list" aria-label="Marketplace discovery metrics">
             <article className="market-metric-card" role="listitem">
               <span>Live lots</span>
               <strong>{props.items.length}</strong>
-              <p>Review matching lots that are ready for buyer discovery.</p>
+              <p>Only buyer-safe published inventory appears here.</p>
             </article>
             <article className="market-metric-card" role="listitem">
               <span>Locations</span>
@@ -431,8 +430,8 @@ function BuyerFeed(props: { items: ListingRecord[]; traceId: string }) {
       />
 
       <InsightCallout
-        title="Review matching lots"
-        body="This feed stays focused on live marketplace lots so you can compare active supply without sorting through seller-only work."
+        title="Live inventory only"
+        body="Only live buyer-safe listings appear in this feed, so draft revisions and owner-only records never leak into discovery."
         tone="accent"
       />
 
@@ -445,12 +444,12 @@ function BuyerFeed(props: { items: ListingRecord[]; traceId: string }) {
           <div className="market-discovery-main">
             <div className="market-results-head">
               <div>
-                <h3>Marketplace listings</h3>
+                <h3>Discovery feed</h3>
                 <p className="muted">
                   Showing {visibleItems.length} of {filteredItems.length} matching lots.
                 </p>
               </div>
-              <StatusPill tone="online">Live marketplace view</StatusPill>
+              <StatusPill tone="online">Buyer-safe inventory</StatusPill>
             </div>
 
             {filteredItems.length === 0 ? (
@@ -576,9 +575,9 @@ export function ListingSliceClient() {
     <div className="content-stack">
       <SurfaceCard>
         <SectionHeading
-          eyebrow="Your listings"
-          title="Manage what buyers can see"
-          body="Create, update, and track each lot from one seller view so the live marketplace stays accurate."
+          eyebrow="Seller dashboard"
+          title="Manage your marketplace listings"
+          body="Create drafts, publish when ready, and keep track of what buyers can currently see."
         />
         <div className="stat-strip">
           <article className="stat-chip">
@@ -598,36 +597,36 @@ export function ListingSliceClient() {
         <article className="queue-card">
           <SectionHeading
             eyebrow="Create listing"
-            title="Show buyers exactly what you have available"
-            body="Build the lot details, pricing, proof, and final review in one guided flow before you send it live."
+            title="Launch the 4-step wizard"
+            body="Create richer listings with guided validation, local draft persistence, and the same backend commands already wired into the marketplace."
           />
           <div className="content-stack">
             <InsightCallout
-              title="Create listing"
-              body="Use the guided flow to shape the lot the way buyers will review it, then publish when the details feel ready."
+              title="Guided seller flow"
+              body="Capture category, availability, delivery, and media preview details without changing the create and publish mutations."
               tone="brand"
             />
             <ul className="summary-list">
               <li>
                 <span>Step 1</span>
-                <strong>Lot details</strong>
+                <strong>Basic information</strong>
               </li>
               <li>
                 <span>Step 2</span>
-                <strong>Price and delivery</strong>
+                <strong>Pricing and quantity</strong>
               </li>
               <li>
                 <span>Step 3</span>
-                <strong>Photos and proof</strong>
+                <strong>Media and location</strong>
               </li>
               <li>
                 <span>Step 4</span>
-                <strong>Review</strong>
+                <strong>Review and publish</strong>
               </li>
             </ul>
             <div className="actions-row">
               <Link className="button-primary" href="/app/market/listings/create">
-                Create listing
+                Open listing wizard
               </Link>
             </div>
           </div>
@@ -635,24 +634,24 @@ export function ListingSliceClient() {
 
         <article className="queue-card">
           <SectionHeading
-            eyebrow="Seller view"
-            title="Keep live lots and next steps together"
-            body="Review listing health here, then open any lot to update details, publish changes, or follow buyer activity."
+            eyebrow="Recent activity"
+            title="What stays on this page"
+            body="Inventory management remains here, while brand new listings move into the dedicated create route."
           />
           <InsightCallout
-            title="Built for active marketplace management"
-            body="This page stays focused on what is live, what needs work, and where buyer interest is building."
+            title="Seller workspace preserved"
+            body="The listing detail route still handles edits, publish state, revisions, and buyer-safe visibility. This page stays focused on inventory overview."
             tone="accent"
           />
-          <p className="muted">Open any listing below to review the customer-facing detail view and the latest seller controls.</p>
+          <p className="muted">Use the action below any listing to open the existing detail editor and publish controls.</p>
         </article>
       </div>
 
       <SurfaceCard>
         <SectionHeading
-          eyebrow="Your listings"
-          title="See what is live, what needs work, and what buyers are responding to"
-          body="Review every lot, open the details, and decide what should stay visible in the marketplace."
+          eyebrow="Your inventory"
+          title="Current listings"
+          body="Review every listing, open the details, and decide what should stay live for buyers."
         />
         {isLoading ? <p className="muted">Loading listings...</p> : null}
         {!isLoading && items.length === 0 ? <p className="muted">No listings persisted yet.</p> : null}
@@ -664,7 +663,7 @@ export function ListingSliceClient() {
                   <StatusPill tone={item.status === "published" ? "online" : item.status === "draft" ? "degraded" : "neutral"}>
                     {item.status}
                   </StatusPill>
-                  <StatusPill tone="neutral">{item.view_scope === "buyer_safe" ? "Visible to buyers" : "Seller-only draft"}</StatusPill>
+                  <StatusPill tone="neutral">{item.view_scope === "buyer_safe" ? "Buyer-safe view" : "Owner-only view"}</StatusPill>
                 </div>
                 <h3>{item.title}</h3>
               </div>
@@ -746,11 +745,10 @@ function BuyerListingDetail(props: { listing: ListingRecord; traceId: string }) 
 }
 
 export function ListingDetailClient({ listingId }: { listingId: string }) {
-  const { queue, session, traceId } = useAppState();
+  const { session, traceId } = useAppState();
   const [listing, setListing] = useState<ListingRecord | null>(null);
   const [formValues, setFormValues] = useState<ListingFormValues | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [notice, setNotice] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [optimisticState, setOptimisticState] = useState<"idle" | "pending" | "reconciled">("idle");
   const [evidence, setEvidence] = useState<MutationEvidence>(null);
@@ -833,7 +831,6 @@ export function ListingDetailClient({ listingId }: { listingId: string }) {
 
     const previousListing = listing;
     setError(null);
-    setNotice(null);
     setIsSaving(true);
     setOptimisticState("pending");
     setListing(optimisticListing);
@@ -844,15 +841,6 @@ export function ListingDetailClient({ listingId }: { listingId: string }) {
       let idempotencyKey = "";
       let replayed = false;
       let actionLabel = "Listing updated";
-
-      if (
-        queue.connectivity_state !== "online" &&
-        (needsPublish || needsUnpublish)
-      ) {
-        throw new Error(
-          "Publishing or closing a listing requires a live connection. Save draft edits offline first, then publish when the network returns.",
-        );
-      }
 
       if (fieldsChanged) {
         const update = await marketplaceApi.updateListing(
@@ -914,13 +902,6 @@ export function ListingDetailClient({ listingId }: { listingId: string }) {
         replayed,
       });
     } catch (nextError) {
-      if (nextError instanceof DeferredMutationQueuedError) {
-        setListing(optimisticListing);
-        setFormValues(listingRecordToFormValues(optimisticListing));
-        setOptimisticState("reconciled");
-        setNotice("Draft edits saved offline. Open the outbox to sync them when connectivity returns.");
-        return;
-      }
       setListing(previousListing);
       setOptimisticState("idle");
       setError(nextError instanceof Error ? nextError.message : "Unable to save listing changes.");
@@ -958,12 +939,6 @@ export function ListingDetailClient({ listingId }: { listingId: string }) {
       {error ? (
         <SurfaceCard>
           <p className="field-error">{error}</p>
-        </SurfaceCard>
-      ) : null}
-
-      {notice ? (
-        <SurfaceCard>
-          <InsightCallout title="Saved offline" body={notice} tone="accent" />
         </SurfaceCard>
       ) : null}
 

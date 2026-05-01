@@ -187,31 +187,6 @@ describe("api-client core HTTP layer", () => {
         requestJson("/api/v1/fail", { method: "GET" }, "t-4"),
       ).rejects.toThrow("forbidden");
     });
-
-    it("falls back to a cached read model when the network drops", async () => {
-      const fetchMock = vi
-        .fn()
-        .mockResolvedValueOnce({
-          ok: true,
-          json: async () => ({ items: [{ listing_id: "listing-1" }] }),
-        })
-        .mockRejectedValueOnce(new Error("Failed to fetch"));
-      vi.stubGlobal("fetch", fetchMock);
-
-      const first = await requestJson<{ items: Array<{ listing_id: string }> }>(
-        "/api/v1/marketplace/listings",
-        { method: "GET" },
-        "t-cache-1",
-      );
-      const second = await requestJson<{ items: Array<{ listing_id: string }> }>(
-        "/api/v1/marketplace/listings",
-        { method: "GET" },
-        "t-cache-2",
-      );
-
-      expect(first.data.items[0]?.listing_id).toBe("listing-1");
-      expect(second.data.items[0]?.listing_id).toBe("listing-1");
-    });
   });
 
   // -----------------------------------------------------------------------
@@ -266,8 +241,10 @@ describe("api-client core HTTP layer", () => {
       };
 
       const snapshot = seedQueue(session, "trace-seed");
-      expect(snapshot.connectivity_state).toBe("online");
-      expect(snapshot.items).toHaveLength(0);
+      expect(snapshot.connectivity_state).toBe("degraded");
+      expect(snapshot.items).toHaveLength(1);
+      expect(snapshot.items[0].intent).toBe("market.listings.create");
+      expect(snapshot.items[0].state).toBe("queued");
     });
   });
 

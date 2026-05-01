@@ -44,7 +44,7 @@ export function ConsignmentTimelineClient(props: ConsignmentTimelineProps) {
       })
       .catch((nextError) => {
         if (!cancelled) {
-          setError(nextError instanceof Error ? nextError.message : "Unable to load sale and shipment history.");
+          setError(nextError instanceof Error ? nextError.message : "Unable to load traceability chain.");
         }
       });
 
@@ -59,24 +59,24 @@ export function ConsignmentTimelineClient(props: ConsignmentTimelineProps) {
     }
 
     return [
-      { key: "created", title: "Listed", detail: listing.created_at, tone: "online" as const },
-      { key: "status", title: "Updated", detail: listing.status, tone: listing.status === "published" ? "online" as const : "degraded" as const },
+      { key: "created", title: "Listing created", detail: listing.created_at, tone: "online" as const },
+      { key: "status", title: "Current listing state", detail: listing.status, tone: listing.status === "published" ? "online" as const : "degraded" as const },
       ...revisions.map((revision, index) => ({
         key: `revision-${index + 1}`,
-        title: "Updated",
+        title: `Revision ${revision.revision_number ?? index + 1}`,
         detail: `${revision.change_type ?? "update"} at ${revision.changed_at ?? "unknown time"}`,
         tone: "neutral" as const,
       })),
       ...threads.map((thread) => ({
         key: thread.thread_id,
-        title: "Offer linked",
+        title: "Negotiation thread linked",
         detail: `${thread.thread_id} is ${thread.status.replaceAll("_", " ")}`,
         tone: thread.status === "accepted" ? "online" as const : "degraded" as const,
       })),
       {
         key: "escrow",
-        title: "Payment started",
-        detail: escrowCount > 0 ? `${escrowCount} payment hold record(s) attached` : "Payment has not started yet",
+        title: "Settlement linkage",
+        detail: escrowCount > 0 ? `${escrowCount} escrow record(s) attached` : "No settlement record linked yet",
         tone: escrowCount > 0 ? ("online" as const) : ("neutral" as const),
       },
     ];
@@ -90,20 +90,20 @@ export function ConsignmentTimelineClient(props: ConsignmentTimelineProps) {
     <div className="content-stack">
       <SurfaceCard>
         <SectionHeading
-          eyebrow="Sale and shipment history"
-          title="Track the journey for this lot"
-          body="Follow the lot from listing through offer, payment, and completion with a clear customer-facing history of what happened."
+          eyebrow="Traceability"
+          title={`Traceability chain for ${props.consignmentId}`}
+          body="This timeline is assembled from live listing, revision, negotiation, and settlement state rather than a static canned sequence."
         />
         <div className="stat-strip">
           <article className="stat-chip">
-            <span className="metric-label">Offer linked</span>
+            <span className="metric-label">Negotiations linked</span>
             <strong>{threads.length}</strong>
-            <span className="muted">See how many deal conversations were tied to this lot.</span>
+            <span className="muted">Accepted and in-flight negotiation context stays attached to the listing identifier.</span>
           </article>
           <article className="stat-chip">
-            <span className="metric-label">Payment started</span>
+            <span className="metric-label">Escrows linked</span>
             <strong>{escrowCount}</strong>
-            <span className="muted">Payment history appears once money-on-hold activity exists for this lot.</span>
+            <span className="muted">Settlement linkage appears only when the runtime already carries it.</span>
           </article>
         </div>
       </SurfaceCard>
@@ -126,10 +126,10 @@ export function ConsignmentTimelineClient(props: ConsignmentTimelineProps) {
           />
           <InfoList
             items={[
-              { label: "Lot snapshot", value: `${listing.quantity_tons} tons · ${listing.location}` },
+              { label: "Location", value: listing.location },
               { label: "Price", value: `${listing.price_amount} ${listing.price_currency}` },
-              { label: "Timeline", value: `${threads.length} linked offer${threads.length === 1 ? "" : "s"}` },
-              { label: "Supporting details", value: `${revisions.length} update${revisions.length === 1 ? "" : "s"}` },
+              { label: "Revisions", value: revisions.length },
+              { label: "Negotiations", value: threads.length },
             ]}
           />
         </SurfaceCard>
@@ -140,7 +140,7 @@ export function ConsignmentTimelineClient(props: ConsignmentTimelineProps) {
           {timeline.map((item) => (
             <SurfaceCard key={item.key}>
               <SectionHeading
-                eyebrow="Timeline"
+                eyebrow="Trace step"
                 title={item.title}
                 body={item.detail}
                 actions={<StatusPill tone={item.tone}>{item.tone}</StatusPill>}
@@ -153,8 +153,8 @@ export function ConsignmentTimelineClient(props: ConsignmentTimelineProps) {
       {!listing && !error ? (
         <SurfaceCard>
           <InsightCallout
-            title="Sale and shipment history not found"
-            body="No live lot record was found for this identifier yet."
+            title="Traceability chain not found"
+            body="This route expects a live listing identifier. No runtime record was found for the requested consignment."
             tone="accent"
           />
         </SurfaceCard>

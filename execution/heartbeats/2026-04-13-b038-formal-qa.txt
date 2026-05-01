@@ -1,0 +1,10 @@
+[info] sha=f1e2119f378d83b959208603045b60d444564121
+[info] tmpdir=/tmp/tmp.pQM7Ra7PQw
+[command] git -C /mnt/vault archive f1e2119f378d83b959208603045b60d444564121 MWH/Projects/Agrodomain | tar -x -C /tmp/tmp.pQM7Ra7PQw
+[command] PYTHONPATH=src pytest -q tests/test_adversarial_intelligence_gate.py tests/test_adversarial_intelligence_gate_contract_stub.py tests/test_agent_eval.py tests/test_memory_selector.py tests/test_model_router.py tests/test_planning_loop.py tests/test_verifier_loop.py tests/test_package_exports.py
+/home/node/.local/lib/python3.11/site-packages/pytest_asyncio/plugin.py:207: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+..............................................                           [100%]
+46 passed in 0.60s

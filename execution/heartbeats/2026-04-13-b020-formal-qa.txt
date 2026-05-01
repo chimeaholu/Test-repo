@@ -1,0 +1,4 @@
+$ git -C /mnt/vault archive d1624a9e3927a0e42fd478f37f5f2a3da17223dc MWH/Projects/Agrodomain | tar -x -C /tmp/tmp.1GqqXX80su
+$ PYTHONPATH=src pytest -q tests/test_finance_partner_adapter.py tests/test_finance_partner_adapter_contract_stub.py tests/test_tool_contracts.py tests/test_country_pack.py tests/test_package_exports.py
+.................                                                        [100%]
+17 passed in 0.68s

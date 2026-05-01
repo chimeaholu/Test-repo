@@ -71,14 +71,14 @@ export function FarmFieldDetailPage({ fieldId }: { fieldId: string }) {
             <Button href="/app/farm" variant="ghost">
               Back to farm
             </Button>
-            <Button onClick={() => setActivityOpen(true)}>Log field activity</Button>
+            <Button onClick={() => setActivityOpen(true)}>Log activity</Button>
           </>
         }
         breadcrumbs={[
           { href: "/app/farm", label: "Farm" },
           { label: field?.name ?? "Field detail" },
         ]}
-        description="Follow the crop stage, recent work, and next action for this field in one place."
+        description="The field view keeps the boundary, crop cycle, weather signal, and operation log together so the next action is obvious."
         title={field?.name ?? "Field detail"}
       />
 

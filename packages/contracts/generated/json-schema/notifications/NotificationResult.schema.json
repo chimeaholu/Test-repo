@@ -23,8 +23,7 @@
           "enum": [
             "whatsapp",
             "sms",
-            "push",
-            "email"
+            "push"
           ],
           "nullable": true,
           "type": "string"

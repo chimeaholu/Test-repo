@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import UTC, datetime
-from typing import Mapping
 from uuid import uuid4
 
 from sqlalchemy import func, select
@@ -121,7 +120,7 @@ class LedgerRepository:
         counterparty_actor_id: str | None = None,
         escrow_id: str | None = None,
         reconciliation_marker: str | None = None,
-        entry_metadata: Mapping[str, object] | None = None,
+        entry_metadata: dict[str, object] | None = None,
     ) -> WalletLedgerEntry:
         projection = self.get_wallet_balance(
             actor_id=actor_id, country_code=country_code, currency=currency
@@ -153,7 +152,7 @@ class LedgerRepository:
             idempotency_key=idempotency_key,
             correlation_id=correlation_id,
             reconciliation_marker=reconciliation_marker,
-            entry_metadata=dict(entry_metadata) if entry_metadata is not None else {},
+            entry_metadata=entry_metadata or {},
         )
         self.session.add(entry)
         self.session.flush()

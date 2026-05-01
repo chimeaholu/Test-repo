@@ -422,20 +422,16 @@ export function AdminAnalyticsWorkspace() {
     <div className="content-stack analytics-shell" data-testid="admin-analytics-root">
       <SurfaceCard className="hero-surface">
         <SectionHeading
-          eyebrow="Internal analytics"
-          title="Monitor product health, release readiness, and operating pressure"
-          body="Use this internal dashboard to assess product health and prioritize action across the system."
+          eyebrow="Admin analytics"
+          title="Platform health, growth, and release posture in one admin workspace."
+          body={viewModel.note}
           actions={
             <div className="pill-row">
               <StatusPill tone={toneForState(signals.summary?.health_state ?? "normal")}>
-                {signals.summary?.health_state ?? "Health overview"}
+                {signals.summary?.health_state ?? "Derived health"}
               </StatusPill>
               <StatusPill tone={queue.connectivity_state === "online" ? "online" : queue.connectivity_state}>
-                {queue.connectivity_state === "online"
-                  ? "Ready"
-                  : queue.connectivity_state === "degraded"
-                    ? "Limited updates"
-                    : "Offline"}
+                Queue {queue.connectivity_state}
               </StatusPill>
             </div>
           }
@@ -454,7 +450,7 @@ export function AdminAnalyticsWorkspace() {
       {isLoading ? (
         <SurfaceCard data-testid="admin-analytics-loading-state">
           <p className="muted" role="status">
-            Loading internal analytics and readiness signals...
+            Loading platform analytics and release posture...
           </p>
         </SurfaceCard>
       ) : null}
@@ -470,14 +466,8 @@ export function AdminAnalyticsWorkspace() {
       {controlError ? (
         <SurfaceCard>
           <p className="field-error" role="alert">
-            {controlError} Showing the best available view from live activity.
+            {controlError} Showing derived analytics from live runtime data.
           </p>
-        </SurfaceCard>
-      ) : null}
-
-      {!isLoading && !error && !controlError ? (
-        <SurfaceCard>
-          <p className="muted">{viewModel.note}</p>
         </SurfaceCard>
       ) : null}
 
@@ -486,10 +476,10 @@ export function AdminAnalyticsWorkspace() {
       {!isLoading && !error ? (
         <>
           <ChartCard
-            body="Review how visible activity is moving across the current period."
-            eyebrow="Trend analysis"
+            body="Cumulative and period-active actors are derived from the records currently visible through live routes."
+            eyebrow="Platform metrics"
             testId="admin-growth-card"
-            title="Activity over time"
+            title="User growth"
           >
             <LineChart ariaLabel="Platform growth chart" series={viewModel.growthSeries} testId="admin-growth-chart" />
           </ChartCard>
@@ -497,28 +487,28 @@ export function AdminAnalyticsWorkspace() {
           <div className="dashboard-grid analytics-detail-grid">
             <ChartCard
               body={viewModel.geographySummary}
-              eyebrow="Health overview"
+              eyebrow="Geographic distribution"
               testId="admin-geography-card"
-              title="Where activity is concentrated"
+              title="Live listing density"
             >
               <BarList items={viewModel.geography} testId="admin-geography-bars" />
             </ChartCard>
 
             <ChartCard
-              body="Review which operating areas are drawing the most visible use right now."
-              eyebrow="Readiness"
+              body="Adoption rates are estimated from current module activity rather than a dedicated telemetry warehouse."
+              eyebrow="Module adoption"
               testId="admin-adoption-card"
-              title="Where teams are active"
+              title="Module usage"
             >
               <BarList items={viewModel.moduleAdoption} testId="admin-adoption-bars" />
             </ChartCard>
           </div>
 
           <ChartCard
-            body="These checks combine optional admin signals with what the live product is showing now."
-            eyebrow="Health overview"
+            body="These health lines blend optional admin control-plane reads with live app-runtime availability."
+            eyebrow="System health"
             testId="admin-health-card"
-            title="Signals that need attention"
+            title="Operational posture"
           >
             <ul className="analytics-performance-list">
               {viewModel.healthItems.map((item) => (
@@ -532,22 +522,22 @@ export function AdminAnalyticsWorkspace() {
 
           <SurfaceCard>
             <SectionHeading
-              eyebrow="Alerts and rollouts"
-              title="Readiness and rollout controls"
+              eyebrow="Release controls"
+              title="Current rollout posture"
               body={`Environment: ${liveState.systemSettings?.environment ?? "unknown"} · Schema: ${liveState.systemSettings?.schema_version ?? "pending"}`}
             />
             <div className="pill-row">
               <button className="button-secondary" onClick={() => void mutateRollout("freeze")} type="button">
-                {mutationState === "freeze" ? "Holding..." : "Hold rollout"}
+                {mutationState === "freeze" ? "Freezing..." : "Freeze rollout"}
               </button>
               <button className="button-secondary" onClick={() => void mutateRollout("canary")} type="button">
-                {mutationState === "canary" ? "Starting..." : "Start limited release"}
+                {mutationState === "canary" ? "Starting canary..." : "Canary release"}
               </button>
               <button className="button-secondary" onClick={() => void mutateRollout("promote")} type="button">
-                {mutationState === "promote" ? "Promoting..." : "Promote rollout"}
+                {mutationState === "promote" ? "Promoting..." : "Promote"}
               </button>
               <button className="button-secondary" onClick={() => void mutateRollout("rollback")} type="button">
-                {mutationState === "rollback" ? "Rolling back..." : "Roll back"}
+                {mutationState === "rollback" ? "Rolling back..." : "Rollback"}
               </button>
             </div>
             {signals.readiness?.blocking_reasons?.length ? (

@@ -102,37 +102,6 @@ export const investmentCollectionSchema = z
   })
   .strict();
 
-export const paymentCollectionSessionSchema = z
-  .object({
-    schema_version: schemaVersionLiteral,
-    payment_id: z.string().min(1),
-    escrow_id: z.string().min(1),
-    actor_id: actorIdSchema,
-    country_code: countryCodeSchema,
-    currency: currencySchema,
-    amount: amountSchema,
-    provider: z.string().min(2).max(32),
-    provider_mode: z.enum(["test", "live", "unconfigured"]),
-    provider_reference: z.string().min(3).max(80),
-    provider_access_code: z.string().nullable(),
-    authorization_url: z.string().nullable(),
-    local_status: z.enum(["initialized", "pending", "verified", "failed", "abandoned", "funded"]),
-    provider_status: z.enum(["pending", "success", "failed", "abandoned"]),
-    provider_transaction_id: z.string().nullable(),
-    channels: z.array(z.string().min(2).max(32)),
-    last_error_code: z.string().nullable(),
-    last_error_detail: z.string().nullable(),
-    verified_at: isoTimestampSchema.nullable(),
-    wallet_entry_id: z.string().nullable(),
-    wallet_funding_applied_at: isoTimestampSchema.nullable(),
-    escrow_funded_at: isoTimestampSchema.nullable(),
-    metadata: z.record(z.any()),
-    provider_payload: z.record(z.any()),
-    created_at: isoTimestampSchema,
-    updated_at: isoTimestampSchema,
-  })
-  .strict();
-
 export const fundingOpportunityCreateInputContract = defineContract({
   id: "finance.funding_opportunity_create_input",
   name: "FundingOpportunityCreateInput",
@@ -217,18 +186,6 @@ export const investmentCollectionContract = defineContract({
   sourceArtifacts: ["output_to_user/AGRODOMAIN-ENHANCED-REMEDIATION-PRD.md"],
 });
 
-export const paymentCollectionSessionContract = defineContract({
-  id: "finance.payment_collection_session",
-  name: "PaymentCollectionSession",
-  kind: "dto",
-  domain: "finance",
-  schemaVersion,
-  schema: paymentCollectionSessionSchema,
-  description: "Provider-backed payment collection state for escrow funding through the first sandbox rail.",
-  traceability: ["DI-33", "EP-33"],
-  sourceArtifacts: ["output_to_user/AGRODOMAIN-ENHANCEMENT-BUILD-SPEC.md"],
-});
-
 export type FundingOpportunityStatus = z.infer<typeof fundingOpportunityStatusSchema>;
 export type InvestmentStatus = z.infer<typeof investmentStatusSchema>;
 export type FundingOpportunityCreateInput = z.infer<typeof fundingOpportunityCreateInputSchema>;
@@ -238,4 +195,3 @@ export type FundingOpportunityRead = z.infer<typeof fundingOpportunityReadSchema
 export type InvestmentRead = z.infer<typeof investmentReadSchema>;
 export type FundingOpportunityCollection = z.infer<typeof fundingOpportunityCollectionSchema>;
 export type InvestmentCollection = z.infer<typeof investmentCollectionSchema>;
-export type PaymentCollectionSession = z.infer<typeof paymentCollectionSessionSchema>;

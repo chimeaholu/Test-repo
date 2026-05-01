@@ -6,22 +6,22 @@ const steps = [
   {
     id: "browse",
     title: "Browse",
-    body: "Compare farm opportunities, funding progress, and expected return before you commit.",
+    body: "Explore live farm opportunities derived from current marketplace supply and funding posture.",
   },
   {
     id: "invest",
     title: "Invest",
-    body: "Review the amount, return outlook, and timeline, then invest from your wallet.",
+    body: "Commit capital from your AgroWallet after reviewing the amount, return range, and timeline.",
   },
   {
     id: "track",
     title: "Track",
-    body: "Keep your portfolio, active commitments, and payout progress in one place.",
+    body: "Watch your portfolio and each farm’s progress from one protected workspace.",
   },
   {
     id: "earn",
     title: "Earn",
-    body: "Follow expected return timing and paid-out results as the farm cycle moves forward.",
+    body: "Follow expected return dates and payout schedules as seasons progress.",
   },
 ];
 

@@ -19,45 +19,42 @@ interface Props {
   errors: Partial<Record<keyof VerificationData, string>>;
   phone: string;
   phonePrefix: string;
-  summary: Array<{ label: string; value: string }>;
 }
 
-export function SignupStepVerification({ data, onChange, errors, phone, phonePrefix, summary }: Props) {
+export function SignupStepVerification({ data, onChange, errors, phone, phonePrefix }: Props) {
   return (
     <div className="stack-md">
       <div style={{ marginBottom: 8 }}>
         <h3 style={{ fontSize: "1.25rem", fontWeight: 600, color: "var(--ink)", marginBottom: 4 }}>
-          Review your setup
+          Verify and agree
         </h3>
         <p style={{ fontSize: "0.9375rem", color: "var(--ink-muted)" }}>
-          You&apos;ll continue into setup before your workspace opens.
+          Enter the verification code and review our terms to complete your registration
         </p>
       </div>
 
-      <div className="pub-review-list">
-        {summary.map((item) => (
-          <div key={item.label} className="pub-review-item">
-            <span>{item.label}</span>
-            <strong>{item.value}</strong>
-          </div>
-        ))}
-      </div>
-
       <FormField
-        label="Account path"
+        label="Verification code"
         htmlFor="signup-otp"
+        required
         error={errors.otp}
-        helper={`Your account will be created for ${phonePrefix} ${phone} and then moved into setup.`}
+        helper={`We sent a 6-digit code to ${phonePrefix} ${phone}`}
       >
         <Input
           id="signup-otp"
           inputSize="lg"
-          placeholder="Ready to create your account"
-          disabled
+          placeholder="e.g. 123456"
+          maxLength={6}
+          pattern="[0-9]{6}"
+          inputMode="numeric"
+          autoComplete="one-time-code"
           value={data.otp}
           error={Boolean(errors.otp)}
-          onChange={() => undefined}
-          style={{ fontWeight: 600, textAlign: "center" }}
+          onChange={(e) => {
+            const val = e.target.value.replace(/\D/g, "").slice(0, 6);
+            onChange((prev) => ({ ...prev, otp: val }));
+          }}
+          style={{ letterSpacing: "0.3em", fontWeight: 600, textAlign: "center" }}
         />
       </FormField>
 

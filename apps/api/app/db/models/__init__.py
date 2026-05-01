@@ -3,14 +3,6 @@ from app.db.models.advisory import (
     AdvisorySourceDocument,
     ReviewerDecisionRecord,
 )
-from app.db.models.agro_intelligence import (
-    AgroIntelligenceConsentArtifact,
-    AgroIntelligenceEntity,
-    AgroIntelligenceFreshnessSignal,
-    AgroIntelligenceRelationship,
-    AgroIntelligenceSourceDocument,
-    AgroIntelligenceVerificationClaim,
-)
 from app.db.models.audit import AuditEvent, OutboxMessage
 from app.db.models.climate import (
     ClimateAlert,
@@ -20,7 +12,6 @@ from app.db.models.climate import (
 )
 from app.db.models.farm import CropCycle, FarmActivity, FarmField, FarmInput
 from app.db.models.fund import FundingOpportunity, Investment
-from app.db.models.integrations import PartnerBoundaryDelivery, PartnerInboundRecord
 from app.db.models.ledger import (
     EscrowRecord,
     EscrowTimelineEntry,
@@ -28,14 +19,10 @@ from app.db.models.ledger import (
     WalletLedgerEntry,
 )
 from app.db.models.marketplace import Listing
-from app.db.models.payments import PaymentCollectionRecord
 from app.db.models.platform import (
     ConsentRecord,
     CountryPolicy,
-    IdentityAccount,
-    IdentityMagicLinkChallenge,
     IdentityMembership,
-    IdentityPasswordCredential,
     IdentitySessionRecord,
 )
 from app.db.models.transport import Shipment, ShipmentEvent, TransportLoad
@@ -45,12 +32,6 @@ __all__ = [
     "AuditEvent",
     "AdvisoryRequestRecord",
     "AdvisorySourceDocument",
-    "AgroIntelligenceConsentArtifact",
-    "AgroIntelligenceEntity",
-    "AgroIntelligenceFreshnessSignal",
-    "AgroIntelligenceRelationship",
-    "AgroIntelligenceSourceDocument",
-    "AgroIntelligenceVerificationClaim",
     "CommandReceipt",
     "ConsentRecord",
     "ClimateAlert",
@@ -64,18 +45,12 @@ __all__ = [
     "FarmProfile",
     "FundingOpportunity",
     "CountryPolicy",
-    "IdentityAccount",
-    "IdentityMagicLinkChallenge",
     "IdentityMembership",
-    "IdentityPasswordCredential",
     "IdentitySessionRecord",
     "Investment",
     "Listing",
     "MrvEvidenceRecord",
     "OutboxMessage",
-    "PaymentCollectionRecord",
-    "PartnerBoundaryDelivery",
-    "PartnerInboundRecord",
     "ReviewerDecisionRecord",
     "Shipment",
     "ShipmentEvent",

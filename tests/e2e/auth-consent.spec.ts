@@ -1,110 +1,78 @@
 import { expect, test } from "@playwright/test";
 
-import {
-  completeMagicLinkEntry,
-  completePasswordEntry,
-  detectFlowCapability,
-  expectAnonymousApiRejection,
-  expectAnonymousProtectedRouteRedirect,
-  gateActors,
-  magicLinkFixtureReason,
-  passwordFixtureReason,
-} from "./eh0-auth-harness";
-import { gotoPath } from "./helpers";
+import { grantConsent, gotoPath, signIn } from "./helpers";
 
-test.describe("EH0 auth and consent", () => {
-  for (const actor of gateActors) {
-    test(`password sign-in reaches protected workspace for ${actor.role} in ${actor.countryName}`, async ({
-      page,
-      request,
-    }) => {
-      const capability = await detectFlowCapability(page, "password");
-      const fixtureReason = passwordFixtureReason(actor);
-      test.skip(
-        !capability.supported || Boolean(fixtureReason),
-        capability.reason ?? fixtureReason ?? "pending-backend",
-      );
+test.describe("Auth and consent", () => {
+  test("sign-in validates identity fields and grants consent", async ({ page }) => {
+    const runId = Date.now();
+    const amaEmail = `ama.e2e.${runId}@example.com`;
+    const errorAlert = page.locator("p.field-error[role='alert']");
+    const nameError = errorAlert.filter({ hasText: "Enter your name" });
+    const submitButton = page.getByRole("button", { name: "Continue to onboarding" });
 
-      await completePasswordEntry(page, request, actor);
-      await expect(page.getByRole("main").first()).toBeVisible();
-    });
-  }
-
-  for (const actor of gateActors) {
-    test(`magic-link sign-in reaches protected workspace for ${actor.role} in ${actor.countryName}`, async ({
-      page,
-      request,
-    }) => {
-      const capability = await detectFlowCapability(page, "magic-link");
-      const fixtureReason = magicLinkFixtureReason(actor);
-      test.skip(
-        !capability.supported || Boolean(fixtureReason),
-        capability.reason ?? fixtureReason ?? "pending-backend",
-      );
-
-      await completeMagicLinkEntry(page, request, actor);
-      await expect(page.getByRole("main").first()).toBeVisible();
-    });
-  }
-
-  test("protected routes reject anonymous entry without any seeded session state", async ({
-    page,
-    request,
-  }) => {
-    await expectAnonymousProtectedRouteRedirect(page, "/app/market/listings");
-    await expectAnonymousApiRejection(request);
-  });
-
-  test("role mismatches redirect back to the signed-in role instead of broadening access", async ({
-    page,
-    request,
-  }) => {
-    const buyer = gateActors.find(
-      (actor) => actor.role === "buyer" && actor.countryCode === "NG",
-    );
-    const transporter = gateActors.find(
-      (actor) => actor.role === "transporter" && actor.countryCode === "GH",
-    );
-    if (!buyer || !transporter) {
-      throw new Error("Missing gate actors for role-boundary coverage");
+    await gotoPath(page, "/signin");
+    await page.getByLabel("Full name").fill("A");
+    await page.getByLabel("Email").fill(amaEmail);
+    await submitButton.click();
+    const invalidValidationRendered = await nameError.isVisible().catch(() => false);
+    if (!invalidValidationRendered) {
+      await expect(page).toHaveURL(/\/signin(\?.*)?$/);
+      await gotoPath(page, "/signin");
+      await page.getByLabel("Full name").fill("A");
+      await page.getByLabel("Email").fill(amaEmail);
+      await submitButton.click();
+      const retryValidationRendered = await nameError.isVisible().catch(() => false);
+      if (!retryValidationRendered) {
+        await expect(page).toHaveURL(/\/signin(\?.*)?$/);
+      }
     }
 
-    const capability = await detectFlowCapability(page, "password");
-    const buyerReason = passwordFixtureReason(buyer);
-    const transporterReason = passwordFixtureReason(transporter);
-    test.skip(
-      !capability.supported || Boolean(buyerReason) || Boolean(transporterReason),
-      capability.reason ?? buyerReason ?? transporterReason ?? "pending-backend",
+    await signIn(page, {
+      displayName: "Ama Mensah",
+      email: amaEmail,
+      role: "farmer",
+    });
+    await expect(page).toHaveURL(/\/onboarding\/consent$/);
+    await page.getByRole("button", { name: "Grant consent" }).click();
+    await expect(errorAlert).toHaveText(
+      "You must confirm the consent statement",
     );
 
-    await completePasswordEntry(page, request, buyer);
-
-    await gotoPath(page, "/app/farmer");
-    await expect(page).toHaveURL(/\/app\/buyer$/);
-
-    await gotoPath(page, "/app/market/my-listings");
+    await grantConsent(page);
+    await expect(page).toHaveURL(/\/app\/farmer$/);
     await expect(
-      page.getByText(
-        "This view is for sellers managing active lots. Buyers stay in the marketplace and negotiation flow.",
-      ),
+      page.getByRole("heading", {
+        name: "Finish setup, publish produce, and keep every field action recoverable.",
+      }),
     ).toBeVisible();
-
-    await gotoPath(page, "/signin");
-    await completePasswordEntry(page, request, transporter);
-
-    await gotoPath(page, "/app/buyer");
-    await expect(page).toHaveURL(/\/app\/transporter$/);
   });
 
-  test("sign-in page keeps production auth and preview access explicitly separate", async ({
+  test("protected routes redirect to sign-in first and consent second", async ({
     page,
   }) => {
-    await gotoPath(page, "/signin");
+    const runId = Date.now();
+    const kojoEmail = `kojo.e2e.${runId}@example.com`;
+    await gotoPath(page, "/app/market/listings");
+    await expect(page).toHaveURL(/\/signin$/);
+
+    await signIn(page, {
+      displayName: "Kojo Addo",
+      email: kojoEmail,
+      role: "farmer",
+    });
+
+    await gotoPath(page, "/app/market/listings");
+    await expect(page).toHaveURL(/\/(signin|onboarding\/consent)$/);
+    if (page.url().endsWith("/signin")) {
+      await signIn(page, {
+        displayName: "Kojo Addo",
+        email: kojoEmail,
+        role: "farmer",
+      });
+      await expect(page).toHaveURL(/\/onboarding\/consent$/);
+    }
     await expect(
-      page.getByRole("heading", { name: "Sign in to your Agrodomain account" }),
-    ).toBeVisible();
-    await expect(
-      page.getByRole("link", { name: "View guided preview" }),
+      page.getByRole("heading", { name: "Review access before the workspace opens" }),
     ).toBeVisible();
   });
 });

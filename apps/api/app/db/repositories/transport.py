@@ -1,22 +1,11 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Any
 from datetime import UTC, date, datetime
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.db.models.transport import Shipment, ShipmentEvent, TransportLoad
-
-
-@dataclass(frozen=True, slots=True)
-class CarrierShipmentStats:
-    actor_id: str
-    total_shipments: int
-    active_shipments: int
-    delivered_shipments: int
-    last_vehicle_info: dict[str, object] | None
 
 
 class TransportRepository:
@@ -191,7 +180,6 @@ class TransportRepository:
         *,
         shipment: Shipment,
         status: str,
-        transporter_actor_id: str | None = None,
         pickup_time: datetime | None = None,
         delivery_time: datetime | None = None,
         current_location_lat: float | None = None,
@@ -199,8 +187,6 @@ class TransportRepository:
         proof_of_delivery_url: str | None = None,
     ) -> Shipment:
         shipment.status = status
-        if transporter_actor_id is not None:
-            shipment.transporter_actor_id = transporter_actor_id
         if pickup_time is not None:
             shipment.pickup_time = pickup_time
         if delivery_time is not None:
@@ -251,48 +237,3 @@ class TransportRepository:
             .order_by(ShipmentEvent.event_at.asc(), ShipmentEvent.id.asc())
         )
         return list(self.session.execute(statement).scalars().all())
-
-    def list_carrier_stats(
-        self,
-        *,
-        country_code: str,
-        actor_ids: list[str] | None = None,
-    ) -> dict[str, CarrierShipmentStats]:
-        statement = select(Shipment).where(Shipment.country_code == country_code).order_by(
-            Shipment.updated_at.desc(), Shipment.id.desc()
-        )
-        if actor_ids is not None:
-            if not actor_ids:
-                return {}
-            statement = statement.where(Shipment.transporter_actor_id.in_(actor_ids))
-
-        grouped: dict[str, dict[str, Any]] = {}
-        for shipment in self.session.execute(statement).scalars().all():
-            bucket = grouped.setdefault(
-                shipment.transporter_actor_id,
-                {
-                    "actor_id": shipment.transporter_actor_id,
-                    "total_shipments": 0,
-                    "active_shipments": 0,
-                    "delivered_shipments": 0,
-                    "last_vehicle_info": None,
-                },
-            )
-            bucket["total_shipments"] = int(bucket["total_shipments"]) + 1
-            if shipment.status in {"assigned", "in_transit"}:
-                bucket["active_shipments"] = int(bucket["active_shipments"]) + 1
-            if shipment.status == "delivered":
-                bucket["delivered_shipments"] = int(bucket["delivered_shipments"]) + 1
-            if bucket["last_vehicle_info"] is None and shipment.vehicle_info:
-                bucket["last_vehicle_info"] = shipment.vehicle_info
-
-        return {
-            actor_id: CarrierShipmentStats(
-                actor_id=actor_id,
-                total_shipments=int(payload["total_shipments"]),
-                active_shipments=int(payload["active_shipments"]),
-                delivered_shipments=int(payload["delivered_shipments"]),
-                last_vehicle_info=payload["last_vehicle_info"] if isinstance(payload["last_vehicle_info"], dict) else None,
-            )
-            for actor_id, payload in grouped.items()
-        }

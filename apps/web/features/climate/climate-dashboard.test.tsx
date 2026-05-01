@@ -209,12 +209,12 @@ describe("climate dashboard", () => {
   it("renders the weather dashboard and acknowledges alerts", async () => {
     render(<ClimateDashboardClient />);
 
-    expect(await screen.findByText("See what conditions matter most right now")).toBeInTheDocument();
+    expect(await screen.findByText("Forecasts, field context, and weather-linked advice in one workflow")).toBeInTheDocument();
     expect(await screen.findByText("Delay fertilizer on the maize blocks")).toBeInTheDocument();
     expect(screen.getByRole("combobox", { name: "Farm location" })).toBeInTheDocument();
     expect(screen.getByText("IPCC Tier 2 Annex 4")).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: "Mark reviewed" }));
+    fireEvent.click(screen.getByRole("button", { name: "Acknowledge alert" }));
 
     await waitFor(() => {
       expect(mockClimateApi.acknowledgeAlert).toHaveBeenCalledWith(

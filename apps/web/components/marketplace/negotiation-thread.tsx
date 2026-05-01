@@ -1,19 +1,11 @@
 "use client";
 
-import type { MarketplaceNegotiationIntelligenceRead } from "@agrodomain/contracts";
-import Link from "next/link";
 import React from "react";
 import type { NegotiationMessage, NegotiationThreadRead } from "@agrodomain/contracts";
 
 import { Avatar } from "@/components/ui/avatar";
-import { CounterpartyTrustCard } from "@/components/marketplace/counterparty-trust-card";
 import { EscrowPrompt } from "@/components/marketplace/escrow-prompt";
 import { OfferCard } from "@/components/marketplace/offer-card";
-import {
-  buildNegotiationGuidance,
-  buildNegotiationTrustSummary,
-  mergeNegotiationTrustSummaryWithIntelligence,
-} from "@/features/marketplace/trust";
 import { EmptyState, InsightCallout, SectionHeading, StatusPill } from "@/components/ui-primitives";
 import type { NegotiationThreadUiState } from "@/features/negotiation/thread-state";
 import type { EscrowReadModel } from "@/features/wallet/model";
@@ -43,7 +35,6 @@ type NegotiationThreadProps = {
   escrowError: string | null;
   escrowNote: string;
   escrowRecord: EscrowReadModel | null;
-  intelligence: MarketplaceNegotiationIntelligenceRead | null;
   thread: NegotiationThreadRead | null;
   threadTitle: string | null;
   uiState: NegotiationThreadUiState | null;
@@ -79,16 +70,6 @@ function previousOfferAmount(messages: NegotiationMessage[], currentIndex: numbe
   return null;
 }
 
-function toCalloutTone(tone: "online" | "offline" | "degraded" | "neutral"): "brand" | "accent" | "neutral" {
-  if (tone === "online") {
-    return "brand";
-  }
-  if (tone === "offline" || tone === "degraded") {
-    return "accent";
-  }
-  return "neutral";
-}
-
 export function NegotiationThread({
   actorId,
   actorName,
@@ -114,7 +95,6 @@ export function NegotiationThread({
   escrowError,
   escrowNote,
   escrowRecord,
-  intelligence,
   thread,
   threadTitle,
   uiState,
@@ -143,24 +123,6 @@ export function NegotiationThread({
   const sortedMessages = [...thread.messages].sort(
     (left, right) => new Date(left.created_at).getTime() - new Date(right.created_at).getTime(),
   );
-  const transactionGuidance = buildNegotiationGuidance({
-    actorId,
-    escrow: escrowRecord,
-    thread,
-  });
-  const trustSummary = mergeNegotiationTrustSummaryWithIntelligence(
-    buildNegotiationTrustSummary({
-      actorId,
-      escrow: escrowRecord,
-      thread,
-    }),
-    intelligence,
-  );
-  const counterpartyEntityHref = intelligence?.counterparty_entity_match
-    ? intelligence.counterparty_entity_match.operator_tags.some((tag) => ["buyer", "processor", "offtaker"].includes(tag.toLowerCase()))
-      ? `/app/agro-intelligence/buyers/${intelligence.counterparty_entity_match.entity_id}`
-      : `/app/agro-intelligence/graph/${intelligence.counterparty_entity_match.entity_id}`
-    : null;
 
   return (
     <article className="queue-card negotiation-thread-card">
@@ -170,7 +132,7 @@ export function NegotiationThread({
         </button>
         <div className="stack-sm">
           <SectionHeading
-            eyebrow="What happens next"
+            eyebrow="Active thread"
             title={threadTitle ?? "Negotiation thread"}
             body="Review the chat history, watch price movement, and take the next permitted action for the current deal stage."
           />
@@ -179,22 +141,15 @@ export function NegotiationThread({
 
       <div className="pill-row">
         <StatusPill tone={uiState.statusTone}>{uiState.statusLabel}</StatusPill>
-        <StatusPill tone={uiState.urgencyTone}>{uiState.urgencyLabel}</StatusPill>
         <StatusPill tone="neutral">
           {thread.current_offer_amount} {thread.current_offer_currency}
         </StatusPill>
         <StatusPill tone="neutral">{thread.thread_id}</StatusPill>
       </div>
 
-      <InsightCallout
-        title={uiState.nextActionLabel}
-        body={`${uiState.statusDetail}${uiState.deadlineAt ? ` Deadline: ${new Date(uiState.deadlineAt).toLocaleString()}.` : ""}`}
-        tone={uiState.urgencyTone === "offline" ? "neutral" : uiState.urgencyTone === "degraded" ? "accent" : "brand"}
-      />
-
       {thread.status === "pending_confirmation" && thread.confirmation_checkpoint ? (
         <InsightCallout
-          title="A final decision is still needed"
+          title="Confirmation checkpoint open"
           body={`Waiting for ${formatActorLabel(thread.confirmation_checkpoint.required_confirmer_actor_id)} to accept or reject the current terms.`}
           tone="accent"
         />
@@ -207,48 +162,6 @@ export function NegotiationThread({
           tone={thread.status === "accepted" ? "brand" : "neutral"}
         />
       ) : null}
-
-      <section className="queue-card market-guidance-compact">
-        <SectionHeading
-          eyebrow="Next best action"
-          title={transactionGuidance.title}
-          body={transactionGuidance.body}
-          actions={
-            <div className="pill-row">
-              <StatusPill tone={transactionGuidance.tone}>{transactionGuidance.primaryActionLabel}</StatusPill>
-              <StatusPill tone={transactionGuidance.urgencyLabel.includes("overdue") ? "degraded" : "neutral"}>
-                {transactionGuidance.urgencyLabel}
-              </StatusPill>
-            </div>
-          }
-        />
-        <div className="queue-grid market-guidance-grid">
-          <article className="queue-card">
-            <InsightCallout
-              title="Current blocker"
-              body={transactionGuidance.blockerLabel}
-              tone={toCalloutTone(transactionGuidance.tone)}
-            />
-            <ul className="summary-list">
-              {transactionGuidance.checklist.map((item) => (
-                <li key={item}>
-                  <span>Do next</span>
-                  <strong>{item}</strong>
-                </li>
-              ))}
-            </ul>
-          </article>
-
-          <div className="stack-sm">
-            <CounterpartyTrustCard eyebrow="Counterparty trust" summary={trustSummary} />
-            {counterpartyEntityHref ? (
-              <Link className="button-ghost" href={counterpartyEntityHref}>
-                Review buyer profile
-              </Link>
-            ) : null}
-          </div>
-        </div>
-      </section>
 
       <EscrowPrompt
         actorId={actorId}
@@ -310,7 +223,7 @@ export function NegotiationThread({
       <div className="negotiation-actions-bar">
         {uiState.canCounter ? (
           <section className="queue-card negotiation-action-card">
-            <h3>Send counteroffer</h3>
+            <h3>Send counter offer</h3>
             <div className="grid-two">
               <div className="field">
                 <label htmlFor="counter-amount">Counter amount</label>
@@ -344,14 +257,14 @@ export function NegotiationThread({
               />
             </div>
             <button className="button-secondary" disabled={isMutating} type="button" onClick={() => void onSubmitCounter()}>
-              {isMutating ? "Submitting..." : "Send counteroffer"}
+              {isMutating ? "Submitting..." : "Send Counter Offer"}
             </button>
           </section>
         ) : null}
 
         {uiState.canRequestConfirmation ? (
           <section className="queue-card negotiation-action-card">
-            <h3>Prepare the deal for a final answer</h3>
+            <h3>Request confirmation</h3>
             <div className="field">
               <label htmlFor="confirmation-note">Checkpoint note</label>
               <textarea
@@ -368,7 +281,7 @@ export function NegotiationThread({
               type="button"
               onClick={() => void onRequestConfirmation(uiState.otherParticipantActorId)}
             >
-              {isMutating ? "Requesting..." : "Move to payment review"}
+              {isMutating ? "Requesting..." : "Request Confirmation"}
             </button>
           </section>
         ) : null}
@@ -389,12 +302,12 @@ export function NegotiationThread({
             <div className="actions-row">
               {uiState.canApprove ? (
                 <button className="button-primary" disabled={isMutating} type="button" onClick={() => void onApprove()}>
-                  {isMutating ? "Approving..." : "Accept offer"}
+                  {isMutating ? "Approving..." : "Accept"}
                 </button>
               ) : null}
               {uiState.canReject ? (
                 <button className="button-ghost" disabled={isMutating} type="button" onClick={() => void onReject()}>
-                  {isMutating ? "Rejecting..." : "Decline"}
+                  {isMutating ? "Rejecting..." : "Reject"}
                 </button>
               ) : null}
             </div>

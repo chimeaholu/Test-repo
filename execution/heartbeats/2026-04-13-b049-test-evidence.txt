@@ -1,0 +1,18 @@
+B-049 exact-SHA isolated test evidence
+SHA: 33f027860698abc868a66dcfabc80b2730733cc1
+Commit timestamp: 2026-04-13T08:47:20+00:00
+Subject: B-049 add digital twin governance boundary
+Isolation method: git -C /mnt/vault archive 33f027860698abc868a66dcfabc80b2730733cc1 MWH/Projects/Agrodomain | tar -x -C <tmpdir>
+Working directory inside archive: MWH/Projects/Agrodomain
+Command:
+PYTHONPATH=src pytest -q tests/test_digital_twin_governance.py tests/test_digital_twin_governance_contract_stub.py tests/test_event_bus_partitioning.py tests/test_sensor_event_schema.py tests/test_package_exports.py
+
+STDOUT
+................                                                         [100%]
+16 passed in 0.64s
+
+STDERR
+/home/node/.local/lib/python3.11/site-packages/pytest_asyncio/plugin.py:207: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))

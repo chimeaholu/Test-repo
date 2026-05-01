@@ -1,0 +1,28 @@
+{
+  "bead_id": "B-049",
+  "name": "Digital Twin Governance Boundary",
+  "scope": {
+    "focus": [
+      "digital_twin_field_compatibility",
+      "sensor_origin_governance_tags",
+      "country_enforceable_retention",
+      "no_hardware_now_guardrails"
+    ]
+  },
+  "twin_projection": {
+    "required_fields": [
+      "farm_node_id",
+      "state_snapshot_version",
+      "sensor_state_refs",
+      "derived_health_score",
+      "last_reconciled_at",
+      "data_class",
+      "governance_boundary",
+      "retention_days"
+    ]
+  },
+  "test_obligations": {
+    "journey": "IOTJ-005",
+    "data_check": "IOTDI-005"
+  }
+}

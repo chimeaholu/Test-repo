@@ -57,9 +57,9 @@ export function LocationStep({ session, data, onUpdate, onContinue, onBack }: Lo
 
   return (
     <div className="onboarding-step">
-      <h2 className="onboarding-step-heading">Set your location</h2>
+      <h2 className="onboarding-step-heading">Confirm your location</h2>
       <p className="onboarding-step-subheading">
-        Your location helps shape local alerts, trade context, and support.
+        This powers local prices, weather forecasts, and buyer matching.
       </p>
 
       {/* Map placeholder */}
@@ -134,7 +134,7 @@ export function LocationStep({ session, data, onUpdate, onContinue, onBack }: Lo
 
       {/* GPS checkbox */}
       <Checkbox
-        label="Use my location for local alerts and planning support (recommended)"
+        label="Use GPS for hyper-local weather alerts (recommended)"
         checked={data.gpsEnabled}
         onChange={(e) => {
           onUpdate({ gpsEnabled: (e.target as HTMLInputElement).checked });

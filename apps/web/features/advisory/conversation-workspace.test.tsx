@@ -139,11 +139,11 @@ describe("advisory conversation workspace", () => {
   it("renders reviewer state, locale fallback, and citation drawer", async () => {
     render(<AdvisoryConversationWorkspace surface="advisor" />);
 
-    expect(await screen.findByText("Review the next request and send practical guidance")).toBeInTheDocument();
+    expect(await screen.findByText("Review evidence-backed recommendations")).toBeInTheDocument();
     expect(screen.getByText(/closest supported advisory language/i)).toBeInTheDocument();
-    expect(screen.getByText("A person still needs to confirm this")).toBeInTheDocument();
+    expect(screen.getByText("Human review required before delivery")).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: "Open source details" }));
+    fireEvent.click(screen.getByRole("button", { name: "Open citation drawer" }));
     expect(screen.getByText("Drainage checklist")).toBeInTheDocument();
     expect(mockRecordTelemetry).toHaveBeenCalled();
   });

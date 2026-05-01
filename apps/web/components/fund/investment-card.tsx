@@ -27,13 +27,13 @@ export function InvestmentCard(props: {
         items={[
           { label: "Invested", value: formatMoney(props.investment.amount, props.currency) },
           { label: "Expected return", value: formatMoney(props.investment.expected_return_amount, props.currency) },
-          { label: "Return timing", value: props.investment.payout_schedule },
+          { label: "Schedule", value: props.investment.payout_schedule },
           { label: "Reference", value: props.investment.reference },
         ]}
       />
       {props.opportunity ? (
         <Link className="button-ghost" href={`/app/fund/${props.opportunity.listing.listing_id}`}>
-          View farm opportunity
+          View farm detail
         </Link>
       ) : null}
     </article>

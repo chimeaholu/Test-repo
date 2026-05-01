@@ -1,0 +1,34 @@
+{
+  "bead_id": "B-004",
+  "scope": {
+    "focus": [
+      "compact_menu_flows",
+      "session_serialization",
+      "timeout_recovery"
+    ],
+    "channel": "ussd"
+  },
+  "dependencies": [
+    "B-003"
+  ],
+  "menu_model": {
+    "required_menus": [
+      "root",
+      "marketplace",
+      "timeout_recovery"
+    ],
+    "recovery_actions": [
+      "resume",
+      "restart"
+    ]
+  },
+  "test_obligations": {
+    "unit": "menu state serialization",
+    "journeys": [
+      "CJ-001",
+      "EP-002"
+    ],
+    "ux_quality": "UXJ-002 + UXDI-002",
+    "data_check": "DI-001"
+  }
+}

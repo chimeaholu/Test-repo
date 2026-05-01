@@ -41,9 +41,9 @@ export function PriceCard(props: PriceCardProps) {
       </div>
 
       <div className="market-price-stack">
-        <span className="metric-label">Price</span>
+        <span className="metric-label">Current asking price</span>
         <strong className="market-price-amount">{formatMoney(props.priceAmount, props.priceCurrency)}</strong>
-        <p className="muted">Use the lot total here, then review the estimated per-ton view as a quick comparison point.</p>
+        <p className="muted">Current schema does not declare unit semantics, so the per-ton view is an estimate.</p>
       </div>
 
       <dl className="market-price-meta">
@@ -52,7 +52,7 @@ export function PriceCard(props: PriceCardProps) {
           <dd>{props.quantityTons} tons</dd>
         </div>
         <div>
-          <dt>Estimated per ton</dt>
+          <dt>Est. per ton</dt>
           <dd>{formatMoney(estimatedUnitPrice, props.priceCurrency)}</dd>
         </div>
         <div>

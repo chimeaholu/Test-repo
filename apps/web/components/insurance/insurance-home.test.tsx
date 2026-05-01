@@ -162,9 +162,9 @@ describe("insurance home", () => {
   it("renders the AgroShield dashboard with policies and claims", async () => {
     render(<InsuranceHome />);
 
-    expect(await screen.findByText("Keep coverage, claims, and weather-backed protection in one place")).toBeInTheDocument();
+    expect(await screen.findByText("Coverage, claims, and weather evidence in one workspace.")).toBeInTheDocument();
     expect(screen.getAllByText("Asante Maize Fields").length).toBeGreaterThan(0);
     expect(screen.getAllByText("Heavy rainfall expected — Tamale district").length).toBeGreaterThan(0);
-    expect(screen.getByText("Add protection")).toBeInTheDocument();
+    expect(screen.getByText("Get coverage")).toBeInTheDocument();
   });
 });

@@ -174,7 +174,7 @@ describe("farm operations home", () => {
   it("renders the farm workspace surface", async () => {
     render(<FarmOperationsHome />);
 
-    expect(await screen.findByText("Keep your fields, season work, and inputs in one working view")).toBeInTheDocument();
+    expect(await screen.findByText("Farm management")).toBeInTheDocument();
     expect(await screen.findByText("Asante Maize Fields")).toBeInTheDocument();
     expect(screen.getAllByText("North Ridge").length).toBeGreaterThan(0);
     expect(screen.getByText("Heavy rainfall expected in the next 24 hours.")).toBeInTheDocument();

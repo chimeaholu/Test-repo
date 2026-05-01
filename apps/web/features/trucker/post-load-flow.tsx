@@ -17,7 +17,6 @@ import { computeRateEstimate } from "@/features/trucker/model";
 type FormState = {
   budget: string;
   commodity: string;
-  deliveryDeadline: string;
   destination: string;
   instructions: string;
   itemCount: string;
@@ -28,15 +27,13 @@ type FormState = {
 };
 
 function defaultForm(countryCode: string): FormState {
-  const pickupDate = new Date(Date.now() + 86400000).toISOString().slice(0, 10);
   return {
     budget: countryCode === "NG" ? "220000" : "1500",
     commodity: "White maize",
-    deliveryDeadline: new Date(Date.now() + 2 * 86400000).toISOString().slice(0, 10),
     destination: countryCode === "NG" ? "Lagos" : "Accra",
     instructions: "Keep dry, confirm loading photo, and notify the receiver 60 minutes before arrival.",
     itemCount: "50",
-    pickupDate,
+    pickupDate: new Date(Date.now() + 86400000).toISOString().slice(0, 10),
     pickupLocation: countryCode === "NG" ? "Kano" : "Tamale",
     pickupWindow: defaultPickupWindow(),
     weightTons: "5",
@@ -89,7 +86,6 @@ export function PostLoadFlow() {
     if (!form.weightTons.trim() || Number(form.weightTons) <= 0) nextErrors.weightTons = "Weight must be greater than zero.";
     if (!form.itemCount.trim() || Number(form.itemCount) <= 0) nextErrors.itemCount = "Item count must be greater than zero.";
     if (!form.pickupDate || form.pickupDate < new Date().toISOString().slice(0, 10)) nextErrors.pickupDate = "Pickup date must be in the future.";
-    if (!form.deliveryDeadline || form.deliveryDeadline < form.pickupDate) nextErrors.deliveryDeadline = "Delivery deadline must be on or after pickup date.";
     if (!form.budget.trim() || Number(form.budget) <= 0) nextErrors.budget = "Budget must be greater than zero.";
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
@@ -103,11 +99,10 @@ export function PostLoadFlow() {
 
     setIsSubmitting(true);
     try {
-      const result = await truckerApi.postLoadLive(
+      const result = await truckerApi.postLoad(
         {
           budget: Number(form.budget),
           commodity: form.commodity.trim(),
-          deliveryDeadline: form.deliveryDeadline,
           destination: form.destination.trim(),
           instructions: form.instructions.trim(),
           itemCount: Number(form.itemCount),
@@ -120,7 +115,7 @@ export function PostLoadFlow() {
         traceId,
       );
       setSubmissionError(null);
-      router.push(`/app/trucker/shipments/${result.loadId}`);
+      router.push(`/app/trucker/shipments/${result.listingId}`);
     } catch (error) {
       setSubmissionError(error instanceof Error ? error.message : "Unable to post load.");
     } finally {
@@ -133,9 +128,9 @@ export function PostLoadFlow() {
     <div className="trucker-stack">
       <SurfaceCard>
         <SectionHeading
-          eyebrow="Post a transport request"
-          title="Describe the load and set the trip clearly"
-          body="Add the route, schedule, cargo details, and transport budget so the right carrier can respond."
+          eyebrow="Post a load"
+          title="Publish a verified transport request"
+          body="This flow writes the load into the live marketplace, then stores the transport-specific route, timing, and handoff details in the logistics workspace."
         />
       </SurfaceCard>
 
@@ -149,7 +144,7 @@ export function PostLoadFlow() {
 
       <div className="trucker-form-grid">
         <SurfaceCard>
-          <SectionHeading eyebrow="Route" title="Origin and destination" />
+          <SectionHeading eyebrow="Pickup" title="Origin and destination" />
           <div className="trucker-field-stack">
             <Field label="Pickup location" error={errors.pickupLocation}>
               <Input
@@ -171,7 +166,7 @@ export function PostLoadFlow() {
         </SurfaceCard>
 
         <SurfaceCard>
-          <SectionHeading eyebrow="Cargo" title="What is being moved?" />
+          <SectionHeading eyebrow="Cargo" title="What are you shipping?" />
           <div className="trucker-field-grid">
             <Field label="Commodity" error={errors.commodity}>
               <Input error={Boolean(errors.commodity)} onChange={(event) => update("commodity", event.target.value)} value={form.commodity} />
@@ -186,18 +181,10 @@ export function PostLoadFlow() {
         </SurfaceCard>
 
         <SurfaceCard>
-          <SectionHeading eyebrow="Schedule" title="When should it arrive?" />
+          <SectionHeading eyebrow="Schedule" title="When should the carrier arrive?" />
           <div className="trucker-field-grid">
             <Field label="Preferred date" error={errors.pickupDate}>
               <Input error={Boolean(errors.pickupDate)} onChange={(event) => update("pickupDate", event.target.value)} type="date" value={form.pickupDate} />
-            </Field>
-            <Field label="Delivery deadline" error={errors.deliveryDeadline}>
-              <Input
-                error={Boolean(errors.deliveryDeadline)}
-                onChange={(event) => update("deliveryDeadline", event.target.value)}
-                type="date"
-                value={form.deliveryDeadline}
-              />
             </Field>
             <Field label="Preferred time">
               <Select
@@ -227,14 +214,14 @@ export function PostLoadFlow() {
                   Estimated corridor rate: {estimate.min.toLocaleString()} - {estimate.max.toLocaleString()}{" "}
                   {activeSession.actor.country_code === "NG" ? "NGN" : activeSession.actor.country_code === "JM" ? "JMD" : "GHS"}
                 </strong>
-                <p className="muted">Use this range to set a practical budget before you review the load.</p>
+                <p className="muted">Generated from route and weight because the dedicated `/rate-estimate` API is not active yet.</p>
               </div>
             </div>
           </div>
         </SurfaceCard>
 
         <SurfaceCard>
-          <SectionHeading eyebrow="Handling notes" title="What the carrier needs to know" />
+          <SectionHeading eyebrow="Instructions" title="Handling and communication notes" />
           <Field label="Special instructions">
             <Textarea onChange={(event) => update("instructions", event.target.value)} value={form.instructions} />
           </Field>
@@ -255,18 +242,17 @@ export function PostLoadFlow() {
             <div>
               <strong>{form.pickupDate}</strong>
               <p className="muted">{form.pickupWindow}</p>
-              <p className="muted">Deliver by {form.deliveryDeadline}</p>
             </div>
           </article>
           <article>
             <ReceiptText size={18} />
             <div>
               <strong>{form.budget} {activeSession.actor.country_code === "NG" ? "NGN" : activeSession.actor.country_code === "JM" ? "JMD" : "GHS"}</strong>
-              <p className="muted">Transport budget</p>
+              <p className="muted">Budget ceiling</p>
             </div>
           </article>
           <Button onClick={() => setIsReviewOpen(true)} size="lg">
-            Review load
+            Review &amp; Post Load
           </Button>
         </div>
       </SurfaceCard>
@@ -284,18 +270,16 @@ export function PostLoadFlow() {
         }
         onClose={() => setIsReviewOpen(false)}
         open={isReviewOpen}
-        title="Review load"
+        title="Review transport load"
       >
         <div className="trucker-review-modal">
           <strong>{form.pickupLocation} to {form.destination}</strong>
-          <p className="muted">Confirm the route, cargo, schedule, and budget before you post this load.</p>
           <p className="muted">
             {form.commodity} · {form.weightTons} tonnes · {form.itemCount} items
           </p>
           <p className="muted">
             Pickup {form.pickupDate} during {form.pickupWindow}
           </p>
-          <p className="muted">Deliver by {form.deliveryDeadline}</p>
           <p className="muted">
             Budget {form.budget} {activeSession.actor.country_code === "NG" ? "NGN" : activeSession.actor.country_code === "JM" ? "JMD" : "GHS"}
           </p>

@@ -1,6 +1,7 @@
 "use client";
 
 import type {
+  ActorRole,
   ConnectivityState,
   IdentitySession,
   OfflineQueueSnapshot,
@@ -11,20 +12,15 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useRef,
   useState,
 } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
-import { apiBaseUrl, readToken, writeSession } from "@/lib/api-client";
+import { writeSession } from "@/lib/api-client";
 import { identityApi } from "@/lib/api/identity";
 import { AuthProvider } from "@/lib/auth/auth-provider";
-import type { PreviewRole } from "@/lib/auth/auth-context";
 import { useAuth } from "@/lib/auth/auth-context";
-import { listCachedReadModels, type CachedReadModelSummary } from "@/lib/offline/cache";
-import { replayQueuedMutations } from "@/lib/offline/mutation-engine";
 import { reduceQueueSnapshot } from "@/lib/offline/reducer";
-import { OFFLINE_STATE_EVENT } from "@/lib/offline/storage";
 import { recordTelemetry } from "@/lib/telemetry/client";
 import { createTraceId, getRouteDecision, homeRouteForRole } from "@/features/shell/model";
 
@@ -32,41 +28,15 @@ import { createTraceId, getRouteDecision, homeRouteForRole } from "@/features/sh
 export { useAuth } from "@/lib/auth/auth-context";
 
 interface AppContextValue {
-  cachedReadModels: CachedReadModelSummary[];
   isHydrated: boolean;
   session: IdentitySession | null;
   queue: OfflineQueueSnapshot;
   traceId: string;
   signIn: (input: {
-    method: "preview";
     displayName: string;
     email: string;
-    role: PreviewRole;
+    role: ActorRole;
     countryCode: string;
-    redirectTo?: string | null;
-  }) => Promise<void>;
-  signInWithPassword: (input: {
-    identifier: string;
-    password: string;
-    countryCode: string;
-    redirectTo?: string | null;
-  }) => Promise<void>;
-  requestMagicLink: (input: {
-    identifier: string;
-    countryCode: string;
-  }) => Promise<{
-    challengeId: string;
-    deliveryChannel: "sms" | "email";
-    provider: string;
-    fallbackProvider: string | null;
-    maskedTarget: string;
-    expiresAt: string;
-    previewCode: string | null;
-  }>;
-  verifyMagicLink: (input: {
-    challengeId: string;
-    verificationCode: string;
-    redirectTo?: string | null;
   }) => Promise<void>;
   ensureConsentPending: () => void;
   grantConsent: (input: { policyVersion: string; scopeIds: string[] }) => Promise<void>;
@@ -94,27 +64,21 @@ function AppProviderInner({ children }: { children: ReactNode }) {
   const auth = useAuth();
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [traceId, setTraceId] = useState(createTraceId("boot"));
   const [queue, setQueue] = useState<OfflineQueueSnapshot>(defaultQueue);
-  const [cachedReadModels, setCachedReadModels] = useState<CachedReadModelSummary[]>([]);
-  const isReplayingRef = useRef(false);
-  const previousConnectivityRef = useRef<ConnectivityState | null>(null);
 
   // Sync queue from localStorage once auth hydration completes
   useEffect(() => {
     if (auth.isHydrated) {
       const bootTrace = createTraceId("boot");
-      const bootQueue = identityApi.getQueue(bootTrace).data;
-      setQueue(bootQueue);
-      setCachedReadModels(listCachedReadModels(bootQueue.connectivity_state));
+      setQueue(identityApi.getQueue(bootTrace).data);
       recordTelemetry({
         event: "shell_boot",
         trace_id: bootTrace,
         timestamp: new Date().toISOString(),
         detail: {
           has_session: Boolean(auth.session),
-          queue_depth: bootQueue.items.length,
+          queue_depth: identityApi.getQueue(bootTrace).data.items.length,
         },
       });
     }
@@ -133,21 +97,6 @@ function AppProviderInner({ children }: { children: ReactNode }) {
     });
   }, [pathname]);
 
-  useEffect(() => {
-    if (!auth.isHydrated) return;
-
-    const syncOfflineState = () => {
-      const snapshot = identityApi.getQueue(traceId).data;
-      setQueue(snapshot);
-      setCachedReadModels(listCachedReadModels(snapshot.connectivity_state));
-    };
-
-    window.addEventListener(OFFLINE_STATE_EVENT, syncOfflineState);
-    return () => {
-      window.removeEventListener(OFFLINE_STATE_EVENT, syncOfflineState);
-    };
-  }, [auth.isHydrated, traceId]);
-
   // Online/offline listeners
   useEffect(() => {
     if (!auth.isHydrated) return;
@@ -159,7 +108,6 @@ function AppProviderInner({ children }: { children: ReactNode }) {
           connectivityState: "online",
         });
         identityApi.storeQueue(next);
-        setCachedReadModels(listCachedReadModels(next.connectivity_state));
         return next;
       });
     };
@@ -171,7 +119,6 @@ function AppProviderInner({ children }: { children: ReactNode }) {
           connectivityState: "offline",
         });
         identityApi.storeQueue(next);
-        setCachedReadModels(listCachedReadModels(next.connectivity_state));
         return next;
       });
     };
@@ -184,50 +131,6 @@ function AppProviderInner({ children }: { children: ReactNode }) {
     };
   }, [auth.isHydrated]);
 
-  useEffect(() => {
-    if (!auth.isHydrated || !auth.session) return;
-    if (queue.connectivity_state !== "online") {
-      previousConnectivityRef.current = queue.connectivity_state;
-      return;
-    }
-
-    const actionable = queue.items.some((item) =>
-      ["queued", "failed_retryable", "replaying"].includes(item.state),
-    );
-    const previousConnectivity = previousConnectivityRef.current;
-    previousConnectivityRef.current = queue.connectivity_state;
-
-    if (!actionable || isReplayingRef.current) {
-      return;
-    }
-
-    if (previousConnectivity === "online") {
-      return;
-    }
-
-    isReplayingRef.current = true;
-    void replayQueuedMutations({
-      accessToken: readToken(),
-      apiBaseUrl: apiBaseUrl(),
-      snapshot: queue,
-    })
-      .then((nextQueue) => {
-        setQueue(nextQueue);
-        setCachedReadModels(listCachedReadModels(nextQueue.connectivity_state));
-        recordTelemetry({
-          event: "queue_replay_completed",
-          trace_id: traceId,
-          timestamp: new Date().toISOString(),
-          detail: {
-            queue_depth: nextQueue.items.length,
-          },
-        });
-      })
-      .finally(() => {
-        isReplayingRef.current = false;
-      });
-  }, [auth.isHydrated, auth.session, queue, traceId]);
-
   // Client-side route guard
   useEffect(() => {
     if (!auth.isHydrated) return;
@@ -239,17 +142,14 @@ function AppProviderInner({ children }: { children: ReactNode }) {
 
   const value = useMemo<AppContextValue>(
     () => ({
-      cachedReadModels,
       clearSession() {
         auth.clearSession();
         setQueue(defaultQueue);
-        setCachedReadModels([]);
       },
       dismissQueueItem(itemId) {
         setQueue((current) => {
           const next = reduceQueueSnapshot(current, { type: "dismiss_item", itemId });
           identityApi.storeQueue(next);
-          setCachedReadModels(listCachedReadModels(next.connectivity_state));
           recordTelemetry({
             event: "queue_item_dismissed",
             trace_id: traceId,
@@ -282,43 +182,22 @@ function AppProviderInner({ children }: { children: ReactNode }) {
           detail: { scope_count: input.scopeIds.length },
         });
         if (response) {
-          const nextTarget = searchParams.get("next");
-          const safeRedirect =
-            nextTarget && nextTarget.startsWith("/app") && !nextTarget.startsWith("//")
-              ? nextTarget
-              : null;
-          router.push(safeRedirect ?? homeRouteForRole(response.actor.role));
+          router.push(homeRouteForRole(response.actor.role));
         }
       },
       isHydrated: auth.isHydrated,
       queue,
       retryQueueItem(itemId) {
         setQueue((current) => {
-          const next: OfflineQueueSnapshot =
-            current.connectivity_state === "online"
-              ? {
-                  ...current,
-                  items: current.items.map((item) =>
-                    item.item_id === itemId
-                      ? { ...item, state: "replaying" as const }
-                      : item,
-                  ),
-                }
-              : reduceQueueSnapshot(current, { type: "retry_item", itemId });
+          let next = reduceQueueSnapshot(current, { type: "retry_item", itemId });
+          next = reduceQueueSnapshot(next, {
+            type: "ack_item",
+            itemId,
+            resultRef: `result-${itemId}`,
+          });
           identityApi.storeQueue(next);
-          setCachedReadModels(listCachedReadModels(next.connectivity_state));
-          if (next.connectivity_state === "online") {
-            void replayQueuedMutations({
-              accessToken: readToken(),
-              apiBaseUrl: apiBaseUrl(),
-              snapshot: next,
-            }).then((replayedQueue) => {
-              setQueue(replayedQueue);
-              setCachedReadModels(listCachedReadModels(replayedQueue.connectivity_state));
-            });
-          }
           recordTelemetry({
-            event: "queue_replay_requested",
+            event: "queue_replay_acked",
             trace_id: traceId,
             timestamp: new Date().toISOString(),
             detail: { item_id: itemId, queue_depth: next.items.length },
@@ -343,7 +222,6 @@ function AppProviderInner({ children }: { children: ReactNode }) {
             connectivityState: state,
           });
           identityApi.storeQueue(next);
-          setCachedReadModels(listCachedReadModels(next.connectivity_state));
           recordTelemetry({
             event: "channel_handoff_prompted",
             trace_id: traceId,
@@ -357,42 +235,12 @@ function AppProviderInner({ children }: { children: ReactNode }) {
         });
       },
       async signIn(input) {
-        await auth.signIn(input, { redirectTo: input.redirectTo });
-        const nextQueue = identityApi.getQueue(traceId).data;
-        setQueue(nextQueue);
-        setCachedReadModels(listCachedReadModels(nextQueue.connectivity_state));
-      },
-      async signInWithPassword(input) {
-        await auth.signInWithPassword(
-          {
-            identifier: input.identifier,
-            password: input.password,
-            countryCode: input.countryCode,
-          },
-          { redirectTo: input.redirectTo },
-        );
-        const nextQueue = identityApi.getQueue(traceId).data;
-        setQueue(nextQueue);
-        setCachedReadModels(listCachedReadModels(nextQueue.connectivity_state));
-      },
-      async requestMagicLink(input) {
-        return auth.requestMagicLink(input);
-      },
-      async verifyMagicLink(input) {
-        await auth.verifyMagicLink(
-          {
-            challengeId: input.challengeId,
-            verificationCode: input.verificationCode,
-          },
-          { redirectTo: input.redirectTo },
-        );
-        const nextQueue = identityApi.getQueue(traceId).data;
-        setQueue(nextQueue);
-        setCachedReadModels(listCachedReadModels(nextQueue.connectivity_state));
+        await auth.signIn(input);
+        setQueue(identityApi.getQueue(traceId).data);
       },
       traceId,
     }),
-    [auth, cachedReadModels, queue, router, searchParams, traceId],
+    [auth, queue, router, traceId],
   );
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

@@ -1,7 +1,6 @@
 "use client";
 
 import type {
-  MarketplaceNegotiationIntelligenceRead,
   NegotiationConfirmationApproveInput,
   NegotiationConfirmationRejectInput,
   NegotiationConfirmationRequestInput,
@@ -24,7 +23,6 @@ import { auditApi } from "@/lib/api/audit";
 import { marketplaceApi } from "@/lib/api/marketplace";
 import { walletApi } from "@/lib/api/wallet";
 import { recordTelemetry } from "@/lib/telemetry/client";
-import { recordMarketplaceConversion } from "@/lib/telemetry/marketplace";
 
 type NegotiationInboxClientProps = {
   initialListingId?: string;
@@ -114,23 +112,6 @@ function mutationErrorMessage(errorCode: string): string {
   }
 }
 
-function conversionStageForAction(actionLabel: string) {
-  switch (actionLabel) {
-    case "Offer created":
-      return "offer_created" as const;
-    case "Counter committed":
-      return "offer_countered" as const;
-    case "Confirmation requested":
-      return "confirmation_requested" as const;
-    case "Confirmation approved":
-      return "confirmation_approved" as const;
-    case "Confirmation rejected":
-      return "confirmation_rejected" as const;
-    default:
-      return "negotiation_opened" as const;
-  }
-}
-
 async function loadAuditEvidence(requestId: string, idempotencyKey: string, traceId: string): Promise<number> {
   const audit = await auditApi.getEvents(requestId, idempotencyKey, traceId);
   return audit.data.items.length;
@@ -155,8 +136,8 @@ function optimisticMessage(params: {
 }
 
 const negotiationPageCopy = {
-  title: "Keep every negotiation moving toward a clear outcome",
-  body: "Review conversations, compare offer detail, and see what happens next before you accept, counter, decline, or move to payment.",
+  title: "Negotiation workspace",
+  body: "Work conversations like a trading desk: scan the queue, open the active thread, and move each deal toward a clear outcome.",
 };
 
 export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
@@ -166,7 +147,6 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
   const [escrows, setEscrows] = useState<EscrowReadModel[]>([]);
   const [selectedThreadId, setSelectedThreadId] = useState(props.initialThreadId ?? "");
   const [selectedThread, setSelectedThread] = useState<NegotiationThreadRead | null>(null);
-  const [selectedThreadIntelligence, setSelectedThreadIntelligence] = useState<MarketplaceNegotiationIntelligenceRead | null>(null);
   const [conversationQuery, setConversationQuery] = useState("");
   const [threadError, setThreadError] = useState<string | null>(null);
   const [mutationError, setMutationError] = useState<string | null>(null);
@@ -215,54 +195,7 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
         thread_count: threads.length,
       },
     });
-    recordMarketplaceConversion({
-      actorId: session.actor.actor_id,
-      actorRole: session.actor.role,
-      countryCode: session.actor.country_code,
-      listingId:
-        selectedThread?.listing_id ??
-        (createOffer.listingId.trim().length > 0 ? createOffer.listingId : null),
-      notificationCount: selectedThread ? 1 : null,
-      outcome: "completed",
-      sourceSurface: "negotiation_inbox",
-      stage: "negotiation_opened",
-      threadId: selectedThreadId || null,
-      traceId,
-      urgency:
-        selectedThread?.status === "rejected"
-          ? "critical"
-          : selectedThread?.status === "accepted"
-            ? "urgent"
-            : selectedThread?.status === "pending_confirmation"
-            ? "attention"
-            : "routine",
-    });
-  }, [
-    createOffer.listingId,
-    selectedThread?.listing_id,
-    selectedThread?.status,
-    selectedThreadId,
-    session,
-    threads.length,
-    traceId,
-  ]);
-
-  useEffect(() => {
-    if (!session || !selectedThread) {
-      return;
-    }
-    recordTelemetry({
-      event: "marketplace_conversion_step",
-      trace_id: traceId,
-      timestamp: new Date().toISOString(),
-      detail: {
-        actor_role: session.actor.role,
-        flow: "negotiation_thread",
-        selected_thread_id: selectedThread.thread_id,
-        thread_status: selectedThread.status,
-      },
-    });
-  }, [selectedThread, session, traceId]);
+  }, [selectedThreadId, session, threads.length, traceId]);
 
   const filteredThreads = useMemo(() => {
     const normalizedQuery = conversationQuery.trim().toLowerCase();
@@ -309,7 +242,6 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
         await loadThread(nextThreadId);
       } else {
         setSelectedThread(null);
-        setSelectedThreadIntelligence(null);
         setThreadError(null);
       }
     } catch (error) {
@@ -324,12 +256,8 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
   async function loadThread(threadId: string): Promise<void> {
     setIsLoadingThread(true);
     try {
-      const [response, intelligenceResponse] = await Promise.all([
-        marketplaceApi.getNegotiationThread(threadId, traceId),
-        marketplaceApi.getNegotiationIntelligence(threadId, traceId).catch(() => null),
-      ]);
+      const response = await marketplaceApi.getNegotiationThread(threadId, traceId);
       setSelectedThread(response.data);
-      setSelectedThreadIntelligence(intelligenceResponse?.data ?? null);
       setThreadError(null);
       setCounterOffer((current) => ({
         ...current,
@@ -339,7 +267,6 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
     } catch (error) {
       const code = error instanceof Error ? error.message : "Unable to load negotiation thread.";
       setSelectedThread(null);
-      setSelectedThreadIntelligence(null);
       setThreadError(code);
     } finally {
       setIsLoadingThread(false);
@@ -385,36 +312,7 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
           thread_id: selectedThread.thread_id,
         },
       });
-      recordMarketplaceConversion({
-        actorId: activeSession.actor.actor_id,
-        actorRole: activeSession.actor.role,
-        countryCode: activeSession.actor.country_code,
-        durationMs: performance.now() - startedAt,
-        escrowId: response.data.escrow.escrow_id,
-        listingId: selectedThread.listing_id,
-        outcome: "completed",
-        replayed: response.data.replayed,
-        sourceSurface: "negotiation_inbox",
-        stage: "escrow_initiated",
-        threadId: selectedThread.thread_id,
-        traceId,
-        urgency: "attention",
-      });
     } catch (error) {
-      recordMarketplaceConversion({
-        actorId: activeSession.actor.actor_id,
-        actorRole: activeSession.actor.role,
-        blockerCode:
-          error instanceof Error ? error.message : "escrow_initiate_failed",
-        countryCode: activeSession.actor.country_code,
-        listingId: selectedThread.listing_id,
-        outcome: "blocked",
-        sourceSurface: "negotiation_inbox",
-        stage: "escrow_initiated",
-        threadId: selectedThread.thread_id,
-        traceId,
-        urgency: "urgent",
-      });
       setEscrowError(error instanceof Error ? error.message : "Unable to create escrow for this negotiation.");
     } finally {
       setIsMutating(false);
@@ -473,27 +371,6 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
           thread_id: response.thread.thread_id,
         },
       });
-      recordMarketplaceConversion({
-        actorId: activeSession.actor.actor_id,
-        actorRole: activeSession.actor.role,
-        countryCode: activeSession.actor.country_code,
-        durationMs: performance.now() - startedAt,
-        listingId: response.thread.listing_id,
-        outcome: "completed",
-        replayed: response.replayed,
-        sourceSurface: "negotiation_inbox",
-        stage: conversionStageForAction(actionLabel),
-        threadId: response.thread.thread_id,
-        traceId,
-        urgency:
-          response.thread.status === "rejected"
-            ? "critical"
-            : response.thread.status === "pending_confirmation"
-              ? "attention"
-              : response.thread.status === "accepted"
-                ? "urgent"
-                : "routine",
-      });
     } catch (error) {
       setThreads(previousThreads);
       setSelectedThread(previousSelectedThread);
@@ -510,21 +387,6 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
           error_code: code,
           selected_thread_id: previousSelectedThreadId || "none",
         },
-      });
-      recordMarketplaceConversion({
-        actorId: activeSession.actor.actor_id,
-        actorRole: activeSession.actor.role,
-        blockerCode: code,
-        countryCode: activeSession.actor.country_code,
-        listingId:
-          previousSelectedThread?.listing_id ??
-          (createOffer.listingId.trim().length > 0 ? createOffer.listingId : null),
-        outcome: "blocked",
-        sourceSurface: "negotiation_inbox",
-        stage: conversionStageForAction(actionLabel),
-        threadId: previousSelectedThreadId || null,
-        traceId,
-        urgency: "urgent",
       });
     } finally {
       setIsMutating(false);
@@ -754,30 +616,30 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
           <StatusPill tone={selectedThread ? (threadUiState?.statusTone ?? "neutral") : "neutral"}>
             {selectedThread ? threadUiState?.statusLabel : "Inbox ready"}
           </StatusPill>
-          <StatusPill tone={evidence ? "online" : "degraded"}>{evidence ? "Latest update captured" : "Awaiting action"}</StatusPill>
+          <StatusPill tone={evidence ? "online" : "degraded"}>{evidence ? "Latest mutation tracked" : "Awaiting action"}</StatusPill>
         </div>
-        <div className="hero-kpi-grid" aria-label="Negotiation posture">
+        <div className="hero-kpi-grid" aria-label="Negotiation workspace posture">
           <article className="hero-kpi">
-            <span className="metric-label">Conversations</span>
+            <span className="metric-label">Open conversations</span>
             <strong>{threads.length}</strong>
             <p className="muted">Search and sort through active buying and selling discussions from one view.</p>
           </article>
           <article className="hero-kpi">
-            <span className="metric-label">Offer detail</span>
+            <span className="metric-label">Selected stage</span>
             <strong>{selectedThread ? threadUiState?.statusLabel : "Choose a conversation"}</strong>
-            <p className="muted">The thread view shifts based on the live state of the deal.</p>
+            <p className="muted">The thread panel changes its available actions based on the current state machine.</p>
           </article>
           <article className="hero-kpi">
-            <span className="metric-label">What happens next</span>
-            <strong>{selectedThread ? threadUiState?.nextActionLabel : "Open a conversation"}</strong>
-            <p className="muted">Stay clear on the next customer-facing step before you move the deal forward.</p>
+            <span className="metric-label">Latest audit trace</span>
+            <strong>{evidence ? evidence.requestId : "No mutation yet"}</strong>
+            <p className="muted">Real command responses still feed audit evidence after each mutation.</p>
           </article>
         </div>
       </SurfaceCard>
 
       {mutationError ? (
         <SurfaceCard>
-          <SectionHeading eyebrow="Action blocked" title="The action could not be completed" body={mutationError} />
+          <SectionHeading eyebrow="Mutation error" title="The action could not be completed" body={mutationError} />
         </SurfaceCard>
       ) : null}
 
@@ -796,7 +658,7 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
           <SectionHeading
             eyebrow="New buyer offer"
             title="Open a negotiation from a listing reference"
-            body="Start the conversation with a clear amount and note so the seller can respond without guesswork."
+            body="This keeps the current route behavior intact for buyer flows that still land in the inbox with a listing ID."
           />
           <form
             className="form-stack"
@@ -897,7 +759,6 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
           escrowError={escrowError}
           escrowNote={escrowNote}
           escrowRecord={selectedEscrow}
-          intelligence={selectedThreadIntelligence}
           isLoadingThread={isLoadingThread}
           isMutating={isMutating}
           onApprovalNoteChange={setConfirmationDecisionNote}
@@ -926,7 +787,7 @@ export function NegotiationInboxClient(props: NegotiationInboxClientProps) {
         <SurfaceCard>
           <InsightCallout
             title={evidence.actionLabel}
-            body={`The latest negotiation update was saved successfully. Reference ${evidence.requestId} is available if support needs to review the record.`}
+            body={`Request ${evidence.requestId} recorded ${evidence.auditEventCount} audit events. Support code: ${evidence.idempotencyKey}.`}
             tone="brand"
           />
         </SurfaceCard>

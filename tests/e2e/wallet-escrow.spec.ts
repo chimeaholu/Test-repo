@@ -156,7 +156,7 @@ async function openWalletDashboard(page: Page, sessionSeed: SessionSeed): Promis
   await waitForWorkspaceReady(page);
   await expect(
     page.getByRole("heading", {
-      name: "See your balance, money on hold, and recent payment movement",
+      name: "Canonical settlement timeline and delivery evidence",
     }),
   ).toBeVisible({ timeout: 30_000 });
 }

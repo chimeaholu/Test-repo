@@ -14,7 +14,7 @@ import { Modal } from "@/components/ui/modal";
 import { Textarea } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { truckerApi } from "@/lib/api/trucker";
-import type { ShipmentIssue, ShipmentTrackingSnapshot, TruckerTimelineEntry } from "@/features/trucker/model";
+import type { ShipmentTrackingSnapshot, TruckerTimelineEntry } from "@/features/trucker/model";
 
 type ShipmentTrackingProps = {
   shipmentId: string;
@@ -24,12 +24,8 @@ type SignaturePoint = { x: number; y: number };
 
 export function ShipmentTracking(props: ShipmentTrackingProps) {
   const { session, traceId } = useAppState();
-  const [connectivityState, setConnectivityState] = useState<"online" | "offline">("online");
   const [error, setError] = useState<string | null>(null);
-  const [issueBlocked, setIssueBlocked] = useState(false);
   const [issueDescription, setIssueDescription] = useState("");
-  const [issueDelayMinutes, setIssueDelayMinutes] = useState("");
-  const [issueSeverity, setIssueSeverity] = useState<"low" | "medium" | "high">("medium");
   const [issueType, setIssueType] = useState("delay");
   const [issueOpen, setIssueOpen] = useState(false);
   const [photoName, setPhotoName] = useState<string | null>(null);
@@ -61,7 +57,7 @@ export function ShipmentTracking(props: ShipmentTrackingProps) {
     }
 
     try {
-      const next = await truckerApi.getShipmentSnapshotLive(props.shipmentId, session, traceId);
+      const next = await truckerApi.getShipmentSnapshot(props.shipmentId, session, traceId);
       setSnapshot(next);
       setError(null);
     } catch (nextError) {
@@ -84,24 +80,6 @@ export function ShipmentTracking(props: ShipmentTrackingProps) {
     return () => window.clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.shipmentId, session, traceId]);
-
-  useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    const syncConnectivity = () => {
-      setConnectivityState(window.navigator.onLine ? "online" : "offline");
-    };
-
-    syncConnectivity();
-    window.addEventListener("online", syncConnectivity);
-    window.addEventListener("offline", syncConnectivity);
-    return () => {
-      window.removeEventListener("online", syncConnectivity);
-      window.removeEventListener("offline", syncConnectivity);
-    };
-  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -139,7 +117,7 @@ export function ShipmentTracking(props: ShipmentTrackingProps) {
   if (!snapshot && !error) {
     return (
       <SurfaceCard>
-        <EmptyState title="Loading shipment" body="Route progress, timing, and handoff details are loading." />
+        <EmptyState title="Loading shipment" body="Tracking, route, and status updates are loading from the transport workspace." />
       </SurfaceCard>
     );
   }
@@ -156,12 +134,6 @@ export function ShipmentTracking(props: ShipmentTrackingProps) {
 
   const isDriver = session.actor.role === "transporter" || snapshot.driver?.actorId === session.actor.actor_id;
   const stepIndex = snapshot.stage === "delivered" ? 2 : snapshot.stage === "in_transit" ? 1 : snapshot.stage === "picked_up" ? 1 : 0;
-  const nextStageAction =
-    snapshot.stage === "accepted" || snapshot.stage === "posted"
-      ? { label: "Mark picked up", note: "Pickup confirmed from the mobile driver lane.", stage: "picked_up" as const }
-      : snapshot.stage === "picked_up"
-        ? { label: "Mark in transit", note: "The shipment cleared the pickup handoff and entered corridor transit.", stage: "in_transit" as const }
-        : { label: "Record corridor checkpoint", note: "Checkpoint confirmed from the live corridor route.", stage: "in_transit" as const };
 
   return (
     <div className="trucker-stack">
@@ -170,12 +142,11 @@ export function ShipmentTracking(props: ShipmentTrackingProps) {
           <div>
             <p className="eyebrow">Shipment tracking</p>
             <h2>{snapshot.routeLabel.replace("->", "to")}</h2>
-            <p className="muted">Follow route progress, check deadlines, and close the delivery with clear proof.</p>
+            <p className="muted">
+              {snapshot.commodity} · {snapshot.weightLabel}
+            </p>
           </div>
-          <div className="trucker-pill-row">
-            <StatusPill tone={snapshot.stage === "delivered" ? "online" : "degraded"}>{snapshot.stage.replaceAll("_", " ")}</StatusPill>
-            <StatusPill tone={slaTone(snapshot.slaState)}>{snapshot.slaLabel}</StatusPill>
-          </div>
+          <StatusPill tone={snapshot.stage === "delivered" ? "online" : "degraded"}>{snapshot.stage.replaceAll("_", " ")}</StatusPill>
         </div>
       </SurfaceCard>
 
@@ -189,9 +160,9 @@ export function ShipmentTracking(props: ShipmentTrackingProps) {
 
       <SurfaceCard className="trucker-map-card">
         <SectionHeading
-          eyebrow="Route progress"
+          eyebrow="Live route"
           title="Route progress"
-          body="See where this shipment stands now and what milestone comes next."
+          body="The dedicated map service is not active in this lane, so the route view uses the live shipment state plus transport workspace checkpoints."
         />
         <div className="trucker-route-visual">
           <div className="trucker-route-marker">
@@ -213,48 +184,39 @@ export function ShipmentTracking(props: ShipmentTrackingProps) {
           <span>{snapshot.distanceKm} km corridor</span>
           <span>{snapshot.budgetLabel}</span>
         </div>
-        <p className="muted trucker-mobile-note">
-          Need more detail on the estimate? Route timing is based on the latest delivery checkpoint and available travel data.
-        </p>
+      </SurfaceCard>
+
+      <SurfaceCard>
+        <SectionHeading
+          eyebrow="Progress"
+          title="Delivery stepper"
+          body={`${snapshot.currentCheckpoint} · ${snapshot.etaLabel}`}
+        />
+        <div className="trucker-stepper">
+          {[
+            { label: "Picked up", ready: stepIndex >= 0 },
+            { label: "In transit", ready: stepIndex >= 1 },
+            { label: "Delivered", ready: stepIndex >= 2 },
+          ].map((step, index) => (
+            <div className="trucker-step" key={step.label}>
+              <span className={`trucker-step-dot${step.ready ? " ready" : ""}`}>{index + 1}</span>
+              <strong>{step.label}</strong>
+            </div>
+          ))}
+        </div>
       </SurfaceCard>
 
       <div className="trucker-grid">
         <SurfaceCard>
-          <SectionHeading eyebrow="Driver and carrier" title="Driver and carrier" />
+          <SectionHeading eyebrow="Shipment details" title="Cargo details" />
           <div className="trucker-detail-grid">
             <Detail label="Commodity" value={snapshot.commodity} />
-            <Detail label="Load size" value={snapshot.weightLabel} />
+            <Detail label="Weight" value={snapshot.weightLabel} />
             <Detail label="Pickup" value={snapshot.pickupLocation} />
             <Detail label="Destination" value={snapshot.destination} />
             <Detail label="Budget" value={snapshot.budgetLabel} />
-            <Detail label="Proof status" value={snapshot.podStatusLabel} />
+            <Detail label="Issue count" value={`${snapshot.issueCount}`} />
           </div>
-        </SurfaceCard>
-
-        <SurfaceCard>
-          <SectionHeading
-            eyebrow="Delivery timing"
-            title="Delivery timing"
-            body={`${snapshot.currentCheckpoint} · ${snapshot.etaLabel} · Last updated ${formatTimestamp(snapshot.lastUpdatedAt)}`}
-          />
-          <div className="trucker-detail-grid">
-            <Detail label="Delivery deadline" value={formatDate(snapshot.deliveryDeadline)} />
-            <Detail label="Delivery status" value={snapshot.slaLabel} />
-            <Detail label="Open issues" value={`${snapshot.exceptionCount}`} />
-            <Detail label="Connectivity" value={connectivityState === "online" ? "Live updates" : "Saved on device"} />
-          </div>
-          <p className="muted trucker-mobile-note">
-            If signal drops, the current checkpoint and handoff details remain saved until the device reconnects.
-          </p>
-          {snapshot.issues.length ? (
-            <div className="trucker-card-list">
-              {snapshot.issues.map((issue) => (
-                <IssueCard issue={issue} key={issue.id} />
-              ))}
-            </div>
-          ) : (
-            <p className="muted trucker-empty-inline">No delivery issues are open on this shipment.</p>
-          )}
         </SurfaceCard>
 
         <SurfaceCard>
@@ -290,27 +252,7 @@ export function ShipmentTracking(props: ShipmentTrackingProps) {
       </div>
 
       <SurfaceCard>
-        <SectionHeading
-          eyebrow="Route progress"
-          title="Milestones"
-          body={`${snapshot.currentCheckpoint} · ${snapshot.etaLabel}`}
-        />
-        <div className="trucker-stepper">
-          {[
-            { label: "Picked up", ready: stepIndex >= 0 },
-            { label: "In transit", ready: stepIndex >= 1 },
-            { label: "Delivered", ready: stepIndex >= 2 },
-          ].map((step, index) => (
-            <div className="trucker-step" key={step.label}>
-              <span className={`trucker-step-dot${step.ready ? " ready" : ""}`}>{index + 1}</span>
-              <strong>{step.label}</strong>
-            </div>
-          ))}
-        </div>
-      </SurfaceCard>
-
-      <SurfaceCard>
-        <SectionHeading eyebrow="Route progress" title="Recent updates" body="See the latest delivery checkpoints and issue notes in order." />
+        <SectionHeading eyebrow="Status updates" title="Timeline" body="Every entry below comes from settlement events or the transport workspace state log." />
         <div className="trucker-timeline">
           {snapshot.timeline.map((item) => (
             <TimelineEntry item={item} key={item.id} />
@@ -318,48 +260,43 @@ export function ShipmentTracking(props: ShipmentTrackingProps) {
         </div>
       </SurfaceCard>
 
-      {isDriver && snapshot.stage !== "delivered" ? (
+      {isDriver ? (
         <SurfaceCard>
           <SectionHeading
-            eyebrow="Issue reporting"
-            title="Keep the delivery moving"
-            body="Update the next milestone, report an issue, or keep working offline until signal returns."
+            eyebrow="Driver controls"
+            title="Update shipment status"
+            body="These controls write to the transport workspace now and prepare the route for the dedicated logistics command path later."
           />
           <div className="trucker-driver-actions">
             <Button
               onClick={() => {
-                void (async () => {
-                  try {
-                    await truckerApi.updateShipmentStageLive(props.shipmentId, nextStageAction.stage, {
-                      note: nextStageAction.note,
-                      traceId,
-                    });
-                    setError(null);
-                    await refresh();
-                  } catch (nextError) {
-                    setError(nextError instanceof Error ? nextError.message : "Unable to record the shipment milestone.");
-                  }
-                })();
+                truckerApi.updateShipmentStage(props.shipmentId, "picked_up");
+                void refresh();
               }}
               variant="secondary"
             >
-              {nextStageAction.label}
+              Update location
             </Button>
             <Button onClick={() => setIssueOpen(true)} variant="ghost">
               Report issue
             </Button>
-            <StatusPill tone={connectivityState === "online" ? "online" : "degraded"}>
-              {connectivityState === "online" ? "Signal live" : "Signal offline"}
-            </StatusPill>
+            <Button
+              onClick={() => {
+                truckerApi.updateShipmentStage(props.shipmentId, "in_transit");
+                void refresh();
+              }}
+            >
+              Confirm transit
+            </Button>
           </div>
         </SurfaceCard>
       ) : null}
 
-      <SurfaceCard id="pod-proof">
+      <SurfaceCard>
         <SectionHeading
           eyebrow="Proof of delivery"
-          title="Capture handoff proof"
-          body={`Upload a delivery photo and signature to close the shipment clearly. ${snapshot.podStatusLabel}.`}
+          title="Capture final handoff"
+          body="Upload a delivery photo and signature to close the shipment with a durable proof trail."
         />
         <div className="trucker-proof-grid">
           <label className="trucker-file-drop">
@@ -416,34 +353,41 @@ export function ShipmentTracking(props: ShipmentTrackingProps) {
                   dateStyle: "medium",
                   timeStyle: "short",
                 })}`
-              : "Recipient name, signature, and a delivery photo are required before completion."}
+              : "Signature and recipient details are required before completion."}
           </span>
           <Button
-              onClick={() => {
-                void (async () => {
-                  try {
-                    const trimmedRecipientName = recipientNameRef.current.trim();
-                    const nextSignaturePoints = signaturePointsRef.current;
-                    const completionSignaturePoints =
-                      nextSignaturePoints.length >= 2 ? nextSignaturePoints : fallbackSignaturePoints(trimmedRecipientName);
+            onClick={() => {
+              const trimmedRecipientName = recipientNameRef.current.trim();
+              const nextSignaturePoints = signaturePointsRef.current;
+              const completionSignaturePoints =
+                nextSignaturePoints.length >= 2 ? nextSignaturePoints : fallbackSignaturePoints(trimmedRecipientName);
 
-                    if (!trimmedRecipientName || !photoName) {
-                      setError("Recipient name and delivery photo are required before completion.");
-                      return;
+              if (!trimmedRecipientName || !photoName) {
+                setError("Recipient name and delivery photo are required before completion.");
+                return;
+              }
+
+              const proofOfDelivery = truckerApi.completeDelivery(props.shipmentId, {
+                photoName,
+                recipientName: trimmedRecipientName,
+                signaturePoints: completionSignaturePoints,
+              });
+              truckerApi.updateShipmentStage(props.shipmentId, "delivered");
+              setSnapshot((current) =>
+                current
+                  ? {
+                      ...current,
+                      currentCheckpoint: "Delivery confirmed",
+                      currentLocationLabel: current.destination,
+                      etaLabel: "Delivered",
+                      proofOfDelivery,
+                      stage: "delivered",
                     }
-
-                    await truckerApi.completeDeliveryLive(props.shipmentId, {
-                      photoName,
-                      recipientName: trimmedRecipientName,
-                      signaturePoints: completionSignaturePoints,
-                    }, traceId);
-                    setError(null);
-                    await refresh();
-                  } catch (nextError) {
-                    setError(nextError instanceof Error ? nextError.message : "Unable to complete delivery.");
-                  }
-                })();
-              }}
+                  : current,
+              );
+              setError(null);
+              void refresh();
+            }}
           >
             <CheckCircle2 size={18} />
             Complete delivery
@@ -453,7 +397,7 @@ export function ShipmentTracking(props: ShipmentTrackingProps) {
 
       <SurfaceCard>
         <Link className="trucker-link-inline" href="/app/trucker">
-          Back to transport board
+          Back to AgroTrucker
         </Link>
       </SurfaceCard>
 
@@ -465,30 +409,13 @@ export function ShipmentTracking(props: ShipmentTrackingProps) {
             </Button>
             <Button
               onClick={() => {
-                void (async () => {
-                  if (!issueDescription.trim()) {
-                    setError("Describe the issue before saving the exception.");
-                    return;
-                  }
-                  try {
-                    await truckerApi.reportIssueLive(props.shipmentId, {
-                      blocked: issueBlocked,
-                      delayMinutes: issueDelayMinutes ? Number(issueDelayMinutes) : null,
-                      description: issueDescription.trim(),
-                      severity: issueSeverity,
-                      type: issueType,
-                    }, traceId);
-                    setIssueBlocked(false);
-                    setIssueDescription("");
-                    setIssueDelayMinutes("");
-                    setIssueSeverity("medium");
-                    setIssueOpen(false);
-                    setError(null);
-                    await refresh();
-                  } catch (nextError) {
-                    setError(nextError instanceof Error ? nextError.message : "Unable to save the exception.");
-                  }
-                })();
+                truckerApi.reportIssue(props.shipmentId, {
+                  description: issueDescription,
+                  type: issueType,
+                });
+                setIssueDescription("");
+                setIssueOpen(false);
+                void refresh();
               }}
             >
               Save issue
@@ -510,30 +437,11 @@ export function ShipmentTracking(props: ShipmentTrackingProps) {
             ]}
             value={issueType}
           />
-          <Select
-            onChange={(event) => setIssueSeverity(event.target.value as "low" | "medium" | "high")}
-            options={[
-              { label: "Medium severity", value: "medium" },
-              { label: "High severity", value: "high" },
-              { label: "Low severity", value: "low" },
-            ]}
-            value={issueSeverity}
-          />
-          <Input
-            onChange={(event) => setIssueDelayMinutes(event.target.value)}
-            placeholder="Delay minutes (optional)"
-            type="number"
-            value={issueDelayMinutes}
-          />
           <Textarea
             onChange={(event) => setIssueDescription(event.target.value)}
             placeholder="Describe the issue, checkpoint, and next mitigation step."
             value={issueDescription}
           />
-          <label className="trucker-checkbox">
-            <input checked={issueBlocked} onChange={(event) => setIssueBlocked(event.target.checked)} type="checkbox" />
-            <span>Block delivery until this issue is resolved</span>
-          </label>
         </div>
       </Modal>
     </div>
@@ -564,25 +472,6 @@ function TimelineEntry(props: { item: TruckerTimelineEntry }) {
             timeStyle: "short",
           })}
         </span>
-      </div>
-    </article>
-  );
-}
-
-function IssueCard(props: { issue: ShipmentIssue }) {
-  return (
-    <article className={`trucker-issue-card severity-${props.issue.severity}`}>
-      <div className="trucker-inline">
-        <strong>{props.issue.type.replaceAll("_", " ")}</strong>
-        <StatusPill tone={props.issue.blocked ? "degraded" : "neutral"}>
-          {props.issue.blocked ? "Needs attention" : "Logged"}
-        </StatusPill>
-      </div>
-      <p className="muted">{props.issue.description}</p>
-      <div className="trucker-card-meta">
-        <span>{props.issue.severity} severity</span>
-        <span>{props.issue.delayMinutes ? `${props.issue.delayMinutes} min delay` : "No delay logged"}</span>
-        <span>{formatTimestamp(props.issue.reportedAt)}</span>
       </div>
     </article>
   );
@@ -625,27 +514,4 @@ function fallbackSignaturePoints(recipientName: string): SignaturePoint[] {
     x: 36 + index * 34,
     y: startY + (index % 2 === 0 ? -12 : 10),
   }));
-}
-
-function formatDate(value: string): string {
-  return new Date(`${value}T12:00:00Z`).toLocaleDateString("en-US", {
-    dateStyle: "medium",
-  });
-}
-
-function formatTimestamp(value: string): string {
-  return new Date(value).toLocaleString("en-US", {
-    dateStyle: "medium",
-    timeStyle: "short",
-  });
-}
-
-function slaTone(state: ShipmentTrackingSnapshot["slaState"]): "online" | "degraded" | "neutral" {
-  if (state === "met" || state === "on_track") {
-    return "online";
-  }
-  if (state === "at_risk" || state === "breached" || state === "missed") {
-    return "degraded";
-  }
-  return "neutral";
 }

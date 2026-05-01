@@ -1,8 +1,7 @@
 "use client";
 
-import type { NegotiationThreadRead } from "@agrodomain/contracts";
 import Link from "next/link";
-import React from "react";
+import type { NegotiationThreadRead } from "@agrodomain/contracts";
 
 import { EscrowManagement } from "@/components/wallet/escrow-management";
 import { InsightCallout, SectionHeading, StatusPill, SurfaceCard } from "@/components/ui-primitives";
@@ -39,9 +38,9 @@ export function EscrowPrompt({
     return (
       <SurfaceCard>
         <SectionHeading
-          eyebrow="Move to payment"
+          eyebrow="Escrow linked"
           title="This deal is already protected"
-          body="The accepted deal is already protected in the wallet. Keep monitoring status here or continue in the full payment view."
+          body="The accepted negotiation is connected to AgroWallet. You can keep monitoring status from here or continue in the wallet workspace."
           actions={
             <div className="pill-row">
               <StatusPill tone="online">Escrow live</StatusPill>
@@ -52,7 +51,7 @@ export function EscrowPrompt({
         <EscrowManagement actorId={actorId} escrow={existingEscrow} mode="compact" note={note} />
         <div className="inline-actions">
           <Link className="button-primary" href={`/app/payments/wallet?escrow=${existingEscrow.escrow_id}`}>
-            Review details
+            Open in wallet
           </Link>
           <Link className="button-ghost" href="/app/notifications">
             View related alerts
@@ -65,7 +64,7 @@ export function EscrowPrompt({
   return (
     <SurfaceCard>
       <SectionHeading
-        eyebrow="Move to payment"
+        eyebrow="Escrow ready"
         title={isBuyer ? "Secure this accepted deal" : "Waiting for buyer escrow"}
         body={
           isBuyer
@@ -87,7 +86,7 @@ export function EscrowPrompt({
       {isBuyer ? (
         <>
           <div className="field">
-            <label htmlFor="escrow-note">Payment note</label>
+            <label htmlFor="escrow-note">Escrow note</label>
             <textarea
               className="ds-input ds-textarea"
               id="escrow-note"
@@ -104,7 +103,7 @@ export function EscrowPrompt({
           ) : null}
           <div className="inline-actions">
             <button className="button-primary" disabled={isMutating} onClick={onInitiate} type="button">
-              {isMutating ? "Starting payment hold..." : "Move to payment"}
+              {isMutating ? "Creating escrow..." : "Create Escrow"}
             </button>
             <Link className="button-ghost" href="/app/payments/wallet">
               Review wallet

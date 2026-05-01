@@ -122,7 +122,6 @@ describe("listing surfaces", () => {
 
   it("renders buyer discovery from buyer-safe published listings only", async () => {
     mockUseAppState.mockReturnValue({
-      queue: { connectivity_state: "online", handoff_channel: null, items: [] },
       session: buildSession("buyer"),
       traceId: "trace-buyer",
     });
@@ -150,8 +149,8 @@ describe("listing surfaces", () => {
 
     render(<ListingSliceClient />);
 
-    expect(await screen.findByRole("heading", { name: "Find the right lot faster" })).toBeInTheDocument();
-    expect(screen.getByText("Review matching lots")).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "Discover trusted agricultural supply in one place" })).toBeInTheDocument();
+    expect(screen.getByText("Live inventory only")).toBeInTheDocument();
     expect(screen.getByText("Showing 20 of 25 matching lots.")).toBeInTheDocument();
     const listingFeed = screen.getByRole("list", { name: "Published listings" });
     expect(within(listingFeed).getAllByRole("link", { name: "Inspect lot" })).toHaveLength(20);
@@ -161,14 +160,13 @@ describe("listing surfaces", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "Load more lots" }));
     await waitFor(() => {
-      expect(within(screen.getByRole("list", { name: "Published listings" })).getAllByRole("link", { name: "Inspect lot" })).toHaveLength(25);
+      expect(within(listingFeed).getAllByRole("link", { name: "Inspect lot" })).toHaveLength(25);
       expect(screen.getByText("Showing 25 of 25 matching lots.")).toBeInTheDocument();
     });
   });
 
   it("combines buyer discovery filters and shows an empty state when nothing matches", async () => {
     mockUseAppState.mockReturnValue({
-      queue: { connectivity_state: "online", handoff_channel: null, items: [] },
       session: buildSession("buyer"),
       traceId: "trace-buyer-filters",
     });
@@ -201,11 +199,11 @@ describe("listing surfaces", () => {
     });
 
     render(<ListingSliceClient />);
-    expect(await screen.findByRole("heading", { name: "Find the right lot faster" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "Discover trusted agricultural supply in one place" })).toBeInTheDocument();
 
     fireEvent.change(screen.getByLabelText("Commodity"), { target: { value: "Cassava" } });
     fireEvent.change(screen.getByLabelText("Location"), { target: { value: "Tamale, GH" } });
-    fireEvent.change(screen.getByLabelText("Maximum price"), { target: { value: "350" } });
+    fireEvent.change(screen.getByLabelText("Max price"), { target: { value: "350" } });
 
     await waitFor(() => {
       expect(screen.getByText("1 live lot match your filters.")).toBeInTheDocument();
@@ -224,7 +222,6 @@ describe("listing surfaces", () => {
 
   it("blocks buyer detail when listing is not buyer-safe published", async () => {
     mockUseAppState.mockReturnValue({
-      queue: { connectivity_state: "online", handoff_channel: null, items: [] },
       session: buildSession("buyer"),
       traceId: "trace-buyer-detail-blocked",
     });
@@ -240,7 +237,6 @@ describe("listing surfaces", () => {
 
   it("renders buyer-safe detail and emits inquiry telemetry", async () => {
     mockUseAppState.mockReturnValue({
-      queue: { connectivity_state: "online", handoff_channel: null, items: [] },
       session: buildSession("buyer"),
       traceId: "trace-buyer-detail",
     });
@@ -266,7 +262,6 @@ describe("listing surfaces", () => {
 
   it("shows owner publish and revision cues with optimistic reconciliation", async () => {
     mockUseAppState.mockReturnValue({
-      queue: { connectivity_state: "online", handoff_channel: null, items: [] },
       session: buildSession("farmer"),
       traceId: "trace-owner-detail",
     });

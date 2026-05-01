@@ -202,12 +202,12 @@ describe("r3 role dashboards", () => {
 
     render(<BuyerDashboard />);
 
-    expect(await screen.findByText("Available lots")).toBeInTheDocument();
+    expect(await screen.findByText("Available listings")).toBeInTheDocument();
     await waitFor(() => {
       expect(mockMarketplaceApi.listListings).toHaveBeenCalledWith("trace-buyer");
       expect(mockWalletApi.getWalletSummary).toHaveBeenCalledWith("trace-buyer");
     });
-    expect(screen.getByRole("link", { name: /track delivery/i })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /view shipments/i })).toHaveAttribute(
       "href",
       "/app/traceability/listing-1",
     );
@@ -295,7 +295,7 @@ describe("r3 role dashboards", () => {
 
     render(<TransporterDashboard />);
 
-    expect(await screen.findByText("Transport workspace")).toBeInTheDocument();
+    expect(await screen.findByText("Transporter dashboard")).toBeInTheDocument();
     await waitFor(() => {
       expect(mockWalletApi.listEscrows).toHaveBeenCalledWith("trace-transporter");
     });
@@ -463,11 +463,11 @@ describe("r3 role dashboards", () => {
 
     render(<AgentDashboard />);
 
-    expect(await screen.findByText("Open cases")).toBeInTheDocument();
+    expect(await screen.findByText("Pending advisory requests")).toBeInTheDocument();
     await waitFor(() => {
       expect(mockAdvisoryApi.listConversations).toHaveBeenCalledWith("trace-agent", "en-GH");
       expect(mockClimateApi.listRuntime).toHaveBeenCalledWith("trace-agent", "en-GH");
     });
-    expect(screen.getByRole("link", { name: /open requests/i })).toHaveAttribute("href", "/app/advisor/requests");
+    expect(screen.getByRole("link", { name: /review queue/i })).toHaveAttribute("href", "/app/advisor/requests");
   });
 });

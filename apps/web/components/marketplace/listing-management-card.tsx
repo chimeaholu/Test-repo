@@ -30,8 +30,6 @@ function statusTone(status: ListingRecord["status"]): "online" | "degraded" | "n
 
 export function ListingManagementCard(props: ListingManagementCardProps) {
   const actionLabel = props.listing.status === "published" ? "Unpublish" : "Publish";
-  const reviewState =
-    props.listing.status === "draft" || props.listing.has_unpublished_changes ? "Needs attention" : props.listing.status === "published" ? "Live now" : "Completed";
 
   return (
     <article className="queue-card market-management-card">
@@ -46,9 +44,7 @@ export function ListingManagementCard(props: ListingManagementCardProps) {
         </label>
         <div className="pill-row">
           <StatusPill tone={statusTone(props.listing.status)}>{props.listing.status}</StatusPill>
-          <StatusPill tone={props.listing.has_unpublished_changes || props.listing.status === "draft" ? "degraded" : props.listing.status === "published" ? "online" : "neutral"}>
-            {reviewState}
-          </StatusPill>
+          {props.listing.has_unpublished_changes ? <StatusPill tone="degraded">Needs publish</StatusPill> : null}
         </div>
       </div>
 
@@ -84,7 +80,7 @@ export function ListingManagementCard(props: ListingManagementCardProps) {
 
           <div className="actions-row">
             <Link className="button-ghost" href={props.editHref}>
-              Review details
+              Edit
             </Link>
             <button className="button-secondary" disabled={props.isBusy} onClick={props.onToggleStatus} type="button">
               {props.isBusy ? "Saving..." : actionLabel}

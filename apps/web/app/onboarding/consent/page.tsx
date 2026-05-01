@@ -2,43 +2,33 @@
 
 import Link from "next/link";
 import { useEffect, useState, type FormEvent } from "react";
-import { BellRing, ScrollText, ShieldCheck } from "lucide-react";
 
 import { useAppState } from "@/components/app-provider";
 import { consentSchema } from "@/features/identity/schema";
+import { InfoList, InsightCallout, SectionHeading, StatusPill } from "@/components/ui-primitives";
 import { consentCopy } from "@/lib/content/route-copy";
 
-const requiredScopes = [
-  {
-    value: "identity.core",
-    title: "Keep your account secure",
-    body: "This helps us confirm your identity and keep the right workspace attached to your account.",
-    icon: ShieldCheck,
-  },
-  {
-    value: "workflow.audit",
-    title: "Protect important actions",
-    body: "This keeps key trade, payment, and review actions properly recorded.",
-    icon: ScrollText,
-  },
-  {
-    value: "notifications.delivery",
-    title: "Send essential updates",
-    body: "This lets us notify you when money moves, offers change, or review is needed.",
-    icon: BellRing,
-  },
+const scopeOptions = [
+  { value: "identity.core", label: "Identity and session controls" },
+  { value: "workflow.audit", label: "Workflow audit and regulated operations" },
+  { value: "notifications.delivery", label: "Channel delivery and recovery prompts" },
 ] as const;
 
 export default function ConsentPage() {
   const { ensureConsentPending, grantConsent, isHydrated, session } = useAppState();
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isInteractive, setIsInteractive] = useState(false);
 
   useEffect(() => {
     if (isHydrated && session?.consent.state === "identified") {
       ensureConsentPending();
     }
   }, [ensureConsentPending, isHydrated, session]);
+
+  useEffect(() => {
+    setIsInteractive(true);
+  }, []);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -51,7 +41,7 @@ export default function ConsentPage() {
     });
 
     if (!result.success) {
-      setError(result.error.issues[0]?.message ?? "Please review the permissions before you continue.");
+      setError(result.error.issues[0]?.message ?? "Review the consent form and try again.");
       return;
     }
 
@@ -63,10 +53,11 @@ export default function ConsentPage() {
         scopeIds: result.data.scopeIds,
       });
     } catch (err) {
-      const message = err instanceof Error ? err.message : "We could not record your permissions.";
+      const message =
+        err instanceof Error ? err.message : "Consent capture failed. Please try again.";
       setError(
         message === "Failed to fetch"
-          ? "We could not reach the service. Check your connection and try again."
+          ? "Unable to reach the server. Check your connection and try again."
           : message,
       );
     } finally {
@@ -75,90 +66,139 @@ export default function ConsentPage() {
   };
 
   return (
-    <main className="pub-route-main onboarding-consent-main" id="main-content">
-      <section className="pub-route-section">
-        <div className="pub-section-shell onboarding-consent-shell">
-          <div className="onboarding-consent-copy">
-            <p className="pub-overline">Before you continue</p>
-            <h1 className="pub-display">Review the permissions that keep your workspace working</h1>
-            <p className="pub-copy pub-copy-lg">
-              Agrodomain needs a few essential permissions to secure your account,
-              record protected actions, and send important updates.
-            </p>
-            <div className="pub-card-grid pub-card-grid-three">
-              {requiredScopes.map((scope) => {
-                const Icon = scope.icon;
-                return (
-                  <article key={scope.value} className="pub-card pub-card-accent">
-                    <span className="pub-icon-badge">
-                      <Icon size={20} />
-                    </span>
-                    <h2>{scope.title}</h2>
-                    <p>{scope.body}</p>
-                  </article>
-                );
-              })}
-            </div>
+    <main className="page-shell" id="main-content">
+      <section className="grid-two">
+        <article className="panel">
+          <SectionHeading
+            eyebrow={consentCopy.onboardingEyebrow}
+            title="Review access before the workspace opens"
+            body={consentCopy.onboardingBody}
+          />
+          <div className="pill-row">
+            <StatusPill tone="degraded">Protected actions locked</StatusPill>
+            <StatusPill tone="neutral">Policy {consentCopy.policyVersion}</StatusPill>
           </div>
-
-          <form className="onboarding-consent-form" onSubmit={(event) => void handleSubmit(event)}>
-            {requiredScopes.map((scope) => (
-              <input key={scope.value} name="scopeIds" type="hidden" value={scope.value} />
-            ))}
-
-            <div className="pub-card pub-card-proof">
-              <h2>You stay in control</h2>
-              <p>
-                These permissions support how the platform works. They do not turn
-                your account into a public profile or share private information outside the platform.
-              </p>
-            </div>
-
-            <div className="pub-review-list">
-              <div className="pub-review-item">
-                <span>Role</span>
-                <strong>{session?.actor.role ?? "Pending"}</strong>
+          <ol className="timeline" aria-label="Onboarding steps">
+            <li>
+              <span className="timeline-marker done" />
+              <div>
+                <strong>Identity confirmed</strong>
+                <p className="muted">{consentCopy.identityLoadedBody}</p>
               </div>
-              <div className="pub-review-item">
-                <span>Country</span>
-                <strong>{session?.actor.country_code ?? "Pending"}</strong>
+            </li>
+            <li>
+              <span className="timeline-marker current" />
+              <div>
+                <strong>Consent review</strong>
+                <p className="muted">
+                  Regulated actions stay blocked until consent is captured with the policy version and timestamp.
+                </p>
               </div>
-              <div className="pub-review-item">
-                <span>Reference</span>
-                <strong>{consentCopy.policyVersion}</strong>
+            </li>
+            <li>
+              <span className="timeline-marker" />
+              <div>
+                <strong>Workspace access</strong>
+                <p className="muted">{consentCopy.accessBody}</p>
               </div>
-            </div>
+            </li>
+          </ol>
+          <InsightCallout
+            title="Plain-language rule"
+            body={consentCopy.plainLanguageRule}
+            tone="brand"
+          />
+          <div className="hero-kpi-grid" aria-label="Consent outcomes">
+            <article className="hero-kpi">
+              <span className="metric-label">Recorded immediately</span>
+              <strong>Policy version and capture time</strong>
+              <p className="muted">The consent record becomes part of the active session state.</p>
+            </article>
+            <article className="hero-kpi">
+              <span className="metric-label">Still enforced later</span>
+              <strong>Server-side policy checks</strong>
+              <p className="muted">Granting consent does not bypass subsequent permission or workflow checks.</p>
+            </article>
+          </div>
+        </article>
 
-            <label className="checkbox-item pub-checkbox-item">
+        <article className="panel">
+          <SectionHeading
+            eyebrow="Consent details"
+            title="Choose the permissions you approve"
+            body={consentCopy.contractBody}
+          />
+          <InfoList
+            items={[
+              { label: "Policy version", value: consentCopy.policyVersion },
+              { label: "Channel", value: "pwa" },
+              { label: "Country", value: session?.actor.country_code ?? "pending" },
+              { label: "Role", value: session?.actor.role ?? "pending" },
+            ]}
+          />
+          <div className="journey-grid compact-grid" aria-label="Scope explanation">
+            <article className="journey-card subtle">
+              <h3>Identity scope</h3>
+              <p className="muted">Needed to route you correctly, maintain session continuity, and explain who performed each action.</p>
+            </article>
+            <article className="journey-card subtle">
+              <h3>Workflow scope</h3>
+              <p className="muted">Needed where regulated actions, approvals, or evidence retention apply.</p>
+            </article>
+          </div>
+          <form
+            className="form-stack"
+            data-interactive={isInteractive ? "true" : "false"}
+            onSubmit={(e) => void handleSubmit(e)}
+          >
+            <fieldset className="fieldset checkbox-list" disabled={isSubmitting}>
+              <legend>Select the consent scopes you accept</legend>
+              {scopeOptions.map((scope) => (
+                <label className="checkbox-item" key={scope.value}>
+                  <input
+                    defaultChecked={scope.value !== "notifications.delivery"}
+                    name="scopeIds"
+                    type="checkbox"
+                    value={scope.value}
+                  />
+                  <span>
+                    <strong>{scope.label}</strong>
+                    <span className="helper-inline">
+                      {scope.value === "identity.core"
+                        ? "Needed to load the correct workspace and verify your identity state."
+                        : scope.value === "workflow.audit"
+                          ? "Needed to log regulated actions and keep audit history intact."
+                          : "Needed to send recovery prompts and channel handoff advice."}
+                    </span>
+                  </span>
+                </label>
+              ))}
+            </fieldset>
+            <label className="checkbox-item">
               <input name="accepted" type="checkbox" disabled={isSubmitting} />
-              <span>I understand these permissions and want to continue into my workspace.</span>
+              <span>I confirm this consent text can be recorded with its policy version and capture time.</span>
             </label>
-
             {error ? (
               <p className="field-error" role="alert">
                 {error}
               </p>
             ) : null}
-
-            <div className="pub-cta-row">
+            <div className="actions-row">
               <button
                 className="button-primary"
                 type="submit"
                 disabled={isSubmitting}
                 aria-busy={isSubmitting}
               >
-                {isSubmitting ? "Saving..." : "Accept and continue"}
+                {isSubmitting ? "Granting consent\u2026" : "Grant consent"}
               </button>
               <Link className="button-ghost" href="/signin">
-                Review later
+                Back to sign in
               </Link>
             </div>
-
-            <p className="pub-copy pub-copy-sm">
-              Without these permissions, your workspace will stay locked.
-            </p>
+            <p className="muted detail-note">If consent is not granted, protected actions remain blocked and the workspace will not open.</p>
           </form>
-        </div>
+        </article>
       </section>
     </main>
   );

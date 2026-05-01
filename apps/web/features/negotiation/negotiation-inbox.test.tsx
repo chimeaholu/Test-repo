@@ -4,17 +4,9 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const {
-  mockAuditApi,
-  mockMarketplaceApi,
-  mockRecordMarketplaceConversion,
-  mockRecordTelemetry,
-  mockUseAppState,
-  mockWalletApi,
-} = vi.hoisted(() => ({
+const { mockAuditApi, mockMarketplaceApi, mockRecordTelemetry, mockUseAppState } = vi.hoisted(() => ({
   mockUseAppState: vi.fn(),
   mockRecordTelemetry: vi.fn(),
-  mockRecordMarketplaceConversion: vi.fn(),
   mockAuditApi: {
     getEvents: vi.fn(),
   },
@@ -22,15 +14,10 @@ const {
     approveNegotiationConfirmation: vi.fn(),
     counterNegotiation: vi.fn(),
     createNegotiation: vi.fn(),
-    getNegotiationIntelligence: vi.fn(),
     getNegotiationThread: vi.fn(),
     listNegotiations: vi.fn(),
     rejectNegotiationConfirmation: vi.fn(),
     requestNegotiationConfirmation: vi.fn(),
-  },
-  mockWalletApi: {
-    initiateEscrow: vi.fn(),
-    listEscrows: vi.fn(),
   },
 }));
 
@@ -52,17 +39,8 @@ vi.mock("@/lib/api/marketplace", () => ({
   marketplaceApi: mockMarketplaceApi,
 }));
 
-vi.mock("@/lib/api/wallet", () => ({
-  walletApi: mockWalletApi,
-}));
-
 vi.mock("@/lib/telemetry/client", () => ({
   recordTelemetry: (...args: unknown[]) => mockRecordTelemetry(...args),
-}));
-
-vi.mock("@/lib/telemetry/marketplace", () => ({
-  recordMarketplaceConversion: (...args: unknown[]) =>
-    mockRecordMarketplaceConversion(...args),
 }));
 
 import { NegotiationInboxClient } from "@/features/negotiation/negotiation-inbox";
@@ -130,10 +108,6 @@ function buildThread(overrides: Partial<NegotiationThreadRead> = {}): Negotiatio
 describe("negotiation inbox", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mockMarketplaceApi.getNegotiationIntelligence.mockResolvedValue({ data: null });
-    mockWalletApi.listEscrows.mockResolvedValue({
-      data: { schema_version: "2026-04-18.wave1", items: [] },
-    });
   });
 
   it("submits a buyer offer and renders recent activity details", async () => {
@@ -159,7 +133,7 @@ describe("negotiation inbox", () => {
 
     render(<NegotiationInboxClient initialListingId="listing-1" />);
 
-    expect(await screen.findByRole("heading", { name: "Offer detail" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "All conversations" })).toBeInTheDocument();
 
     fireEvent.change(screen.getByLabelText("Offer amount"), {
       target: { value: "500" },
@@ -180,7 +154,7 @@ describe("negotiation inbox", () => {
     });
 
     expect(await screen.findByText("Offer created")).toBeInTheDocument();
-    expect(screen.getByText(/Reference req-neg-create is available if support needs to review the record/i)).toBeInTheDocument();
+    expect(screen.getByText(/Request req-neg-create recorded 3 audit events/i)).toBeInTheDocument();
   });
 
   it("renders pending confirmation controls only for the authorized confirmer", async () => {
@@ -216,10 +190,10 @@ describe("negotiation inbox", () => {
 
     render(<NegotiationInboxClient initialThreadId="thread-1" />);
 
-    expect(await screen.findByText("A final decision is still needed")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Accept offer" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Decline" })).toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: "Send counteroffer" })).not.toBeInTheDocument();
+    expect(await screen.findByText("Confirmation checkpoint open")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Accept" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Reject" })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Send Counter Offer" })).not.toBeInTheDocument();
   });
 
   it("surfaces inaccessible thread handling when the selected thread is unavailable", async () => {
@@ -267,7 +241,7 @@ describe("negotiation inbox", () => {
     render(<NegotiationInboxClient initialThreadId="thread-1" />);
 
     expect(await screen.findByText("Thread closed")).toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: "Send counteroffer" })).not.toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: "Move to payment review" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Send Counter Offer" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Request Confirmation" })).not.toBeInTheDocument();
   });
 });

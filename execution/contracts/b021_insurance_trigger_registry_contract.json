@@ -1,0 +1,38 @@
+{
+  "bead_id": "B-021",
+  "title": "Insurance Parametric Trigger Registry",
+  "scope": {
+    "focus": [
+      "thresholds",
+      "source_references",
+      "payout_events",
+      "approved_insurance_binding"
+    ]
+  },
+  "definition": {
+    "required_fields": [
+      "trigger_id",
+      "partner_id",
+      "country_code",
+      "product_code",
+      "coverage_currency",
+      "thresholds",
+      "evidence_reference_ids"
+    ]
+  },
+  "payout_event": {
+    "fields": [
+      "partner_reference_id",
+      "metric_name",
+      "observed_value",
+      "threshold_value",
+      "payout_amount_minor",
+      "source_signal_id",
+      "source_reference"
+    ]
+  },
+  "test_obligations": {
+    "journey": "EP-008",
+    "data_check": "DI-006"
+  }
+}

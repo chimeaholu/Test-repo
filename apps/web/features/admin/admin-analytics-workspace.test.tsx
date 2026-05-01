@@ -249,8 +249,8 @@ describe("admin analytics workspace", () => {
 
     render(<AdminAnalyticsWorkspace />);
 
-    expect(await screen.findByRole("alert")).toHaveTextContent("Showing the best available view from live activity.");
-    expect(screen.getByText(/Monitor product health, release readiness, and operating pressure/i)).toBeInTheDocument();
+    expect(await screen.findByRole("alert")).toHaveTextContent("Showing derived analytics from live runtime data.");
+    expect(screen.getByText(/Platform health, growth, and release posture/i)).toBeInTheDocument();
     expect(screen.getByTestId("admin-growth-chart")).toBeInTheDocument();
   });
 
@@ -281,8 +281,8 @@ describe("admin analytics workspace", () => {
 
     render(<AdminAnalyticsWorkspace />);
 
-    expect(await screen.findByRole("button", { name: "Hold rollout" })).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: "Hold rollout" }));
+    expect(await screen.findByRole("button", { name: "Freeze rollout" })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Freeze rollout" }));
 
     await waitFor(() => {
       expect(screen.getByRole("alert")).toHaveTextContent("Admin API error: missing_rollout_scope");

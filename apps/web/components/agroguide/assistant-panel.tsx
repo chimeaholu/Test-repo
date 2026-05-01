@@ -1,20 +1,15 @@
 "use client";
 
-import type {
-  AdvisoryTranscriptEntry,
-  CopilotContext,
-  CopilotResolution,
-  CopilotRecommendation,
-} from "@agrodomain/contracts";
+import type { AdvisoryTranscriptEntry } from "@agrodomain/contracts";
 import React, { startTransition, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 import { useAppState } from "@/components/app-provider";
 import { CloseIcon } from "@/components/icons";
 import { sortAdvisoryItems, type AdvisoryViewModel } from "@/features/advisory/model";
 import { advisoryApi } from "@/lib/api/advisory";
-import { copilotApi } from "@/lib/api/copilot";
+import { sendCommand } from "@/lib/api-client";
 import { recordTelemetry } from "@/lib/telemetry/client";
 
 import {
@@ -23,7 +18,6 @@ import {
 } from "./chat-interface";
 import { ContextualSuggestions, buildContextualSuggestions } from "./contextual-suggestions";
 import { CropDiagnosis, type CropDiagnosisState } from "./crop-diagnosis";
-import { ProactiveRecommendations } from "./proactive-recommendations";
 
 type AdvisoryItem = Awaited<ReturnType<typeof advisoryApi.listConversations>>["data"]["items"][number];
 
@@ -88,7 +82,7 @@ function buildConversationMessages(
       id: "agroguide-welcome",
       role: "assistant",
       sources: ["General platform guidance"],
-      text: "Hello! I'm AgroGuide, your assist-and-act copilot. Ask for advice or tell me the next safe action you want completed.",
+      text: "Hello! I'm AgroGuide, your farming assistant. How can I help you today?",
     },
   ];
 
@@ -129,22 +123,13 @@ export function AgroGuideAssistantPanel({
 }: AgroGuideAssistantPanelProps) {
   const { queue, session, traceId } = useAppState();
   const pathname = usePathname() ?? "/app";
-  const router = useRouter();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [items, setItems] = useState<AdvisoryItem[]>([]);
-  const [recommendations, setRecommendations] = useState<CopilotRecommendation[]>([]);
   const [feedback, setFeedback] = useState<Record<string, "negative" | "positive" | null>>({});
   const [localMessages, setLocalMessages] = useState<AgroGuideChatMessage[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [pendingRecommendationId, setPendingRecommendationId] = useState<string | null>(null);
-  const [confirmRecommendationId, setConfirmRecommendationId] = useState<string | null>(null);
-  const [completedRecommendationIds, setCompletedRecommendationIds] = useState<string[]>([]);
-  const [activeResolution, setActiveResolution] = useState<CopilotResolution | null>(null);
-  const [pendingResolutionDecision, setPendingResolutionDecision] = useState<
-    "confirm" | "escalate" | null
-  >(null);
   const [runtimeMode, setRuntimeMode] = useState<"fallback" | "live">("fallback");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [diagnosis, setDiagnosis] = useState<CropDiagnosisState | null>(null);
@@ -169,19 +154,6 @@ export function AgroGuideAssistantPanel({
     return nextItems;
   }
 
-  async function refreshRecommendations(): Promise<CopilotRecommendation[]> {
-    if (!session) {
-      return [];
-    }
-
-    const response = await copilotApi.listRecommendations(traceId);
-    const nextItems = response.data.items;
-    startTransition(() => {
-      setRecommendations(nextItems);
-    });
-    return nextItems;
-  }
-
   useEffect(() => {
     if (!open || !session) {
       return;
@@ -189,7 +161,7 @@ export function AgroGuideAssistantPanel({
 
     let cancelled = false;
 
-    void Promise.all([refreshConversations(), refreshRecommendations()])
+    void refreshConversations()
       .then(() => {
         if (!cancelled) {
           setErrorMessage(null);
@@ -244,93 +216,9 @@ export function AgroGuideAssistantPanel({
       setInputValue("");
       setErrorMessage(null);
       setLocalMessages([]);
-      setRecommendations([]);
-      setPendingRecommendationId(null);
-      setConfirmRecommendationId(null);
-      setCompletedRecommendationIds([]);
-      setActiveResolution(null);
-      setPendingResolutionDecision(null);
       setDiagnosis(null);
     }
   }, [open]);
-
-  function buildCopilotContext(): CopilotContext {
-    return {};
-  }
-
-  function buildCopilotMessage(
-    text: string,
-    options?: {
-      id?: string;
-      loading?: boolean;
-      status?: string;
-    },
-  ): AgroGuideChatMessage {
-    return {
-      feedback: null,
-      id: options?.id ?? `local-assistant-${Date.now()}`,
-      loading: options?.loading,
-      role: "assistant",
-      sources: ["AgroGuide copilot"],
-      status: options?.status,
-      text,
-    };
-  }
-
-  async function executeResolution(
-    resolution: CopilotResolution,
-    decision: "confirm" | "escalate",
-  ): Promise<AdvisoryItem | null> {
-    setPendingResolutionDecision(decision);
-    setErrorMessage(null);
-
-    try {
-      const execution = await copilotApi.executeAction({
-        decision,
-        resolution,
-        traceId,
-      });
-      const result = execution.data;
-      const status =
-        result.human_handoff.required
-          ? `Handoff: ${result.human_handoff.queue_label}`
-          : result.status === "blocked"
-            ? "Blocked by safety guardrails"
-            : undefined;
-
-      if (result.status === "completed" && resolution.intent === "advisory.ask") {
-        const nextItems = await refreshConversations();
-        const advisoryRequest = result.result.advisory_request as { request_id?: string } | undefined;
-        const latestItem =
-          nextItems.find((item) => item.request_id === advisoryRequest?.request_id) ??
-          nextItems[0] ??
-          null;
-        setLocalMessages([]);
-        setActiveResolution(null);
-        await refreshRecommendations();
-        return latestItem;
-      }
-
-      if (result.status === "completed") {
-        await refreshRecommendations();
-      }
-
-      setLocalMessages((current) => [
-        ...current.filter((message) => !message.loading),
-        buildCopilotMessage(result.summary, {
-          id: `copilot-result-${result.resolution_id}-${decision}`,
-          status,
-        }),
-      ]);
-      setActiveResolution(null);
-      return null;
-    } catch (error) {
-      setErrorMessage(error instanceof Error ? error.message : "Unable to complete copilot action.");
-      return null;
-    } finally {
-      setPendingResolutionDecision(null);
-    }
-  }
 
   async function submitMessage(
     message: string,
@@ -375,60 +263,37 @@ export function AgroGuideAssistantPanel({
 
     setErrorMessage(null);
     setIsSubmitting(true);
-    setActiveResolution(null);
     setLocalMessages([userMessage, assistantMessage]);
 
     try {
-      const resolution = await copilotApi.resolve(
+      const result = await sendCommand(
         {
-          context: buildCopilotContext(),
-          locale: session.actor.locale,
-          message: prompt,
-          route_path: pathname,
-          transcript_entries: options?.transcriptEntries ?? [],
+          actorId: session.actor.actor_id,
+          aggregateRef: "advisory",
+          commandName: "advisory.requests.submit",
+          countryCode: session.actor.country_code,
+          dataCheckIds: ["DI-005"],
+          input: {
+            locale: session.actor.locale,
+            policy_context: { sensitive_topics: [] },
+            question_text: prompt,
+            topic: options?.topic ?? buildTopic(prompt, "AgroGuide request"),
+            transcript_entries: options?.transcriptEntries ?? [],
+          },
+          journeyIds: ["CJ-010"],
+          mutationScope: "advisory.requests",
+          traceId,
         },
         traceId,
       );
 
-      const nextResolution = resolution.data;
-
-      if (nextResolution.status === "ready" && nextResolution.action) {
-        const latestItem = await executeResolution(nextResolution, "confirm");
-
-        recordTelemetry({
-          detail: {
-            latest_request_id: latestItem?.request_id ?? null,
-            path: pathname,
-            topic: options?.topic ?? buildTopic(prompt, "AgroGuide request"),
-          },
-          event: "agroguide_message_submitted",
-          timestamp: new Date().toISOString(),
-          trace_id: traceId,
-        });
-
-        setInputValue("");
-        return latestItem;
-      }
-
-      setActiveResolution(nextResolution);
-      setLocalMessages([
-        userMessage,
-        buildCopilotMessage(`${nextResolution.summary} ${nextResolution.explanation}`, {
-          id: `copilot-resolution-${nextResolution.resolution_id}`,
-          status:
-            nextResolution.status === "confirmation_required"
-              ? nextResolution.confirmation_copy ?? "Confirmation required"
-              : nextResolution.human_handoff.required
-                ? `Handoff: ${nextResolution.human_handoff.queue_label}`
-                : undefined,
-        }),
-      ]);
+      const nextItems = await refreshConversations();
+      const latestItem =
+        nextItems.find((item) => item.request_id === result.data.request_id) ?? nextItems[0] ?? null;
 
       recordTelemetry({
         detail: {
-          latest_request_id: null,
-          resolution_intent: nextResolution.intent,
-          resolution_status: nextResolution.status,
+          latest_request_id: latestItem?.request_id ?? null,
           path: pathname,
           topic: options?.topic ?? buildTopic(prompt, "AgroGuide request"),
         },
@@ -438,7 +303,8 @@ export function AgroGuideAssistantPanel({
       });
 
       setInputValue("");
-      return null;
+      setLocalMessages([]);
+      return latestItem;
     } catch (error) {
       const fallbackMessage =
         error instanceof Error ? error.message : "Sorry, I couldn't process that. Please try again.";
@@ -587,48 +453,6 @@ export function AgroGuideAssistantPanel({
     recognition.start();
   }
 
-  async function handleRecommendationAction(
-    recommendation: CopilotRecommendation,
-  ): Promise<void> {
-    if (!session) {
-      return;
-    }
-
-    if (recommendation.action.kind === "open_route") {
-      if (recommendation.action.route) {
-        router.push(recommendation.action.route);
-      }
-      onClose();
-      return;
-    }
-
-    if (
-      recommendation.action.requires_confirmation &&
-      confirmRecommendationId !== recommendation.recommendation_id
-    ) {
-      setConfirmRecommendationId(recommendation.recommendation_id);
-      return;
-    }
-
-    setErrorMessage(null);
-    setPendingRecommendationId(recommendation.recommendation_id);
-
-    try {
-      await copilotApi.executeRecommendation({
-        recommendation,
-        session,
-        traceId,
-      });
-      setCompletedRecommendationIds((current) => [...current, recommendation.recommendation_id]);
-      setConfirmRecommendationId(null);
-      await refreshRecommendations();
-    } catch (error) {
-      setErrorMessage(error instanceof Error ? error.message : "Unable to apply recommendation.");
-    } finally {
-      setPendingRecommendationId(null);
-    }
-  }
-
   if (!open || !session) {
     return null;
   }
@@ -644,14 +468,14 @@ export function AgroGuideAssistantPanel({
       />
 
       <aside
-        aria-label="AgroGuide assist-and-act copilot"
+        aria-label="AgroGuide AI assistant"
         className="agroguide-panel"
         role="dialog"
       >
         <header className="agroguide-panel-header">
           <div>
             <strong>AgroGuide</strong>
-            <span>{runtimeMode === "live" ? "Assist-and-act copilot" : "Reference copilot"} · {promptCountLabel}</span>
+            <span>{runtimeMode === "live" ? "Live advisory" : "Reference advisory"} · {promptCountLabel}</span>
           </div>
           <button
             aria-label="Close AgroGuide"
@@ -664,55 +488,6 @@ export function AgroGuideAssistantPanel({
         </header>
 
         <div className="agroguide-panel-body">
-          {activeResolution?.status === "confirmation_required" && activeResolution.action ? (
-            <section className="agroguide-copilot-card" aria-label="Copilot action awaiting confirmation">
-              <div className="agroguide-copilot-card-head">
-                <strong>Copilot action ready</strong>
-                <span>{activeResolution.intent}</span>
-              </div>
-              <p>{activeResolution.summary}</p>
-              <span className="agroguide-inline-meta">{activeResolution.explanation}</span>
-              {activeResolution.confirmation_copy ? (
-                <span className="agroguide-inline-meta">{activeResolution.confirmation_copy}</span>
-              ) : null}
-              <div className="agroguide-recommendation-actions">
-                <button
-                  className="agroguide-send-button"
-                  disabled={pendingResolutionDecision !== null}
-                  onClick={() => {
-                    void executeResolution(activeResolution, "confirm");
-                  }}
-                  type="button"
-                >
-                  {pendingResolutionDecision === "confirm"
-                    ? "Executing..."
-                    : `Confirm ${activeResolution.action.target?.label ?? activeResolution.action.adapter}`}
-                </button>
-                <button
-                  className="agroguide-input-icon"
-                  disabled={pendingResolutionDecision !== null}
-                  onClick={() => {
-                    void executeResolution(activeResolution, "escalate");
-                  }}
-                  type="button"
-                >
-                  {pendingResolutionDecision === "escalate" ? "Escalating..." : "Escalate"}
-                </button>
-              </div>
-            </section>
-          ) : null}
-
-          <ProactiveRecommendations
-            completedIds={completedRecommendationIds}
-            confirmingId={confirmRecommendationId}
-            items={recommendations}
-            onAction={(recommendation) => {
-              void handleRecommendationAction(recommendation);
-            }}
-            onCancelConfirm={() => setConfirmRecommendationId(null)}
-            pendingId={pendingRecommendationId}
-          />
-
           <ContextualSuggestions
             onSelect={(suggestion) => {
               void handleSuggestionSelect(suggestion);
@@ -748,7 +523,7 @@ export function AgroGuideAssistantPanel({
               View Conversation History
             </Link>
             <span className="agroguide-footer-note">
-              Copilot context: {pathname.replace("/app/", "").replaceAll("/", " / ")}
+              Context: {pathname.replace("/app/", "").replaceAll("/", " / ")}
             </span>
           </div>
         </div>

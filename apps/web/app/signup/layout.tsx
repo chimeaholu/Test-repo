@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import type { Metadata } from "next";
 
 import { AppProvider } from "@/components/app-provider";
+import { PublicPageShell } from "@/components/public/public-page-shell";
 import { buildNoIndexMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildNoIndexMetadata({
@@ -12,5 +13,9 @@ export const metadata: Metadata = buildNoIndexMetadata({
 });
 
 export default function SignupLayout({ children }: { children: ReactNode }) {
-  return <AppProvider>{children}</AppProvider>;
+  return (
+    <AppProvider>
+      <PublicPageShell>{children}</PublicPageShell>
+    </AppProvider>
+  );
 }

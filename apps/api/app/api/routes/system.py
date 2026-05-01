@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends, HTTPException, Request
-from fastapi.responses import Response
 from sqlalchemy.exc import SQLAlchemyError
 
 from app.api.dependencies.request_context import (
@@ -36,17 +35,3 @@ def public_settings(
         "schema_version": settings.public_schema_version,
         "request_id": request.state.request_id,
     }
-
-
-@router.get("/metrics")
-def metrics(
-    request: Request,
-    settings: Settings = Depends(get_active_settings),
-) -> Response:
-    if not settings.metrics_enabled:
-        raise HTTPException(status_code=404, detail="metrics_disabled")
-    return Response(
-        content=request.app.state.telemetry.render_metrics(settings),
-        media_type=request.app.state.telemetry.metrics_content_type,
-        headers={"Cache-Control": "no-store"},
-    )
