@@ -109,6 +109,7 @@ export function InsuranceClaimDetail({ claimId }: { claimId: string }) {
           <div>
             <p className="insurance-policy-kicker">Claim detail</p>
             <h1>{claim.title}</h1>
+            <p className="muted">See what triggered the claim, where it stands, and what payment outcome is expected.</p>
           </div>
           <span className={`insurance-claim-status status-${claim.status}`}>{claim.status}</span>
         </div>
@@ -117,7 +118,7 @@ export function InsuranceClaimDetail({ claimId }: { claimId: string }) {
 
       <div className="insurance-detail-grid">
         <SurfaceCard>
-          <h2>Trigger event</h2>
+          <h2>What happened</h2>
           <InfoList
             items={[
               { label: "Field", value: claim.field.farm_name },
@@ -137,7 +138,7 @@ export function InsuranceClaimDetail({ claimId }: { claimId: string }) {
         </SurfaceCard>
 
         <SurfaceCard>
-          <h2>Payout</h2>
+          <h2>Payment details</h2>
           <InfoList
             items={[
               { label: "Amount", value: formatMoney(claim.claim_amount, claim.currency) },
@@ -150,7 +151,10 @@ export function InsuranceClaimDetail({ claimId }: { claimId: string }) {
       </div>
 
       <SurfaceCard>
-        <h2>Rainfall evidence</h2>
+        <h2>Weather and supporting records</h2>
+        <p className="muted insurance-claim-copy">
+          This chart compares actual rainfall, the expected range, and the threshold that triggered review for this claim.
+        </p>
         <div className="insurance-chart">
           <svg aria-label="Rainfall comparison chart" viewBox="0 0 100 100" preserveAspectRatio="none" role="img">
             <polyline className="insurance-chart-line expected" fill="none" points={chartLines.expected} />
@@ -175,7 +179,7 @@ export function InsuranceClaimDetail({ claimId }: { claimId: string }) {
       </SurfaceCard>
 
       <SurfaceCard>
-        <h2>Evidence attachments</h2>
+        <h2>Supporting attachments</h2>
         <div className="insurance-attachments-grid">
           {claim.attachments.map((attachment) => (
             <article className="insurance-attachment-card" key={attachment.id}>

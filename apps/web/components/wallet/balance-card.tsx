@@ -31,7 +31,6 @@ export function BalanceCard({
   pendingReviewCount,
   selectedCurrency,
 }: BalanceCardProps) {
-  const balanceLabel = balance ? formatMoney(balance.total_balance, balance.currency) : "Loading balance";
   const availableLabel = balance ? formatMoney(balance.available_balance, balance.currency) : "Loading";
   const heldLabel = balance ? formatMoney(balance.held_balance, balance.currency) : "Loading";
 
@@ -42,12 +41,12 @@ export function BalanceCard({
         <div className="wallet-balance-copy">
           <Badge variant="brand" className="wallet-balance-badge">
             <ShieldCheck size={14} />
-            Wallet protected by escrow controls
+            Wallet protected by payment-hold controls
           </Badge>
-          <p className="wallet-balance-eyebrow">AgroWallet</p>
-          <h2>Move money with confidence.</h2>
+          <p className="wallet-balance-eyebrow">Wallet</p>
+          <h2>See your balance, money on hold, and recent payment movement.</h2>
           <p>
-            Available cash, held settlements, and the next money movement are visible in one mobile-first view.
+            Available cash, payment holds, and the next money movement are visible in one mobile-first view.
           </p>
         </div>
 
@@ -64,12 +63,9 @@ export function BalanceCard({
 
       <div className="wallet-balance-main">
         <div className="wallet-balance-total">
-          <span>Total balance</span>
-          <strong>{balanceLabel}</strong>
-          <p>
-            Version {balance?.balance_version ?? 0}
-            {balance?.updated_at ? ` · Updated ${new Date(balance.updated_at).toLocaleString()}` : ""}
-          </p>
+          <span>Available balance</span>
+          <strong>{availableLabel}</strong>
+          <p>{balance?.updated_at ? `Updated ${new Date(balance.updated_at).toLocaleString()}` : "Loading latest balance"}</p>
         </div>
 
         <div className="wallet-balance-stats" aria-label="Balance split">
@@ -85,7 +81,7 @@ export function BalanceCard({
           <article>
             <div className="wallet-balance-stat-head">
               <BanknoteArrowDown size={16} />
-              <span>Held in escrow</span>
+              <span>Money on hold</span>
             </div>
             <strong>{heldLabel}</strong>
             <p>Protected until the deal reaches its release state.</p>
@@ -97,14 +93,14 @@ export function BalanceCard({
         <div className="wallet-quick-actions" aria-label="Wallet quick actions">
           <Button href="/app/payments/wallet?intent=add-funds" size="lg">
             <ArrowDownToLine size={16} />
-            Add Funds
+            Add funds
           </Button>
           <Button href="/app/payments/wallet?intent=send-money" size="lg" variant="secondary">
             <ArrowUpRight size={16} />
-            Send Money
+            Send money
           </Button>
           <Button href="/app/market/negotiations" size="lg" variant="ghost">
-            Request Payment
+            Review deals
           </Button>
         </div>
 

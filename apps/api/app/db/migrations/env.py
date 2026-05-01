@@ -9,9 +9,11 @@ from sqlalchemy import engine_from_config, pool, text
 from app.db.base import TARGET_METADATA
 from app.db.models import (  # noqa: F401
     advisory,
+    agro_intelligence,
     audit,
     climate,
     fund,
+    integrations,
     ledger,
     marketplace,
     platform,

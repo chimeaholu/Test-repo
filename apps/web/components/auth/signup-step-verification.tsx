@@ -19,42 +19,45 @@ interface Props {
   errors: Partial<Record<keyof VerificationData, string>>;
   phone: string;
   phonePrefix: string;
+  summary: Array<{ label: string; value: string }>;
 }
 
-export function SignupStepVerification({ data, onChange, errors, phone, phonePrefix }: Props) {
+export function SignupStepVerification({ data, onChange, errors, phone, phonePrefix, summary }: Props) {
   return (
     <div className="stack-md">
       <div style={{ marginBottom: 8 }}>
         <h3 style={{ fontSize: "1.25rem", fontWeight: 600, color: "var(--ink)", marginBottom: 4 }}>
-          Verify and agree
+          Review your setup
         </h3>
         <p style={{ fontSize: "0.9375rem", color: "var(--ink-muted)" }}>
-          Enter the verification code and review our terms to complete your registration
+          You&apos;ll continue into setup before your workspace opens.
         </p>
       </div>
 
+      <div className="pub-review-list">
+        {summary.map((item) => (
+          <div key={item.label} className="pub-review-item">
+            <span>{item.label}</span>
+            <strong>{item.value}</strong>
+          </div>
+        ))}
+      </div>
+
       <FormField
-        label="Verification code"
+        label="Account path"
         htmlFor="signup-otp"
-        required
         error={errors.otp}
-        helper={`We sent a 6-digit code to ${phonePrefix} ${phone}`}
+        helper={`Your account will be created for ${phonePrefix} ${phone} and then moved into setup.`}
       >
         <Input
           id="signup-otp"
           inputSize="lg"
-          placeholder="e.g. 123456"
-          maxLength={6}
-          pattern="[0-9]{6}"
-          inputMode="numeric"
-          autoComplete="one-time-code"
+          placeholder="Ready to create your account"
+          disabled
           value={data.otp}
           error={Boolean(errors.otp)}
-          onChange={(e) => {
-            const val = e.target.value.replace(/\D/g, "").slice(0, 6);
-            onChange((prev) => ({ ...prev, otp: val }));
-          }}
-          style={{ letterSpacing: "0.3em", fontWeight: 600, textAlign: "center" }}
+          onChange={() => undefined}
+          style={{ fontWeight: 600, textAlign: "center" }}
         />
       </FormField>
 

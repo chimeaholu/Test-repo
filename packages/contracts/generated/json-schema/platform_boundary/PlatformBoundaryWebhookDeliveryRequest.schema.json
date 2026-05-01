@@ -1,0 +1,50 @@
+{
+  "$ref": "#/definitions/PlatformBoundaryWebhookDeliveryRequest",
+  "definitions": {
+    "PlatformBoundaryWebhookDeliveryRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "aggregate_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "type": "string"
+        },
+        "delivery_target": {
+          "format": "uri",
+          "maxLength": 240,
+          "type": "string"
+        },
+        "event_family": {
+          "maxLength": 120,
+          "minLength": 3,
+          "type": "string"
+        },
+        "reason": {
+          "maxLength": 240,
+          "minLength": 3,
+          "type": "string"
+        }
+      },
+      "required": [
+        "event_family",
+        "aggregate_id",
+        "delivery_target",
+        "reason"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Authenticated queue request for a bounded partner webhook notification.",
+  "x-agrodomain-contract": {
+    "id": "platform_boundary.webhook_delivery_request",
+    "domain": "platform_boundary",
+    "kind": "request",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "DI-004"
+    ],
+    "source_artifacts": [
+      "output_to_user/AGRODOMAIN-ENHANCEMENT-BUILD-SPEC.md"
+    ]
+  }
+}

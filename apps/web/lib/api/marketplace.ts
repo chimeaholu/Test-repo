@@ -9,6 +9,8 @@ import type {
   CreateListingResult,
   ListingCollection,
   ListingCreateInput,
+  MarketplaceListingIntelligenceRead,
+  MarketplaceNegotiationIntelligenceRead,
   ListingPublishInput,
   ListingRecord,
   ListingRevisionSummary,
@@ -24,7 +26,11 @@ import type {
   ResponseEnvelope,
   UpdateListingResult,
 } from "@agrodomain/contracts";
-import { schemaVersion } from "@agrodomain/contracts";
+import {
+  marketplaceListingIntelligenceReadSchema,
+  marketplaceNegotiationIntelligenceReadSchema,
+  schemaVersion,
+} from "@agrodomain/contracts";
 
 import {
   requestJson,
@@ -240,6 +246,22 @@ export const marketplaceApi = {
     );
   },
 
+  async getListingIntelligence(
+    listingId: string,
+    traceId: string,
+  ): Promise<ResponseEnvelope<MarketplaceListingIntelligenceRead>> {
+    const response = await requestJson<unknown>(
+      `/api/v1/marketplace/intelligence/listings/${listingId}`,
+      { method: "GET" },
+      traceId,
+      true,
+    );
+    return responseEnvelope(
+      marketplaceListingIntelligenceReadSchema.parse(response.data),
+      traceId,
+    );
+  },
+
   // -- Listing mutations ---------------------------------------------------
 
   async createListing(
@@ -334,6 +356,22 @@ export const marketplaceApi = {
       { method: "GET" },
       traceId,
       true,
+    );
+  },
+
+  async getNegotiationIntelligence(
+    threadId: string,
+    traceId: string,
+  ): Promise<ResponseEnvelope<MarketplaceNegotiationIntelligenceRead>> {
+    const response = await requestJson<unknown>(
+      `/api/v1/marketplace/intelligence/negotiations/${threadId}`,
+      { method: "GET" },
+      traceId,
+      true,
+    );
+    return responseEnvelope(
+      marketplaceNegotiationIntelligenceReadSchema.parse(response.data),
+      traceId,
     );
   },
 

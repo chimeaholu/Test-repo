@@ -2,11 +2,12 @@ import Link from "next/link";
 import React from "react";
 import type { ReactNode } from "react";
 
-export function SurfaceCard(props: {
-  className?: string;
-  children: ReactNode;
-}) {
-  const { children, className, ...rest } = props as typeof props & React.ComponentPropsWithoutRef<"section">;
+export function SurfaceCard(
+  props: React.ComponentPropsWithoutRef<"section"> & {
+    children: ReactNode;
+  },
+) {
+  const { children, className, ...rest } = props;
   return (
     <section className={["surface-card", className].filter(Boolean).join(" ")} {...rest}>
       {children}

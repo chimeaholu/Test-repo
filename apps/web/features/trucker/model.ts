@@ -5,6 +5,8 @@ import type { EscrowRead } from "@/lib/api-types";
 export type TruckerMarketplaceRole = "shipper" | "driver";
 export type TruckerAvailability = "available" | "busy" | "offline";
 export type ShipmentStage = "posted" | "accepted" | "picked_up" | "in_transit" | "delivered";
+export type ShipmentIssueSeverity = "low" | "medium" | "high";
+export type ShipmentSlaState = "scheduled" | "on_track" | "at_risk" | "breached" | "met" | "missed";
 
 export interface TransportRateEstimate {
   max: number;
@@ -14,6 +16,7 @@ export interface TransportRateEstimate {
 export interface TransportMetadataInput {
   budget: number;
   commodity: string;
+  deliveryDeadline: string;
   destination: string;
   instructions: string;
   itemCount: number;
@@ -29,6 +32,7 @@ export interface TransportListingMetadata extends TransportMetadataInput {
   currentCheckpoint: string;
   currentLocationLabel: string;
   driverRequestIds: string[];
+  issues: ShipmentIssue[];
   issueCount: number;
   listingId: string;
   proofOfDelivery: {
@@ -90,21 +94,38 @@ export interface TruckerTimelineEntry {
   tone: "info" | "warning" | "success";
 }
 
+export interface ShipmentIssue {
+  blocked: boolean;
+  delayMinutes: number | null;
+  description: string;
+  id: string;
+  reportedAt: string;
+  severity: ShipmentIssueSeverity;
+  type: string;
+}
+
 export interface ShipmentTrackingSnapshot {
   budgetLabel: string;
   commodity: string;
   currentCheckpoint: string;
   currentLocationLabel: string;
+  deliveryDeadline: string;
   destination: string;
   distanceKm: number;
   driver: TransportDriverProfile | null;
   etaLabel: string;
+  exceptionCount: number;
   issueCount: number;
+  issues: ShipmentIssue[];
+  lastUpdatedAt: string;
   listing: ListingRecord | null;
+  podStatusLabel: string;
   pickupLocation: string;
   proofOfDelivery: TransportListingMetadata["proofOfDelivery"];
   rateEstimate: TransportRateEstimate;
   routeLabel: string;
+  slaLabel: string;
+  slaState: ShipmentSlaState;
   stage: ShipmentStage;
   timeline: TruckerTimelineEntry[];
   weightLabel: string;
@@ -180,6 +201,17 @@ export function humanizeAvailability(status: TruckerAvailability): string {
   }[status];
 }
 
+export function humanizeShipmentSlaState(state: ShipmentSlaState): string {
+  return {
+    scheduled: "Scheduled",
+    on_track: "On track",
+    at_risk: "At risk",
+    breached: "Breached",
+    met: "Met SLA",
+    missed: "Missed SLA",
+  }[state];
+}
+
 export function defaultPickupWindow(): (typeof pickupWindows)[number] {
   return pickupWindows[0];
 }
@@ -252,8 +284,10 @@ export function defaultTransportMetadata(listing: ListingRecord): TransportListi
     createdAt: listing.published_at ?? listing.updated_at ?? listing.created_at,
     currentCheckpoint: checkpointTemplates[0],
     currentLocationLabel: pickupLocation,
+    deliveryDeadline: new Date(new Date(listing.created_at).getTime() + 36 * 60 * 60 * 1000).toISOString().slice(0, 10),
     destination,
     driverRequestIds: [],
+    issues: [],
     instructions: listing.summary,
     issueCount: 0,
     itemCount: Math.max(10, Math.round(listing.quantity_tons * 10)),
@@ -293,8 +327,10 @@ export function mergeTransportMetadata(
     acceptedDriverId: stored.acceptedDriverId ?? base.acceptedDriverId,
     currentCheckpoint: stored.currentCheckpoint ?? base.currentCheckpoint,
     currentLocationLabel: stored.currentLocationLabel ?? base.currentLocationLabel,
+    deliveryDeadline: stored.deliveryDeadline ?? base.deliveryDeadline,
     destination: stored.destination?.trim() || base.destination,
     driverRequestIds: stored.driverRequestIds ?? base.driverRequestIds,
+    issues: stored.issues ?? base.issues,
     issueCount: stored.issueCount ?? base.issueCount,
     proofOfDelivery: stored.proofOfDelivery ?? base.proofOfDelivery,
     rateEstimate: stored.rateEstimate ?? base.rateEstimate,
@@ -324,6 +360,46 @@ export function deriveShipmentStage(params: {
     return "accepted";
   }
   return params.metadata.stage;
+}
+
+export function deriveShipmentSlaState(params: {
+  metadata: TransportListingMetadata;
+  stage: ShipmentStage;
+  now?: number;
+}): ShipmentSlaState {
+  const now = params.now ?? Date.now();
+  const deadline = new Date(`${params.metadata.deliveryDeadline}T23:59:59.999Z`).getTime();
+  const deliveredAt = params.metadata.proofOfDelivery
+    ? new Date(params.metadata.proofOfDelivery.deliveredAt).getTime()
+    : null;
+  const maxDelayMinutes = params.metadata.issues.reduce((largest, issue) => Math.max(largest, issue.delayMinutes ?? 0), 0);
+  const hasHighSeverityBlocker = params.metadata.issues.some((issue) => issue.blocked && issue.severity === "high");
+
+  if (params.stage === "delivered") {
+    if (deliveredAt !== null && Number.isFinite(deadline) && deliveredAt <= deadline) {
+      return "met";
+    }
+    return "missed";
+  }
+
+  if (params.stage === "posted" || params.stage === "accepted") {
+    return "scheduled";
+  }
+
+  if (!Number.isFinite(deadline)) {
+    return hasHighSeverityBlocker ? "breached" : "on_track";
+  }
+
+  if (hasHighSeverityBlocker || now > deadline) {
+    return "breached";
+  }
+
+  const hoursToDeadline = (deadline - now) / (1000 * 60 * 60);
+  if (maxDelayMinutes >= 90 || hoursToDeadline <= 6) {
+    return "at_risk";
+  }
+
+  return maxDelayMinutes > 0 ? "at_risk" : "on_track";
 }
 
 export function buildShipmentTimeline(params: {

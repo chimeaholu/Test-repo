@@ -1,0 +1,249 @@
+{
+  "$ref": "#/definitions/AgroIntelligenceSchemaReadinessPacket",
+  "definitions": {
+    "AgroIntelligenceSchemaReadinessPacket": {
+      "additionalProperties": false,
+      "properties": {
+        "boundary_alignment": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "allowed_entity_types": {
+                "items": {
+                  "enum": [
+                    "person_actor",
+                    "organization",
+                    "farm_unit",
+                    "field_plot",
+                    "facility",
+                    "vehicle_or_fleet_actor",
+                    "commodity_profile",
+                    "route_or_corridor",
+                    "market_location",
+                    "financial_actor",
+                    "insurance_actor"
+                  ],
+                  "type": "string"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "allowed_source_tiers": {
+                "items": {
+                  "$ref": "#/definitions/AgroIntelligenceSchemaReadinessPacket/properties/trust_taxonomy/properties/source_tiers/items"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "materialization_path": {
+                "enum": [
+                  "partner_inbound_records -> agro_intelligence_entities"
+                ],
+                "type": "string"
+              },
+              "provenance_contract": {
+                "enum": [
+                  "platform_boundary.inbound_ingestion_request.provenance"
+                ],
+                "type": "string"
+              },
+              "requires_consent_artifact": {
+                "type": "boolean"
+              },
+              "subject_type": {
+                "enum": [
+                  "organization_profile",
+                  "person_profile",
+                  "farm_signal",
+                  "market_signal"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "subject_type",
+              "allowed_entity_types",
+              "allowed_source_tiers",
+              "requires_consent_artifact",
+              "materialization_path",
+              "provenance_contract"
+            ],
+            "type": "object"
+          },
+          "minItems": 4,
+          "type": "array"
+        },
+        "budget_gate": {
+          "additionalProperties": false,
+          "properties": {
+            "approval_received": {
+              "type": "boolean"
+            },
+            "approval_required": {
+              "enum": [
+                true
+              ],
+              "type": "boolean"
+            },
+            "blocking_beads": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "leading_budget_category": {
+              "enum": [
+                "premium_data_licensing_and_commercial_directory_access"
+              ],
+              "type": "string"
+            },
+            "recommended_year_one_budget_band_usd": {
+              "additionalProperties": false,
+              "properties": {
+                "high": {
+                  "enum": [
+                    60000
+                  ],
+                  "type": "number"
+                },
+                "low": {
+                  "enum": [
+                    60000
+                  ],
+                  "type": "number"
+                }
+              },
+              "required": [
+                "low",
+                "high"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "approval_required",
+            "approval_received",
+            "blocking_beads",
+            "leading_budget_category",
+            "recommended_year_one_budget_band_usd"
+          ],
+          "type": "object"
+        },
+        "connector_lane": {
+          "additionalProperties": false,
+          "properties": {
+            "eb035_alignment_review_complete": {
+              "type": "boolean"
+            },
+            "gated_until": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "licensed_connector_work_permitted": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "eb035_alignment_review_complete",
+            "licensed_connector_work_permitted",
+            "gated_until"
+          ],
+          "type": "object"
+        },
+        "generated_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "trust_taxonomy": {
+          "additionalProperties": false,
+          "properties": {
+            "lifecycle_states": {
+              "items": {
+                "enum": [
+                  "ingested",
+                  "normalized",
+                  "matched_or_unmatched",
+                  "scored",
+                  "pending_verification",
+                  "verified",
+                  "rejected",
+                  "stale"
+                ],
+                "type": "string"
+              },
+              "minItems": 8,
+              "type": "array"
+            },
+            "source_tiers": {
+              "items": {
+                "enum": [
+                  "A",
+                  "B",
+                  "C"
+                ],
+                "type": "string"
+              },
+              "minItems": 3,
+              "type": "array"
+            },
+            "trust_tiers": {
+              "items": {
+                "enum": [
+                  "bronze",
+                  "silver",
+                  "gold"
+                ],
+                "type": "string"
+              },
+              "minItems": 3,
+              "type": "array"
+            }
+          },
+          "required": [
+            "source_tiers",
+            "trust_tiers",
+            "lifecycle_states"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "schema_version",
+        "generated_at",
+        "trust_taxonomy",
+        "boundary_alignment",
+        "budget_gate",
+        "connector_lane"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "EH5A-G0 packet declaring schema alignment completion and the remaining human budget gate before licensed connectors.",
+  "x-agrodomain-contract": {
+    "id": "agro_intelligence.schema_readiness_packet",
+    "domain": "agro_intelligence",
+    "kind": "catalog",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "DI-004",
+      "AIJ-002"
+    ],
+    "source_artifacts": [
+      "output_to_user/AGRODOMAIN-ENHANCEMENT-BUILD-SPEC.md",
+      "output_to_user/AGRODOMAIN-AGROINTELLIGENCE-RESEARCH-AND-MODULE-SPEC.md"
+    ]
+  }
+}

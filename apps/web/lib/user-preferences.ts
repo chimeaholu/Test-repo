@@ -1,13 +1,26 @@
 import type { IdentitySession } from "@agrodomain/contracts";
 
 import { readJson, writeJson } from "@/lib/api-client";
+import {
+  resolveLocaleProfile,
+  type ActiveLocaleCode,
+  type ReadingLevelBand,
+  type SupportedCurrencyCode,
+} from "@/lib/i18n/config";
 
 export const USER_PREFERENCES_KEY = "agrodomain.user-preferences.v1";
 export const USER_PREFERENCES_EVENT = "agrodomain:user-preferences";
 
-export type NotificationCategory = "trade" | "finance" | "weather" | "advisory" | "system";
-export type AppLanguage = "en" | "tw" | "ha" | "yo" | "pcm";
-export type CurrencyFormat = "GHS" | "USD";
+export type NotificationCategory =
+  | "trade"
+  | "finance"
+  | "weather"
+  | "advisory"
+  | "system"
+  | "copilot"
+  | "transport";
+export type AppLocale = ActiveLocaleCode;
+export type CurrencyFormat = SupportedCurrencyCode;
 
 export interface UserPreferences {
   notifications: {
@@ -19,8 +32,9 @@ export interface UserPreferences {
     readIds: string[];
   };
   display: {
-    language: AppLanguage;
+    locale: AppLocale;
     currency: CurrencyFormat;
+    readingLevelBand: ReadingLevelBand;
   };
   privacy: {
     shareProfile: boolean;
@@ -44,6 +58,13 @@ type UserPreferencesPatch = {
   profile?: Partial<UserPreferences["profile"]>;
 };
 
+interface LegacyDisplayPreferences {
+  currency?: CurrencyFormat;
+  language?: string;
+  locale?: string;
+  readingLevelBand?: ReadingLevelBand;
+}
+
 function defaultNotificationCategories(): Record<NotificationCategory, boolean> {
   return {
     trade: true,
@@ -51,6 +72,8 @@ function defaultNotificationCategories(): Record<NotificationCategory, boolean> 
     weather: true,
     advisory: true,
     system: true,
+    copilot: true,
+    transport: true,
   };
 }
 
@@ -60,24 +83,12 @@ function emitUserPreferencesChanged(): void {
   }
 }
 
-function defaultLanguage(session: IdentitySession): AppLanguage {
-  const locale = session.actor.locale.toLowerCase();
-  if (locale.startsWith("tw")) {
-    return "tw";
-  }
-  if (locale.startsWith("ha")) {
-    return "ha";
-  }
-  if (locale.startsWith("yo")) {
-    return "yo";
-  }
-  if (locale.startsWith("pcm")) {
-    return "pcm";
-  }
-  return "en";
-}
-
 export function defaultPreferences(session: IdentitySession): UserPreferences {
+  const localeProfile = resolveLocaleProfile({
+    countryCode: session.actor.country_code,
+    sessionLocale: session.actor.locale,
+  });
+
   return {
     notifications: {
       push: true,
@@ -88,8 +99,9 @@ export function defaultPreferences(session: IdentitySession): UserPreferences {
       readIds: [],
     },
     display: {
-      language: defaultLanguage(session),
-      currency: session.actor.country_code === "GH" ? "GHS" : "USD",
+      locale: localeProfile.effectiveLocale,
+      currency: localeProfile.currencyCode,
+      readingLevelBand: "plain",
     },
     privacy: {
       shareProfile: true,
@@ -113,10 +125,29 @@ function writeStore(store: PreferencesStore): void {
   emitUserPreferencesChanged();
 }
 
+function normalizeStoredLocale(
+  display: LegacyDisplayPreferences | undefined,
+  session: IdentitySession,
+  fallback: AppLocale,
+): AppLocale {
+  const storedLocale = display?.locale ?? display?.language;
+  if (typeof storedLocale !== "string" || storedLocale.length === 0) {
+    return fallback;
+  }
+
+  return resolveLocaleProfile({
+    countryCode: session.actor.country_code,
+    preferredLocale: storedLocale,
+    sessionLocale: session.actor.locale,
+  }).effectiveLocale;
+}
+
 export function readUserPreferences(session: IdentitySession): UserPreferences {
   const base = defaultPreferences(session);
   const store = readStore();
   const current = store[session.actor.actor_id];
+  const currentDisplay = current?.display as LegacyDisplayPreferences | undefined;
+
   return {
     ...base,
     ...current,
@@ -131,7 +162,10 @@ export function readUserPreferences(session: IdentitySession): UserPreferences {
     },
     display: {
       ...base.display,
-      ...current?.display,
+      ...currentDisplay,
+      locale: normalizeStoredLocale(currentDisplay, session, base.display.locale),
+      readingLevelBand:
+        currentDisplay?.readingLevelBand ?? base.display.readingLevelBand,
     },
     privacy: {
       ...base.privacy,

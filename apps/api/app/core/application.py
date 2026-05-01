@@ -1,14 +1,18 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.api.routes.admin import router as admin_router
 from app.api.routes.advisory import router as advisory_router
+from app.api.routes.agro_intelligence import router as agro_intelligence_router
 from app.api.routes.audit import router as audit_router
 from app.api.routes.climate import router as climate_router
 from app.api.routes.commands import router as command_router
+from app.api.routes.copilot import router as copilot_router
 from app.api.routes.farm import router as farm_router
 from app.api.routes.fund import router as fund_router
 from app.api.routes.identity import router as identity_router
 from app.api.routes.marketplace import router as marketplace_router
+from app.api.routes.platform_boundary import router as platform_boundary_router
 from app.api.routes.preview import router as preview_router
 from app.api.routes.system import router as system_router
 from app.api.routes.transport import router as transport_router
@@ -23,6 +27,7 @@ from app.core.telemetry import TelemetryService
 def create_app(settings: Settings | None = None) -> FastAPI:
     active_settings = settings or get_settings()
     configure_logging(active_settings.log_level)
+    telemetry = TelemetryService()
 
     app = FastAPI(
         title=active_settings.app_name,
@@ -44,10 +49,11 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         enable_hsts=active_settings.hsts_enabled(),
     )
     app.state.settings = active_settings
-    app.state.telemetry = TelemetryService()
+    app.state.telemetry = telemetry
     app.add_middleware(RequestContextMiddleware)
     app.include_router(system_router)
     app.include_router(identity_router)
+    app.include_router(admin_router)
     app.include_router(marketplace_router)
     app.include_router(transport_router)
     app.include_router(wallet_router)
@@ -55,7 +61,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(farm_router)
     app.include_router(advisory_router)
     app.include_router(audit_router)
+    app.include_router(agro_intelligence_router)
     app.include_router(climate_router)
+    app.include_router(copilot_router)
     app.include_router(command_router)
+    app.include_router(platform_boundary_router)
     app.include_router(preview_router)
     return app

@@ -1,0 +1,124 @@
+{
+  "$ref": "#/definitions/NotificationDispatchPlan",
+  "definitions": {
+    "NotificationDispatchPlan": {
+      "additionalProperties": false,
+      "properties": {
+        "dedupe_key": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "escalate_after": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/NotificationDispatchPlan/properties/expires_at"
+            }
+          ],
+          "description": "ISO-8601 timestamp with timezone offset",
+          "nullable": true
+        },
+        "expires_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "nullable": true,
+          "type": "string"
+        },
+        "fallback_channels": {
+          "items": {
+            "$ref": "#/definitions/NotificationDispatchPlan/properties/preferred_channels/items"
+          },
+          "type": "array"
+        },
+        "notification_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "payload": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "enum": [
+                  "null"
+                ],
+                "nullable": true
+              }
+            ]
+          },
+          "type": "object"
+        },
+        "preferred_channels": {
+          "items": {
+            "enum": [
+              "in_app",
+              "email",
+              "push",
+              "whatsapp",
+              "sms"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "queue_state": {
+          "enum": [
+            "queued",
+            "scheduled",
+            "dispatched",
+            "suppressed",
+            "failed"
+          ],
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "template_key": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "notification_id",
+        "template_key",
+        "dedupe_key",
+        "queue_state",
+        "preferred_channels",
+        "fallback_channels",
+        "expires_at",
+        "escalate_after",
+        "payload"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Channel-agnostic dispatch plan with template, queue, expiry, and fallback semantics for EH3-plus notification workflows.",
+  "x-agrodomain-contract": {
+    "id": "notifications.dispatch_plan",
+    "domain": "notifications",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "EP-003",
+      "RJ-001",
+      "RJ-002"
+    ],
+    "source_artifacts": [
+      "output_to_user/AGRODOMAIN-ENHANCEMENT-BUILD-SPEC.md",
+      "output_to_user/AGRODOMAIN-ENHANCEMENT-TEST-PLAN.md"
+    ]
+  }
+}

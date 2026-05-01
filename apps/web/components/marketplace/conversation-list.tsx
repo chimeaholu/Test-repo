@@ -40,9 +40,9 @@ export function ConversationList({
     <article className="queue-card negotiation-sidebar">
       <div className="section-heading">
         <div className="stack-sm">
-          <p className="eyebrow">Inbox</p>
-          <h2>All conversations</h2>
-          <p className="muted measure">Search by listing reference or counterparty, then pick up the latest deal state.</p>
+          <p className="eyebrow">Conversations</p>
+          <h2>Offer detail</h2>
+          <p className="muted measure">Search by listing or counterparty, then open the deal you want to move forward.</p>
         </div>
       </div>
 

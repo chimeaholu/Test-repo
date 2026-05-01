@@ -15,6 +15,7 @@ import {
   settlementTone,
   type EscrowReadModel,
 } from "@/features/wallet/model";
+import { buildEscrowExplainability } from "@/features/marketplace/trust";
 
 type EscrowAction = "fund" | "release" | "reverse" | "dispute";
 
@@ -53,16 +54,17 @@ export function EscrowManagement({
   const actions = deriveWalletActions(escrow, actorId);
   const timelineItems = mode === "compact" ? settlementTimeline(escrow).slice(0, 3) : settlementTimeline(escrow);
   const stateCopy = escrowStateCopy(escrow);
+  const explainability = buildEscrowExplainability(escrow, actorId);
 
   return (
     <div className="content-stack">
       <SectionHeading
         eyebrow={mode === "compact" ? "Escrow status" : "Selected escrow"}
-        title={mode === "compact" ? "Marketplace escrow" : "Escrow details"}
+        title={mode === "compact" ? "Payment hold status" : "Payment hold details"}
         body={
           mode === "compact"
-            ? "This accepted negotiation is now connected to an escrow record you can continue in AgroWallet."
-            : "Review the latest status, add a note, and take the next action from one place."
+            ? "This accepted deal is now connected to a payment hold you can continue in the wallet."
+            : "Review the latest status, add a note, and take the next payment action from one place."
         }
       />
 
@@ -82,6 +84,24 @@ export function EscrowManagement({
         tone={escrow.state === "partner_pending" || escrow.state === "funded" ? "accent" : "brand"}
       />
 
+      <div className="wallet-explain-grid" role="list" aria-label="Escrow explainability">
+        <article className="wallet-explain-card" role="listitem">
+          <span>Funds location</span>
+          <strong>{explainability.fundsLocation}</strong>
+          <p className="muted">{explainability.statusSummary}</p>
+        </article>
+        <article className="wallet-explain-card" role="listitem">
+          <span>Release condition</span>
+          <strong>{explainability.releaseCondition}</strong>
+          <p className="muted">{explainability.blocker}</p>
+        </article>
+        <article className="wallet-explain-card" role="listitem">
+          <span>Who acts next</span>
+          <strong>{explainability.nextOwnerLabel}</strong>
+          <p className="muted">Use this before you fund, release, reverse, or escalate the settlement.</p>
+        </article>
+      </div>
+
       <InfoList
         items={[
           { label: "Thread", value: escrow.thread_id },
@@ -95,7 +115,7 @@ export function EscrowManagement({
       {mode === "full" ? (
         <>
           <div className="field">
-            <label htmlFor="wallet-note">Settlement note</label>
+            <label htmlFor="wallet-note">Payment note</label>
             <textarea
               id="wallet-note"
               onChange={(event) => onNoteChange?.(event.target.value)}
@@ -137,8 +157,8 @@ export function EscrowManagement({
 
       <section className="queue-card">
         <SectionHeading
-          eyebrow="Payment updates"
-          title="Latest delivery status"
+          eyebrow="Latest payment update"
+          title="Latest delivery and payment status"
           body="See the most recent payment notification, delivery method, and any follow-up that may be needed."
         />
 
@@ -164,9 +184,9 @@ export function EscrowManagement({
             />
             <InfoList
               items={[
-                { label: "Message key", value: selectedNotification.message_key },
                 { label: "Recipient", value: selectedNotification.recipient_actor_id },
-                { label: "Correlation", value: selectedNotification.correlation_id },
+                { label: "Delivery channel", value: selectedNotification.channel },
+                { label: "Fallback channel", value: selectedNotification.fallback_channel ?? "none" },
                 { label: "Fallback reason", value: selectedNotification.fallback_reason ?? "none" },
               ]}
             />
@@ -176,7 +196,7 @@ export function EscrowManagement({
 
       <section className="queue-card">
         <SectionHeading
-          eyebrow="Escrow activity"
+          eyebrow="Payments on hold"
           title="Settlement timeline"
           body={
             mode === "compact"

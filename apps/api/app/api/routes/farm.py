@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from datetime import UTC, date, datetime
-from typing import Any
+from typing import Any, Sequence
 
 from fastapi import APIRouter, Depends, HTTPException, Request, Response, status
 from pydantic import BaseModel, ConfigDict, Field
@@ -16,7 +16,7 @@ from app.api.dependencies.request_context import (
 from app.core.auth import AuthContext, authenticate_request
 from app.core.config import Settings
 from app.core.contracts_catalog import get_envelope_schema_version
-from app.db.models.climate import FarmProfile
+from app.db.models.climate import ClimateAlert, ClimateObservation, FarmProfile
 from app.db.models.farm import CropCycle, FarmActivity, FarmField, FarmInput
 from app.db.repositories.audit import AuditRepository
 from app.db.repositories.climate import ClimateRepository
@@ -273,8 +273,8 @@ def _farm_summary(
     crop_cycles: list[CropCycle],
     activities: list[FarmActivity],
     farm_inputs: list[FarmInput],
-    alerts: list[object],
-    observations: list[object],
+    alerts: Sequence[ClimateAlert],
+    observations: Sequence[ClimateObservation],
 ) -> dict[str, object]:
     next_harvest_candidates = [
         candidate
@@ -298,8 +298,8 @@ def _farm_summary(
         "inventory_count": len(farm_inputs),
         "active_crop_cycles": len(active_cycles),
         "harvested_crop_cycles": len(harvested_cycles),
-        "insurance_eligible_fields": sum(
-            1 for field in fields if field.status == "active" and field.current_crop
+        "insurance_eligible_fields": len(
+            [field for field in fields if field.status == "active" and field.current_crop is not None]
         ),
         "active_alerts": sum(1 for alert in alerts if alert.status == "open"),
         "next_harvest_date": (
@@ -317,8 +317,8 @@ def _farm_payload(
     crop_cycles: list[CropCycle],
     activities: list[FarmActivity],
     farm_inputs: list[FarmInput],
-    alerts: list[object],
-    observations: list[object],
+    alerts: Sequence[ClimateAlert],
+    observations: Sequence[ClimateObservation],
 ) -> dict[str, object]:
     payload = _farm_profile_to_payload(farm, get_envelope_schema_version())
     payload["summary"] = _farm_summary(
@@ -331,6 +331,29 @@ def _farm_payload(
         observations=observations,
     )
     return payload
+
+
+def _farm_payload_from_state(
+    *,
+    farm: FarmProfile,
+    repository: FarmRepository,
+    climate_repository: ClimateRepository,
+    actor_id: str,
+    country_code: str,
+) -> dict[str, object]:
+    return _farm_payload(
+        farm,
+        fields=repository.list_fields(farm_id=farm.farm_id),
+        crop_cycles=repository.list_crop_cycles(farm_id=farm.farm_id),
+        activities=repository.list_activities(farm_id=farm.farm_id),
+        farm_inputs=repository.list_inputs(farm_id=farm.farm_id),
+        alerts=climate_repository.list_alerts_for_actor(
+            actor_id=actor_id,
+            country_code=country_code,
+            farm_id=farm.farm_id,
+        ),
+        observations=climate_repository.list_observations_for_farm(farm_id=farm.farm_id),
+    )
 
 
 def _record_success(
@@ -474,10 +497,12 @@ def create_farm(
         payload={"farm_id": result.farm.farm_id},
     )
     db_session.commit()
-    return _farm_payload(
-        result.farm,
+    return _farm_payload_from_state(
+        farm=result.farm,
         repository=repository,
         climate_repository=climate_repository,
+        actor_id=auth_context.actor_subject,
+        country_code=auth_context.country_code or "GH",
     )
 
 
@@ -574,10 +599,12 @@ def update_farm(
         payload={"farm_id": updated.farm_id},
     )
     db_session.commit()
-    return _farm_payload(
-        updated,
+    return _farm_payload_from_state(
+        farm=updated,
         repository=repository,
         climate_repository=climate_repository,
+        actor_id=auth_context.actor_subject,
+        country_code=auth_context.country_code or "GH",
     )
 
 

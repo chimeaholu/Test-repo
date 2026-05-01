@@ -181,15 +181,15 @@ test.describe("Buyer discovery and scoped read behavior", () => {
     await gotoPath(page, "/app/market/listings");
     await expect(
       page.getByRole("heading", {
-        name: "Discover trusted agricultural supply in one place",
+        name: "Find the right lot faster",
       }),
     ).toBeVisible();
-    await expect(page.getByText("Live inventory only")).toBeVisible();
+    await expect(page.getByText("Review matching lots")).toBeVisible();
 
     await gotoPath(page, "/app/market/negotiations");
     await expect(
       page.getByRole("heading", {
-        name: "Negotiation workspace",
+        name: "Keep every negotiation moving toward a clear outcome",
       }),
     ).toBeVisible();
     await expect(page.getByText("No visible threads yet")).toBeVisible();

@@ -1,6 +1,0 @@
-Commit: 07df3192
-Isolated dir: /tmp/tmp.giPN0lInjo
-Command: PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 PYTHONPATH=src pytest -q ...
-........................................................................ [ 98%]
-.                                                                        [100%]
-73 passed in 1.84s

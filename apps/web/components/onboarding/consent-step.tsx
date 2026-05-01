@@ -27,8 +27,8 @@ const PERMISSIONS: PermissionToggle[] = [
         <rect x="14" y="3" width="7" height="3" rx="1" />
       </svg>
     ),
-    title: "Share anonymized farm data for regional insights",
-    description: "Helps improve market intelligence for your region",
+    title: "Regional insight sharing",
+    description: "Helps improve local market and planning insight without opening your private profile.",
   },
   {
     key: "priceAlerts",
@@ -38,8 +38,8 @@ const PERMISSIONS: PermissionToggle[] = [
         <path d="M13.73 21a2 2 0 0 1-3.46 0" />
       </svg>
     ),
-    title: "Price alert notifications",
-    description: "Get notified when prices change for your crops",
+    title: "Price updates",
+    description: "Receive helpful alerts when market conditions change around your crops.",
   },
   {
     key: "weatherAlerts",
@@ -50,8 +50,8 @@ const PERMISSIONS: PermissionToggle[] = [
         <path d="M15 10a4 4 0 0 0-7.5-1" />
       </svg>
     ),
-    title: "Weather alert notifications",
-    description: "Receive severe weather warnings for your area",
+    title: "Weather alerts",
+    description: "Receive weather warnings and planning updates for your area.",
   },
   {
     key: "smsNotifications",
@@ -61,8 +61,8 @@ const PERMISSIONS: PermissionToggle[] = [
         <line x1="12" y1="18" x2="12" y2="18.01" />
       </svg>
     ),
-    title: "SMS notifications",
-    description: "For areas with limited internet \u2014 updates via text message",
+    title: "SMS updates",
+    description: "Keep important updates coming through even when internet access is limited.",
   },
   {
     key: "auditTrail",
@@ -73,8 +73,8 @@ const PERMISSIONS: PermissionToggle[] = [
         <path d="M9 14l2 2 4-4" />
       </svg>
     ),
-    title: "Audit trail",
-    description: "Log all your transactions for record-keeping and compliance",
+    title: "Important action records",
+    description: "Keep key trade and payment actions properly recorded inside your account.",
   },
 ];
 
@@ -90,9 +90,9 @@ export function ConsentStep({ data, onUpdate, onContinue, onBack }: ConsentStepP
 
   return (
     <div className="onboarding-step">
-      <h2 className="onboarding-step-heading">Permissions &amp; notifications</h2>
+      <h2 className="onboarding-step-heading">Permissions</h2>
       <p className="onboarding-step-subheading">
-        Control what data you share and how we reach you.
+        Review the settings that keep useful updates and important records working.
       </p>
 
       <div className="onboarding-permission-list">
@@ -123,7 +123,7 @@ export function ConsentStep({ data, onUpdate, onContinue, onBack }: ConsentStepP
       </div>
 
       <p className="onboarding-settings-note">
-        You can change these anytime in Settings.
+        You can change these choices later in Settings.
       </p>
 
       <div className="onboarding-nav-buttons">

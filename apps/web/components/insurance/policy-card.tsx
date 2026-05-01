@@ -47,7 +47,7 @@ export function PolicyCard({ policy, claimHref }: PolicyCardProps) {
       <div className="insurance-policy-grid">
         <article>
           <ShieldCheck size={16} />
-          <span>Coverage</span>
+          <span>Protected now</span>
           <strong>{formatMoney(policy.coverage_amount, policy.currency)}</strong>
           <p>{policy.coverage_window_label}</p>
         </article>
@@ -59,7 +59,7 @@ export function PolicyCard({ policy, claimHref }: PolicyCardProps) {
         </article>
         <article>
           <Sprout size={16} />
-          <span>Claims</span>
+          <span>Claims in progress</span>
           <strong>{policy.active_claim_count}</strong>
           <p>{policy.weather_link_label}</p>
         </article>
@@ -69,11 +69,11 @@ export function PolicyCard({ policy, claimHref }: PolicyCardProps) {
         <span className="insurance-policy-status">{policy.status}</span>
         {claimHref ? (
           <Link className="wallet-link-inline" href={claimHref}>
-            Review latest claim
+            Open claim progress
             <ArrowRight size={14} />
           </Link>
         ) : (
-          <span className="insurance-policy-muted">No active claim linked to this policy.</span>
+          <span className="insurance-policy-muted">No claim is currently linked to this policy.</span>
         )}
       </div>
     </article>

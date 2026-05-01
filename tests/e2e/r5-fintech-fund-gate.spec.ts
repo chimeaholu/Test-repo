@@ -516,8 +516,8 @@ test.describe("R5 fintech and fund QA gate", () => {
     await gotoPath(page, `/app/fund?listing=${listingId}`);
     await waitForWorkspaceReady(page);
 
-    await expect(page.getByRole("heading", { name: "Invest in African agriculture with live operating context." })).toBeVisible();
-    await expect(page.getByText("Compare goal size, progress, and expected return")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Back agricultural opportunities with clearer progress and return visibility" })).toBeVisible();
+    await expect(page.getByText("Compare farms, progress, and expected return")).toBeVisible();
     const liveOpportunityLink = page.locator(`a[href="/app/fund/${listingId}"]`).first();
     await expect(liveOpportunityLink).toBeVisible();
     await captureProof(page, testInfo, "08-fund-portal");
@@ -525,13 +525,13 @@ test.describe("R5 fintech and fund QA gate", () => {
     await liveOpportunityLink.click();
     await expect(page).toHaveURL(new RegExp(`/app/fund/${listingId}$`));
     await expect(page.getByText("Fund this farm from your wallet")).toBeVisible();
-    await expect(page.getByText("Review the current farm profile, funding posture, and expected return range before you commit more capital.")).toBeVisible();
+    await expect(page.getByText("Review the farm story, funding need, return case, and protection signals before you invest.")).toBeVisible();
     await captureProof(page, testInfo, "09-fund-detail");
 
     await page.getByLabel("Investment amount").fill("300");
-    await page.getByRole("button", { name: "Review investment" }).click();
-    await expect(page.getByRole("button", { name: "Confirm and fund farm" })).toBeVisible();
-    await page.getByRole("button", { name: "Confirm and fund farm" }).click();
+    await page.getByRole("button", { name: "Review amount" }).click();
+    await expect(page.getByRole("button", { name: "Invest now" })).toBeVisible();
+    await page.getByRole("button", { name: "Invest now" }).click();
     await expect(page.getByText("Investment confirmed")).toBeVisible({ timeout: 30_000 });
     await captureProof(page, testInfo, "10-fund-investment-ui-success");
 
@@ -591,8 +591,8 @@ test.describe("R5 fintech and fund QA gate", () => {
 
     await gotoPath(page, "/app/fund");
     await waitForWorkspaceReady(page);
-    await expect(page.getByRole("heading", { name: "Invest in African agriculture with live operating context." })).toBeVisible();
-    await expect(page.getByText("Filters are tuned for mobile use first, then scale into a richer comparison grid on larger screens.")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Back agricultural opportunities with clearer progress and return visibility" })).toBeVisible();
+    await expect(page.getByText("Use the filters to compare the farm story, funding progress, and return case before you invest.")).toBeVisible();
     await captureProof(page, testInfo, "12-mobile-fund-portal");
 
     await gotoPath(page, "/app/fund/my-investments");

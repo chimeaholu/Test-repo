@@ -24,15 +24,15 @@ export function CropAdvice(props: {
 
       <article className="weather-advice-card weather-advice-context">
         <div className="queue-head">
-          <strong>AgroGuide follow-through</strong>
+          <strong>Need more guidance?</strong>
           <Link className="button-ghost weather-inline-action" href="/app/advisory/new">
-            Open AgroGuide
+            Ask AgroGuide
           </Link>
         </div>
         <p className="muted">
           {props.advisoryContext
             ? `${props.advisoryContext.topic}: ${props.advisoryContext.response}`
-            : "Need a second opinion after the forecast changes? Send the field context into AgroGuide and keep the advisory transcript attached to the weather view."}
+            : "If the forecast changes or the field looks different on the ground, send the situation into AgroGuide and keep the guidance attached to this weather view."}
         </p>
       </article>
     </section>

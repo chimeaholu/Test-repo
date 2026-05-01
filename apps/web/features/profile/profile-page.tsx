@@ -92,16 +92,16 @@ export function ProfilePageClient() {
     }
     const byRole: Record<string, StatCard[]> = {
       farmer: [
-        { label: "Seller Rating", value: "4.8" },
-        { label: "Completed Trades", value: String(tradeCount) },
-        { label: "Total Volume", value: new Intl.NumberFormat("en-US", { notation: "compact" }).format(walletVolume) },
-        { label: "On-Time Delivery", value: "98%" },
+        { label: "Trusted seller", value: "4.8" },
+        { label: "Completed trades", value: String(tradeCount) },
+        { label: "Total value", value: new Intl.NumberFormat("en-US", { notation: "compact" }).format(walletVolume) },
+        { label: "On-time delivery", value: "98%" },
       ],
       buyer: [
-        { label: "Buyer Rating", value: "4.7" },
-        { label: "Completed Purchases", value: String(tradeCount) },
-        { label: "Total Spent", value: new Intl.NumberFormat("en-US", { notation: "compact" }).format(walletVolume) },
-        { label: "Repeat Sellers", value: String(Math.max(1, Math.round(tradeCount / 2))) },
+        { label: "Trusted buyer", value: "4.7" },
+        { label: "Completed purchases", value: String(tradeCount) },
+        { label: "Total spent", value: new Intl.NumberFormat("en-US", { notation: "compact" }).format(walletVolume) },
+        { label: "Repeat sellers", value: String(Math.max(1, Math.round(tradeCount / 2))) },
       ],
       cooperative: [
         { label: "Member Count", value: String(Math.max(1, listingsCount + tradeCount)) },
@@ -116,10 +116,10 @@ export function ProfilePageClient() {
         { label: "Distance Covered", value: `${Math.max(80, tradeCount * 14)} km` },
       ],
       investor: [
-        { label: "Investments Made", value: String(tradeCount) },
-        { label: "Total Returns", value: new Intl.NumberFormat("en-US", { notation: "compact" }).format(walletVolume) },
-        { label: "Avg ROI", value: "14.6%" },
-        { label: "Farms Supported", value: String(Math.max(1, listingsCount)) },
+        { label: "Investments made", value: String(tradeCount) },
+        { label: "Returns paid", value: new Intl.NumberFormat("en-US", { notation: "compact" }).format(walletVolume) },
+        { label: "Average return", value: "14.6%" },
+        { label: "Farms supported", value: String(Math.max(1, listingsCount)) },
       ],
       extension_agent: [
         { label: "Farmers Served", value: String(Math.max(1, advisoryCount)) },
@@ -191,7 +191,7 @@ export function ProfilePageClient() {
         <Link className="button-ghost" href="/app">
           &larr;
         </Link>
-        <h1>Profile</h1>
+        <h1>Your profile</h1>
         <Link className="button-ghost" href="/app/settings">
           Edit
         </Link>
@@ -216,7 +216,8 @@ export function ProfilePageClient() {
       <section className="r3-two-column">
         <div className="r3-page-stack">
           <div className="r3-settings-card">
-            <h2>Verification</h2>
+            <h2>Trust and verification</h2>
+            <p className="muted">Keep your identity and working details current so the right information is visible when others work with you.</p>
             <ul className="r3-verification-list">
               <li className="verified">Phone Verified</li>
               <li className="verified">Identity Verified</li>
@@ -231,23 +232,23 @@ export function ProfilePageClient() {
           </div>
 
           <div className="r3-settings-card">
-            <h2>Consent Management</h2>
+            <h2>Permissions and privacy</h2>
             <p className="muted">
-              Consent status: <strong>{session.consent.state.replaceAll("_", " ")}</strong>
+              Permission status: <strong>{session.consent.state.replaceAll("_", " ")}</strong>
             </p>
             {session.consent.state === "consent_granted" ? (
               <form className="form-stack" onSubmit={(event) => void handleRevoke(event)}>
                 <label className="field">
-                  <span>Reason for revocation</span>
-                  <input name="reason" placeholder="Consent needs to be reviewed before more actions." />
+                  <span>Reason for turning permissions off</span>
+                  <input name="reason" placeholder="Permissions need to be reviewed before more work continues." />
                 </label>
                 <button className="button-secondary" disabled={isSubmitting} type="submit">
-                  {isSubmitting ? "Revoking..." : "Revoke consent"}
+                  {isSubmitting ? "Updating..." : "Turn off permissions"}
                 </button>
               </form>
             ) : (
               <button className="button-primary" disabled={isSubmitting} onClick={() => void handleRestore()} type="button">
-                {isSubmitting ? "Restoring..." : "Restore consent"}
+                {isSubmitting ? "Updating..." : "Turn permissions back on"}
               </button>
             )}
           </div>
@@ -255,7 +256,8 @@ export function ProfilePageClient() {
 
         <div className="r3-page-stack">
           <div className="r3-settings-card">
-            <h2>Transaction Stats</h2>
+            <h2>Account and identity</h2>
+            <p className="muted">These summary signals help you see how your account is showing up across the platform right now.</p>
             <div className="r3-stat-grid">
               {stats.map((item) => (
                 <article className="r3-stat-box" key={item.label}>
@@ -267,7 +269,7 @@ export function ProfilePageClient() {
           </div>
 
           <div className="r3-settings-card">
-            <h2>Public Profile Preview</h2>
+            <h2>Public profile preview</h2>
             <p className="muted">{rolePreviewCopy(session.actor.role)}</p>
             <div className="r3-preview-card">
               <div className="r3-preview-avatar">{initials}</div>
@@ -281,8 +283,9 @@ export function ProfilePageClient() {
                 <span className="status-pill online">{roleBadge(session.actor.role)}</span>
               </div>
             </div>
+            <p className="muted">Only the information needed for platform trust and collaboration is shown to others.</p>
             <Link className="button-primary" href="/app/settings">
-              Edit Profile
+              Edit profile
             </Link>
           </div>
         </div>

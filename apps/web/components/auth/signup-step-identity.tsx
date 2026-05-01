@@ -21,6 +21,7 @@ interface Props {
   data: IdentityData;
   onChange: Dispatch<SetStateAction<IdentityData>>;
   errors: Partial<Record<keyof IdentityData, string>>;
+  mode: "role-country" | "account";
 }
 
 const roles = [
@@ -44,151 +45,156 @@ const phonePrefixes = [
   { value: "+1-876", label: "+1-876" },
 ];
 
-export function SignupStepIdentity({ data, onChange, errors }: Props) {
+export function SignupStepIdentity({ data, onChange, errors, mode }: Props) {
   const update = (field: keyof IdentityData, value: string) => {
     onChange((prev) => ({ ...prev, [field]: value }));
   };
 
   return (
     <div className="stack-md">
-      {/* Role Selection */}
-      <div>
-        <p className="ds-form-label ds-form-label-required" style={{ marginBottom: 12 }}>
-          Choose your role
-        </p>
-        <p className="ds-form-helper" style={{ marginBottom: 20 }}>
-          Select how you will use Agrodomain
-        </p>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: 12,
-          }}
-        >
-          {roles.map((r) => (
-            <button
-              key={r.value}
-              type="button"
-              className={clsx(
-                "ds-role-card",
-                data.role === r.value && "ds-role-card-selected",
-              )}
-              onClick={() => update("role", r.value)}
+      {mode === "role-country" ? (
+        <>
+          <div>
+            <p className="ds-form-label ds-form-label-required" style={{ marginBottom: 12 }}>
+              Choose your role
+            </p>
+            <p className="ds-form-helper" style={{ marginBottom: 20 }}>
+              Pick the role that matches how you use the platform today.
+            </p>
+            <div
               style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                gap: 6,
-                padding: "20px 16px",
-                border: data.role === r.value
-                  ? "2px solid var(--color-brand-600, #2d5a3d)"
-                  : "2px solid var(--color-neutral-200, #e2e0dc)",
-                borderRadius: 14,
-                background: data.role === r.value
-                  ? "rgba(74, 140, 94, 0.04)"
-                  : "var(--color-neutral-50, #f8f3ea)",
-                cursor: "pointer",
-                textAlign: "left",
-                transition: "all 150ms ease",
+                display: "grid",
+                gridTemplateColumns: "repeat(2, 1fr)",
+                gap: 12,
               }}
             >
-              <span style={{ fontSize: 28 }}>{r.icon}</span>
-              <strong style={{ fontSize: "0.9375rem", color: "var(--ink)" }}>
-                {r.label}
-              </strong>
-              <span
-                style={{
-                  fontSize: "0.8125rem",
-                  lineHeight: 1.5,
-                  color: "var(--ink-muted)",
-                }}
-              >
-                {r.description}
+              {roles.map((r) => (
+                <button
+                  key={r.value}
+                  type="button"
+                  className={clsx(
+                    "ds-role-card",
+                    data.role === r.value && "ds-role-card-selected",
+                  )}
+                  onClick={() => update("role", r.value)}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    gap: 6,
+                    padding: "20px 16px",
+                    border: data.role === r.value
+                      ? "2px solid var(--color-brand-600, #2d5a3d)"
+                      : "2px solid var(--color-neutral-200, #e2e0dc)",
+                    borderRadius: 14,
+                    background: data.role === r.value
+                      ? "rgba(74, 140, 94, 0.04)"
+                      : "var(--color-neutral-50, #f8f3ea)",
+                    cursor: "pointer",
+                    textAlign: "left",
+                    transition: "all 150ms ease",
+                  }}
+                >
+                  <span style={{ fontSize: 28 }}>{r.icon}</span>
+                  <strong style={{ fontSize: "0.9375rem", color: "var(--ink)" }}>
+                    {r.label}
+                  </strong>
+                  <span
+                    style={{
+                      fontSize: "0.8125rem",
+                      lineHeight: 1.5,
+                      color: "var(--ink-muted)",
+                    }}
+                  >
+                    {r.description}
+                  </span>
+                </button>
+              ))}
+            </div>
+            {errors.role && (
+              <span className="ds-form-error" role="alert" style={{ marginTop: 8, display: "block" }}>
+                {errors.role}
               </span>
-            </button>
-          ))}
-        </div>
-        {errors.role && (
-          <span className="ds-form-error" role="alert" style={{ marginTop: 8, display: "block" }}>
-            {errors.role}
-          </span>
-        )}
-      </div>
+            )}
+          </div>
 
-      <FormField label="Full name" htmlFor="signup-name" required error={errors.fullName}>
-        <Input
-          id="signup-name"
-          inputSize="lg"
-          placeholder="e.g. Ama Mensah"
-          autoComplete="name"
-          value={data.fullName}
-          error={Boolean(errors.fullName)}
-          onChange={(e) => update("fullName", e.target.value)}
-        />
-      </FormField>
+          <FormField label="Country" htmlFor="signup-country" required error={errors.countryCode}>
+            <Select
+              id="signup-country"
+              options={countries}
+              placeholder="Select country"
+              value={data.countryCode}
+              error={Boolean(errors.countryCode)}
+              onChange={(e) => update("countryCode", e.target.value)}
+            />
+          </FormField>
+        </>
+      ) : (
+        <>
+          <FormField label="Full name" htmlFor="signup-name" required error={errors.fullName}>
+            <Input
+              id="signup-name"
+              inputSize="lg"
+              placeholder="e.g. Ama Mensah"
+              autoComplete="name"
+              value={data.fullName}
+              error={Boolean(errors.fullName)}
+              onChange={(e) => update("fullName", e.target.value)}
+            />
+          </FormField>
 
-      <FormField label="Email address" htmlFor="signup-email" required error={errors.email}>
-        <Input
-          id="signup-email"
-          type="email"
-          inputSize="lg"
-          placeholder="e.g. ama@email.com"
-          autoComplete="email"
-          value={data.email}
-          error={Boolean(errors.email)}
-          onChange={(e) => update("email", e.target.value)}
-        />
-      </FormField>
+          <FormField label="Email address" htmlFor="signup-email" required error={errors.email}>
+            <Input
+              id="signup-email"
+              type="email"
+              inputSize="lg"
+              placeholder="e.g. ama@email.com"
+              autoComplete="email"
+              value={data.email}
+              error={Boolean(errors.email)}
+              onChange={(e) => update("email", e.target.value)}
+            />
+          </FormField>
 
-      <FormField label="Phone number" htmlFor="signup-phone" required error={errors.phone}>
-        <div style={{ display: "flex", gap: 8 }}>
-          <Select
-            id="signup-phone-prefix"
-            aria-label="Phone country code"
-            options={phonePrefixes}
-            value={data.phonePrefix}
-            onChange={(e) => update("phonePrefix", e.target.value)}
-            style={{ width: 110, flexShrink: 0 }}
-          />
-          <Input
-            id="signup-phone"
-            type="tel"
-            inputSize="lg"
-            placeholder="e.g. 024 123 4567"
-            autoComplete="tel"
-            value={data.phone}
-            error={Boolean(errors.phone)}
-            onChange={(e) => update("phone", e.target.value)}
-            style={{ flex: 1 }}
-          />
-        </div>
-      </FormField>
+          <FormField label="Phone number" htmlFor="signup-phone" required error={errors.phone}>
+            <div style={{ display: "flex", gap: 8 }}>
+              <Select
+                id="signup-phone-prefix"
+                aria-label="Phone country code"
+                options={phonePrefixes}
+                value={data.phonePrefix}
+                onChange={(e) => update("phonePrefix", e.target.value)}
+                style={{ width: 110, flexShrink: 0 }}
+              />
+              <Input
+                id="signup-phone"
+                type="tel"
+                inputSize="lg"
+                placeholder="e.g. 024 123 4567"
+                autoComplete="tel"
+                value={data.phone}
+                error={Boolean(errors.phone)}
+                onChange={(e) => update("phone", e.target.value)}
+                style={{ flex: 1 }}
+              />
+            </div>
+          </FormField>
 
-      <FormField label="Password" htmlFor="signup-password" required error={errors.password}>
-        <Input
-          id="signup-password"
-          type="password"
-          inputSize="lg"
-          placeholder="Create a strong password"
-          autoComplete="new-password"
-          value={data.password}
-          error={Boolean(errors.password)}
-          onChange={(e) => update("password", e.target.value)}
-        />
-        <PasswordStrength password={data.password} />
-      </FormField>
-
-      <FormField label="Country" htmlFor="signup-country" required error={errors.countryCode}>
-        <Select
-          id="signup-country"
-          options={countries}
-          placeholder="Select country"
-          value={data.countryCode}
-          error={Boolean(errors.countryCode)}
-          onChange={(e) => update("countryCode", e.target.value)}
-        />
-      </FormField>
+          <FormField label="Password" htmlFor="signup-password" required error={errors.password}>
+            <Input
+              id="signup-password"
+              type="password"
+              inputSize="lg"
+              placeholder="Create a strong password"
+              autoComplete="new-password"
+              value={data.password}
+              error={Boolean(errors.password)}
+              onChange={(e) => update("password", e.target.value)}
+            />
+            <PasswordStrength password={data.password} />
+          </FormField>
+        </>
+      )}
     </div>
   );
 }

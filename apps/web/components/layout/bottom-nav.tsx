@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import React from "react";
 import type { ComponentType } from "react";
 
 import * as Icons from "@/components/icons";
 import { defaultMobileNavItems, type NavItem } from "./nav-items";
 
 interface BottomNavProps {
+  ariaLabel?: string;
   items?: NavItem[];
 }
 
@@ -21,12 +23,12 @@ function isItemActive(pathname: string | null, item: NavItem): boolean {
   return candidates.some((candidate) => pathname === candidate || pathname?.startsWith(`${candidate}/`));
 }
 
-export function BottomNav({ items }: BottomNavProps) {
+export function BottomNav({ ariaLabel = "Mobile navigation", items }: BottomNavProps) {
   const pathname = usePathname();
   const navItems = items ?? defaultMobileNavItems;
 
   return (
-    <nav aria-label="Mobile navigation" className="ds-bottom-nav">
+    <nav aria-label={ariaLabel} className="ds-bottom-nav">
       <div className="ds-bottom-nav-inner">
         {navItems.map((item) => {
           const Icon = resolveIcon(item.icon);

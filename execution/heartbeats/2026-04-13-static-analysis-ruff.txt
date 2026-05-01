@@ -1,5 +1,0 @@
-Command: ~/.local/bin/ruff --version
-ruff 0.15.10
-
-Command: ~/.local/bin/ruff check src tests
-All checks passed!

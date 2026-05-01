@@ -34,6 +34,7 @@ const { mockMarketplaceApi, mockUseAppState, mockReadUserPreferences } = vi.hois
   mockReadUserPreferences: vi.fn(),
   mockMarketplaceApi: {
     getListing: vi.fn(),
+    getListingIntelligence: vi.fn(),
     listListingRevisions: vi.fn(),
     listListings: vi.fn(),
     listNegotiations: vi.fn(),
@@ -161,6 +162,48 @@ describe("R4 marketplace surfaces", () => {
     mockMarketplaceApi.getListing.mockResolvedValue({
       data: buildListing({ status: "draft", view_scope: "owner", has_unpublished_changes: true }),
     });
+    mockMarketplaceApi.getListingIntelligence.mockResolvedValue({
+      data: {
+        schema_version: "2026-04-18.wave1",
+        listing_id: "listing-1",
+        country_code: "GH",
+        matched_buyer_count: 2,
+        seller_entity_match: {
+          entity_id: "entity-seller",
+          canonical_name: "Agrodomain Co-op",
+          country_code: "GH",
+          trust_tier: "silver",
+          confidence_score: 84,
+          freshness_status: "fresh",
+          operator_tags: ["cooperative"],
+          commodity_tags: ["cassava"],
+          location_signature: "tamale|northern region",
+          source_document_count: 2,
+          pending_claim_count: 0,
+          updated_at: "2026-04-19T00:00:00.000Z",
+          match_score: 88,
+          match_reasons: ["normalized_name_exact"],
+        },
+        buyer_matches: [
+          {
+            entity_id: "entity-buyer-1",
+            canonical_name: "Tamale Cassava Buyers Ltd",
+            country_code: "GH",
+            trust_tier: "gold",
+            confidence_score: 92,
+            freshness_status: "fresh",
+            operator_tags: ["buyer"],
+            commodity_tags: ["cassava"],
+            location_signature: "tamale|northern region",
+            source_document_count: 3,
+            pending_claim_count: 0,
+            updated_at: "2026-04-19T00:00:00.000Z",
+            match_score: 95,
+            match_reasons: ["commodity_exact", "location_overlap"],
+          },
+        ],
+      },
+    });
     mockMarketplaceApi.listListingRevisions.mockResolvedValue({
       data: {
         items: [
@@ -211,7 +254,9 @@ describe("R4 marketplace surfaces", () => {
     render(<ListingDetailPageClient listingId="listing-1" />);
 
     expect((await screen.findAllByRole("heading", { name: "Premium cassava harvest" })).length).toBeGreaterThan(0);
-    expect(screen.getByText("Quality and handling")).toBeInTheDocument();
+    expect(screen.getByText("Why this lot is easy to review")).toBeInTheDocument();
+    expect(screen.getByText("Verified buyers already cover this lane")).toBeInTheDocument();
+    expect(screen.getByText("Tamale Cassava Buyers Ltd")).toBeInTheDocument();
     expect(screen.getByText("Show 2 recorded revisions")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Open profile" })).toHaveAttribute("href", "/app/profile");
 
@@ -272,7 +317,7 @@ describe("R4 marketplace surfaces", () => {
 
     render(<MyListingsPage />);
 
-    expect(await screen.findByRole("heading", { name: "My listings" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "See what is live, what needs work, and what buyers are responding to" })).toBeInTheDocument();
     expect(await screen.findByText("Draft cassava lot")).toBeInTheDocument();
     expect(screen.getByText("Published maize lot")).toBeInTheDocument();
 

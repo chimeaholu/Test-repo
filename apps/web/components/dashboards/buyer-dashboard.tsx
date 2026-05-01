@@ -4,6 +4,8 @@ import Link from "next/link";
 import React from "react";
 import { useEffect, useState } from "react";
 
+import { DashboardActionTile } from "@/components/dashboard-action-tile";
+import { AnalyticsIcon, MarketIcon, NotificationIcon, TruckIcon, WalletIcon } from "@/components/icons";
 import { useAppState } from "@/components/app-provider";
 import { EmptyState, InfoList, InsightCallout, SectionHeading, StatusPill, SurfaceCard } from "@/components/ui-primitives";
 import type { ListingRecord, NegotiationThreadRead } from "@agrodomain/contracts";
@@ -150,7 +152,7 @@ export function BuyerDashboard() {
           negotiationsResult.status !== "fulfilled" ||
           escrowsResult.status !== "fulfilled"
         ) {
-          setError("Unable to load the buyer dashboard right now.");
+          setError("Unable to load the buyer workspace right now.");
           return;
         }
 
@@ -167,7 +169,7 @@ export function BuyerDashboard() {
       })
       .catch(() => {
         if (!cancelled) {
-          setError("Unable to load the buyer dashboard right now.");
+          setError("Unable to load the buyer workspace right now.");
         }
       })
       .finally(() => {
@@ -189,15 +191,15 @@ export function BuyerDashboard() {
     <div className="content-stack">
       <SurfaceCard className="hero-surface">
         <SectionHeading
-          eyebrow="Buyer dashboard"
-          title="Source live supply, keep deals moving, and watch settlement readiness in one place."
-          body="See fresh supply, active negotiations, and wallet readiness at a glance."
+          eyebrow="Buyer workspace"
+          title="Compare supply, move offers, and keep purchase decisions moving."
+          body="See available lots, active deals, and payment readiness from one place."
           actions={
             snapshot ? (
               <div className="pill-row">
-                <StatusPill tone="neutral">Listings {snapshot.availableListings}</StatusPill>
+                <StatusPill tone="neutral">Lots {snapshot.availableListings}</StatusPill>
                 <StatusPill tone={snapshot.activeNegotiations > 0 ? "degraded" : "neutral"}>
-                  Negotiations {snapshot.activeNegotiations}
+                  Offers {snapshot.activeNegotiations}
                 </StatusPill>
               </div>
             ) : null
@@ -206,19 +208,19 @@ export function BuyerDashboard() {
 
         <div className="metrics-grid">
           <article className="metric-card">
-            <span className="metric-label">Available listings</span>
+            <span className="metric-label">Available lots</span>
             <strong className="metric-value">{snapshot?.availableListings ?? "..."}</strong>
-            <p className="muted">Published lots currently available for review in the marketplace.</p>
+            <p className="muted">Fresh supply currently ready for review in the market.</p>
           </article>
           <article className="metric-card">
-            <span className="metric-label">Active negotiations</span>
+            <span className="metric-label">Offers waiting on you</span>
             <strong className="metric-value">{snapshot?.activeNegotiations ?? "..."}</strong>
-            <p className="muted">Buyer-owned threads that still need an answer, confirmation, or closure.</p>
+            <p className="muted">Deals that still need your answer, confirmation, or follow-up.</p>
           </article>
           <article className="metric-card">
-            <span className="metric-label">Completed trades</span>
+            <span className="metric-label">Payment ready</span>
             <strong className="metric-value">{snapshot?.completedTrades ?? "..."}</strong>
-            <p className="muted">Completed purchases that have cleared settlement and closed successfully.</p>
+            <p className="muted">Completed purchases that have already cleared and closed successfully.</p>
           </article>
           <article className="metric-card">
             <span className="metric-label">Wallet balance</span>
@@ -227,8 +229,8 @@ export function BuyerDashboard() {
             </strong>
             <p className="muted">
               {snapshot?.wallet
-                ? `${formatMoney(snapshot.wallet.held_balance, snapshot.wallet.currency)} currently held in escrow.`
-                : "Wallet details will appear here as soon as your balance is available."}
+                  ? `${formatMoney(snapshot.wallet.held_balance, snapshot.wallet.currency)} currently waiting inside active deals.`
+                  : "Wallet details will appear here as soon as your balance is available."}
             </p>
           </article>
         </div>
@@ -246,34 +248,56 @@ export function BuyerDashboard() {
         <SurfaceCard>
           <SectionHeading
             eyebrow="Quick actions"
-            title="Move directly into buyer work"
-            body="Jump straight into the tools you use to source, negotiate, fund, and track shipments."
+            title="Choose the next buying task"
+            body="Open the next lot, deal, or payment action without hunting through extra screens."
           />
           <div className="task-list">
-            <Link className="task-card primary" href="/app/market/listings">
-              <strong>Browse marketplace</strong>
-              <p className="muted">Review live supply, compare lots, and inspect quality proof.</p>
-            </Link>
-            <Link className="task-card primary" href="/app/market/negotiations">
-              <strong>View negotiations</strong>
-              <p className="muted">Resume active pricing threads and close the deals that are nearest to confirmation.</p>
-            </Link>
-            <Link className="task-card secondary" href="/app/payments/wallet">
-              <strong>Fund wallet</strong>
-              <p className="muted">Top up working balance before moving a deal into escrow.</p>
-            </Link>
-            <Link className="task-card secondary" href={snapshot?.shipmentHref ?? "/app/market/listings"}>
-              <strong>View shipments</strong>
-              <p className="muted">Open the shipment timeline for the lot that most recently moved into delivery.</p>
-            </Link>
+            <DashboardActionTile
+              detail="Browse current supply and compare lot details, pricing, and quality cues."
+              eyebrow="Do now"
+              href="/app/market/listings"
+              icon={<MarketIcon size={20} />}
+              label="Browse market"
+            />
+            <DashboardActionTile
+              detail="Resume the offers that are closest to confirmation."
+              eyebrow="Keep moving"
+              href="/app/market/negotiations"
+              icon={<NotificationIcon size={20} />}
+              label="Open offers"
+            />
+            <DashboardActionTile
+              detail="Check buyer and processor relationships when you need a stronger next option."
+              eyebrow="Compare"
+              href="/app/agro-intelligence/buyers"
+              icon={<AnalyticsIcon size={20} />}
+              label="Buyer directory"
+              tone="secondary"
+            />
+            <DashboardActionTile
+              detail="Top up balance before moving the next deal into payment."
+              eyebrow="Keep ready"
+              href="/app/payments/wallet"
+              icon={<WalletIcon size={20} />}
+              label="Fund wallet"
+              tone="secondary"
+            />
+            <DashboardActionTile
+              detail="Open the latest lot that already moved into delivery."
+              eyebrow="Track"
+              href={snapshot?.shipmentHref ?? "/app/market/listings"}
+              icon={<TruckIcon size={20} />}
+              label="Track delivery"
+              tone="secondary"
+            />
           </div>
         </SurfaceCard>
 
         <SurfaceCard>
           <SectionHeading
-            eyebrow="Trade activity"
-            title="Recent buyer-side movement"
-            body="Follow the latest negotiation updates, confirmations, and settlement milestones."
+            eyebrow="Deals in motion"
+            title="What changed most recently"
+            body="Follow the latest offer updates, confirmations, and payment progress."
           />
           {snapshot?.activity.length ? (
             <div className="task-list">
@@ -290,8 +314,8 @@ export function BuyerDashboard() {
             </div>
           ) : (
             <EmptyState
-              title={isLoading ? "Loading trade activity" : "No recent trade activity"}
-              body="As new negotiations and settlements land in the live records, they will appear here automatically."
+              title={isLoading ? "Loading recent activity" : "No recent buyer activity"}
+              body="As new offers and payment updates arrive, they will appear here automatically."
             />
           )}
         </SurfaceCard>

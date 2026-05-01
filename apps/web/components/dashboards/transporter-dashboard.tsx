@@ -4,6 +4,8 @@ import Link from "next/link";
 import React from "react";
 import { useEffect, useState } from "react";
 
+import { DashboardActionTile } from "@/components/dashboard-action-tile";
+import { MarketIcon, ProfileIcon, TruckIcon, WalletIcon } from "@/components/icons";
 import { useAppState } from "@/components/app-provider";
 import { EmptyState, InsightCallout, SectionHeading, StatusPill, SurfaceCard } from "@/components/ui-primitives";
 import type { ListingRecord, NegotiationThreadRead } from "@agrodomain/contracts";
@@ -134,7 +136,7 @@ export function TransporterDashboard() {
           negotiationsResult.status !== "fulfilled" ||
           escrowsResult.status !== "fulfilled"
         ) {
-          setError("Unable to load the transporter dashboard right now.");
+          setError("Unable to load the transport workspace right now.");
           return;
         }
 
@@ -149,7 +151,7 @@ export function TransporterDashboard() {
       })
       .catch(() => {
         if (!cancelled) {
-          setError("Unable to load the transporter dashboard right now.");
+          setError("Unable to load the transport workspace right now.");
         }
       })
       .finally(() => {
@@ -171,17 +173,17 @@ export function TransporterDashboard() {
     <div className="content-stack">
       <SurfaceCard className="hero-surface">
         <SectionHeading
-          eyebrow="Transporter dashboard"
-          title="Track live loads, follow shipment state, and keep delivery proof within reach."
-          body="Stay on top of available loads, active deliveries, and confirmed completions from one logistics view."
+          eyebrow="Transport workspace"
+          title="See active deliveries, open loads, and payout progress in one place."
+          body="Use this workspace to keep trips moving, update milestones, and stay ready for the next load."
           actions={
             snapshot ? (
               <div className="pill-row">
                 <StatusPill tone={snapshot.activeShipments > 0 ? "online" : "neutral"}>
-                  Active {snapshot.activeShipments}
+                  Deliveries {snapshot.activeShipments}
                 </StatusPill>
                 <StatusPill tone={snapshot.completedDeliveries > 0 ? "online" : "neutral"}>
-                  Completed {snapshot.completedDeliveries}
+                  Payouts {snapshot.completedDeliveries}
                 </StatusPill>
               </div>
             ) : null
@@ -190,24 +192,24 @@ export function TransporterDashboard() {
 
         <div className="metrics-grid">
           <article className="metric-card">
-            <span className="metric-label">Active shipments</span>
+            <span className="metric-label">Deliveries in progress</span>
             <strong className="metric-value">{snapshot?.activeShipments ?? "..."}</strong>
-            <p className="muted">Consignments currently in motion and awaiting the next handoff.</p>
+            <p className="muted">Trips currently in motion and waiting on the next update.</p>
           </article>
           <article className="metric-card">
-            <span className="metric-label">Available loads</span>
+            <span className="metric-label">Loads near you</span>
             <strong className="metric-value">{snapshot?.availableLoads ?? "..."}</strong>
             <p className="muted">Loads ready for pickup planning and delivery coordination.</p>
           </article>
           <article className="metric-card">
-            <span className="metric-label">Completed deliveries</span>
+            <span className="metric-label">Recent completions</span>
             <strong className="metric-value">{snapshot?.completedDeliveries ?? "..."}</strong>
-            <p className="muted">Deliveries marked complete and ready for final confirmation.</p>
+            <p className="muted">Closed deliveries that already reached final confirmation.</p>
           </article>
           <article className="metric-card">
-            <span className="metric-label">Earnings</span>
+            <span className="metric-label">Payouts and earnings</span>
             <strong className="metric-value">{snapshot?.releasedValue ?? "--"}</strong>
-            <p className="muted">A view of the value tied to recently completed consignments.</p>
+            <p className="muted">The value tied to recently completed deliveries.</p>
           </article>
         </div>
       </SurfaceCard>
@@ -224,38 +226,56 @@ export function TransporterDashboard() {
         <SurfaceCard>
           <SectionHeading
             eyebrow="Quick actions"
-            title="Open the tools that keep deliveries moving"
-            body="Go straight to load discovery, shipment tracking, delivery history, and account details."
+            title="Choose the next transport task"
+            body="Open the next load, live delivery, or payout action without extra back-and-forth."
           />
           <div className="task-list">
-            <Link className="task-card primary" href="/app/market/listings">
-              <strong>Browse loads</strong>
-              <p className="muted">Review loads available for pickup and plan the next delivery.</p>
-            </Link>
-            <Link className="task-card primary" href="/app/trucker">
-              <strong>AgroTrucker</strong>
-              <p className="muted">Switch into the transport marketplace for route-aware load matching and carrier controls.</p>
-            </Link>
-            <Link className="task-card secondary" href={snapshot?.shipmentHref ?? "/app/market/listings"}>
-              <strong>Active shipments</strong>
-              <p className="muted">Open the latest consignment timeline and confirm the next handoff.</p>
-            </Link>
-            <Link className="task-card secondary" href={snapshot?.completedHref ?? "/app/market/listings"}>
-              <strong>Delivery history</strong>
-              <p className="muted">Review recent delivery timelines and confirm completed handoffs.</p>
-            </Link>
-            <Link className="task-card secondary" href="/app/profile">
-              <strong>Vehicle management</strong>
-              <p className="muted">Review your account details and keep transport information up to date.</p>
-            </Link>
+            <DashboardActionTile
+              detail="Review loads available for pickup and plan the next delivery."
+              eyebrow="Do now"
+              href="/app/market/listings"
+              icon={<MarketIcon size={20} />}
+              label="View loads"
+            />
+            <DashboardActionTile
+              detail="Open the transport board and keep the next delivery moving."
+              eyebrow="Keep moving"
+              href="/app/trucker"
+              icon={<TruckIcon size={20} />}
+              label="Track delivery"
+            />
+            <DashboardActionTile
+              detail="Open the latest delivery timeline and confirm the next handoff."
+              eyebrow="Track"
+              href={snapshot?.shipmentHref ?? "/app/market/listings"}
+              icon={<TruckIcon size={20} />}
+              label="Active shipments"
+              tone="secondary"
+            />
+            <DashboardActionTile
+              detail="Review recent delivery timelines and confirm completed handoffs."
+              eyebrow="History"
+              href={snapshot?.completedHref ?? "/app/market/listings"}
+              icon={<WalletIcon size={20} />}
+              label="View payouts"
+              tone="secondary"
+            />
+            <DashboardActionTile
+              detail="Keep vehicle and account details current before the next assignment."
+              eyebrow="Keep ready"
+              href="/app/profile"
+              icon={<ProfileIcon size={20} />}
+              label="Vehicle details"
+              tone="secondary"
+            />
           </div>
         </SurfaceCard>
 
         <SurfaceCard>
           <SectionHeading
-            eyebrow="Shipment events"
-            title="Recent transport-adjacent activity"
-            body="Every event below reflects the latest shipment, negotiation, or settlement milestone."
+            eyebrow="What is moving now"
+            title="Recent delivery activity"
+            body="Every update below reflects the latest delivery, load, or payout milestone."
           />
           {snapshot?.activity.length ? (
             <div className="task-list">
@@ -272,8 +292,8 @@ export function TransporterDashboard() {
             </div>
           ) : (
             <EmptyState
-              title={isLoading ? "Loading shipment events" : "No shipment events yet"}
-              body="Shipment updates will appear here as new loads move from confirmation to delivery."
+              title={isLoading ? "Loading delivery activity" : "No delivery activity yet"}
+              body="Delivery updates will appear here as new loads move from confirmation to completion."
             />
           )}
         </SurfaceCard>
@@ -281,8 +301,8 @@ export function TransporterDashboard() {
 
       <SurfaceCard>
         <InsightCallout
-          title="Transport tip"
-          body="Use delivery history to confirm recent handoffs and keep your account details current before the next assignment."
+          title="What needs an update"
+          body="Use delivery history to confirm recent handoffs and keep driver details current before the next assignment."
           tone="accent"
         />
       </SurfaceCard>

@@ -14,6 +14,7 @@ export type ContractDomain =
   | "errors"
   | "identity"
   | "workflow"
+  | "analytics"
   | "advisory"
   | "channels"
   | "notifications"
@@ -22,7 +23,10 @@ export type ContractDomain =
   | "finance"
   | "ledger"
   | "escrow"
-  | "climate";
+  | "climate"
+  | "copilot"
+  | "platform_boundary"
+  | "agro_intelligence";
 
 export type ContractKind = "request" | "response" | "event" | "dto" | "catalog";
 

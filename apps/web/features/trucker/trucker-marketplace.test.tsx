@@ -16,7 +16,7 @@ const { mockUseAppState, mockTruckerApi } = vi.hoisted(() => ({
   mockUseAppState: vi.fn(),
   mockTruckerApi: {
     acceptLoad: vi.fn(),
-    getMarketplaceSnapshot: vi.fn(),
+    getMarketplaceSnapshotLive: vi.fn(),
     writeAvailability: vi.fn(),
     writeRolePreference: vi.fn(),
     requestDriver: vi.fn(),
@@ -66,7 +66,7 @@ describe("trucker marketplace", () => {
       },
       traceId: "trace-trucker",
     });
-    mockTruckerApi.getMarketplaceSnapshot.mockResolvedValue({
+    mockTruckerApi.getMarketplaceSnapshotLive.mockResolvedValue({
       availableDrivers: [
         {
           actorId: "actor-transporter-gh-ama",
@@ -118,7 +118,7 @@ describe("trucker marketplace", () => {
   it("renders driver and shipper logistics views and persists role switching", async () => {
     render(<TruckerMarketplace />);
 
-    expect(await screen.findByRole("heading", { name: /move produce with verified capacity/i })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: /match loads, track deliveries, and keep transport visible/i })).toBeInTheDocument();
     expect(screen.getByText(/available loads near you/i)).toBeInTheDocument();
     expect(screen.getByText("Tamale to Accra")).toBeInTheDocument();
 
@@ -135,6 +135,6 @@ describe("trucker marketplace", () => {
 
     expect(screen.getByText(/available drivers/i)).toBeInTheDocument();
     expect(screen.getByText("Ama Darko")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /track/i })).toHaveAttribute("href", "/app/trucker/shipments/shipment-1");
+    expect(screen.getByRole("link", { name: /track delivery/i })).toHaveAttribute("href", "/app/trucker/shipments/shipment-1");
   });
 });

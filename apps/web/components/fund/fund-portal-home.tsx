@@ -298,8 +298,8 @@ export function FundPortalHome() {
       {isSeedData ? (
         <SurfaceCard>
           <InsightCallout
-            title="Showing seed opportunities"
-            body="Live marketplace records are empty or still loading, so AgroFund is keeping the portal warm with curated example opportunities."
+            title="Showing featured examples"
+            body="Live opportunities are still loading, so AgroFund is highlighting curated farm examples for comparison."
             tone="accent"
           />
         </SurfaceCard>
@@ -307,9 +307,9 @@ export function FundPortalHome() {
 
       <SurfaceCard>
         <SectionHeading
-          eyebrow="Farm opportunities"
-          title="Compare goal size, progress, and expected return"
-          body="Filters are tuned for mobile use first, then scale into a richer comparison grid on larger screens."
+          eyebrow="Featured opportunities"
+          title="Compare farms, progress, and expected return"
+          body="Use the filters to compare the farm story, funding progress, and return case before you invest."
         />
         <OpportunityFilters
           cropOptions={cropOptions}
@@ -337,7 +337,7 @@ export function FundPortalHome() {
           <p>
             {filteredOpportunities.length} opportunit{filteredOpportunities.length === 1 ? "y" : "ies"} available
           </p>
-          <span>{isLoading ? "Refreshing live data..." : "Live platform data loaded"}</span>
+          <span>{isLoading ? "Refreshing opportunities..." : "Opportunities ready to compare"}</span>
         </div>
 
         {filteredOpportunities.length === 0 ? (

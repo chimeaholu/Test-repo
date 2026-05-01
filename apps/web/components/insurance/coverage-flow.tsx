@@ -114,11 +114,11 @@ export function CoverageFlow({ availableBalance, currency, fields, onPurchase }:
   }
 
   return (
-    <section className="insurance-coverage-card" aria-label="Get coverage">
+    <section className="insurance-coverage-card" aria-label="Add protection">
       <div className="insurance-coverage-header">
         <div>
-          <p className="insurance-policy-kicker">Get coverage</p>
-          <h3>Protect a live farm field with wallet-linked cover.</h3>
+          <p className="insurance-policy-kicker">Available protection</p>
+          <h3>Add protection before the next risk window arrives.</h3>
         </div>
         <ShieldCheck size={20} />
       </div>
@@ -188,7 +188,7 @@ export function CoverageFlow({ availableBalance, currency, fields, onPurchase }:
         <article>
           <span>Premium</span>
           <strong>{formatMoney(premiumAmount, currency)}</strong>
-          <p>Stub premium formula uses acreage, risk posture, and cover type.</p>
+          <p>Based on field size, current risk, and the type of cover you choose.</p>
         </article>
         <article>
           <span>Wallet after reserve</span>
@@ -201,7 +201,7 @@ export function CoverageFlow({ availableBalance, currency, fields, onPurchase }:
       </div>
 
         <Button disabled={!canSubmit} loading={isSubmitting} onClick={handleSubmit} size="lg">
-          {isSubmitting ? "Activating coverage..." : "Review and purchase"}
+          {isSubmitting ? "Adding protection..." : "Add protection"}
         </Button>
       </section>
   );

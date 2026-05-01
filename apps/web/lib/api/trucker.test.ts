@@ -95,4 +95,49 @@ describe("trucker api", () => {
       }),
     );
   });
+
+  it("records structured shipment exceptions with delay and severity", () => {
+    const issue = truckerApi.reportIssue("shipment-123", {
+      blocked: true,
+      delayMinutes: 95,
+      description: "Axle failure near the weighbridge. Backup truck requested.",
+      severity: "high",
+      type: "breakdown",
+    });
+
+    expect(issue).toEqual({
+      blocked: true,
+      delayMinutes: 95,
+      description: "Axle failure near the weighbridge. Backup truck requested.",
+      id: expect.stringContaining("shipment-123-issue-"),
+      reportedAt: "2026-04-25T04:26:00.000Z",
+      severity: "high",
+      type: "breakdown",
+    });
+    expect(mockWriteJson).toHaveBeenCalledWith(
+      "agrodomain.trucker.workspace.v1",
+      expect.objectContaining({
+        loads: expect.objectContaining({
+          "shipment-123": expect.objectContaining({
+            issueCount: 1,
+            issues: [
+              expect.objectContaining({
+                blocked: true,
+                delayMinutes: 95,
+                severity: "high",
+                type: "breakdown",
+              }),
+            ],
+            updates: [
+              expect.objectContaining({
+                checkpoint: "breakdown",
+                note: "Axle failure near the weighbridge. Backup truck requested. Delay logged: 95 minutes.",
+                tone: "warning",
+              }),
+            ],
+          }),
+        }),
+      }),
+    );
+  });
 });

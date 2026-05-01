@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 
+import { BrandMark } from "@/components/brand-mark";
+
 export function PublicNav() {
   const pathname = usePathname();
   const dialogId = useId();
@@ -65,13 +67,7 @@ export function PublicNav() {
       >
         <div className="pub-nav-inner">
           <Link href="/" className="pub-nav-logo" aria-label="Agrodomain — The Super-Platform for African Agriculture">
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-              <circle cx="18" cy="18" r="16" fill="#2d5a3d" opacity="0.12" />
-              <path d="M18 28V16c0-6 3.5-10.5 10-13-6.5 2.5-8.5 7-10 13z" fill="#2d5a3d" />
-              <path d="M18 28V16c0-6-3.5-10.5-10-13 6.5 2.5 8.5 7 10 13z" fill="#4a8c5e" opacity="0.7" />
-              <circle cx="18" cy="30" r="2" fill="#c17b2a" />
-            </svg>
-            <span className="pub-nav-wordmark">agrodomain</span>
+            <BrandMark caption="Sell, protect, move" />
           </Link>
 
           <div className="pub-nav-links">
@@ -93,10 +89,10 @@ export function PublicNav() {
               className="pub-nav-signin"
               aria-current={pathname === "/signin" ? "page" : undefined}
             >
-              Sign In
+              Sign in
             </Link>
             <Link href="/signup" className="pub-nav-cta">
-              Get Started
+              Create your account
             </Link>
           </div>
 
@@ -127,13 +123,7 @@ export function PublicNav() {
         >
           <div className="pub-mobile-header">
             <Link href="/" className="pub-nav-logo" onClick={() => setMobileOpen(false)} aria-label="Agrodomain home">
-              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-                <circle cx="18" cy="18" r="16" fill="#2d5a3d" opacity="0.12" />
-                <path d="M18 28V16c0-6 3.5-10.5 10-13-6.5 2.5-8.5 7-10 13z" fill="#2d5a3d" />
-                <path d="M18 28V16c0-6-3.5-10.5-10-13 6.5 2.5 8.5 7 10 13z" fill="#4a8c5e" opacity="0.7" />
-                <circle cx="18" cy="30" r="2" fill="#c17b2a" />
-              </svg>
-              <span className="pub-nav-wordmark">agrodomain</span>
+              <BrandMark />
             </Link>
             <button
               className="pub-mobile-close"
@@ -159,12 +149,12 @@ export function PublicNav() {
               </Link>
             ))}
             <Link href="/signin" className="pub-mobile-link" onClick={() => setMobileOpen(false)}>
-              Sign In
+              Sign in
             </Link>
           </div>
           <div className="pub-mobile-bottom">
             <Link href="/signup" className="pub-mobile-cta" onClick={() => setMobileOpen(false)}>
-              Get Started
+              Create your account
             </Link>
           </div>
         </div>

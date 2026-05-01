@@ -98,6 +98,11 @@ describe("listing wizard", () => {
     vi.clearAllMocks();
     window.localStorage.clear();
     mockUseAppState.mockReturnValue({
+      queue: {
+        connectivity_state: "online",
+        handoff_channel: null,
+        items: [],
+      },
       session: buildSession(),
       traceId: "trace-listing-wizard",
     });
@@ -107,6 +112,7 @@ describe("listing wizard", () => {
   it("validates the current step before advancing", async () => {
     render(<ListingWizardContainer />);
 
+    expect(await screen.findByText("What buyers need before they act")).toBeInTheDocument();
     const titleInput = await screen.findByLabelText("Listing title");
     fireEvent.change(titleInput, { target: { value: "" } });
     fireEvent.click(screen.getByRole("button", { name: "Continue" }));
@@ -188,6 +194,7 @@ describe("listing wizard", () => {
     });
 
     expect(await screen.findByText("Listing published confirmed")).toBeInTheDocument();
+    expect(screen.getByText("No current blockers")).toBeInTheDocument();
     expect(screen.getByLabelText("Listing title")).toHaveValue("Premium cassava harvest");
     expect(window.localStorage.getItem("agrodomain_listing_wizard_v1")).toContain("\"title\":\"Premium cassava harvest\"");
   });

@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/input";
 import { EscrowTimeline } from "@/components/wallet/escrow-timeline";
+import { buildEscrowExplainability } from "@/features/marketplace/trust";
 import {
   deriveWalletActions,
   escrowStateCopy,
@@ -56,15 +57,16 @@ export function EscrowCard({
   const notification = latestNotification(escrow);
   const notificationState = notificationSummary(notification);
   const walletActions = deriveWalletActions(escrow, actorId);
+  const explainability = buildEscrowExplainability(escrow, actorId);
 
   return (
     <article className="wallet-escrow-card">
       <div className="wallet-escrow-topline">
         <div>
-          <p className="wallet-card-eyebrow">Escrow {escrow.escrow_id}</p>
+          <p className="wallet-card-eyebrow">Payment hold</p>
           <h3>{formatMoney(escrow.amount, escrow.currency)}</h3>
           <p>
-            Counterparty {counterparty} · Listing {escrow.listing_id}
+            Counterparty {counterparty} · Lot {escrow.listing_id}
           </p>
         </div>
 
@@ -78,7 +80,7 @@ export function EscrowCard({
 
       <div className="wallet-escrow-grid">
         <article>
-          <span>Thread</span>
+          <span>Deal reference</span>
           <strong>{escrow.thread_id}</strong>
         </article>
         <article>
@@ -90,7 +92,7 @@ export function EscrowCard({
           <strong>{new Date(escrow.updated_at).toLocaleDateString()}</strong>
         </article>
         <article>
-          <span>Partner reason</span>
+          <span>Latest issue</span>
           <strong>{escrow.partner_reason_code ?? "None"}</strong>
         </article>
       </div>
@@ -113,10 +115,28 @@ export function EscrowCard({
         </div>
       </div>
 
+      <div className="wallet-explain-grid" role="list" aria-label="Settlement explainability">
+        <article className="wallet-explain-card" role="listitem">
+          <span>Funds location</span>
+          <strong>{explainability.fundsLocation}</strong>
+          <p>{explainability.statusSummary}</p>
+        </article>
+        <article className="wallet-explain-card" role="listitem">
+          <span>Release condition</span>
+          <strong>{explainability.releaseCondition}</strong>
+          <p>{explainability.blocker}</p>
+        </article>
+        <article className="wallet-explain-card" role="listitem">
+          <span>Next owner</span>
+          <strong>{explainability.nextOwnerLabel}</strong>
+          <p>Use this to keep delivery promises and payment actions aligned.</p>
+        </article>
+      </div>
+
       <EscrowTimeline escrow={escrow} />
 
       <label className="wallet-note-field" htmlFor={`wallet-note-${escrow.escrow_id}`}>
-        <span>Settlement note</span>
+        <span>Payment note</span>
         <Textarea
           id={`wallet-note-${escrow.escrow_id}`}
           rows={3}
@@ -154,7 +174,7 @@ export function EscrowCard({
 
       <div className="wallet-escrow-footer">
         <Link className="wallet-link-inline" href={`/app/market/negotiations/${escrow.thread_id}`}>
-          Review negotiation thread
+          Review deal
           <ArrowRight size={14} />
         </Link>
       </div>

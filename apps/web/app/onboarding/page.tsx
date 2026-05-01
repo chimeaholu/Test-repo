@@ -15,6 +15,7 @@ import { FirstActionStep } from "@/components/onboarding/first-action-step";
 
 const TOTAL_STEPS = 5;
 const STORAGE_KEY = "agro_onboarding_step";
+const STEP_LABELS = ["Welcome", "Location", "Profile", "Permissions", "First action"] as const;
 
 export interface OnboardingData {
   // Location (step 2)
@@ -134,7 +135,7 @@ export default function OnboardingPage() {
         createPortal(
           <div className="onboarding-topbar-meta">
             <span className="onboarding-step-indicator">
-              Step {step} of {TOTAL_STEPS}
+              Step {step} of {TOTAL_STEPS}: {STEP_LABELS[step - 1]}
             </span>
             {showSkip && (
               <button
@@ -151,7 +152,7 @@ export default function OnboardingPage() {
 
       <div className="onboarding-card-wrap" id="main-content">
         <div className="onboarding-card">
-          <OnboardingProgress currentStep={step} totalSteps={TOTAL_STEPS} />
+          <OnboardingProgress currentStep={step} totalSteps={TOTAL_STEPS} labels={[...STEP_LABELS]} />
           <div className="onboarding-card-body">
             {step === 1 && (
               <WelcomeStep session={session} onContinue={goNext} />

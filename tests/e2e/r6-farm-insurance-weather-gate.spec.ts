@@ -4,24 +4,13 @@ import path from "node:path";
 
 import { expect, test, type APIRequestContext, type ConsoleMessage, type Page, type TestInfo } from "@playwright/test";
 
-import { gotoPath } from "./helpers";
+import { bootstrapPasswordSession, gotoPath, type SessionSeed } from "./helpers";
 
 const API_BASE_URL =
   process.env.AGRO_E2E_API_BASE_URL ??
   `http://127.0.0.1:${process.env.AGRO_E2E_API_PORT ?? "8000"}`;
 const SESSION_KEY = "agrodomain.session.v2";
 const TOKEN_KEY = "agrodomain.session-token.v1";
-
-type SessionSeed = {
-  accessToken: string;
-  session: {
-    actor: {
-      actor_id: string;
-      country_code: string;
-      role: "farmer";
-    };
-  };
-};
 
 function screenshotPath(testInfo: TestInfo, slug: string): string | null {
   const artifactDir = process.env.PLAYWRIGHT_ARTIFACT_DIR;
@@ -59,53 +48,33 @@ async function createAuthenticatedSession(
     email: string;
   },
 ): Promise<SessionSeed> {
-  const signInRequestId = crypto.randomUUID();
-  const signInResponse = await request.post(`${API_BASE_URL}/api/v1/identity/session`, {
-    data: {
-      display_name: input.displayName,
-      email: input.email,
-      role: "farmer",
-      country_code: input.countryCode ?? "GH",
-    },
-    headers: {
-      "X-Correlation-ID": signInRequestId,
-      "X-Request-ID": signInRequestId,
-    },
+  return bootstrapPasswordSession(request, {
+    countryCode: input.countryCode ?? "GH",
+    displayName: input.displayName,
+    email: input.email,
+    password: `Harvest!${(input.countryCode ?? "GH").toUpperCase()}R6${crypto.randomUUID().slice(0, 6)}`,
+    role: "farmer",
+    scopeIds: ["identity.core", "workflow.audit", "notifications.delivery"],
   });
-  expect(signInResponse.ok()).toBeTruthy();
-
-  const signInPayload = (await signInResponse.json()) as {
-    access_token: string;
-    session: SessionSeed["session"];
-  };
-
-  const consentRequestId = crypto.randomUUID();
-  const consentResponse = await request.post(`${API_BASE_URL}/api/v1/identity/consent`, {
-    data: {
-      captured_at: new Date().toISOString(),
-      policy_version: "2026.04.r6",
-      scope_ids: ["identity.core", "workflow.audit", "notifications.delivery"],
-    },
-    headers: {
-      Authorization: `Bearer ${signInPayload.access_token}`,
-      "X-Correlation-ID": consentRequestId,
-      "X-Request-ID": consentRequestId,
-    },
-  });
-  expect(consentResponse.ok()).toBeTruthy();
-
-  return {
-    accessToken: signInPayload.access_token,
-    session: (await consentResponse.json()) as SessionSeed["session"],
-  };
 }
 
 async function primeSession(page: Page, sessionSeed: SessionSeed): Promise<void> {
   await gotoPath(page, "/signin");
+  const origin = new URL(page.url()).origin;
+  await page.context().addCookies([
+    {
+      name: "agrodomain-session",
+      value: "1",
+      url: origin,
+      sameSite: "Lax",
+    },
+  ]);
   await page.evaluate(
     ([sessionKey, tokenKey, session, token]) => {
       window.localStorage.setItem(sessionKey, JSON.stringify(session));
       window.localStorage.setItem(tokenKey, token);
+      document.cookie = "agrodomain-session=1;path=/;samesite=lax";
+      window.dispatchEvent(new CustomEvent("agrodomain:auth-state-changed"));
     },
     [SESSION_KEY, TOKEN_KEY, sessionSeed.session, sessionSeed.accessToken],
   );
@@ -243,10 +212,10 @@ test.describe("R6 farm, insurance, and weather gate", () => {
         await navigateFromSharedNav(page, "AgroFarm", "/app/farm", isMobile);
       }
 
-      await expectHeading(page, "Farm management");
-      await expect(page.getByText("AgroFarm operations")).toBeVisible();
+      await expectHeading(page, "Keep your fields, season work, and inputs in one working view");
+      await expect(page.getByText("Farm overview")).toBeVisible();
       await page.getByRole("button", { name: "List" }).click();
-      await expect(page.getByRole("heading", { name: "Operations surface" })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "Fields" })).toBeVisible();
       await page.getByRole("button", { name: "Add field" }).click();
       await expectHeading(page, "Add field");
       await page.getByRole("button", { name: "Cancel" }).click();
@@ -255,23 +224,23 @@ test.describe("R6 farm, insurance, and weather gate", () => {
       await assertNoRuntimeErrors(consoleErrors, pageErrors, counts, "/app/farm");
       await captureProof(page, testInfo, "01-farm-home");
 
-      await page.getByRole("link", { name: "Open field workspace" }).click();
+      await page.locator(".farm-card-list").getByRole("link", { name: "Open field" }).first().click();
       await expect(page).toHaveURL(/\/app\/farm\/fields\/[^/]+$/, { timeout: 30_000 });
     });
 
     await test.step("field detail renders and routes to inputs", async () => {
       const counts = { consoleCount: consoleErrors.length, pageCount: pageErrors.length };
 
-      await expect(page.getByRole("link", { name: "Review inputs" })).toBeVisible({ timeout: 30_000 });
-      await expect(page.getByRole("heading", { name: "Field weather watch" })).toBeVisible();
-      await page.getByRole("button", { name: "Log activity" }).first().click();
+      await expect(page.getByRole("link", { name: "Inputs used here" })).toBeVisible({ timeout: 30_000 });
+      await expect(page.getByRole("heading", { name: "Weather risk" })).toBeVisible();
+      await page.getByRole("button", { name: "Log field activity" }).first().click();
       await expectHeading(page, "Log field activity");
       await page.getByRole("button", { name: "Cancel" }).click();
       await assertNoHorizontalOverflow(page, "/app/farm/fields/[id]");
       await assertNoRuntimeErrors(consoleErrors, pageErrors, counts, "/app/farm/fields/[id]");
       await captureProof(page, testInfo, "02-farm-field-detail");
 
-      await page.getByRole("link", { name: "Review inputs" }).click();
+      await page.getByRole("link", { name: "Inputs used here" }).click();
       await expect(page).toHaveURL(/\/app\/farm\/inputs$/, { timeout: 30_000 });
     });
 
@@ -279,7 +248,7 @@ test.describe("R6 farm, insurance, and weather gate", () => {
       const counts = { consoleCount: consoleErrors.length, pageCount: pageErrors.length };
       const addInputButton = page.getByRole("button", { name: "Add input" }).first();
 
-      await expectHeading(page, "Input tracker");
+      await expectHeading(page, "Input inventory");
       await addInputButton.click();
       await expectHeading(page, "Add input");
       await page.getByRole("button", { name: "Cancel" }).click();
@@ -293,9 +262,9 @@ test.describe("R6 farm, insurance, and weather gate", () => {
       const counts = { consoleCount: consoleErrors.length, pageCount: pageErrors.length };
 
       await navigateFromSharedNav(page, "AgroShield", "/app/insurance", isMobile);
-      await expectHeading(page, "Coverage, claims, and weather evidence in one workspace.");
-      await expect(page.getByRole("button", { name: "Review and purchase" })).toBeVisible();
-      const claimLink = page.getByRole("link", { name: /Open claim detail|Review latest claim/i }).first();
+      await expectHeading(page, "Keep coverage, claims, and weather-backed protection in one place");
+      await expect(page.getByRole("button", { name: "Add protection" })).toBeVisible();
+      const claimLink = page.getByRole("link", { name: /Open claim detail|Open claim progress/i }).first();
       await expect(claimLink).toBeVisible({ timeout: 30_000 });
       await assertNoHorizontalOverflow(page, "/app/insurance");
       await assertNoRuntimeErrors(consoleErrors, pageErrors, counts, "/app/insurance");
@@ -308,7 +277,7 @@ test.describe("R6 farm, insurance, and weather gate", () => {
       const counts = { consoleCount: consoleErrors.length, pageCount: pageErrors.length };
 
       await expect(page.getByText("Claim detail")).toBeVisible();
-      await expectHeading(page, "Rainfall evidence");
+      await expectHeading(page, "Weather and supporting records");
       await expect(page.getByRole("img", { name: "Rainfall comparison chart" })).toBeVisible();
       await assertNoHorizontalOverflow(page, "/app/insurance/claims/[id]");
       await assertNoRuntimeErrors(consoleErrors, pageErrors, counts, "/app/insurance/claims/[id]");

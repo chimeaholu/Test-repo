@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { ContractDefinition } from "./common/contract.js";
+import { marketplaceConversionMetricContract } from "./analytics/index.js";
 import {
   eventEnvelopeContract,
   requestEnvelopeContract,
@@ -22,6 +23,9 @@ import {
   whatsappCommandContract,
 } from "./channels/index.js";
 import {
+  notificationDispatchPlanContract,
+  notificationFeedCollectionContract,
+  notificationFeedItemContract,
   notificationAttemptContract,
   notificationResultContract,
 } from "./notifications/index.js";
@@ -29,6 +33,8 @@ import {
   createListingResultContract,
   listingCollectionContract,
   listingCreateInputContract,
+  marketplaceListingIntelligenceReadContract,
+  marketplaceNegotiationIntelligenceReadContract,
   listingPublishInputContract,
   listingRecordContract,
   listingRevisionSummaryContract,
@@ -82,11 +88,42 @@ import {
   reviewerDecisionInputContract,
 } from "./advisory/index.js";
 import {
+  copilotExecutionInputContract,
+  copilotExecutionResultContract,
+  copilotResolveInputContract,
+  copilotResolutionContract,
+} from "./copilot/index.js";
+import {
+  climateActionPackContract,
   climateAlertAcknowledgementContract,
   climateAlertContract,
   climateDegradedModeContract,
   mrvEvidenceRecordContract,
+  weatherOutlookContract,
 } from "./climate/index.js";
+import {
+  copilotEvaluationReportContract,
+  copilotRecommendationCollectionContract,
+  copilotRecommendationContract,
+} from "./copilot/index.js";
+import {
+  eventSchemaCatalogContract,
+  inboundIngestionRequestContract,
+  inboundIngestionResultContract,
+  outboundEventCollectionContract,
+  reportingSummaryContract,
+  webhookDeliveryRecordContract,
+  webhookDeliveryRequestContract,
+} from "./platform_boundary/index.js";
+import {
+  agroIntelligenceConsentArtifactContract,
+  agroIntelligenceEntityContract,
+  agroIntelligenceFreshnessSignalContract,
+  agroIntelligenceRelationshipContract,
+  agroIntelligenceSchemaReadinessPacketContract,
+  agroIntelligenceSourceDocumentContract,
+  agroIntelligenceVerificationClaimContract,
+} from "./agro_intelligence/index.js";
 import {
   fundingOpportunityCollectionContract,
   fundingOpportunityCreateInputContract,
@@ -95,12 +132,14 @@ import {
   investmentCreateInputContract,
   investmentReadContract,
   investmentWithdrawInputContract,
+  paymentCollectionSessionContract,
 } from "./finance/index.js";
 
 export const contractCatalog = [
   requestEnvelopeContract,
   responseEnvelopeContract,
   eventEnvelopeContract,
+  marketplaceConversionMetricContract,
   reasonCatalogContract,
   countryPackContract,
   membershipContract,
@@ -116,6 +155,10 @@ export const contractCatalog = [
   advisoryResponseContract,
   advisoryConversationCollectionContract,
   reviewerDecisionInputContract,
+  copilotResolveInputContract,
+  copilotResolutionContract,
+  copilotExecutionInputContract,
+  copilotExecutionResultContract,
   ussdSessionContract,
   whatsappCommandContract,
   offlineQueueCommandContract,
@@ -123,6 +166,9 @@ export const contractCatalog = [
   translatorCommandContract,
   notificationAttemptContract,
   notificationResultContract,
+  notificationDispatchPlanContract,
+  notificationFeedItemContract,
+  notificationFeedCollectionContract,
   settlementNotificationPayloadContract,
   listingCreateInputContract,
   listingUpdateInputContract,
@@ -131,6 +177,8 @@ export const contractCatalog = [
   listingRecordContract,
   listingRevisionSummaryContract,
   listingCollectionContract,
+  marketplaceListingIntelligenceReadContract,
+  marketplaceNegotiationIntelligenceReadContract,
   createListingResultContract,
   updateListingResultContract,
   publishListingResultContract,
@@ -165,10 +213,30 @@ export const contractCatalog = [
   investmentReadContract,
   fundingOpportunityCollectionContract,
   investmentCollectionContract,
+  paymentCollectionSessionContract,
   climateAlertContract,
   climateAlertAcknowledgementContract,
   climateDegradedModeContract,
   mrvEvidenceRecordContract,
+  weatherOutlookContract,
+  climateActionPackContract,
+  copilotRecommendationContract,
+  copilotRecommendationCollectionContract,
+  copilotEvaluationReportContract,
+  eventSchemaCatalogContract,
+  outboundEventCollectionContract,
+  webhookDeliveryRequestContract,
+  webhookDeliveryRecordContract,
+  inboundIngestionRequestContract,
+  inboundIngestionResultContract,
+  reportingSummaryContract,
+  agroIntelligenceConsentArtifactContract,
+  agroIntelligenceSourceDocumentContract,
+  agroIntelligenceEntityContract,
+  agroIntelligenceRelationshipContract,
+  agroIntelligenceVerificationClaimContract,
+  agroIntelligenceFreshnessSignalContract,
+  agroIntelligenceSchemaReadinessPacketContract,
 ] satisfies ContractDefinition[];
 
 export const contractCatalogById = new Map(contractCatalog.map((contract) => [contract.id, contract]));

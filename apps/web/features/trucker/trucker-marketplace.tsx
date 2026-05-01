@@ -45,7 +45,7 @@ export function TruckerMarketplace() {
 
     setIsLoading(true);
     try {
-      const next = await truckerApi.getMarketplaceSnapshot(session, traceId);
+      const next = await truckerApi.getMarketplaceSnapshotLive(session, traceId);
       setRole(next.rolePreference);
       setAvailability(next.driverAvailability);
       setSnapshot({
@@ -79,18 +79,18 @@ export function TruckerMarketplace() {
         <div className="trucker-hero-copy">
           <SectionHeading
             eyebrow="AgroTrucker"
-            title="Move produce with verified capacity, transparent pricing, and delivery proof."
-            body="This logistics workspace sits on top of live marketplace, negotiation, and settlement data, then layers a transport control plane for routing, carrier matching, and fulfillment visibility."
+            title="Match loads, track deliveries, and keep transport visible"
+            body="Use AgroTrucker to move produce with clearer timing, better visibility, and proof at handoff."
           />
           <div className="trucker-pill-row">
             <StatusPill tone={snapshot.shipperShipments.length > 0 ? "online" : "neutral"}>
-              Active routes {snapshot.shipperShipments.length + snapshot.driverShipments.length}
+              Active shipments {snapshot.shipperShipments.length + snapshot.driverShipments.length}
             </StatusPill>
             <StatusPill tone={snapshot.availableLoads.length > 0 ? "degraded" : "neutral"}>
-              Open loads {snapshot.availableLoads.length}
+              Ready to move {snapshot.availableLoads.length}
             </StatusPill>
             <StatusPill tone={snapshot.availableDrivers.length > 0 ? "online" : "neutral"}>
-              Verified drivers {snapshot.availableDrivers.length}
+              Available carriers {snapshot.availableDrivers.length}
             </StatusPill>
           </div>
         </div>
@@ -98,20 +98,20 @@ export function TruckerMarketplace() {
         <div className="trucker-hero-panel">
           <div className="trucker-trust-chip">
             <ShieldCheck size={18} />
-            <span>Verified logistics workspace</span>
+            <span>Proof stays attached to every delivery</span>
           </div>
           <div className="trucker-mini-grid">
             <article>
-              <span>Route coverage</span>
-              <strong>National corridors</strong>
+              <span>What is moving now</span>
+              <strong>Route-by-route visibility</strong>
             </article>
             <article>
-              <span>Pricing posture</span>
-              <strong>Upfront corridor estimates</strong>
+              <span>What you can match next</span>
+              <strong>Loads and carriers in view</strong>
             </article>
             <article>
-              <span>Proof chain</span>
-              <strong>POD-ready tracking</strong>
+              <span>How you close delivery</span>
+              <strong>Handoff proof ready</strong>
             </article>
           </div>
         </div>
@@ -160,23 +160,23 @@ export function TruckerMarketplace() {
         <>
           <SurfaceCard className="trucker-primary-cta">
             <div className="trucker-cta-copy">
-              <h3>Post a load with route, timing, and budget in one flow.</h3>
+              <h3>Post a load and set the trip clearly.</h3>
               <p className="muted">
-                New transport loads publish into the live marketplace and retain logistics-specific route metadata for tracking.
+                Add the route, schedule, cargo details, and transport budget so the right carrier can respond.
               </p>
             </div>
             <Button href="/app/trucker/loads/new" size="lg">
               <CirclePlus size={18} />
-              Post a Load
+              Post load
             </Button>
           </SurfaceCard>
 
           <div className="trucker-grid">
             <SurfaceCard>
               <SectionHeading
-                eyebrow="Live shipments"
-                title="Your active shipments"
-                body="Loads move here once a driver is matched or the settlement flow confirms the shipment is underway."
+                eyebrow="Active shipments"
+                title="Keep deliveries moving"
+                body="See where each delivery stands, what milestone is next, and which shipment needs attention first."
               />
               {snapshot.shipperShipments.length ? (
                 <div className="trucker-card-list">
@@ -187,10 +187,10 @@ export function TruckerMarketplace() {
               ) : (
                 <EmptyState
                   title={isLoading ? "Loading shipments" : "No active shipments"}
-                  body="Post a load to get started, then matched carriers and in-transit updates will appear here."
+                  body="Post a load to get started, then active deliveries will appear here with timing and handoff progress."
                   actions={
                     <Button href="/app/trucker/loads/new" variant="secondary">
-                      Create first load
+                      Post your first load
                     </Button>
                   }
                 />
@@ -199,9 +199,9 @@ export function TruckerMarketplace() {
 
             <SurfaceCard>
               <SectionHeading
-                eyebrow="Carrier network"
-                title="Available drivers"
-                body="These profiles come from the live identity layer, with route-aware quote estimates and proximity signals added in the transport workspace."
+                eyebrow="Available drivers or loads"
+                title="Best carriers to review next"
+                body="Compare carrier fit, likely price, and distance before you assign the next trip."
               />
               {snapshot.availableDrivers.length ? (
                 <div className="trucker-card-list">
@@ -227,7 +227,7 @@ export function TruckerMarketplace() {
                           <p className="muted">{driver.routeLabel.replace("->", "to")}</p>
                         </div>
                         <Button onClick={() => setActionState({ driver, kind: "request" })} variant="secondary">
-                          Request
+                          Ask to carry load
                         </Button>
                       </div>
                     </article>
@@ -236,7 +236,7 @@ export function TruckerMarketplace() {
               ) : (
                 <EmptyState
                   title={isLoading ? "Loading drivers" : "No drivers available"}
-                  body="No carrier profiles are currently available for the selected corridor. Try posting the load so drivers can respond asynchronously."
+                  body="No carriers are showing for this route yet. Keep the load posted and check again soon."
                 />
               )}
             </SurfaceCard>
@@ -246,9 +246,9 @@ export function TruckerMarketplace() {
         <div className="trucker-grid">
           <SurfaceCard>
             <SectionHeading
-              eyebrow="Driver posture"
-              title="Your availability"
-              body="Use the live driver view to stay ready for new routes while protecting the quality of active deliveries."
+              eyebrow="Available drivers or loads"
+              title="Stay ready for the next load"
+              body="Keep your availability up to date so new trips reach you at the right time."
             />
             <div className="trucker-availability-card">
               <Select
@@ -266,7 +266,7 @@ export function TruckerMarketplace() {
               />
               <div>
                 <strong>{session.actor.display_name}</strong>
-                <p className="muted">{humanizeAvailability(availability)} · Verified transport operator</p>
+                <p className="muted">{humanizeAvailability(availability)} · Carrier profile active</p>
               </div>
             </div>
 
@@ -276,7 +276,7 @@ export function TruckerMarketplace() {
               ) : (
                 <EmptyState
                   title={isLoading ? "Loading deliveries" : "No active deliveries"}
-                  body="Accepted loads move here with status updates, checkpoint history, and proof-of-delivery controls."
+                  body="Accepted loads appear here with route progress, timing, and handoff proof steps."
                 />
               )}
             </div>
@@ -284,9 +284,9 @@ export function TruckerMarketplace() {
 
           <SurfaceCard>
             <SectionHeading
-              eyebrow="Nearby loads"
+              eyebrow="Available drivers or loads"
               title="Available loads near you"
-              body="Published transport loads are pulled from the live marketplace and enriched with logistics routing details for the driver workflow."
+              body="Review route, cargo, timing, and budget before you accept the next trip."
             />
             {snapshot.availableLoads.length ? (
               <div className="trucker-card-list">
@@ -306,7 +306,7 @@ export function TruckerMarketplace() {
                     </p>
                     <div className="trucker-card-actions">
                       <span className="muted">Posted by {load.posterName}</span>
-                      <Button onClick={() => setActionState({ kind: "accept", load })}>Accept</Button>
+                      <Button onClick={() => setActionState({ kind: "accept", load })}>Accept load</Button>
                     </div>
                   </article>
                 ))}
@@ -326,22 +326,22 @@ export function TruckerMarketplace() {
           <article>
             <PackageOpen size={18} />
             <div>
-              <strong>Capacity-aware loads</strong>
-              <p className="muted">Every card carries route, commodity, weight, and budget context for quick decisions on mobile.</p>
+              <strong>Ready to move</strong>
+              <p className="muted">See route, cargo, timing, and budget quickly before you commit.</p>
             </div>
           </article>
           <article>
             <ShieldCheck size={18} />
             <div>
-              <strong>High-trust delivery chain</strong>
-              <p className="muted">Tracking, issue logs, and proof-of-delivery stay attached to the same load identifier.</p>
+              <strong>Transport reliability</strong>
+              <p className="muted">Tracking, issue updates, and proof stay visible from pickup to handoff.</p>
             </div>
           </article>
           <article>
             <Route size={18} />
             <div>
-              <strong>Route-first marketplace</strong>
-              <p className="muted">Corridor estimates and role persistence help shippers and drivers resume work without friction.</p>
+              <strong>What to do next</strong>
+              <p className="muted">Assign a carrier, accept a trip, or open tracking without digging through system detail.</p>
             </div>
           </article>
         </div>
@@ -356,9 +356,11 @@ export function TruckerMarketplace() {
             {actionState?.kind === "accept" ? (
               <Button
                 onClick={() => {
-                  truckerApi.acceptLoad(actionState.load.id, session);
-                  setActionState(null);
-                  void refreshWorkspace();
+                  void (async () => {
+                    await truckerApi.acceptLoadLive(actionState.load.id, session, traceId);
+                    setActionState(null);
+                    await refreshWorkspace();
+                  })();
                 }}
               >
                 Confirm load
@@ -381,17 +383,17 @@ export function TruckerMarketplace() {
         }
         onClose={() => setActionState(null)}
         open={Boolean(actionState)}
-        title={actionState?.kind === "accept" ? "Accept this load?" : "Request this driver?"}
+        title={actionState?.kind === "accept" ? "Accept this load?" : "Ask this driver to carry the load?"}
       >
         {actionState?.kind === "accept" ? (
           <p className="muted">
             Confirm load acceptance for {actionState.load.routeLabel.replace("->", "to")} carrying {actionState.load.commodity}
-            . The shipment will move into your active delivery queue immediately.
+            . The shipment will move into your active deliveries immediately.
           </p>
         ) : actionState?.kind === "request" ? (
           <p className="muted">
             Send a carrier request to {actionState.driver.displayName} for {actionState.driver.routeLabel.replace("->", "to")}
-            . The request is recorded in the transport workspace while the dedicated driver-request backend is still pending.
+            . They will see the route, cargo, and timing details before responding.
           </p>
         ) : null}
       </Modal>
@@ -419,7 +421,7 @@ function ShipmentCard(props: { card: TransportShipmentCard }) {
       <div className="trucker-card-actions">
         <span className="muted">{props.card.subtitle.replace("->", "to")}</span>
         <Link className="trucker-link-inline" href={props.card.trackHref}>
-          Track
+          Track delivery
           <ArrowRight size={16} />
         </Link>
       </div>

@@ -203,7 +203,7 @@ export function TransactionTable({ entries }: { entries: WalletLedgerEntry[] }) 
 
       <div className="wallet-toolbar-actions">
         <p>
-          {rows.length} filtered transaction{rows.length === 1 ? "" : "s"} from {entries.length} total entries.
+          {rows.length} recent transaction{rows.length === 1 ? "" : "s"} from {entries.length} total entries.
         </p>
         <div className="wallet-toolbar-buttons">
           <Button variant="ghost" onClick={resetFilters}>

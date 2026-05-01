@@ -5,6 +5,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 import { useAppState } from "@/components/app-provider";
+import { DashboardActionTile } from "@/components/dashboard-action-tile";
+import { AdvisoryIcon, AnalyticsIcon, MarketIcon, SunIcon } from "@/components/icons";
 import { EmptyState, InfoList, InsightCallout, SectionHeading, StatusPill, SurfaceCard } from "@/components/ui-primitives";
 import { advisoryApi } from "@/lib/api/advisory";
 import { climateApi } from "@/lib/api/climate";
@@ -137,18 +139,27 @@ export function AgentDashboard() {
     return null;
   }
 
+  const isAdvisor = session.actor.role === "advisor";
+  const heroEyebrow = isAdvisor ? "Advisory workspace" : "Field support workspace";
+  const heroTitle = isAdvisor
+    ? "Handle the next request with clear guidance and visible support."
+    : "Respond to farmer needs with clearer local context.";
+  const heroBody = isAdvisor
+    ? "Open the next case, review what matters, and send practical advice with confidence."
+    : "See who needs help, what is changing in the field, and what guidance is most useful right now.";
+
   return (
     <div className="content-stack">
       <SurfaceCard className="hero-surface">
         <SectionHeading
-          eyebrow="Extension agent dashboard"
-          title="Triaging advisory requests, review decisions, and field intelligence without losing evidence."
-          body="Stay close to advisory requests, climate alerts, and review decisions from one field-support view."
+          eyebrow={heroEyebrow}
+          title={heroTitle}
+          body={heroBody}
           actions={
             snapshot ? (
               <div className="pill-row">
                 <StatusPill tone={snapshot.runtimeMode === "live" ? "online" : "degraded"}>
-                  Advisory {snapshot.runtimeMode === "live" ? "live" : "continuity"}
+                  {snapshot.runtimeMode === "live" ? "Live guidance" : "Limited guidance"}
                 </StatusPill>
                 <StatusPill tone={snapshot.severeAlerts > 0 ? "degraded" : "neutral"}>
                   Alerts {snapshot.severeAlerts}
@@ -160,24 +171,24 @@ export function AgentDashboard() {
 
         <div className="metrics-grid">
           <article className="metric-card">
-            <span className="metric-label">Pending advisory requests</span>
+            <span className="metric-label">{isAdvisor ? "Open cases" : "Requests waiting"}</span>
             <strong className="metric-value">{snapshot?.pendingRequests ?? "..."}</strong>
-            <p className="muted">Requests that still need approval, revision, or explicit human review.</p>
+            <p className="muted">Requests that still need a response, revision, or closer judgment.</p>
           </article>
           <article className="metric-card">
-            <span className="metric-label">Completed reviews</span>
+            <span className="metric-label">{isAdvisor ? "Completed guidance" : "Recent guidance sent"}</span>
             <strong className="metric-value">{snapshot?.completedReviews ?? "..."}</strong>
-            <p className="muted">Responses that already include a reviewer decision and a clear next action.</p>
+            <p className="muted">Responses that already have a clear next action attached to them.</p>
           </article>
           <article className="metric-card">
-            <span className="metric-label">Farmers assisted</span>
+            <span className="metric-label">{isAdvisor ? "Needs human review" : "High-pressure locations"}</span>
             <strong className="metric-value">{snapshot?.farmersAssisted ?? "..."}</strong>
-            <p className="muted">An estimate of farmers supported through active advisory requests.</p>
+            <p className="muted">A simple count of the farmers or cases currently in view.</p>
           </article>
           <article className="metric-card">
-            <span className="metric-label">Knowledge base articles</span>
+            <span className="metric-label">Support context</span>
             <strong className="metric-value">{snapshot?.knowledgeBaseArticles ?? "..."}</strong>
-            <p className="muted">Source materials currently helping agents ground recommendations.</p>
+            <p className="muted">Helpful source material currently supporting recent responses.</p>
           </article>
         </div>
       </SurfaceCard>
@@ -194,34 +205,48 @@ export function AgentDashboard() {
         <SurfaceCard>
           <SectionHeading
             eyebrow="Quick actions"
-            title="Move straight into review work"
-            body="Open the tools you need to review requests, send guidance, and monitor regional conditions."
+            title={isAdvisor ? "Choose the next advisory task" : "Choose the next field-support task"}
+            body="Use short, icon-led actions to respond, follow up, and check local conditions."
           />
           <div className="task-list">
-            <Link className="task-card primary" href="/app/advisor/requests">
-              <strong>Review queue</strong>
-              <p className="muted">Open the review workspace with the latest decisions and supporting references.</p>
-            </Link>
-            <Link className="task-card primary" href="/app/advisory/new">
-              <strong>Create advisory</strong>
-              <p className="muted">Submit a new guidance request and capture the context needed for a strong recommendation.</p>
-            </Link>
-            <Link className="task-card secondary" href="/app/advisor/requests">
-              <strong>Browse knowledge base</strong>
-              <p className="muted">Review the sources and supporting materials attached to each answer.</p>
-            </Link>
-            <Link className="task-card secondary" href="/app/weather">
-              <strong>Regional analytics</strong>
-              <p className="muted">Check the current alert load before prioritizing follow-up recommendations.</p>
-            </Link>
+            <DashboardActionTile
+              detail="Open the queue with the latest requests and the context needed to respond."
+              eyebrow="Do now"
+              href="/app/advisor/requests"
+              icon={<AdvisoryIcon size={20} />}
+              label="Open requests"
+            />
+            <DashboardActionTile
+              detail="Capture a new case and the context needed for a strong answer."
+              eyebrow="Respond"
+              href="/app/advisory/new"
+              icon={<MarketIcon size={20} />}
+              label={isAdvisor ? "New request" : "Create request"}
+            />
+            <DashboardActionTile
+              detail="Review recent support context before you answer the next case."
+              eyebrow="Check"
+              href="/app/advisor/requests"
+              icon={<AnalyticsIcon size={20} />}
+              label={isAdvisor ? "Review cases" : "Recent support"}
+              tone="secondary"
+            />
+            <DashboardActionTile
+              detail="Check alert pressure before you prioritize the next follow-up."
+              eyebrow="Watch"
+              href="/app/weather"
+              icon={<SunIcon size={20} />}
+              label={isAdvisor ? "Local alerts" : "Review alerts"}
+              tone="secondary"
+            />
           </div>
         </SurfaceCard>
 
         <SurfaceCard>
           <SectionHeading
-            eyebrow="Recent decisions"
-            title="Advisory queue activity"
-            body="Every row below highlights the latest review activity from the advisory queue."
+            eyebrow={isAdvisor ? "Recently completed guidance" : "Recent follow-through"}
+            title={isAdvisor ? "Advisory activity" : "Field-support activity"}
+            body="Every row below highlights the latest request and response activity."
           />
           {snapshot?.recentActivity.length ? (
             <div className="task-list">
@@ -238,8 +263,8 @@ export function AgentDashboard() {
             </div>
           ) : (
             <EmptyState
-              title={isLoading ? "Loading advisory queue" : "No advisory activity yet"}
-              body="As requests and reviewer decisions arrive, they will surface here automatically."
+              title={isLoading ? "Loading requests" : "No activity yet"}
+              body="As requests and follow-up activity arrive, they will surface here automatically."
             />
           )}
         </SurfaceCard>
@@ -247,23 +272,23 @@ export function AgentDashboard() {
 
       <SurfaceCard>
         <SectionHeading
-          eyebrow="Field context"
-          title="Regional support posture"
-          body="Keep advisory demand and climate pressure visible together while you prioritize outreach."
+          eyebrow={isAdvisor ? "What needs closer judgment" : "Local weather and field pressure"}
+          title={isAdvisor ? "Case support summary" : "Regional support summary"}
+          body="Keep demand and climate pressure visible together while you prioritize outreach."
         />
         {snapshot ? (
           <InfoList
             items={[
-              { label: "Advisory status", value: snapshot.runtimeMode === "live" ? "Live" : "Continuity" },
-              { label: "Pending queue", value: snapshot.pendingRequests },
-              { label: "Weather alerts needing awareness", value: snapshot.severeAlerts },
-              { label: "Citation sources in play", value: snapshot.knowledgeBaseArticles },
+              { label: "Guidance status", value: snapshot.runtimeMode === "live" ? "Live" : "Limited" },
+              { label: isAdvisor ? "Open cases" : "Pending requests", value: snapshot.pendingRequests },
+              { label: "Alerts needing awareness", value: snapshot.severeAlerts },
+              { label: "Support sources in use", value: snapshot.knowledgeBaseArticles },
             ]}
           />
         ) : (
           <InsightCallout
             title="Waiting for updates"
-            body="This panel will populate as soon as advisory and climate updates are available for your area."
+            body="This panel will populate as soon as guidance and weather updates are available for your area."
             tone="neutral"
           />
         )}

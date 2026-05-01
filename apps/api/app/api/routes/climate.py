@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from sqlalchemy.orm import Session
@@ -10,6 +10,16 @@ from app.core.auth import authenticate_request
 from app.core.config import Settings
 from app.db.models.climate import ClimateAlert, ClimateObservation, MrvEvidenceRecord
 from app.db.repositories.climate import ClimateRepository
+from app.db.repositories.farm import FarmRepository
+from app.modules.climate.provider import (
+    WeatherDataset,
+    WeatherProvider,
+    WeatherProviderError,
+    build_weather_provider,
+    default_history_window,
+    degraded_weather_dataset,
+)
+from app.modules.climate.risk_engine import ClimateActionPack, build_action_pack
 from app.services.commands.handlers import (
     _alert_to_payload,
     _farm_profile_to_payload,
@@ -122,6 +132,260 @@ def _contract_mrv_payload(
         "source_completeness": "degraded" if record.degraded_mode else "complete",
         "created_at": _isoformat(record.created_at),
     }
+
+
+def _weather_provider_for_request(request: Request, settings: Settings) -> WeatherProvider:
+    provider = getattr(request.app.state, "weather_provider", None)
+    if provider is not None:
+        return provider
+    return build_weather_provider(settings)
+
+
+def _weather_dataset_payload(dataset: WeatherDataset) -> dict[str, object]:
+    return {
+        "kind": dataset.kind,
+        "provider": dataset.provider,
+        "provider_mode": dataset.provider_mode,
+        "latitude": dataset.latitude,
+        "longitude": dataset.longitude,
+        "timezone": dataset.timezone,
+        "generated_at": dataset.generated_at,
+        "degraded_mode": dataset.degraded_mode,
+        "degraded_reasons": dataset.degraded_reasons,
+        "source_window_start": dataset.source_window_start,
+        "source_window_end": dataset.source_window_end,
+        "days": [
+            {
+                "date": item.date,
+                "temperature_max_c": item.temperature_max_c,
+                "temperature_min_c": item.temperature_min_c,
+                "precipitation_mm": item.precipitation_mm,
+                "precipitation_probability_pct": item.precipitation_probability_pct,
+                "evapotranspiration_mm": item.evapotranspiration_mm,
+                "weather_code": item.weather_code,
+            }
+            for item in dataset.days
+        ],
+    }
+
+
+def _action_pack_payload(pack: ClimateActionPack) -> dict[str, object]:
+    return {
+        "crop_calendar": {
+            "crop_type": pack.crop_calendar.crop_type,
+            "country_code": pack.crop_calendar.country_code,
+            "stage": pack.crop_calendar.stage,
+            "season_label": pack.crop_calendar.season_label,
+            "reference_date": pack.crop_calendar.reference_date,
+            "planting_window_start": pack.crop_calendar.planting_window_start,
+            "planting_window_end": pack.crop_calendar.planting_window_end,
+            "expected_harvest_window_start": pack.crop_calendar.expected_harvest_window_start,
+            "expected_harvest_window_end": pack.crop_calendar.expected_harvest_window_end,
+        },
+        "risks": [
+            {
+                "code": item.code,
+                "severity": item.severity,
+                "title": item.title,
+                "summary": item.summary,
+                "recommended_due_date": item.recommended_due_date,
+                "linked_alert_id": item.linked_alert_id,
+                "source": item.source,
+            }
+            for item in pack.risks
+        ],
+        "tasks": [
+            {
+                "task_id": item.task_id,
+                "title": item.title,
+                "description": item.description,
+                "priority": item.priority,
+                "due_date": item.due_date,
+                "source": item.source,
+                "advisory_topic": item.advisory_topic,
+                "linked_alert_id": item.linked_alert_id,
+            }
+            for item in pack.tasks
+        ],
+        "advisory": {
+            "topic": pack.advisory.topic,
+            "draft_question": pack.advisory.draft_question,
+            "draft_response": pack.advisory.draft_response,
+            "policy_context": pack.advisory.policy_context,
+            "requires_human_review": pack.advisory.requires_human_review,
+        },
+        "degraded_mode": pack.degraded_mode,
+        "degraded_reasons": pack.degraded_reasons,
+    }
+
+
+def _reference_farm_id(country_code: str) -> str:
+    return f"farm-{country_code.lower()}-001"
+
+
+def _build_reference_farm_profile_payload(
+    *,
+    actor_id: str,
+    country_code: str,
+    schema_version: str,
+) -> dict[str, object]:
+    farm_id = _reference_farm_id(country_code)
+    names = {
+        "GH": "Tamale lowland block",
+        "NG": "Kaduna floodwatch block",
+        "JM": "St. Elizabeth hillside block",
+    }
+    districts = {
+        "GH": "Tamale",
+        "NG": "Kaduna North",
+        "JM": "St. Elizabeth",
+    }
+    crops = {
+        "GH": "maize",
+        "NG": "rice",
+        "JM": "callaloo",
+    }
+    coordinates = {
+        "GH": (9.4075, -0.8533),
+        "NG": (10.5222, 7.4383),
+        "JM": (18.1841, -77.7450),
+    }
+    latitude, longitude = coordinates.get(country_code, (9.4075, -0.8533))
+    now = _isoformat(datetime.now(tz=UTC))
+    return {
+        "schema_version": schema_version,
+        "farm_id": farm_id,
+        "actor_id": actor_id,
+        "country_code": country_code,
+        "farm_name": names.get(country_code, "Reference farm block"),
+        "district": districts.get(country_code, "Regional cluster"),
+        "crop_type": crops.get(country_code, "maize"),
+        "hectares": 7.2 if country_code == "JM" else 12.5,
+        "latitude": latitude,
+        "longitude": longitude,
+        "metadata": {
+            "source": "reference_runtime",
+            "irrigation": "surface channels" if country_code == "GH" else "rainfed",
+        },
+        "created_at": now,
+        "updated_at": now,
+    }
+
+
+def _build_reference_observation_payloads(
+    *,
+    actor_id: str,
+    country_code: str,
+    farm_profile: dict[str, object],
+    schema_version: str,
+) -> list[dict[str, object]]:
+    farm_id = str(farm_profile["farm_id"])
+    now = datetime.now(tz=UTC)
+    temperature_base = {"GH": 31.0, "NG": 29.0, "JM": 28.0}.get(country_code, 31.0)
+    rainfall_base = {"GH": 24.0, "NG": 18.0, "JM": 14.0}.get(country_code, 24.0)
+    soil_base = {"GH": 68.0, "NG": 61.0, "JM": 57.0}.get(country_code, 68.0)
+
+    items: list[dict[str, object]] = []
+    for index in range(8):
+        hours_ago = (7 - index) * 3
+        observed_at = now - timedelta(hours=hours_ago)
+        source_window_start = observed_at - timedelta(hours=1)
+        temperature = round(temperature_base + ((index % 3) - 1) * 1.4, 1)
+        rainfall = round(max(rainfall_base + (6 - index) * 1.7, 0.0), 1)
+        soil_moisture = round(min(max(soil_base + (3 - index) * 1.9, 22.0), 92.0), 1)
+        anomaly_score = round(max(0.12, 0.32 + index * 0.05), 2)
+        degraded_mode = index == 7 and country_code == "GH"
+        items.append(
+            {
+                "schema_version": schema_version,
+                "observation_id": f"{farm_id}-obs-{index + 1}",
+                "farm_id": farm_id,
+                "actor_id": actor_id,
+                "country_code": country_code,
+                "source_id": f"{country_code.lower()}-weather-{index + 1}",
+                "source_type": "satellite" if index % 2 == 0 else "station",
+                "observed_at": _isoformat(observed_at),
+                "source_window_start": _isoformat(source_window_start),
+                "source_window_end": _isoformat(observed_at),
+                "rainfall_mm": rainfall,
+                "temperature_c": temperature,
+                "soil_moisture_pct": soil_moisture,
+                "anomaly_score": anomaly_score,
+                "ingestion_state": "reference",
+                "degraded_mode": degraded_mode,
+                "degraded_reason_codes": ["source_window_missing"] if degraded_mode else [],
+                "assumptions": ["Reference source window in use for the latest radar block."] if degraded_mode else [],
+                "provenance": [{"source": "reference_runtime", "window_hours": 1}],
+                "normalized_payload": {
+                    "humidity_pct": min(95, round(soil_moisture * 0.9)),
+                    "uv_index": max(3, min(11, round((temperature - 18) / 2))),
+                    "wind_kph": max(8, round(11 + anomaly_score * 14)),
+                },
+                "farm_profile": farm_profile,
+                "created_at": _isoformat(observed_at),
+            }
+        )
+    items.reverse()
+    return items
+
+
+def _reference_climate_payloads_for_request(
+    *,
+    actor_id: str,
+    actor_role: str,
+    country_code: str,
+    farm_id: str,
+    schema_version: str,
+    farm_repository: FarmRepository,
+) -> tuple[dict[str, object], list[dict[str, object]]] | None:
+    if actor_role != "farmer" or farm_id != _reference_farm_id(country_code):
+        return None
+    if farm_repository.list_farms_for_actor(actor_id=actor_id, country_code=country_code):
+        return None
+    farm_profile = _build_reference_farm_profile_payload(
+        actor_id=actor_id,
+        country_code=country_code,
+        schema_version=schema_version,
+    )
+    observations = _build_reference_observation_payloads(
+        actor_id=actor_id,
+        country_code=country_code,
+        farm_profile=farm_profile,
+        schema_version=schema_version,
+    )
+    return farm_profile, observations
+
+
+def _fetch_weather_datasets(
+    *,
+    request: Request,
+    settings: Settings,
+    latitude: float | None,
+    longitude: float | None,
+) -> tuple[WeatherDataset, WeatherDataset]:
+    if latitude is None or longitude is None:
+        reason = "missing_coordinates"
+        detail = "Farm profile is missing latitude or longitude for provider-backed weather."
+        return (
+            degraded_weather_dataset(kind="forecast", reason=reason, detail=detail),
+            degraded_weather_dataset(kind="history", reason=reason, detail=detail),
+        )
+    provider = _weather_provider_for_request(request, settings)
+    try:
+        forecast = provider.fetch_forecast(latitude=latitude, longitude=longitude, days=7)
+        history_start, history_end = default_history_window()
+        history = provider.fetch_history(
+            latitude=latitude,
+            longitude=longitude,
+            start_date=history_start,
+            end_date=history_end,
+        )
+        return forecast, history
+    except WeatherProviderError as exc:
+        return (
+            degraded_weather_dataset(kind="forecast", reason=exc.code, detail=exc.detail),
+            degraded_weather_dataset(kind="history", reason=exc.code, detail=exc.detail),
+        )
 
 
 @router.get("/alerts")
@@ -279,13 +543,24 @@ def get_farm_profile(
         raise HTTPException(status_code=401, detail="unauthorized")
 
     repository = ClimateRepository(db_session)
+    country_code = auth_context.country_code or "GH"
     profile = repository.get_farm_profile_for_actor(
         farm_id=farm_id,
         actor_id=auth_context.actor_subject,
-        country_code=auth_context.country_code or "GH",
+        country_code=country_code,
     )
     if profile is None:
-        raise HTTPException(status_code=404, detail="farm_profile_not_found")
+        reference_payloads = _reference_climate_payloads_for_request(
+            actor_id=auth_context.actor_subject,
+            actor_role=auth_context.role or "",
+            country_code=country_code,
+            farm_id=farm_id,
+            schema_version=request.app.state.settings.public_schema_version,
+            farm_repository=FarmRepository(db_session),
+        )
+        if reference_payloads is None:
+            raise HTTPException(status_code=404, detail="farm_profile_not_found")
+        return reference_payloads[0]
     schema_version = request.app.state.settings.public_schema_version
     return _farm_profile_to_payload(profile, schema_version)
 
@@ -302,15 +577,29 @@ def list_observations(
         raise HTTPException(status_code=401, detail="unauthorized")
 
     repository = ClimateRepository(db_session)
+    country_code = auth_context.country_code or "GH"
+    schema_version = request.app.state.settings.public_schema_version
     profile = repository.get_farm_profile_for_actor(
         farm_id=farm_id,
         actor_id=auth_context.actor_subject,
-        country_code=auth_context.country_code or "GH",
+        country_code=country_code,
     )
     if profile is None:
-        raise HTTPException(status_code=404, detail="farm_profile_not_found")
+        reference_payloads = _reference_climate_payloads_for_request(
+            actor_id=auth_context.actor_subject,
+            actor_role=auth_context.role or "",
+            country_code=country_code,
+            farm_id=farm_id,
+            schema_version=schema_version,
+            farm_repository=FarmRepository(db_session),
+        )
+        if reference_payloads is None:
+            raise HTTPException(status_code=404, detail="farm_profile_not_found")
+        return {
+            "schema_version": schema_version,
+            "items": reference_payloads[1],
+        }
     observations = repository.list_observations_for_farm(farm_id=farm_id)
-    schema_version = request.app.state.settings.public_schema_version
     return {
         "schema_version": schema_version,
         "items": [
@@ -369,4 +658,90 @@ def list_mrv_evidence(
             )
             for item in items
         ],
+    }
+
+
+@router.get("/farms/{farm_id}/weather-outlook")
+def get_weather_outlook(
+    farm_id: str,
+    request: Request,
+    db_session: Session = Depends(get_session),
+    settings: Settings = Depends(get_active_settings),
+) -> dict[str, object]:
+    auth_context = authenticate_request(request, settings, db_session)
+    if auth_context is None:
+        raise HTTPException(status_code=401, detail="unauthorized")
+
+    repository = ClimateRepository(db_session)
+    profile = repository.get_farm_profile_for_actor(
+        farm_id=farm_id,
+        actor_id=auth_context.actor_subject,
+        country_code=auth_context.country_code or "GH",
+    )
+    if profile is None:
+        raise HTTPException(status_code=404, detail="farm_profile_not_found")
+
+    forecast, history = _fetch_weather_datasets(
+        request=request,
+        settings=settings,
+        latitude=profile.latitude,
+        longitude=profile.longitude,
+    )
+    return {
+        "schema_version": request.app.state.settings.public_schema_version,
+        "farm_profile": _farm_profile_to_payload(profile, request.app.state.settings.public_schema_version),
+        "forecast": _weather_dataset_payload(forecast),
+        "history": _weather_dataset_payload(history),
+    }
+
+
+@router.get("/farms/{farm_id}/action-pack")
+def get_climate_action_pack(
+    farm_id: str,
+    request: Request,
+    db_session: Session = Depends(get_session),
+    settings: Settings = Depends(get_active_settings),
+) -> dict[str, object]:
+    auth_context = authenticate_request(request, settings, db_session)
+    if auth_context is None:
+        raise HTTPException(status_code=401, detail="unauthorized")
+
+    climate_repository = ClimateRepository(db_session)
+    farm_repository = FarmRepository(db_session)
+    profile = climate_repository.get_farm_profile_for_actor(
+        farm_id=farm_id,
+        actor_id=auth_context.actor_subject,
+        country_code=auth_context.country_code or "GH",
+    )
+    if profile is None:
+        raise HTTPException(status_code=404, detail="farm_profile_not_found")
+
+    forecast, history = _fetch_weather_datasets(
+        request=request,
+        settings=settings,
+        latitude=profile.latitude,
+        longitude=profile.longitude,
+    )
+    fields = farm_repository.list_fields(farm_id=farm_id)
+    crop_cycles = farm_repository.list_crop_cycles(farm_id=farm_id)
+    alerts = climate_repository.list_alerts_for_actor(
+        actor_id=auth_context.actor_subject,
+        country_code=auth_context.country_code or "GH",
+        farm_id=farm_id,
+    )
+    pack = build_action_pack(
+        farm_profile=profile,
+        forecast=forecast,
+        history=history,
+        alerts=alerts,
+        fields=fields,
+        crop_cycles=crop_cycles,
+    )
+    return {
+        "schema_version": request.app.state.settings.public_schema_version,
+        "farm_profile": _farm_profile_to_payload(profile, request.app.state.settings.public_schema_version),
+        "forecast": _weather_dataset_payload(forecast),
+        "history": _weather_dataset_payload(history),
+        "open_alert_ids": [item.alert_id for item in alerts if item.status == "open"],
+        "action_pack": _action_pack_payload(pack),
     }

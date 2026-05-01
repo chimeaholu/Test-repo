@@ -145,6 +145,9 @@
   --space-12: 3rem;
   --space-16: 4rem;
   --space-20: 5rem;
+  --photo-hero: url("/brand/agrodomain-cover.jpg");
+  --photo-detail: url("/brand/agrodomain-article.png");
+  --shell-role: rgba(29, 106, 83, 0.2);
 
   /* ─── Shadow Scale ─── */
   --shadow-xs: 0 1px 2px rgba(26, 47, 30, 0.05);
@@ -458,6 +461,46 @@ code {
   max-width: 48rem;
 }
 
+.agro-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--brand-strong);
+}
+
+.agro-brand.is-light {
+  color: #fff;
+}
+
+.agro-brand-logo {
+  width: 2.35rem;
+  height: 2.35rem;
+  flex-shrink: 0;
+}
+
+.agro-brand-copy {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.agro-brand-wordmark {
+  color: currentColor;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.agro-brand-caption {
+  color: color-mix(in srgb, currentColor 72%, transparent);
+  font-size: 0.71rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
 .muted,
 .helper-inline,
 .field-help,
@@ -508,6 +551,7 @@ code {
 .queue-grid,
 .dashboard-grid,
 .hero-grid,
+.hero-action-grid,
 .auth-grid,
 .signal-grid,
 .negotiation-layout,
@@ -544,6 +588,11 @@ code {
 .hero-grid {
   grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.9fr);
   align-items: start;
+}
+
+.hero-action-grid {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  margin-bottom: var(--space-4);
 }
 
 .auth-grid {
@@ -844,6 +893,72 @@ code {
 .empty-state,
 .signal-card {
   padding: var(--space-4);
+}
+
+.task-card {
+  min-height: 112px;
+}
+
+.task-card-icon {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.task-card-icon strong,
+.task-card-icon .muted,
+.task-card-icon .task-card-eyebrow,
+.task-card-icon .task-card-cta {
+  display: block;
+}
+
+.task-card-media {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-card-media-ring {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 18px;
+  background: rgba(29, 106, 83, 0.1);
+  color: var(--brand-strong);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.task-card.secondary .task-card-media-ring {
+  background: rgba(180, 111, 45, 0.12);
+  color: var(--accent-strong);
+}
+
+.task-card.warning .task-card-media-ring {
+  background: rgba(162, 69, 54, 0.12);
+  color: var(--danger);
+}
+
+.task-card-content {
+  display: grid;
+  gap: 0.22rem;
+  min-width: 0;
+}
+
+.task-card-eyebrow {
+  color: var(--ink-muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.task-card-cta {
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  font-weight: 700;
 }
 
 .timeline li {
@@ -2381,6 +2496,53 @@ code {
   margin: 0;
   color: rgba(255, 255, 255, 0.84);
   font-size: 1rem;
+}
+
+.market-guidance-card,
+.market-guidance-compact,
+.market-trust-card,
+.market-trust-signal-list,
+.wallet-explain-grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.market-guidance-grid,
+.wallet-explain-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.market-trust-card {
+  padding: var(--space-4);
+  border: 1px solid rgba(31, 109, 82, 0.1);
+  border-radius: var(--radius-2xl);
+  background:
+    radial-gradient(circle at top right, rgba(212, 146, 43, 0.12), transparent 28%),
+    linear-gradient(180deg, rgba(255, 253, 249, 0.96), rgba(248, 241, 229, 0.94));
+  box-shadow: var(--shadow-quiet);
+}
+
+.market-trust-signal {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid rgba(22, 39, 30, 0.1);
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.wallet-explain-card {
+  display: grid;
+  gap: 0.45rem;
+  padding: var(--space-4);
+  border: 1px solid rgba(22, 39, 30, 0.1);
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: var(--shadow-xs);
+}
+
+.wallet-explain-card p {
+  margin: 0;
 }
 
 .wallet-home-stack,
@@ -4231,6 +4393,98 @@ code {
   gap: 0.65rem;
 }
 
+.agroguide-recommendations {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.agroguide-copilot-card {
+  display: grid;
+  gap: 0.7rem;
+  padding: 1rem 1.05rem;
+  border: 1px solid rgba(15, 118, 110, 0.18);
+  border-radius: 1rem;
+  background:
+    linear-gradient(140deg, rgba(236, 254, 255, 0.96), rgba(240, 249, 255, 0.9));
+}
+
+.agroguide-copilot-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.agroguide-copilot-card-head span {
+  color: rgba(15, 23, 42, 0.72);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.agroguide-recommendations-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.agroguide-recommendations-head span,
+.agroguide-recommendation-meta,
+.agroguide-recommendation-copy p {
+  color: rgba(15, 23, 42, 0.72);
+}
+
+.agroguide-recommendation-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.agroguide-recommendation-card {
+  display: grid;
+  gap: 0.7rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid rgba(22, 101, 52, 0.12);
+  border-radius: 1rem;
+  background:
+    linear-gradient(135deg, rgba(236, 253, 245, 0.92), rgba(255, 251, 235, 0.84));
+}
+
+.agroguide-recommendation-meta {
+  display: flex;
+  gap: 0.65rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.agroguide-recommendation-priority {
+  font-weight: 700;
+}
+
+.agroguide-priority-critical {
+  color: #b91c1c;
+}
+
+.agroguide-priority-high {
+  color: #b45309;
+}
+
+.agroguide-priority-medium {
+  color: #166534;
+}
+
+.agroguide-recommendation-copy {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.agroguide-recommendation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
 .agroguide-chip {
   min-height: 44px;
   padding: 0.55rem 0.9rem;
@@ -4593,5 +4847,273 @@ code {
 
   .agroguide-message-body {
     max-width: 92%;
+  }
+}
+
+.agro-intelligence-hero {
+  overflow: hidden;
+}
+
+.agro-intelligence-hero::after {
+  background:
+    radial-gradient(circle at top right, rgba(29, 106, 83, 0.14), transparent 36%),
+    radial-gradient(circle at bottom left, rgba(180, 111, 45, 0.16), transparent 32%);
+}
+
+.agro-shell-cta-row,
+.agro-shell-nav,
+.agro-search-strip,
+.agro-directory-toolbar,
+.agro-directory-filter-grid,
+.agro-card-meta,
+.agro-detail-action-stack,
+.agro-workspace-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.agro-shell-cta-row {
+  margin-top: 1rem;
+}
+
+.agro-shell-nav {
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.agro-shell-nav-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0.5rem 0.95rem;
+  border: 1px dashed var(--color-neutral-300);
+  border-radius: 999px;
+  font-size: var(--font-size-sm);
+}
+
+.agro-shell-nav-pill.muted {
+  background: rgba(248, 243, 234, 0.76);
+}
+
+.agro-overview-surface {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(250, 245, 237, 0.94)),
+    var(--color-surface-card);
+}
+
+.agro-overview-hero-grid,
+.agro-detail-grid,
+.agro-workspace-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.agro-overview-hero-grid {
+  grid-template-columns: minmax(0, 1.7fr) minmax(18rem, 0.9fr);
+}
+
+.agro-overview-side-stack,
+.agro-mini-card,
+.agro-shortlist-stack,
+.agro-evidence-stack,
+.agro-relationship-stack,
+.agro-review-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.agro-start-grid,
+.agro-buyer-card-grid,
+.agro-coverage-grid,
+.agro-compare-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.agro-start-grid {
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.agro-start-card,
+.agro-buyer-card,
+.agro-coverage-card,
+.agro-compare-card,
+.agro-shortlist-item,
+.agro-evidence-card,
+.agro-relationship-card,
+.agro-review-item {
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-xs);
+}
+
+.agro-start-card,
+.agro-buyer-card,
+.agro-coverage-card,
+.agro-compare-card,
+.agro-shortlist-item,
+.agro-evidence-card,
+.agro-relationship-card {
+  padding: 1.1rem 1.15rem;
+}
+
+.agro-start-card {
+  min-height: 11.5rem;
+}
+
+.agro-start-card strong,
+.agro-card-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1.1;
+}
+
+.agro-buyer-card-grid,
+.agro-compare-grid {
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+}
+
+.agro-buyer-card,
+.agro-compare-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.agro-card-head,
+.agro-evidence-head,
+.agro-relationship-card,
+.agro-shortlist-item,
+.agro-review-item-head,
+.agro-compare-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.agro-card-meta {
+  color: var(--color-neutral-600);
+  font-size: var(--font-size-sm);
+}
+
+.agro-mini-card {
+  min-height: 100%;
+}
+
+.agro-directory-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  margin-top: 1rem;
+}
+
+.agro-filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-700);
+}
+
+.agro-directory-toolbar {
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.agro-coverage-grid {
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  margin-top: 1rem;
+}
+
+.agro-coverage-card .metric-value {
+  display: block;
+  margin-top: 0.75rem;
+}
+
+.agro-compare-row {
+  border-bottom: 1px solid var(--color-neutral-200);
+  padding-bottom: 0.5rem;
+  font-size: var(--font-size-sm);
+}
+
+.agro-compare-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.agro-shortlist-tray {
+  position: relative;
+}
+
+.agro-shortlist-item {
+  align-items: center;
+}
+
+.agro-detail-grid {
+  grid-template-columns: minmax(0, 1.45fr) minmax(16rem, 0.8fr);
+}
+
+.agro-detail-actions,
+.agro-detail-main {
+  min-height: 100%;
+}
+
+.agro-detail-action-stack {
+  margin-top: 1rem;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.agro-detail-action-stack > * {
+  width: 100%;
+}
+
+.agro-relationship-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.agro-workspace-tabs {
+  margin-top: 1rem;
+}
+
+.agro-workspace-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.95fr);
+}
+
+.agro-review-item {
+  width: 100%;
+  padding: 1rem 1.05rem;
+  text-align: left;
+}
+
+.agro-review-item.is-selected {
+  border-color: var(--color-brand-300);
+  box-shadow: 0 0 0 2px rgba(31, 109, 82, 0.12);
+}
+
+@media (max-width: 960px) {
+  .agro-overview-hero-grid,
+  .agro-detail-grid,
+  .agro-workspace-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .agro-directory-toolbar,
+  .agro-shortlist-item,
+  .agro-card-head,
+  .agro-evidence-head,
+  .agro-review-item-head,
+  .agro-relationship-card,
+  .agro-compare-row {
+    flex-direction: column;
   }
 }

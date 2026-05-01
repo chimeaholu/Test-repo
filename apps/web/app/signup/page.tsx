@@ -1,11 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
+import { ArrowRight, CheckCircle2, MapPinned, ShieldCheck, Sprout } from "lucide-react";
 
-import { useAppState } from "@/components/app-provider";
+import { PublicFooter } from "@/components/public/public-footer";
+import { PublicNav } from "@/components/public/public-nav";
 import { StepIndicator } from "@/components/molecules/step-indicator";
 import { Button } from "@/components/ui/button";
+import { identityApi } from "@/lib/api/identity";
+import { createTraceId, roleLabel } from "@/features/shell/model";
 import {
   SignupStepIdentity,
   type IdentityData,
@@ -21,78 +26,85 @@ import {
 } from "@/components/auth/signup-step-verification";
 
 const STEPS = [
-  { id: "identity", label: "Identity" },
-  { id: "profile", label: "Profile" },
-  { id: "verification", label: "Verify" },
+  { id: "role-country", label: "Role and country" },
+  { id: "account", label: "Account details" },
+  { id: "profile", label: "Working profile" },
+  { id: "review", label: "Review" },
 ] as const;
 
 type StepId = (typeof STEPS)[number]["id"];
 
-function validateIdentity(d: IdentityData): Partial<Record<keyof IdentityData, string>> {
-  const e: Partial<Record<keyof IdentityData, string>> = {};
-  if (!d.role) e.role = "Please select a role.";
-  if (!d.fullName || d.fullName.trim().length < 2) e.fullName = "Please enter your full name.";
-  if (!d.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) e.email = "Please enter a valid email address.";
-  if (!d.phone || d.phone.replace(/\D/g, "").length < 6) e.phone = "Please enter a valid phone number.";
-  if (!d.password || d.password.length < 8) e.password = "Password must be at least 8 characters.";
-  if (!d.countryCode) e.countryCode = "Please select a country.";
-  return e;
+function validateRoleCountry(d: IdentityData): Partial<Record<keyof IdentityData, string>> {
+  const errors: Partial<Record<keyof IdentityData, string>> = {};
+  if (!d.role) errors.role = "Please select a role.";
+  if (!d.countryCode) errors.countryCode = "Please select a country.";
+  return errors;
+}
+
+function validateAccount(d: IdentityData): Partial<Record<keyof IdentityData, string>> {
+  const errors: Partial<Record<keyof IdentityData, string>> = {};
+  if (!d.fullName || d.fullName.trim().length < 2) errors.fullName = "Please enter your full name.";
+  if (!d.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) errors.email = "Please enter a valid email address.";
+  if (!d.phone || d.phone.replace(/\D/g, "").length < 6) errors.phone = "Please enter a valid phone number.";
+  if (!d.password || d.password.length < 8) errors.password = "Password must be at least 8 characters.";
+  return errors;
 }
 
 function validateProfile(role: string, d: ProfileData): Record<string, string> {
-  const e: Record<string, string> = {};
+  const errors: Record<string, string> = {};
 
   switch (role) {
     case "farmer":
-      if (d.crops.length === 0) e.crops = "Please select at least one crop.";
-      if (!d.farmSize || Number(d.farmSize) <= 0) e.farmSize = "Please enter your farm size.";
-      if (!d.farmingExperience) e.farmingExperience = "Please select your experience level.";
+      if (d.crops.length === 0) errors.crops = "Please select at least one crop.";
+      if (!d.farmSize || Number(d.farmSize) <= 0) errors.farmSize = "Please enter your farm size.";
+      if (!d.farmingExperience) errors.farmingExperience = "Please select your experience level.";
       break;
     case "buyer":
-      if (!d.businessName.trim()) e.businessName = "Please enter your business name.";
-      if (!d.businessType) e.businessType = "Please select a business type.";
-      if (d.commodities.length === 0) e.commodities = "Please select at least one commodity.";
-      if (!d.purchaseVolume) e.purchaseVolume = "Please select your purchase volume.";
+      if (!d.businessName.trim()) errors.businessName = "Please enter your business name.";
+      if (!d.businessType) errors.businessType = "Please select a business type.";
+      if (d.commodities.length === 0) errors.commodities = "Please select at least one commodity.";
+      if (!d.purchaseVolume) errors.purchaseVolume = "Please select your purchase volume.";
       break;
     case "cooperative":
-      if (!d.cooperativeName.trim()) e.cooperativeName = "Please enter your cooperative name.";
-      if (!d.memberCount || Number(d.memberCount) < 2) e.memberCount = "Please enter at least 2 members.";
-      if (d.primaryActivities.length === 0) e.primaryActivities = "Please select at least one activity.";
+      if (!d.cooperativeName.trim()) errors.cooperativeName = "Please enter your cooperative name.";
+      if (!d.memberCount || Number(d.memberCount) < 2) errors.memberCount = "Please enter at least 2 members.";
+      if (d.primaryActivities.length === 0) errors.primaryActivities = "Please select at least one activity.";
       break;
     case "transporter":
-      if (!d.vehicleCount || Number(d.vehicleCount) < 1) e.vehicleCount = "Please enter at least 1 vehicle.";
-      if (d.vehicleTypes.length === 0) e.vehicleTypes = "Please select at least one vehicle type.";
-      if (!d.coverageArea) e.coverageArea = "Please select your coverage area.";
+      if (!d.vehicleCount || Number(d.vehicleCount) < 1) errors.vehicleCount = "Please enter at least 1 vehicle.";
+      if (d.vehicleTypes.length === 0) errors.vehicleTypes = "Please select at least one vehicle type.";
+      if (!d.coverageArea) errors.coverageArea = "Please select your coverage area.";
       break;
-    case "finance":
-      if (!d.investorType) e.investorType = "Please select your investor type.";
-      if (d.investorInterests.length === 0) e.investorInterests = "Please select at least one area of interest.";
-      if (!d.investmentRange) e.investmentRange = "Please select your investment range.";
+    case "investor":
+      if (!d.investorType) errors.investorType = "Please select your investor type.";
+      if (d.investorInterests.length === 0) errors.investorInterests = "Please select at least one area of interest.";
+      if (!d.investmentRange) errors.investmentRange = "Please select your investment range.";
       break;
-    case "advisor":
-      if (!d.organization.trim()) e.organization = "Please enter your organization.";
-      if (d.specializations.length === 0) e.specializations = "Please select at least one specialization.";
-      if (!d.yearsExperience) e.yearsExperience = "Please select your years of experience.";
+    case "extension_agent":
+      if (!d.organization.trim()) errors.organization = "Please enter your organization.";
+      if (d.specializations.length === 0) errors.specializations = "Please select at least one specialization.";
+      if (!d.yearsExperience) errors.yearsExperience = "Please select your years of experience.";
       break;
   }
 
-  return e;
+  return errors;
 }
 
 function validateVerification(d: VerificationData): Partial<Record<keyof VerificationData, string>> {
-  const e: Partial<Record<keyof VerificationData, string>> = {};
-  if (!d.otp || d.otp.length !== 6) e.otp = "Please enter the 6-digit verification code.";
-  if (!d.termsAccepted) e.termsAccepted = "You must agree to the Terms of Service and Privacy Policy.";
-  if (!d.notificationsAccepted) e.notificationsAccepted = "Account notifications consent is required for security purposes.";
-  return e;
+  const errors: Partial<Record<keyof VerificationData, string>> = {};
+  if (!d.termsAccepted) errors.termsAccepted = "You must agree to the Terms of Service and Privacy Policy.";
+  if (!d.notificationsAccepted) {
+    errors.notificationsAccepted = "Please allow essential account updates so we can protect your account and key activity.";
+  }
+  return errors;
 }
 
 export default function SignUpPage() {
-  const { signIn } = useAppState();
-
-  const [currentStep, setCurrentStep] = useState<StepId>("identity");
+  const router = useRouter();
+  const [currentStep, setCurrentStep] = useState<StepId>("role-country");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitSuccess, setSubmitSuccess] = useState<string | null>(null);
 
   const [identityData, setIdentityData] = useState<IdentityData>({
     fullName: "",
@@ -103,9 +115,7 @@ export default function SignUpPage() {
     role: "",
     countryCode: "",
   });
-
   const [profileData, setProfileData] = useState<ProfileData>(initialProfileData);
-
   const [verificationData, setVerificationData] = useState<VerificationData>({
     otp: "",
     termsAccepted: false,
@@ -117,198 +127,247 @@ export default function SignUpPage() {
   const [profileErrors, setProfileErrors] = useState<Record<string, string>>({});
   const [verificationErrors, setVerificationErrors] = useState<Partial<Record<keyof VerificationData, string>>>({});
 
-  const stepIndex = STEPS.findIndex((s) => s.id === currentStep);
+  const stepIndex = STEPS.findIndex((step) => step.id === currentStep);
+  const selectedCountry =
+    identityData.countryCode === "GH" ? "Ghana" : identityData.countryCode === "NG" ? "Nigeria" : identityData.countryCode === "JM" ? "Jamaica" : "Pending";
+  const selectedRole = identityData.role ? roleLabel(identityData.role as never) : "Pending";
 
   function handleContinue() {
-    if (currentStep === "identity") {
-      const errs = validateIdentity(identityData);
-      setIdentityErrors(errs);
-      if (Object.keys(errs).length > 0) return;
+    if (currentStep === "role-country") {
+      const errors = validateRoleCountry(identityData);
+      setIdentityErrors(errors);
+      if (Object.keys(errors).length > 0) {
+        return;
+      }
+      setCurrentStep("account");
+      return;
+    }
+
+    if (currentStep === "account") {
+      const errors = validateAccount(identityData);
+      setIdentityErrors(errors);
+      if (Object.keys(errors).length > 0) {
+        return;
+      }
       setCurrentStep("profile");
-    } else if (currentStep === "profile") {
-      const errs = validateProfile(identityData.role, profileData);
-      setProfileErrors(errs);
-      if (Object.keys(errs).length > 0) return;
-      setCurrentStep("verification");
+      return;
+    }
+
+    if (currentStep === "profile") {
+      const errors = validateProfile(identityData.role, profileData);
+      setProfileErrors(errors);
+      if (Object.keys(errors).length > 0) {
+        return;
+      }
+      setCurrentStep("review");
     }
   }
 
   function handleBack() {
-    if (currentStep === "profile") setCurrentStep("identity");
-    else if (currentStep === "verification") setCurrentStep("profile");
+    if (currentStep === "account") setCurrentStep("role-country");
+    else if (currentStep === "profile") setCurrentStep("account");
+    else if (currentStep === "review") setCurrentStep("profile");
   }
 
-  async function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-    const errs = validateVerification(verificationData);
-    setVerificationErrors(errs);
-    if (Object.keys(errs).length > 0) return;
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+    const errors = validateVerification(verificationData);
+    setVerificationErrors(errors);
+    if (Object.keys(errors).length > 0) {
+      return;
+    }
 
     setIsSubmitting(true);
     setSubmitError(null);
+    setSubmitSuccess(null);
 
     try {
-      // Map the signup role to the API-compatible ActorRole
-      const roleMap: Record<string, string> = {
-        farmer: "farmer",
-        buyer: "buyer",
-        cooperative: "cooperative",
-        transporter: "transporter",
-        investor: "investor",
-        extension_agent: "extension_agent",
-      };
-
-      await signIn({
-        displayName: identityData.fullName,
-        email: identityData.email,
-        role: (roleMap[identityData.role] ?? "farmer") as
-          | "farmer"
-          | "buyer"
-          | "cooperative"
-          | "transporter"
-          | "investor"
-          | "extension_agent",
-        countryCode: identityData.countryCode,
-      });
-      // signIn navigates to /onboarding/consent on success
-    } catch (err) {
-      const message =
-        err instanceof Error ? err.message : "Account creation failed. Please try again.";
-      setSubmitError(
-        message === "Failed to fetch"
-          ? "Unable to reach the server. Check your connection and try again."
-          : message,
+      await identityApi.registerPasswordAccount(
+        {
+          displayName: identityData.fullName,
+          email: identityData.email,
+          phoneNumber: `${identityData.phonePrefix}${identityData.phone}`.replace(/\s+/g, ""),
+          password: identityData.password,
+          role: identityData.role as IdentityData["role"] & (
+            | "farmer"
+            | "buyer"
+            | "cooperative"
+            | "transporter"
+            | "investor"
+            | "extension_agent"
+          ),
+          countryCode: identityData.countryCode,
+        },
+        createTraceId("signup-password"),
       );
+      setSubmitSuccess("Account created. Redirecting into setup.");
+      router.push("/onboarding/consent");
+    } catch {
+      setSubmitError("Account setup could not be completed. Please check your details and try again.");
     } finally {
       setIsSubmitting(false);
     }
   }
 
   return (
-    <main className="page-shell" id="main-content">
-      <section
-        style={{
-          maxWidth: 560,
-          margin: "48px auto",
-          padding: "0 16px",
-        }}
-      >
-        <article
-          style={{
-            background: "#fff",
-            borderRadius: 20,
-            border: "1px solid var(--color-neutral-200, #e2e0dc)",
-            boxShadow: "0 4px 24px rgba(26, 47, 30, 0.06)",
-            padding: "48px 40px",
-          }}
-        >
-          <StepIndicator
-            steps={[...STEPS]}
-            currentStep={currentStep}
-            className="ds-steps"
-            style-margin-bottom="40px"
-          />
+    <div className="pub-page">
+      <PublicNav />
 
-          <form onSubmit={(e) => void handleSubmit(e)} noValidate>
-            <div style={{ minHeight: 320 }}>
-              {currentStep === "identity" && (
-                <SignupStepIdentity
-                  data={identityData}
-                  onChange={setIdentityData}
-                  errors={identityErrors}
-                />
-              )}
-              {currentStep === "profile" && (
-                <SignupStepProfile
-                  role={identityData.role}
-                  data={profileData}
-                  onChange={setProfileData}
-                  errors={profileErrors}
-                />
-              )}
-              {currentStep === "verification" && (
-                <SignupStepVerification
-                  data={verificationData}
-                  onChange={setVerificationData}
-                  errors={verificationErrors}
-                  phone={identityData.phone}
-                  phonePrefix={identityData.phonePrefix}
-                />
-              )}
+      <main className="pub-signin-bg pub-entry-main" id="main-content">
+        <div className="pub-entry-grid">
+          <section className="pub-entry-hero">
+            <p className="pub-overline">Create your account</p>
+            <h1 className="pub-display pub-display-light">Set up your Agrodomain workspace</h1>
+            <p className="pub-copy pub-copy-light">
+              Choose your role, add your details, and continue into setup for the work you do.
+            </p>
+            <div className="pub-entry-benefits">
+              <article className="pub-entry-benefit">
+                <MapPinned size={18} />
+                <div>
+                  <strong>Role and country first</strong>
+                  <p>Your country helps us show the right language, currency, and local tools.</p>
+                </div>
+              </article>
+              <article className="pub-entry-benefit">
+                <ShieldCheck size={18} />
+                <div>
+                  <strong>Setup before workspace</strong>
+                  <p>You&apos;ll continue into setup before your workspace opens.</p>
+                </div>
+              </article>
+              <article className="pub-entry-benefit">
+                <Sprout size={18} />
+                <div>
+                  <strong>Built for real work</strong>
+                  <p>The account opens into the role path that matches how you already work.</p>
+                </div>
+              </article>
             </div>
+          </section>
 
-            {submitError && (
-              <p className="ds-form-error" role="alert" style={{ marginTop: 16 }}>
-                {submitError}
+          <article className="pub-entry-card">
+            <StepIndicator
+              steps={[...STEPS]}
+              currentStep={currentStep}
+              className="ds-steps"
+            />
+
+            <p className="pub-auth-kicker">Create your account</p>
+            <h2 className="pub-entry-panel-title">{STEPS[stepIndex]?.label}</h2>
+            <p className="pub-entry-panel-copy">
+              {currentStep === "role-country" && "Pick the role that matches how you use the platform today."}
+              {currentStep === "account" && "Add the account details you&apos;ll use to get back in."}
+              {currentStep === "profile" && "Add the working details that make the platform useful from day one."}
+              {currentStep === "review" && "Check your details before your account is created."}
+            </p>
+
+            <form onSubmit={(event) => void handleSubmit(event)} noValidate>
+              <div className="pub-signup-steps">
+                {currentStep === "role-country" && (
+                  <SignupStepIdentity
+                    data={identityData}
+                    onChange={setIdentityData}
+                    errors={identityErrors}
+                    mode="role-country"
+                  />
+                )}
+                {currentStep === "account" && (
+                  <SignupStepIdentity
+                    data={identityData}
+                    onChange={setIdentityData}
+                    errors={identityErrors}
+                    mode="account"
+                  />
+                )}
+                {currentStep === "profile" && (
+                  <SignupStepProfile
+                    role={identityData.role}
+                    data={profileData}
+                    onChange={setProfileData}
+                    errors={profileErrors}
+                  />
+                )}
+                {currentStep === "review" && (
+                  <SignupStepVerification
+                    data={verificationData}
+                    onChange={setVerificationData}
+                    errors={verificationErrors}
+                    phone={identityData.phone}
+                    phonePrefix={identityData.phonePrefix}
+                    summary={[
+                      { label: "Role", value: selectedRole },
+                      { label: "Country", value: selectedCountry },
+                      { label: "Name", value: identityData.fullName || "Pending" },
+                      { label: "Email", value: identityData.email || "Pending" },
+                    ]}
+                  />
+                )}
+              </div>
+
+              {submitError ? (
+                <p className="ds-form-error" role="alert" style={{ marginTop: 16 }}>
+                  {submitError}
+                </p>
+              ) : null}
+
+              {submitSuccess ? (
+                <p className="pub-form-success" role="status">
+                  {submitSuccess}
+                </p>
+              ) : null}
+
+              <div className="pub-signup-actions">
+                {stepIndex > 0 ? (
+                  <Button
+                    variant="ghost"
+                    type="button"
+                    onClick={handleBack}
+                    disabled={isSubmitting}
+                  >
+                    Back
+                  </Button>
+                ) : null}
+
+                {currentStep === "review" ? (
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    loading={isSubmitting}
+                    className="pub-signup-submit"
+                  >
+                    {isSubmitting ? "Creating account..." : "Create account"}
+                  </Button>
+                ) : (
+                  <Button
+                    variant="primary"
+                    type="button"
+                    onClick={handleContinue}
+                    className="pub-signup-submit"
+                  >
+                    Continue
+                  </Button>
+                )}
+              </div>
+            </form>
+
+            <div className="pub-entry-support">
+              <Link href="/signin" className="pub-inline-text-link">
+                Already have an account? Sign in
+              </Link>
+              <Link href="/preview" className="pub-inline-text-link pub-inline-text-link-strong">
+                View guided preview
+                <ArrowRight size={15} />
+              </Link>
+              <p className="pub-entry-helper-line">
+                Review helper: You&apos;ll continue into setup before your workspace opens.
               </p>
-            )}
-
-            <div
-              style={{
-                display: "flex",
-                justifyContent: stepIndex > 0 ? "space-between" : "flex-end",
-                marginTop: 32,
-                gap: 12,
-              }}
-            >
-              {stepIndex > 0 && (
-                <Button
-                  variant="ghost"
-                  type="button"
-                  onClick={handleBack}
-                  disabled={isSubmitting}
-                >
-                  Back
-                </Button>
-              )}
-
-              {currentStep === "verification" ? (
-                <Button
-                  variant="primary"
-                  type="submit"
-                  loading={isSubmitting}
-                  style={{
-                    flex: 1,
-                    maxWidth: stepIndex > 0 ? undefined : "100%",
-                    background: "var(--color-accent-700, #c17b2a)",
-                  }}
-                >
-                  {isSubmitting ? "Creating account\u2026" : "Create My Account"}
-                </Button>
-              ) : (
-                <Button
-                  variant="primary"
-                  type="button"
-                  onClick={handleContinue}
-                  disabled={currentStep === "identity" && !identityData.role}
-                >
-                  Continue
-                </Button>
-              )}
             </div>
-          </form>
+          </article>
+        </div>
+      </main>
 
-          <p
-            style={{
-              textAlign: "center",
-              marginTop: 20,
-              fontSize: "0.9375rem",
-              color: "var(--ink-muted)",
-            }}
-          >
-            Already have an account?{" "}
-            <Link
-              href="/signin"
-              style={{
-                color: "var(--color-accent-700, #c17b2a)",
-                fontWeight: 600,
-              }}
-            >
-              Sign in
-            </Link>
-          </p>
-        </article>
-      </section>
-    </main>
+      <PublicFooter />
+    </div>
   );
 }

@@ -1,39 +1,32 @@
 import Link from "next/link";
 
+import { BrandMark } from "@/components/brand-mark";
+
 const platformLinks = [
-  { label: "AgroMarket", href: "/features#agromarket" },
-  { label: "AgroFund", href: "/features#agrofund" },
-  { label: "AgroFarm", href: "/features#agrofarm" },
-  { label: "AgroWallet", href: "/features#agrowallet" },
-  { label: "AgroShield", href: "/features#agroshield" },
-  { label: "AgroTrucker", href: "/features#agrotrucker" },
-  { label: "AgroWeather", href: "/features#agroweather" },
-  { label: "AgroGuide", href: "/features#agroguide" },
+  { label: "Sell and get paid", href: "/features#trade-payments" },
+  { label: "Protect your season", href: "/features#protection-planning" },
+  { label: "Move and grow trade", href: "/features#logistics-growth" },
+  { label: "Guided preview", href: "/preview" },
 ] as const;
 
 const companyLinks = [
   { label: "About", href: "/about" },
-  { label: "Careers", href: "/about#careers" },
-  { label: "Blog", href: "/blog" },
-  { label: "Press", href: "/about#press" },
-  { label: "Partners", href: "/about#partners" },
+  { label: "Features", href: "/features" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
 const legalLinks = [
   { label: "Terms of Service", href: "/legal/terms" },
   { label: "Privacy Policy", href: "/legal/privacy" },
-  { label: "Cookie Policy", href: "/legal/cookies" },
-  { label: "Licenses", href: "/legal/licenses" },
+  { label: "Create account", href: "/signup" },
+  { label: "Sign in", href: "/signin" },
 ] as const;
 
 const socialLinks = [
-  { label: "Twitter", href: "https://twitter.com/agrodomain" },
-  { label: "LinkedIn", href: "https://linkedin.com/company/agrodomain" },
-  { label: "Facebook", href: "https://facebook.com/agrodomain" },
-  { label: "Instagram", href: "https://instagram.com/agrodomain" },
-  { label: "WhatsApp", href: "https://wa.me/233000000000" },
-  { label: "YouTube", href: "https://youtube.com/@agrodomain" },
+  { label: "Start as farmer", href: "/signup" },
+  { label: "Start as buyer", href: "/signup" },
+  { label: "Start as transporter", href: "/signup" },
+  { label: "Ask for help", href: "/contact" },
 ] as const;
 
 function FooterColumn({ title, children }: { title: string; children: React.ReactNode }) {
@@ -52,16 +45,10 @@ export function PublicFooter() {
         <div className="pub-footer-top">
           <div className="pub-footer-brand">
             <div className="pub-footer-logo">
-              <svg width="32" height="32" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-                <circle cx="18" cy="18" r="16" fill="rgba(255,255,255,0.08)" />
-                <path d="M18 28V16c0-6 3.5-10.5 10-13-6.5 2.5-8.5 7-10 13z" fill="#ffffff" />
-                <path d="M18 28V16c0-6-3.5-10.5-10-13 6.5 2.5 8.5 7 10 13z" fill="rgba(255,255,255,0.6)" />
-                <circle cx="18" cy="30" r="2" fill="#e5a94e" />
-              </svg>
-              <span className="pub-footer-wordmark">agrodomain</span>
+              <BrandMark caption="One platform for selling, protecting, moving, and growing farm business" light />
             </div>
             <p className="pub-footer-tagline">
-              Empowering African agriculture through technology.
+              Built for farmers, buyers, cooperatives, transporters, and teams working across the chain.
             </p>
           </div>
 
@@ -106,7 +93,7 @@ export function PublicFooter() {
 
         <div className="pub-footer-bottom">
           <p>&copy; 2026 Agrodomain Technologies Ltd. All rights reserved.</p>
-          <p>Made with &hearts; in Accra, Lagos &amp; Kingston</p>
+          <p>Built for mobile-first agricultural work in Nigeria and Ghana.</p>
         </div>
       </div>
     </footer>

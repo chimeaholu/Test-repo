@@ -2,9 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import React from "react";
 import type { ComponentType } from "react";
 
+import { BrandMark } from "@/components/brand-mark";
 import * as Icons from "@/components/icons";
+import type { MessageCatalog } from "@/lib/i18n/messages";
 import { Avatar } from "@/components/ui/avatar";
 import { IconButton } from "@/components/ui/icon-button";
 import { type NavItem, type NavSection } from "./nav-items";
@@ -18,6 +21,7 @@ interface SidebarProps {
   onSignOut: () => void;
   onToggle?: () => void;
   open?: boolean;
+  copy: MessageCatalog["shell"];
   organizationName?: string;
   roleLabel?: string;
   sections: NavSection[];
@@ -42,6 +46,7 @@ export function Sidebar({
   onSignOut,
   onToggle,
   open = false,
+  copy,
   organizationName,
   roleLabel,
   sections,
@@ -64,7 +69,7 @@ export function Sidebar({
     <>
       {isDrawer && open ? (
         <button
-          aria-label="Close navigation"
+          aria-label={copy.actions.closeNavigation}
           className="ds-sidebar-overlay is-open"
           onClick={onClose}
           tabIndex={0}
@@ -76,18 +81,20 @@ export function Sidebar({
         <aside className={sidebarClassName}>
           <div className="ds-sidebar-logo">
             <Link className="ds-sidebar-brand" href={homeHref}>
-              <span className="ds-sidebar-brand-mark">{collapsed && !isDrawer ? "A" : "Agrodomain"}</span>
-              {!collapsed || isDrawer ? <span className="ds-sidebar-brand-tag">Field operations</span> : null}
+              <BrandMark
+                caption={!collapsed || isDrawer ? copy.brand.tag : undefined}
+                compact={collapsed && !isDrawer}
+              />
             </Link>
 
             {isDrawer ? (
-              <IconButton className="ds-sidebar-control" label="Close menu" onClick={onClose} size="sm">
+              <IconButton className="ds-sidebar-control" label={copy.actions.closeMenu} onClick={onClose} size="sm">
                 <Icons.CloseIcon size={18} />
               </IconButton>
             ) : (
               <IconButton
                 className="ds-sidebar-control"
-                label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+                label={collapsed ? copy.actions.expandSidebar : copy.actions.collapseSidebar}
                 onClick={onToggle}
                 size="sm"
               >
@@ -99,7 +106,7 @@ export function Sidebar({
           {!collapsed || isDrawer ? (
             <div className="ds-sidebar-context">
               {roleLabel ? <span className="ds-sidebar-kicker">{roleLabel}</span> : null}
-              <strong>{organizationName ?? "Agrodomain workspace"}</strong>
+              <strong>{organizationName ?? copy.brand.workspaceFallback}</strong>
               {email ? <span>{email}</span> : null}
             </div>
           ) : null}
@@ -123,7 +130,9 @@ export function Sidebar({
                       key={item.id}
                       title={collapsed && !isDrawer ? item.label : undefined}
                     >
-                      <Icon className="ds-sidebar-icon" size={20} />
+                      <span className="ds-sidebar-icon-wrap">
+                        <Icon className="ds-sidebar-icon" size={20} />
+                      </span>
                       {!collapsed || isDrawer ? <span>{item.label}</span> : null}
                       {!collapsed || isDrawer ? (
                         item.badge ? <span className="ds-badge ds-badge-brand ds-sidebar-badge">{item.badge}</span> : null
@@ -140,15 +149,15 @@ export function Sidebar({
               <Avatar name={userName ?? "Agrodomain"} size="sm" />
               {!collapsed || isDrawer ? (
                 <span className="ds-sidebar-profile-copy">
-                  <strong>{userName ?? "Workspace user"}</strong>
-                  <span>{roleLabel ?? "Signed in"}</span>
+                  <strong>{userName ?? copy.brand.workspaceUserFallback}</strong>
+                  <span>{roleLabel ?? copy.topbar.signedIn}</span>
                 </span>
               ) : null}
             </Link>
 
             <button className="ds-sidebar-link ds-sidebar-signout" onClick={onSignOut} type="button">
               <Icons.LogOutIcon className="ds-sidebar-icon" size={20} />
-              {!collapsed || isDrawer ? <span>Sign out</span> : null}
+              {!collapsed || isDrawer ? <span>{copy.actions.signOut}</span> : null}
             </button>
           </div>
         </aside>

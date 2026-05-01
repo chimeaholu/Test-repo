@@ -1,299 +1,374 @@
 "use client";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
+import { ArrowRight, ShieldCheck, Smartphone, Sprout } from "lucide-react";
 
-import { useAppState } from "@/components/app-provider";
-import { signInSchema } from "@/features/identity/schema";
 import { PublicNav } from "@/components/public/public-nav";
-
-const roles = [
-  {
-    key: "farmer",
-    value: "farmer" as const,
-    label: "Farmer",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M7 20h10" />
-        <path d="M10 20c5.5-2.5.8-6.4 3-10" />
-        <path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z" />
-        <path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z" />
-      </svg>
-    ),
-  },
-  {
-    key: "buyer",
-    value: "buyer" as const,
-    label: "Buyer",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="8" cy="21" r="1" />
-        <circle cx="19" cy="21" r="1" />
-        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-      </svg>
-    ),
-  },
-  {
-    key: "cooperative",
-    value: "cooperative" as const,
-    label: "Co-op Manager",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
-        <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
-        <line x1="6" y1="6" x2="6.01" y2="6" />
-        <line x1="6" y1="18" x2="6.01" y2="18" />
-      </svg>
-    ),
-  },
-  {
-    key: "transporter",
-    value: "transporter" as const,
-    label: "Transporter",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M1 3h15v13H1z" />
-        <path d="M16 8h4l3 3v5h-7V8z" />
-        <circle cx="5.5" cy="18.5" r="2.5" />
-        <circle cx="18.5" cy="18.5" r="2.5" />
-      </svg>
-    ),
-  },
-  {
-    key: "investor",
-    value: "investor" as const,
-    label: "Investor",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
-        <polyline points="16 7 22 7 22 13" />
-      </svg>
-    ),
-  },
-  {
-    key: "extension_agent",
-    value: "extension_agent" as const,
-    label: "Extension Agent",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M9 11l3 3L22 4" />
-        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
-      </svg>
-    ),
-  },
-];
+import { useAppState } from "@/components/app-provider";
+import {
+  magicLinkSchema,
+  magicLinkVerifySchema,
+  passwordSignInSchema,
+} from "@/features/identity/schema";
 
 const countries = [
-  { code: "GH" as const, label: "Ghana" },
-  { code: "NG" as const, label: "Nigeria" },
-  { code: "JM" as const, label: "Jamaica" },
-];
+  { code: "GH", label: "Ghana" },
+  { code: "NG", label: "Nigeria" },
+  { code: "JM", label: "Jamaica" },
+] as const;
+
+type MagicLinkChallengeState = {
+  challengeId: string;
+  maskedTarget: string;
+  expiresAt: string;
+  previewCode: string | null;
+};
+
+function resolveAuthError(method: "magic_link" | "password", error: unknown): string {
+  const message = error instanceof Error ? error.message : "Sign-in could not be completed.";
+  if (message === "Failed to fetch") {
+    return "We could not reach the service. Check your connection and try again.";
+  }
+  if (message === "request_failed") {
+    return method === "magic_link"
+      ? "Verification codes are not available from this workspace right now. Use your password or contact support."
+      : "Password sign-in is not available from this workspace right now. Request a code or contact support.";
+  }
+  if (message === "identity_account_not_found") {
+    return "We could not find an account for those details.";
+  }
+  if (message === "invalid_credentials") {
+    return "The password or identifier you entered is incorrect.";
+  }
+  if (message === "magic_link_invalid") {
+    return "That verification code is not valid.";
+  }
+  if (message === "magic_link_expired") {
+    return "That verification code has expired. Request a new one.";
+  }
+  return message;
+}
 
 export default function SignInPage() {
-  const { signIn } = useAppState();
-  const [error, setError] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { requestMagicLink, signInWithPassword, verifyMagicLink } = useAppState();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("next");
+  const [method, setMethod] = useState<"password" | "code">("password");
   const [isInteractive, setIsInteractive] = useState(false);
-  const [selectedRole, setSelectedRole] = useState("farmer");
-  const errorId = error ? "signin-form-error" : undefined;
+
+  const [passwordError, setPasswordError] = useState<string | null>(null);
+  const [magicLinkError, setMagicLinkError] = useState<string | null>(null);
+  const [magicLinkSuccess, setMagicLinkSuccess] = useState<string | null>(null);
+  const [magicLinkChallenge, setMagicLinkChallenge] = useState<MagicLinkChallengeState | null>(null);
+  const [isPasswordSubmitting, setIsPasswordSubmitting] = useState(false);
+  const [isMagicLinkSubmitting, setIsMagicLinkSubmitting] = useState(false);
 
   useEffect(() => {
     setIsInteractive(true);
   }, []);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  async function handlePasswordSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const result = signInSchema.safeParse({
-      displayName: formData.get("displayName"),
-      email: formData.get("email"),
-      role: formData.get("role"),
-      countryCode: formData.get("countryCode"),
+    const result = passwordSignInSchema.safeParse({
+      identifier: formData.get("passwordIdentifier"),
+      password: formData.get("password"),
+      countryCode: formData.get("passwordCountryCode"),
     });
 
     if (!result.success) {
-      setError(result.error.issues[0]?.message ?? "Check your details and try again.");
+      setPasswordError(result.error.issues[0]?.message ?? "Check your details and try again.");
       return;
     }
 
-    setError(null);
-    setIsSubmitting(true);
+    setPasswordError(null);
+    setIsPasswordSubmitting(true);
     try {
-      await signIn(result.data);
-    } catch (err) {
-      const message =
-        err instanceof Error ? err.message : "Sign-in failed. Please try again.";
-      setError(
-        message === "Failed to fetch"
-          ? "Unable to reach the server. Check your connection and try again."
-          : message === "demo_auth_disabled"
-            ? "This deployment has disabled the demo sign-in flow until production authentication is configured."
-          : message,
-      );
+      await signInWithPassword({ ...result.data, redirectTo });
+    } catch (error) {
+      setPasswordError(resolveAuthError("password", error));
     } finally {
-      setIsSubmitting(false);
+      setIsPasswordSubmitting(false);
     }
-  };
+  }
+
+  async function handleMagicLinkSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
+    if (magicLinkChallenge) {
+      const verifyResult = magicLinkVerifySchema.safeParse({
+        verificationCode: formData.get("verificationCode"),
+      });
+
+      if (!verifyResult.success) {
+        setMagicLinkError(verifyResult.error.issues[0]?.message ?? "Enter the verification code.");
+        return;
+      }
+
+      setMagicLinkError(null);
+      setIsMagicLinkSubmitting(true);
+      try {
+        await verifyMagicLink({
+          challengeId: magicLinkChallenge.challengeId,
+          verificationCode: verifyResult.data.verificationCode,
+          redirectTo,
+        });
+      } catch (error) {
+        setMagicLinkError(resolveAuthError("magic_link", error));
+      } finally {
+        setIsMagicLinkSubmitting(false);
+      }
+      return;
+    }
+
+    const requestResult = magicLinkSchema.safeParse({
+      identifier: formData.get("magicLinkIdentifier"),
+      countryCode: formData.get("magicLinkCountryCode"),
+    });
+
+    if (!requestResult.success) {
+      setMagicLinkError(requestResult.error.issues[0]?.message ?? "Check your details and try again.");
+      return;
+    }
+
+    setMagicLinkError(null);
+    setMagicLinkSuccess(null);
+    setIsMagicLinkSubmitting(true);
+    try {
+      const challenge = await requestMagicLink(requestResult.data);
+      setMagicLinkChallenge({
+        challengeId: challenge.challengeId,
+        maskedTarget: challenge.maskedTarget,
+        expiresAt: challenge.expiresAt,
+        previewCode: challenge.previewCode,
+      });
+      setMagicLinkSuccess(
+        challenge.previewCode
+          ? `Your sign-in code is ready for ${challenge.maskedTarget}. Enter it below to continue.`
+          : `We sent a sign-in code to ${challenge.maskedTarget}. Enter it below to continue.`,
+      );
+      setMethod("code");
+    } catch (error) {
+      setMagicLinkError(resolveAuthError("magic_link", error));
+    } finally {
+      setIsMagicLinkSubmitting(false);
+    }
+  }
 
   return (
     <div className="pub-page">
       <PublicNav />
 
-      <main id="main-content" className="pub-signin-bg">
-        <div className="pub-signin-card">
-          <div className="pub-signin-logo">
-            <svg width="44" height="44" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-              <circle cx="18" cy="18" r="16" fill="#2d5a3d" opacity="0.12" />
-              <path d="M18 28V16c0-6 3.5-10.5 10-13-6.5 2.5-8.5 7-10 13z" fill="#2d5a3d" />
-              <path d="M18 28V16c0-6-3.5-10.5-10-13 6.5 2.5 8.5 7 10 13z" fill="#4a8c5e" opacity="0.7" />
-              <circle cx="18" cy="30" r="2" fill="#c17b2a" />
-            </svg>
-          </div>
+      <main id="main-content" className="pub-signin-bg pub-entry-main">
+        <div className="pub-entry-grid">
+          <section className="pub-entry-hero">
+            <p className="pub-overline">Welcome back</p>
+            <h1 className="pub-display pub-display-light">Sign in to your Agrodomain account</h1>
+            <p className="pub-copy pub-copy-light">
+              Use your password or get a verification code to continue into your workspace.
+            </p>
+            <div className="pub-chip-row">
+              <span className="pub-chip pub-chip-light">Nigeria and Ghana ready</span>
+              <span className="pub-chip pub-chip-light">Role-based workspaces</span>
+              <span className="pub-chip pub-chip-light">Secure account access</span>
+            </div>
+            <div className="pub-entry-benefits">
+              <article className="pub-entry-benefit">
+                <Sprout size={18} />
+                <div>
+                  <strong>Continue where you left off</strong>
+                  <p>Saved work, recent market actions, and alerts stay connected to your account.</p>
+                </div>
+              </article>
+              <article className="pub-entry-benefit">
+                <ShieldCheck size={18} />
+                <div>
+                  <strong>Protected account flow</strong>
+                  <p>Essential permissions still run before protected work opens.</p>
+                </div>
+              </article>
+            </div>
+          </section>
 
-          <h1 className="pub-signin-heading">Welcome back</h1>
-          <p className="pub-signin-subheading">Sign in to your Agrodomain account</p>
-
-          <div className="pub-signin-divider" />
-
-          <form
-            data-interactive={isInteractive ? "true" : "false"}
-            onSubmit={(e) => void handleSubmit(e)}
-          >
-            {/* Role selection */}
-            <fieldset className="pub-role-fieldset">
-              <legend className="pub-form-label">Your role</legend>
-              <p className="pub-form-helper" id="role-help">
-                Choose the workspace that matches the tasks you need to complete.
-              </p>
-              <div className="pub-role-grid">
-                {roles.map((r) => (
-                  <label
-                    key={r.key}
-                    className="pub-role-tile"
-                    data-selected={selectedRole === r.key ? "true" : undefined}
-                  >
-                    <input
-                      aria-describedby="role-help"
-                      type="radio"
-                      name="role"
-                      value={r.value}
-                      checked={selectedRole === r.key}
-                      onChange={() => setSelectedRole(r.key)}
-                      disabled={isSubmitting}
-                    />
-                    <span className="pub-role-icon">{r.icon}</span>
-                    <span className="pub-role-label">{r.label}</span>
-                  </label>
-                ))}
-              </div>
-            </fieldset>
-
-            {/* Country */}
-            <label className="pub-form-label" htmlFor="countryCode">Your country</label>
-            <div className="pub-select-wrapper">
-              <select
-                id="countryCode"
-                name="countryCode"
-                className="pub-select"
-                defaultValue="GH"
-                disabled={isSubmitting}
+          <section className="pub-entry-card">
+            <p className="pub-auth-kicker">Choose how to sign in</p>
+            <div className="pub-auth-tabs" role="tablist" aria-label="Sign-in methods">
+              <button
+                className="pub-auth-tab"
+                data-active={method === "password" || undefined}
+                role="tab"
+                type="button"
+                aria-selected={method === "password"}
+                onClick={() => setMethod("password")}
               >
-                {countries.map((c) => (
-                  <option key={c.code} value={c.code}>
-                    {c.label}
-                  </option>
-                ))}
-              </select>
-              <span className="pub-select-chevron" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              </span>
+                Password
+              </button>
+              <button
+                className="pub-auth-tab"
+                data-active={method === "code" || undefined}
+                role="tab"
+                type="button"
+                aria-selected={method === "code"}
+                onClick={() => setMethod("code")}
+              >
+                Verification code
+              </button>
             </div>
 
-            <label className="pub-form-label" htmlFor="email">Email address</label>
-            <div className="pub-input-wrapper">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                className="pub-input"
-                autoComplete="email"
-                placeholder="e.g. ama@email.com"
-                aria-describedby={errorId}
-                aria-invalid={error ? "true" : "false"}
-                disabled={isSubmitting}
-                required
-                data-error={error ? "true" : undefined}
-              />
-              {error && (
-                <p className="pub-field-error" id={errorId} role="alert">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-                    <circle cx="12" cy="12" r="10" />
-                    <line x1="12" y1="8" x2="12" y2="12" />
-                    <line x1="12" y1="16" x2="12.01" y2="16" />
-                  </svg>
-                  {error}
-                </p>
-              )}
+            {method === "password" ? (
+              <form method="post" className="pub-auth-panel pub-auth-panel-single" onSubmit={(event) => void handlePasswordSubmit(event)}>
+                <div className="pub-auth-panel-head">
+                  <h2>Password</h2>
+                  <p>Use the password you created for this account.</p>
+                </div>
+
+                <label className="pub-form-label" htmlFor="passwordCountryCode">Country</label>
+                <div className="pub-select-wrapper">
+                  <select id="passwordCountryCode" name="passwordCountryCode" className="pub-select" defaultValue="GH" disabled={!isInteractive || isPasswordSubmitting}>
+                    {countries.map((country) => (
+                      <option key={country.code} value={country.code}>{country.label}</option>
+                    ))}
+                  </select>
+                  <span className="pub-select-chevron" aria-hidden="true">▾</span>
+                </div>
+
+                <label className="pub-form-label" htmlFor="passwordIdentifier">Email or phone number</label>
+                <div className="pub-input-wrapper">
+                  <input
+                    id="passwordIdentifier"
+                    name="passwordIdentifier"
+                    type="text"
+                    className="pub-input"
+                    autoComplete="username"
+                    placeholder="e.g. ama@email.com or +233241234567"
+                    aria-invalid={passwordError ? "true" : "false"}
+                    disabled={!isInteractive || isPasswordSubmitting}
+                    required
+                    data-error={passwordError ? "true" : undefined}
+                  />
+                </div>
+
+                <label className="pub-form-label" htmlFor="password">Password</label>
+                <div className="pub-input-wrapper">
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    className="pub-input"
+                    autoComplete="current-password"
+                    placeholder="Enter your password"
+                    aria-invalid={passwordError ? "true" : "false"}
+                    disabled={!isInteractive || isPasswordSubmitting}
+                    required
+                    data-error={passwordError ? "true" : undefined}
+                  />
+                </div>
+
+                {passwordError ? (
+                  <p className="pub-field-error" role="alert">{passwordError}</p>
+                ) : (
+                  <p className="pub-form-helper">Use the account password you already trust for this workspace.</p>
+                )}
+
+                <button type="submit" className="pub-signin-submit" disabled={!isInteractive || isPasswordSubmitting} aria-busy={isPasswordSubmitting}>
+                  {isPasswordSubmitting ? <span className="pub-spinner" /> : "Sign in"}
+                </button>
+              </form>
+            ) : (
+              <form method="post" className="pub-auth-panel pub-auth-panel-single" onSubmit={(event) => void handleMagicLinkSubmit(event)}>
+                <div className="pub-auth-panel-head">
+                  <h2>Verification code</h2>
+                  <p>We&apos;ll send a code to your saved contact details.</p>
+                </div>
+
+                <label className="pub-form-label" htmlFor="magicLinkCountryCode">Country</label>
+                <div className="pub-select-wrapper">
+                  <select id="magicLinkCountryCode" name="magicLinkCountryCode" className="pub-select" defaultValue="GH" disabled={!isInteractive || isMagicLinkSubmitting || Boolean(magicLinkChallenge)}>
+                    {countries.map((country) => (
+                      <option key={country.code} value={country.code}>{country.label}</option>
+                    ))}
+                  </select>
+                  <span className="pub-select-chevron" aria-hidden="true">▾</span>
+                </div>
+
+                <label className="pub-form-label" htmlFor="magicLinkIdentifier">Email or phone number</label>
+                <div className="pub-input-wrapper">
+                  <input
+                    id="magicLinkIdentifier"
+                    name="magicLinkIdentifier"
+                    type="text"
+                    className="pub-input"
+                    autoComplete="username"
+                    placeholder="e.g. +233241234567 or ama@email.com"
+                    aria-invalid={magicLinkError ? "true" : "false"}
+                    disabled={!isInteractive || isMagicLinkSubmitting || Boolean(magicLinkChallenge)}
+                    required
+                    data-error={magicLinkError ? "true" : undefined}
+                  />
+                </div>
+
+                {magicLinkChallenge ? (
+                  <>
+                    <label className="pub-form-label" htmlFor="verificationCode">Verification code</label>
+                    <div className="pub-input-wrapper">
+                      <input
+                        id="verificationCode"
+                        name="verificationCode"
+                        type="text"
+                        className="pub-input"
+                        autoComplete="one-time-code"
+                        inputMode="numeric"
+                        placeholder="Enter the 6-digit code"
+                        aria-invalid={magicLinkError ? "true" : "false"}
+                        disabled={!isInteractive || isMagicLinkSubmitting}
+                        required
+                        data-error={magicLinkError ? "true" : undefined}
+                      />
+                      {magicLinkChallenge.previewCode ? (
+                        <p className="pub-form-helper">
+                          Use this code in this workspace: <strong>{magicLinkChallenge.previewCode}</strong>
+                        </p>
+                      ) : null}
+                    </div>
+                  </>
+                ) : null}
+
+                {magicLinkError ? (
+                  <p className="pub-field-error" role="alert">{magicLinkError}</p>
+                ) : magicLinkSuccess ? (
+                  <p className="pub-field-success" role="status">{magicLinkSuccess}</p>
+                ) : (
+                  <p className="pub-form-helper">Request a code first, then enter it here to continue.</p>
+                )}
+
+                <button type="submit" className="pub-signin-submit" disabled={!isInteractive || isMagicLinkSubmitting} aria-busy={isMagicLinkSubmitting}>
+                  {isMagicLinkSubmitting
+                    ? <span className="pub-spinner" />
+                    : magicLinkChallenge
+                      ? "Sign in"
+                      : "Send me a code"}
+                </button>
+              </form>
+            )}
+
+            <div className="pub-entry-support">
+              <Link href="/contact" className="pub-inline-text-link">
+                Need help getting back in?
+              </Link>
+              <Link href="/signup" className="pub-inline-text-link">
+                Need an account? Create one
+              </Link>
+              <Link href="/preview" className="pub-inline-text-link pub-inline-text-link-strong">
+                View guided preview
+                <ArrowRight size={15} />
+              </Link>
             </div>
-
-            {/* Hidden displayName — populated from email prefix for compatibility */}
-            <input type="hidden" name="displayName" value="User" />
-
-            <button
-              type="submit"
-              className="pub-signin-submit"
-              disabled={isSubmitting}
-              aria-busy={isSubmitting}
-            >
-              {isSubmitting ? <span className="pub-spinner" /> : "Sign In"}
-            </button>
-          </form>
-
-          <p className="pub-signup-prompt">
-            Don&apos;t have an account?{" "}
-            <Link href="/signup" className="pub-signup-link">
-              Sign up
-            </Link>
-          </p>
-
-          <div className="pub-signin-divider" />
-
-          <div className="pub-trust-badges">
-            <div className="pub-trust-badge">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-              </svg>
-              <span>256-bit SSL Encryption</span>
-            </div>
-            <div className="pub-trust-badge">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                <path d="M9 12l2 2 4-4" />
-              </svg>
-              <span>GDPR Compliant</span>
-            </div>
-            <div className="pub-trust-badge">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                <polyline points="22 4 12 14.01 9 11.01" />
-              </svg>
-              <span>Data Protection Act</span>
-            </div>
-          </div>
+          </section>
         </div>
       </main>
-
-      <footer className="pub-minimal-footer">
-        <span>&copy; 2026 Agrodomain Technologies Ltd.</span>
-        <Link href="/legal/terms">Terms</Link>
-        <span aria-hidden="true">&middot;</span>
-        <Link href="/legal/privacy">Privacy</Link>
-        <span aria-hidden="true">&middot;</span>
-        <Link href="/contact">Contact</Link>
-      </footer>
     </div>
   );
 }

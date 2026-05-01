@@ -27,6 +27,7 @@ const hasCustomServerEndpoints = Boolean(
     process.env.PLAYWRIGHT_BASE_URL ||
     process.env.PLAYWRIGHT_WEB_PORT,
 );
+const forceFreshServers = process.env.AGRO_E2E_REAL_TRANSPORT_FIXTURES === "1";
 const webServerCommand = `corepack pnpm exec next dev --hostname 127.0.0.1 --port ${webPort}`;
 
 export default defineConfig({
@@ -73,10 +74,10 @@ export default defineConfig({
   ],
   webServer: [
     {
-      command: `python3 ../../scripts/run_e2e_api.py`,
+      command: `./.venv/bin/python ../../scripts/run_e2e_api.py`,
       cwd: "apps/api",
       url: `${apiBaseUrl}/readyz`,
-      reuseExistingServer: !process.env.CI && !hasCustomServerEndpoints,
+      reuseExistingServer: !process.env.CI && !hasCustomServerEndpoints && !forceFreshServers,
       timeout: 300_000,
       stdout: "pipe",
       stderr: "pipe",
@@ -91,7 +92,7 @@ export default defineConfig({
       command: webServerCommand,
       cwd: "apps/web",
       url: `${baseUrl}/`,
-      reuseExistingServer: !process.env.CI && !hasCustomServerEndpoints,
+      reuseExistingServer: !process.env.CI && !hasCustomServerEndpoints && !forceFreshServers,
       timeout: 300_000,
       stdout: "pipe",
       stderr: "pipe",

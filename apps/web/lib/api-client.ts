@@ -15,14 +15,29 @@ import type {
 } from "@agrodomain/contracts";
 import { schemaVersion } from "@agrodomain/contracts";
 
+import { getCachedReadModel, cacheReadModel } from "@/lib/offline/cache";
+import {
+  canAttemptLiveSync,
+  createEmptyQueueSnapshot,
+  DeferredMutationQueuedError,
+  enqueueDeferredMutation,
+} from "@/lib/offline/mutation-engine";
+import { getOfflineMutationPolicy } from "@/lib/offline/policy";
+import {
+  OFFLINE_QUEUE_KEY,
+  OFFLINE_READ_MODEL_KEY,
+  removeStoredKey,
+} from "@/lib/offline/storage";
+
 // ---------------------------------------------------------------------------
 // Storage keys
 // ---------------------------------------------------------------------------
 
 export const SESSION_KEY = "agrodomain.session.v2";
 export const TOKEN_KEY = "agrodomain.session-token.v1";
-export const QUEUE_KEY = "agrodomain.offline-queue.v1";
+export const QUEUE_KEY = OFFLINE_QUEUE_KEY;
 export const CLIMATE_ALERT_ACK_KEY = "agrodomain.climate.alert-acks.v1";
+export const AUTH_STATE_EVENT = "agrodomain:auth-state-changed";
 
 // ---------------------------------------------------------------------------
 // Utilities
@@ -72,6 +87,9 @@ export function readJson<T>(key: string): T | null {
 export function writeJson<T>(key: string, value: T): void {
   if (typeof window !== "undefined") {
     window.localStorage.setItem(key, JSON.stringify(value));
+    if (key === SESSION_KEY || key === TOKEN_KEY) {
+      window.dispatchEvent(new CustomEvent(AUTH_STATE_EVENT));
+    }
   }
 }
 
@@ -91,6 +109,7 @@ export function writeToken(token: string | null): void {
   } else {
     window.localStorage.removeItem(TOKEN_KEY);
   }
+  window.dispatchEvent(new CustomEvent(AUTH_STATE_EVENT));
 }
 
 // ---------------------------------------------------------------------------
@@ -128,24 +147,38 @@ export async function requestJson<TData>(
     headers.set("Authorization", `Bearer ${token}`);
   }
 
-  const response = await fetch(`${apiBaseUrl()}${path}`, {
-    ...init,
-    headers,
-    cache: "no-store",
-  });
+  try {
+    const response = await fetch(`${apiBaseUrl()}${path}`, {
+      ...init,
+      headers,
+      cache: "no-store",
+    });
 
-  if (!response.ok) {
-    const detail = await response.json().catch(() => ({}));
-    const message =
-      typeof detail?.detail === "string"
-        ? detail.detail
-        : detail?.detail?.error_code ||
-          detail?.error_code ||
-          "request_failed";
-    throw new Error(message);
+    if (!response.ok) {
+      const detail = await response.json().catch(() => ({}));
+      const message =
+        typeof detail?.detail === "string"
+          ? detail.detail
+          : detail?.detail?.error_code ||
+            detail?.error_code ||
+            "request_failed";
+      throw new Error(message);
+    }
+
+    const data = (await response.json()) as TData;
+    if ((init.method ?? "GET").toUpperCase() === "GET") {
+      cacheReadModel(path, data);
+    }
+    return responseEnvelope(data, traceId);
+  } catch (error) {
+    if ((init.method ?? "GET").toUpperCase() === "GET") {
+      const cached = getCachedReadModel<TData>(path);
+      if (cached) {
+        return responseEnvelope(cached.data as TData, traceId);
+      }
+    }
+    throw error;
   }
-
-  return responseEnvelope((await response.json()) as TData, traceId);
 }
 
 // ---------------------------------------------------------------------------
@@ -182,39 +215,87 @@ export async function sendCommand<
   params: CommandEnvelopeParams,
   traceId: string,
 ): Promise<ResponseEnvelope<CommandResultEnvelope<TResult>>> {
+  const policy = getOfflineMutationPolicy(params.commandName);
+  const connectivityState =
+    typeof navigator === "undefined" || navigator.onLine ? "online" : "offline";
+
+  if (!canAttemptLiveSync(connectivityState) && policy.mode === "online-only") {
+    throw new Error(policy.blockedMessage);
+  }
+
+  if (!canAttemptLiveSync(connectivityState) && policy.mode === "queueable") {
+    const queued = enqueueDeferredMutation({
+      actorId: params.actorId,
+      aggregateRef: params.aggregateRef,
+      commandName: params.commandName,
+      countryCode: params.countryCode,
+      idempotencyKey: params.idempotencyKey ?? crypto.randomUUID(),
+      input: params.input,
+      mutationScope: params.mutationScope,
+      journeyIds: params.journeyIds,
+      dataCheckIds: params.dataCheckIds,
+      traceId: params.traceId,
+    });
+    throw new DeferredMutationQueuedError(policy.blockedMessage, queued.item_id);
+  }
+
   const requestId = crypto.randomUUID();
   const idempotencyKey = params.idempotencyKey ?? crypto.randomUUID();
 
-  return requestJson<CommandResultEnvelope<TResult>>(
-    "/api/v1/workflow/commands",
-    {
-      method: "POST",
-      body: JSON.stringify({
-        metadata: {
-          request_id: requestId,
-          idempotency_key: idempotencyKey,
-          actor_id: params.actorId,
-          country_code: params.countryCode,
-          channel: "pwa",
-          schema_version: schemaVersion as typeof schemaVersion,
-          correlation_id: params.traceId,
-          occurred_at: nowIso(),
-          traceability: {
-            journey_ids: params.journeyIds,
-            data_check_ids: params.dataCheckIds,
+  try {
+    return await requestJson<CommandResultEnvelope<TResult>>(
+      "/api/v1/workflow/commands",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          metadata: {
+            request_id: requestId,
+            idempotency_key: idempotencyKey,
+            actor_id: params.actorId,
+            country_code: params.countryCode,
+            channel: "pwa",
+            schema_version: schemaVersion as typeof schemaVersion,
+            correlation_id: params.traceId,
+            occurred_at: nowIso(),
+            traceability: {
+              journey_ids: params.journeyIds,
+              data_check_ids: params.dataCheckIds,
+            },
           },
-        },
-        command: {
-          name: params.commandName,
-          aggregate_ref: params.aggregateRef,
-          mutation_scope: params.mutationScope,
-          payload: params.input,
-        },
-      }),
-    },
-    traceId,
-    true,
-  );
+          command: {
+            name: params.commandName,
+            aggregate_ref: params.aggregateRef,
+            mutation_scope: params.mutationScope,
+            payload: params.input,
+          },
+        }),
+      },
+      traceId,
+      true,
+    );
+  } catch (error) {
+    if (
+      policy.mode === "queueable" &&
+      error instanceof Error &&
+      /fetch|network|failed to fetch/i.test(error.message)
+    ) {
+      const queued = enqueueDeferredMutation({
+        actorId: params.actorId,
+        aggregateRef: params.aggregateRef,
+        commandName: params.commandName,
+        countryCode: params.countryCode,
+        idempotencyKey,
+        input: params.input,
+        mutationScope: params.mutationScope,
+        journeyIds: params.journeyIds,
+        dataCheckIds: params.dataCheckIds,
+        traceId: params.traceId,
+      });
+      throw new DeferredMutationQueuedError(policy.blockedMessage, queued.item_id);
+    }
+
+    throw error;
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -257,39 +338,9 @@ export function seedQueue(
   session: IdentitySession,
   traceId: string,
 ): OfflineQueueSnapshot {
-  const listingPayload: OfflineMutationPayload = {
-    workflow_id: "wf-listing-001",
-    intent: "market.listings.create",
-    payload: { crop: "Cassava", quantity_tons: 4.2 },
-  };
-
-  const items: OfflineQueueItem[] = [
-    {
-      item_id: "offline-1",
-      workflow_id: listingPayload.workflow_id,
-      intent: listingPayload.intent,
-      payload: listingPayload.payload,
-      idempotency_key: crypto.randomUUID(),
-      created_at: nowIso(),
-      attempt_count: 0,
-      state: "queued",
-      last_error_code: null,
-      conflict_code: null,
-      result_ref: null,
-      envelope: queueEnvelope(
-        session.actor.actor_id,
-        session.actor.country_code,
-        listingPayload,
-        traceId,
-      ),
-    },
-  ];
-
-  return {
-    connectivity_state: "degraded",
-    handoff_channel: "ussd",
-    items,
-  };
+  void session;
+  void traceId;
+  return createEmptyQueueSnapshot();
 }
 
 // ---------------------------------------------------------------------------
@@ -300,7 +351,9 @@ export function clearAll(): void {
   writeToken(null);
   if (typeof window !== "undefined") {
     window.localStorage.removeItem(SESSION_KEY);
-    window.localStorage.removeItem(QUEUE_KEY);
+    removeStoredKey(QUEUE_KEY);
+    removeStoredKey(OFFLINE_READ_MODEL_KEY);
+    window.dispatchEvent(new CustomEvent(AUTH_STATE_EVENT));
   }
 }
 

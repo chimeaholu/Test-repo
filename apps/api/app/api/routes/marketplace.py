@@ -9,8 +9,19 @@ from app.api.dependencies.request_context import get_active_settings, get_sessio
 from app.core.auth import authenticate_request
 from app.core.config import Settings
 from app.core.contracts_catalog import get_envelope_schema_version
-from app.db.models.marketplace import Listing, ListingRevision, NegotiationMessage, NegotiationThread
+from app.core.demo import same_demo_boundary
+from app.db.models.marketplace import (
+    Listing,
+    ListingRevision,
+    NegotiationMessage,
+    NegotiationThread,
+)
+from app.db.repositories.agro_intelligence import AgroIntelligenceRepository
+from app.db.repositories.identity import IdentityRepository
 from app.db.repositories.marketplace import ListingProjection, MarketplaceRepository
+from app.modules.agro_intelligence.marketplace_connector import (
+    MarketplaceAgroIntelligenceConnector,
+)
 
 router = APIRouter(prefix="/api/v1/marketplace", tags=["marketplace"])
 PUBLISHED_LISTING_ROLES = {"buyer", "transporter"}
@@ -162,6 +173,7 @@ def list_listings(
                 country_code=auth_context.country_code or "GH",
             ),
         )
+    items = [item for item in items if same_demo_boundary(auth_context.actor_subject, item.actor_id)]
     return {
         "schema_version": get_envelope_schema_version(),
         "items": [
@@ -203,9 +215,58 @@ def get_listing(
         )
     if listing is None:
         raise HTTPException(status_code=404, detail="listing_not_found")
+    if not same_demo_boundary(auth_context.actor_subject, listing.actor_id):
+        raise HTTPException(status_code=404, detail="listing_not_found")
     if isinstance(listing, Listing):
         return _projection_payload(repository.build_owner_projection(listing=listing))
     return _projection_payload(listing)
+
+
+@router.get("/intelligence/listings/{listing_id}")
+def get_listing_intelligence(
+    listing_id: str,
+    request: Request,
+    db_session: Session = Depends(get_session),
+    settings: Settings = Depends(get_active_settings),
+) -> dict[str, object]:
+    auth_context = authenticate_request(request, settings, db_session)
+    if auth_context is None:
+        raise HTTPException(status_code=401, detail="unauthorized")
+    repository = MarketplaceRepository(db_session)
+    if auth_context.role in PUBLISHED_LISTING_ROLES:
+        listing: ListingProjection | Listing | None = cast(
+            ListingProjection | Listing | None,
+            repository.get_published_listing(
+                listing_id=listing_id,
+                country_code=auth_context.country_code or "GH",
+            ),
+        )
+    else:
+        listing = cast(
+            ListingProjection | Listing | None,
+            repository.get_listing(
+                listing_id=listing_id,
+                actor_id=auth_context.actor_subject,
+                country_code=auth_context.country_code or "GH",
+            ),
+        )
+    if listing is None:
+        raise HTTPException(status_code=404, detail="listing_not_found")
+    if not same_demo_boundary(auth_context.actor_subject, listing.actor_id):
+        raise HTTPException(status_code=404, detail="listing_not_found")
+
+    listing_record = repository.find_listing(listing_id=listing_id)
+    if listing_record is None:
+        raise HTTPException(status_code=404, detail="listing_not_found")
+
+    connector = MarketplaceAgroIntelligenceConnector(
+        agro_repository=AgroIntelligenceRepository(db_session),
+        identity_repository=IdentityRepository(db_session),
+    )
+    return {
+        "schema_version": get_envelope_schema_version(),
+        **connector.build_listing_intelligence(listing=listing_record),
+    }
 
 
 @router.get("/listings/{listing_id}/revisions")
@@ -278,3 +339,36 @@ def get_negotiation_thread(
     if thread is None:
         raise HTTPException(status_code=404, detail="thread_not_found")
     return _thread_payload(thread, repository.list_negotiation_messages(thread_id=thread.thread_id))
+
+
+@router.get("/intelligence/negotiations/{thread_id}")
+def get_negotiation_intelligence(
+    thread_id: str,
+    request: Request,
+    db_session: Session = Depends(get_session),
+    settings: Settings = Depends(get_active_settings),
+) -> dict[str, object]:
+    auth_context = authenticate_request(request, settings, db_session)
+    if auth_context is None:
+        raise HTTPException(status_code=401, detail="unauthorized")
+    repository = MarketplaceRepository(db_session)
+    thread = repository.get_negotiation_thread_for_actor(
+        thread_id=thread_id,
+        actor_id=auth_context.actor_subject,
+        country_code=auth_context.country_code or "GH",
+    )
+    if thread is None:
+        raise HTTPException(status_code=404, detail="thread_not_found")
+
+    connector = MarketplaceAgroIntelligenceConnector(
+        agro_repository=AgroIntelligenceRepository(db_session),
+        identity_repository=IdentityRepository(db_session),
+    )
+    return {
+        "schema_version": get_envelope_schema_version(),
+        **connector.build_negotiation_intelligence(
+            listing=repository.find_listing(listing_id=thread.listing_id),
+            thread=thread,
+            viewer_actor_id=auth_context.actor_subject,
+        ),
+    }

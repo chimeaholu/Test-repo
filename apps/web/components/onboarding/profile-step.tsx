@@ -80,7 +80,7 @@ export function ProfileStep({ session, data, onUpdate, onContinue, onBack }: Pro
     <div className="onboarding-step">
       <h2 className="onboarding-step-heading">{heading}</h2>
       <p className="onboarding-step-subheading">
-        This unlocks personalized features across the platform.
+        Add the details that make your workspace useful from day one.
       </p>
 
       {/* Farm / Business Name */}
@@ -96,8 +96,8 @@ export function ProfileStep({ session, data, onUpdate, onContinue, onBack }: Pro
         />
         <p className="onboarding-field-helper">
           {role === "farmer"
-            ? "Give your farm an identity. Buyers will see this name."
-            : "This name will appear on your profile."}
+            ? "This helps buyers and partners recognize your work more easily."
+            : "This name will appear in the parts of the platform tied to your profile."}
         </p>
       </div>
 

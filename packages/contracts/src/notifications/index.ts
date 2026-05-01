@@ -8,7 +8,65 @@ import {
   schemaVersionLiteral,
 } from "../common/primitives.js";
 
-export const deliveryChannelSchema = z.enum(["whatsapp", "sms", "push"]);
+const notificationScalarSchema = z.union([
+  z.string(),
+  z.number(),
+  z.boolean(),
+  z.null(),
+]);
+
+export const notificationCategorySchema = z.enum([
+  "trade",
+  "finance",
+  "weather",
+  "advisory",
+  "system",
+  "copilot",
+  "transport",
+]);
+
+export const notificationModuleSchema = z.enum([
+  "marketplace",
+  "wallet",
+  "climate",
+  "advisory",
+  "identity",
+  "system",
+  "transport",
+  "copilot",
+]);
+
+export const notificationUrgencySchema = z.enum([
+  "routine",
+  "attention",
+  "urgent",
+  "critical",
+]);
+
+export const notificationLifecycleStateSchema = z.enum([
+  "info",
+  "pending",
+  "blocked",
+  "resolved",
+]);
+
+export const notificationChannelSchema = z.enum([
+  "in_app",
+  "email",
+  "push",
+  "whatsapp",
+  "sms",
+]);
+
+export const notificationQueueStateSchema = z.enum([
+  "queued",
+  "scheduled",
+  "dispatched",
+  "suppressed",
+  "failed",
+]);
+
+export const deliveryChannelSchema = z.enum(["whatsapp", "sms", "push", "email"]);
 export const deliveryStateSchema = z.enum([
   "queued",
   "sent",
@@ -30,6 +88,58 @@ export const notificationRecipientSchema = z
     locale: localeSchema,
     phone_number: z.string().min(1).nullable().optional(),
     device_token: z.string().min(1).nullable().optional(),
+  })
+  .strict();
+
+export const notificationActionSchema = z
+  .object({
+    label: z.string().min(1),
+    href: z.string().min(1),
+  })
+  .strict();
+
+export const notificationDispatchPlanSchema = z
+  .object({
+    schema_version: schemaVersionLiteral,
+    notification_id: z.string().min(1),
+    template_key: z.string().min(1),
+    dedupe_key: z.string().min(1),
+    queue_state: notificationQueueStateSchema,
+    preferred_channels: z.array(notificationChannelSchema).min(1),
+    fallback_channels: z.array(notificationChannelSchema),
+    expires_at: isoTimestampSchema.nullable(),
+    escalate_after: isoTimestampSchema.nullable(),
+    payload: z.record(z.string(), notificationScalarSchema),
+  })
+  .strict();
+
+export const notificationFeedItemSchema = z
+  .object({
+    schema_version: schemaVersionLiteral,
+    notification_id: z.string().min(1),
+    module: notificationModuleSchema,
+    category: notificationCategorySchema,
+    lifecycle_state: notificationLifecycleStateSchema,
+    urgency: notificationUrgencySchema,
+    title: z.string().min(1),
+    body: z.string().min(1),
+    created_at: isoTimestampSchema,
+    read: z.boolean(),
+    read_at: isoTimestampSchema.nullable(),
+    expires_at: isoTimestampSchema.nullable(),
+    next_action_copy: z.string().min(1).nullable(),
+    listing_id: z.string().min(1).nullable(),
+    thread_id: z.string().min(1).nullable(),
+    escrow_id: z.string().min(1).nullable(),
+    action: notificationActionSchema.nullable(),
+    dispatch_plan: notificationDispatchPlanSchema,
+  })
+  .strict();
+
+export const notificationFeedCollectionSchema = z
+  .object({
+    schema_version: schemaVersionLiteral,
+    items: z.array(notificationFeedItemSchema),
   })
   .strict();
 
@@ -69,6 +179,71 @@ export const notificationResultSchema = z
     fallback_reason: fallbackReasonSchema.nullable().optional(),
   })
   .strict();
+
+export type NotificationCategory = z.infer<typeof notificationCategorySchema>;
+export type NotificationModule = z.infer<typeof notificationModuleSchema>;
+export type NotificationUrgency = z.infer<typeof notificationUrgencySchema>;
+export type NotificationLifecycleState = z.infer<
+  typeof notificationLifecycleStateSchema
+>;
+export type NotificationChannel = z.infer<typeof notificationChannelSchema>;
+export type NotificationQueueState = z.infer<typeof notificationQueueStateSchema>;
+export type NotificationAction = z.infer<typeof notificationActionSchema>;
+export type NotificationDispatchPlan = z.infer<
+  typeof notificationDispatchPlanSchema
+>;
+export type NotificationFeedItem = z.infer<typeof notificationFeedItemSchema>;
+export type NotificationFeedCollection = z.infer<
+  typeof notificationFeedCollectionSchema
+>;
+
+export const notificationDispatchPlanContract = defineContract({
+  id: "notifications.dispatch_plan",
+  name: "NotificationDispatchPlan",
+  kind: "dto",
+  domain: "notifications",
+  schemaVersion,
+  schema: notificationDispatchPlanSchema,
+  description:
+    "Channel-agnostic dispatch plan with template, queue, expiry, and fallback semantics for EH3-plus notification workflows.",
+  traceability: ["EP-003", "RJ-001", "RJ-002"],
+  sourceArtifacts: [
+    "output_to_user/AGRODOMAIN-ENHANCEMENT-BUILD-SPEC.md",
+    "output_to_user/AGRODOMAIN-ENHANCEMENT-TEST-PLAN.md",
+  ],
+});
+
+export const notificationFeedItemContract = defineContract({
+  id: "notifications.feed_item",
+  name: "NotificationFeedItem",
+  kind: "dto",
+  domain: "notifications",
+  schemaVersion,
+  schema: notificationFeedItemSchema,
+  description:
+    "Canonical in-app notification item for marketplace, wallet, advisory, system, and future copilot or transport surfaces.",
+  traceability: ["CJ-003", "RJ-002", "EP-003"],
+  sourceArtifacts: [
+    "output_to_user/AGRODOMAIN-ENHANCEMENT-BUILD-SPEC.md",
+    "output_to_user/AGRODOMAIN-ENHANCEMENT-TEST-PLAN.md",
+  ],
+});
+
+export const notificationFeedCollectionContract = defineContract({
+  id: "notifications.feed_collection",
+  name: "NotificationFeedCollection",
+  kind: "dto",
+  domain: "notifications",
+  schemaVersion,
+  schema: notificationFeedCollectionSchema,
+  description:
+    "Ordered collection of shared notification feed items with queue metadata preserved for cross-surface reuse.",
+  traceability: ["CJ-003", "RJ-002", "EP-003"],
+  sourceArtifacts: [
+    "output_to_user/AGRODOMAIN-ENHANCEMENT-BUILD-SPEC.md",
+    "output_to_user/AGRODOMAIN-ENHANCEMENT-TEST-PLAN.md",
+  ],
+});
 
 export const notificationAttemptContract = defineContract({
   id: "notifications.attempt",

@@ -30,7 +30,9 @@ describe("negotiation thread ui state", () => {
 
     expect(state.canCounter).toBe(true);
     expect(state.canRequestConfirmation).toBe(true);
+    expect(state.deadlineAt).not.toBeNull();
     expect(state.isTerminal).toBe(false);
+    expect(state.nextActionLabel).toBe("Respond to the buyer offer");
     expect(state.statusLabel).toBe("Open");
     expect(getOtherParticipantActorId(thread, "actor-seller")).toBe("actor-buyer");
   });
@@ -51,9 +53,12 @@ describe("negotiation thread ui state", () => {
 
     expect(buyerState.canApprove).toBe(true);
     expect(buyerState.canReject).toBe(true);
+    expect(buyerState.deadlineAt).not.toBeNull();
+    expect(buyerState.nextActionLabel).toBe("Approve or reject the current terms");
     expect(buyerState.statusLabel).toBe("Pending confirmation");
     expect(sellerState.canApprove).toBe(false);
     expect(sellerState.canReject).toBe(false);
+    expect(sellerState.nextActionLabel).toBe("Wait for the confirmer to decide");
   });
 
   it("locks all mutation affordances after a terminal decision", () => {
@@ -68,6 +73,7 @@ describe("negotiation thread ui state", () => {
     expect(state.canCounter).toBe(false);
     expect(state.canRequestConfirmation).toBe(false);
     expect(state.canApprove).toBe(false);
+    expect(state.nextActionLabel).toBe("Open escrow and move settlement forward");
     expect(state.statusTone).toBe("online");
   });
 });

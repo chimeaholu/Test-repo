@@ -1,6 +1,0 @@
-SHA c940e341da8a72ed1c1c77e219ed1a12240b59ea
-TMPDIR /tmp/tmp.fkSYAZWszi
-PWD /tmp/tmp.fkSYAZWszi/MWH/Projects/Agrodomain
-COMMAND PYTHONPATH=src pytest -q tests/test_visual_language_system.py tests/test_visual_language_system_contract_stub.py tests/test_package_exports.py
-........                                                                 [100%]
-8 passed in 0.64s

@@ -176,7 +176,7 @@ export function AnalyticsDashboardClient() {
         const coreFailures = [listingsResult, negotiationsResult, escrowsResult, transactionsResult].filter((result) => result.status === "rejected");
 
         if (coreFailures.length === 4) {
-          setError("Unable to load AgroInsights from the current marketplace and wallet data.");
+          setError("Unable to load insights from the current market and wallet data.");
           setState(INITIAL_STATE);
           setPartialNote(null);
           return;
@@ -214,7 +214,7 @@ export function AnalyticsDashboardClient() {
       })
       .catch(() => {
         if (!cancelled) {
-          setError("Unable to load AgroInsights right now.");
+          setError("Unable to load insights right now.");
         }
       })
       .finally(() => {
@@ -254,16 +254,16 @@ export function AnalyticsDashboardClient() {
     <div className="content-stack analytics-shell" data-testid="analytics-dashboard-root">
       <SurfaceCard className="hero-surface">
         <SectionHeading
-          eyebrow="AgroInsights"
-          title={viewModel.headline}
-          body={viewModel.summary}
+          eyebrow="Insights"
+          title="See what changed and where to act next"
+          body="Follow market movement, regional activity, and your own performance from one insight workspace."
           actions={
             <div className="pill-row">
               <StatusPill tone={state.runtimeMode === "live" ? "online" : "degraded"}>
-                {state.runtimeMode === "live" ? "Live signals" : "Continuity mode"}
+                {state.runtimeMode === "live" ? "Live updates" : "Limited updates"}
               </StatusPill>
               <StatusPill tone={queue.connectivity_state === "online" ? "online" : queue.connectivity_state}>
-                Queue {queue.connectivity_state}
+                {queue.connectivity_state === "degraded" ? "Saved offline" : "Ready"}
               </StatusPill>
             </div>
           }
@@ -274,13 +274,13 @@ export function AnalyticsDashboardClient() {
         </div>
         <div className="inline-actions">
           <Link className="button-primary" href="/app/market/listings">
-            Open marketplace
+            Review market trends
           </Link>
           <Link className="button-secondary" href="/app/payments/wallet">
             Open wallet
           </Link>
           <Link className="button-ghost" href="/app/weather">
-            Review weather context
+            Regional view
           </Link>
         </div>
       </SurfaceCard>
@@ -288,7 +288,7 @@ export function AnalyticsDashboardClient() {
       {isLoading ? (
         <SurfaceCard data-testid="analytics-loading-state">
           <p className="muted" role="status">
-            Loading analytics from marketplace, wallet, and climate records...
+            Loading insights from your market, wallet, and weather records...
           </p>
         </SurfaceCard>
       ) : null}
@@ -312,7 +312,7 @@ export function AnalyticsDashboardClient() {
       {!isLoading && !error && viewModel.isEmpty ? (
         <SurfaceCard data-testid="analytics-empty-state">
           <EmptyState
-            title="Not enough data yet"
+            title="Not enough activity yet"
             body={viewModel.emptyMessage}
             actions={
               <>

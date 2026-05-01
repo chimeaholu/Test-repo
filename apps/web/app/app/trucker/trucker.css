@@ -157,6 +157,7 @@
 .trucker-shipment-card,
 .trucker-load-card,
 .trucker-driver-card,
+.trucker-issue-card,
 .trucker-map-card,
 .trucker-signature-card {
   border: 1px solid rgba(26, 88, 66, 0.1);
@@ -166,7 +167,8 @@
 
 .trucker-shipment-card,
 .trucker-load-card,
-.trucker-driver-card {
+.trucker-driver-card,
+.trucker-issue-card {
   padding: 1rem;
 }
 
@@ -401,6 +403,32 @@
 .trucker-driver-actions {
   flex-wrap: wrap;
   margin-top: 1rem;
+}
+
+.trucker-issue-card.severity-high {
+  border-color: rgba(196, 75, 59, 0.26);
+  background: rgba(255, 246, 243, 0.98);
+}
+
+.trucker-issue-card.severity-medium {
+  border-color: rgba(188, 113, 33, 0.22);
+}
+
+.trucker-mobile-note,
+.trucker-empty-inline {
+  margin-top: 1rem;
+}
+
+.trucker-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-weight: 600;
+}
+
+.trucker-checkbox input {
+  width: 1rem;
+  height: 1rem;
 }
 
 .trucker-file-drop {

@@ -1,9 +1,12 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import React from "react";
 import { useEffect, useState, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 
+import type { LocaleProfile } from "@/lib/i18n/config";
+import type { MessageCatalog } from "@/lib/i18n/messages";
 import { BottomNav } from "./bottom-nav";
 import { getNavForRole, mobileNavItems, type RoleNavKey } from "./nav-items";
 import { Sidebar } from "./sidebar";
@@ -30,13 +33,18 @@ interface AppShellProps {
   banner?: ReactNode;
   children: ReactNode;
   countryCode?: string;
+  demoWatermark?: string;
   email?: string;
+  isDemoTenant?: boolean;
   notificationCount?: number;
   onSignOut?: () => void;
+  operatorCanSwitchPersonas?: boolean;
   organizationName?: string;
   queueCount?: number;
   role: RoleNavKey;
   roleLabel: string;
+  shellCopy: MessageCatalog["shell"];
+  localeProfile: LocaleProfile;
   userName?: string;
 }
 
@@ -45,13 +53,18 @@ export function AppShell({
   banner,
   children,
   countryCode,
+  demoWatermark,
   email,
+  isDemoTenant,
   notificationCount,
   onSignOut,
+  operatorCanSwitchPersonas,
   organizationName,
   queueCount,
   role,
   roleLabel,
+  shellCopy,
+  localeProfile,
   userName,
 }: AppShellProps) {
   const pathname = usePathname();
@@ -62,8 +75,18 @@ export function AppShell({
     notificationCount,
     queueCount,
   };
-  const sections = getNavForRole(role, counts);
-  const mobileItems = mobileNavItems(role, counts);
+  const sections = getNavForRole(
+    role,
+    counts,
+    shellCopy.sections,
+    shellCopy.navigation,
+  );
+  const mobileItems = mobileNavItems(
+    role,
+    counts,
+    shellCopy.sections,
+    shellCopy.navigation,
+  );
 
   useEffect(() => {
     setMobileOpen(false);
@@ -74,12 +97,13 @@ export function AppShell({
   }, [pathname]);
 
   return (
-    <div className="ds-app-shell">
+    <div className="ds-app-shell" data-role={role}>
       <Sidebar
         collapsed={collapsed}
         email={email}
         onSignOut={onSignOut ?? (() => {})}
         onToggle={() => setCollapsed((current) => !current)}
+        copy={shellCopy}
         organizationName={organizationName}
         roleLabel={roleLabel}
         sections={sections}
@@ -91,6 +115,7 @@ export function AppShell({
         onClose={() => setMobileOpen(false)}
         onSignOut={onSignOut ?? (() => {})}
         open={mobileOpen}
+        copy={shellCopy}
         organizationName={organizationName}
         roleLabel={roleLabel}
         sections={sections}
@@ -101,8 +126,13 @@ export function AppShell({
       <div className={`ds-app-main${collapsed ? " ds-app-main-collapsed" : ""}`}>
         <TopBar
           countryCode={countryCode}
+          copy={shellCopy}
+          demoWatermark={demoWatermark}
+          isDemoTenant={isDemoTenant}
+          localeProfile={localeProfile}
           notificationCount={notificationCount}
           onMenuToggle={() => setMobileOpen(true)}
+          operatorCanSwitchPersonas={operatorCanSwitchPersonas}
           organizationName={organizationName}
           roleLabel={roleLabel}
           userName={userName}
@@ -116,7 +146,7 @@ export function AppShell({
         </main>
       </div>
 
-      <BottomNav items={mobileItems} />
+      <BottomNav ariaLabel={shellCopy.mobileNavigationLabel} items={mobileItems} />
 
       {agroGuideEnabled ? (
         <>

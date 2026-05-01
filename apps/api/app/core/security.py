@@ -8,13 +8,17 @@ COMMON_SECURITY_HEADERS = {
     "Referrer-Policy": "strict-origin-when-cross-origin",
     "Permissions-Policy": "camera=(), geolocation=(), microphone=()",
     "Cross-Origin-Opener-Policy": "same-origin",
-    "Cross-Origin-Resource-Policy": "same-origin",
 }
 
 API_CACHE_HEADERS = {
     "Cache-Control": "no-store",
     "Pragma": "no-cache",
     "X-Robots-Tag": "noindex, nofollow",
+    "Cross-Origin-Resource-Policy": "cross-origin",
+}
+
+NON_API_RESOURCE_HEADERS = {
+    "Cross-Origin-Resource-Policy": "same-origin",
 }
 
 HSTS_HEADER_VALUE = "max-age=63072000; includeSubDomains; preload"
@@ -33,6 +37,9 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
 
         if request.url.path.startswith("/api/"):
             for key, value in API_CACHE_HEADERS.items():
+                response.headers.setdefault(key, value)
+        else:
+            for key, value in NON_API_RESOURCE_HEADERS.items():
                 response.headers.setdefault(key, value)
 
         forwarded_proto = request.headers.get("x-forwarded-proto", request.url.scheme)

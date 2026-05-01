@@ -65,30 +65,30 @@ export function FinanceQueueClient() {
     <div className="content-stack">
       <SurfaceCard>
         <SectionHeading
-          eyebrow="Finance"
-          title="Protected finance queue with settlement and consent posture"
-          body="Finance review reads wallet and escrow runtime directly. Queue items surface participant, state, and delivery posture without relying on generic shell filler."
+          eyebrow="Finance review"
+          title="Payments and disputes waiting for review"
+          body="Use this internal board to work through the next finance-sensitive cases in order."
           actions={
             <div className="pill-row">
               <StatusPill tone={session.consent.state === "consent_granted" ? "online" : "offline"}>
-                Consent {session.consent.state}
+                {session.consent.state === "consent_granted" ? "Ready" : "Check permissions"}
               </StatusPill>
               <StatusPill tone={queue.connectivity_state === "online" ? "online" : queue.connectivity_state}>
-                Queue {queue.connectivity_state}
+                {queue.connectivity_state === "degraded" ? "Limited updates" : "Live updates"}
               </StatusPill>
             </div>
           }
         />
         <div className="stat-strip">
           <article className="stat-chip">
-            <span className="metric-label">Actionable reviews</span>
+            <span className="metric-label">Priority reviews</span>
             <strong>{reviewQueue.length}</strong>
-            <span className="muted">Only live settlement states that require finance attention count here.</span>
+            <span className="muted">Cases that still need a finance decision right now.</span>
           </article>
           <article className="stat-chip">
-            <span className="metric-label">Escrows observed</span>
+            <span className="metric-label">Recent resolutions</span>
             <strong>{escrows.length}</strong>
-            <span className="muted">The queue stays empty rather than implying hidden work.</span>
+            <span className="muted">Resolved and active finance records visible to this board.</span>
           </article>
         </div>
       </SurfaceCard>
@@ -109,16 +109,16 @@ export function FinanceQueueClient() {
 
       <SurfaceCard>
         <SectionHeading
-          eyebrow="Queue posture"
+          eyebrow="Case details"
           title="Review summary"
-          body="Only live settlement records count here. If there is nothing actionable, the queue stays empty instead of implying hidden work."
+          body="Use this summary to understand what needs action before opening the next case."
         />
         <InfoList
           items={[
-            { label: "Actionable reviews", value: reviewQueue.length },
-            { label: "Observed escrows", value: escrows.length },
-            { label: "Country pack", value: session.actor.country_code },
-            { label: "Actor role", value: session.actor.role },
+            { label: "Priority reviews", value: reviewQueue.length },
+            { label: "Visible finance records", value: escrows.length },
+            { label: "Country", value: session.actor.country_code },
+            { label: "Workspace", value: session.actor.role },
           ]}
         />
       </SurfaceCard>
@@ -127,7 +127,7 @@ export function FinanceQueueClient() {
         <SurfaceCard>
           <InsightCallout
             title="No finance work is currently queued"
-            body="This route is live, but the runtime has no escrow states that require finance attention right now."
+            body="When a payment or dispute needs attention, it will appear here."
             tone="neutral"
           />
         </SurfaceCard>
@@ -135,21 +135,21 @@ export function FinanceQueueClient() {
 
       {reviewQueue.length > 0 ? (
         <div className="stack-md">
-          {reviewQueue.map((escrow) => {
+          {reviewQueue.map((escrow, index) => {
             const notification = latestNotification(escrow);
             return (
               <SurfaceCard key={escrow.escrow_id}>
                 <SectionHeading
-                  eyebrow={escrow.escrow_id}
+                  eyebrow={`Case ${index + 1}`}
                   title={`Review ${escrow.state.replaceAll("_", " ")}`}
-                  body={`Listing ${escrow.listing_id} for ${escrow.amount} ${escrow.currency}. Buyer ${escrow.buyer_actor_id}; seller ${escrow.seller_actor_id}.`}
+                  body={`${escrow.amount} ${escrow.currency} linked to listing ${escrow.listing_id}. Open the case to confirm the right next finance action.`}
                   actions={
                     <div className="pill-row">
                       <StatusPill tone={escrow.state === "disputed" ? "offline" : escrow.state === "partner_pending" ? "degraded" : "neutral"}>
                         {escrow.state}
                       </StatusPill>
                       <StatusPill tone={notification ? "degraded" : "neutral"}>
-                        {notification ? notification.delivery_state : "no notification"}
+                        {notification ? notification.delivery_state : "no update"}
                       </StatusPill>
                     </div>
                   }
@@ -158,10 +158,10 @@ export function FinanceQueueClient() {
                   items={[
                     { label: "Timeline steps", value: escrow.timeline.length },
                     {
-                      label: "Notification posture",
-                      value: notification ? notificationSummary(notification).headline : "Not emitted",
+                      label: "Latest update",
+                      value: notification ? notificationSummary(notification).headline : "No update sent yet",
                     },
-                    { label: "Partner reference", value: escrow.partner_reference ?? "pending" },
+                    { label: "Partner reference", value: escrow.partner_reference ?? "Pending" },
                     { label: "Updated at", value: escrow.updated_at },
                   ]}
                 />

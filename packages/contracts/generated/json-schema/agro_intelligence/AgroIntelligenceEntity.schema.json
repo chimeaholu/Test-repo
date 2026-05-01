@@ -1,0 +1,306 @@
+{
+  "$ref": "#/definitions/AgroIntelligenceEntity",
+  "definitions": {
+    "AgroIntelligenceEntity": {
+      "additionalProperties": false,
+      "properties": {
+        "attribute_payload": {
+          "additionalProperties": {},
+          "type": "object"
+        },
+        "boundary_subject_type": {
+          "enum": [
+            "organization_profile",
+            "person_profile",
+            "farm_signal",
+            "market_signal"
+          ],
+          "nullable": true,
+          "type": "string"
+        },
+        "canonical_name": {
+          "maxLength": 160,
+          "minLength": 2,
+          "type": "string"
+        },
+        "confidence_score": {
+          "maximum": 100,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "consent_artifact": {
+          "additionalProperties": false,
+          "nullable": true,
+          "properties": {
+            "boundary_ingest_id": {
+              "maxLength": 80,
+              "minLength": 1,
+              "nullable": true,
+              "type": "string"
+            },
+            "captured_at": {
+              "description": "ISO-8601 timestamp with timezone offset",
+              "format": "date-time",
+              "type": "string"
+            },
+            "consent_artifact_id": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "country_code": {
+              "$ref": "#/definitions/AgroIntelligenceEntity/properties/country_code"
+            },
+            "legal_basis": {
+              "maxLength": 80,
+              "minLength": 2,
+              "type": "string"
+            },
+            "partner_slug": {
+              "maxLength": 80,
+              "minLength": 2,
+              "nullable": true,
+              "type": "string"
+            },
+            "policy_version": {
+              "maxLength": 32,
+              "minLength": 1,
+              "type": "string"
+            },
+            "revoked_at": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/AgroIntelligenceEntity/properties/consent_artifact/properties/captured_at"
+                }
+              ],
+              "description": "ISO-8601 timestamp with timezone offset",
+              "nullable": true
+            },
+            "schema_version": {
+              "$ref": "#/definitions/AgroIntelligenceEntity/properties/schema_version"
+            },
+            "scope_ids": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "status": {
+              "enum": [
+                "granted",
+                "revoked"
+              ],
+              "type": "string"
+            },
+            "subject_ref": {
+              "maxLength": 120,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "schema_version",
+            "consent_artifact_id",
+            "subject_ref",
+            "country_code",
+            "status",
+            "scope_ids",
+            "policy_version",
+            "captured_at",
+            "legal_basis"
+          ],
+          "type": "object"
+        },
+        "country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "created_at": {
+          "$ref": "#/definitions/AgroIntelligenceEntity/properties/consent_artifact/properties/captured_at"
+        },
+        "entity_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "type": "string"
+        },
+        "entity_type": {
+          "enum": [
+            "person_actor",
+            "organization",
+            "farm_unit",
+            "field_plot",
+            "facility",
+            "vehicle_or_fleet_actor",
+            "commodity_profile",
+            "route_or_corridor",
+            "market_location",
+            "financial_actor",
+            "insurance_actor"
+          ],
+          "type": "string"
+        },
+        "lifecycle_state": {
+          "enum": [
+            "ingested",
+            "normalized",
+            "matched_or_unmatched",
+            "scored",
+            "pending_verification",
+            "verified",
+            "rejected",
+            "stale"
+          ],
+          "type": "string"
+        },
+        "provenance": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "adapter_key": {
+                "maxLength": 80,
+                "minLength": 3,
+                "nullable": true,
+                "type": "string"
+              },
+              "boundary_ingest_id": {
+                "maxLength": 80,
+                "minLength": 1,
+                "nullable": true,
+                "type": "string"
+              },
+              "checksum": {
+                "maxLength": 128,
+                "minLength": 3,
+                "nullable": true,
+                "type": "string"
+              },
+              "collected_at": {
+                "$ref": "#/definitions/AgroIntelligenceEntity/properties/consent_artifact/properties/captured_at"
+              },
+              "collection_method": {
+                "maxLength": 80,
+                "minLength": 2,
+                "type": "string"
+              },
+              "confidence_weight": {
+                "maximum": 100,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "data_product": {
+                "maxLength": 120,
+                "minLength": 3,
+                "nullable": true,
+                "type": "string"
+              },
+              "legal_basis": {
+                "maxLength": 80,
+                "minLength": 2,
+                "type": "string"
+              },
+              "partner_slug": {
+                "maxLength": 80,
+                "minLength": 2,
+                "nullable": true,
+                "type": "string"
+              },
+              "schema_version": {
+                "$ref": "#/definitions/AgroIntelligenceEntity/properties/schema_version"
+              },
+              "source_id": {
+                "maxLength": 120,
+                "minLength": 1,
+                "type": "string"
+              },
+              "source_tier": {
+                "$ref": "#/definitions/AgroIntelligenceEntity/properties/source_tier"
+              }
+            },
+            "required": [
+              "schema_version",
+              "source_id",
+              "source_tier",
+              "collected_at",
+              "collection_method",
+              "legal_basis",
+              "confidence_weight"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "source_document_ids": {
+          "default": [],
+          "items": {
+            "maxLength": 80,
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "source_tier": {
+          "enum": [
+            "A",
+            "B",
+            "C"
+          ],
+          "type": "string"
+        },
+        "trust_tier": {
+          "enum": [
+            "bronze",
+            "silver",
+            "gold"
+          ],
+          "type": "string"
+        },
+        "updated_at": {
+          "$ref": "#/definitions/AgroIntelligenceEntity/properties/consent_artifact/properties/captured_at"
+        }
+      },
+      "required": [
+        "schema_version",
+        "entity_id",
+        "entity_type",
+        "canonical_name",
+        "country_code",
+        "trust_tier",
+        "lifecycle_state",
+        "source_tier",
+        "confidence_score",
+        "provenance",
+        "attribute_payload",
+        "created_at",
+        "updated_at"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Canonical AgroIntelligence graph entity with trust, provenance, and person-level consent enforcement.",
+  "x-agrodomain-contract": {
+    "id": "agro_intelligence.entity",
+    "domain": "agro_intelligence",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "DI-004",
+      "DI-006",
+      "AIJ-002"
+    ],
+    "source_artifacts": [
+      "output_to_user/AGRODOMAIN-ENHANCEMENT-BUILD-SPEC.md",
+      "output_to_user/AGRODOMAIN-AGROINTELLIGENCE-RESEARCH-AND-MODULE-SPEC.md",
+      "output_to_user/AGRODOMAIN-AGROINTELLIGENCE-UX-SPEC.md"
+    ]
+  }
+}

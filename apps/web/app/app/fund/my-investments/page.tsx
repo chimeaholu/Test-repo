@@ -87,8 +87,8 @@ export default function MyInvestmentsPage() {
       <SurfaceCard>
         <SectionHeading
           eyebrow="My investments"
-          title="Your funded farms and expected returns"
-          body="Review all current AgroFund commitments, their expected return posture, and the supporting farm pages."
+          title="See your active commitments and expected returns"
+          body="Track every farm you have backed and stay close to payout progress from one place."
         />
         <PortfolioSummary
           activeInvestments={summary.activeInvestments}
@@ -99,7 +99,7 @@ export default function MyInvestmentsPage() {
       </SurfaceCard>
 
       {investments.length === 0 ? (
-        <EmptyState title="No investments yet" body="Fund a farm opportunity to start building your AgroFund portfolio." />
+        <EmptyState title="No investments yet" body="Explore a farm opportunity to start building your portfolio." />
       ) : (
         <section className="fund-investment-grid" aria-label="Portfolio investments">
           {investments.map((investment) => (

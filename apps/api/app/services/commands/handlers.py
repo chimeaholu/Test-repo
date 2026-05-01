@@ -810,7 +810,7 @@ class WorkflowCommandHandler:
 
         if envelope.command_name == "fund.investments.create":
             validate_contract_payload("finance.investment_create_input", envelope.payload)
-            runtime_result = self.fund_runtime.create_investment(
+            fund_result = self.fund_runtime.create_investment(
                 request_id=str(envelope.metadata.request_id),
                 idempotency_key=envelope.metadata.idempotency_key,
                 correlation_id=envelope.metadata.correlation_id,
@@ -820,55 +820,55 @@ class WorkflowCommandHandler:
                 amount=float(envelope.payload["amount"]),
                 currency=str(envelope.payload["currency"]),
             )
-            wallet_payload = _wallet_balance_to_payload(runtime_result.wallet_balance)
+            wallet_payload = _wallet_balance_to_payload(fund_result.wallet_balance)
             wallet_payload["schema_version"] = envelope.metadata.schema_version
             return {
                 "opportunity": _opportunity_to_payload(
-                    runtime_result.opportunity, envelope.metadata.schema_version
+                    fund_result.opportunity, envelope.metadata.schema_version
                 ),
                 "investment": _investment_to_payload(
-                    runtime_result.investment,
+                    fund_result.investment,
                     envelope.metadata.schema_version,
-                    runtime_result.opportunity,
+                    fund_result.opportunity,
                 ),
                 "wallet": wallet_payload,
                 "ledger_entry": {
-                    "entry_id": runtime_result.ledger_entry.entry_id,
-                    "wallet_id": runtime_result.ledger_entry.wallet_id,
-                    "entry_sequence": runtime_result.ledger_entry.entry_sequence,
-                    "balance_version": runtime_result.ledger_entry.balance_version,
+                    "entry_id": fund_result.ledger_entry.entry_id,
+                    "wallet_id": fund_result.ledger_entry.wallet_id,
+                    "entry_sequence": fund_result.ledger_entry.entry_sequence,
+                    "balance_version": fund_result.ledger_entry.balance_version,
                 },
                 "schema_version": envelope.metadata.schema_version,
             }
 
         if envelope.command_name == "fund.investments.withdraw":
             validate_contract_payload("finance.investment_withdraw_input", envelope.payload)
-            runtime_result = self.fund_runtime.withdraw_investment(
+            withdrawal_result = self.fund_runtime.withdraw_investment(
                 request_id=str(envelope.metadata.request_id),
                 idempotency_key=envelope.metadata.idempotency_key,
                 correlation_id=envelope.metadata.correlation_id,
                 actor_id=envelope.metadata.actor_id,
                 investment_id=str(envelope.payload["investment_id"]),
             )
-            wallet_payload = _wallet_balance_to_payload(runtime_result.wallet_balance)
+            wallet_payload = _wallet_balance_to_payload(withdrawal_result.wallet_balance)
             wallet_payload["schema_version"] = envelope.metadata.schema_version
             return {
                 "opportunity": _opportunity_to_payload(
-                    runtime_result.opportunity, envelope.metadata.schema_version
+                    withdrawal_result.opportunity, envelope.metadata.schema_version
                 ),
                 "investment": _investment_to_payload(
-                    runtime_result.investment,
+                    withdrawal_result.investment,
                     envelope.metadata.schema_version,
-                    runtime_result.opportunity,
+                    withdrawal_result.opportunity,
                 ),
                 "wallet": wallet_payload,
                 "ledger_entry": {
-                    "entry_id": runtime_result.ledger_entry.entry_id,
-                    "wallet_id": runtime_result.ledger_entry.wallet_id,
-                    "entry_sequence": runtime_result.ledger_entry.entry_sequence,
-                    "balance_version": runtime_result.ledger_entry.balance_version,
+                    "entry_id": withdrawal_result.ledger_entry.entry_id,
+                    "wallet_id": withdrawal_result.ledger_entry.wallet_id,
+                    "entry_sequence": withdrawal_result.ledger_entry.entry_sequence,
+                    "balance_version": withdrawal_result.ledger_entry.balance_version,
                 },
-                "penalty_amount": runtime_result.penalty_amount,
+                "penalty_amount": withdrawal_result.penalty_amount,
                 "schema_version": envelope.metadata.schema_version,
             }
 

@@ -7,7 +7,7 @@ test("RB-072 offline to online recovery stays usable for the farmer shell", asyn
   page,
 }, testInfo) => {
   test.skip(
-    testInfo.project.name !== "chromium-desktop",
+    testInfo.project.name !== "desktop-critical",
     "Offline-online transition coverage runs once on desktop chromium in this lane.",
   );
 
@@ -25,12 +25,12 @@ test("RB-072 offline to online recovery stays usable for the farmer shell", asyn
   await page.context().setOffline(true);
   await page.getByRole("button", { name: "Simulate offline" }).click();
   await expect(page.locator(".status-pill.offline").first()).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Outbox and replay controls" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "See what is waiting to sync" })).toBeVisible();
   await captureEvidence(page, testInfo, "offline-online", "offline-shell");
 
   await page.context().setOffline(false);
   await page.getByRole("button", { name: "Force online" }).click();
   await expect(page.locator(".status-pill.online").first()).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Outbox and replay controls" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "See what is waiting to sync" })).toBeVisible();
   await captureEvidence(page, testInfo, "offline-online", "online-shell");
 });

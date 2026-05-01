@@ -51,37 +51,34 @@ export function WelcomeStep({ session, onContinue }: WelcomeStepProps) {
         </svg>
       </div>
 
-      <h1 className="onboarding-welcome-heading">
-        Welcome to Agrodomain, {firstName}!
-      </h1>
+      <h1 className="onboarding-welcome-heading">Let&apos;s get your workspace ready, {firstName}</h1>
 
       <p className="onboarding-welcome-role">
-        Your account is set up as a <strong>{role}</strong> in {country}.
+        You&apos;re starting as a <strong>{role}</strong> in {country}.
       </p>
 
       <p className="onboarding-welcome-body">
-        Let&apos;s get your workspace ready so you can start trading,
-        monitoring weather, and growing your farm.
+        We&apos;ll help you set up the details that make the platform useful from day one.
       </p>
 
       <Button
-        variant="secondary"
+        variant="primary"
         size="lg"
         className="onboarding-lets-go-btn"
         onClick={onContinue}
       >
-        Let&apos;s Go!
+        Continue
       </Button>
 
       {!showRoleSelector ? (
         <p className="onboarding-change-role">
-          Not the right role?{" "}
+          Need a different path?{" "}
           <button
             type="button"
             className="onboarding-change-role-link"
             onClick={() => setShowRoleSelector(true)}
           >
-            Change it
+            Review roles
           </button>
         </p>
       ) : (

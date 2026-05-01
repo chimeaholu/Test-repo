@@ -7,6 +7,7 @@ import {
   markNotificationReadState,
   patchUserPreferences,
   readUserPreferences,
+  USER_PREFERENCES_KEY,
 } from "@/lib/user-preferences";
 
 function buildSession(overrides: Partial<IdentitySession> = {}): IdentitySession {
@@ -46,7 +47,9 @@ describe("user preferences store", () => {
 
   it("creates defaults from the live session", () => {
     const session = buildSession();
+    expect(defaultPreferences(session).display.locale).toBe("en-GH");
     expect(defaultPreferences(session).display.currency).toBe("GHS");
+    expect(defaultPreferences(session).display.readingLevelBand).toBe("plain");
     expect(readUserPreferences(session).notifications.push).toBe(true);
     expect(readUserPreferences(session).notifications.categories.system).toBe(true);
   });
@@ -58,11 +61,12 @@ describe("user preferences store", () => {
     });
 
     const next = patchUserPreferences(session, {
-      display: { language: "tw", currency: "USD" },
+      display: { locale: "en-NG", currency: "USD", readingLevelBand: "standard" },
     });
 
     expect(next.profile.city).toBe("Tamale");
-    expect(next.display.language).toBe("tw");
+    expect(next.display.locale).toBe("en-NG");
+    expect(next.display.readingLevelBand).toBe("standard");
   });
 
   it("tracks read and unread notification state", () => {
@@ -90,6 +94,8 @@ describe("user preferences store", () => {
           finance: true,
           weather: true,
           advisory: false,
+          copilot: true,
+          transport: true,
           system: true,
         },
       },
@@ -99,5 +105,32 @@ describe("user preferences store", () => {
     expect(next.notifications.push).toBe(true);
     expect(next.notifications.categories.trade).toBe(false);
     expect(next.notifications.categories.system).toBe(true);
+  });
+
+  it("migrates legacy language preferences to the nearest active locale", () => {
+    const session = buildSession({
+      actor: {
+        ...buildSession().actor,
+        country_code: "NG",
+        locale: "en-NG",
+      },
+    });
+
+    window.localStorage.setItem(
+      USER_PREFERENCES_KEY,
+      JSON.stringify({
+        [session.actor.actor_id]: {
+          display: {
+            currency: "USD",
+            language: "ha",
+          },
+        },
+      }),
+    );
+
+    const next = readUserPreferences(session);
+    expect(next.display.locale).toBe("en-NG");
+    expect(next.display.currency).toBe("USD");
+    expect(next.display.readingLevelBand).toBe("plain");
   });
 });

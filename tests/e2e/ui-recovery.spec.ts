@@ -71,7 +71,7 @@ test.describe("UI recovery pass", () => {
 
     await gotoPath(page, "/app/market/listings");
     await expect(
-      page.getByRole("heading", { name: "Discover trusted agricultural supply in one place" }),
+      page.getByRole("heading", { name: "Find the right lot faster" }),
     ).toBeVisible({ timeout: 20_000 });
     await expectNoHorizontalOverflow(page);
 

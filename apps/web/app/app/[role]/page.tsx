@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { FarmerDashboard } from "@/components/dashboards/farmer-dashboard";
-import { RoleHome } from "@/components/role-home";
+import { RolePageClient } from "@/components/auth/role-page-client";
 import { isAppRole } from "@/features/shell/model";
 
 export default async function RolePage({
@@ -14,9 +13,5 @@ export default async function RolePage({
     notFound();
   }
 
-  if (role === "farmer") {
-    return <FarmerDashboard />;
-  }
-
-  return <RoleHome />;
+  return <RolePageClient role={role} />;
 }

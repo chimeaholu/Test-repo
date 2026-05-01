@@ -12,6 +12,7 @@ import { walletApi } from "./wallet";
 import { climateApi } from "./climate";
 import { advisoryApi } from "./advisory";
 import { auditApi } from "./audit";
+import { copilotApi } from "./copilot";
 import { systemApi } from "./system";
 import { insuranceApi } from "./insurance";
 
@@ -73,6 +74,9 @@ export const agroApiClient = {
 
   // Advisory
   listAdvisoryConversations: advisoryApi.listConversations,
+
+  // Copilot
+  listCopilotRecommendations: copilotApi.listRecommendations,
 
   // Audit
   getAuditEvents: auditApi.getEvents,

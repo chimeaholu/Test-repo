@@ -1,36 +1,50 @@
 from __future__ import annotations
 
 from datetime import UTC, datetime
+from secrets import token_hex
 
 from sqlalchemy import select
 
 from app.db.models.audit import AuditEvent
-from app.db.repositories.identity import IdentityRepository
+from app.db.repositories.farm import FarmRepository
 
 
-def _create_session(session, *, actor_id: str, role: str, country_code: str = "GH") -> str:
-    identity_repository = IdentityRepository(session)
-    identity_repository.ensure_membership(actor_id=actor_id, role=role, country_code=country_code)
-    record = identity_repository.create_or_rotate_session(
-        actor_id=actor_id,
-        display_name=actor_id,
-        email=f"{actor_id}@example.com",
-        role=role,
-        country_code=country_code,
+def _create_session(
+    client,
+    *,
+    role: str,
+    country_code: str = "GH",
+    seed: str,
+) -> tuple[str, str]:
+    register = client.post(
+        "/api/v1/identity/register/password",
+        json={
+            "display_name": seed,
+            "email": f"{seed}-{token_hex(3)}@example.com",
+            "phone_number": f"+23324{int(token_hex(4), 16) % 10_000_000:07d}",
+            "password": "Harvest2026!",
+            "role": role,
+            "country_code": country_code,
+        },
     )
-    identity_repository.grant_consent(
-        actor_id=actor_id,
-        country_code=country_code,
-        policy_version="2026.04",
-        scope_ids=["identity.core", "workflow.audit", "farm.runtime"],
-        captured_at=datetime.now(tz=UTC),
+    assert register.status_code == 200
+    token = register.json()["access_token"]
+    actor_id = register.json()["session"]["actor"]["actor_id"]
+    consent = client.post(
+        "/api/v1/identity/consent",
+        json={
+            "policy_version": "2026.04",
+            "scope_ids": ["identity.core", "workflow.audit", "farm.runtime", "climate.runtime"],
+            "captured_at": datetime.now(tz=UTC).isoformat(),
+        },
+        headers={"Authorization": f"Bearer {token}"},
     )
-    session.commit()
-    return record.session_token
+    assert consent.status_code == 200
+    return token, actor_id
 
 
 def test_farm_routes_support_r6_management_flow(client, session) -> None:
-    token = _create_session(session, actor_id="actor-farmer-gh-r6", role="farmer")
+    token, _ = _create_session(client, role="farmer", seed="farm-r6")
 
     farm_response = client.post(
         "/api/v1/farms",
@@ -156,9 +170,9 @@ def test_farm_routes_support_r6_management_flow(client, session) -> None:
 
 
 def test_farm_routes_enforce_actor_scope_and_audit_rejections(client, session) -> None:
-    farmer_token = _create_session(session, actor_id="actor-farmer-gh-owner", role="farmer")
-    outsider_token = _create_session(session, actor_id="actor-farmer-gh-outsider", role="farmer")
-    buyer_token = _create_session(session, actor_id="actor-buyer-gh-r6", role="buyer")
+    farmer_token, _ = _create_session(client, role="farmer", seed="farm-owner")
+    outsider_token, _ = _create_session(client, role="farmer", seed="farm-outsider")
+    buyer_token, _ = _create_session(client, role="buyer", seed="farm-buyer")
 
     farm_response = client.post(
         "/api/v1/farms",
@@ -213,3 +227,50 @@ def test_farm_routes_enforce_actor_scope_and_audit_rejections(client, session) -
     }
     assert "farm_write_forbidden" in rejection_reasons
     assert "unsupported_boundary_geojson" in rejection_reasons
+
+
+def test_climate_reference_routes_cover_empty_state_fresh_farmer(client, session) -> None:
+    token, actor_id = _create_session(client, role="farmer", seed="farm-empty-climate")
+    headers = {"Authorization": f"Bearer {token}"}
+
+    farm_profile = client.get("/api/v1/climate/farms/farm-gh-001", headers=headers)
+    observations = client.get(
+        "/api/v1/climate/observations?farm_id=farm-gh-001",
+        headers=headers,
+    )
+
+    assert farm_profile.status_code == 200
+    assert observations.status_code == 200
+    assert farm_profile.json()["farm_id"] == "farm-gh-001"
+    assert farm_profile.json()["actor_id"] == actor_id
+    assert observations.json()["items"]
+    assert observations.json()["items"][0]["farm_id"] == "farm-gh-001"
+    assert observations.json()["items"][0]["actor_id"] == actor_id
+
+
+def test_climate_reference_routes_do_not_mask_real_missing_farm_ids(client, session) -> None:
+    token, actor_id = _create_session(client, role="farmer", seed="farm-live-climate")
+    farm_repository = FarmRepository(session)
+    farm_repository.create_farm(
+        farm_id="farm-gh-live-001",
+        actor_id=actor_id,
+        country_code="GH",
+        farm_name="Live Farm",
+        district="Tamale",
+        crop_type="Maize",
+        hectares=4.2,
+        latitude=9.4,
+        longitude=-0.8,
+        metadata_json={},
+    )
+    session.commit()
+
+    headers = {"Authorization": f"Bearer {token}"}
+    farm_profile = client.get("/api/v1/climate/farms/farm-gh-001", headers=headers)
+    observations = client.get(
+        "/api/v1/climate/observations?farm_id=farm-gh-001",
+        headers=headers,
+    )
+
+    assert farm_profile.status_code == 404
+    assert observations.status_code == 404
