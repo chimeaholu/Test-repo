@@ -1,0 +1,11 @@
+{
+  "name": "@agrodomain/config",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "build": "echo config build placeholder",
+    "lint": "echo config lint placeholder",
+    "typecheck": "echo config typecheck placeholder",
+    "test": "echo config test placeholder"
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "$ref": "#/definitions/NotificationAttempt",
+  "definitions": {
+    "NotificationAttempt": {
+      "additionalProperties": false,
+      "properties": {
+        "attempted_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "type": "string"
+        },
+        "attempted_channels": {
+          "items": {
+            "enum": [
+              "whatsapp",
+              "sms",
+              "push",
+              "email"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "fallback_reason": {
+          "enum": [
+            "delivery_failed",
+            "session_window_expired",
+            "network_degraded",
+            "manual_escalation"
+          ],
+          "nullable": true,
+          "type": "string"
+        },
+        "fallback_triggered": {
+          "type": "boolean"
+        },
+        "final_channel": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/NotificationAttempt/properties/attempted_channels/items"
+            }
+          ],
+          "nullable": true
+        },
+        "final_state": {
+          "enum": [
+            "queued",
+            "sent",
+            "fallback_sent",
+            "action_required",
+            "failed"
+          ],
+          "type": "string"
+        },
+        "intent_type": {
+          "enum": [
+            "settlement_update",
+            "listing_alert",
+            "system_alert"
+          ],
+          "type": "string"
+        },
+        "notification_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "parity_key": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "recipient": {
+          "additionalProperties": false,
+          "properties": {
+            "contact_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "device_token": {
+              "minLength": 1,
+              "nullable": true,
+              "type": "string"
+            },
+            "locale": {
+              "maxLength": 16,
+              "minLength": 2,
+              "pattern": "^[a-z]{2}(?:-[A-Z]{2})?$",
+              "type": "string"
+            },
+            "phone_number": {
+              "minLength": 1,
+              "nullable": true,
+              "type": "string"
+            }
+          },
+          "required": [
+            "contact_id",
+            "locale"
+          ],
+          "type": "object"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "notification_id",
+        "intent_type",
+        "recipient",
+        "attempted_channels",
+        "final_channel",
+        "final_state",
+        "fallback_triggered",
+        "parity_key",
+        "attempted_at"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Delivery attempt contract with fallback status, parity key, and cross-channel metadata.",
+  "x-agrodomain-contract": {
+    "id": "notifications.attempt",
+    "domain": "notifications",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "EP-003",
+      "RJ-001",
+      "RJ-002",
+      "DI-001",
+      "DI-002"
+    ],
+    "source_artifacts": [
+      "execution/contracts/b013_settlement_notification_contract.json",
+      "legacy/staging-runtime/src/agro_v2/notification_broker.py",
+      "legacy/staging-runtime/src/agro_v2/settlement_notifications.py"
+    ]
+  }
+}

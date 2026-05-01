@@ -1,0 +1,121 @@
+{
+  "$ref": "#/definitions/ResponseEnvelope",
+  "definitions": {
+    "ResponseEnvelope": {
+      "additionalProperties": false,
+      "properties": {
+        "data": {
+          "additionalProperties": {},
+          "type": "object"
+        },
+        "error": {
+          "additionalProperties": false,
+          "properties": {
+            "code": {
+              "enum": [
+                "invalid_schema",
+                "unknown_tool",
+                "missing_consent",
+                "policy_denied",
+                "policy_hitl_required",
+                "country_not_supported",
+                "channel_not_supported",
+                "delivery_failed",
+                "session_timeout",
+                "offline_conflict",
+                "idempotency_conflict",
+                "grounded_response_ready",
+                "low_confidence_sources",
+                "policy_sensitive_guidance",
+                "revision_needed_for_clarity"
+              ],
+              "type": "string"
+            },
+            "message": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "reason_code": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "retryable": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "code",
+            "reason_code",
+            "message",
+            "retryable"
+          ],
+          "type": "object"
+        },
+        "metadata": {
+          "additionalProperties": false,
+          "properties": {
+            "causation_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "correlation_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "emitted_at": {
+              "description": "ISO-8601 timestamp with timezone offset",
+              "format": "date-time",
+              "type": "string"
+            },
+            "request_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "schema_version": {
+              "enum": [
+                "2026-04-18.wave1"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "schema_version",
+            "request_id",
+            "correlation_id",
+            "causation_id",
+            "emitted_at"
+          ],
+          "type": "object"
+        },
+        "status": {
+          "enum": [
+            "accepted",
+            "completed",
+            "rejected"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "metadata",
+        "status"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Universal command response envelope with strict success and rejection semantics.",
+  "x-agrodomain-contract": {
+    "id": "envelope.response",
+    "domain": "envelope",
+    "kind": "response",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "AIJ-002",
+      "IDI-003"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-wave0-production-rebuild-architecture-packet.md",
+      "legacy/staging-runtime/src/agro_v2/tool_contracts.py"
+    ]
+  }
+}

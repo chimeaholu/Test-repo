@@ -1,0 +1,170 @@
+{
+  "$ref": "#/definitions/MarketplaceConversionMetric",
+  "definitions": {
+    "MarketplaceConversionMetric": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "actor_role": {
+          "enum": [
+            "farmer",
+            "buyer",
+            "cooperative",
+            "transporter",
+            "investor",
+            "extension_agent",
+            "advisor",
+            "finance",
+            "admin"
+          ],
+          "type": "string"
+        },
+        "blocker_code": {
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "duration_ms": {
+          "minimum": 0,
+          "nullable": true,
+          "type": "integer"
+        },
+        "escrow_id": {
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "listing_id": {
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "notification_count": {
+          "minimum": 0,
+          "nullable": true,
+          "type": "integer"
+        },
+        "occurred_at": {
+          "description": "ISO-8601 timestamp with timezone offset",
+          "format": "date-time",
+          "type": "string"
+        },
+        "outcome": {
+          "enum": [
+            "started",
+            "completed",
+            "blocked"
+          ],
+          "type": "string"
+        },
+        "queue_depth": {
+          "minimum": 0,
+          "nullable": true,
+          "type": "integer"
+        },
+        "replayed": {
+          "nullable": true,
+          "type": "boolean"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "source_surface": {
+          "enum": [
+            "listing_grid",
+            "listing_wizard",
+            "listing_detail",
+            "negotiation_inbox",
+            "notifications_center",
+            "wallet_dashboard"
+          ],
+          "type": "string"
+        },
+        "stage": {
+          "enum": [
+            "listing_viewed",
+            "listing_draft_saved",
+            "listing_published",
+            "negotiation_opened",
+            "offer_created",
+            "offer_countered",
+            "confirmation_requested",
+            "confirmation_approved",
+            "confirmation_rejected",
+            "escrow_initiated",
+            "escrow_funded",
+            "escrow_released",
+            "escrow_reversed",
+            "escrow_disputed",
+            "notification_impression",
+            "notification_action"
+          ],
+          "type": "string"
+        },
+        "thread_id": {
+          "minLength": 1,
+          "nullable": true,
+          "type": "string"
+        },
+        "urgency": {
+          "enum": [
+            "routine",
+            "attention",
+            "urgent",
+            "critical"
+          ],
+          "nullable": true,
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "occurred_at",
+        "actor_id",
+        "actor_role",
+        "country_code",
+        "stage",
+        "outcome",
+        "source_surface",
+        "listing_id",
+        "thread_id",
+        "escrow_id",
+        "urgency",
+        "blocker_code",
+        "duration_ms",
+        "notification_count",
+        "queue_depth",
+        "replayed"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Stepwise marketplace conversion metric covering listing, negotiation, settlement, and notification touches for EH3 proof.",
+  "x-agrodomain-contract": {
+    "id": "analytics.marketplace_conversion_metric",
+    "domain": "analytics",
+    "kind": "event",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-002",
+      "CJ-003",
+      "RJ-002",
+      "EP-003"
+    ],
+    "source_artifacts": [
+      "output_to_user/AGRODOMAIN-ENHANCEMENT-BUILD-SPEC.md",
+      "output_to_user/AGRODOMAIN-ENHANCEMENT-TEST-PLAN.md"
+    ]
+  }
+}

@@ -1,0 +1,292 @@
+{
+  "$ref": "#/definitions/NotificationFeedCollection",
+  "definitions": {
+    "NotificationFeedCollection": {
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "action": {
+                "additionalProperties": false,
+                "nullable": true,
+                "properties": {
+                  "href": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "label": {
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "label",
+                  "href"
+                ],
+                "type": "object"
+              },
+              "body": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "category": {
+                "enum": [
+                  "trade",
+                  "finance",
+                  "weather",
+                  "advisory",
+                  "system",
+                  "copilot",
+                  "transport"
+                ],
+                "type": "string"
+              },
+              "created_at": {
+                "description": "ISO-8601 timestamp with timezone offset",
+                "format": "date-time",
+                "type": "string"
+              },
+              "dispatch_plan": {
+                "additionalProperties": false,
+                "properties": {
+                  "dedupe_key": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "escalate_after": {
+                    "allOf": [
+                      {
+                        "$ref": "#/definitions/NotificationFeedCollection/properties/items/items/properties/created_at"
+                      }
+                    ],
+                    "description": "ISO-8601 timestamp with timezone offset",
+                    "nullable": true
+                  },
+                  "expires_at": {
+                    "allOf": [
+                      {
+                        "$ref": "#/definitions/NotificationFeedCollection/properties/items/items/properties/created_at"
+                      }
+                    ],
+                    "description": "ISO-8601 timestamp with timezone offset",
+                    "nullable": true
+                  },
+                  "fallback_channels": {
+                    "items": {
+                      "$ref": "#/definitions/NotificationFeedCollection/properties/items/items/properties/dispatch_plan/properties/preferred_channels/items"
+                    },
+                    "type": "array"
+                  },
+                  "notification_id": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "payload": {
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "enum": [
+                            "null"
+                          ],
+                          "nullable": true
+                        }
+                      ]
+                    },
+                    "type": "object"
+                  },
+                  "preferred_channels": {
+                    "items": {
+                      "enum": [
+                        "in_app",
+                        "email",
+                        "push",
+                        "whatsapp",
+                        "sms"
+                      ],
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  },
+                  "queue_state": {
+                    "enum": [
+                      "queued",
+                      "scheduled",
+                      "dispatched",
+                      "suppressed",
+                      "failed"
+                    ],
+                    "type": "string"
+                  },
+                  "schema_version": {
+                    "$ref": "#/definitions/NotificationFeedCollection/properties/schema_version"
+                  },
+                  "template_key": {
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "schema_version",
+                  "notification_id",
+                  "template_key",
+                  "dedupe_key",
+                  "queue_state",
+                  "preferred_channels",
+                  "fallback_channels",
+                  "expires_at",
+                  "escalate_after",
+                  "payload"
+                ],
+                "type": "object"
+              },
+              "escrow_id": {
+                "minLength": 1,
+                "nullable": true,
+                "type": "string"
+              },
+              "expires_at": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/NotificationFeedCollection/properties/items/items/properties/created_at"
+                  }
+                ],
+                "description": "ISO-8601 timestamp with timezone offset",
+                "nullable": true
+              },
+              "lifecycle_state": {
+                "enum": [
+                  "info",
+                  "pending",
+                  "blocked",
+                  "resolved"
+                ],
+                "type": "string"
+              },
+              "listing_id": {
+                "minLength": 1,
+                "nullable": true,
+                "type": "string"
+              },
+              "module": {
+                "enum": [
+                  "marketplace",
+                  "wallet",
+                  "climate",
+                  "advisory",
+                  "identity",
+                  "system",
+                  "transport",
+                  "copilot"
+                ],
+                "type": "string"
+              },
+              "next_action_copy": {
+                "minLength": 1,
+                "nullable": true,
+                "type": "string"
+              },
+              "notification_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "read": {
+                "type": "boolean"
+              },
+              "read_at": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/NotificationFeedCollection/properties/items/items/properties/created_at"
+                  }
+                ],
+                "description": "ISO-8601 timestamp with timezone offset",
+                "nullable": true
+              },
+              "schema_version": {
+                "$ref": "#/definitions/NotificationFeedCollection/properties/schema_version"
+              },
+              "thread_id": {
+                "minLength": 1,
+                "nullable": true,
+                "type": "string"
+              },
+              "title": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "urgency": {
+                "enum": [
+                  "routine",
+                  "attention",
+                  "urgent",
+                  "critical"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "schema_version",
+              "notification_id",
+              "module",
+              "category",
+              "lifecycle_state",
+              "urgency",
+              "title",
+              "body",
+              "created_at",
+              "read",
+              "read_at",
+              "expires_at",
+              "next_action_copy",
+              "listing_id",
+              "thread_id",
+              "escrow_id",
+              "action",
+              "dispatch_plan"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "items"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Ordered collection of shared notification feed items with queue metadata preserved for cross-surface reuse.",
+  "x-agrodomain-contract": {
+    "id": "notifications.feed_collection",
+    "domain": "notifications",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-003",
+      "RJ-002",
+      "EP-003"
+    ],
+    "source_artifacts": [
+      "output_to_user/AGRODOMAIN-ENHANCEMENT-BUILD-SPEC.md",
+      "output_to_user/AGRODOMAIN-ENHANCEMENT-TEST-PLAN.md"
+    ]
+  }
+}

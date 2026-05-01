@@ -1,0 +1,361 @@
+{
+  "$ref": "#/definitions/AdvisoryResponse",
+  "definitions": {
+    "AdvisoryResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "advisory_conversation_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "advisory_request_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "citations": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "citation_url": {
+                "format": "uri",
+                "nullable": true,
+                "type": "string"
+              },
+              "country_code": {
+                "$ref": "#/definitions/AdvisoryResponse/properties/country_code"
+              },
+              "excerpt": {
+                "maxLength": 400,
+                "minLength": 12,
+                "type": "string"
+              },
+              "locale": {
+                "$ref": "#/definitions/AdvisoryResponse/properties/locale"
+              },
+              "method_tag": {
+                "maxLength": 64,
+                "minLength": 2,
+                "type": "string"
+              },
+              "published_at": {
+                "description": "ISO-8601 timestamp with timezone offset",
+                "format": "date-time",
+                "type": "string"
+              },
+              "source_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "source_type": {
+                "enum": [
+                  "policy",
+                  "extension",
+                  "weather",
+                  "manual"
+                ],
+                "type": "string"
+              },
+              "title": {
+                "maxLength": 160,
+                "minLength": 3,
+                "type": "string"
+              }
+            },
+            "required": [
+              "source_id",
+              "title",
+              "source_type",
+              "locale",
+              "country_code",
+              "citation_url",
+              "published_at",
+              "excerpt",
+              "method_tag"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "confidence_band": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "type": "string"
+        },
+        "confidence_score": {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "correlation_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "country_code": {
+          "description": "ISO alpha-2 country code",
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "created_at": {
+          "$ref": "#/definitions/AdvisoryResponse/properties/citations/items/properties/published_at"
+        },
+        "delivered_at": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/AdvisoryResponse/properties/citations/items/properties/published_at"
+            }
+          ],
+          "description": "ISO-8601 timestamp with timezone offset",
+          "nullable": true
+        },
+        "grounded": {
+          "type": "boolean"
+        },
+        "locale": {
+          "maxLength": 16,
+          "minLength": 2,
+          "pattern": "^[a-z]{2}(?:-[A-Z]{2})?$",
+          "type": "string"
+        },
+        "model_name": {
+          "maxLength": 80,
+          "minLength": 2,
+          "type": "string"
+        },
+        "model_version": {
+          "maxLength": 80,
+          "minLength": 2,
+          "type": "string"
+        },
+        "question_text": {
+          "maxLength": 2000,
+          "minLength": 12,
+          "type": "string"
+        },
+        "request_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "response_text": {
+          "maxLength": 4000,
+          "minLength": 12,
+          "type": "string"
+        },
+        "reviewer_decision": {
+          "additionalProperties": false,
+          "properties": {
+            "actor_id": {
+              "$ref": "#/definitions/AdvisoryResponse/properties/actor_id"
+            },
+            "actor_role": {
+              "enum": [
+                "farmer",
+                "buyer",
+                "cooperative_admin",
+                "advisor",
+                "finance_ops",
+                "compliance",
+                "admin"
+              ],
+              "type": "string"
+            },
+            "advisory_request_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "created_at": {
+              "$ref": "#/definitions/AdvisoryResponse/properties/citations/items/properties/published_at"
+            },
+            "decision_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "note": {
+              "maxLength": 500,
+              "minLength": 3,
+              "nullable": true,
+              "type": "string"
+            },
+            "outcome": {
+              "enum": [
+                "approve",
+                "revise",
+                "block",
+                "hitl_required"
+              ],
+              "type": "string"
+            },
+            "policy_context": {
+              "additionalProperties": false,
+              "properties": {
+                "confidence_threshold": {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "matched_policy": {
+                  "minLength": 1,
+                  "nullable": true,
+                  "type": "string"
+                },
+                "policy_sensitive": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "confidence_threshold",
+                "policy_sensitive"
+              ],
+              "type": "object"
+            },
+            "reason_code": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "schema_version": {
+              "$ref": "#/definitions/AdvisoryResponse/properties/schema_version"
+            },
+            "transcript_link": {
+              "minLength": 1,
+              "nullable": true,
+              "type": "string"
+            }
+          },
+          "required": [
+            "schema_version",
+            "advisory_request_id",
+            "decision_id",
+            "actor_id",
+            "actor_role",
+            "outcome",
+            "reason_code",
+            "policy_context",
+            "created_at"
+          ],
+          "type": "object"
+        },
+        "schema_version": {
+          "enum": [
+            "2026-04-18.wave1"
+          ],
+          "type": "string"
+        },
+        "source_ids": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "ready",
+            "delivered",
+            "revised",
+            "blocked",
+            "hitl_required"
+          ],
+          "type": "string"
+        },
+        "topic": {
+          "maxLength": 120,
+          "minLength": 3,
+          "type": "string"
+        },
+        "transcript_entries": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "captured_at": {
+                "$ref": "#/definitions/AdvisoryResponse/properties/citations/items/properties/published_at"
+              },
+              "channel": {
+                "description": "Transport channel that originated or carried the request",
+                "enum": [
+                  "pwa",
+                  "ussd",
+                  "whatsapp",
+                  "sms",
+                  "push",
+                  "api"
+                ],
+                "type": "string"
+              },
+              "message": {
+                "maxLength": 2000,
+                "minLength": 1,
+                "type": "string"
+              },
+              "speaker": {
+                "enum": [
+                  "user",
+                  "assistant",
+                  "reviewer",
+                  "system"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "speaker",
+              "message",
+              "captured_at",
+              "channel"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "advisory_request_id",
+        "advisory_conversation_id",
+        "actor_id",
+        "country_code",
+        "locale",
+        "topic",
+        "question_text",
+        "response_text",
+        "status",
+        "confidence_band",
+        "confidence_score",
+        "grounded",
+        "citations",
+        "transcript_entries",
+        "reviewer_decision",
+        "source_ids",
+        "model_name",
+        "model_version",
+        "correlation_id",
+        "request_id",
+        "delivered_at",
+        "created_at"
+      ],
+      "type": "object"
+    }
+  },
+  "description": "Grounded advisory response payload with citations, confidence indicators, transcript metadata, and reviewer state.",
+  "x-agrodomain-contract": {
+    "id": "advisory.advisory_response",
+    "domain": "advisory",
+    "kind": "dto",
+    "schema_version": "2026-04-18.wave1",
+    "traceability": [
+      "CJ-005",
+      "RJ-003",
+      "DI-005"
+    ],
+    "source_artifacts": [
+      "execution/specs/2026-04-18-n4-wave4-advisory-reviewer-climate-tranche.md",
+      "v2-planning/AGRO-V2-TEST-PLAN.md"
+    ]
+  }
+}
